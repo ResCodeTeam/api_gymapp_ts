@@ -11,7 +11,7 @@ import registarUserMarcasController from "../controllers/admin/marcas/registarUs
 import registarMarcaGinasiosController from "../controllers/admin/ginasios/registarMarcaGinasiosController";
 import criarGinasioModalidadesController from "../controllers/admin/modalidades/criarGinasioModalidadesController";
 import criarDesafiosController from "../controllers/admin/desafios/criarDesafiosController";
-import criar_comentario_controller from "../controllers/admin/comments/criar_comentario_controller";
+import {CriarComentarioController} from "../controllers/admin/comments/criarComentarioController";
 import ver_publicacoes_controller from "../controllers/admin/posts/ver_publicacoes_controller";
 import removerPostsController from "../controllers/admin/posts/removerPostsController";
 import removerModalidadesController from "../controllers/admin/modalidades/removerModalidadesController";
@@ -22,13 +22,15 @@ import verificarAdmin from "../middlewares/verificarAdmin";
 import encerrarDesafiosController from "../controllers/admin/desafios/encerrarDesafiosController";
 import criar_notificacao_marca_controller from "../controllers/admin/notificacoes/criar_notificacao_marca_controller";
 
+const criarComentarioController=new CriarComentarioController();
+
 adminRouter.post("/posts",criar_posts_controller);
 adminRouter.get("/posts", ver_publicacoes_controller);
 adminRouter.put("/posts/:id", editarPublicacaoController);
 adminRouter.delete("/posts/:id", removerPostsController);
 adminRouter.post("/posts/:id/gostos", criarGostoController);
 
-adminRouter.post("/posts/:id/comentarios/criar", criar_comentario_controller);
+adminRouter.post("/posts/:id/comentarios/criar", criarComentarioController.handle);
 
 adminRouter.put("/desafios/:id", encerrarDesafiosController);
 
