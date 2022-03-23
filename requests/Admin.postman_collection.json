@@ -1,0 +1,544 @@
+{
+	"info": {
+		"_postman_id": "76e189d1-d802-41e8-99c4-fbcc7060da83",
+		"name": "Admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Criar Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDc4Nzg3MjMsImV4cCI6MTY0Nzg3ODczOCwic3ViIjoiODJlNjcyYWYtZjNkMy00OGRjLWIzNDgtYjNlNGI1MzM1NTViIn0.GAfBS5OWTsX_irbjROCgpsl32oBrxtTUFm-wAtwhIVU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"criador_id\": \"82e672af-f3d3-48dc-b348-b3e4b533555b\",\n    \"data\": \"2022/03/20\",\n    \"descricao\": \"teste\",\n    \"tipo\": \"3\",\n    \"ginasio_id\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/posts/criar",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"posts",
+								"criar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/posts/9315f543-3407-4eeb-b23d-d7b45df44bba",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"posts",
+								"9315f543-3407-4eeb-b23d-d7b45df44bba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publicacoes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/posts/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Publicação",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"criador_id\": \"82e672af-f3d3-48dc-b348-b3e4b533555b\",\r\n    \"data\": \"2022-03-22\",\r\n    \"descricao\": \"TesteFatim\",\r\n    \"tipo\": \"3\",\r\n    \"ginasio_id\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/posts/d4ce7610-91f0-4526-a317-dcc368f43877",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"posts",
+								"d4ce7610-91f0-4526-a317-dcc368f43877"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Marcas",
+			"item": [
+				{
+					"name": "Registar Marca",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"VO3\",\r\n    \"mobilidade\": 1,\r\n    \"cor\": \"Vermelho\",\r\n    \"logotipo\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/82e672af-f3d3-48dc-b348-b3e4b533555b/marca/registar",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"82e672af-f3d3-48dc-b348-b3e4b533555b",
+								"marca",
+								"registar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ginásios",
+			"item": [
+				{
+					"name": "Registar aluno",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"aluno@alunos.com\",\n    \"nome\":\"nome aluno\",\n    \"password\":\"testepwd\",\n    \"data_nasc\":\"2002-04-09\",\n    \"data_entrada\":\"2022-01-17\",\n    \"genero\":0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/marca/alunos/registar",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"marca",
+								"alunos",
+								"registar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registar Ginásio para Marca",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Ginásio 1\",\r\n    \"rua\": \"Rua das Castanhas\",\r\n    \"cp\": \"4768-491\",\r\n    \"descricao\": \"null\",\r\n    \"estado\": \"2\",\r\n    \"imagem_url\": \"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/marca/a523a016-cb3a-4425-aab5-903de13eb72c/ginasio/registar",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"marca",
+								"a523a016-cb3a-4425-aab5-903de13eb72c",
+								"ginasio",
+								"registar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Desafio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"criador_id\": null,\r\n    \"nome\": \"Caminhar\",\r\n    \"modalidade_id\": null,\r\n    \"data_inicio\": \"3\",\r\n    \"data_fim\": \"2\",\r\n    \"recompensa\": \"2\",\r\n    \"estado\": \"2\",\r\n    \"ginasio_id\": null,\r\n    \"descricao\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/ginasio/criar/desafios",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"ginasio",
+								"criar",
+								"desafios"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Modalidades",
+			"item": [
+				{
+					"name": "Criar Modalidade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ginasio_id\": null,\r\n    \"nome\": \"Caminhar\",\r\n    \"imagem_char\": \"1\",\r\n    \"estado\": \"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/ginasio/criar/modalidades",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"ginasio",
+								"criar",
+								"modalidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Modalidade",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comentários",
+			"item": [
+				{
+					"name": "Criar Comentário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comentario\":\"Teste\",\n    \"criador_id\":\"82e672af-f3d3-48dc-b348-b3e4b533555b\",\n    \"data\":\"2022-03-21\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/posts/d1e1f36d-9a11-4d24-9db0-b42144a01be4/comentarios/criar",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"posts",
+								"d1e1f36d-9a11-4d24-9db0-b42144a01be4",
+								"comentarios",
+								"criar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LikesPosts",
+			"item": [
+				{
+					"name": "Criar Like",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notificações",
+			"item": [
+				{
+					"name": "Criar Notificacao Para User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"82e672af-f3d3-48dc-b348-b3e4b533555b\",\n    \"conteudo\":\"Teste\",\n    \"data\":\"2022-03-21\",\n    \"tipo\":0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/notificacao/criar/82e672af-f3d3-48dc-b348-b3e4b533555b",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"notificacao",
+								"criar",
+								"82e672af-f3d3-48dc-b348-b3e4b533555b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Notificacao Para Users de Marca",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"82e672af-f3d3-48dc-b348-b3e4b533555b\",\n    \"marca_id\": \"a523a016-cb3a-4425-aab5-903de13eb72c\",\n    \"conteudo\":\"Teste3\",\n    \"data\":\"2022-03-22\",\n    \"tipo\":0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/notificacao/criar/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"notificacao",
+								"criar",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Treinador",
+			"item": [
+				{
+					"name": "Criar Treinador",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Treinador",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Desafios",
+			"item": [
+				{
+					"name": "Encerrar Desafio",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/desafios/id",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"desafios",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Resultados de Todos os Desafios",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alunos",
+			"item": [
+				{
+					"name": "Obter Alunos Ginásio",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"82e672af-f3d3-48dc-b348-b3e4b533555b\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/admin/alunos/20aa9589-c11a-455e-9b9f-5fa7b6796aaa",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"alunos",
+								"20aa9589-c11a-455e-9b9f-5fa7b6796aaa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
