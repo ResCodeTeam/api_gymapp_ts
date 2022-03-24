@@ -15,7 +15,7 @@ import { CriarComentarioController } from "../controllers/admin/comments/criarCo
 import { VerPostController } from "../controllers/admin/posts/verPostController";
 import { RemoverPostsController } from "../controllers/admin/posts/removerPostsController";
 import { RemoverModalidadesController } from "../controllers/admin/modalidades/removerModalidadesController";
-import { EliminarTreinadorController } from "../controllers/admin/treinador/eliminarTreinadorController";
+import { EliminarTreinadorController } from "../controllers/admin/treinadores/eliminarTreinadorController";
 import { CriarGostoController } from "../controllers/admin/gostosPosts/criarGostoController";
 import { EditarPublicacaoController } from "../controllers/admin/posts/editarPublicacaoController";
 import { VerificarAdmin } from "../middlewares/verificarAdmin";
@@ -77,7 +77,7 @@ adminRouter.post("/notificacao/criar/", criarNotificacaoMarcaController.handle);
 
 //#region Publicacoes
 adminRouter.post("/posts", criarPostsController.handle);
-adminRouter.get("/posts", verPublicacoesController.handle);
+adminRouter.get("/posts", verPostController.handle);
 adminRouter.put("/posts/:id", editarPublicacaoController.handle);
 adminRouter.delete("/posts/:id", removerPostsController.handle);
 adminRouter.post("/posts/:id/gostos", criarGostoController.handle);
