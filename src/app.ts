@@ -12,7 +12,6 @@ import auth_route from "./api/routes/auth_route";
 app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 
-
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/auth", auth_route);
 
