@@ -1,13 +1,20 @@
 import { Request, Response } from "express";
-import criarPostsService = require("../../../services/admin/posts/criarPostsService");
+import { CriarPostsService } from "../../../services/admin/posts/criarPostsService";
 
-class CriarPostsController{
-    async handle(request: Request, response: Response) {
-        let { criador_id, data, descricao, tipo, ginasio_id } = request.body;
+class CriarPostsController {
+  async handle(request: Request, response: Response) {
+    let { criadorId, data, descricao, tipo, ginasioId } = request.body;
 
-  const resp = await criarPostsService(criador_id, data, descricao, tipo, ginasio_id);
-  response.status(200).json(resp);
-    }
+    const criarPostsService = new CriarPostsService();
+    const resp = await criarPostsService.execute({
+      criadorId,
+      data,
+      descricao,
+      tipo,
+      ginasioId,
+    });
+    return resp;
+  }
 }
 
-export{ CriarPostsController }
+export { CriarPostsController };

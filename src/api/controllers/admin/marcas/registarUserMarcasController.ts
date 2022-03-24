@@ -1,19 +1,20 @@
 import { Request, Response } from "express";
-import registarUserMarcasService from "../../../services/admin/marcas/registarUserMarcasService";
+import { RegistarUserMarcasService } from "../../../services/admin/marcas/registarUserMarcasService";
 
 class RegistarUserMarcasController {
   async handle(request: Request, response: Response) {
-    const user_id = request.params.id;
+    const userId = request.params.id;
     const { nome, mobilidade, cor, logotipo } = request.body;
 
-    const resp = await registarUserMarcasService(
-      user_id,
+    const registarUserMarcasController = new RegistarUserMarcasService();
+    const resp = await registarUserMarcasController.execute({
+      userId,
       nome,
       mobilidade,
       cor,
-      logotipo
-    );
-    response.json(resp);
+      logotipo,
+    });
+    return resp;
   }
 }
 
