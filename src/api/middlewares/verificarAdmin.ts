@@ -2,15 +2,14 @@ import { NextFunction, Request, Response } from "express";
 import { decode } from "jsonwebtoken";
 import { checkUserIdExists, getFuncaoId, getUserFuncao } from "../helpers/dbHelpers";
 
-
-module.exports=async(request:Request, response:Response, next:NextFunction)=>{
+export async function verificarAdmin(request:Request, response:Response, next:NextFunction){
     const auth = request.headers.authorization;
 
-    const[,token]=auth!.split(" ")
+    const[,token]=auth.split(" ")
 
     
-    var uid = decode(token)['sub'];
-
+    let uid = decode(token)['sub'].toString()
+    
     const user = checkUserIdExists(uid)
     if(!user){
         throw new Error("User inexistente")
