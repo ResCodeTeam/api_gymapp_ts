@@ -4,40 +4,46 @@ const adminRouter = express.Router();
 //middlewares
 import verificarAutenticacao from "../middlewares/verificarAutenticacao";
 
-import criar_posts_controller from "../controllers/admin/posts/criar_posts_controller";
-import registar_alunos_controller from "../controllers/admin/registar_alunos_controller";
-import criar_notificacao_user_controller from "../controllers/admin/notificacoes/criar_notificacao_user_controller";
-import registarUserMarcasController from "../controllers/admin/marcas/registarUserMarcasController";
-import registarMarcaGinasiosController from "../controllers/admin/ginasios/registarMarcaGinasiosController";
-import criarGinasioModalidadesController from "../controllers/admin/modalidades/criarGinasioModalidadesController";
-import criarDesafiosController from "../controllers/admin/desafios/criarDesafiosController";
-import {CriarComentarioController} from "../controllers/admin/comments/criarComentarioController";
-import ver_publicacoes_controller from "../controllers/admin/posts/ver_publicacoes_controller";
-import removerPostsController from "../controllers/admin/posts/removerPostsController";
-import removerModalidadesController from "../controllers/admin/modalidades/removerModalidadesController";
-import eliminarTreinadorController from "../controllers/admin/treinador/eliminarTreinadorController";
-import criarGostoController from "../controllers/admin/gostosPosts/criarGostoController";
-import editarPublicacaoController from "../controllers/admin/posts/editarPublicacaoController";
-import verificarAdmin from "../middlewares/verificarAdmin";
-import encerrarDesafiosController from "../controllers/admin/desafios/encerrarDesafiosController";
-import criar_notificacao_marca_controller from "../controllers/admin/notificacoes/criar_notificacao_marca_controller";
-//#region Imports
-//#region Notificacoes
-import { CriarNotificacaoMarcarController } from "../controllers/admin/notificacoes/criarNotificacaoMarcaController";
-//#endregion
-//#endregion
+import { CriarPostsController } from "../controllers/admin/posts/criarPostsController";
+import { RegistarAlunosController } from "../controllers/admin/registarAlunosController";
+import { CriarNotificacaoUserController } from "../controllers/admin/notificacoes/criarNotificacaoUserController";
+import { RegistarUserMarcasController } from "../controllers/admin/marcas/registarUserMarcasController";
+import { RegistarMarcaGinasiosController } from "../controllers/admin/ginasios/registarMarcaGinasiosController";
+import { CriarGinasioModalidadesController } from "../controllers/admin/modalidades/criarGinasioModalidadesController";
+import { CriarDesafiosController } from "../controllers/admin/desafios/criarDesafiosController";
+import { CriarComentarioController } from "../controllers/admin/comments/criarComentarioController";
+import { VerPublicacoesController } from "../controllers/admin/posts/verPublicacoesController";
+import { RemoverPostsController } from "../controllers/admin/posts/removerPostsController";
+import { RemoverModalidadesController } from "../controllers/admin/modalidades/removerModalidadesController";
+import { EliminarTreinadorController } from "../controllers/admin/treinador/eliminarTreinadorController";
+import { CriarGostoController } from "../controllers/admin/gostosPosts/criarGostoController";
+import { EditarPublicacaoController } from "../controllers/admin/posts/editarPublicacaoController";
+import { VerificarAdmin } from "../middlewares/verificarAdmin";
+import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
+import { CriarNotificacaoMarcaController } from "../controllers/admin/notificacoes/criarNotificacaoMarcaController";
 
-//#region 
+const criarPostsController = new CriarPostsController();
+const registarAlunosController = new RegistarAlunosController();
+const criarNotificacaoUserController = new CriarNotificacaoUserController();
+const registarUserMarcasController = new RegistarUserMarcasController();
+const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
+const criarGinasioModalidadesController = new CriarGinasioModalidadesController();
+const criarDesafiosController = new CriarDesafiosController();
+const criarComentarioController = new CriarComentarioController();
+const verPublicacoesController = new VerPublicacoesController();
+const removerPostsController = new RemoverPostsController();
+const removerModalidadesController = new RemoverModalidadesController();
+const eliminarTreinadorController = new EliminarTreinadorController();
+const criarGostoController  = new CriarGostoController();
+const editarPublicacaoController  = new EditarPublicacaoController();
+const verificarAdmin  = new VerificarAdmin();
+const encerrarDesafiosController  = new EncerrarDesafiosController();
+const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 
-const criarComentarioController=new CriarComentarioController();
 
-//#region Notificacoes
-const criarNotificacaoMarcaController = new CriarNotificacaoMarcarController();
-//#endregion
-//#endregion
 
 //#region Alunos
-adminRouter.post("/marca/alunos/registar", registar_alunos_controller);
+adminRouter.post("/marca/alunos/registar", RegistarAlunosController);
 //#endregion
 
 //#region Comentarios
@@ -60,24 +66,24 @@ adminRouter.post("/ginasio/:id/criar/desafios", criarDesafiosController);
 //#endregion
 
 //#region Modalidades
-adminRouter.delete("/modalidades/:id", removerModalidadesController);
+adminRouter.delete("/modalidades/:id", RemoverModalidadesController);
 //#endregion
 
 //#region Notificacoes
-adminRouter.post("/notificacao/criar/:id", criar_notificacao_user_controller);
-adminRouter.post("/notificacao/criar/", criar_notificacao_marca_controller);
+adminRouter.post("/notificacao/criar/:id", CriarNotificacaoUserController);
+adminRouter.post("/notificacao/criar/", CriarNotificacaoMarcarController);
 //#endregion
 
 //#region Publicacoes
-adminRouter.post("/posts",criar_posts_controller);
-adminRouter.get("/posts", ver_publicacoes_controller);
-adminRouter.put("/posts/:id", editarPublicacaoController);
-adminRouter.delete("/posts/:id", removerPostsController);
-adminRouter.post("/posts/:id/gostos", criarGostoController);
+adminRouter.post("/posts",CriarPostsController);
+adminRouter.get("/posts", VerPublicacoesController);
+adminRouter.put("/posts/:id", EditarPublicacaoController);
+adminRouter.delete("/posts/:id", RemoverPostsController);
+adminRouter.post("/posts/:id/gostos", CriarGostoController);
 //#endregion
 
 //#region Treinadores
-adminRouter.delete("/treinador/:id", eliminarTreinadorController);
+adminRouter.delete("/treinador/:id", EliminarTreinadorController);
 //#endregion
 
 export { adminRouter };
