@@ -118,5 +118,22 @@ export = {
         }
 
         return true;
+    },
+    checkDonoMarca: async(marcaID : string, userId : string) => {
+        const search = await client.marcas.findFirst({
+            where:{
+                marca_id : marcaID,
+                dono_id : userId
+            },
+            select : {
+                marca_id : true
+            }
+        })
+
+        if (!search?.marca_id) {
+            throw new Error (`Não tem permissões`)
+        }
+
+        return true;
     }
 }
