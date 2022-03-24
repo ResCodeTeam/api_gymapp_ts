@@ -1,9 +1,8 @@
 //import  dbHelpers from "../../../helpers/dbHelpers";
 import { Interface } from "readline";
-import dbHelpers from "../../../helpers/dbHelpers";
-//import { checkDonoGinasio, checkGinasioExists } from "../../../helpers/dbHelpers";
+import { checkDonoGinasio, checkGinasioExists } from "../../../helpers/dbHelpers";
 
-import { client } from "../../../../../prisma/client";
+import { client } from "../../../prisma/client";
 
 interface IGinasioDono {
     ginasioId : string,
@@ -13,12 +12,12 @@ interface IGinasioDono {
 class ObterAlunosGinasioService {
     async execute ({ginasioId, userId} : IGinasioDono) {
 
-        const exists_ginasio = await dbHelpers.checkGinasioExists(ginasioId);
+        const exists_ginasio = await checkGinasioExists(ginasioId);
         if(!exists_ginasio){
             throw new Error(`Ginásio não existe`);
         }
 
-        const check_dono = await dbHelpers.checkDonoGinasio(ginasioId, userId);
+        const check_dono = await checkDonoGinasio(ginasioId, userId);
         if (!check_dono) {
             throw new Error(`Não pode aceder a esse ginásio`);
         }
