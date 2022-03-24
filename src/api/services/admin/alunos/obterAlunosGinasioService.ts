@@ -1,8 +1,7 @@
-//import  dbHelpers from "../../../helpers/dbHelpers";
 import { Interface } from "readline";
 import { checkDonoGinasio, checkGinasioExists } from "../../../helpers/dbHelpers";
 
-import { client } from "../../../prisma/client";
+import { client } from '../../../prisma/client';
 
 interface IGinasioDono {
     ginasioId : string,

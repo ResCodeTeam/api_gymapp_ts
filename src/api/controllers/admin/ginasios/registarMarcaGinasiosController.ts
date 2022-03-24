@@ -1,24 +1,25 @@
 import { Request, Response } from "express";
-import registarMarcaGinasiosService from "../../../services/admin/ginasios/registarMarcaGinasiosService";
+import { RegistarMarcaGinasiosService } from "../../../services/admin/ginasios/registarMarcaGinasiosService";
 
 class RegistarMarcaGinasiosController {
   async handle(request: Request, response: Response) {
-    const marca_id = request.params.id;
-    const { nome, rua, cp, estado, imagem_url, lat, long, cp_ext } =
+    const marcaId = request.params.id;
+    const { nome, rua, cp, estado, imagemUrl, lat, long, cpExt } =
       request.body;
 
-    const resp = await registarMarcaGinasiosService(
+    const registarMarcaGinasiosController = new RegistarMarcaGinasiosService();
+    const resp = await registarMarcaGinasiosController.execute({
       nome,
       rua,
       cp,
-      marca_id,
+      marcaId,
       estado,
-      imagem_url,
+      imagemUrl,
       lat,
       long,
-      cp_ext
-    );
-    response.json(resp);
+      cpExt
+    });
+    return resp;
   }
 }
 export { RegistarMarcaGinasiosController };

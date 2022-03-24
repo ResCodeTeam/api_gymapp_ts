@@ -136,6 +136,24 @@ let checkDonoMarca= async(marcaID : string, userId : string) => {
 
     return true;
 }
+// função que permite verificar se já existe alguma modalidade registada no ginásio com aquele nome
+let checkModalidadeNome = async (nome: string) => {
+    const search = await client.modalidades_ginasio.findMany({
+      where: {
+        nome,
+      },
+    });
+    return search.length != 0;
+};
+// função que permite verificar se já se encontra alguma marca com o nome registada
+let checkNomeMarca = async (nome: string) => {
+    const search = await client.marcas.findMany({
+      where: {
+        nome,
+      },
+    });
+    return search.length != 0;
+  };
 
 export {
     checkEmail,
@@ -149,6 +167,8 @@ export {
     checkExercicioExists,
     getMarcaGym,
     checkDonoGinasio,
-    checkDonoMarca
+    checkDonoMarca,
+    checkModalidadeNome,
+    checkNomeMarca
 }
 

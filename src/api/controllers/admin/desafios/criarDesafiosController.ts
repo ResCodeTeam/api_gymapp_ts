@@ -1,14 +1,15 @@
 import { Request, Response } from "express";
-const criarDesafiosService from "../../../services/admin/desafios/criarDesafiosService";
+import { CriarDesafiosService } from "../../../services/admin/desafios/criarDesafiosService";
 
 class CriarDesafiosController {
     async handle(request: Request, response: Response){
-        const ginasio_id = request.params.id;
-  const { criador_id, nome, modalidade_id, data_inicio, data_fim, recompensa, estado, descricao, exercicios, regras } = request.body;
+        const ginasioId = request.params.id;
+        const { criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, descricao, exercicios, regras } = request.body;
   
-  const resp = await criarDesafiosService(criador_id, nome, modalidade_id, data_inicio, data_fim, recompensa, estado, ginasio_id, descricao, exercicios, regras );
-  response.json(resp);
-    }
+        const CriarDesafiosController = new CriarDesafiosService();
+        const resp = await CriarDesafiosController.execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras });
+        return resp;
+    }  
 }
 
-export{ CriarDesafiosController }
+export { CriarDesafiosController };
