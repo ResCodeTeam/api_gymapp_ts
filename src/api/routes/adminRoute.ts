@@ -12,7 +12,7 @@ import { RegistarMarcaGinasiosController } from "../controllers/admin/ginasios/r
 import { CriarGinasioModalidadesController } from "../controllers/admin/modalidades/criarGinasioModalidadesController";
 import { CriarDesafiosController } from "../controllers/admin/desafios/criarDesafiosController";
 import { CriarComentarioController } from "../controllers/admin/comments/criarComentarioController";
-import { VerPublicacoesController } from "../controllers/admin/posts/verPublicacoesController";
+import { VerPostController } from "../controllers/admin/posts/verPostController";
 import { RemoverPostsController } from "../controllers/admin/posts/removerPostsController";
 import { RemoverModalidadesController } from "../controllers/admin/modalidades/removerModalidadesController";
 import { EliminarTreinadorController } from "../controllers/admin/treinador/eliminarTreinadorController";
@@ -31,7 +31,7 @@ const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
 const criarGinasioModalidadesController = new CriarGinasioModalidadesController();
 const criarDesafiosController = new CriarDesafiosController();
 const criarComentarioController = new CriarComentarioController();
-const verPublicacoesController = new VerPublicacoesController();
+const verPostController = new VerPostController();
 const removerPostsController = new RemoverPostsController();
 const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
