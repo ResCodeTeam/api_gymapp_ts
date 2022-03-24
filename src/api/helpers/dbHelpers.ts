@@ -37,7 +37,7 @@ let getUserFuncao=async(uid: string)=>{
             funcao_id : true
         }
     });
-    
+
     return search?.funcao_id;
 }
 let checkPostExists = async(postId : string)=>{

@@ -12,10 +12,10 @@ import { RegistarMarcaGinasiosController } from "../controllers/admin/ginasios/r
 import { CriarGinasioModalidadesController } from "../controllers/admin/modalidades/criarGinasioModalidadesController";
 import { CriarDesafiosController } from "../controllers/admin/desafios/criarDesafiosController";
 import { CriarComentarioController } from "../controllers/admin/comments/criarComentarioController";
-import { VerPublicacoesController } from "../controllers/admin/posts/verPublicacoesController";
+import { VerPostController } from "../controllers/admin/posts/verPostController";
 import { RemoverPostsController } from "../controllers/admin/posts/removerPostsController";
 import { RemoverModalidadesController } from "../controllers/admin/modalidades/removerModalidadesController";
-import { EliminarTreinadorController } from "../controllers/admin/treinador/eliminarTreinadorController";
+import { EliminarTreinadorController } from "../controllers/admin/treinadores/eliminarTreinadorController";
 import { CriarGostoController } from "../controllers/admin/gostosPosts/criarGostoController";
 import { EditarPublicacaoController } from "../controllers/admin/posts/editarPublicacaoController";
 import { VerificarAdmin } from "../middlewares/verificarAdmin";
@@ -31,7 +31,7 @@ const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
 const criarGinasioModalidadesController = new CriarGinasioModalidadesController();
 const criarDesafiosController = new CriarDesafiosController();
 const criarComentarioController = new CriarComentarioController();
-const verPublicacoesController = new VerPublicacoesController();
+const verPostController = new VerPostController();
 const removerPostsController = new RemoverPostsController();
 const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
@@ -77,7 +77,7 @@ adminRouter.post("/notificacao/criar/", criarNotificacaoMarcaController.handle);
 
 //#region Publicacoes
 adminRouter.post("/posts", criarPostsController.handle);
-adminRouter.get("/posts", verPublicacoesController.handle);
+adminRouter.get("/posts", verPostController.handle);
 adminRouter.put("/posts/:id", editarPublicacaoController.handle);
 adminRouter.delete("/posts/:id", removerPostsController.handle);
 adminRouter.post("/posts/:id/gostos", criarGostoController.handle);
