@@ -18,7 +18,7 @@ import { RemoverModalidadesController } from "../controllers/admin/modalidades/r
 import { EliminarTreinadorController } from "../controllers/admin/treinadores/eliminarTreinadorController";
 import { CriarGostoController } from "../controllers/admin/gostosPosts/criarGostoController";
 import { EditarPublicacaoController } from "../controllers/admin/posts/editarPublicacaoController";
-import { VerificarAdmin } from "../middlewares/verificarAdmin";
+import { verificarAdmin } from "../middlewares/verificarAdmin";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { CriarNotificacaoMarcaController } from "../controllers/admin/notificacoes/criarNotificacaoMarcaController";
 import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController";
@@ -37,7 +37,6 @@ const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
 const criarGostoController  = new CriarGostoController();
 const editarPublicacaoController  = new EditarPublicacaoController();
-const verificarAdmin  = new VerificarAdmin();
 const encerrarDesafiosController  = new EncerrarDesafiosController();
 const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
