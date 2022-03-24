@@ -2,7 +2,7 @@
 import dbHelpers from "../../../helpers/dbHelpers";
 //import { checkDonoMarca, checkMarcaExists, checkUserIdExists } from "../../../helpers/dbHelpers";
 
-import { client } from "../../../prisma/client";
+import { client } from "../../../../../prisma/client";
 
 interface INotificacaoMarca {
   userId: string,
