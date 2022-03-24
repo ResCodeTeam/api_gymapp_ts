@@ -21,7 +21,7 @@ import { EditarPublicacaoController } from "../controllers/admin/posts/editarPub
 import { VerificarAdmin } from "../middlewares/verificarAdmin";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { CriarNotificacaoMarcaController } from "../controllers/admin/notificacoes/criarNotificacaoMarcaController";
-import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController"
+import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController";
 
 const criarPostsController = new CriarPostsController();
 const registarAlunosController = new RegistarAlunosController();
