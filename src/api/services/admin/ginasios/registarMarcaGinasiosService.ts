@@ -1,6 +1,7 @@
 import { client } from "../../../prisma/client";
-import { getGymTag } from "../../../helpers/tag_helpers";
+
 import { checkUserIdExists } from "../../../helpers/dbHelpers";
+import { getGymTag } from "../../../helpers/tagHelpers";
 
 interface IRegistarMarcaGinasiosService {
   nome: string;
@@ -27,7 +28,7 @@ class RegistarMarcaGinasiosService {
     cpExt,
   }: IRegistarMarcaGinasiosService) {
     // Obter a tag do ginásio automaticamente
-    tag = await getGymTag(nome);
+    let tag = await getGymTag(nome);
 
     const exists_marca = await checkUserIdExists(marcaId);
     if (exists_marca) {
@@ -46,7 +47,7 @@ class RegistarMarcaGinasiosService {
         imagem_url: imagemUrl,
         lat,
         long,
-        descricao: "teste",
+        
       },
     });
     return {

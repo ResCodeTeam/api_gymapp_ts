@@ -1,6 +1,6 @@
 import { client } from "../prisma/client";
 
-let getIniciaisTag = (nome) => {
+let getIniciaisTag = (nome:string) => {
     //separar todos os nomes do aluno
     let splittedName = nome.split(" ");
     //juntar todas as primeiras letras do nome
@@ -12,7 +12,7 @@ let getIniciaisTag = (nome) => {
   };
   
 
-export async  function  getTag(nome){
+export async  function  getTag(nome:string){
       let hashtag = getIniciaisTag(nome);
   
       const amount = await client.users.count({
@@ -30,7 +30,7 @@ export async  function  getTag(nome){
       
       return hashtag;
 }
-export async function getGymTag (nome) {
+export async function getGymTag (nome:string) {
       let hashtag = getIniciaisTag(nome);
   
       const amount = await client.ginasio.count({
