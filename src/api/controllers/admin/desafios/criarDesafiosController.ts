@@ -6,8 +6,8 @@ class CriarDesafiosController {
         const ginasioId = request.params.id;
         const { criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, descricao, exercicios, regras } = request.body;
   
-        const CriarDesafiosController = new CriarDesafiosService();
-        const resp = await CriarDesafiosController.execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras });
+        const criarDesafiosController = new CriarDesafiosService();
+        const resp = await criarDesafiosController.execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras });
         return resp;
     }  
 }

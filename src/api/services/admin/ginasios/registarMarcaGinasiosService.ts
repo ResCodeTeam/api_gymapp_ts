@@ -1,5 +1,4 @@
 import { client } from "../../../prisma/client";
-
 import { checkUserIdExists } from "../../../helpers/dbHelpers";
 import { getGymTag } from "../../../helpers/tagHelpers";
 
@@ -15,7 +14,7 @@ interface IRegistarMarcaGinasiosService {
   cpExt: number;
 }
 
-class RegistarMarcaGinasiosService {
+export class RegistarMarcaGinasiosService {
   async execute({
     nome,
     rua,
@@ -56,4 +55,3 @@ class RegistarMarcaGinasiosService {
   }
 }
 
-export { RegistarMarcaGinasiosService };
