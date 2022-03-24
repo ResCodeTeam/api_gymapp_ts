@@ -1,11 +1,10 @@
 //import  dbHelpers from "../../../helpers/dbHelpers";
-import { isAnyArrayBuffer } from "util/types";
 import dbHelpers from "../../../helpers/dbHelpers";
 //import { checkDonoMarca, checkMarcaExists, checkUserIdExists } from "../../../helpers/dbHelpers";
 
 import { client } from "../../../prisma/client";
 
-interface INotificacaoMarca{
+interface INotificacaoMarca {
   userId: string,
   marcaId: string,
   conteudo: string,
@@ -14,7 +13,7 @@ interface INotificacaoMarca{
 }
 
 class CriarNotificacaoMarcaService {
-  async execute({userId, marcaId, conteudo, data, tipo}:INotificacaoMarca){
+  async execute({userId, marcaId, conteudo, data, tipo} : INotificacaoMarca) {
 
     //#region Verifica se o admin existe
     const exists_user = await dbHelpers.checkUserIdExists(userId);
