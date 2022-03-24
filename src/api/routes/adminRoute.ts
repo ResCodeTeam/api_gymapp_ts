@@ -43,7 +43,7 @@ const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 
 
 //#region Alunos
-adminRouter.post("/marca/alunos/registar", RegistarAlunosController);
+adminRouter.post("/marca/alunos/registar", registarAlunosController.handle);
 //#endregion
 
 //#region Comentarios
@@ -51,7 +51,7 @@ adminRouter.post("/posts/:id/comentarios/criar", criarComentarioController.handl
 //#endregion
 
 //#region Desafios
-adminRouter.put("/desafios/:id", encerrarDesafiosController);
+adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
 //#endregion
 
 //#region Ginasios
@@ -59,31 +59,31 @@ adminRouter.put("/desafios/:id", encerrarDesafiosController);
 //#endregion
 
 //#region Marcas
-adminRouter.post("/:id/marca/registar", registarUserMarcasController);
-adminRouter.post("/marca/:id/ginasio/registar", registarMarcaGinasiosController);
-adminRouter.post("/ginasio/:id/criar/modalidades", criarGinasioModalidadesController);
-adminRouter.post("/ginasio/:id/criar/desafios", criarDesafiosController);
+adminRouter.post("/:id/marca/registar", registarUserMarcasController.handle);
+adminRouter.post("/marca/:id/ginasio/registar", registarMarcaGinasiosController.handle);
+adminRouter.post("/ginasio/:id/criar/modalidades", criarGinasioModalidadesController.handle);
+adminRouter.post("/ginasio/:id/criar/desafios", criarDesafiosController.handle);
 //#endregion
 
 //#region Modalidades
-adminRouter.delete("/modalidades/:id", RemoverModalidadesController);
+adminRouter.delete("/modalidades/:id", removerModalidadesController.handle);
 //#endregion
 
 //#region Notificacoes
-adminRouter.post("/notificacao/criar/:id", CriarNotificacaoUserController);
-adminRouter.post("/notificacao/criar/", CriarNotificacaoMarcarController);
+adminRouter.post("/notificacao/criar/:id", criarNotificacaoUserController.handle);
+adminRouter.post("/notificacao/criar/", criarNotificacaoMarcaController.handle);
 //#endregion
 
 //#region Publicacoes
-adminRouter.post("/posts",CriarPostsController);
-adminRouter.get("/posts", VerPublicacoesController);
-adminRouter.put("/posts/:id", EditarPublicacaoController);
-adminRouter.delete("/posts/:id", RemoverPostsController);
-adminRouter.post("/posts/:id/gostos", CriarGostoController);
+adminRouter.post("/posts", criarPostsController.handle);
+adminRouter.get("/posts", verPublicacoesController.handle);
+adminRouter.put("/posts/:id", editarPublicacaoController.handle);
+adminRouter.delete("/posts/:id", removerPostsController.handle);
+adminRouter.post("/posts/:id/gostos", criarGostoController.handle);
 //#endregion
 
 //#region Treinadores
-adminRouter.delete("/treinador/:id", EliminarTreinadorController);
+adminRouter.delete("/treinador/:id", eliminarTreinadorController.handle);
 //#endregion
 
 export { adminRouter };
