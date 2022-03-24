@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import criar_comentario_service from "../../../services/admin/comments/criar_comentario_service";
+import criarComentarioService from "../../../services/admin/comments/CriarComentarioService";
 
 
 
@@ -8,7 +8,7 @@ class CriarComentarioController{
         const post_id = request.params.id;
         const {comentario,criador_id,data}=request.body;
     
-        const resp = await criar_comentario_service(post_id,comentario,criador_id,data)
+        const resp = await criarComentarioService(post_id,comentario,criador_id,data)
         response.json(resp)
     }
 }
