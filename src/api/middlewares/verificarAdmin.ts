@@ -9,8 +9,8 @@ module.exports=async(request:Request, response:Response, next:NextFunction)=>{
     const[,token]=auth!.split(" ")
 
     
-    var uid = decode(token)['sub'];
-
+    let uid = decode(token)['sub']
+    
     const user = checkUserIdExists(uid)
     if(!user){
         throw new Error("User inexistente")
