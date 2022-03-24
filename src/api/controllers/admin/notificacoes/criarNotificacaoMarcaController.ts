@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CriarNotificacaoMarcaService} from "../../../services/admin/notificacoes/criarNotificacaoMarcaService"
+import { CriarNotificacaoMarcaService } from "../../../services/admin/notificacoes/criarNotificacaoMarcaService"
 
 
 class CriarNotificacaoMarcaController{

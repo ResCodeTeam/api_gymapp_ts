@@ -1,18 +1,19 @@
 import { Request, Response } from "express";
-import criarGinasioModalidadesService from "../../../services/admin/modalidades/criarGinasioModalidadesService";
+import { CriarGinasioModalidadesService } from "../../../services/admin/modalidades/criarGinasioModalidadesService";
 
 class CriarGinasioModalidadesController {
   async handle(request: Request, response: Response) {
-    const ginasio_id = request.params.id;
-    const { nome, imagem_url, estado } = request.body;
+    const ginasioId = request.params.id;
+    const { nome, imagemUrl, estado } = request.body;
 
-    const resp = await criarGinasioModalidadesService(
-      ginasio_id,
+    const criarGinasioModalidadesService = new CriarGinasioModalidadesService();
+    const resp = await criarGinasioModalidadesService.execute({
+      ginasioId,
       nome,
-      imagem_url,
-      estado
-    );
-    response.json(resp);
+      imagemUrl,
+      estado,
+    });
+    return resp;
   }
 }
 export { CriarGinasioModalidadesController };

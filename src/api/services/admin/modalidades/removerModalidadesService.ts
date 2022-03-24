@@ -8,7 +8,7 @@ class RemoverModalidadesService {
       throw new Error("A modalidade não existe");
     }
 
-    client.modalidades_ginasio.destroy({
+    client.modalidades_ginasio.delete({
       where: { modalidade_id: modalidadeId },
     });
 
@@ -17,3 +17,5 @@ class RemoverModalidadesService {
     };
   }
 }
+
+export { RemoverModalidadesService };

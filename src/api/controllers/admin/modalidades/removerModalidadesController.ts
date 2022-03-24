@@ -3,11 +3,11 @@ import { RemoverModalidadesService } from "../../../services/admin/modalidades/r
 
 class RemoverModalidadesController{
     async handle(request: Request, response: Response){
-        const modalidade_id = request.params.id;
+        const modalidadeId = request.params.id;
     
-    const new = RemoverModalidadesService;
-    const resp = await removerModalidadesService(modalidade_id);//removerModalidadesService(modalidade_id);
-    response.json(resp)
+    const removerModalidadesService = new RemoverModalidadesService();
+    const resp = await removerModalidadesService.execute(modalidadeId);
+    return resp;
     }
 }
 
