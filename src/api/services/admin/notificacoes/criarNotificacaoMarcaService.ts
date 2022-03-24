@@ -1,8 +1,6 @@
-//import  dbHelpers from "../../../helpers/dbHelpers";
-import dbHelpers from "../../../helpers/dbHelpers";
-//import { checkDonoMarca, checkMarcaExists, checkUserIdExists } from "../../../helpers/dbHelpers";
+import { checkDonoMarca, checkMarcaExists, checkUserIdExists } from "../../../helpers/dbHelpers";
 
-import { client } from "../../../../../prisma/client";
+import { client } from '../../../prisma/client'; 
 
 interface INotificacaoMarca {
   userId: string,
@@ -16,21 +14,21 @@ class CriarNotificacaoMarcaService {
   async execute({userId, marcaId, conteudo, data, tipo} : INotificacaoMarca) {
 
     //#region Verifica se o admin existe
-    const exists_user = await dbHelpers.checkUserIdExists(userId);
+    const exists_user = await checkUserIdExists(userId);
     if (!exists_user) {
       throw new Error("User não existe");
     }
     //#endregion
 
     //#region  Verifica se a marca existe
-    const exists_marca = await dbHelpers.checkMarcaExists(marcaId);
+    const exists_marca = await checkMarcaExists(marcaId);
     if (!exists_marca) {
       throw new Error("Marca não existe");
     }
     //#endregion
 
     //#region  Verifica se o admin é dono da marca
-    const check_marca_admin = await dbHelpers.checkDonoMarca(marcaId, userId);
+    const check_marca_admin = await checkDonoMarca(marcaId, userId);
     //await models.marcas.findAll({ where: {marca_id: marcaId, dono_id: user_id}});
     if (!check_marca_admin) {
       throw new Error("Não tem permições nesta marca");
