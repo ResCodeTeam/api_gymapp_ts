@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import criarComentarioService from "../../../services/admin/comments/criarComentarioService";
+import criarComentarioService from "../../../services/admin/comments/CriarComentarioService";
 
 
 
