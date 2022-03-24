@@ -1,4 +1,4 @@
-import dbHelpers from "../../../helpers/dbHelpers";
+import { checkPostExists, checkUserIdExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
 interface IComentario {
@@ -11,12 +11,12 @@ interface IComentario {
 class CriarComentarioService{
     async execute({post_id,comentario,criador_id,data}: IComentario){
 
-        const exists_pub = await dbHelpers.checkPostExists(post_id);
+        const exists_pub = await checkPostExists(post_id);
         if(!exists_pub){
             throw new Error("Erro ao criar comentário")
         }
 
-        const exists_criador = await dbHelpers.checkUserIdExists(criador_id);
+        const exists_criador = await checkUserIdExists(criador_id);
         if(!exists_criador){
             throw new Error("Erro ao criar comentário")
         }
