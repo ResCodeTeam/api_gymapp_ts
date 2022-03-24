@@ -4,11 +4,11 @@ import { CriarComentarioService } from "../../../services/admin/comments/criarCo
 
 class CriarComentarioController{
     async handle(request:Request, response:Response){
-        const post_id = request.params.id;
-        const {comentario,criador_id,data}=request.body;
+        const postId = request.params.id;
+        const {comentario,criadorId,data}=request.body;
 
         const criarComentarioService = new CriarComentarioService();
-        const resp = await criarComentarioService.execute({post_id,comentario,criador_id,data})
+        const resp = await criarComentarioService.execute({postId,comentario,criadorId,data})
         response.json(resp)
     }
 }
