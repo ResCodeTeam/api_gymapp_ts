@@ -11,7 +11,7 @@ interface ICriarDesafiosService {
     estado: number;
     ginasioId: string;
     descricao: string;
-    exercicios: 
+    exercicios: Array<object>[];
     regras:
 }
 

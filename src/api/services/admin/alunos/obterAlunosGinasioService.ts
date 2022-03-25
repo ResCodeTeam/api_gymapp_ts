@@ -8,16 +8,16 @@ interface IGinasioDono {
     userId : string
 }
 
-class ObterAlunosGinasioService {
+export class ObterAlunosGinasioService {
     async execute ({ginasioId, userId} : IGinasioDono) {
 
-        const exists_ginasio = await checkGinasioExists(ginasioId);
-        if(!exists_ginasio){
+        const existsGinasio = await checkGinasioExists(ginasioId);
+        if(!existsGinasio){
             throw new Error(`Ginásio não existe`);
         }
 
-        const check_dono = await checkDonoGinasio(ginasioId, userId);
-        if (!check_dono) {
+        const checkDono = await checkDonoGinasio(ginasioId, userId);
+        if (!checkDono) {
             throw new Error(`Não pode aceder a esse ginásio`);
         }
 
@@ -65,5 +65,3 @@ class ObterAlunosGinasioService {
         }
     }
 }
-
-export { ObterAlunosGinasioService };

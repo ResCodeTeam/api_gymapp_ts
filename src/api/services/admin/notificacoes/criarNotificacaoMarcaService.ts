@@ -10,27 +10,27 @@ interface INotificacaoMarca {
   tipo: number
 }
 
-class CriarNotificacaoMarcaService {
+export class CriarNotificacaoMarcaService {
   async execute({userId, marcaId, conteudo, data, tipo} : INotificacaoMarca) {
 
     //#region Verifica se o admin existe
-    const exists_user = await checkUserIdExists(userId);
-    if (!exists_user) {
+    const existsUser = await checkUserIdExists(userId);
+    if (!existsUser) {
       throw new Error("User não existe");
     }
     //#endregion
 
     //#region  Verifica se a marca existe
-    const exists_marca = await checkMarcaExists(marcaId);
-    if (!exists_marca) {
+    const existsMarca = await checkMarcaExists(marcaId);
+    if (!existsMarca) {
       throw new Error("Marca não existe");
     }
     //#endregion
 
     //#region  Verifica se o admin é dono da marca
-    const check_marca_admin = await checkDonoMarca(marcaId, userId);
+    const checkMarcaAdmin = await checkDonoMarca(marcaId, userId);
     //await models.marcas.findAll({ where: {marca_id: marcaId, dono_id: user_id}});
-    if (!check_marca_admin) {
+    if (!checkMarcaAdmin) {
       throw new Error("Não tem permições nesta marca");
     }
     //#endregion
@@ -103,6 +103,3 @@ class CriarNotificacaoMarcaService {
     };
   }
 }
-
-
-export { CriarNotificacaoMarcaService };

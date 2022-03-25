@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import { CriarNotificacaoMarcaService } from "../../../services/admin/notificacoes/criarNotificacaoMarcaService"
 
-
-class CriarNotificacaoMarcaController{
+export class CriarNotificacaoMarcaController{
     async handle(request:Request,response:Response){
-        const post_id = request.params.id;
+        const postId = request.params.id;
         const {userId, marcaId, conteudo, data, tipo}=request.body;
 
         const criarNotificacaoMarcarController = new CriarNotificacaoMarcaService();
@@ -15,8 +14,6 @@ class CriarNotificacaoMarcaController{
             data,
             tipo
         });
-        return message;
+        response.json(message);
     }
 }
-
-export{ CriarNotificacaoMarcaController };

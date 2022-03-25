@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { ObterAlunosGinasioService } from "../../../services/admin/alunos/obterAlunosGinasioService"
+import { ObterAlunosGinasioService } from "../../../services/admin/alunos/obterAlunosGinasioService";
 
-class ObterAlunosGinasioController{
+export class ObterAlunosGinasioController{
     async handle(request : Request, response :Response){
         const ginasioId = request.params.id;
         const {userId} = request.body;
@@ -12,8 +12,6 @@ class ObterAlunosGinasioController{
             userId
         });
 
-        return message;
+        response.json(message);
     }
 }
-
-export { ObterAlunosGinasioController };
