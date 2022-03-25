@@ -8,7 +8,7 @@ interface IGinasioDono {
     userId : string
 }
 
-class ObterAlunosGinasioService {
+export class ObterAlunosGinasioService {
     async execute ({ginasioId, userId} : IGinasioDono) {
 
         const existsGinasio = await checkGinasioExists(ginasioId);
@@ -65,5 +65,3 @@ class ObterAlunosGinasioService {
         }
     }
 }
-
-export { ObterAlunosGinasioService };

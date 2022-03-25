@@ -10,7 +10,7 @@ interface INotificacaoMarca {
   tipo: number
 }
 
-class CriarNotificacaoMarcaService {
+export class CriarNotificacaoMarcaService {
   async execute({userId, marcaId, conteudo, data, tipo} : INotificacaoMarca) {
 
     //#region Verifica se o admin existe
@@ -103,6 +103,3 @@ class CriarNotificacaoMarcaService {
     };
   }
 }
-
-
-export { CriarNotificacaoMarcaService };
