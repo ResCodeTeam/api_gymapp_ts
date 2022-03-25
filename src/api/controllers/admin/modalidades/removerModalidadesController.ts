@@ -4,7 +4,7 @@ import { RemoverModalidadesService } from "../../../services/admin/modalidades/r
 class RemoverModalidadesController{
     async handle(request: Request, response: Response){
         const modalidadeId = request.params.id;
-    
+
     const removerModalidadesService = new RemoverModalidadesService();
     const resp = await removerModalidadesService.execute(modalidadeId);
     return resp;
