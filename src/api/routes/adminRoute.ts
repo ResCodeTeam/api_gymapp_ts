@@ -22,9 +22,11 @@ import { verificarAdmin } from "../middlewares/verificarAdmin";
 //import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { CriarNotificacaoMarcaController } from "../controllers/admin/notificacoes/criarNotificacaoMarcaController";
 import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController";
+import { RemoverDesafiosController } from "../controllers/admin/desafios/removerDesafiosController";
+import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlunoController";
 import { RegistarFuncoesController } from "../controllers/admin/admin/registarFuncoesController";
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
-import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlunoController";
+import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 
 const criarPostsController = new CriarPostsController();
 const registarAlunosController = new RegistarAlunoController();
@@ -40,11 +42,12 @@ const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
 // const criarGostoController  = new CriarGostoController();
 // const editarPublicacaoController  = new EditarPublicacaoController();
-// const encerrarDesafiosController  = new EncerrarDesafiosController();
+const encerrarDesafiosController  = new EncerrarDesafiosController();
 const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
 const registarFuncoesController = new RegistarFuncoesController();
 const registarAdminController = new RegistarAdminController();
+const removerDesafiosController = new RemoverDesafiosController();
 
 
 //#region Admin
@@ -62,6 +65,8 @@ adminRouter.post("/posts/:id/comentarios/criar", criarComentarioController.handl
 
 //#region Desafios
 // adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
+adminRouter.put("/desafios/encerrar/:id", encerrarDesafiosController.handle);
+adminRouter.delete("/desafios/remover/", removerDesafiosController.handle);
 //#endregion
 
 //#region Ginasios
