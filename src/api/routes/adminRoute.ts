@@ -22,6 +22,8 @@ import { verificarAdmin } from "../middlewares/verificarAdmin";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { CriarNotificacaoMarcaController } from "../controllers/admin/notificacoes/criarNotificacaoMarcaController";
 import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController";
+import { RemoverDesafiosController } from "../controllers/admin/desafios/removerDesafiosController";
+import { RemoverDesafiosService } from "../../../services/admin/desafios/removerDesafiosService";
 
 const criarPostsController = new CriarPostsController();
 const registarAlunosController = new RegistarAlunosController();
@@ -40,7 +42,7 @@ const editarPublicacaoController  = new EditarPublicacaoController();
 const encerrarDesafiosController  = new EncerrarDesafiosController();
 const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
-
+const removerDesafiosController = new RemoverDesafiosController();
 
 //#region Alunos
 adminRouter.post("/marca/alunos/registar", registarAlunosController.handle);
@@ -52,6 +54,7 @@ adminRouter.post("/posts/:id/comentarios/criar", criarComentarioController.handl
 
 //#region Desafios
 adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
+adminRouter.delete("/desafios/remover/", removerDesafiosController.handle);
 //#endregion
 
 //#region Ginasios
