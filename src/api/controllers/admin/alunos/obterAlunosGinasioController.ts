@@ -12,7 +12,7 @@ class ObterAlunosGinasioController{
             userId
         });
 
-        return message;
+        response.json(message);
     }
 }
 

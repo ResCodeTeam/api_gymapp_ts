@@ -7,7 +7,7 @@ export class RegistarAlunoController {
     
       const RegistarAlunosController = new RegistarAlunoService();
       const resp = await RegistarAlunosController.execute({email, nome, password, dataNasc, dataEntrada, genero, ginasioId});
-      return resp;
+      response.json(resp);
     }
 }
 

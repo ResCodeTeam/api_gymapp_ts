@@ -7,7 +7,7 @@ class RemoverModalidadesController{
     
     const removerModalidadesService = new RemoverModalidadesService();
     const resp = await removerModalidadesService.execute(modalidadeId);
-    return resp;
+    response.json(resp);
     }
 }
 

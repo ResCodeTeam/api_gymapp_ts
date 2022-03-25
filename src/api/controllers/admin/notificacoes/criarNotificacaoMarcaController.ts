@@ -15,7 +15,7 @@ class CriarNotificacaoMarcaController{
             data,
             tipo
         });
-        return message;
+        response.json(message);
     }
 }
 
