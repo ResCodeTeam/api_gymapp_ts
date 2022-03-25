@@ -13,7 +13,7 @@ class CriarGinasioModalidadesController {
       imagemUrl,
       estado,
     });
-    return resp;
+    response.json(resp);
   }
 }
 export { CriarGinasioModalidadesController };

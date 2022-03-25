@@ -13,7 +13,7 @@ class CriarPostsController {
       tipo,
       ginasioId,
     });
-    return resp;
+    response.json(resp);
   }
 }
 
