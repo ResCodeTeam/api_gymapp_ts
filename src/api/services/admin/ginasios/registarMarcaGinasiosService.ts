@@ -1,6 +1,6 @@
 import { client } from "../../../prisma/client";
-import { getGymTag } from "../../../helpers/tagHelpers";
 import { checkUserIdExists } from "../../../helpers/dbHelpers";
+import { getGymTag } from "../../../helpers/tagHelpers";
 
 interface IRegistarMarcaGinasiosService {
   nome: string;
@@ -27,27 +27,41 @@ export class RegistarMarcaGinasiosService {
     cpExt,
   }: IRegistarMarcaGinasiosService) {
     // Obter a tag do ginásio automaticamente
-    const tag = await getGymTag(nome);
-
+    let tag = await getGymTag(nome);
+    
     const exists_marca = await checkUserIdExists(marcaId);
     if (exists_marca) {
       throw new Error("A marca não existe");
     }
+    console.log("teste");
 
-    const ginasio = await client.ginasio.create({
+    await client.ginasio.create({
       data: {
         nome,
         rua,
-        cp,
-        cp_ext: cpExt,
-        marca_id: marcaId,
         tag,
         estado,
-        imagem_url: imagemUrl,
+        imagem_url: "teste",
         lat,
         long,
+        localidades:{
+          connect:{
+            cp
+          }
+        },
+        localidades_ext:{
+          connect:{
+            cp_ext:cpExt
+          }
+        },
+        marcas:{
+          connect:{
+            marca_id:marcaId
+          }
+        }
       },
     });
+    console.log("teste1");
     return {
       msg: "O ginásio foi criado com sucesso!",
     };
