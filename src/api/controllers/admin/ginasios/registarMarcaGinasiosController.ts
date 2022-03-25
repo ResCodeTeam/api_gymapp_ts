@@ -19,7 +19,7 @@ class RegistarMarcaGinasiosController {
       long,
       cpExt
     });
-    return resp;
+    response.json(resp);
   }
 }
 export { RegistarMarcaGinasiosController };

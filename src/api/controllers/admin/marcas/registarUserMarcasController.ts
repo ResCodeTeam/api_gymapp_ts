@@ -14,7 +14,7 @@ class RegistarUserMarcasController {
       cor,
       logotipo,
     });
-    return resp;
+    response.json( resp);
   }
 }
 
