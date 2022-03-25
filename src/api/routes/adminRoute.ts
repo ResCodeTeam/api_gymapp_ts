@@ -13,7 +13,7 @@ import { CriarGinasioModalidadesController } from "../controllers/admin/modalida
 import { CriarDesafiosController } from "../controllers/admin/desafios/criarDesafiosController";
 import { CriarComentarioController } from "../controllers/admin/comments/criarComentarioController";
 import { VerPostController } from "../controllers/admin/posts/verPostController";
-import { RemoverPostsController } from "../controllers/admin/posts/removerPostsController";
+import { RemoverPostController } from "../controllers/admin/posts/removerPostController";
 import { RemoverModalidadesController } from "../controllers/admin/modalidades/removerModalidadesController";
 import { EliminarTreinadorController } from "../controllers/admin/treinadores/eliminarTreinadorController";
 import { CriarGostoController } from "../controllers/admin/gostosPosts/criarGostoController";
@@ -34,7 +34,7 @@ const criarGinasioModalidadesController = new CriarGinasioModalidadesController(
 const criarDesafiosController = new CriarDesafiosController();
 const criarComentarioController = new CriarComentarioController();
 const verPostController = new VerPostController();
-const removerPostsController = new RemoverPostsController();
+const removerPostController = new RemoverPostController();
 const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
 const criarGostoController  = new CriarGostoController();
@@ -81,7 +81,7 @@ adminRouter.post("/notificacao/criar/", criarNotificacaoMarcaController.handle);
 adminRouter.post("/posts", criarPostsController.handle);
 adminRouter.get("/posts", verPostController.handle);
 adminRouter.put("/posts/:id", editarPublicacaoController.handle);
-adminRouter.delete("/posts/:id", removerPostsController.handle);
+adminRouter.delete("/posts/:id", removerPostController.handle);
 adminRouter.post("/posts/:id/gostos", criarGostoController.handle);
 //#endregion
 
