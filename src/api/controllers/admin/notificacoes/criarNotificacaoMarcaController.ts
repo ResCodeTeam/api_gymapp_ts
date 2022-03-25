@@ -4,7 +4,7 @@ import { CriarNotificacaoMarcaService } from "../../../services/admin/notificaco
 
 class CriarNotificacaoMarcaController{
     async handle(request:Request,response:Response){
-        const post_id = request.params.id;
+        const postId = request.params.id;
         const {userId, marcaId, conteudo, data, tipo}=request.body;
 
         const criarNotificacaoMarcarController = new CriarNotificacaoMarcaService();
