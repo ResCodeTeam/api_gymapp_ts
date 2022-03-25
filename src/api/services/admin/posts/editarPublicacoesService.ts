@@ -23,11 +23,11 @@ export class EditarPublicacaoService {
         });
 
         if (!existePublicacao) {
-            throw new Error("Não encontrou a publicação");
+            throw new Error("Impossível encontrar a publicação");
         }
 
         if (newData == null) {
-            throw new Error("Falta a data");
+            throw new Error("Campo data não preenchido");
         }
 
         const verificaData = await client.publicacoes.findMany({
@@ -43,11 +43,11 @@ export class EditarPublicacaoService {
         });
 
         if (verificaData) {
-            throw new Error("Não é possivel alterar! Data inválida");
+            throw new Error("Impossível alterar! Data inválida.");
         }
 
         if (descricao == null) {
-            throw new Error("Falta a descrição");
+            throw new Error("Campo descrição não preenchido");
         }
 
         const verificaDescricao = await client.publicacoes.findMany({
@@ -63,7 +63,7 @@ export class EditarPublicacaoService {
         });
 
         if (verificaDescricao) {
-            throw new Error("Não é possivel alterar! Descrição é igual");
+            throw new Error("Impossível alterar! Descrição atual é igual à anterior.");
         }
 
         const publicação = await client.publicacoes.update({
@@ -76,7 +76,7 @@ export class EditarPublicacaoService {
             }
         })
         return {
-            message: "Desafio encerrado com sucesso!",
+            message: "Publicação editada com sucesso!",
             publicação
         }
     }
