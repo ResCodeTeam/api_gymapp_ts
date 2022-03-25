@@ -53,7 +53,7 @@ adminRouter.post("/posts/:id/comentarios/criar", criarComentarioController.handl
 //#endregion
 
 //#region Desafios
-adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
+adminRouter.put("/desafios/encerrar/:id", encerrarDesafiosController.handle);
 adminRouter.delete("/desafios/remover/", removerDesafiosController.handle);
 //#endregion
 
