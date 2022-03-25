@@ -1,5 +1,4 @@
 import { client } from "../../../prisma/client";
-import { checkUserIdExists } from "../../../helpers/dbHelpers";
 
 interface IDesafio{
     estado : number
