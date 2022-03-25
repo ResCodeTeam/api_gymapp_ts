@@ -42,10 +42,11 @@ export class RegistarAlunoService {
     let passwd = await hash(password, 8);
 
     // obter o id da função
-    const funcaoId = await getFuncaoId("aluno");
+    const funcaoId = await getFuncaoId("Aluno");
 
-    let exists_gym = await checkGinasioExists(ginasioId);
-    if (!exists_gym) {
+    let existsGym = await checkGinasioExists(ginasioId);
+    console.log(dataNasc,dataEntrada)
+    if (!existsGym) {
       throw new Error("Ginásio não existe");
     }
 
@@ -58,27 +59,47 @@ export class RegistarAlunoService {
         hashtag,
         data_entrada: dataEntrada,
         genero,
-        funcao_id: funcaoId,
+        funcoes:{
+          connect:{
+            funcao_id:funcaoId
+          }
+        }
       },
     });
-    const uid = aluno["dataValues"]["uid"];
+    const uid = aluno.uid;
     try {
-      let marca = await getMarcaGym(ginasioId);
-      let marcaMobilidade = marca["dataValues"]["mobilidade"];
-      const marcaId = marca["dataValues"]["marca_id"];
+      const marca = await getMarcaGym(ginasioId);
+      const marcaMobilidade = marca?.mobilidade;
+      const marcaId = marca?.marca_id
 
       if (marcaMobilidade == 1) {
         await client.alunos_marca.create({
           data: {
-            uid,
-            marca_id: marcaId,
+            marcas:{
+              connect:{
+                marca_id:marcaId
+              }
+            },
+            users:{
+              connect:{
+                uid
+              }
+            }
           },
         });
       } else {
         await client.aluno_ginasio.create({
           data: {
-            user_id: uid,
-            ginasio_id: ginasioId,
+            ginasio:{
+              connect:{
+                ginasio_id:ginasioId
+              }
+            },
+            users:{
+              connect:{
+                uid
+              }
+            }
           },
         });
       }

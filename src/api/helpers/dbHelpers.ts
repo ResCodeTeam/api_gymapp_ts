@@ -26,6 +26,9 @@ let getFuncaoId=async(nome : string)=>{
             funcao_id : true
         }
     });
+    if(search == null){
+        throw new Error("função inexistente")
+    }
     return search?.funcao_id;
 }
 let getUserFuncao=async(uid: string)=>{
@@ -54,6 +57,7 @@ let checkGinasioExists= async(ginasioId : string)=>{
             ginasio_id : ginasioId
         }
     });
+    
     return search.length != 0;
 }
 let checkMarcaExists= async(marcaId : string) =>{

@@ -5,7 +5,7 @@ const adminRouter = express.Router();
 //import verificarAutenticacao from "../middlewares/verificarAutenticacao";
 
 import { CriarPostsController } from "../controllers/admin/posts/criarPostsController";
-//import { RegistarAlunosController } from "../controllers/admin/registarAlunosController";
+
 //import { CriarNotificacaoUserController } from "../controllers/admin/notificacoes/criarNotificacaoUserController";
 import { RegistarUserMarcasController } from "../controllers/admin/marcas/registarUserMarcasController";
 import { RegistarMarcaGinasiosController } from "../controllers/admin/ginasios/registarMarcaGinasiosController";
@@ -24,9 +24,10 @@ import { CriarNotificacaoMarcaController } from "../controllers/admin/notificaco
 import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController";
 import { RegistarFuncoesController } from "../controllers/admin/admin/registarFuncoesController";
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
+import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlunoController";
 
 const criarPostsController = new CriarPostsController();
-// const registarAlunosController = new RegistarAlunosController();
+const registarAlunosController = new RegistarAlunoController();
 // const criarNotificacaoUserController = new CriarNotificacaoUserController();
 const registarUserMarcasController = new RegistarUserMarcasController();
 const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
@@ -52,7 +53,7 @@ adminRouter.post("/admin/funcoes/", registarFuncoesController.handle);
 //#endregion
 
 //#region Alunos
-// adminRouter.post("/marca/alunos/registar", registarAlunosController.handle);
+adminRouter.post("/marca/alunos/registar", registarAlunosController.handle);
 //#endregion
 
 //#region Comentarios
@@ -68,7 +69,7 @@ adminRouter.post("/posts/:id/comentarios/criar", criarComentarioController.handl
 //#endregion
 
 //#region Marcas
-adminRouter.post("/:id/marca/registar", registarUserMarcasController.handle);
+adminRouter.post("/:id/marca/", registarUserMarcasController.handle);
 adminRouter.post("/marca/:id/ginasio/registar", registarMarcaGinasiosController.handle);
 adminRouter.post("/ginasio/:id/criar/modalidades", criarGinasioModalidadesController.handle);
 adminRouter.post("/ginasio/:id/criar/desafios", criarDesafiosController.handle);
