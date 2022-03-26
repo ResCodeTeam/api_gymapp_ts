@@ -1,12 +1,12 @@
 import express from "express";
 const authRouter = express.Router();
 
-// import autenticacaoController from "../controllers/auth/autenticacao_controller";
-// import tokenController from "../controllers/auth/token_controller";
-// import logoutController from "../controllers/auth/logout_controller";
+import { AuthController } from "../controllers/auth/autenticacaoController";
 
-// router.post("/login", autenticacaoController);
-// router.post("/token", tokenController);
-// router.delete("/logout", logoutController)
+const autenticacaoController = new AuthController();
+
+authRouter.post("/login", autenticacaoController.handle);
+// authRouter.post("/token", tokenController);
+// authRouter.delete("/logout", logoutController)
 
 export { authRouter };
