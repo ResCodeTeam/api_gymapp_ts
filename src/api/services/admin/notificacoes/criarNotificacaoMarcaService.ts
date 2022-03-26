@@ -60,7 +60,7 @@ export class CriarNotificacaoMarcaService {
       throw new Error (`Não existe alunos`);
     }
 
-    console.log(ginasios[0].aluno_ginasio[0]);
+    console.log(ginasios[0].aluno_ginasio);
     
     //#region Cria Notificação
     const notificacao = await client.notificacoes.create({
