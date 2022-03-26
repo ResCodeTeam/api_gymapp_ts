@@ -60,7 +60,7 @@ export class CriarNotificacaoMarcaService {
       throw new Error (`Não existe alunos`);
     }
 
-    console.log(ginasios);
+    console.log(ginasios[0].aluno_ginasio[0]);
     
     //#region Cria Notificação
     const notificacao = await client.notificacoes.create({
@@ -76,21 +76,19 @@ export class CriarNotificacaoMarcaService {
     //#region Cria Destinos da Notificação
     let dstNoti;
     for (let i = 0; i < ginasios.length; i++) {
-      for (let x = 0; x < ginasios[i].aluno_ginasio.length; x++) {
-        for (let y = 0; y < ginasios[i].aluno_ginasio[x].users[y].length; y++) {
-          dstNoti = await client.destinos_notificacao.create({
-            data : {
-              noti_id : notificacao.noti_id,
-              dest_uid: ginasios[i].aluno_ginasio[y].users[y].uid,
-            }
-          });
-        }
+      for (let j = 0; j < ginasios[i].aluno_ginasio.length; j++) {
+        dstNoti = await client.destinos_notificacao.create({
+          data : {
+            noti_id : notificacao.noti_id,
+            dest_uid: ginasios[i].aluno_ginasio[j].user_id
+          }
+        });
       }
     }
     
     if (!dstNoti) {
       throw new Error (`Não contém alunos`)
-    }
+    } 
     //#endregion
     
     return {
