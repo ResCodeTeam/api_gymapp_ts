@@ -7,13 +7,13 @@ export class CriarNotificacaoMarcaController{
         const {userId, marcaId, conteudo, data, tipo}=request.body;
 
         const criarNotificacaoMarcarController = new CriarNotificacaoMarcaService();
-        const message = await criarNotificacaoMarcarController.execute({
+        const resp = await criarNotificacaoMarcarController.execute({
             userId,
             marcaId,
             conteudo,
             data,
             tipo
         });
-        response.json(message);
+        response.json(resp);
     }
 }
