@@ -32,7 +32,19 @@ export class RegistarAlunoService {
     // verificar se o aluno já está registado
     const existsEmail = await checkEmail(email);
     if (existsEmail) {
-      throw Error("Email já registado!");
+      throw new Error("Email já registado!");
+    }
+
+    if(password.length<5){
+      throw new Error("Nome inválido");
+    }
+
+    if(!email.includes("@")){
+      throw new Error("Email inválido")
+    }
+
+    if(genero != 0 && genero != 1 ){
+      throw new Error("Email inválido")
     }
 
     // Obter tag do aluno
@@ -45,9 +57,13 @@ export class RegistarAlunoService {
     const funcaoId = await getFuncaoId("Aluno");
 
     let existsGym = await checkGinasioExists(ginasioId);
-    console.log(dataNasc,dataEntrada)
+    
     if (!existsGym) {
       throw new Error("Ginásio não existe");
+    }
+    
+    if(nome.split(" ").length<2){
+      throw new Error("Nome inválido")
     }
 
     const aluno = await client.users.create({
@@ -66,6 +82,7 @@ export class RegistarAlunoService {
         }
       },
     });
+
     const uid = aluno.uid;
     try {
       const marca = await getMarcaGym(ginasioId);

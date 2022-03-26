@@ -17,6 +17,15 @@ let checkUserIdExists= async(userId : string)=>{
     })
     return search.length != 0;
 }
+
+let getUserByID = async(userId:string)=>{
+    const user = await client.users.findUnique({
+        where:{
+            uid: userId
+        }
+    })
+    return user;
+}
 let getFuncaoId=async(nome : string)=>{
     const search = await client.funcoes.findFirst({
         where:{
@@ -173,6 +182,7 @@ export {
     checkDonoGinasio,
     checkDonoMarca,
     checkModalidadeNome,
-    checkNomeMarca
+    checkNomeMarca,
+    getUserByID
 }
 
