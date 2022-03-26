@@ -2,9 +2,10 @@
   "name": "api_gymapp_ts",
   "version": "1.0.0",
   "description": "Api em ts de suporte à aplicação gym app",
-  "main": "index.js",
+  "main": "./src/app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/app.ts",
+    "dev": "nodemon ./src/app.ts"
   },
   "author": "ResCode",
   "license": "ISC",
@@ -18,11 +19,11 @@
     "cors": "^2.8.5",
     "dayjs": "^1.11.0",
     "express": "^4.17.3",
-    "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
+    "express-async-errors": "^3.1.1",
     "nodemon": "^2.0.15",
     "prisma": "^3.11.0",
     "ts-node": "^10.7.0",
