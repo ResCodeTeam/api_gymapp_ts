@@ -49,7 +49,7 @@ const removerDesafiosController = new RemoverDesafiosController();
 
 
 //#region Admin
-adminRouter.post("/admin/", registarAdminController.handle);
+adminRouter.post("/registo/", registarAdminController.handle);
 //#endregion
 
 //#region Alunos

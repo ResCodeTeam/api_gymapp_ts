@@ -31,7 +31,7 @@ export class RegistarAdminService{
         let funcaoId = await getFuncaoId("Admin")
         
         
-        await client.users.create({
+        const admin = await client.users.create({
             data:{
 
                 email,
@@ -45,7 +45,7 @@ export class RegistarAdminService{
             }
         })
         
-        
+        return {"msg":"admin registado com sucesso",admin}
         
     }
     

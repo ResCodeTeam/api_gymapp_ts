@@ -42,7 +42,7 @@ export class RegistarMarcaGinasiosService {
       }
     })
 
-    await client.ginasio.create({
+    const ginasio = await client.ginasio.create({
       data: {
         nome,
         rua,
@@ -66,6 +66,7 @@ export class RegistarMarcaGinasiosService {
     console.log("teste1");
     return {
       msg: "O ginásio foi criado com sucesso!",
+      ginasio
     };
   }
 }

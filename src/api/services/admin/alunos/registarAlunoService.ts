@@ -127,7 +127,7 @@ export class RegistarAlunoService {
           },
         });
       }
-      return { msg: "Aluno Registado" };
+      return { msg: "Aluno Registado",aluno };
     } catch (e) {
       client.users.delete({
         where: {
