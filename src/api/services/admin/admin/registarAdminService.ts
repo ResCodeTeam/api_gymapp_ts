@@ -28,11 +28,12 @@ export class RegistarAdminService{
         let passwd = await hash(password, 8);
         
         // obter o id da função
-        //let funcao_id = await getFuncaoId("aluno")
+        let funcaoId = await getFuncaoId("Admin")
         
         
         await client.users.create({
             data:{
+
                 email,
                 nome,
                 password:passwd,
@@ -40,7 +41,7 @@ export class RegistarAdminService{
                 hashtag,
                 data_entrada,
                 genero,
-                funcao_id:"b6024af8-4809-498b-9db6-6cc14cae8209",
+                funcao_id:funcaoId,
             }
         })
         

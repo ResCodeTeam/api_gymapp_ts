@@ -31,6 +31,13 @@ export class RegistarAlunoService {
   }: IRegistarAlunoService) {
     // verificar se o aluno já está registado
     const existsEmail = await checkEmail(email);
+    console.log(email,
+      nome,
+      password,
+      dataNasc,
+      dataEntrada,
+      genero,
+      ginasioId,)
     if (existsEmail) {
       throw new Error("Email já registado!");
     }

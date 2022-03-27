@@ -8,17 +8,17 @@ f_mulheres = open("./random_names_mulheres.csv","r")
 homens = f_homens.read().split("\n")
 mulheres = f_mulheres.read().split("\n")
 ginasios = [
-   '18a0db23-e5b3-44b9-b140-68982e6be4d7',
-   '566ffbaa-73ae-4cbd-b666-fe3af0d5c4a3',
-   '84c0582b-940c-4059-9138-25e2d6a00101',
-   '88c86854-e440-4e73-b856-1ae3ee042577'
+   '0cc5561e-cdb0-4ac0-982a-a9132997527a',
+   'd81fdccd-e71c-46b1-bb8e-92b287777038',
+   'ee99cc54-cb35-4a6a-bb57-76fd0fbb5a9a',
+   'f255db3f-f47a-4657-9a51-9751ce6a1923'
 ]
-
+'''
 for nome in homens:
 
    response = req.request(
       "POST", 
-      "http://localhost:8000/api/v1/admin/marca/alunos/registar",
+      "http://localhost:8000/api/v1/admin/marca/alunos",
       json={
          "email": unidecode.unidecode(nome).replace(" ", "").lower() + "@gmail.com",
          "nome": nome,
@@ -28,16 +28,7 @@ for nome in homens:
          "genero":1,
          "ginasioId":choice(ginasios)
       }
-   )
-   print({
-         "email": unidecode.unidecode(nome).replace(" ", "").lower() + "@gmail.com",
-         "nome": nome,
-         "password": "passwd",
-         "data_nasc": str(randint(1942, 2010)) + '-' + str(randint(1, 12)) + '-' + str(randint(1, 31)),
-         "data_entrada": "2022-03-23",
-         "genero":1,
-         "ginasio_id":choice(ginasios)
-      })
+   )'''
    
    
 
@@ -45,14 +36,14 @@ for nome in mulheres:
 
    response = req.request(
       "POST", 
-      "http://localhost:8000/api/v1/admin/marca/alunos/registar",
+      "http://localhost:8000/api/v1/admin/marca/alunos",
       json={
          "email": unidecode.unidecode(nome).replace(" ", "").lower() + "@gmail.com",
          "nome": nome,
          "password": "passwd",
-         "data_nasc": str(randint(1942, 2010)) + '-' + str(randint(1, 12)) + '-' + str(randint(1, 31)),
-         "data_entrada": "2022-03-23",
+         "dataNasc": str(randint(1942, 2010)) + '-' + str(randint(1, 12)) + '-' + str(randint(1, 31)),
+         "dataEntrada": "2022-03-23",
          "genero":0,
-         "ginasio_id":choice(ginasios)
+         "ginasioId":choice(ginasios)
       }
    )

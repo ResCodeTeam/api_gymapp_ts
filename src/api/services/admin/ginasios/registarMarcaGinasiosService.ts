@@ -8,7 +8,6 @@ interface IRegistarMarcaGinasiosService {
   cp: number;
   cpExt: number;
   marcaId: string;
-  estado: string;
   imagemUrl: string;
   lat: string;
   long: string;
@@ -21,7 +20,6 @@ export class RegistarMarcaGinasiosService {
     cp,
     cpExt,
     marcaId,
-    estado,
     imagemUrl,
     lat,
     long,
@@ -49,7 +47,6 @@ export class RegistarMarcaGinasiosService {
         nome,
         rua,
         tag,
-        estado,
         imagem_url: "teste",
         lat,
         long,
