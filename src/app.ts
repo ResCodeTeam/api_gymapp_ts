@@ -7,7 +7,7 @@ const app = express();
 //Rotas
 import { adminRouter } from "./api/routes/adminRoute";
 import {authRouter} from "./api/routes/authRoute";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 dotenv.config()
 
 app.use(cors({ credentials: true, origin: true }));

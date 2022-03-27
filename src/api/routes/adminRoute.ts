@@ -21,6 +21,7 @@ import { EliminarTreinadorController } from "../controllers/admin/treinadores/el
 import { verificarAdmin } from "../middlewares/verificarAdmin";
 //import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { CriarNotificacaoMarcaController } from "../controllers/admin/notificacoes/criarNotificacaoMarcaController";
+import { CriarNotificacaoGinasioController } from "../controllers/admin/notificacoes/criarNotificacaoGinasioController";
 import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController";
 import { RemoverDesafiosController } from "../controllers/admin/desafios/removerDesafiosController";
 import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlunoController";
@@ -31,7 +32,6 @@ import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 
 const criarPostsController = new CriarPostsController();
 const registarAlunosController = new RegistarAlunoController();
-// const criarNotificacaoUserController = new CriarNotificacaoUserController();
 const registarUserMarcasController = new RegistarUserMarcasController();
 const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
 const criarGinasioModalidadesController = new CriarGinasioModalidadesController();
@@ -44,7 +44,6 @@ const eliminarTreinadorController = new EliminarTreinadorController();
 // const criarGostoController  = new CriarGostoController();
 // const editarPublicacaoController  = new EditarPublicacaoController();
 const encerrarDesafiosController  = new EncerrarDesafiosController();
-const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
 const registarFuncoesController = new RegistarFuncoesController();
 const registarAdminController = new RegistarAdminController();
@@ -86,8 +85,12 @@ adminRouter.delete("/modalidades/:id", removerModalidadesController.handle);
 //#endregion
 
 //#region Notificacoes
-// adminRouter.post("/notificacao/criar/:id", criarNotificacaoUserController.handle);
-adminRouter.post("/notificacao/criar/", criarNotificacaoMarcaController.handle);
+// const criarNotificacaoUserController = new CriarNotificacaoUserController();
+const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
+const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController();
+// adminRouter.post("/notificacao/user/:id", criarNotificacaoUserController.handle);
+adminRouter.post("/notificacao/marca/", criarNotificacaoMarcaController.handle);
+adminRouter.post("/notificacao/ginasio/", criarNotificacaoGinasioController.handle);
 //#endregion
 
 //#region Publicacoes

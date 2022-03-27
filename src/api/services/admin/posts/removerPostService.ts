@@ -4,55 +4,55 @@ import { checkPostExists } from "../../../helpers/dbHelpers";
 
 class RemoverPostService{
 
-    async execute(post_id){
-        const exists_post = await checkPostExists(post_id);
-        if (!exists_post) {
+    async execute(postId : string){
+        const existsPost = await checkPostExists(postId);
+        if (!existsPost) {
         throw new Error("A modalidade não existe");
         }
 
 
         //apagar identificações
-        client.identificacoes_publicacoes.delete({
+        client.identificacoes_publicacoes.deleteMany({
             where:{
-                publicacao_id: post_id
+                publicacao_id: postId
             }
 
         })
         //apagar gostos publicação
-        client.gostos_publicacao.delete({
+        client.gostos_publicacao.deleteMany({
             where:{
-                publicacao_id: post_id
+                publicacao_id: postId
             }
         })
 
         // apagar comentarios
-        const comentarios = await client.comentarios_publicacao.findAll({
+        const comentarios = await client.comentarios_publicacao.findMany({
             where:{
-                publicacao_id:post_id
+                publicacao_id:postId
             }
         })
 
         for(let i=0; i<comentarios.length; i++){
-            const comentario_id =comentarios[i]['dataValues']['comentario_id']
+            const comentarioId =comentarios[i]['dataValues']['comentario_id']
 
             // apagar likes comentarios
-            client.gostos_comentario.delete({
+            client.gostos_comentario.deleteMany({
                 where:{
-                    comentario_id
+                    comentario_id : comentarioId
                 }
             })
 
 
-            client.comentarios_publicacao.delete({
+            client.comentarios_publicacao.deleteMany({
                 where:{
-                    comentario_id
+                    comentario_id : comentarioId
                 }
             })
         }
 
         client.publicacoes.delete({
             where:{
-                publicacao_id: post_id
+                publicacao_id: postId
             }
         })
 

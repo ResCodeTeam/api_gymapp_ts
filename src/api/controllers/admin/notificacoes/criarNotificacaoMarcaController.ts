@@ -3,8 +3,8 @@ import { CriarNotificacaoMarcaService } from "../../../services/admin/notificaco
 
 export class CriarNotificacaoMarcaController{
     async handle(request:Request,response:Response){
-        const postId = request.params.id;
-        const {userId, marcaId, conteudo, data, tipo}=request.body;
+        let {userId, marcaId, conteudo, data, tipo}=request.body;
+        data = new Date(data);
 
         const criarNotificacaoMarcarController = new CriarNotificacaoMarcaService();
         const resp = await criarNotificacaoMarcarController.execute({
