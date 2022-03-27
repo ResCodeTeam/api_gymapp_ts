@@ -134,6 +134,7 @@ model desafios {
 model destinos_notificacao {
   noti_id      String
   dest_uid     String
+  visto        Int          @default(0)
   users        users        @relation(fields: [dest_uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkdestinos_n728383")
   notificacoes notificacoes @relation(fields: [noti_id], references: [noti_id], onDelete: NoAction, onUpdate: NoAction, map: "fkdestinos_n126435")
 
@@ -332,7 +333,6 @@ model notificacoes {
   noti_id              String                 @id @default(uuid())
   origem_uid           String
   conteudo             String                 @db.VarChar(255)
-  visto                Int?                   @default(0)
   data                 DateTime               @db.Date
   tipo                 Int
   users                users                  @relation(fields: [origem_uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fknotificaco871945")
