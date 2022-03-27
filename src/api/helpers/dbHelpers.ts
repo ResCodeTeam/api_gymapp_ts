@@ -19,6 +19,7 @@ let checkUserIdExists= async(userId : string)=>{
 }
 
 let getUserByID = async(userId:string)=>{
+    console.log(userId)
     const user = await client.users.findUnique({
         where:{
             uid: userId

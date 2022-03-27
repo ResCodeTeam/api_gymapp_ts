@@ -27,6 +27,7 @@ import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlu
 import { RegistarFuncoesController } from "../controllers/admin/admin/registarFuncoesController";
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
+import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 
 const criarPostsController = new CriarPostsController();
 const registarAlunosController = new RegistarAlunoController();
@@ -56,17 +57,17 @@ adminRouter.post("/admin/funcoes/", registarFuncoesController.handle);
 //#endregion
 
 //#region Alunos
-adminRouter.post("/marca/alunos/registar", registarAlunosController.handle);
+adminRouter.post("/marca/alunos/", registarAlunosController.handle);
 //#endregion
 
 //#region Comentarios
-adminRouter.post("/posts/:id/comentarios/criar", criarComentarioController.handle);
+adminRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
 //#endregion
 
 //#region Desafios
 // adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
 adminRouter.put("/desafios/encerrar/:id", encerrarDesafiosController.handle);
-adminRouter.delete("/desafios/remover/", removerDesafiosController.handle);
+adminRouter.delete("/desafios/", removerDesafiosController.handle);
 //#endregion
 
 //#region Ginasios
@@ -90,7 +91,7 @@ adminRouter.post("/notificacao/criar/", criarNotificacaoMarcaController.handle);
 //#endregion
 
 //#region Publicacoes
-adminRouter.post("/posts", criarPostsController.handle);
+adminRouter.post("/posts",verificarAutenticacao, criarPostsController.handle);
 adminRouter.get("/posts", verPostController.handle);
 // adminRouter.put("/posts/:id", editarPublicacaoController.handle);
 // adminRouter.delete("/posts/:id", removerPostsController.handle);

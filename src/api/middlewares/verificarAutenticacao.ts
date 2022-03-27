@@ -8,12 +8,16 @@ export async function verificarAutenticacao(request:Request,response:Response,ne
     if(!auth){
         throw new Error("Token invalido")
     }
-
+    
     const[,token]= auth.split(" ");
     
     //verificar se o token é válido
-    verify(token, process.env.SECRET_KEY_TOKEN);
-    
+    try{
+        verify(token, process.env.SECRET_KEY_TOKEN);
+    }catch(e){
+        throw new Error("Token invalido")
+    }
+
     //obter id do user
     let uid = decode(token)['sub'].toString();
 
@@ -23,12 +27,18 @@ export async function verificarAutenticacao(request:Request,response:Response,ne
         throw new Error("User inexistente")
     }
 
-
-    const refresh_token = user.refresh_token
-    if(!refresh_token){
-        throw new Error("Token invalido")
+    const refreshToken = user.refresh_token
+    if(!refreshToken){
+        throw new Error("Sessão invalida")
     }
     
+    try{
+        verify(refreshToken, process.env.SECRET_KEY_REFRESH_TOKEN);
+    }catch(e){
+        throw new Error("Sessão invalida")
+    }
+
+
     next();
     
 }
