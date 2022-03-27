@@ -2,10 +2,9 @@
   "name": "api_gymapp_ts",
   "version": "1.0.0",
   "description": "Api em ts de suporte à aplicação gym app",
-  "main": "./src/app.ts",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./src/app.ts",
-    "dev": "nodemon ./src/app.ts"
+    "start": "nodemon ./src/app.ts"
   },
   "author": "ResCode",
   "license": "ISC",
