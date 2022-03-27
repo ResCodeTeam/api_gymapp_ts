@@ -2,9 +2,9 @@
   "name": "api_gymapp_ts",
   "version": "1.0.0",
   "description": "Api em ts de suporte à aplicação gym app",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node build/index.js",
+    "start": "node dist/app.js",
     "build": "tsc",
     "postinstall": "npm run build"
   },
