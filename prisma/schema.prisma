@@ -106,7 +106,7 @@ model definicoes_user {
   def_id         String @id @default(uuid())
   usersuid       String
   is_privado     Int    @default(0)
-  identifica__es Int    @default(0) @map("identificações")
+  identificacoes Int    @default(0)
   mencoes        Int    @default(0)
   users          users  @relation(fields: [usersuid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkdefinicoes764689")
 }
@@ -217,7 +217,7 @@ model ginasio {
   agendamentos_desafios   agendamentos_desafios[]
   aluno_ginasio           aluno_ginasio[]
   desafios                desafios[]
-  local_medidas_gin_sio   local_medidas_gin_sio[]
+  local_medidas_ginasio   local_medidas_ginasio[]
   modalidades_ginasio     modalidades_ginasio[]
   publicacoes             publicacoes[]
   submissoes_desafios     submissoes_desafios[]
@@ -240,7 +240,7 @@ model gostos_publicacao {
 }
 
 model identificacoes_publicacoes {
-  identifica__o_id String      @id @default(uuid()) @map("identificação_id")
+  identificacao_id String      @id @default(uuid())
   publicacao_id    String
   usersuid         String
   publicacoes      publicacoes @relation(fields: [publicacao_id], references: [publicacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkidentifica298313")
@@ -258,18 +258,18 @@ model locais_medidas {
   local_medida_id       String                  @id @default(uuid())
   descricao             String                  @db.VarChar(255)
   unilado               Int
-  local_medidas_gin_sio local_medidas_gin_sio[]
+  local_medidas_ginasio local_medidas_ginasio[]
   medidas_avaliacao     medidas_avaliacao[]
 }
 
-model local_medidas_gin_sio {
+model local_medidas_ginasio {
   local_medida_id String         @default(uuid())
   ginasio_id      String
   ginasio         ginasio        @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fklocal_medi973208")
   locais_medidas  locais_medidas @relation(fields: [local_medida_id], references: [local_medida_id], onDelete: NoAction, onUpdate: NoAction, map: "fklocal_medi780121")
 
+
   @@id([local_medida_id, ginasio_id])
-  @@map("local_medidas_ginásio")
 }
 
 model localidades {
