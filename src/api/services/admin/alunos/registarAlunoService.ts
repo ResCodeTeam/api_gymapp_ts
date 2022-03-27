@@ -89,7 +89,7 @@ export class RegistarAlunoService {
       const marcaMobilidade = marca?.mobilidade;
       const marcaId = marca?.marca_id
 
-      if (marcaMobilidade == 1) {
+      if (marcaMobilidade) {
         await client.alunos_marca.create({
           data: {
             marcas:{

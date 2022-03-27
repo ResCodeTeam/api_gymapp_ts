@@ -11,7 +11,7 @@ class CriarGinasioModalidadesController {
       ginasioId,
       nome,
       imagemUrl,
-      estado,
+      
     });
     response.json(resp);
   }

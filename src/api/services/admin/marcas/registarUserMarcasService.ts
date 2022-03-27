@@ -4,7 +4,7 @@ import { checkUserIdExists, checkNomeMarca } from "../../../helpers/dbHelpers";
 interface IRegistarUserMarcasSerice {
   userId: string;
   nome: string;
-  mobilidade: number;
+  mobilidade: boolean;
   cor: string;
   logotipo: string;
 }

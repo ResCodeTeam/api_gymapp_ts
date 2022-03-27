@@ -25,7 +25,6 @@ import { CriarNotificacaoGinasioController } from "../controllers/admin/notifica
 import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController";
 import { RemoverDesafiosController } from "../controllers/admin/desafios/removerDesafiosController";
 import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlunoController";
-import { RegistarFuncoesController } from "../controllers/admin/admin/registarFuncoesController";
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
@@ -45,14 +44,12 @@ const eliminarTreinadorController = new EliminarTreinadorController();
 // const editarPublicacaoController  = new EditarPublicacaoController();
 const encerrarDesafiosController  = new EncerrarDesafiosController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
-const registarFuncoesController = new RegistarFuncoesController();
 const registarAdminController = new RegistarAdminController();
 const removerDesafiosController = new RemoverDesafiosController();
 
 
 //#region Admin
 adminRouter.post("/admin/", registarAdminController.handle);
-adminRouter.post("/admin/funcoes/", registarFuncoesController.handle);
 //#endregion
 
 //#region Alunos

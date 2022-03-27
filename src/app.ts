@@ -8,6 +8,7 @@ const app = express();
 import { adminRouter } from "./api/routes/adminRoute";
 import {authRouter} from "./api/routes/authRoute";
 import dotenv from "dotenv";
+import { backendRouter } from "./api/routes/backendRoute";
 dotenv.config()
 
 app.use(cors({ credentials: true, origin: true }));
@@ -17,9 +18,10 @@ app.use(express.json());
 
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/", backendRouter);
 
 app.use((error:Error,request:Request,response:Response,next:NextFunction)=>{
-
+    console.log(error)
     return response.json({
         status:"Error",
         message:error.message

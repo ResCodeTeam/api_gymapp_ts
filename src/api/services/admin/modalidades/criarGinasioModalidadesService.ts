@@ -5,7 +5,7 @@ interface ICriarGinasioModalidadesService {
   ginasioId: string;
   nome: string;
   imagemUrl: string;
-  estado: number;
+  
 }
 
 class CriarGinasioModalidadesService {
@@ -13,7 +13,7 @@ class CriarGinasioModalidadesService {
     ginasioId,
     nome,
     imagemUrl,
-    estado,
+    
   }: ICriarGinasioModalidadesService) {
     //verificar se a modalidade já existe
     const exist_nome = await checkModalidadeNome(nome);
@@ -26,7 +26,7 @@ class CriarGinasioModalidadesService {
         ginasio_id: ginasioId,
         nome,
         imagem_url: imagemUrl,
-        estado,
+        
       },
     });
     return { msg: "A modalidade foi criada com sucesso!" };
