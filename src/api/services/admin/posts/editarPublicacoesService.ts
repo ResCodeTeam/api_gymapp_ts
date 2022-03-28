@@ -9,6 +9,8 @@ interface IPublicacao{
 export class EditarPublicacaoService {
     async execute({publicacaoId, newData, descricao} : IPublicacao){
 
+       
+
         if ( publicacaoId == null) {
             throw new Error("Impossível aceder à publicação.");
         }
@@ -25,24 +27,21 @@ export class EditarPublicacaoService {
         if (!existePublicacao) {
             throw new Error("Não encontrou a publicação");
         }
-
+      
         if (newData == null) {
             throw new Error("Falta a data");
         }
-
-        const verificaData = await client.publicacoes.findMany({
+      
+        const verificaData = await client.publicacoes.findUnique({
             where : {
                 publicacao_id : publicacaoId,
-                data : {
-                     gte: newData
-                }
             },
             select : {
                 data : true
             }
         });
 
-        if (verificaData) {
+        if (verificaData.data > newData) {
             throw new Error("Não é possivel alterar! Data inválida");
         }
 
@@ -50,19 +49,18 @@ export class EditarPublicacaoService {
             throw new Error("Falta a descrição");
         }
 
-        const verificaDescricao = await client.publicacoes.findMany({
+        const verificaDescricao = await client.publicacoes.findUnique({
             where : {
                 publicacao_id : publicacaoId,
-                descricao : {
-                     equals: descricao
-                }
             },
             select : {
-                data : true
+                descricao : true,
             }
         });
 
-        if (verificaDescricao) {
+        console.log("Descrição - " + verificaDescricao);
+
+        if (verificaDescricao.descricao == descricao) {
             throw new Error("Não é possivel alterar! Descrição é igual");
         }
 
@@ -76,7 +74,7 @@ export class EditarPublicacaoService {
             }
         })
         return {
-            message: "Desafio encerrado com sucesso!",
+            message: "Publicação editada com sucesso!",
             publicação
         }
     }
