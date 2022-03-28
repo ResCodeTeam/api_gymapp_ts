@@ -10,7 +10,7 @@ datasource db {
 model agendamentos_avaliacoes {
   agendamento_id   String   @id @default(uuid())
   uid              String
-  data_agendamento DateTime @db.Date
+  data_agendamento DateTime @db.Timestamp(3)
   estado           Int
   ginasio_id       String
   isDeleted        Boolean  @default(false)
@@ -21,7 +21,7 @@ model agendamentos_avaliacoes {
 model agendamentos_desafios {
   agendamento_id   String   @id @default(uuid())
   uid              String
-  data_agendamento DateTime @db.Date
+  data_agendamento DateTime @db.Timestamp(3)
   estado           Int
   desafio_id       String
   ginasio_id       String
@@ -67,7 +67,7 @@ model avaliacao_imagens {
 model avaliacoes {
   avaliacao_id                         String              @id @default(uuid())
   aluno_id                             String
-  data                                 DateTime            @db.Date
+  data                                 DateTime            @db.Timestamp(3)
   peso                                 Int
   unidade_peso                         String              @db.VarChar(255)
   treinador_id                         String
@@ -99,7 +99,7 @@ model comentarios_publicacao {
   publicacao_id     String
   comentario        String              @db.VarChar(255)
   criador_id        String
-  data              DateTime            @db.Timestamp()
+  data              DateTime            @db.Timestamp(3)
   users             users               @relation(fields: [criador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkcomentario66141")
   publicacoes       publicacoes         @relation(fields: [publicacao_id], references: [publicacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkcomentario286998")
   gostos_comentario gostos_comentario[]
@@ -119,8 +119,8 @@ model desafios {
   criador_id            String
   nome                  String                  @db.VarChar(255)
   modalidade_id         String
-  data_inicio           DateTime                @db.Date
-  data_fim              DateTime?               @db.Date
+  data_inicio           DateTime                @db.Timestamp(3)
+  data_fim              DateTime?               @db.Timestamp(3)
   recompensa            Int
   estado                Int                     @default(0)
   ginasio_id            String
@@ -331,7 +331,7 @@ model notificacoes {
   noti_id              String                 @id @default(uuid())
   origem_uid           String
   conteudo             String                 @db.VarChar(255)
-  data                 DateTime               @db.Date
+  data                 DateTime               @db.Timestamp(3)
   tipo                 Int
   users                users                  @relation(fields: [origem_uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fknotificaco871945")
   destinos_notificacao destinos_notificacao[]
@@ -354,7 +354,7 @@ model planos_treino {
 model publicacoes {
   publicacao_id              String                       @id @default(uuid())
   criador_id                 String?
-  data                       DateTime                     @db.Date
+  data                       DateTime                     @db.Timestamp(3)
   descricao                  String                       @db.VarChar(255)
   tipo                       Int
   ginasio_id                 String?
@@ -426,7 +426,7 @@ model treinos {
   duracao             String               @db.VarChar(255)
   calorias            Int?
   distancia           Int?
-  data                DateTime             @db.Date
+  data                DateTime             @db.Timestamp(3)
   isDeleted           Boolean              @default(false)
   atividades          atividades?          @relation(fields: [atividade_id], references: [atividade_id], onDelete: NoAction, onUpdate: NoAction, map: "fktreinos560349")
   modalidades_ginasio modalidades_ginasio? @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fktreinos7075")
