@@ -13,6 +13,7 @@ model agendamentos_avaliacoes {
   data_agendamento DateTime @db.Date
   estado           Int
   ginasio_id       String
+  isDeleted        Boolean  @default(false)
   ginasio          ginasio  @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament980386")
   users            users    @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament244850")
 }
@@ -24,6 +25,7 @@ model agendamentos_desafios {
   estado           Int
   desafio_id       String
   ginasio_id       String
+  isDeleted        Boolean  @default(false)
   desafios         desafios @relation(fields: [desafio_id], references: [desafio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament612576")
   ginasio          ginasio  @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament841318")
   users            users    @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament394735")
@@ -51,6 +53,7 @@ model atividades {
   atividade_id String    @id @default(uuid())
   descricao    String    @db.VarChar(255)
   icon         String    @db.VarChar(255)
+  isDeleted    Boolean   @default(false)
   treinos      treinos[]
 }
 
@@ -75,6 +78,7 @@ model avaliacoes {
   proteina                             Int
   massa_ossea                          Int
   metabolismo_basal                    Int
+  isDeleted                            Boolean             @default(false)
   users_avaliacoes_aluno_idTousers     users               @relation("avaliacoes_aluno_idTousers", fields: [aluno_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkavaliacoes119892")
   users_avaliacoes_treinador_idTousers users               @relation("avaliacoes_treinador_idTousers", fields: [treinador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkavaliacoes194757")
   avaliacao_imagens                    avaliacao_imagens[]
@@ -121,6 +125,7 @@ model desafios {
   estado                Int                     @default(0)
   ginasio_id            String
   descricao             String?                 @db.VarChar(255)
+  isDeleted             Boolean                 @default(false)
   users                 users                   @relation(fields: [criador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkdesafios277782")
   ginasio               ginasio                 @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkdesafios556854")
   modalidades_ginasio   modalidades_ginasio     @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fkdesafios433214")
@@ -146,6 +151,7 @@ model exercicios {
   descricao           String                @db.VarChar(255)
   autor_id            String
   is_tempo            Boolean
+  isDeleted           Boolean               @default(false)
   users               users                 @relation(fields: [autor_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios806183")
   exercicios_bloco    exercicios_bloco[]
   exercicios_desafio  exercicios_desafio[]
@@ -208,6 +214,7 @@ model ginasio {
   imagem_url              String                    @db.VarChar(255)
   lat                     String                    @db.VarChar(255)
   long                    String                    @db.VarChar(255)
+  isDeleted               Boolean                   @default(false)
   localidades             localidades               @relation(fields: [cp_id], references: [cp_id], onDelete: NoAction, onUpdate: NoAction, map: "fkginasio942118")
   marcas                  marcas                    @relation(fields: [marca_id], references: [marca_id], onDelete: NoAction, onUpdate: NoAction, map: "fkginasio173025")
   agendamentos_avaliacoes agendamentos_avaliacoes[]
@@ -285,6 +292,7 @@ model marcas {
   mobilidade        Boolean
   cor               String              @db.VarChar(255)
   logotipo          String              @db.VarChar(255)
+  isDeleted         Boolean             @default(false)
   users             users               @relation(fields: [dono_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkmarcas260834")
   alunos_marca      alunos_marca[]
   ginasio           ginasio[]
@@ -336,6 +344,7 @@ model planos_treino {
   data                                    DateTime            @db.Date
   estado                                  Boolean             @default(false)
   modalidade_id                           String
+  isDeleted                               Boolean             @default(false)
   users_planos_treino_aluno_idTousers     users               @relation("planos_treino_aluno_idTousers", fields: [aluno_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre628891")
   modalidades_ginasio                     modalidades_ginasio @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre425229")
   users_planos_treino_treinador_idTousers users               @relation("planos_treino_treinador_idTousers", fields: [treinador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre703756")
@@ -349,6 +358,7 @@ model publicacoes {
   descricao                  String                       @db.VarChar(255)
   tipo                       Int
   ginasio_id                 String?
+  isDeleted                  Boolean                      @default(false)
   users                      users?                       @relation(fields: [criador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkpublicacoe457564")
   ginasio                    ginasio?                     @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkpublicacoe178492")
   comentarios_publicacao     comentarios_publicacao[]
@@ -417,6 +427,7 @@ model treinos {
   calorias            Int?
   distancia           Int?
   data                DateTime             @db.Date
+  isDeleted           Boolean              @default(false)
   atividades          atividades?          @relation(fields: [atividade_id], references: [atividade_id], onDelete: NoAction, onUpdate: NoAction, map: "fktreinos560349")
   modalidades_ginasio modalidades_ginasio? @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fktreinos7075")
   users               users                @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fktreinos709983")
@@ -437,6 +448,7 @@ model users {
   descricao                                                   String?                      @db.VarChar(255)
   imagem_url                                                  String?                      @db.VarChar(255)
   estado                                                      Int?                         @default(1)
+  isDeleted                                                   Boolean                      @default(false)
   funcoes                                                     funcoes                      @relation(fields: [funcao_id], references: [funcao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkusers982872")
   agendamentos_avaliacoes                                     agendamentos_avaliacoes[]
   agendamentos_desafios                                       agendamentos_desafios[]

@@ -1,3 +1,4 @@
+import { prisma } from "@prisma/client";
 import { hash } from "bcrypt";
 import { checkEmail, checkGinasioExists, getFuncaoId } from "../../../helpers/dbHelpers";
 import { getTag } from "../../../helpers/tagHelpers";
@@ -44,6 +45,8 @@ export class RegistarAdminService{
                 funcao_id:funcaoId,
             }
         })
+     
+        
         
         return {"msg":"admin registado com sucesso",admin}
         
