@@ -5,12 +5,11 @@ interface INotificacaoGinasio {
   userId: string,
   ginasioId: string,
   conteudo: string,
-  data : Date,
   tipo: number
 }
 
 export class CriarNotificacaoGinasioService {
-  async execute({userId, ginasioId, conteudo, data, tipo} : INotificacaoGinasio) {
+  async execute({userId, ginasioId, conteudo, tipo} : INotificacaoGinasio) {
     //#region Verifica se o admin existe
     const existsUser = await checkUserIdExists(userId);
     if (!existsUser) {
@@ -58,21 +57,20 @@ export class CriarNotificacaoGinasioService {
     if (!ginasios) {
       throw new Error (`Não existe alunos`);
     }
-
-    console.log(ginasios.aluno_ginasio);
     
     //#region Cria Notificação
     const notificacao = await client.notificacoes.create({
       data: {
         origem_uid: userId,
         conteudo,
-        data,
+        data : new Date(),
         tipo,
       }
     });
     //#endregion
 
-    console.log(notificacao.noti_id);
+    console.log(`ID Notificação : ${notificacao.noti_id}`);
+    console.log(ginasios.aluno_ginasio);
     
     //#region Cria Destinos da Notificação
     let dstNoti;
