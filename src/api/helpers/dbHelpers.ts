@@ -1,5 +1,6 @@
 import { client } from "../prisma/client";
-
+import dayjs from "dayjs";
+import "dayjs/locale/pt";
 
 let checkEmail = async(email : string)=>{
     const search = await client.users.findMany({
@@ -169,6 +170,15 @@ let checkNomeMarca = async (nome: string) => {
     return search.length != 0;
   };
 
+let formatDate = async (data : Date) => {
+    const date = dayjs(data).format('DD/MM/YYYY').toString();
+    return date;
+}
+
+let formatDateHour = async (data : Date) => {
+    const date = dayjs(data).locale('pt').format('DD/MM/YYYY HH:mm').toString();
+    return date;
+}
 export {
     checkEmail,
     checkUserIdExists,
@@ -184,6 +194,8 @@ export {
     checkDonoMarca,
     checkModalidadeNome,
     checkNomeMarca,
-    getUserByID
+    getUserByID,
+    formatDate,
+    formatDateHour
 }
 

@@ -1,16 +1,15 @@
-import { checkDonoMarca, checkMarcaExists, checkUserIdExists } from "../../../helpers/dbHelpers";
+import { checkDonoMarca, checkMarcaExists, checkUserIdExists, formatDateHour } from "../../../helpers/dbHelpers";
 import { client } from '../../../prisma/client'; 
 
 interface INotificacaoMarca {
   userId: string,
   marcaId: string,
   conteudo: string,
-  data : Date,
   tipo: number
 }
 
 export class CriarNotificacaoMarcaService {
-  async execute({userId, marcaId, conteudo, data, tipo} : INotificacaoMarca) {
+  async execute({userId, marcaId, conteudo, tipo} : INotificacaoMarca) {
     //#region Verifica se o admin existe
     const existsUser = await checkUserIdExists(userId);
     if (!existsUser) {
@@ -59,19 +58,21 @@ export class CriarNotificacaoMarcaService {
     if (!ginasios) {
       throw new Error (`Não existe alunos`);
     }
-
-    console.log(ginasios[0].aluno_ginasio);
     
     //#region Cria Notificação
     const notificacao = await client.notificacoes.create({
       data: {
         origem_uid: userId,
         conteudo,
-        data,
+        data : new Date(),
         tipo,
       }
     });
     //#endregion
+
+    console.log(`ID Notificação : ${notificacao.noti_id}`);
+    console.log(`Data : ${(await formatDateHour(notificacao.data))}`);
+    console.log(ginasios[0].aluno_ginasio);
     
     //#region Cria Destinos da Notificação
     let dstNoti;
