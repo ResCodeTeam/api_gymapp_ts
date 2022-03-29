@@ -28,6 +28,7 @@ import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlu
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
+import { VerDesafiosParticipantesController } from "../controllers/admin/desafios/verDesafiosParticipantesController";
 
 const criarPostsController = new CriarPostsController();
 const registarAlunosController = new RegistarAlunoController();
@@ -46,6 +47,7 @@ const encerrarDesafiosController  = new EncerrarDesafiosController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
 const registarAdminController = new RegistarAdminController();
 const removerDesafiosController = new RemoverDesafiosController();
+const verDesafiosParticipantesController = new VerDesafiosParticipantesController();
 
 
 //#region Admin
@@ -61,6 +63,7 @@ adminRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentari
 //#endregion
 
 //#region Desafios
+adminRouter.get("/desafios/", verDesafiosParticipantesController.handle);
 adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
 adminRouter.put("/desafios/encerrar/:id", encerrarDesafiosController.handle);
 adminRouter.delete("/desafios/", removerDesafiosController.handle);

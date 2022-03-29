@@ -9,8 +9,6 @@ interface IPublicacao{
 export class EditarPublicacaoService {
     async execute({publicacaoId, newData, descricao} : IPublicacao){
 
-       
-
         if ( publicacaoId == null) {
             throw new Error("Impossível aceder à publicação.");
         }

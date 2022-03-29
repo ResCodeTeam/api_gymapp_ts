@@ -6,6 +6,7 @@ const app = express();
 
 //Rotas
 import { adminRouter } from "./api/routes/adminRoute";
+import { treinadorRouter } from "./api/routes/treinadorRoute";
 import {authRouter} from "./api/routes/authRoute";
 import dotenv from "dotenv";
 import { backendRouter } from "./api/routes/backendRoute";
@@ -17,6 +18,7 @@ app.use(express.json());
 
 
 app.use("/api/v1/admin", adminRouter);
+app.use("/api/v1/treinador", treinadorRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/", backendRouter);
 
