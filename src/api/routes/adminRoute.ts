@@ -17,7 +17,7 @@ import { VerPostController } from "../controllers/admin/posts/verPostController"
 import { RemoverModalidadesController } from "../controllers/admin/modalidades/removerModalidadesController";
 import { EliminarTreinadorController } from "../controllers/admin/treinadores/eliminarTreinadorController";
 //import { CriarGostoController } from "../controllers/admin/gostosPosts/criarGostoController";
-//import { EditarPublicacaoController } from "../controllers/admin/posts/editarPublicacaoController";
+import { EditarPublicacaoController } from "../controllers/admin/posts/editarPublicacaoController";
 import { verificarAdmin } from "../middlewares/verificarAdmin";
 //import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { CriarNotificacaoMarcaController } from "../controllers/admin/notificacoes/criarNotificacaoMarcaController";
@@ -28,6 +28,7 @@ import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlu
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
+import { VerDesafiosParticipantesController } from "../controllers/admin/desafios/verDesafiosParticipantesController";
 
 const criarPostsController = new CriarPostsController();
 const registarAlunosController = new RegistarAlunoController();
@@ -41,11 +42,12 @@ const verPostController = new VerPostController();
 const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
 // const criarGostoController  = new CriarGostoController();
-// const editarPublicacaoController  = new EditarPublicacaoController();
+const editarPublicacaoController  = new EditarPublicacaoController();
 const encerrarDesafiosController  = new EncerrarDesafiosController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
 const registarAdminController = new RegistarAdminController();
 const removerDesafiosController = new RemoverDesafiosController();
+const verDesafiosParticipantesController = new VerDesafiosParticipantesController();
 
 
 //#region Admin
@@ -61,7 +63,8 @@ adminRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentari
 //#endregion
 
 //#region Desafios
-// adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
+adminRouter.get("/desafios/", verDesafiosParticipantesController.handle);
+adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
 adminRouter.put("/desafios/encerrar/:id", encerrarDesafiosController.handle);
 adminRouter.delete("/desafios/", removerDesafiosController.handle);
 //#endregion
@@ -93,7 +96,7 @@ adminRouter.post("/notificacao/ginasio/", criarNotificacaoGinasioController.hand
 //#region Publicacoes
 adminRouter.post("/posts",verificarAutenticacao, criarPostsController.handle);
 adminRouter.get("/posts", verPostController.handle);
-// adminRouter.put("/posts/:id", editarPublicacaoController.handle);
+adminRouter.put("/posts", editarPublicacaoController.handle);
 // adminRouter.delete("/posts/:id", removerPostsController.handle);
 // adminRouter.post("/posts/:id/gostos", criarGostoController.handle);
 //#endregion
