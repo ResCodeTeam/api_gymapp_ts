@@ -150,6 +150,12 @@
                     
                 }
             }
+        },
+        "/treinador/agenda/avaliacao":{
+            "post":{
+                "summary": "Registo de agendamentos de avaliação",
+                "description": 
+            }
         }
     },
     "components": {
