@@ -157,7 +157,10 @@
             "Funcao":{
                 "type": "object",
                 "properties": {
-                    "nome":{
+                    "funcao_id":{
+                        "type": "string"
+                    },
+                    "descricao":{
                         "type": "string"
                     }
                 }
