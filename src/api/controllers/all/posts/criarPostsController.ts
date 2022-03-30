@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
+<<<<<<< HEAD:src/api/controllers/admin/posts/criarPostsController.ts
+import { CriarPostsService } from "../../../services/treinador/posts/criarPostsService";
+=======
 import { CriarPostsService } from "../../../services/all/posts/criarPostsService";
+>>>>>>> f082aa2c692f0075ac98418c0a4e8b43494a6619:src/api/controllers/all/posts/criarPostsController.ts
 
 class CriarPostsController {
   async handle(request: Request, response: Response) {

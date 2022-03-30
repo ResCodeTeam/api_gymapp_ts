@@ -24,6 +24,7 @@ import { CriarNotificacaoMarcaController } from "../controllers/admin/notificaco
 import { CriarNotificacaoGinasioController } from "../controllers/admin/notificacoes/criarNotificacaoGinasioController";
 import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController";
 import { RemoverDesafiosController } from "../controllers/admin/desafios/removerDesafiosController";
+import { EditarModalidadesController } from "../controllers/admin/modalidades/editarModalidadeController";
 import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlunoController";
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
@@ -47,6 +48,7 @@ const encerrarDesafiosController  = new EncerrarDesafiosController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
 const registarAdminController = new RegistarAdminController();
 const removerDesafiosController = new RemoverDesafiosController();
+const  editarModalidadesController = new EditarModalidadesController();
 
 
 
@@ -90,6 +92,7 @@ adminRouter.delete("/marca/:id", removerMarcaController.handle);
 
 //#region Modalidades
 adminRouter.delete("/modalidades/:id", removerModalidadesController.handle);
+adminRouter.delete("/modalidades", editarModalidadesController.handle);
 //#endregion
 
 //#region Notificacoes

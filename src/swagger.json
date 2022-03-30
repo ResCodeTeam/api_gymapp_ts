@@ -21,24 +21,43 @@
         {
             "url": "https://apigymapp-c.herokuapp.com/api/v1",
             "description":"API de produção server 2"
+        },
+        {
+            "url": "https://apigymapp-h.herokuapp.com/api/v1",
+            "description":"API de produção server 4"
         }
+        
     ],
     "paths": {
         "/backend/funcoes":{
             "post":{
                 "summary": "Registo de funções de user",
                 "description": "Esta rota vai registar na base de dados novas funções para os utilizadores",
-                "tags": ["Funcoes"],
+                "tags": ["Backend"],
                 "requestBody":{
                     "content":{
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Funcao"
+                                "properties": {
+                                    "nome":{
+                                        "type": "string"
+                                    }
+                                }
                             },
                             "examples": {
-                                "funcao":{
+                                "Criar Aluno":{
                                     "value": {
                                         "nome": "Aluno"
+                                    }
+                                },
+                                "Criar Admin":{
+                                    "value":{
+                                        "nome":"Admin"
+                                    }
+                                },
+                                "Criar Treinador":{
+                                    "value":{
+                                        "nome":"Treinador"
                                     }
                                 }
                             }
@@ -47,8 +66,7 @@
                 },
                 "responses": {
                     "500":{
-                        "description": "ERROR"
-                        
+                        "description": "ERROR"  
                     },
                     "200":{
                         "description": "OK",
@@ -66,39 +84,64 @@
                 }
             }
         },
-        "treinador/agenda/avaliacao": {
-            "post": {
-                "summary": "Registo de agendamentos de avaliações",
-                "description": "Esta rota vai registar na base de dados agendamentos para a avaliação dos alunos",
-                "tags": ["Agendamentos"],
+        "/backend/cp":{
+            "post":{
+                "summary": "Registo de localidades",
+                "description": "Esta rota vai registar na base de dados localidades",
+                "tags": ["Backend"],
                 "requestBody":{
                     "content":{
-                        "examples":{
-                            "agendamento":{
-                                "value":{
-                                    "uid": "034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
-                                    "dataAgendamento": "2022-03-30",
-                                    "estado": 1,
-                                    "ginasioId": "d81fdccd-e71c-46b1-bb8e-92b287777038",
-                                    "treinadorId": ""
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "cp":{
+                                        "type": "number"
+                                    },
+                                    "cpExt":{
+                                        "type": "number"
+                                    },
+                                    "rua":{
+                                        "type": "string"
+                                    },
+                                    "localidade":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Inserir Localidade":{
+                                    "value": {
+                                        "cp":4905,
+                                        "cpExt":515,
+                                        "rua":"Rua Campo do Tio Joao",
+                                        "localidade":"Viana do Castelo"
+                                    }
                                 }
                             }
                         }
-
                     }
                 },
                 "responses": {
                     "500":{
-                        "description": "ERROR"
-                        
+                        "description": "ERROR"  
                     },
                     "200":{
                         "description": "OK",
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref":"#/components/schemas/Funcao"
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Inserir Localidade":{
+                                        "value":{
+                                            "msg":"Localidade inserida com sucesso"
+                                        }
+                                    }
                                 }
                             }
                         }
