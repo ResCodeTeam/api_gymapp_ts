@@ -23,7 +23,6 @@ allRouter.post("/posts", criarPostsController.handle);
 allRouter.get("/posts", verTodosPostsController.handle);
 allRouter.get("/posts/user/:id", verTodosPostsUserController.handle)
 allRouter.put("/posts", editarPublicacaoController.handle);
-//!TODO: Fazer controller and service
 allRouter.get("/posts/:id", verInfoPostInfoController.handle)
 //ver info de post
 
