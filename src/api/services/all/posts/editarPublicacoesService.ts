@@ -25,45 +25,45 @@ export class EditarPublicacaoService {
         if (!existePublicacao) {
             throw new Error("Impossível encontrar a publicação");
         }
-
+      
         if (newData == null) {
             throw new Error("Campo data não preenchido");
         }
-
-        const verificaData = await client.publicacoes.findMany({
+      
+        const verificaData = await client.publicacoes.findUnique({
             where : {
                 publicacao_id : publicacaoId,
-                data : {
-                     gte: newData
-                }
             },
             select : {
                 data : true
             }
         });
 
-        if (verificaData) {
-            throw new Error("Impossível alterar! Data inválida.");
+
+        if (verificaData.data > newData) {
+            throw new Error("Não é possivel alterar! Data inválida");
+
         }
 
         if (descricao == null) {
             throw new Error("Campo descrição não preenchido");
         }
 
-        const verificaDescricao = await client.publicacoes.findMany({
+        const verificaDescricao = await client.publicacoes.findUnique({
             where : {
                 publicacao_id : publicacaoId,
-                descricao : {
-                     equals: descricao
-                }
             },
             select : {
-                data : true
+                descricao : true,
             }
         });
 
-        if (verificaDescricao) {
-            throw new Error("Impossível alterar! Descrição atual é igual à anterior.");
+
+        console.log("Descrição - " + verificaDescricao);
+
+        if (verificaDescricao.descricao == descricao) {
+            throw new Error("Não é possivel alterar! Descrição é igual");
+
         }
 
         const publicação = await client.publicacoes.update({
