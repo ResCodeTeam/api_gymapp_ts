@@ -28,8 +28,8 @@ import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlu
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
-import { AgendarDesafiosController } from "../controllers/admin/treinadores/agendarDesafiosController";
-// import { AgendarAvaliacao } from "../controllers/admin/treinadores/agendarAvaliacaoController";
+import { AgendarDesafiosController } from "../controllers/treinador/agendamentos/agendarDesafiosController";
+import { AgendarAvaliacaoController } from "../controllers/treinador/agendamentos/agendarAvaliacaoController";
 import { VerDesafiosParticipantesController } from "../controllers/admin/desafios/verDesafiosParticipantesController";
 //import { RemoverMarcaController } from "../controllers/admin/marcas/removerMarcaController";
 
@@ -50,6 +50,7 @@ const registarAdminController = new RegistarAdminController();
 const removerDesafiosController = new RemoverDesafiosController();
 
 const agendarDesafiosController = new AgendarDesafiosController();
+const agendarAvaliacaoController = new AgendarAvaliacaoController();
 
 const verDesafiosParticipantesController = new VerDesafiosParticipantesController();
 //const removerMarcaController = new RemoverMarcaController();
@@ -107,7 +108,7 @@ adminRouter.post("/notificacao/ginasio/", criarNotificacaoGinasioController.hand
 //#region Treinadores
 adminRouter.delete("/treinador/:id", eliminarTreinadorController.handle);
 adminRouter.post("/desafios/:id/", agendarDesafiosController.handle);
-// adminRouter.post("/avaliacao/:id", agendarAvaliacaoController.handle);
+adminRouter.post("/avaliacao/:id", agendarAvaliacaoController.handle);
 //#endregion
 
 export { adminRouter };
