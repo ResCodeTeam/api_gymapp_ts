@@ -1,5 +1,5 @@
-import { checkDonoGinasio, checkGinasioExists, checkUserIdExists } from "../../../helpers/dbHelpers";
-import { client } from '../../../prisma/client'; 
+import { checkDonoGinasio, checkGinasioExists, checkUserIdExists, formatDate, formatDateHour } from "../../../helpers/dbHelpers";
+import { client } from '../../../prisma/client';
 
 interface INotificacaoGinasio {
   userId: string,
@@ -68,8 +68,9 @@ export class CriarNotificacaoGinasioService {
       }
     });
     //#endregion
-
+    
     console.log(`ID Notificação : ${notificacao.noti_id}`);
+    console.log(`Data : ${(await formatDateHour(notificacao.data))}`);
     console.log(ginasios.aluno_ginasio);
     
     //#region Cria Destinos da Notificação
