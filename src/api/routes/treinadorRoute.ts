@@ -9,7 +9,7 @@ import { EditarDesafioController } from "../controllers/treinador/desafios/edita
 import { RemoverDesafioController } from "../controllers/treinador/desafios/removerDesafioController";
 import { CriarDesafioController } from "../controllers/treinador/desafios/criarDesafioController";
 import { VerTodosOsExerciciosTreinadoresController } from "../controllers/treinador/Exercicios/VerTodosOsExerciciosTreinadoresController";
-import { RemoverAvaliacaoController } from "../controllers/treinador/avaliacoes/RemoverAvaliacaoController";
+import { RemoverAvaliacaoController } from "../controllers/treinador/avaliacoes/removerAvaliacaoController";
 import { EditarAvaliacaoController } from "../controllers/treinador/avaliacoes/editarAvaliacaoController";
 
 //
