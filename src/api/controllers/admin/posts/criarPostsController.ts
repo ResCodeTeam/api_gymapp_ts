@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CriarPostsService } from "../../../services/admin/posts/criarPostsService";
+import { CriarPostsService } from "../../../services/treinador/posts/criarPostsService";
 
 class CriarPostsController {
   async handle(request: Request, response: Response) {
