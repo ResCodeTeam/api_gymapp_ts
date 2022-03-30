@@ -111,4 +111,3 @@ adminRouter.delete("/treinador/:id", eliminarTreinadorController.handle);
 //#endregion
 
 export { adminRouter };
-
