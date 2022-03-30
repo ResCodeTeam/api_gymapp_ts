@@ -1,5 +1,5 @@
 import { Request, Response} from "express";
-import { EditarPublicacaoService } from "../../../services/admin/posts/editarPublicacoesService";
+import { EditarPublicacaoService } from "../../../services/all/posts/editarPublicacoesService";
 
 export class EncerrarDesafiosController{
   async handle(request : Request, response : Response) {
