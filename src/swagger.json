@@ -24,7 +24,7 @@
             "post":{
                 "summary": "Registo de funções de user",
                 "description": "Esta rota vai registar na base de dados novas funções para os utilizadores",
-                "tags": ["Funcoes"],
+                "tags": ["Funções"],
                 "requestBody":{
                     "content":{
                         "application/json":{
@@ -32,7 +32,7 @@
                                 "$ref": "#/components/schemas/Funcao"
                             },
                             "examples": {
-                                "funcao":{
+                                "Criar Aluno":{
                                     "value": {
                                         "nome": "Aluno"
                                     }
@@ -43,8 +43,7 @@
                 },
                 "responses": {
                     "500":{
-                        "description": "ERROR"
-                        
+                        "description": "ERROR"  
                     },
                     "200":{
                         "description": "OK",
