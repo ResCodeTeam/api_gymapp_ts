@@ -4,11 +4,11 @@ const treinadorRouter = express.Router();
 //Imports
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 import { CriarComentarioController } from "../controllers/treinador/comentarios/criarComentarioController";
-import { VerTodosOsExerciciosTreinadoresController } from "../controllers/treinador/exercicios/VerTodosOsExerciciosTreinadoresController";
 import { VerTodosTreinosDosAlunosController } from "../controllers/treinador/treinos/verTodosTreinosDosAlunosController";
 import { EditarDesafioController } from "../controllers/treinador/desafios/EditarDesafioController";
 import { RemoverDesafioController } from "../controllers/treinador/desafios/removerDesafioController";
 import { CriarDesafioController } from "../controllers/treinador/desafios/criarDesafioController";
+import { VerTodosOsExerciciosTreinadoresController } from "../controllers/treinador/Exercicios/VerTodosOsExerciciosTreinadoresController";
 
 
 //
