@@ -43,6 +43,6 @@ treinadorRouter.post("/desafio/:id", criarDesafio.handle)
 
 //#region Agendamentos
 treinadorRouter.post("/agenda/desafios/:id/", agendarDesafiosController.handle);
-treinadorRouter.post("/agenda/avaliacao/:id", agendarAvaliacaoController.handle);
+treinadorRouter.post("/agenda/avaliacao/", agendarAvaliacaoController.handle);
 //#endregion
 export { treinadorRouter };
