@@ -151,10 +151,73 @@
                 }
             }
         },
-        "/treinador/agenda/avaliacao":{
+        "/treinador/agenda/avaliacao/":{
             "post":{
                 "summary": "Registo de agendamentos de avaliação",
-                "description": 
+                "description": "Esta rota vai registar na base de dados um agendamento de avaliações",
+                "tags": ["Treinador"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "uid":{
+                                        "type": "string"
+                                    },
+                                    "dataAgendamento":{
+                                        "type": "Date"
+                                    },
+                                    "estado":{
+                                        "type": "number"
+                                    },
+                                    "ginasioId":{
+                                        "type": "string"
+                                    },
+                                    "treinadorId":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Inserir Agendamento de Avaliacoes":{
+                                    "value": {
+                                        "uid":"034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
+                                        "dataAgendamento":"2022-03-30",
+                                        "estado": 1,
+                                        "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
+                                        "treinadorId": ""
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Inserir Agendamento":{
+                                        "value":{
+                                            "msg":"Agendamento inserido com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
         }
     },
