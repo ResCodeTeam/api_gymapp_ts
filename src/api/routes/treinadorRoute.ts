@@ -5,7 +5,7 @@ const treinadorRouter = express.Router();
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 import { CriarComentarioController } from "../controllers/treinador/comentarios/criarComentarioController";
 import { VerTodosTreinosDosAlunosController } from "../controllers/treinador/treinos/verTodosTreinosDosAlunosController";
-import { EditarDesafioController } from "../controllers/treinador/desafios/editarDesafioController";
+// import { EditarDesafioController } from "../controllers/treinador/desafios/editarDesafioController";
 import { RemoverDesafioController } from "../controllers/treinador/desafios/removerDesafioController";
 import { CriarDesafioController } from "../controllers/treinador/desafios/criarDesafioController";
 import { VerTodosOsExerciciosTreinadoresController } from "../controllers/treinador/Exercicios/VerTodosOsExerciciosTreinadoresController";
@@ -22,7 +22,7 @@ import { AgendarAvaliacaoController } from "../controllers/treinador/agendamento
 const criarComentarioController = new CriarComentarioController();
 const verTodosOsExerciciosTreinadoresController = new VerTodosOsExerciciosTreinadoresController();
 const verTodosTreinosDosAlunosController = new VerTodosTreinosDosAlunosController();
-const editarDesafio = new EditarDesafioController()
+// const editarDesafio = new EditarDesafioController()
 const removerDesafio = new RemoverDesafioController()
 const criarDesafio = new CriarDesafioController()
 
@@ -45,7 +45,7 @@ treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
 //#endregion
 
 //#region Desafios
-treinadorRouter.put("/desafio/:id", editarDesafio.handle);
+// treinadorRouter.put("/desafio/:id", editarDesafio.handle);
 treinadorRouter.delete("/desafio/:id", removerDesafio.handle);
 treinadorRouter.post("/desafio/:id", criarDesafio.handle)
 //#endregion
