@@ -1,6 +1,10 @@
 import "express-async-errors";
+import dotenv from "dotenv";
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express"
+import swaggerDocs from "./swagger.json"
+
 
 const app = express();
 
@@ -8,15 +12,16 @@ const app = express();
 import { adminRouter } from "./api/routes/adminRoute";
 import { treinadorRouter } from "./api/routes/treinadorRoute";
 import {authRouter} from "./api/routes/authRoute";
-import dotenv from "dotenv";
+
 import { backendRouter } from "./api/routes/backendRoute";
 import { allRouter } from "./api/routes/allRoute";
+
 dotenv.config()
 
 app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 
-
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/treinador", treinadorRouter);
