@@ -5,7 +5,7 @@ interface Itreinador{
     treinador_id : string
 }
 
-class EliminarTreinadorService{
+export class EliminarTreinadorService{
     async execute({treinador_id} : Itreinador){
 
         const exists_id = await checkUserIdExists(treinador_id);
@@ -27,5 +27,5 @@ class EliminarTreinadorService{
         };
     }
 }
+// falta testar
 
-export { EliminarTreinadorService }
