@@ -10,7 +10,7 @@ import { CriarPostsController } from "../controllers/all/posts/criarPostsControl
 import { RegistarUserMarcasController } from "../controllers/admin/marcas/registarUserMarcasController";
 import { RegistarMarcaGinasiosController } from "../controllers/admin/ginasios/registarMarcaGinasiosController";
 import { CriarGinasioModalidadesController } from "../controllers/admin/modalidades/criarGinasioModalidadesController";
-import { CriarDesafiosController } from "../controllers/admin/desafios/criarDesafiosController";
+//import { CriarDesafiosController } from "../controllers/admin/desafios/criarDesafiosController";
 import { CriarComentarioController } from "../controllers/admin/comments/criarComentarioController";
 import { VerTodosPostsController } from "../controllers/all/posts/obter/verTodosPostsController";
 import { RemoverPostController } from "../controllers/all/posts/removerPostController";
@@ -38,7 +38,7 @@ const registarAlunosController = new RegistarAlunoController();
 const registarUserMarcasController = new RegistarUserMarcasController();
 const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
 const criarGinasioModalidadesController = new CriarGinasioModalidadesController();
-const criarDesafiosController = new CriarDesafiosController();
+//const criarDesafiosController = new CriarDesafiosController();
 const criarComentarioController = new CriarComentarioController();
 
 const removerModalidadesController = new RemoverModalidadesController();
@@ -74,7 +74,7 @@ adminRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentari
 adminRouter.get("/desafios/", verDesafiosParticipantesController.handle);
 adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
 adminRouter.put("/desafios/encerrar/:id", encerrarDesafiosController.handle);
-adminRouter.delete("/desafios/", removerDesafiosController.handle);
+adminRouter.delete("/desafios/:id", removerDesafiosController.handle);
 //#endregion
 
 //#region Ginasios
@@ -85,7 +85,7 @@ adminRouter.delete("/desafios/", removerDesafiosController.handle);
 adminRouter.post("/:id/marca/", registarUserMarcasController.handle);
 adminRouter.post("/marca/:id/ginasio/", registarMarcaGinasiosController.handle);
 adminRouter.post("/ginasio/:id/modalidades", criarGinasioModalidadesController.handle);
-adminRouter.post("/ginasio/:id/desafios", criarDesafiosController.handle);
+//adminRouter.post("/ginasio/:id/desafios", criarDesafiosController.handle);
 adminRouter.delete("/marca/:id", removerMarcaController.handle);
 
 //#endregion

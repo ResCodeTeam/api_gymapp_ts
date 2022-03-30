@@ -1,23 +1,23 @@
-import { client } from "../../../prisma/client";
-import { checkUserIdExists, checkGinasioExists, checkModalidadeExists, checkExercicioExists } from "../../../helpers/dbHelpers";
+// import { client } from "../../../prisma/client";
+// import { checkUserIdExists, checkGinasioExists, checkModalidadeExists, checkExercicioExists } from "../../../helpers/dbHelpers";
 
-interface ICriarDesafiosService {
-    criadorId: string;
-    nome: string;
-    modalidadeId: string;
-    dataInicio: Date;
-    dataFim: Date;
-    recompensa: number;
-    estado: number;
-    ginasioId: string;
-    descricao: string;
-    exercicios: string;
-    regras:string;
-}
+// interface ICriarDesafiosService {
+//     criadorId: string;
+//     nome: string;
+//     modalidadeId: string;
+//     dataInicio: Date;
+//     dataFim: Date;
+//     recompensa: number;
+//     estado: number;
+//     ginasioId: string;
+//     descricao: string;
+//     exercicios: string;
+//     regras:string;
+// }
 
-class CriarDesafiosService {
-    async execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras}: ICriarDesafiosService) {
-    //     const exists_criador = await checkUserIdExists(criadorId);
+// class CriarDesafiosService {
+//     async execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras}: ICriarDesafiosService) {
+    // //     const exists_criador = await checkUserIdExists(criadorId);
     //     if (!exists_criador) {
     //         throw new Error("O user não existe");
     //     }
@@ -84,8 +84,8 @@ class CriarDesafiosService {
     //     return {
     //         msg: "O desafio foi criado com sucesso!",
     //     };
-    }
-}
+  //  }
+//}
 
 
-export { CriarDesafiosService };
+//export { CriarDesafiosService };
