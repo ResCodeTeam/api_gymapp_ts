@@ -1,5 +1,5 @@
 import { Request, Response} from "express";
-import { EditarPublicacaoService } from "../../../services/admin/posts/editarPublicacoesService";
+import { EditarPublicacaoService } from "../../../services/all/posts/editarPublicacoesService";
 
 export class EditarPublicacaoController{
   async handle(request : Request, response : Response) {

@@ -2,6 +2,7 @@ import { client } from "../prisma/client";
 import dayjs from "dayjs";
 import "dayjs/locale/pt";
 
+
 let checkEmail = async(email : string)=>{
     const search = await client.users.findMany({
         where:{
@@ -170,6 +171,25 @@ let checkNomeMarca = async (nome: string) => {
     return search.length != 0;
   };
 
+
+let checkMobilidadeMarcaUser = async (userId:string)=>{
+    const userMarca = await client.alunos_marca.findFirst({
+        where:{
+            uid:userId,
+        }
+    })
+    if(!userMarca){
+        const userGinasio = await client.aluno_ginasio.findFirst({
+            where:{
+                user_id:userId
+            }
+        })
+        return {mobilidade:false,id:userGinasio }
+    }else{
+        return {mobilidade:false,id:userMarca }
+    }
+}
+
 let formatDate = async (data : Date) => {
     const date = dayjs(data).format('DD/MM/YYYY').toString();
     return date;
@@ -196,6 +216,7 @@ export {
     checkNomeMarca,
     getUserByID,
     formatDate,
-    formatDateHour
+    formatDateHour,
+    checkMobilidadeMarcaUser
 }
 
