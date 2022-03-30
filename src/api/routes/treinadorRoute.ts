@@ -8,6 +8,7 @@ import { VerTodosOsExerciciosTreinadoresController } from "../controllers/treina
 import { VerTodosTreinosDosAlunosController } from "../controllers/treinador/treinos/verTodosTreinosDosAlunosController";
 import { EditarDesafioController } from "../controllers/treinador/desafios/EditarDesafioController";
 import { RemoverDesafioController } from "../controllers/treinador/desafios/removerDesafioController";
+import { CriarDesafioController } from "../controllers/treinador/desafios/criarDesafioController";
 
 
 //
@@ -16,6 +17,7 @@ const verTodosOsExerciciosTreinadoresController = new VerTodosOsExerciciosTreina
 const verTodosTreinosDosAlunosController = new VerTodosTreinosDosAlunosController();
 const editarDesafio = new EditarDesafioController()
 const removerDesafio = new RemoverDesafioController()
+const criarDesafio = new CriarDesafioController()
 
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
@@ -32,6 +34,7 @@ treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
 //#region Desafios
 treinadorRouter.put("/desafio/:id", editarDesafio.handle);
 treinadorRouter.delete("/desafio/:id", removerDesafio.handle);
+treinadorRouter.post("/desafio/:id", criarDesafio.handle)
 //#endregion
 
 export { treinadorRouter };
