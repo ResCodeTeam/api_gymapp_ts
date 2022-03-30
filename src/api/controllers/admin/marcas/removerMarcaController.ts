@@ -3,10 +3,10 @@ import { RemoverMarcaService } from "../../../services/admin/marcas/removerMarca
 
 export class RemoverMarcaController{
     async handle(request : Request, response : Response){
-        const marca_id = request.params.id;
+        const marcaId = request.params.id;
 
         const removerMarcaService = new RemoverMarcaService();
-        const resp = await removerMarcaService.execute({marca_id});
+        const resp = await removerMarcaService.execute({marcaId});
         response.json(resp);
       };
 }

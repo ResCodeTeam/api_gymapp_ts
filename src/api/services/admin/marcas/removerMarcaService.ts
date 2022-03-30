@@ -2,21 +2,24 @@ import { client } from "../../../prisma/client";
 import { checkMarcaExists } from "../../../helpers/dbHelpers";
 
 interface IMarca{
-  marca_id :string
+  marcaId :string
 }
 class RemoverMarcaService {
-  async execute({marca_id} : IMarca) {
+  async execute({marcaId} : IMarca) {
 
-    const exists_dst = await checkMarcaExists(marca_id);
+    const exists_dst = await checkMarcaExists(marcaId);
     if (!exists_dst) {
       throw new Error("A marca não existe");
     }
 
-    const marca = await client.marcas.update({isDeleted:true},
-        {where: {
-          marca_id: marca_id
-        }});
-
+    const marca = await client.marcas.update({
+        data: {
+          isDeleted: true,
+        },
+        where:{
+          marca_id: marcaId,
+        },
+    });
 
     return {
       msg: "Marca removida com sucesso",
