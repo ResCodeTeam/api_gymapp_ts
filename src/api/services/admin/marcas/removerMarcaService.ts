@@ -12,7 +12,7 @@ class RemoverMarcaService {
       throw new Error("A marca não existe");
     }
 
-    const marca = await client.marca.update({isDeleted:true},
+    const marca = await client.marcas.update({isDeleted:true},
         {where: {
           marca_id: marca_id
         }});
