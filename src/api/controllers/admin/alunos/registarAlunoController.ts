@@ -12,5 +12,3 @@ export class RegistarAlunoController {
       response.json(resp);
     }
 }
-
-export { RegistarAlunoService };

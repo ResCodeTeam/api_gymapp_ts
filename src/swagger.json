@@ -1,0 +1,79 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+        "title":"Documentação da API GymApp",
+        "description": "Documentação da api de suporte à aplicação GymApp",
+        "contact": {
+            "name": "Teste",
+            "email": "teste@teste.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url":"http://localhost:8000/api/v1",
+            "description":"API de teste"
+        },
+        {
+            "url":"https://apigymapp.herokuapp.com/api/v1",
+            "description":"API de produção server 1"
+        }
+    ],
+    "paths": {
+        "/backend/funcoes":{
+            "post":{
+                "summary": "Registo de funções de user",
+                "description": "Esta rota vai registar na base de dados novas funções para os utilizadores",
+                "tags": ["Funcoes"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Funcao"
+                            },
+                            "examples": {
+                                "funcao":{
+                                    "value": {
+                                        "nome": "Aluno"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                        
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/Funcao"
+                                }
+                            }
+                        }
+
+                    }
+                    
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Funcao":{
+                "type": "object",
+                "properties": {
+                    "nome":{
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }    
+
+}

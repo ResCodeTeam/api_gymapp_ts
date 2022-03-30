@@ -1,5 +1,4 @@
 import { client } from "../../../prisma/client";
-import { checkUserIdExists } from "../../../helpers/dbHelpers";
 
 interface IDesafio{
     estado : number
@@ -14,6 +13,19 @@ export class EncerrarDesafiosService {
         }
 
         if (estado == -1) {
+            const verificarEncerrado = await client.desafios.findUnique({
+                where : {
+                    desafio_id : desafioId
+                },
+                select : {
+                    estado : true,
+                }
+            });
+
+            if(verificarEncerrado.estado == -1){
+                throw new Error("O desafio já se encontra encerrado.");
+            }
+            
             await client.desafios.update({
                 where : {
                     desafio_id : desafioId

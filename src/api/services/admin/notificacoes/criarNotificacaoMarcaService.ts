@@ -1,18 +1,15 @@
-import { checkDonoMarca, checkMarcaExists, checkUserIdExists } from "../../../helpers/dbHelpers";
-
+import { checkDonoMarca, checkMarcaExists, checkUserIdExists, formatDateHour } from "../../../helpers/dbHelpers";
 import { client } from '../../../prisma/client'; 
 
 interface INotificacaoMarca {
   userId: string,
   marcaId: string,
   conteudo: string,
-  data : Date,
   tipo: number
 }
 
 export class CriarNotificacaoMarcaService {
-  async execute({userId, marcaId, conteudo, data, tipo} : INotificacaoMarca) {
-
+  async execute({userId, marcaId, conteudo, tipo} : INotificacaoMarca) {
     //#region Verifica se o admin existe
     const existsUser = await checkUserIdExists(userId);
     if (!existsUser) {
@@ -35,35 +32,31 @@ export class CriarNotificacaoMarcaService {
     }
     //#endregion
 
-    //#region  Procurar todos os alunos de todos os ginásios de uma marca
-    ///Procura todos os ginásios da marca
-    let users = [];
-    const ginasios = await client.ginasio.findMany({ 
-      where:{
-        marca_id: marcaId
+    //#region Procurar todos os Alunos de uma Marca
+    const ginasios = await client.ginasio.findMany({
+      where : {
+        marca_id : marcaId
       },
       select : {
-        ginasio_id: true
+        marca_id : true,
+        ginasio_id : true,
+        aluno_ginasio : {
+          select : {
+            user_id : true,
+            users : {
+              select : {
+                nome : true
+              }
+            }
+          }
+        }
       }
     });
-
-    for (let i = 0; i < ginasios.length; i++) {
-        //console.log(`Ginásio ${i} : ${ginasios[i].ginasio_id}`);
-        /// Procura todos os alunos do ginásio
-        const utilizadores = await client.aluno_ginasio.findMany({
-          where: {
-            ginasio_id: ginasios[i].ginasio_id
-          }
-        });
-        for (let i = 0; i < utilizadores.length; i++) {
-          users.push(utilizadores[i].user_id);
-        }
-    }
     //#endregion
 
-    ///Verifica se não encontrou alunos
-    if (users.length == 0) {
-      throw new Error(`Não existem users inscritos`);
+    ///Verificar se existe ginásios
+    if (!ginasios) {
+      throw new Error (`Não existe alunos`);
     }
     
     //#region Cria Notificação
@@ -71,35 +64,37 @@ export class CriarNotificacaoMarcaService {
       data: {
         origem_uid: userId,
         conteudo,
-        data,
+        data : new Date(),
         tipo,
       }
     });
     //#endregion
+
+    console.log(`ID Notificação : ${notificacao.noti_id}`);
+    console.log(`Data : ${(await formatDateHour(notificacao.data))}`);
+    console.log(ginasios[0].aluno_ginasio);
     
     //#region Cria Destinos da Notificação
-    ///Get id da notificação
-    //const notiId = notificacao.noti_id ["dataValues"]["noti_id"];
-    let u = [];
-    ///Cria um destino de notificação para cada aluno de ginásios de uma marca
-    for (let i = 0; i < users.length; i++) {
-      console.log(`Notificação: ${notificacao.noti_id} , User: ${users[i]}`);
-      u.push(await client.destinos_notificacao.create({
-        data : {
-          noti_id : notificacao.noti_id,
-          dest_uid: users[i],
-        }
-      }));
+    let dstNoti;
+    for (let i = 0; i < ginasios.length; i++) {
+      for (let j = 0; j < ginasios[i].aluno_ginasio.length; j++) {
+        dstNoti = await client.destinos_notificacao.create({
+          data : {
+            noti_id : notificacao.noti_id,
+            dest_uid: ginasios[i].aluno_ginasio[j].user_id
+          }
+        });
+      }
     }
+    
+    if (!dstNoti) {
+      throw new Error (`Não contém alunos`)
+    } 
     //#endregion
-
-    for (let i = 0; i < u.length; i++) {
-      console.log(u[i]);
-      
-    }
-
+    
     return {
-      message:"Notificação enviada com sucesso"
+      message:"Notificação enviada com sucesso",
+      ginasios
     };
   }
 }

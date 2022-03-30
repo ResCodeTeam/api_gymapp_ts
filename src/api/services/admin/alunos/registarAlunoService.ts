@@ -31,8 +31,27 @@ export class RegistarAlunoService {
   }: IRegistarAlunoService) {
     // verificar se o aluno já está registado
     const existsEmail = await checkEmail(email);
+    console.log(email,
+      nome,
+      password,
+      dataNasc,
+      dataEntrada,
+      genero,
+      ginasioId,)
     if (existsEmail) {
-      throw Error("Email já registado!");
+      throw new Error("Email já registado!");
+    }
+
+    if(password.length<5){
+      throw new Error("Nome inválido");
+    }
+
+    if(!email.includes("@")){
+      throw new Error("Email inválido")
+    }
+
+    if(genero != 0 && genero != 1 ){
+      throw new Error("Email inválido")
     }
 
     // Obter tag do aluno
@@ -45,9 +64,13 @@ export class RegistarAlunoService {
     const funcaoId = await getFuncaoId("Aluno");
 
     let existsGym = await checkGinasioExists(ginasioId);
-    console.log(dataNasc,dataEntrada)
+    
     if (!existsGym) {
       throw new Error("Ginásio não existe");
+    }
+    
+    if(nome.split(" ").length<2){
+      throw new Error("Nome inválido")
     }
 
     const aluno = await client.users.create({
@@ -66,13 +89,14 @@ export class RegistarAlunoService {
         }
       },
     });
+
     const uid = aluno.uid;
     try {
       const marca = await getMarcaGym(ginasioId);
       const marcaMobilidade = marca?.mobilidade;
       const marcaId = marca?.marca_id
 
-      if (marcaMobilidade == 1) {
+      if (marcaMobilidade) {
         await client.alunos_marca.create({
           data: {
             marcas:{
@@ -103,7 +127,7 @@ export class RegistarAlunoService {
           },
         });
       }
-      return { msg: "Aluno Registado" };
+      return { msg: "Aluno Registado",aluno };
     } catch (e) {
       client.users.delete({
         where: {

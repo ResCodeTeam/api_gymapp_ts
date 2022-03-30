@@ -4,7 +4,7 @@ import { checkUserIdExists, checkNomeMarca } from "../../../helpers/dbHelpers";
 interface IRegistarUserMarcasSerice {
   userId: string;
   nome: string;
-  mobilidade: number;
+  mobilidade: boolean;
   cor: string;
   logotipo: string;
 }
@@ -22,7 +22,7 @@ class RegistarUserMarcasService {
       throw new Error("A marca já existe");
     }
 
-    await client.marcas.create({
+    const marca = await client.marcas.create({
       data: {
         dono_id: userId,
         nome,
@@ -31,7 +31,7 @@ class RegistarUserMarcasService {
         logotipo,
       },
     });
-    return { msg: "A marca foi criada com sucesso!" };
+    return { msg: "A marca foi criada com sucesso!",marca };
   }
 }
 

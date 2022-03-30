@@ -6,12 +6,11 @@ interface IRegistarMarcaGinasiosService {
   nome: string;
   rua: string;
   cp: number;
+  cpExt: number;
   marcaId: string;
-  estado: string;
   imagemUrl: string;
   lat: string;
   long: string;
-  cpExt: number;
 }
 
 export class RegistarMarcaGinasiosService {
@@ -19,12 +18,12 @@ export class RegistarMarcaGinasiosService {
     nome,
     rua,
     cp,
+    cpExt,
     marcaId,
-    estado,
     imagemUrl,
     lat,
     long,
-    cpExt,
+
   }: IRegistarMarcaGinasiosService) {
     // Obter a tag do ginásio automaticamente
     let tag = await getGymTag(nome);
@@ -35,23 +34,26 @@ export class RegistarMarcaGinasiosService {
     }
     console.log("teste");
 
-    await client.ginasio.create({
+
+    const localidade = await client.localidades.findFirst({
+      where:{
+        cp,
+        cp_ext:cpExt
+      }
+    })
+
+    const ginasio = await client.ginasio.create({
       data: {
         nome,
         rua,
         tag,
-        estado,
         imagem_url: "teste",
         lat,
         long,
         localidades:{
           connect:{
-            cp
-          }
-        },
-        localidades_ext:{
-          connect:{
-            cp_ext:cpExt
+            cp_id:localidade.cp_id
+
           }
         },
         marcas:{
@@ -64,6 +66,7 @@ export class RegistarMarcaGinasiosService {
     console.log("teste1");
     return {
       msg: "O ginásio foi criado com sucesso!",
+      ginasio
     };
   }
 }

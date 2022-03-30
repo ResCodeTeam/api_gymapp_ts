@@ -4,7 +4,7 @@ import { RegistarMarcaGinasiosService } from "../../../services/admin/ginasios/r
 class RegistarMarcaGinasiosController {
   async handle(request: Request, response: Response) {
     const marcaId = request.params.id;
-    const { nome, rua, cp, estado, imagemUrl, lat, long, cpExt } =
+    const { nome, rua, cp,cpExt, imagemUrl, lat, long } =
       request.body;
 
     const registarMarcaGinasiosController = new RegistarMarcaGinasiosService();
@@ -12,12 +12,12 @@ class RegistarMarcaGinasiosController {
       nome,
       rua,
       cp,
+      cpExt,
       marcaId,
-      estado,
       imagemUrl,
       lat,
       long,
-      cpExt
+      
     });
     response.json(resp);
   }
