@@ -28,17 +28,31 @@
             "post":{
                 "summary": "Registo de funções de user",
                 "description": "Esta rota vai registar na base de dados novas funções para os utilizadores",
-                "tags": ["Funções"],
+                "tags": ["Backend"],
                 "requestBody":{
                     "content":{
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Funcao"
+                                "properties": {
+                                    "nome":{
+                                        "type": "string"
+                                    }
+                                }
                             },
                             "examples": {
                                 "Criar Aluno":{
                                     "value": {
                                         "nome": "Aluno"
+                                    }
+                                },
+                                "Criar Admin":{
+                                    "value":{
+                                        "nome":"Admin"
+                                    }
+                                },
+                                "Criar Treinador":{
+                                    "value":{
+                                        "nome":"Treinador"
                                     }
                                 }
                             }
@@ -56,6 +70,73 @@
                                 "schema":{
                                     "type": "object",
                                     "$ref":"#/components/schemas/Funcao"
+                                }
+                            }
+                        }
+
+                    }
+                    
+                }
+            }
+        },
+        "/backend/cp":{
+            "post":{
+                "summary": "Registo de localidades",
+                "description": "Esta rota vai registar na base de dados localidades",
+                "tags": ["Backend"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "cp":{
+                                        "type": "number"
+                                    },
+                                    "cpExt":{
+                                        "type": "number"
+                                    },
+                                    "rua":{
+                                        "type": "string"
+                                    },
+                                    "localidade":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Inserir Localidade":{
+                                    "value": {
+                                        "cp":4905,
+                                        "cpExt":515,
+                                        "rua":"Rua Campo do Tio Joao",
+                                        "localidade":"Viana do Castelo"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Inserir Localidade":{
+                                        "value":{
+                                            "msg":"Localidade inserida com sucesso"
+                                        }
+                                    }
                                 }
                             }
                         }
