@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
-import { AgendarAvaliacaoService } from "../../../services/admin/alunos/registarAlunoService";
+import {  RegistarAlunoService } from "../../../services/admin/alunos/registarAlunoService";
 
 export class AgendarAvaliacaoController {
     async handle(request: Request, response: Response){
-      let 
       let { email, nome, password, dataNasc, dataEntrada, genero, ginasioId } = request.body;
       
       dataNasc = new Date(dataNasc);
