@@ -16,7 +16,15 @@ export class EditarDesafioService {
             throw new Error("A data de final começa antes da inicial")
         }
 
-        const atualizarDesafio = await client.desafios.update({
+        var atualizarDesafio = await client.desafios.findUnique({
+            where:{desafio_id: desafio_id}
+        })
+
+        if(atualizarDesafio == null){
+            throw new Error("Não existe desafio com o id fornecido")
+        }
+
+        atualizarDesafio = await client.desafios.update({
             where:{
                 desafio_id:desafio_id
             },

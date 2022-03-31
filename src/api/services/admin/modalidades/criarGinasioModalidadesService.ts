@@ -25,8 +25,7 @@ class CriarGinasioModalidadesService {
       data: {
         ginasio_id: ginasioId,
         nome,
-        imagem_url: imagemUrl,
-        
+        imagem_url: imagemUrl,    
       },
     });
     return { msg: "A modalidade foi criada com sucesso!" };

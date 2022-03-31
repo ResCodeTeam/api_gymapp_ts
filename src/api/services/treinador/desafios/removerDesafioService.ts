@@ -12,8 +12,11 @@ export class RemoverDesafioService {
             throw new Error("Não existe desafio com o id = " + desafio_id)
         }
 
-        const desafioDeleted = await client.desafios.delete({
-            where:{desafio_id: desafio_id}
+        const desafioDeleted = await client.desafios.update({
+            where:{desafio_id: desafio_id},
+            data: {
+                isDeleted : true
+            }
         })
 
         return desafioDeleted;

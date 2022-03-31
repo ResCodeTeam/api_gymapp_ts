@@ -9,14 +9,9 @@ const registarFuncoesController = new RegistarFuncoesController();
 const registarCpController = new RegistarCpController();
 
 
-
-//#region Admin
 backendRouter.post("/funcoes/", registarFuncoesController.handle);
-
 backendRouter.post("/cp/", registarCpController.handle);
-backendRouter.post("/cp_ext/", registarFuncoesController.handle);
 
-//#endregion
 
 export { backendRouter };
 

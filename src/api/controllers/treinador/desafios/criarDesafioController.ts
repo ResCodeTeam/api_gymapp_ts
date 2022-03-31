@@ -6,11 +6,8 @@ export class CriarDesafioController{
         const ginasioId = request.params.id;
         const { criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, descricao, exercicios, regras } = request.body;
   
-        const criarDesafioController = new CriarDesafioService();
-        const resp = await criarDesafioController.execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras });
+        const criarDesafioService = new CriarDesafioService();
+        const resp = await criarDesafioService.execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras });
         response.json(resp);
-
-        response.json(resp);
-
     }
 }
