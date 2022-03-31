@@ -43,7 +43,8 @@ class CriarDesafiosService {
             }
         }
      
-
+        console.log(criadorId);
+        
         const desafio = await client.desafios.create({
             data:{
                 ginasio_id: ginasioId,

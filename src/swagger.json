@@ -185,7 +185,7 @@
                                         "dataAgendamento":"2022-03-30",
                                         "estado": 1,
                                         "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
-                                        "treinadorId": ""
+                                        "treinadorId": "16eede92-311b-40b8-9c31-3062a6a1dd85"
                                     }
                                 }
                             }
@@ -315,7 +315,7 @@
                 }
             }
         },
-        "/admin/ginasio/{ginasio_id}/desafio":{
+        "/admin/ginasio/{ginasioId}/desafios":{
             "post": {
                 "summary": "Criar Desafio",
                 "description": "Este pedido serve para criar um desafio",
@@ -323,8 +323,15 @@
                 "parameters": [{
                         "name": "ginasioId",
                         "in": "path",
+                        "description": "Id do ginásio",
                         "required": true,
-                        "type": "string"
+                        "schema":{
+                            "properties": {
+                                "ginasioId":{
+                                    "type": "string"
+                                }
+                            }
+                        }
                     }
                 ],
                 "requestBody":{
@@ -377,11 +384,11 @@
                             "examples": {
                                 "Desafio": {
                                     "value": {
-                                        "criador_id": "6202549c-4fda-46cd-afcd-65160b577baf",
+                                        "criadorId": "6202549c-4fda-46cd-afcd-65160b577baf",
                                         "nome": "Caminhar",
-                                        "modalidade_id": "bf918680-0e2c-44ff-a2aa-744c855c25ca",
-                                        "data_inicio": "2022-03-23",
-                                        "data_fim": "2022-03-24",
+                                        "modalidadeId": "bf918680-0e2c-44ff-a2aa-744c855c25ca",
+                                        "dataInicio": "2022-03-23",
+                                        "dataFim": "2022-03-24",
                                         "recompensa": 100,
                                         "estado": 2,
                                         "descricao": 2,
@@ -392,15 +399,15 @@
                                         ],
                                         "exercicios":[
                                             {
-                                                "n_ordem_exercicio": 1,
-                                                "exercicio_id":"",
+                                                "nOrdem": 1,
+                                                "exercicioId":"",
                                                 "genero":1,
                                                 "series":[
                                                     {
-                                                        "n_ordem_serie": 1,
+                                                        "nOrdem": 1,
                                                         "repeticoes": 5,
                                                         "peso": 100, 
-                                                        "unidade_medida": "kg"
+                                                        "unidadeMedida": "kg"
                                                     }
                                                 ]
                                             }
