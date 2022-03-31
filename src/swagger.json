@@ -1,7 +1,7 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Documentação da API GymApp",
+    "openapi":"3.0.0",
+    "info":{
+        "title":"Documentação da API GymApp",
         "description": "Documentação da api de suporte à aplicação GymApp",
         "contact": {
             "name": "Teste",
@@ -9,9 +9,10 @@
         },
         "version": "1.0.0"
     },
-    "servers": [{
-            "url": "http://localhost:8000/api/v1",
-            "description": "API de teste"
+    "servers": [
+        {
+            "url":"http://localhost:8000/api/v1",
+            "description":"API de teste"
         },
         {
             "url":"https://apigymapp.herokuapp.com/api/v1",
@@ -28,8 +29,8 @@
         
     ],
     "paths": {
-        "/backend/funcoes": {
-            "post": {
+        "/backend/funcoes":{
+            "post":{
                 "summary": "Registo de funções de user",
                 "description": "Esta rota vai registar na base de dados novas funções para os utilizadores",
                 "tags": ["Backend"],
@@ -64,117 +65,22 @@
                     }
                 },
                 "responses": {
-                    "500": {
-                        "description": "ERROR"
+                    "500":{
+                        "description": "ERROR"  
                     },
-                    "200": {
+                    "200":{
                         "description": "OK",
                         "content": {
-                            "application/json": {
-                                "schema": {
+                            "application/json":{
+                                "schema":{
                                     "type": "object",
-                                    "$ref": "#/components/schemas/Funcao"
+                                    "$ref":"#/components/schemas/Funcao"
                                 }
                             }
                         }
 
                     }
-
-                }
-            }
-        },
-        "/treinador/avaliacoes/{avaliacao_id}": {
-            "put": {
-                "summary": "Editar Avaliação",
-                "description": "Este pedido serve para atualizar uma avaliação",
-                "parameters": [{
-                        "name": "avaliacao_id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Avaliacao"
-                            },
-                            "examples": {
-                                "Avaliacao": {
-                                    "value": {
-                                        "data": "2022-03-30",
-                                        "peso": 55,
-                                        "unidade_peso": "kg",
-                                        "musculo": 80,
-                                        "gordura_corporal": 1,
-                                        "gordura_visceral": 1,
-                                        "agua": 30,
-                                        "proteina":20,
-                                        "massa_ossea":10,
-                                        "metabolismo_basal":1600
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "500": {
-                        "description": "ERROR"
-
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Avaliacao"
-                                }
-                            }
-                        }
-
-                    }
-
-                }
-
-            },
-            "delete": {
-                "summary": "Apagar Avaliação",
-                "description": "Este pedido serve para apagar uma avaliação",
-                "parameters": [{
-                        "name": "avaliacao_id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-
-                    }
-                ],
-                "responses": {
-                    "500": {
-                        "description": "ERROR"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Avaliacao"
-                                }
-                            }
-                        }
-
-                    }
-
+                    
                 }
             }
         },
@@ -245,96 +151,41 @@
                 }
             }
         },
-        "/admin/ginasio/{ginasio_id}/desafio":{
-            "post": {
-                "summary": "Criar Desafio",
-                "description": "Este pedido serve para criar um desafio",
-                "tags": ["Admin"],
-                "parameters": [{
-                        "name": "ginasioId",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
+        "/treinador/agenda/avaliacao/":{
+            "post":{
+                "summary": "Registo de agendamentos de avaliação",
+                "description": "Esta rota vai registar na base de dados um agendamento de avaliações",
+                "tags": ["Treinador"],
                 "requestBody":{
                     "content":{
                         "application/json":{
                             "schema":{
                                 "properties": {
-                                    "criadorId":{
+                                    "uid":{
                                         "type": "string"
                                     },
-                                    "nome":{
+                                    "dataAgendamento":{
                                         "type": "string"
-                                    },
-                                    "modalidadeId":{
-                                        "type": "string"
-                                    },
-                                    "dataInicio":{
-                                        "type": "string"
-                                    },
-                                    "dataFim":{
-                                        "type": "string"
-                                    },
-                                    "recompensa":{
-                                        "type": "number"
                                     },
                                     "estado":{
                                         "type": "number"
                                     },
-                                    "descricao":{
+                                    "ginasioId":{
                                         "type": "string"
                                     },
-                                    "exercicios": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "$ref":"#/components/schemas/Exercicio"
-                                        }
-                            
-                                    },
-                                    "regras": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                            
+                                    "treinadorId":{
+                                        "type": "string"
                                     }
-                                    
                                 }
                             },
                             "examples": {
-                                "Desafio": {
+                                "Inserir Agendamento de Avaliacoes":{
                                     "value": {
-                                        "criador_id": "6202549c-4fda-46cd-afcd-65160b577baf",
-                                        "nome": "Caminhar",
-                                        "modalidade_id": "bf918680-0e2c-44ff-a2aa-744c855c25ca",
-                                        "data_inicio": "2022-03-23",
-                                        "data_fim": "2022-03-24",
-                                        "recompensa": 100,
-                                        "estado": 2,
-                                        "descricao": 2,
-                                        "regras": [
-                                            {
-                                                "descricao": "1"
-                                            }
-                                        ],
-                                        "exercicios":[
-                                            {
-                                                "n_ordem_exercicio": 1,
-                                                "exercicio_id":"",
-                                                "genero":1,
-                                                "series":[
-                                                    {
-                                                        "n_ordem_serie": 1,
-                                                        "repeticoes": 5,
-                                                        "peso": 100, 
-                                                        "unidade_medida": "kg"
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                        "uid":"034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
+                                        "dataAgendamento":"2022-03-30",
+                                        "estado": 1,
+                                        "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
+                                        "treinadorId": ""
                                     }
                                 }
                             }
@@ -342,33 +193,37 @@
                     }
                 },
                 "responses": {
-                    "500": {
-                        "description": "ERROR"
-
+                    "500":{
+                        "description": "ERROR"  
                     },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "200": {
+                    "200":{
                         "description": "OK",
                         "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Desafio"
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Inserir Agendamento":{
+                                        "value":{
+                                            "msg":"Agendamento inserido com sucesso"
+                                        }
+                                    }
                                 }
                             }
                         }
-
-                    }
-
+                    }          
                 }
-            }           
+            }
         }
     },
     "components": {
         "schemas": {
-            "Funcao": {
+            "Funcao":{
                 "type": "object",
                 "properties": {
                     "funcao_id":{
@@ -378,87 +233,8 @@
                         "type": "string"
                     }
                 }
-            },
-            "Serie":{
-                "type": "object",
-                "properties": {
-                    "nOrdem": {
-                        "type": "number"
-                    },
-                    "repeticoes": {
-                        "type": "number"
-                    },
-                    "peso": {
-                        "type": "number"
-                    },
-                    "unidadeMedida": {
-                        "type": "string"
-                    }
-                }
-            },
-            "Exercicio": {
-                "type": "object",
-                "properties": {
-                    "exercicioId":{
-                        "type": "string"
-                    },
-                    "nOrdem":{
-                        "type": "number"
-                    },
-                    "series": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "$ref": "#/components/schemas/Serie"
-                        }
-                    }
-                }
-            },
-            "Desafio": {
-                "type": "object",
-                "properties": {
-                    "desafioId":{
-                        "type": "string"
-                    },
-                    "criadorId":{
-                        "type": "string"
-                    },
-                    "nome":{
-                        "type": "string"
-                    },
-                    "modalidadeId":{
-                        "type": "string"
-                    },
-                    "dataInicio":{
-                        "type": "string"
-                    },
-                    "dataFim":{
-                        "type": "string"
-                    },
-                    "recompensa":{
-                        "type": "number"
-                    },
-                    "estado":{
-                        "type": "number"
-                    },
-                    "descricao":{
-                        "type": "string"
-                    },
-                    "exercicios":{
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "$ref":"#/components/schemas/Exercicio"
-                        }
-                    },           
-                    "regras": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }           
-                    }
-                }
             }
         }
-    }
+    }    
+
 }
