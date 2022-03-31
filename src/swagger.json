@@ -441,6 +441,80 @@
   
                 }
             }           
+        },
+        "/admin/marca/{marca_id}/treinadores":{
+            "post":{
+                "summary": "Registar Treinadores",
+                "description": "Esta rota permite registar treinadores numa marca",
+                "tags": ["Admin"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "data_nasc":{
+                                        "type": "string"
+                                    },
+                                    "data_entrada":{
+                                        "type": "string"
+                                    },
+                                    "genero":{
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Treinador"
+                                },
+                                "examples": {
+                                    "Registar Treinador":{
+                                        "value":{
+                                            "treinador": {
+                                                "uid": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                                "email": "treinador1@admin.com",
+                                                "nome": "treinador",
+                                                "password": "$2b$08$y09XOo8D9OmbYUhoNkuOFejHGPAeRtEJu5yhwnofaDHw4lmgPvyby",
+                                                "data_nasc": "2002-04-09T00:00:00.000Z",
+                                                "hashtag": "t_01",
+                                                "data_entrada": "2022-03-23T00:00:00.000Z",
+                                                "funcao_id": "4c1c8eaf-7207-4d06-864a-a50191e9f5a7",
+                                                "refresh_token": null,
+                                                "genero": 0,
+                                                "pontos": 0,
+                                                "descricao": null,
+                                                "imagem_url": null,
+                                                "estado": 1,
+                                                "isDeleted": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -533,6 +607,56 @@
                         "items": {
                             "type": "string"
                         }           
+                    }
+                }
+            },
+            "Treinador":{
+                "type": "object",
+                "properties": {
+                    "uid":{
+                        "type": "string"
+                    },
+                    "email":{
+                        "type": "string"
+                    },
+                    "nome":{
+                        "type": "string"
+                    },
+                    "password":{
+                        "type": "string"
+                    },
+                    "data_nasc":{
+                        "type": "string"
+                    },
+                    "hashtag":{
+                        "type": "string"
+                    },
+                    "data_entrada":{
+                        "type": "string"
+                    },
+                    "funcao_id":{
+                        "type": "string"
+                    },
+                    "refresh_token":{
+                        "type": "string"
+                    },
+                    "genero":{
+                        "type": "number"
+                    },
+                    "pontos":{
+                        "type": "number"
+                    },
+                    "descricao":{
+                        "type": "string"
+                    },
+                    "imagem_url":{
+                        "type": "string"
+                    },
+                    "estado":{
+                        "type": "number"
+                    },
+                    "isDeleted":{
+                        "type": "string"
                     }
                 }
             }
