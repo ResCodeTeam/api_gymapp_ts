@@ -58,7 +58,7 @@ export class AgendarAvaliacaoService {
     //#endregion
 
     return {
-      msg: "O agendamento do desafio foi criado com sucesso!"
+      msg: "O agendamento da avaliação foi criado com sucesso!"
     };
   }
 }
