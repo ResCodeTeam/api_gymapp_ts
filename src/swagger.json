@@ -496,6 +496,52 @@
                 }
             }
         },
+        "/treinador/exercicios/{exercicioId}":{
+            "delete":{
+                "summary": "Remover exercicios",
+                "description": "Esta rota vai apagar na base de dados um exercicio",
+                "tags": ["Treinador"],
+                "parameters": [{
+                    "name": "exercicioId",
+                    "in": "path",
+                    "description": "Id do exercicio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "modalidadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Modalidade":{
+                                        "value":{
+                                            "msg":"Exercicio removido com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
+        },
         "/treinador/avaliacoes/{avaliacao_id}": {
             "put": {
                 "summary": "Editar Avaliação",
