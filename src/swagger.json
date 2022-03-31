@@ -380,6 +380,96 @@
                 }
             }
         },
+        "/admin/marca/{marcaId}/ginasio/":{
+            "post":{
+                "summary": "Registo de ginasios",
+                "description": "Esta rota vai registar na base de dados um ginasio que esta associado a uma marca",
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "Id do ginasio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "rua":{
+                                        "type": "string"
+                                    },
+                                    "cp":{
+                                        "type": "number"
+                                    },
+                                    "cpExt":{
+                                        "type": "number"
+                                    },
+                                    "imagemUrl":{
+                                        "type": "string"
+                                    },
+                                    "lat":{
+                                        "type": "string"
+                                    },
+                                    "long":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Inserir Registo de Ginásios":{
+                                    "value": {
+                                        "nome": "Ginásio 4",
+                                        "rua": "Rua das Castanhas",
+                                        "cp": 3850,
+                                        "imagem_url": "3",
+                                        "lat":"0",
+                                        "long":"0",
+                                        "cpExt":821
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Inserir Agendamento":{
+                                        "value":{
+                                            "msg":" O ginasio foi criado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
+        },
         "/admin/ginasio/{ginasioId}/modalidades":{
             "post":{
                 "summary": "Registo das modalidades do ginásio",
