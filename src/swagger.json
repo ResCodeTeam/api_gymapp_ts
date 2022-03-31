@@ -17,6 +17,10 @@
         {
             "url":"https://apigymapp.herokuapp.com/api/v1",
             "description":"API de produção server 1"
+        },
+        {
+            "url":"https://apigymapp-s.herokuapp.com/",
+            "description":"API de produção server 3"
         }
     ],
     "paths": {
@@ -44,7 +48,7 @@
                 "responses": {
                     "500":{
                         "description": "ERROR"
-                        
+
                     },
                     "200":{
                         "description": "OK",
@@ -58,7 +62,7 @@
                         }
 
                     }
-                    
+
                 }
             }
         }
@@ -74,6 +78,6 @@
                 }
             }
         }
-    }    
+    }
 
 }
