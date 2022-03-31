@@ -14,7 +14,7 @@ class RegistarUserMarcasService {
   }: IRegistarUserMarcasSerice) {
     const exists_user = await checkUserIdExists(userId);
     if (!exists_user) {
-      throw new Error("User não existe!");
+      throw new Error("O user não existe!");
     }
 
     const exist_nome = await checkNomeMarca(nome);

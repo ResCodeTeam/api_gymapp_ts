@@ -302,6 +302,84 @@
                 }
             }
         },
+        "/admin/{userId}/marca/":{
+            "post":{
+                "summary": "Registo de marcas",
+                "description": "Esta rota vai registar na base de dados uma marca associada a um admin",
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "description": "Id do dono",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "userId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "mobilidade":{
+                                        "type": "boolean"
+                                    },
+                                    "cor":{
+                                        "type": "string"
+                                    },
+                                    "logotipo":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Inserir Marca":{
+                                    "value": {
+                                        "nome":"Fitness-Up",
+                                        "mobilidade":true,
+                                        "cor": "vermelho",
+                                        "logotipo":"teste"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Inserir Marca":{
+                                        "value":{
+                                            "msg":"Marca inserida com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
+        },
         "/admin/ginasio/{ginasioId}/modalidades":{
             "post":{
                 "summary": "Registo das modalidades do ginásio",
@@ -363,6 +441,52 @@
                                     "Inserir Modalidade":{
                                         "value":{
                                             "msg":"Modalidada inserida com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
+        },
+        "/admin/modalidades/{modalidadeId}":{
+            "delete":{
+                "summary": "Remover modalidades",
+                "description": "Esta rota vai apagar na base de dados uma modalidade de um ginásio em específico",
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "modalidadeId",
+                    "in": "path",
+                    "description": "Id da modalidade",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "modalidadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Modalidade":{
+                                        "value":{
+                                            "msg":"Modalidada removida com sucesso"
                                         }
                                     }
                                 }
