@@ -220,6 +220,158 @@
                 }
             }
         },
+        "/treinador/agenda/desafios/{desafioId}":{
+            "post":{
+                "summary": "Registo de agendamentos de desafios",
+                "description": "Esta rota vai registar na base de dados um agendamento de desafios",
+                "tags": ["Treinador"],
+                "parameters": [{
+                    "name": "desafioId",
+                    "in": "path",
+                    "description": "Id do desafio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "uid":{
+                                        "type": "string"
+                                    },
+                                    "dataAgendamento":{
+                                        "type": "string"
+                                    },
+                                    "estado":{
+                                        "type": "number"
+                                    },
+                                    "ginasioId":{
+                                        "type": "string"
+                                    },
+                                    "treinadorId":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Inserir Agendamento de Desafios":{
+                                    "value": {
+                                        "uid":"034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
+                                        "dataAgendamento":"2022-03-30",
+                                        "estado": 1,
+                                        "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
+                                        "treinadorId": "16eede92-311b-40b8-9c31-3062a6a1dd85"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Inserir Agendamento":{
+                                        "value":{
+                                            "msg":"Agendamento inserido com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
+        },
+        "/admin/ginasio/{ginasioId}/modalidades":{
+            "post":{
+                "summary": "Registo das modalidades do ginásio",
+                "description": "Esta rota vai registar na base de dados uma modalidade de um ginásio em específico",
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "ginasioId",
+                    "in": "path",
+                    "description": "Id do ginásio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "imagemUrl":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Inserir Modalidade":{
+                                    "value": {
+                                        "nome":"Crossfit",
+                                        "imagemUrl":"teste"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Inserir Modalidade":{
+                                        "value":{
+                                            "msg":"Modalidada inserida com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
+        },
         "/treinador/avaliacoes/{avaliacao_id}": {
             "put": {
                 "summary": "Editar Avaliação",
@@ -384,14 +536,14 @@
                             "examples": {
                                 "Desafio": {
                                     "value": {
-                                        "criadorId": "6202549c-4fda-46cd-afcd-65160b577baf",
+                                        "criadorId": "024eb3f7-34fb-49ac-ac32-612ae870d7b3",
                                         "nome": "Caminhar",
-                                        "modalidadeId": "bf918680-0e2c-44ff-a2aa-744c855c25ca",
+                                        "modalidadeId": "f6b2a735-7d5c-4117-9ecf-7128d0631eda",
                                         "dataInicio": "2022-03-23",
                                         "dataFim": "2022-03-24",
                                         "recompensa": 100,
                                         "estado": 2,
-                                        "descricao": 2,
+                                        "descricao": "2",
                                         "regras": [
                                             {
                                                 "descricao": "1"
