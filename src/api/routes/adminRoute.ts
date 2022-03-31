@@ -71,6 +71,7 @@ adminRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentari
 //#endregion
 
 //#region Desafios
+adminRouter.post("/ginasio/:id/desafios/", criarDesafiosController.handle);
 adminRouter.get("/desafios/", verDesafiosParticipantesController.handle);
 adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
 adminRouter.put("/desafios/encerrar/:id", encerrarDesafiosController.handle);
@@ -111,4 +112,3 @@ adminRouter.delete("/treinador/:id", eliminarTreinadorController.handle);
 //#endregion
 
 export { adminRouter };
-

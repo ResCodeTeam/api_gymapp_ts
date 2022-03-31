@@ -4,7 +4,7 @@ import { CriarGinasioModalidadesService } from "../../../services/admin/modalida
 class CriarGinasioModalidadesController {
   async handle(request: Request, response: Response) {
     const ginasioId = request.params.id;
-    const { nome, imagemUrl, estado } = request.body;
+    const { nome, imagemUrl } = request.body;
 
     const criarGinasioModalidadesService = new CriarGinasioModalidadesService();
     const resp = await criarGinasioModalidadesService.execute({

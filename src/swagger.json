@@ -165,7 +165,7 @@
                                         "type": "string"
                                     },
                                     "dataAgendamento":{
-                                        "type": "Date"
+                                        "type": "string"
                                     },
                                     "estado":{
                                         "type": "number"
