@@ -5,7 +5,7 @@ import { VerTodosPostsService } from "../../../../services/all/posts/obter/verTo
 
 class VerTodosPostsController{
     async handle(request:Request,response:Response){
-        const {userId}=request.body;
+        const userId=request.params.id;
         const verPostService = new VerTodosPostsService();
         const resp = await verPostService.execute(userId);
         response.json(resp)
