@@ -912,7 +912,17 @@
             "post":{
                 "summary": "Registar Treinadores",
                 "description": "Esta rota permite registar treinadores numa marca",
-                "parameters": [],
+                "parameters": [{
+                    "name": "marca_id",
+                    "in": "path",
+                    "description": "id da marca onde registar o treinador",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "style": "simple"
+
+                }],
                 "tags": ["Admin"],
                 "requestBody":{
                     "content": {
