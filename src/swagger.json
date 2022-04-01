@@ -1371,8 +1371,93 @@
                     }
                 }
             }
-        }
+        },
+        "/admin/notificacao/user/{destino_id}":{
+            "post":{
+                "summary": "Notificação para user",
+                "description": "Esta rota permite efetuar o registo de um administrador",
+                "parameters": [{
+                    "name": "destino_id",
+                    "in": "path",
+                    "description": "id do utilizador de destino",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Criar Notificação":{
+                            
+                                "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                            
+                        }
+                    },
+                    "style": "simple"
 
+                }],
+                "tags": ["Admin"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "origemId":{
+                                        "type": "string"
+                                    },
+                                    "conteudo":{
+                                        "type": "string"
+                                    },
+                                    "data":{
+                                        "type": "string"
+                                    },
+                                    "tipo":{
+                                        "type":"number"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Criar Notificação":{
+                                    "value":{
+                                        "origemId":"6202549c-4fda-46cd-afcd-65160b577baf",
+                                        "conteudo":"Teste",
+                                        "data":"2022-03-21",
+                                        "tipo":0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                },
+                                "examples": {
+                                    "Criar Notificação":{
+                                        "value": {
+                                            "notificacao": {
+                                                "noti_id": "018aec31-d1c1-407c-9b5b-78e1d7929a0f",
+                                                "origem_uid": "cacc87bb-a2dd-4af3-89c6-2ceedf33930a",
+                                                "conteudo": "Teste",
+                                                "data": "2022-04-01T15:16:33.695Z",
+                                                "tipo": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     },
     "components": {
         "schemas": {
@@ -1647,7 +1732,28 @@
                         "type": "boolean"
                     }
                 }
+            },
+            "Notificacao":{
+                "type": "object",
+                "properties": {
+                    "noti_id":{
+                        "type": "string"
+                    },
+                    "origem_uid":{
+                        "type": "string"
+                    },
+                    "conteudo":{
+                        "type": "string"
+                    },
+                    "data":{
+                        "type": "string"
+                    },
+                    "tipo":{
+                        "type": "number"
+                    }
+                }
             }
+
         }
     }
 
