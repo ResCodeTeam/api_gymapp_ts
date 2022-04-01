@@ -89,7 +89,8 @@ let checkMarcaExists= async(marcaId : string) =>{
 let checkModalidadeExists= async(modalidadeId : string) => {
     const search = await client.modalidades_ginasio.findMany({
         where:{
-            modalidade_id : modalidadeId
+            modalidade_id : modalidadeId,
+            isDeleted: false
         }
     })
     return search.length != 0;
