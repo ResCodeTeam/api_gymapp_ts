@@ -25,7 +25,7 @@ const criarGostoController=new CriarGostoController();
 
 //#region Publicacoes
 allRouter.post("/posts", criarPostsController.handle);
-allRouter.get("/posts", verTodosPostsController.handle);
+allRouter.get("/posts/all/:id", verTodosPostsController.handle);
 allRouter.get("/posts/user/:id", verTodosPostsUserController.handle)
 allRouter.put("/posts", editarPublicacaoController.handle);
 allRouter.get("/posts/:id", verInfoPostInfoController.handle)
