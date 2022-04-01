@@ -7,10 +7,11 @@ interface IPlano{
     treinador_id : string;
     data : string;
     modalidade_id : string;
+    bloco: string
 }
 
 export class CriarPlanoTreinoService{
-    async execute({plano_treino_id, aluno_id, treinador_id, data, modalidade_id}: IPlano) {
+    async execute({plano_treino_id, aluno_id, treinador_id, data, modalidade_id, bloco}: IPlano) {
 
         const exists_aluno = await checkUserIdExists(aluno_id);
         if (!exists_aluno) {
@@ -38,8 +39,8 @@ export class CriarPlanoTreinoService{
         });
 
         console.log(plano);
-
-        
+    
+        // Incompleto
 
     }
 
