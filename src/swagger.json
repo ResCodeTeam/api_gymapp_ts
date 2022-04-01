@@ -1028,7 +1028,59 @@
                 }
             }
         }
-    },
+    },"/posts/{id}":{
+        "get":{
+            "summary": "Ver toda a informação de um post",
+            "description": "Esta rota vai apresentar todas as informações de um post",
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "description": "Id do post que se deseja ver",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "ginasioId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            ],
+            "tags": ["All"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Posts"
+                            },
+                            "examples": {
+                                "Ver Posts":{
+                                    "value":{
+                                        "post": {
+                                            "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                            "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                            "data": "2022-05-28T00:00:00.000Z",
+                                            "descricao": "TesteFatimaaa",
+                                            "tipo": 3,
+                                            "ginasio_id": null,
+                                            "isDeleted": false
+                                          }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+},
         "/admin/treinador/:id":{
             "delete":{
                 "summary": "Remover treinador",
