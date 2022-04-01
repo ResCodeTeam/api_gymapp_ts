@@ -18,6 +18,8 @@ import { AgendarAvaliacaoController } from "../controllers/treinador/agendamento
 import { RemoverExercicioController } from "../controllers/treinador/Exercicios/removerExercicioController"
 import { CriarExercicioController } from "../controllers/treinador/Exercicios/criarExercicioController";
 
+import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
+
 
 //
 const criarComentarioController = new CriarComentarioController();
@@ -35,6 +37,8 @@ const agendarAvaliacaoController = new AgendarAvaliacaoController();
 
 const removerExercicioController = new RemoverExercicioController();
 const criarExercicioController = new CriarExercicioController();
+
+const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
@@ -66,6 +70,10 @@ treinadorRouter.delete("/avaliacoes/:id", removerAvaliacao.handle);
 //#region Agendamentos
 treinadorRouter.post("/agenda/desafios/:id/", agendarDesafiosController.handle);
 treinadorRouter.post("/agenda/avaliacao/", agendarAvaliacaoController.handle);
+//#endregion
+
+//#region Plano
+treinadorRouter.post("/plano/", criarPlanoTreinoController.handle);
 //#endregion
 
 export { treinadorRouter };
