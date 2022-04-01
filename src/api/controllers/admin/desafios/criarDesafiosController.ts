@@ -1,4 +1,4 @@
-import e, { Request, Response } from "express";
+import { Request, Response } from "express";
 import { CriarDesafiosService } from "../../../services/admin/desafios/criarDesafiosService";
 
 class CriarDesafiosController {
