@@ -598,7 +598,7 @@
                 }
             }
         },
-        "/treinador/exercicios/{exercicioId}":{
+        "/treinador/{autorId}/exercicios/{exercicioId}":{
             "delete":{
                 "summary": "Remover exercicios",
                 "description": "Esta rota vai apagar na base de dados um exercicio",
@@ -615,7 +615,20 @@
                             }
                         }
                     }
-                }],
+                },
+                {
+                    "name": "autorId",
+                    "in": "path",
+                    "description": "Id do autor",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "autorId":{
+                                "type":"string"
+                            }
+                        }
+                    }}
+                ],
                 "responses": {
                     "500":{
                         "description": "ERROR"  
