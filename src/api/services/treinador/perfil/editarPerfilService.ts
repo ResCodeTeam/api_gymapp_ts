@@ -18,7 +18,7 @@ interface IEditarPerfil{
     imagem_url: string  
 }
 
-class EditarPerfilService {
+export class EditarPerfilService {
     async execute(userId: string) {
       const exists_dst = await checkUserIdExists(userId);
       if (!exists_dst) {

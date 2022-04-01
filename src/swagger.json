@@ -29,6 +29,10 @@
         {
             "url": "https://apigymapp-h.herokuapp.com/api/v1",
             "description":"API de produção server 4"
+        },
+        {
+            "url": "https://gymapp-a.herokuapp.com/api/v1",
+            "description":"API de produção server 5"
         }
         
     ],
