@@ -858,7 +858,7 @@
                 }
             }           
         },
-        "/all/posts":{
+        "/posts":{
                 "get":{
                     "summary": "Ver posts",
                     "description": "Esta rota vai apresentar todos os posts",
@@ -897,8 +897,8 @@
                                                     "data": "2002-04-09T00:00:00.000Z",
                                                     "descricao": "Levantamento de peso",
                                                     "tipo": "1",
-                                                    "imagens_publicacao":"imagens/9dc8c8-98",
-                                                    "gostos_publicacao":"300"
+                                                    "imagens_publicacao":"[]",
+                                                    "gostos_publicacao":"[] "
                                             }
                                         }
                                     }
@@ -1159,7 +1159,7 @@
                         "type": "string"
                     },
                     "gostos_publicacao":{
-                        "type": "number"
+                        "type": "array"
                     }
                 }
             }
