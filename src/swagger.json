@@ -908,6 +908,7 @@
             "post":{
                 "summary": "Registar Treinadores",
                 "description": "Esta rota permite registar treinadores numa marca",
+                "parameters": [],
                 "tags": ["Admin"],
                 "requestBody":{
                     "content": {
