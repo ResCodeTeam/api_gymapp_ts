@@ -35,17 +35,6 @@ class CriarDesafiosService {
         if (!exists_modalidade) {
             throw new Error("A modalidade não existe");
         }
-
-        
-
-        // for(let i = 0; i < exercicios.length; i++){            
-        //    const exists_exercicio = await checkExercicioExists(exercicios[i].exercicioId);
-        //    if (!exists_exercicio) {
-        //        throw new Error("O exercicio não existe");
-        //    }
-        // }
-     
-        // console.log(criadorId);
         
         const desafio = await client.desafios.create({
             data:{
