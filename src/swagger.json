@@ -167,7 +167,7 @@
             "post":{
                 "summary": "Registo de agendamentos de avaliação",
                 "description": "Esta rota vai registar na base de dados um agendamento de avaliações",
-                "tags": ["Treinador"],
+                "tags": ["Treinador | Agenda"],
                 "requestBody":{
                     "content":{
                         "application/json":{
@@ -197,7 +197,7 @@
                                         "dataAgendamento":"2022-03-30",
                                         "estado": 1,
                                         "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
-                                        "treinadorId": "16eede92-311b-40b8-9c31-3062a6a1dd85"
+                                        "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                     }
                                 }
                             }
@@ -236,7 +236,7 @@
             "post":{
                 "summary": "Registo de agendamentos de desafios",
                 "description": "Esta rota vai registar na base de dados um agendamento de desafios",
-                "tags": ["Treinador"],
+                "tags": ["Treinador | Agenda"],
                 "parameters": [{
                     "name": "desafioId",
                     "in": "path",
@@ -275,11 +275,11 @@
                             "examples": {
                                 "Inserir Agendamento de Desafios":{
                                     "value": {
-                                        "uid":"034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
+                                        "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
                                         "dataAgendamento":"2022-03-30",
                                         "estado": 1,
                                         "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
-                                        "treinadorId": "16eede92-311b-40b8-9c31-3062a6a1dd85"
+                                        "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                     }
                                 }
                             }
@@ -318,7 +318,7 @@
             "post":{
                 "summary": "Registo de marcas",
                 "description": "Esta rota vai registar na base de dados uma marca associada a um admin",
-                "tags": ["Admin"],
+                "tags": ["Admin | Marca"],
                 "parameters": [{
                     "name": "userId",
                     "in": "path",
@@ -396,7 +396,7 @@
             "post":{
                 "summary": "Registo de ginasios",
                 "description": "Esta rota vai registar na base de dados um ginasio que esta associado a uma marca",
-                "tags": ["Admin"],
+                "tags": ["Admin | Marca"],
                 "parameters": [{
                     "name": "marcaId",
                     "in": "path",
@@ -486,7 +486,7 @@
             "post":{
                 "summary": "Registo das modalidades do ginásio",
                 "description": "Esta rota vai registar na base de dados uma modalidade de um ginásio em específico",
-                "tags": ["Admin"],
+                "tags": ["Admin | Ginasio"],
                 "parameters": [{
                     "name": "ginasioId",
                     "in": "path",
@@ -602,7 +602,7 @@
             "delete":{
                 "summary": "Remover exercicios",
                 "description": "Esta rota vai apagar na base de dados um exercicio",
-                "tags": ["Treinador"],
+                "tags": ["Treinador | Exercicios"],
                 "parameters": [{
                     "name": "exercicioId",
                     "in": "path",
@@ -756,7 +756,7 @@
             "post": {
                 "summary": "Criar Desafio",
                 "description": "Este pedido serve para criar um desafio",
-                "tags": ["Admin"],
+                "tags": ["Admin | Ginasio"],
                 "parameters": [{
                         "name": "ginasioId",
                         "in": "path",
@@ -877,24 +877,26 @@
                 }
             }
         },
-        "/posts":{
+        "/posts/all/{id}":{
                 "get":{
                     "summary": "Ver posts",
                     "description": "Esta rota vai apresentar todos os posts",
-                    "tags": ["All"],
-                    "requestBody": {
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                    "properties":{
-                                        "userId":{
-                                            "type":"string"
-                                        }
-                                    }
+                    "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do user a fazer o pedido",
+                        "required": true,
+                        "schema":{
+                            "properties": {
+                                "ginasioId":{
+                                    "type": "string"
                                 }
                             }
                         }
-                    },
+                    }
+                    ],
+                    "tags": ["All"],
                     "responses": {
                         "500":{
                             "description": "ERROR"
@@ -910,15 +912,38 @@
                                     "examples": {
                                         "Ver Posts":{
                                             "value":{
-                                                "post": {
-                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
-                                                    "criador_id": "919dc8c8-9828-4b13-b0e7-9b88fe587297",
-                                                    "data": "2002-04-09T00:00:00.000Z",
-                                                    "descricao": "Levantamento de peso",
-                                                    "tipo": "1",
-                                                    "imagens_publicacao":"[]",
-                                                    "gostos_publicacao":"[] "
-                                            }
+                                                "publicacoes": [
+                                                    {
+                                                      "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                                      "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                                      "data": "2022-03-28T16:31:45.226Z",
+                                                      "descricao": "teste1",
+                                                      "tipo": 3,
+                                                      "imagens_publicacao": [],
+                                                      "gostos_publicacao": [
+                                                        {
+                                                          "gosto_id": "3db3afa6-2b21-4401-af94-e5d1b061b7e9",
+                                                          "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                                          "criador_id": "19fb2828-424f-425e-9fe4-828d9262a00f"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                      "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                                      "data": "2022-05-28T00:00:00.000Z",
+                                                      "descricao": "TesteFatimaaa",
+                                                      "tipo": 3,
+                                                      "imagens_publicacao": [],
+                                                      "gostos_publicacao": [
+                                                        {
+                                                          "gosto_id": "c5b3cec9-7950-4351-9d32-2a1778dff617",
+                                                          "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                          "criador_id": "024eb3f7-34fb-49ac-ac32-612ae870d7b3"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
                                         }
                                     }
                                 }
@@ -928,6 +953,134 @@
                 }
             }
         },
+        "/posts/user/{id}":{
+            "get":{
+                "summary": "Ver posts de user",
+                "description": "Esta rota vai apresentar todos os posts de um user",
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do user a que se deseja ver posts",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "tags": ["All"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Posts"
+                                },
+                                "examples": {
+                                    "Ver Posts":{
+                                        "value":{
+                                            "publicacoes": [
+                                                {
+                                                  "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                                  "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                                  "data": "2022-03-28T16:31:45.226Z",
+                                                  "descricao": "teste1",
+                                                  "tipo": 3,
+                                                  "imagens_publicacao": [],
+                                                  "gostos_publicacao": [
+                                                    {
+                                                      "gosto_id": "3db3afa6-2b21-4401-af94-e5d1b061b7e9",
+                                                      "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                                      "criador_id": "19fb2828-424f-425e-9fe4-828d9262a00f"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                  "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                                  "data": "2022-05-28T00:00:00.000Z",
+                                                  "descricao": "TesteFatimaaa",
+                                                  "tipo": 3,
+                                                  "imagens_publicacao": [],
+                                                  "gostos_publicacao": [
+                                                    {
+                                                      "gosto_id": "c5b3cec9-7950-4351-9d32-2a1778dff617",
+                                                      "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                      "criador_id": "024eb3f7-34fb-49ac-ac32-612ae870d7b3"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },"/posts/{id}":{
+        "get":{
+            "summary": "Ver toda a informação de um post",
+            "description": "Esta rota vai apresentar todas as informações de um post",
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "description": "Id do post que se deseja ver",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "ginasioId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            ],
+            "tags": ["All"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Posts"
+                            },
+                            "examples": {
+                                "Ver Posts":{
+                                    "value":{
+                                        "post": {
+                                            "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                            "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                            "data": "2022-05-28T00:00:00.000Z",
+                                            "descricao": "TesteFatimaaa",
+                                            "tipo": 3,
+                                            "ginasio_id": null,
+                                            "isDeleted": false
+                                          }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+},
         "/admin/treinador/:id":{
             "delete":{
                 "summary": "Remover treinador",
@@ -978,7 +1131,7 @@
             "delete":{
                 "summary": "Remover marca",
                 "description": "Esta rota vai remover uma marca de um ginásio",
-                "tags": ["Admin"],
+                "tags": ["Admin | Marca"],
                 "parameters": [{
                     "name": "marcaId",
                     "in": "path",
@@ -1035,7 +1188,7 @@
                     "style": "simple"
 
                 }],
-                "tags": ["Admin"],
+                "tags": ["Admin | Marca"],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -1175,7 +1328,7 @@
             "post":{
                 "summary": "Criar um exercicio",
                 "description": "Esta rota permite adicionar um exercicio à base de dados",
-                "tags": ["Treinador"],
+                "tags": ["Treinador | Exercicios"],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -1372,6 +1525,95 @@
                 }
             }
         },
+        "/admin/notificacao/user/{destino_id}":{
+            "post":{
+                "summary": "Notificação para user",
+                "description": "Esta rota permite efetuar o registo de um administrador",
+                "parameters": [{
+                    "name": "destino_id",
+                    "in": "path",
+                    "description": "id do utilizador de destino",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Criar Notificação":{
+                            
+                                "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                            
+                        }
+                    },
+                    "style": "simple"
+
+                }],
+                "tags": ["Admin"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "origemId":{
+                                        "type": "string"
+                                    },
+                                    "conteudo":{
+                                        "type": "string"
+                                    },
+                                    "data":{
+                                        "type": "string"
+                                    },
+                                    "tipo":{
+                                        "type":"number"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Criar Notificação":{
+                                    "value":{
+                                        "origemId":"6202549c-4fda-46cd-afcd-65160b577baf",
+                                        "conteudo":"Teste",
+                                        "data":"2022-03-21",
+                                        "tipo":0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                },
+                                "examples": {
+                                    "Criar Notificação":{
+                                        "value": {
+                                            "notificacao": {
+                                                "noti_id": "018aec31-d1c1-407c-9b5b-78e1d7929a0f",
+                                                "origem_uid": "cacc87bb-a2dd-4af3-89c6-2ceedf33930a",
+                                                "conteudo": "Teste",
+                                                "data": "2022-04-01T15:16:33.695Z",
+                                                "tipo": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            
+                            }
+                        }
+                        
+                    }
+                }
+            }
+                    
+        },
         "/admin/desafios":{
             "delete":{
                 "summary": "remover desafio ",
@@ -1394,6 +1636,7 @@
                         "content": {
                             "application/json":{
                                 "schema":{
+                                    
                                     "properties": {
                                         "msg":{
                                             "type": "string"
@@ -1414,25 +1657,98 @@
                     
                 }
             }
-         }
         },
-        "components": {
-        "schemas": {
-            "Funcao":{
-                "type": "object",
-                "properties": {
-                    "funcao_id":{
-                        "type": "string"
+        "/admin/marca/alunos/":{
+            "post":{
+                "summary": "Registar um aluno",
+                "description": "Esta rota permite efetuar o registo de um aluno numa marca ou ginasio",
+                "tags": ["Admin | Marca"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "dataNasc":{
+                                        "type":"string"
+                                    },
+                                    "dataEntrada":{
+                                        "type": "string"
+                                    },
+                                    "genero":{
+                                        "type":"number"
+                                    },
+                                    "ginasioId":{
+                                        "type":"string"
+                                    }
+                                    
+                                }
+                            },
+                            "examples": {
+                                "Registar Admin":{
+                                    "value":{
+                                        "email":"aluno1@aluno.com",
+                                        "nome":"aluno1",
+                                        "password":"aluno",
+                                        "dataNasc":"2002-04-09",
+                                        "dataEntrada":"2022-03-23",
+                                        "genero":0,
+                                        "ginasioId":"0cc5561e-cdb0-4ac0-982a-a9132997527a"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
                     },
-                    "descricao":{
-                        "type": "string"
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                },
+                                "examples": {
+                                    "Registar Treinador":{
+                                        "value": {
+                                            "aluno": {
+                                                "uid": "07c6127e-da68-4319-adec-65de3df7550d",
+                                                "email": "aluno1@aluno.com",
+                                                "nome": "aluno teste",
+                                                "password": "$2b$08$dBT8qvPm6UIKi7FXdSmA/ewliBMzw3LMp6fS8zDXfvXuyyktHj7/y",
+                                                "data_nasc": "2002-04-09T00:00:00.000Z",
+                                                "hashtag": "at_01",
+                                                "data_entrada": "2022-03-23T00:00:00.000Z",
+                                                "funcao_id": "6498274e-d7db-4e7d-81fe-c38f044deef6",
+                                                "refresh_token": null,
+                                                "genero": 0,
+                                                "pontos": 0,
+                                                "descricao": null,
+                                                "imagem_url": null,
+                                                "estado": 1,
+                                                "isDeleted": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-            
-        
-        
     },
     "components": {
         "schemas": {
@@ -1705,6 +2021,26 @@
                     },
                     "isDeleted":{
                         "type": "boolean"
+                    }
+                }
+            },
+            "Notificacao":{
+                "type": "object",
+                "properties": {
+                    "noti_id":{
+                        "type": "string"
+                    },
+                    "origem_uid":{
+                        "type": "string"
+                    },
+                    "conteudo":{
+                        "type": "string"
+                    },
+                    "data":{
+                        "type": "string"
+                    },
+                    "tipo":{
+                        "type": "number"
                     }
                 }
             }

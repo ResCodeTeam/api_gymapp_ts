@@ -30,7 +30,6 @@ export class AgendarDesafiosService {
       throw new Error("O ginásio não existe");
     }
 
-    // let ginasio = [];
     await client.agendamentos_desafios.create({
       data: {        
         ginasio_id: ginasioId,
@@ -45,7 +44,7 @@ export class AgendarDesafiosService {
     const notificacao = await client.notificacoes.create({
       data: {
         origem_uid: treinadorId,
-        conteudo: "O seu agendamento foi aceite",
+        conteudo: "O seu desafio foi agendado",
         data : new Date(),
         tipo: 1,
       }

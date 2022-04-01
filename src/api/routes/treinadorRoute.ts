@@ -43,6 +43,7 @@ const criarAvaliacaoController =new CriarAvaliacaoController();
 
 const removerExercicioController = new RemoverExercicioController();
 const criarExercicioController = new CriarExercicioController();
+// const editarExercicioController = new EditarExercicioController();
 
 //const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
@@ -54,6 +55,7 @@ treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComen
 treinadorRouter.get("/exercicios/", verTodosOsExerciciosTreinadoresController.handle);
 treinadorRouter.delete("/:id/exercicios/:exercicios_id/", removerExercicioController.handle);
 treinadorRouter.post("/exercicios/", criarExercicioController.handle);
+//treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
 //#endregion
 
 //#region Treinos
