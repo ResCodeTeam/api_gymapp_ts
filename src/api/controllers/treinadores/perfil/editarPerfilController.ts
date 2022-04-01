@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-
-
+import { EditarPerfilService } from "../../../services/treinador/perfil/editarPerfilService";
 
 class EditarPerfilController{
 
