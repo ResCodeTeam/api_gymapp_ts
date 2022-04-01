@@ -28,7 +28,7 @@ export class CriarPlanoTreinoService{
             throw new Error("A modalidade não existe");
         }
 
-        const plano = await client.plano.create({
+        const plano = await client.planos_treino.create({
             data:{
                 plano_treino_id: plano_treino_id,
                 aluno_id: aluno_id,
