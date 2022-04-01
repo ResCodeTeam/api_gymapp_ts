@@ -29,7 +29,7 @@ allRouter.get("/posts", verTodosPostsController.handle);
 allRouter.get("/posts/user/:id", verTodosPostsUserController.handle)
 allRouter.put("/posts", editarPublicacaoController.handle);
 allRouter.get("/posts/:id", verInfoPostInfoController.handle)
-allRouter.get("/posts/:id/gostos", criarGostoController.handle)
+allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 
 //ver info de post
 
