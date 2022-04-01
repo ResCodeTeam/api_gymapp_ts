@@ -42,7 +42,7 @@ treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComen
 
 //#region Exercicios
 treinadorRouter.get("/exercicios/", verTodosOsExerciciosTreinadoresController.handle);
-treinadorRouter.delete("/exercicios/:id/", removerExercicioController.handle);
+treinadorRouter.delete("/:id/exercicios/:exercicios_id/", removerExercicioController.handle);
 treinadorRouter.post("/exercicios/", criarExercicioController.handle);
 //#endregion
 
