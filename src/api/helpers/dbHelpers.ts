@@ -17,6 +17,14 @@ let checkEmail = async(email : string)=>{
     })
     return search.length != 0;
 }
+let checkDesafioIdExists = async(desafioId: string)=>{
+    const search = await client.desafios.findMany({
+        where:{
+            desafio_id: desafioId
+        }
+    })
+    return search.length != 0;
+}
 let checkUserIdExists= async(userId : string)=>{
     const search = await client.users.findMany({
         where:{
@@ -267,6 +275,7 @@ export {
     formatDate,
     formatDateHour,
     formatFullDate,
-    checkMobilidadeMarcaUser
+    checkMobilidadeMarcaUser,
+    checkDesafioIdExists
 }
 
