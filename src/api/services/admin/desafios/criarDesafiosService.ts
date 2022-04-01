@@ -58,12 +58,13 @@ class CriarDesafiosService {
                 descricao,
             }, 
         });
-        // console.log(desafio);
+        console.log(desafio.desafio_id);
 
         // para preencher a tabela regras com as suas informações
         for (let i = 0; i < regras.length; i++){
             await client.regras_desafio.create({
-                data:{ desafio_id: desafio["dataValues"]["desafio_id"],
+                data:{ //desafio_id: desafio["dataValues"]["desafio_id"],
+                desafio_id: desafio.desafio_id,
                 descricao: regras[i]["descricao"],}, 
             });
         }
@@ -71,10 +72,12 @@ class CriarDesafiosService {
         // para preencher a tabela exercicios e series com as suas informações
         for (let i = 0; i < exercicios.length; i++) {
             const exercicio = await client.exercicios_desafio.create({
-                data:{desafio_id: desafio["dataValues"]["desafio_id"],
-                n_ordem_exercicio: exercicios[i]["n_ordem_exercicio"],
-                exercicio_id: exercicios[i]["exercicio_id"],
-                genero: exercicios[i]["genero"],
+                data:{//desafio_id: desafio["dataValues"]["desafio_id"],
+                desafio_id:desafio.desafio_id,
+                n_ordem_exercicio: exercicios[i].nOrdem,
+                //exercicio_id: exercicios[i]["exercicio_id"], ex
+                exercicio_id : exercicios[i].exercicioId,
+                genero: exercicios[i].genero,
                 //series: exercicios[i][]
                 }    
             });
@@ -82,7 +85,7 @@ class CriarDesafiosService {
             // console.log(exercicio);
             for(let j = 0; j<series.length; j++) {
                 await client.series_desafio.create({data:{
-                    exercicio_desafio_id: exercicio.exercicio_id,
+                    exercicio_desafio_id: exercicio.exercicio_desafio_id,
                     n_ordem_serie: series[j].nOrdem,
                     repeticoes: series[j].repeticoes,
                     peso: series[j].peso,

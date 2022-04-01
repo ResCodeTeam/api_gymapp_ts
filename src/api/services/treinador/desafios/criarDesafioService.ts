@@ -1,3 +1,4 @@
+/*
 import { client } from "../../../prisma/client";
 import { checkUserIdExists, checkGinasioExists, checkModalidadeExists, checkExercicioExists } from "../../../helpers/dbHelpers";
 
@@ -14,7 +15,9 @@ interface ICriarDesafioService {
     exercicios: string;
     regras:string;
 }
+*/
 
+/*
 class CriarDesafioService {
     async execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras}: ICriarDesafioService) {
     //     const exists_criador = await checkUserIdExists(criadorId);
@@ -89,3 +92,4 @@ class CriarDesafioService {
 
 
 export { CriarDesafioService };
+*/
