@@ -3,13 +3,13 @@ import { RegistarAdminService } from "../../../services/admin/admin/registarAdmi
 
 export class RegistarAdminController{
     async handle (request:Request, response:Response) {
-    let { email,nome,password,data_nasc,data_entrada,genero } = request.body;
+    let { email,nome,password,dataNasc,dataEntrada,genero } = request.body;
     
     const registarAdminService = new RegistarAdminService();
-    data_nasc = new Date(data_nasc);
-    data_entrada = new Date(data_entrada);
+    dataNasc = new Date(dataNasc);
+    dataEntrada = new Date(dataEntrada);
 
-    const resp = await registarAdminService.execute({email,nome,password,data_nasc,data_entrada,genero});
+    const resp = await registarAdminService.execute({email,nome,password,dataNasc,dataEntrada,genero});
   
     response.status(200).json(resp);
   
