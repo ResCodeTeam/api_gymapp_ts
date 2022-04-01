@@ -9,24 +9,24 @@ interface INotificacao {
 
 export class UpdateEstadoNotificacaoService {
     async execute({userId, notiId} : INotificacao) {
-        const data = await client.notificacoes.findUnique({
+        const notiUpdated = await client.destinos_notificacao.updateMany({
             where : {
-                noti_id : notiId
+                noti_id : notiId,
+                dest_uid : userId,
+                visto : false
             },
-            select : {
-                data : true,
-                destinos_notificacao : {
-                    select : {
-                        dest_uid : true
-                    }
-                }
+            data : {
+                visto : true
             }
-        });
-        const dayWeek : IDayWeek = (await formatFullDate(data.data));
-        const abbreviation : string = dayWeek.abbreviation;
+        })
+
+        if (!notiUpdated) {
+            throw new Error (`Operação inválida`)
+        }
+
         return {
             message:"Notificação alterada com sucesso",
-            dayWeek
+            notiUpdated
           };
         
     }

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UpdateEstadoNotificacaoService } from "../../../services/admin/notificacoes/updateEstadoNotificacaoService"
+import { UpdateEstadoNotificacaoService } from "../../../services/all/notificacoes/updateEstadoNotificacaoService"
 
 export class UpdateEstadoNotificacaoController{
     async handle(request:Request,response:Response){
