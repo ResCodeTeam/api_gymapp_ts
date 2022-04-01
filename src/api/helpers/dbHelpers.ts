@@ -97,7 +97,8 @@ let checkModalidadeExists= async(modalidadeId : string) => {
 let checkExercicioExists= async(exercicioId : string) => {
     const search = await client.exercicios.findMany({
         where:{
-            exercicio_id : exercicioId
+            exercicio_id : exercicioId,
+            isDeleted: false
         }
     })
     return search.length != 0;
