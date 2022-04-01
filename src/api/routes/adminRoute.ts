@@ -32,6 +32,7 @@ import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 import { VerDesafiosParticipantesController } from "../controllers/admin/desafios/verDesafiosParticipantesController";
 import { RemoverMarcaController } from "../controllers/admin/marcas/removerMarcaController";
 import { RegistarTreinadorController } from "../controllers/admin/treinadores/registarTreinadorController";
+import { CriarNotificacaoUserController } from "../controllers/admin/notificacoes/criarNotificacaoUserController";
 
 
 
@@ -102,7 +103,8 @@ adminRouter.delete("/modalidades", editarModalidadesController.handle);
 // const criarNotificacaoUserController = new CriarNotificacaoUserController();
 const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController();
-// adminRouter.post("/notificacao/user/:id", criarNotificacaoUserController.handle);
+const criarNotificacaoUserController = new CriarNotificacaoUserController();
+adminRouter.post("/notificacao/user/:id", criarNotificacaoUserController.handle);
 adminRouter.post("/notificacao/marca/", criarNotificacaoMarcaController.handle);
 adminRouter.post("/notificacao/ginasio/", criarNotificacaoGinasioController.handle);
 //#endregion
