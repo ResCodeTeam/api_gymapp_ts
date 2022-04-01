@@ -324,8 +324,8 @@ model modalidades_ginasio {
 
 model musculos {
   musculo_id          String                @id @default(uuid())
-  nome                Int
-  img_url             Int
+  nome                String                @db.VarChar(255)
+  img_url             String                @db.VarChar(255)
   exercicios_musculos exercicios_musculos[]
 }
 
