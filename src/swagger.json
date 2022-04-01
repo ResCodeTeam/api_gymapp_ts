@@ -915,6 +915,98 @@
                 }
             }
         },
+        "/admin/treinador/:id":{
+            "delete":{
+                "summary": "Remover treinador",
+                "description": "Esta rota vai remover um treinador",
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "treinador_id",
+                    "in": "path",
+                    "description": "Id do treinador",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "treinador_id":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Treinador":{
+                                        "value":{
+                                            "msg":"Treinador cessado das funções"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/marca/:id":{
+            "delete":{
+                "summary": "Remover marca",
+                "description": "Esta rota vai remover uma marca de um ginásio",
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "Id da marca",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "marcaId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Marca":{
+                                        "value":{
+                                            "msg":"Marca removida com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/admin/marca/{marca_id}/treinadores":{
             "post":{
                 "summary": "Registar Treinadores",
