@@ -4,8 +4,12 @@ import { CriarDesafiosService } from "../../../services/admin/desafios/criarDesa
 class CriarDesafiosController {
     async handle(request: Request, response: Response){
         const ginasioId = request.params.id;
-        const { criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, descricao, exercicios, regras } = request.body;
-        console.log(criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, descricao, exercicios, regras)
+        let { criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, descricao, exercicios, regras } = request.body;
+        
+        dataInicio = new Date(dataInicio);
+        dataFim = new Date(dataFim);
+
+        // console.log(criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, descricao, exercicios, regras)
         
         const criarDesafiosService = new CriarDesafiosService();
         const resp = await criarDesafiosService.execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras });

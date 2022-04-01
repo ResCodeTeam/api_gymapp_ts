@@ -1,3 +1,4 @@
+/*
 import { Request, Response} from "express";
 import { CriarDesafioService } from "../../../services/treinador/desafios/criarDesafioService";
 
@@ -11,3 +12,4 @@ export class CriarDesafioController{
         response.json(resp);
     }
 }
+*/

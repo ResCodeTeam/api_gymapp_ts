@@ -816,7 +816,7 @@
                                         "exercicios":[
                                             {
                                                 "nOrdem": 1,
-                                                "exercicioId":"",
+                                                "exercicioId":"a006be60-abb4-420a-a717-a30a77865363",
                                                 "genero":1,
                                                 "series":[
                                                     {
@@ -897,8 +897,8 @@
                                                     "data": "2002-04-09T00:00:00.000Z",
                                                     "descricao": "Levantamento de peso",
                                                     "tipo": "1",
-                                                    "imagens_publicacao":"imagens/9dc8c8-98",
-                                                    "gostos_publicacao":"300"
+                                                    "imagens_publicacao":"[]",
+                                                    "gostos_publicacao":"[] "
                                             }
                                         }
                                     }
@@ -1235,7 +1235,7 @@
                         "type": "string"
                     },
                     "gostos_publicacao":{
-                        "type": "number"
+                        "type": "array"
                     }
                 }
             }
