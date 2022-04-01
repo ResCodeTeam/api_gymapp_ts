@@ -11,6 +11,12 @@ class RemoverModalidadesService {
     client.modalidades_ginasio.delete({
       where: { modalidade_id: modalidadeId },
     });
+    // await client.modalidades_ginasio.update({
+    //  where: {modalidade_id:modalidadeId},
+    //  data:{
+    //     isDeleted: true
+    //  }
+    //})
 
     return {
       msg: "Modalidade removida com sucesso",

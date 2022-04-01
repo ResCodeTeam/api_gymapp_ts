@@ -82,19 +82,18 @@ adminRouter.delete("/desafios/", removerDesafiosController.handle);
 //#endregion
 
 //#region Ginasios
-
+adminRouter.post("/marca/:id/ginasio/", registarMarcaGinasiosController.handle);
 //#endregion
 
 //#region Marcas
 adminRouter.post("/:id/marca/", registarUserMarcasController.handle);
-adminRouter.post("/marca/:id/ginasio/", registarMarcaGinasiosController.handle);
-adminRouter.post("/ginasio/:id/modalidades", criarGinasioModalidadesController.handle);
 adminRouter.post("/ginasio/:id/desafios", criarDesafiosController.handle);
 adminRouter.delete("/marca/:id", removerMarcaController.handle);
 
 //#endregion
 
 //#region Modalidades
+adminRouter.post("/ginasio/:id/modalidades", criarGinasioModalidadesController.handle);
 adminRouter.delete("/modalidades/:id", removerModalidadesController.handle);
 adminRouter.delete("/modalidades", editarModalidadesController.handle);
 //#endregion

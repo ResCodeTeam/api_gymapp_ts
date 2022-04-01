@@ -15,7 +15,7 @@ import { EditarAvaliacaoController } from "../controllers/treinador/avaliacoes/e
 
 import { AgendarDesafiosController } from "../controllers/treinador/agendamentos/agendarDesafiosController";
 import { AgendarAvaliacaoController } from "../controllers/treinador/agendamentos/agendarAvaliacaoController";
-
+import { RemoverExercicioController } from "../controllers/treinador/Exercicios/removerExercicioController"
 
 
 //
@@ -31,6 +31,7 @@ const removerAvaliacao = new RemoverAvaliacaoController()
 
 const agendarDesafiosController = new AgendarDesafiosController();
 const agendarAvaliacaoController = new AgendarAvaliacaoController();
+const removerExercicioController = new RemoverExercicioController();
 
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
@@ -38,6 +39,7 @@ treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComen
 
 //#region Exercicios
 treinadorRouter.get("/exercicios/", verTodosOsExerciciosTreinadoresController.handle);
+treinadorRouter.delete("/exercicios/:id/", removerExercicioController.handle);
 //#endregion
 
 //#region Treinos
