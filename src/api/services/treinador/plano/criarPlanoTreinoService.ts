@@ -39,7 +39,7 @@ export class CriarPlanoTreinoService{
         });
 
         console.log(plano);
-    
+
         // Incompleto
 
     }
