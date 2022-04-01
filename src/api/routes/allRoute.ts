@@ -6,6 +6,7 @@ import { VerTodosPostsController } from "../controllers/all/posts/obter/verTodos
 import { VerTodosPostsUserController } from "../controllers/all/posts/obter/verTodosPostsUserController";
 import { VerInfoPostController } from "../controllers/all/posts/obter/verInfoPostController";
 import { EditarPublicacaoController } from "../controllers/all/posts/editarPublicacaoController";
+import { UpdateEstadoNotificacaoController } from "../controllers/all/notificacoes/updateEstadoNotificacaoController";
 
 const allRouter = express.Router();
 
@@ -16,6 +17,7 @@ const removerPostsController = new RemoverPostController();
 const verTodosPostsUserController = new VerTodosPostsUserController();
 const verInfoPostInfoController = new VerInfoPostController();
 const editarPublicacaoController  = new EditarPublicacaoController();
+const updateEstadoNotificacaoController = new UpdateEstadoNotificacaoController();
 
 
 //#region Publicacoes
@@ -33,4 +35,8 @@ allRouter.delete("/posts/:id", removerPostsController.handle);
 // adminRouter.post("/posts/:id/gostos", criarGostoController.handle);
 //#endregion
 
+
+//#region Notificacoes
+allRouter.put("/notificacao/", updateEstadoNotificacaoController.handle);
+//#endregion
 export { allRouter };
