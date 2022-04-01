@@ -907,6 +907,52 @@
                 }
             }
         },
+        "/admin/treinador/:id":{
+            "delete":{
+                "summary": "Remover treinador",
+                "description": "Esta rota vai remover um treinador",
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "treinador_id",
+                    "in": "path",
+                    "description": "Id do treinador",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "treinador_id":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Treinador":{
+                                        "value":{
+                                            "msg":"Treinador cessado das funções"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/admin/marca/{marca_id}/treinadores":{
             "post":{
                 "summary": "Registar Treinadores",
