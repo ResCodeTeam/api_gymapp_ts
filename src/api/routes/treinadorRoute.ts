@@ -17,8 +17,10 @@ import { AgendarDesafiosController } from "../controllers/treinador/agendamentos
 import { AgendarAvaliacaoController } from "../controllers/treinador/agendamentos/agendarAvaliacaoController";
 import { RemoverExercicioController } from "../controllers/treinador/Exercicios/removerExercicioController"
 import { CriarExercicioController } from "../controllers/treinador/Exercicios/criarExercicioController";
+import { CriarAvaliacaoService } from "../services/treinador/avaliacoes/criarAvaliacaoService";
+import { CriarAvaliacaoController } from "../controllers/treinador/avaliacoes/criarAvaliacaoController";
 
-import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
+//import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
 
 
 //
@@ -35,10 +37,14 @@ const removerAvaliacao = new RemoverAvaliacaoController()
 const agendarDesafiosController = new AgendarDesafiosController();
 const agendarAvaliacaoController = new AgendarAvaliacaoController();
 
+const criarAvaliacaoService = new CriarAvaliacaoService();
+
+const criarAvaliacaoController =new CriarAvaliacaoController();
+
 const removerExercicioController = new RemoverExercicioController();
 const criarExercicioController = new CriarExercicioController();
 
-const criarPlanoTreinoController = new CriarPlanoTreinoController();
+//const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
@@ -64,6 +70,7 @@ treinadorRouter.delete("/desafio/:id", removerDesafio.handle);
 //#region Avaliacoes
 treinadorRouter.put("/avaliacoes/:id", editarAvaliacao.handle);
 treinadorRouter.delete("/avaliacoes/:id", removerAvaliacao.handle);
+treinadorRouter.post("/avaliacoes/:id", criarAvaliacaoController.handle);
 //#endregion
 
 
@@ -73,7 +80,7 @@ treinadorRouter.post("/agenda/avaliacao/", agendarAvaliacaoController.handle);
 //#endregion
 
 //#region Plano
-treinadorRouter.post("/plano/", criarPlanoTreinoController.handle);
+//treinadorRouter.post("/plano/", criarPlanoTreinoController.handle);
 //#endregion
 
 export { treinadorRouter };
