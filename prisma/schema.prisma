@@ -314,10 +314,12 @@ model modalidades_ginasio {
   ginasio_id    String
   nome          String          @db.VarChar(255)
   imagem_url    String          @db.VarChar(255)
+  isDeleted     Boolean         @default(false)
   ginasio       ginasio         @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkmodalidade839982")
   desafios      desafios[]
   planos_treino planos_treino[]
   treinos       treinos[]
+
 }
 
 model musculos {
