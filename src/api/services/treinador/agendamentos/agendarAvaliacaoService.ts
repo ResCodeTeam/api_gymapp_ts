@@ -7,7 +7,6 @@ interface IAgendarAvaliacaoService {
   estado: number;
   ginasioId: string;
   treinadorId: string;
-  // destinoId: string
 }
 
 export class AgendarAvaliacaoService {
@@ -17,7 +16,6 @@ export class AgendarAvaliacaoService {
     estado,
     ginasioId,
     treinadorId,
-    // destinoId
   }: IAgendarAvaliacaoService) {
     
     const exists_user = await checkUserIdExists(uid);
@@ -51,12 +49,11 @@ export class AgendarAvaliacaoService {
 
     //#region Cria Destinos da Notificação
       await client.destinos_notificacao.create({
-        data : {       
+        data : { 
           noti_id : notificacao.noti_id, // id da notificacao
           dest_uid: uid, // treinador que aceitou o pedido - id de quem vai receber a notificacao
         }
-      });
-    
+      }); 
     //#endregion
 
     return {
