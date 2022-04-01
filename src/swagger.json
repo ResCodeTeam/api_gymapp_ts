@@ -988,7 +988,74 @@
                     }
                 }
             }
+        },
+        "/all/posts/{post_id}/gostos":{
+            
+                "post":{
+                    "summary": "Adicionar gosto a uma publicação",
+                    "description": "Esta rota permite adicionar uma publicação ao gostos",
+                    "parameters": [{
+                        "name": "post_id",
+                        "in": "path",
+                        "description": "id do post a adicionar gosto",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "examples": {
+                            "Criar Gosto":{
+                                
+                                    "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                                
+                            }
+                        },
+                        "style": "simple"
+    
+                    }],
+                    "tags": ["All"],
+                    "requestBody":{
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties":{
+                                        "criadorId":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "500":{
+                            "description": "ERROR"
+                        },
+                        "200":{
+                            "description": "OK",
+                            "content": {
+                                "application/json":{
+                                    "schema":{
+                                        "type": "object",
+                                        "$ref": "#/components/schemas/Gosto"
+                                    },
+                                    "examples": {
+                                        "Criar Gosto":{
+                                            "value":{
+                                                "treinador": {
+                                                    "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
+                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                                    "criador_id": "cd948b87-6860-4844-af7a-6df37278732d"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
         }
+
     },
     "components": {
         "schemas": {
@@ -1129,6 +1196,20 @@
                         "type": "number"
                     },
                     "isDeleted":{
+                        "type": "string"
+                    }
+                }
+            },
+            "Gosto":{
+                "type": "object",
+                "properties": {
+                    "gosto_id":{
+                        "type": "string"
+                    },
+                    "publicacao_id":{
+                        "type": "string"
+                    },
+                    "criador_id":{
                         "type": "string"
                     }
                 }
