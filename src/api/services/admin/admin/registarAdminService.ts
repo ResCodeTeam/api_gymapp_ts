@@ -8,13 +8,13 @@ interface IRegistarAdminService{
     email:string,
     nome:string,
     password:string,
-    data_nasc:Date,
-    data_entrada:Date,
+    dataNasc:Date,
+    dataEntrada:Date,
     genero:number,
 }
 
 export class RegistarAdminService{
-    async execute({email,nome,password,data_nasc,data_entrada,genero}:IRegistarAdminService){
+    async execute({email,nome,password,dataNasc,dataEntrada,genero}:IRegistarAdminService){
     
         // verificar se o aluno já está registado
         let existsEmail = await checkEmail(email);
@@ -38,9 +38,9 @@ export class RegistarAdminService{
                 email,
                 nome,
                 password:passwd,
-                data_nasc,
+                data_nasc:dataNasc,
                 hashtag,
-                data_entrada,
+                data_entrada:dataEntrada,
                 genero,
                 funcao_id:funcaoId,
             }

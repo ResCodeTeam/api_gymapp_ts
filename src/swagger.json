@@ -193,7 +193,7 @@
                             "examples": {
                                 "Inserir Agendamento de Avaliacoes":{
                                     "value": {
-                                        "uid":"0e467c58-c1fe-4b07-b554-f4b41301b028",
+                                        "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
                                         "dataAgendamento":"2022-03-30",
                                         "estado": 1,
                                         "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
@@ -598,7 +598,7 @@
                 }
             }
         },
-        "/treinador/exercicios/{exercicioId}":{
+        "/treinador/{autorId}/exercicios/{exercicioId}":{
             "delete":{
                 "summary": "Remover exercicios",
                 "description": "Esta rota vai apagar na base de dados um exercicio",
@@ -615,7 +615,20 @@
                             }
                         }
                     }
-                }],
+                },
+                {
+                    "name": "autorId",
+                    "in": "path",
+                    "description": "Id do autor",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "autorId":{
+                                "type":"string"
+                            }
+                        }
+                    }}
+                ],
                 "responses": {
                     "500":{
                         "description": "ERROR"  
@@ -1271,7 +1284,94 @@
                     }
                 }
             }
-    }
+        },
+        "/admin/registo":{
+            "post":{
+                "summary": "Registar um Admin",
+                "description": "Esta rota permite efetuar o registo de um administrador",
+                "tags": ["Admin"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "dataNasc":{
+                                        "type":"string"
+                                    },
+                                    "dataEntrada":{
+                                        "type": "string"
+                                    },
+                                    "genero":{
+                                        "type":"number"
+                                    }
+                                    
+                                }
+                            },
+                            "examples": {
+                                "Registar Admin":{
+                                    "value":{
+                                        "email":"admin@admin.com",
+                                        "nome":"admin",
+                                        "password":"admin",
+                                        "dataNasc":"2002-04-09",
+                                        "dataEntrada":"2022-03-23",
+                                        "genero":0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                },
+                                "examples": {
+                                    "Registar Treinador":{
+                                        "value": {
+                                            "Treinador": {
+                                                "uid": "9c1877aa-d346-4eaa-bb6c-e032dadf4e57",
+                                                "email": "treinador@treinador.com",
+                                                "nome": "treinador",
+                                                "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+                                                "data_nasc": "2002-04-09T00:00:00.000Z",
+                                                "hashtag": "t_02",
+                                                "data_entrada": "2022-03-23T00:00:00.000Z",
+                                                "funcao_id": "418aaa6d-489e-471d-8f91-a798b9470773",
+                                                "refresh_token": null,
+                                                "genero": 0,
+                                                "pontos": 0,
+                                                "descricao": null,
+                                                "imagem_url": null,
+                                                "estado": 1,
+                                                "isDeleted": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
     },
     "components": {
@@ -1497,6 +1597,54 @@
                             }
                         
                         }
+                    }
+                }
+            },
+            "User":{
+                "type":"object",
+                "properties": {
+                    "uid":{
+                        "type": "string"
+                    },
+                    "email":{
+                        "type": "string"
+                    },"nome":{
+                        "type": "string"
+                    },
+                    "password":{
+                        "type": "string"
+                    },
+                    "data_nasc":{
+                        "type": "string"
+                    },
+                    "hashtag":{
+                        "type": "string"
+                    },"data_entrada":{
+                        "type": "string"
+                    },
+                    "funcao_id":{
+                        "type": "string"
+                    },
+                    "refresh_token":{
+                        "type": "string"
+                    },
+                    "genero":{
+                        "type": "number"
+                    },
+                    "pontos":{
+                        "type": "number"
+                    },
+                    "descricao":{
+                        "type": "string"
+                    },
+                    "imagem_url":{
+                        "type": "string"
+                    },
+                    "estado":{
+                        "type": "number"
+                    },
+                    "isDeleted":{
+                        "type": "boolean"
                     }
                 }
             }

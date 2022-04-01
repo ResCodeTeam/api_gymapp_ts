@@ -17,6 +17,14 @@ let checkEmail = async(email : string)=>{
     })
     return search.length != 0;
 }
+let checkDesafioIdExists = async(desafioId: string)=>{
+    const search = await client.desafios.findMany({
+        where:{
+            desafio_id: desafioId
+        }
+    })
+    return search.length != 0;
+}
 let checkUserIdExists= async(userId : string)=>{
     const search = await client.users.findMany({
         where:{
@@ -89,7 +97,8 @@ let checkMarcaExists= async(marcaId : string) =>{
 let checkModalidadeExists= async(modalidadeId : string) => {
     const search = await client.modalidades_ginasio.findMany({
         where:{
-            modalidade_id : modalidadeId
+            modalidade_id : modalidadeId,
+            isDeleted: false
         }
     })
     return search.length != 0;
@@ -266,6 +275,7 @@ export {
     formatDate,
     formatDateHour,
     formatFullDate,
-    checkMobilidadeMarcaUser
+    checkMobilidadeMarcaUser,
+    checkDesafioIdExists
 }
 

@@ -50,6 +50,7 @@ export class AgendarAvaliacaoService {
     //#region Cria Destinos da Notificação
       await client.destinos_notificacao.create({
         data : {
+          
           noti_id : notificacao.noti_id, // id da notificacao
           dest_uid: uid, // treinador que aceitou o pedido - id de quem vai receber a notificacao
         }
