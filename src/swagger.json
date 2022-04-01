@@ -791,7 +791,7 @@
                                         "type": "array",
                                         "items": {
                                             "type": "object",
-                                            "$ref":"#/components/schemas/Exercicio"
+                                            "$ref":"#/components/schemas/ExercicioDesafio"
                                         }
                             
                                     },
@@ -1157,7 +1157,121 @@
                         }
                     }
                 }
-        }
+        },
+        "/treinador/exercicios/":{
+            "post":{
+                "summary": "Criar um exercicio",
+                "description": "Esta rota permite adicionar um exercicio à base de dados",
+                "tags": ["Treinador"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "autor":{
+                                        "type": "string"
+                                    },
+                                    "isTempo":{
+                                        "type": "boolean"
+                                    },
+                                    "imagens":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "string"
+                                        }
+                                    },
+                                    "musculos":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "string"
+                                        }
+                                    }
+                                    
+                                }
+                            },
+                            "examples": {
+                                "Criar Exercicio":{
+                                    "value":{
+                                        "nome":"Push-Ups",
+                                        "descricao":"Deitar no chao e empurrar executando uma flexão",
+                                        "autor":"919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                        "isTempo":false,
+                                        "imagens":[
+                                            "url1",
+                                            "url2",
+                                            "url3",
+                                            "url4"
+                                        ],
+                                        "musculos":[
+                                            "1b1dd226-454a-4bb6-a126-1870411646e4",
+                                            "48727940-5e7d-4a91-8229-5f3a5e175147",
+                                            "fcb48f32-61fc-410e-9e81-8ced8330325e"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Exercicio"
+                                },
+                                "examples": {
+                                    "Criar Exercicio":{
+                                        "value": {
+                                            "Exercicio":{
+                                                "nome": "Push-Ups",
+                                                "descricao": "Deitar no chao e empurrar executando uma flexão",
+                                                "is_tempo": false,
+                                                "exercicios_imagens": [
+                                                    {
+                                                    "imagem_id": "d4ccdf68-0c49-4a76-8fb3-abe97288bb36",
+                                                    "url": "url1"
+                                                    },
+                                                    {
+                                                    "imagem_id": "40d02c22-ca90-4839-942e-ce46376d753d",
+                                                    "url": "url2"
+                                                    },
+                                                    {
+                                                    "imagem_id": "4700386c-3f9c-4985-8dae-f7007058a1a1",
+                                                    "url": "url3"
+                                                    },
+                                                    {
+                                                    "imagem_id": "82ca9be8-04b4-44a1-ae62-93a1cc7ba203",
+                                                    "url": "url4"
+                                                    }
+                                                ],
+                                                "users": {
+                                                    "uid": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                                    "nome": "treinador",
+                                                    "email": "treinador1@admin.com",
+                                                    "imagem_url": null
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    }
 
     },
     "components": {
@@ -1190,7 +1304,7 @@
                     }
                 }
             },
-            "Exercicio": {
+            "ExercicioDesafio": {
                 "type": "object",
                 "properties": {
                     "exercicioId":{
@@ -1242,7 +1356,7 @@
                         "type": "array",
                         "items": {
                             "type": "object",
-                            "$ref":"#/components/schemas/Exercicio"
+                            "$ref":"#/components/schemas/ExercicioDesafio"
                         }
                     },           
                     "regras": {
@@ -1334,6 +1448,55 @@
                     },
                     "gostos_publicacao":{
                         "type": "array"
+                    }
+                }
+            },
+            "Exercicio":{
+                "type": "object",
+                "properties": {
+                    "imagem_id":{
+                        "type":"string"
+                    },
+                    "nome":{
+                        "type": "string"
+                    },
+                    "descricao":{
+                        "type": "string"
+                    },
+                    "autor":{
+                        "type": "string"
+                    },
+                    "is_tempo":{
+                        "type": "boolean"
+                    },
+                    "imagens":{
+                        "type": "array",
+                        "items":{
+                            "type": "object",
+                            "properties": {
+                                "imagem_url":{
+                                    "type": "string"
+                                },
+                                "imagem_id":{
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "musculos":{
+                        "type": "array",
+                        "items":{
+                            "type": "object",
+                            "properties": {
+                                "nome":{
+                                    "type": "string"
+                                },
+                                "img_url":{
+                                    "type": "string"
+                                }
+                            }
+                        
+                        }
                     }
                 }
             }
