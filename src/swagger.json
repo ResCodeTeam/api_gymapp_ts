@@ -858,6 +858,52 @@
                 }
             }           
         },
+        "/all/posts":{
+                "get":{
+                    "summary": "Ver posts",
+                    "description": "Esta rota vai apresentar todos os posts",
+                    "tags": ["All"],
+                    "requestBody": {
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties":{
+                                        "userId":{
+                                            "type":"string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "500":{
+                            "description": "ERROR"
+                        },
+                        "200":{
+                            "description": "OK",
+                            "content": {
+                                "application/json":{
+                                    "schema":{
+                                        "properties": {
+                                            "msg":{
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "examples": {
+                                        "Ver Posts":{
+                                            "value":{
+                                                "msg":"Posts"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+        },
         "/admin/marca/{marca_id}/treinadores":{
             "post":{
                 "summary": "Registar Treinadores",
