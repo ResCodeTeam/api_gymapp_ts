@@ -7,8 +7,13 @@ export class RemoverExercicioService{
         if (!exists_dst) {
             throw new Error("O exercicio não existe");
         }
+        const exercicio = await client.exercicios.findUnique({
+            where:{
+                exercicio_id:exercicioId
+            }
+        })
        
-        if(autorId == ){
+        if(autorId == exercicio.autor_id){
             await client.exercicios.update({
                 where: {exercicio_id:exercicioId},
                 data:{

@@ -3,10 +3,11 @@ import { RemoverExercicioService } from "../../../services/treinador/exercicios/
 
 export class RemoverExercicioController {
     async handle(request: Request, response: Response) {
-        const exercicioId = request.params.id
+        const exercicioId = request.params.exercicios_id
+        const autorId = request.params.id
         
         const removerExercicioService = new RemoverExercicioService()
-        const resp = await removerExercicioService.execute(exercicioId);
+        const resp = await removerExercicioService.execute(exercicioId, autorId);
         response.json(resp);
     }
 }
