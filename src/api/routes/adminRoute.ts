@@ -28,6 +28,7 @@ import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlu
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
+import { UpdateEstadoNotificacaoController } from "../controllers/admin/notificacoes/updateEstadoNotificacaoController";
 
 const criarPostsController = new CriarPostsController();
 const registarAlunosController = new RegistarAlunoController();
@@ -85,9 +86,11 @@ adminRouter.delete("/modalidades/:id", removerModalidadesController.handle);
 // const criarNotificacaoUserController = new CriarNotificacaoUserController();
 const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController();
+const updateEstadoNotificacaoController = new UpdateEstadoNotificacaoController();
 // adminRouter.post("/notificacao/user/:id", criarNotificacaoUserController.handle);
 adminRouter.post("/notificacao/marca/", criarNotificacaoMarcaController.handle);
 adminRouter.post("/notificacao/ginasio/", criarNotificacaoGinasioController.handle);
+adminRouter.put("/notificacao/", updateEstadoNotificacaoController.handle);
 //#endregion
 
 //#region Publicacoes

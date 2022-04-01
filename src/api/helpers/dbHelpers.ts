@@ -1,6 +1,12 @@
 import { client } from "../prisma/client";
 import dayjs from "dayjs";
 import "dayjs/locale/pt";
+import { Interface } from "readline";
+
+export interface IDayWeek {
+    name : string,
+    abbreviation : string
+}
 
 let checkEmail = async(email : string)=>{
     const search = await client.users.findMany({
@@ -171,7 +177,7 @@ let checkNomeMarca = async (nome: string) => {
   };
 
 let formatDate = async (data : Date) => {
-    const date = dayjs(data).format('DD/MM/YYYY').toString();
+    const date = dayjs(data).locale('pt').format('DD/MM/YYYY').toString();
     return date;
 }
 
@@ -179,6 +185,47 @@ let formatDateHour = async (data : Date) => {
     const date = dayjs(data).locale('pt').format('DD/MM/YYYY HH:mm').toString();
     return date;
 }
+
+let getDayWeek = async (data : Date) => {
+    let dayWeek : IDayWeek;
+    const day = data.getDay();
+    switch (day) {
+        case 0:
+            dayWeek = {name : "domingo", abbreviation : "dom."};
+            break;
+        case 1:
+            dayWeek = {name : "segunda-feira", abbreviation : "seg."};
+            break;
+        case 2:
+            dayWeek = {name : "terça-feira", abbreviation : "ter."};
+            break;
+        case 3:
+            dayWeek = {name : "quarta-feira", abbreviation : "qua."};
+            break;
+        case 4:
+            dayWeek = {name : "quinta-feira", abbreviation : "qui."};
+            break;
+        case 5:
+            dayWeek = {name : "sexta-feira", abbreviation : "sex."};
+            break;
+        case 6:
+            dayWeek = {name : "sábado", abbreviation : "sáb."};
+            break;
+        default:
+            break;
+    }
+    return dayWeek;
+}
+
+let formatFullDate = async (data : Date) => {
+    let newData : string;
+    let s : IDayWeek = (await getDayWeek(data));
+    console.log(s.abbreviation);
+    console.log(s.name);
+
+    return s;
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -196,6 +243,7 @@ export {
     checkNomeMarca,
     getUserByID,
     formatDate,
-    formatDateHour
+    formatDateHour,
+    formatFullDate
 }
 
