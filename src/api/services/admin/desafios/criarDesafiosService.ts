@@ -36,6 +36,8 @@ class CriarDesafiosService {
             throw new Error("A modalidade não existe");
         }
 
+        
+
         // for(let i = 0; i < exercicios.length; i++){            
         //    const exists_exercicio = await checkExercicioExists(exercicios[i].exercicioId);
         //    if (!exists_exercicio) {
@@ -43,7 +45,7 @@ class CriarDesafiosService {
         //    }
         // }
      
-        console.log(criadorId);
+        // console.log(criadorId);
         
         const desafio = await client.desafios.create({
             data:{
@@ -71,6 +73,10 @@ class CriarDesafiosService {
 
         // para preencher a tabela exercicios e series com as suas informações
         for (let i = 0; i < exercicios.length; i++) {
+            const exists_exercicio = await checkExercicioExists(exercicios[i].exercicioId);
+            if (!exists_exercicio) {
+                throw new Error("O exercicio não existe");
+            }
             const exercicio = await client.exercicios_desafio.create({
                 data:{//desafio_id: desafio["dataValues"]["desafio_id"],
                 desafio_id:desafio.desafio_id,
