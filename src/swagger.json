@@ -23,6 +23,10 @@
             "description":"API de produção server 2"
         },
         {
+            "url": "https://apigymapp-s.herokuapp.com/api/v1",
+            "description":"API de produção server 3"
+        },
+        {
             "url": "https://apigymapp-h.herokuapp.com/api/v1",
             "description":"API de produção server 4"
         }
@@ -80,7 +84,7 @@
                         }
 
                     }
-                    
+
                 }
             }
         },
@@ -854,10 +858,72 @@
                 }
             }           
         },
+        "/all/posts":{
+                "get":{
+                    "summary": "Ver posts",
+                    "description": "Esta rota vai apresentar todos os posts",
+                    "tags": ["All"],
+                    "requestBody": {
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties":{
+                                        "userId":{
+                                            "type":"string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "500":{
+                            "description": "ERROR"
+                        },
+                        "200":{
+                            "description": "OK",
+                            "content": {
+                                "application/json":{
+                                    "schema":{
+                                        "type": "object",
+                                        "$ref": "#/components/schemas/Posts"
+                                    },
+                                    "examples": {
+                                        "Ver Posts":{
+                                            "value":{
+                                                "post": {
+                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                                    "criador_id": "919dc8c8-9828-4b13-b0e7-9b88fe587297",
+                                                    "data": "2002-04-09T00:00:00.000Z",
+                                                    "descricao": "Levantamento de peso",
+                                                    "tipo": "1",
+                                                    "imagens_publicacao":"imagens/9dc8c8-98",
+                                                    "gostos_publicacao":"300"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/admin/marca/{marca_id}/treinadores":{
             "post":{
                 "summary": "Registar Treinadores",
                 "description": "Esta rota permite registar treinadores numa marca",
+                "parameters": [{
+                    "name": "marca_id",
+                    "in": "path",
+                    "description": "id da marca onde registar o treinador",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "style": "simple"
+
+                }],
                 "tags": ["Admin"],
                 "requestBody":{
                     "content": {
@@ -927,7 +993,74 @@
                     }
                 }
             }
+        },
+        "/all/posts/{post_id}/gostos":{
+            
+                "post":{
+                    "summary": "Adicionar gosto a uma publicação",
+                    "description": "Esta rota permite adicionar uma publicação ao gostos",
+                    "parameters": [{
+                        "name": "post_id",
+                        "in": "path",
+                        "description": "id do post a adicionar gosto",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "examples": {
+                            "Criar Gosto":{
+                                
+                                    "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                                
+                            }
+                        },
+                        "style": "simple"
+    
+                    }],
+                    "tags": ["All"],
+                    "requestBody":{
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties":{
+                                        "criadorId":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "500":{
+                            "description": "ERROR"
+                        },
+                        "200":{
+                            "description": "OK",
+                            "content": {
+                                "application/json":{
+                                    "schema":{
+                                        "type": "object",
+                                        "$ref": "#/components/schemas/Gosto"
+                                    },
+                                    "examples": {
+                                        "Criar Gosto":{
+                                            "value":{
+                                                "treinador": {
+                                                    "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
+                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                                    "criador_id": "cd948b87-6860-4844-af7a-6df37278732d"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
         }
+
     },
     "components": {
         "schemas": {
@@ -1071,8 +1204,42 @@
                         "type": "string"
                     }
                 }
+            },
+            "Gosto":{
+                "type": "object",
+                "properties": {
+                    "gosto_id":{
+                        "type": "string"
+                    }
+                }
+            },
+            "Posts":{
+                "type": "object",
+                "properties": {
+                    "publicacao_id":{
+                        "type": "string"
+                    },
+                    "criador_id":{
+                        "type": "string"
+                    },
+                    "data":{
+                        "type": "string"
+                    },
+                    "descricao":{
+                        "type": "string"
+                    },
+                    "tipo":{
+                        "type": "number"
+                    },
+                    "imagens_publicacao":{
+                        "type": "string"
+                    },
+                    "gostos_publicacao":{
+                        "type": "number"
+                    }
+                }
             }
         }
-    }    
+    }
 
 }
