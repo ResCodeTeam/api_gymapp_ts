@@ -197,7 +197,7 @@
                                         "dataAgendamento":"2022-03-30",
                                         "estado": 1,
                                         "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
-                                        "treinadorId": "16eede92-311b-40b8-9c31-3062a6a1dd85"
+                                        "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                     }
                                 }
                             }
@@ -275,11 +275,11 @@
                             "examples": {
                                 "Inserir Agendamento de Desafios":{
                                     "value": {
-                                        "uid":"034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
+                                        "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
                                         "dataAgendamento":"2022-03-30",
                                         "estado": 1,
                                         "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
-                                        "treinadorId": "16eede92-311b-40b8-9c31-3062a6a1dd85"
+                                        "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                     }
                                 }
                             }
