@@ -30,7 +30,7 @@ export class AgendarDesafiosService {
       throw new Error("O ginásio não existe");
     }
 
-    let ginasio = [];
+    // let ginasio = [];
     await client.agendamentos_desafios.create({
       data: {        
         ginasio_id: ginasioId,
