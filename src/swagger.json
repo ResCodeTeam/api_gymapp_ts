@@ -1371,8 +1371,68 @@
                     }
                 }
             }
+        },
+        "/admin/desafios":{
+            "delete":{
+                "summary": "remover desafio ",
+                "description": "Esta rota vai remover base de dados os desafios criad",
+                "tags": ["Admin"],
+                "parameters":[{
+                   
+                    "name": "desafioId",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+           
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                     "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }, 
+                                "examples": {
+                                    "Remover desafio":{
+                                        "value":{
+                                            "msg":"Desafio removido com sucesso"
+                                        }
+                                    }
+                                }                                       
+                            }
+                        }
+        
+                    }
+                    
+                }
+            }
+         }
+        },
+        "components": {
+        "schemas": {
+            "Funcao":{
+                "type": "object",
+                "properties": {
+                    "funcao_id":{
+                        "type": "string"
+                    },
+                    "descricao":{
+                        "type": "string"
+                    }
+                }
+            }
         }
-
+            
+        
+        
     },
     "components": {
         "schemas": {
@@ -1648,6 +1708,7 @@
                     }
                 }
             }
+            
         }
     }
 
