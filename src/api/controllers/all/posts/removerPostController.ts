@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import {RemoverPostService} from "../../../services/admin/posts/removerPostService";
+import {RemoverPostService} from "../../../services/all/posts/removerPostService";
 
 class RemoverPostController{
 

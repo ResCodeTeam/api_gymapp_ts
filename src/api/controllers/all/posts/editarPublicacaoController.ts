@@ -1,12 +1,13 @@
 import { Request, Response} from "express";
-import { EditarPublicacaoService } from "../../../services/admin/posts/editarPublicacoesService";
+import { EditarPublicacaoService } from "../../../services/all/posts/editarPublicacoesService";
 
-export class EncerrarDesafiosController{
+export class EditarPublicacaoController{
   async handle(request : Request, response : Response) {
       const postId = request.params.id;
       const { publicacaoId, data, descricao, tipo, ginasioId } = request.body;
       let newData = new Date(data);
       const editarPublicacaoController = new EditarPublicacaoService();
+
 
       const resp = await editarPublicacaoController.execute({
         publicacaoId, 

@@ -1,0 +1,464 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+      "title": "Documentação da API GymApp",
+      "description": "Documentação da api de suporte à aplicação GymApp",
+      "contact": {
+          "name": "Teste",
+          "email": "teste@teste.com"
+      },
+      "version": "1.0.0"
+  },
+  "servers": [{
+          "url": "http://localhost:8000/api/v1",
+          "description": "API de teste"
+      },
+      {
+          "url":"https://apigymapp.herokuapp.com/api/v1",
+          "description":"API de produção server 1"
+      },
+      {
+          "url": "https://apigymapp-c.herokuapp.com/api/v1",
+          "description":"API de produção server 2"
+      },
+      {
+          "url": "https://apigymapp-h.herokuapp.com/api/v1",
+          "description":"API de produção server 4"
+      }
+      
+  ],
+  "paths": {
+      "/backend/funcoes": {
+          "post": {
+              "summary": "Registo de funções de user",
+              "description": "Esta rota vai registar na base de dados novas funções para os utilizadores",
+              "tags": ["Backend"],
+              "requestBody":{
+                  "content":{
+                      "application/json":{
+                          "schema":{
+                              "properties": {
+                                  "nome":{
+                                      "type": "string"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "Criar Aluno":{
+                                  "value": {
+                                      "nome": "Aluno"
+                                  }
+                              },
+                              "Criar Admin":{
+                                  "value":{
+                                      "nome":"Admin"
+                                  }
+                              },
+                              "Criar Treinador":{
+                                  "value":{
+                                      "nome":"Treinador"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "500": {
+                      "description": "ERROR"
+                  },
+                  "200": {
+                      "description": "OK",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "$ref": "#/components/schemas/Funcao"
+                              }
+                          }
+                      }
+
+                  }
+
+              }
+          }
+      },
+      "/treinador/avaliacoes/{avaliacao_id}": {
+          "put": {
+              "summary": "Editar Avaliação",
+              "description": "Este pedido serve para atualizar uma avaliação",
+              "parameters": [{
+                      "name": "avaliacao_id",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+
+                  }
+              ],
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/Avaliacao"
+                          },
+                          "examples": {
+                              "Avaliacao": {
+                                  "value": {
+                                      "data": "2022-03-30",
+                                      "peso": 55,
+                                      "unidade_peso": "kg",
+                                      "musculo": 80,
+                                      "gordura_corporal": 1,
+                                      "gordura_visceral": 1,
+                                      "agua": 30,
+                                      "proteina":20,
+                                      "massa_ossea":10,
+                                      "metabolismo_basal":1600
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "500": {
+                      "description": "ERROR"
+
+                  },
+                  "404": {
+                      "description": "Not Found"
+                  },
+                  "200": {
+                      "description": "OK",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "$ref": "#/components/schemas/Avaliacao"
+                              }
+                          }
+                      }
+
+                  }
+
+              }
+
+          },
+          "delete": {
+              "summary": "Apagar Avaliação",
+              "description": "Este pedido serve para apagar uma avaliação",
+              "parameters": [{
+                      "name": "avaliacao_id",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+
+                  }
+              ],
+              "responses": {
+                  "500": {
+                      "description": "ERROR"
+                  },
+                  "404": {
+                      "description": "Not Found"
+                  },
+                  "200": {
+                      "description": "OK",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "$ref": "#/components/schemas/Avaliacao"
+                              }
+                          }
+                      }
+
+                  }
+
+              }
+          }
+      },
+      "/backend/cp":{
+          "post":{
+              "summary": "Registo de localidades",
+              "description": "Esta rota vai registar na base de dados localidades",
+              "tags": ["Backend"],
+              "requestBody":{
+                  "content":{
+                      "application/json":{
+                          "schema":{
+                              "properties": {
+                                  "cp":{
+                                      "type": "number"
+                                  },
+                                  "cpExt":{
+                                      "type": "number"
+                                  },
+                                  "rua":{
+                                      "type": "string"
+                                  },
+                                  "localidade":{
+                                      "type": "string"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "Inserir Localidade":{
+                                  "value": {
+                                      "cp":4905,
+                                      "cpExt":515,
+                                      "rua":"Rua Campo do Tio Joao",
+                                      "localidade":"Viana do Castelo"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "500":{
+                      "description": "ERROR"  
+                  },
+                  "200":{
+                      "description": "OK",
+                      "content": {
+                          "application/json":{
+                              "schema":{
+                                  "properties": {
+                                      "msg":{
+                                          "type": "string"
+                                      }
+                                  }
+                              },
+                              "examples": {
+                                  "Inserir Localidade":{
+                                      "value":{
+                                          "msg":"Localidade inserida com sucesso"
+                                      }
+                                  }
+                              }
+                          }
+                      }
+
+                  }
+                  
+              }
+          }
+      },
+      "/admin/ginasio/{ginasio_id}/desafio":{
+          "post": {
+              "summary": "Criar Desafio",
+              "description": "Este pedido serve para criar um desafio",
+              "tags": ["Admin"],
+              "parameters": [{
+                      "name": "ginasioId",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                  }
+              ],
+              "requestBody":{
+                  "content":{
+                      "application/json":{
+                          "schema":{
+                              "properties": {
+                                  "criadorId":{
+                                      "type": "string"
+                                  },
+                                  "nome":{
+                                      "type": "string"
+                                  },
+                                  "modalidadeId":{
+                                      "type": "string"
+                                  },
+                                  "dataInicio":{
+                                      "type": "string"
+                                  },
+                                  "dataFim":{
+                                      "type": "string"
+                                  },
+                                  "recompensa":{
+                                      "type": "number"
+                                  },
+                                  "estado":{
+                                      "type": "number"
+                                  },
+                                  "descricao":{
+                                      "type": "string"
+                                  },
+                                  "exercicios": {
+                                      "type": "array",
+                                      "items": {
+                                          "type": "object",
+                                          "$ref":"#/components/schemas/Exercicio"
+                                      }
+                          
+                                  },
+                                  "regras": {
+                                      "type": "array",
+                                      "items": {
+                                          "type": "string"
+                                      }
+                          
+                                  }
+                                  
+                              }
+                          },
+                          "examples": {
+                              "Desafio": {
+                                  "value": {
+                                      "criador_id": "6202549c-4fda-46cd-afcd-65160b577baf",
+                                      "nome": "Caminhar",
+                                      "modalidade_id": "bf918680-0e2c-44ff-a2aa-744c855c25ca",
+                                      "data_inicio": "2022-03-23",
+                                      "data_fim": "2022-03-24",
+                                      "recompensa": 100,
+                                      "estado": 2,
+                                      "descricao": 2,
+                                      "regras": [
+                                          {
+                                              "descricao": "1"
+                                          }
+                                      ],
+                                      "exercicios":[
+                                          {
+                                              "n_ordem_exercicio": 1,
+                                              "exercicio_id":"",
+                                              "genero":1,
+                                              "series":[
+                                                  {
+                                                      "n_ordem_serie": 1,
+                                                      "repeticoes": 5,
+                                                      "peso": 100, 
+                                                      "unidade_medida": "kg"
+                                                  }
+                                              ]
+                                          }
+                                      ]
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "500": {
+                      "description": "ERROR"
+
+                  },
+                  "404": {
+                      "description": "Not Found"
+                  },
+                  "200": {
+                      "description": "OK",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "$ref": "#/components/schemas/Desafio"
+                              }
+                          }
+                      }
+
+                  }
+
+              }
+          }           
+      }
+  },
+  "components": {
+      "schemas": {
+          "Funcao": {
+              "type": "object",
+              "properties": {
+                  "funcao_id":{
+                      "type": "string"
+                  },
+                  "descricao":{
+                      "type": "string"
+                  }
+              }
+          },
+          "Serie":{
+              "type": "object",
+              "properties": {
+                  "nOrdem": {
+                      "type": "number"
+                  },
+                  "repeticoes": {
+                      "type": "number"
+                  },
+                  "peso": {
+                      "type": "number"
+                  },
+                  "unidadeMedida": {
+                      "type": "string"
+                  }
+              }
+          },
+          "Exercicio": {
+              "type": "object",
+              "properties": {
+                  "exercicioId":{
+                      "type": "string"
+                  },
+                  "nOrdem":{
+                      "type": "number"
+                  },
+                  "series": {
+                      "type": "array",
+                      "items": {
+                          "type": "object",
+                          "$ref": "#/components/schemas/Serie"
+                      }
+                  }
+              }
+          },
+          "Desafio": {
+              "type": "object",
+              "properties": {
+                  "desafioId":{
+                      "type": "string"
+                  },
+                  "criadorId":{
+                      "type": "string"
+                  },
+                  "nome":{
+                      "type": "string"
+                  },
+                  "modalidadeId":{
+                      "type": "string"
+                  },
+                  "dataInicio":{
+                      "type": "string"
+                  },
+                  "dataFim":{
+                      "type": "string"
+                  },
+                  "recompensa":{
+                      "type": "number"
+                  },
+                  "estado":{
+                      "type": "number"
+                  },
+                  "descricao":{
+                      "type": "string"
+                  },
+                  "exercicios":{
+                      "type": "array",
+                      "items": {
+                          "type": "object",
+                          "$ref":"#/components/schemas/Exercicio"
+                      }
+                  },           
+                  "regras": {
+                      "type": "array",
+                      "items": {
+                          "type": "string"
+                      }           
+                  }
+              }
+          }
+      }
+  }
+}

@@ -4,10 +4,10 @@ import { RegistarFuncoesService } from "../../services/backend/registarFuncoesSe
 export class RegistarFuncoesController{
 
     async handle(request:Request, response:Response){
-        let {funcao} = request.body;
+        let {nome} = request.body;
 
         const registarFuncoesService = new RegistarFuncoesService();
-        const resp = await registarFuncoesService.execute(funcao);
+        const resp = await registarFuncoesService.execute(nome);
 
         response.json(resp)
     }
