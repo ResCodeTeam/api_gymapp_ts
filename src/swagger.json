@@ -858,7 +858,7 @@
                 }
             }           
         },
-        "/all/posts":{
+        "/posts":{
                 "get":{
                     "summary": "Ver posts",
                     "description": "Esta rota vai apresentar todos os posts",
@@ -994,7 +994,7 @@
                 }
             }
         },
-        "/all/posts/{post_id}/gostos":{
+        "/posts/{post_id}/gostos":{
             
                 "post":{
                     "summary": "Adicionar gosto a uma publicação",
@@ -1046,7 +1046,7 @@
                                     "examples": {
                                         "Criar Gosto":{
                                             "value":{
-                                                "treinador": {
+                                                "Gostos": {
                                                     "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
                                                     "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
                                                     "criador_id": "cd948b87-6860-4844-af7a-6df37278732d"
