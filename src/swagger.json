@@ -885,16 +885,20 @@
                             "content": {
                                 "application/json":{
                                     "schema":{
-                                        "properties": {
-                                            "msg":{
-                                                "type": "string"
-                                            }
-                                        }
+                                        "type": "object",
+                                        "$ref": "#/components/schemas/Posts"
                                     },
                                     "examples": {
                                         "Ver Posts":{
                                             "value":{
-                                                "msg":"Posts"
+                                                "post": {
+                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                                    "criador_id": "919dc8c8-9828-4b13-b0e7-9b88fe587297",
+                                                    "data": "2002-04-09T00:00:00.000Z",
+                                                    "descricao": "Levantamento de peso",
+                                                    "tipo": "1",
+                                                    "imagens_publicacao":"imagens/9dc8c8-98",
+                                                    "gostos_publicacao":"300"
                                             }
                                         }
                                     }
@@ -1120,6 +1124,32 @@
                     },
                     "isDeleted":{
                         "type": "string"
+                    }
+                }
+            },
+            "Posts":{
+                "type": "object",
+                "properties": {
+                    "publicacao_id":{
+                        "type": "string"
+                    },
+                    "criador_id":{
+                        "type": "string"
+                    },
+                    "data":{
+                        "type": "string"
+                    },
+                    "descricao":{
+                        "type": "string"
+                    },
+                    "tipo":{
+                        "type": "number"
+                    },
+                    "imagens_publicacao":{
+                        "type": "string"
+                    },
+                    "gostos_publicacao":{
+                        "type": "number"
                     }
                 }
             }
