@@ -23,6 +23,10 @@
             "description":"API de produção server 2"
         },
         {
+            "url": "https://apigymapp-s.herokuapp.com/api/v1",
+            "description":"API de produção server 3"
+        },
+        {
             "url": "https://apigymapp-h.herokuapp.com/api/v1",
             "description":"API de produção server 4"
         }
@@ -80,7 +84,7 @@
                         }
 
                     }
-                    
+
                 }
             }
         },
@@ -1074,6 +1078,6 @@
                 }
             }
         }
-    }    
+    }
 
 }
