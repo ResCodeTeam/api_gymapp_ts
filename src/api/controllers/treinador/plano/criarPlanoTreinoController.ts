@@ -1,4 +1,4 @@
-import { Request, Response} from "express";
+ import { Request, Response} from "express";
 import { CriarPlanoTreinoService } from "../../../services/treinador/plano/criarPlanoTreinoService";
 
 export class CriarPlanoTreinoController{
