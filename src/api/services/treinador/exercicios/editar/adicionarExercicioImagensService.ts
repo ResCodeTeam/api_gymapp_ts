@@ -4,13 +4,11 @@ import { client } from "../../../../prisma/client";
 interface IEditarImagensExercicio{
   exercicioId:string,
   treinadorId:string,
-  nome:string,
-  descricao:string,
-  isTempo:boolean
+  url:string,
 }
 
-export class EditarExerciciosImagensService{
-  async execute({exercicioId,treinadorId,nome, descricao, isTempo}:IEditarImagensExercicio){
+export class AdicionarExerciciosImagensService{
+  async execute({exercicioId,treinadorId, url}:IEditarImagensExercicio){
     const existsExercicio= await checkExercicioExists(exercicioId);
     if(!existsExercicio){
       throw new Error("Exercicio não existe")
@@ -26,17 +24,13 @@ export class EditarExerciciosImagensService{
       throw new Error("Não possui permissões")
     }
 
-    const exercicio = await client.exercicios.update({
-      where:{
-        exercicio_id:exercicioId
-      },
+    const imagem = await client.exercicios_imagens.create({
       data:{
-        nome,
-        descricao,
-        is_tempo:isTempo
+        url,
+        exercicio_id:exercicioId
       }
     })
 
-    return {exercicio}
+    return {imagem}
   }
 }

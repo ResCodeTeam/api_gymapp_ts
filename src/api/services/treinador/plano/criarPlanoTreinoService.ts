@@ -1,5 +1,5 @@
 import { client } from "../../../prisma/client";
-import { checkUserIdExists, checkModalidadeExists } from "../../../helpers/dbHelpers";
+import { checkUserIdExists, checkModalidadeExists, checkExercicioExists } from "../../../helpers/dbHelpers";
 import { Bloco } from "../../../Providers/blocoProvider";
 
 
@@ -9,11 +9,11 @@ interface IPlano{
     treinador_id : string;
     data : string;
     modalidade_id : string;
-    bloco: Array<Bloco>;
+    blocos: Array<Bloco>;
 }
 
 export class CriarPlanoTreinoService{
-    async execute({plano_treino_id, aluno_id, treinador_id, data, modalidade_id, bloco}: IPlano) {
+    async execute({plano_treino_id, aluno_id, treinador_id, data, modalidade_id, blocos}: IPlano) {
 
         const exists_aluno = await checkUserIdExists(aluno_id);
         if (!exists_aluno) {
@@ -40,13 +40,43 @@ export class CriarPlanoTreinoService{
             },
         });
 
-        /*for (let i = 0; i < bloco.length; i++){
-            await client.bloco_treino.create({
-                data:{ //desafio_id: desafio["dataValues"]["desafio_id"],
-                bloco_id_id: plano.blocoId,
-                descricao: },
+        // Percorrer cada bloco
+        for (let i = 0; i < blocos.length; i++) {
+            const bloco = await client.bloco_treino.create({
+                data:{
+                bloco_id: plano.blocoId,
+                plano_treino_id: blocos[i].planoTreinoId,
+                nome : blocos[i].nome,
+                descricao: blocos[i].descricao
+                },
             });
-        }*/
-        // Incompleto
-
-//     
+            // Percorrer cada exercicio do bloco
+            const exercicios = blocos[i].exercicios
+            for(let j = 0; j<exercicios.length; j++) {
+                const exr = await client.exercicios_bloco.create({
+                    data:{
+                    bloco_id: bloco.blocoId,
+                    exercicio_id:exercicios[j].exercicioId,
+                    n_ordem_exercicio: exercicios[j].nOrdem
+                    },
+                });
+                //Percorre as séries de cada exericio
+                const series = exercicios[i].series
+                for(let y = 0; y<series.length; y++) {
+                    await client.series_exercicio.create({
+                        data:{
+                        exercicio_bloco_id: exr.exercicioBlocoId,
+                        n_ordem_serie: series[y].nOrdem,
+                        valor: series[y].valor,
+                        peso: series[y].peso,
+                        unidade_medida: series[y].unidadMedida,
+                        },
+                    });
+                }
+            }
+        }
+        return {
+            msg: "O plano de treino foi criado com sucesso!",
+        };
+    }
+}

@@ -4,10 +4,10 @@ import { CriarPlanoTreinoService } from "../../../services/treinador/plano/criar
 export class CriarPlanoTreinoController{
     async handle(request : Request, response : Response) {
         const plano_treino_id = request.params.id;
-        const { aluno_id, treinador_id, data, modalidade_id, bloco } = request.body;
+        const { aluno_id, treinador_id, data, modalidade_id, blocos } = request.body;
 
         const criarPlanoTreinoService = new CriarPlanoTreinoService();
-        const resp = await criarPlanoTreinoService.execute({ plano_treino_id, aluno_id, treinador_id, data, modalidade_id, bloco });
+        const resp = await criarPlanoTreinoService.execute({ plano_treino_id, aluno_id, treinador_id, data, modalidade_id, blocos });
         response.json(resp);
     }
 }
