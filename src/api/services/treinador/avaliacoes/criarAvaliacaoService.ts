@@ -1,5 +1,6 @@
 import { checkUserIdExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
+import { Medida } from "../../../Providers/medidaProvider";
 
 interface ICriarAvaliacaoService{
     alunoId:string,
@@ -15,7 +16,7 @@ interface ICriarAvaliacaoService{
     massaOssea:number,
     metabolismoBasal:number,
     imagens: Array<string>,
-    medidas: Array<medidas>
+    medidas: Array<Medida>
   }
 
   export class CriarAvaliacaoService{
