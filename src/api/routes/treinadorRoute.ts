@@ -44,6 +44,7 @@ const criarAvaliacaoController =new CriarAvaliacaoController();
 
 const removerExercicioController = new RemoverExercicioController();
 const criarExercicioController = new CriarExercicioController();
+const editarExercicioImagensController = new EditarExerciciosImagensController();
 // const editarExercicioController = new EditarExercicioController();
 const editarExercicioController = new EditarExercicioController();
 

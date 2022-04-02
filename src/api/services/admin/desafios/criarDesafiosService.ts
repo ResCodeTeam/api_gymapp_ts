@@ -49,7 +49,6 @@ class CriarDesafiosService {
                 descricao,
             }, 
         });
-        console.log(desafio.desafio_id);
 
         // para preencher a tabela regras com as suas informações
         for (let i = 0; i < regras.length; i++){
