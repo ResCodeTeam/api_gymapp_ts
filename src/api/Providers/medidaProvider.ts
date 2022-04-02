@@ -1,4 +1,4 @@
-class medidas{
+export class Medida{
     avaliacaoId:string;
     medida:string;
     unidadeMedida:string;
