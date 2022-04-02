@@ -1,5 +1,7 @@
 import { client } from "../../../prisma/client";
 import { checkUserIdExists, checkModalidadeExists } from "../../../helpers/dbHelpers";
+import { Bloco } from "../../../Providers/blocoProvider";
+
 
 interface IPlano{
     plano_treino_id : string;
@@ -7,7 +9,7 @@ interface IPlano{
     treinador_id : string;
     data : string;
     modalidade_id : string;
-    bloco: string
+    bloco: Array<Bloco>;
 }
 
 export class CriarPlanoTreinoService{
@@ -38,8 +40,13 @@ export class CriarPlanoTreinoService{
             },
         });
 
-        console.log(plano);
-
+        /*for (let i = 0; i < bloco.length; i++){
+            await client.bloco_treino.create({
+                data:{ //desafio_id: desafio["dataValues"]["desafio_id"],
+                bloco_id_id: plano.blocoId,
+                descricao: },
+            });
+        }*/
         // Incompleto
 
 //     
