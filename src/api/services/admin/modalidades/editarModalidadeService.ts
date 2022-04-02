@@ -1,30 +1,33 @@
 import { client } from "../../../prisma/client";
 import { checkModalidadeExists } from "../../../helpers/dbHelpers";
+import { NOMEM } from "dns";
 
 
 interface IEditarModalidades{
-
-    modalidade_id: string
+    
+  modalidadeId: string,
+    imagemUrl: string,
+    nome:string,
 }
 
-class EditarModalidadesService {
-  async execute(modalidadeId: string) {
-    const exists_dst = await checkModalidadeExists(modalidadeId);
-    if (!exists_dst) {
-      throw new Error("A modalidade não existe");
-    }
+export class EditarModalidadesService {
+  async execute({imagemUrl, nome,modalidadeId} : IEditarModalidades) {
+      const editarModalidades = await client.modalidades_ginasio.updateMany({
+          where : {
+              modalidade_id:modalidadeId
+          },
+          data : {
+              modalidade_id:modalidadeId,
+              imagem_url:imagemUrl,
+              nome:nome
+          }
+      })
 
-    client.modalidades_ginasio.update({
-      where: { modalidade_id: modalidadeId },
-      data: {
-          modalidade_id: modalidadeId
-      },
-    });
-
-    return {
-      msg: "Modalidade removida com sucesso",
-    };
+  
+      return {
+          message:"Notificação alterada com sucesso",
+          
+        };
+      
   }
 }
-
-export { EditarModalidadesService };

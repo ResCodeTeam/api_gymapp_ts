@@ -1833,7 +1833,98 @@
                     }
                 }
             }
-        }
+        },
+        "/treinador/{treinadorId}/exercicios/{exercicioId}/imagens":{
+            "post":{
+                "summary": "Editar imagens de exercicio",
+                "description": "Esta rota permite efetuar o registo de um aluno numa marca ou ginasio",
+                "tags": ["Admin | Marca"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "dataNasc":{
+                                        "type":"string"
+                                    },
+                                    "dataEntrada":{
+                                        "type": "string"
+                                    },
+                                    "genero":{
+                                        "type":"number"
+                                    },
+                                    "ginasioId":{
+                                        "type":"string"
+                                    }
+                                    
+                                }
+                            },
+                            "examples": {
+                                "Registar Admin":{
+                                    "value":{
+                                        "email":"aluno1@aluno.com",
+                                        "nome":"aluno1",
+                                        "password":"aluno",
+                                        "dataNasc":"2002-04-09",
+                                        "dataEntrada":"2022-03-23",
+                                        "genero":0,
+                                        "ginasioId":"0cc5561e-cdb0-4ac0-982a-a9132997527a"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                },
+                                "examples": {
+                                    "Registar Treinador":{
+                                        "value": {
+                                            "aluno": {
+                                                "uid": "07c6127e-da68-4319-adec-65de3df7550d",
+                                                "email": "aluno1@aluno.com",
+                                                "nome": "aluno teste",
+                                                "password": "$2b$08$dBT8qvPm6UIKi7FXdSmA/ewliBMzw3LMp6fS8zDXfvXuyyktHj7/y",
+                                                "data_nasc": "2002-04-09T00:00:00.000Z",
+                                                "hashtag": "at_01",
+                                                "data_entrada": "2022-03-23T00:00:00.000Z",
+                                                "funcao_id": "6498274e-d7db-4e7d-81fe-c38f044deef6",
+                                                "refresh_token": null,
+                                                "genero": 0,
+                                                "pontos": 0,
+                                                "descricao": null,
+                                                "imagem_url": null,
+                                                "estado": 1,
+                                                "isDeleted": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
     },
     "components": {
         "schemas": {
