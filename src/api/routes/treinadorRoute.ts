@@ -19,7 +19,7 @@ import { RemoverExercicioController } from "../controllers/treinador/Exercicios/
 import { CriarExercicioController } from "../controllers/treinador/Exercicios/criarExercicioController";
 import { CriarAvaliacaoService } from "../services/treinador/avaliacoes/criarAvaliacaoService";
 import { CriarAvaliacaoController } from "../controllers/treinador/avaliacoes/criarAvaliacaoController";
-import { EditarExercicioController } from "../controllers/treinador/Exercicios/editarExercicioController"
+import { EditarExercicioController } from "../controllers/treinador/Exercicios/editar/editarExercicioController"
 
 //import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
 
@@ -44,7 +44,7 @@ const criarAvaliacaoController =new CriarAvaliacaoController();
 
 const removerExercicioController = new RemoverExercicioController();
 const criarExercicioController = new CriarExercicioController();
-const editarExercicioImagensController = new EditarExerciciosImagensController();
+// const editarExercicioImagensController = new EditarExerciciosImagensController();
 // const editarExercicioController = new EditarExercicioController();
 const editarExercicioController = new EditarExercicioController();
 
