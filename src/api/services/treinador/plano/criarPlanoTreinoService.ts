@@ -40,13 +40,13 @@ export class CriarPlanoTreinoService{
             },
         });
 
-        for (let i = 0; i < bloco.length; i++){
+        /*for (let i = 0; i < bloco.length; i++){
             await client.bloco_treino.create({
                 data:{ //desafio_id: desafio["dataValues"]["desafio_id"],
                 bloco_id_id: plano.blocoId,
-                descricao: }, 
+                descricao: },
             });
-        }
+        }*/
         // Incompleto
 
     }
