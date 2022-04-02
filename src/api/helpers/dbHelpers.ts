@@ -254,6 +254,17 @@ let formatFullDate = async (data : Date) => {
     console.log(s.name);
 
     return s;
+    
+}
+
+let checkAutorExercicio = async(treinadorId, exercicioId)=>{
+    const exercicio = await client.exercicios.findMany({
+        where:{
+            autor_id:treinadorId,
+            exercicio_id:exercicioId
+        }
+    })
+    return exercicio.length != 0
 }
 
 export {
@@ -276,6 +287,7 @@ export {
     formatDateHour,
     formatFullDate,
     checkMobilidadeMarcaUser,
-    checkDesafioIdExists
+    checkDesafioIdExists,
+    checkAutorExercicio
 }
 
