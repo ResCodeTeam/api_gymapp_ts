@@ -32,7 +32,6 @@ import { VerDesafiosParticipantesController } from "../controllers/admin/desafio
 import { RemoverMarcaController } from "../controllers/admin/marcas/removerMarcaController";
 import { RegistarTreinadorController } from "../controllers/admin/treinadores/registarTreinadorController";
 import { CriarNotificacaoUserController } from "../controllers/admin/notificacoes/criarNotificacaoUserController";
-import { EditarModalidadesService } from "../services/admin/modalidades/editarModalidadeService";
 import { EditarModalidadesController } from "../controllers/admin/modalidades/editarModalidadeController";
 
 
