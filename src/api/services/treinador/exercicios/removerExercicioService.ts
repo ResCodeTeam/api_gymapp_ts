@@ -21,7 +21,7 @@ export class RemoverExercicioService{
                 }
             })
         }
-        else throw new Error ("ERRO! O exercício não lhe pertence")
+        else throw new Error ("O exercício não lhe pertence")
         return {
             msg: "O exercício foi removido com sucesso",
         };

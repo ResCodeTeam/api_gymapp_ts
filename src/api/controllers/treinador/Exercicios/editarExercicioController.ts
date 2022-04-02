@@ -1,38 +1,15 @@
 import { Request, Response } from "express";
-import { EditarAvaliacaoService } from "../../../services/treinador/avaliacoes/editarAvaliacoesService";
+import { EditarExercicioService } from "../../../services/treinador/exercicios/editarExercicioService";
 
 
-export class EditarAvaliacaoController {
+export class EditarExercicioController {
     async handle(request: Request, response: Response) {
         //Declarar Serviço
-        const editarAvaliacaoService = new EditarAvaliacaoService()
-
-        //Pedir request.body (Request)
-        const data = {
-            data: new Date(request.body.data),
-            peso: request.body.peso,
-            unidade_peso: request.body.unidade_peso,
-            musculo: request.body.musculo,
-            gordura_corporal: request.body.gordura_corporal,
-            gordura_visceral: request.body.gordura_visceral,
-            agua: request.body.agua,
-            proteina: request.body.proteina,
-            massa_ossea: request.body.massa_ossea,
-            metabolismo_basal: request.body.metabolismo_basal,
-        }
-
-        //Avaliação ID por parametro
-        const avaliacao_id = request.params.id;
-
-        //Utilizar Serviço criado
-        const resp = await editarAvaliacaoService.execute(data,avaliacao_id)
-
-        //Enviar Resposta
-        if(resp == "404"){
-            response.status(404).json("Não existe avaliação com o id fornecido")
-        }
+        const exercicioId = request.params.exercicios_id
+        const autorId = request.params.id
+        
+        const editarExercicioService = new EditarExercicioService()
+        const resp = await editarExercicioService = await editarExercicioService.execute(exercicioId, autorId);
         response.json(resp)
-
-
     }
 }
