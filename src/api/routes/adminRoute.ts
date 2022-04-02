@@ -24,7 +24,6 @@ import { CriarNotificacaoMarcaController } from "../controllers/admin/notificaco
 import { CriarNotificacaoGinasioController } from "../controllers/admin/notificacoes/criarNotificacaoGinasioController";
 import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController";
 import { RemoverDesafiosController } from "../controllers/admin/desafios/removerDesafiosController";
-import { EditarModalidadesController } from "../controllers/admin/modalidades/editarModalidadeController";
 import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlunoController";
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
 import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
@@ -33,6 +32,8 @@ import { VerDesafiosParticipantesController } from "../controllers/admin/desafio
 import { RemoverMarcaController } from "../controllers/admin/marcas/removerMarcaController";
 import { RegistarTreinadorController } from "../controllers/admin/treinadores/registarTreinadorController";
 import { CriarNotificacaoUserController } from "../controllers/admin/notificacoes/criarNotificacaoUserController";
+import { EditarModalidadesService } from "../services/admin/modalidades/editarModalidadeService";
+import { EditarModalidadesController } from "../controllers/admin/modalidades/editarModalidadeController";
 
 
 
@@ -96,7 +97,8 @@ adminRouter.delete("/marca/:id", removerMarcaController.handle);
 //#region Modalidades
 adminRouter.post("/ginasio/:id/modalidades", criarGinasioModalidadesController.handle);
 adminRouter.delete("/modalidades/:id", removerModalidadesController.handle);
-adminRouter.delete("/modalidades", editarModalidadesController.handle);
+//adminRouter.delete("/modalidades", editarModalidadesController.handle);
+adminRouter.put("/modalidades/:id", editarModalidadesController.handle);
 //#endregion
 
 //#region Notificacoes
