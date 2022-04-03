@@ -655,6 +655,91 @@
                         }
                     }          
                 }
+            },
+            "put":{
+                "summary": "Editar exercicios",
+                "description": "Esta rota vai editar na base de dados um exercicio",
+                "tags": ["Treinador | Exercicios"],
+                "parameters": [{
+                    "name": "exercicioId",
+                    "in": "path",
+                    "description": "Id do exercicio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "modalidadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "autorId",
+                    "in": "path",
+                    "description": "Id do autor",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "autorId":{
+                                "type":"string"
+                            }
+                        }
+                    }}
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "isTempo":{
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Exercicio":{
+                                    "value":{
+                                        "nome":"Teste1",
+                                        "descricao":"Teste2",
+                                        "isTempo":true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Modalidade":{
+                                        "value":{
+                                            "msg":"Exercicio editado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
         },
         "/treinador/avaliacoes/{avaliacao_id}": {

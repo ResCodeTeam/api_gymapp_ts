@@ -22,7 +22,7 @@ import { verificarAdmin } from "../middlewares/verificarAdmin";
 //import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { CriarNotificacaoMarcaController } from "../controllers/admin/notificacoes/criarNotificacaoMarcaController";
 import { CriarNotificacaoGinasioController } from "../controllers/admin/notificacoes/criarNotificacaoGinasioController";
-import { ObterAlunosGinasioController } from "../controllers/admin/alunos/obterAlunosGinasioController";
+import { ObterAlunosGinasioController } from "../controllers/adminTreinador/alunos/obterAlunosGinasioController";
 import { RemoverDesafiosController } from "../controllers/admin/desafios/removerDesafiosController";
 import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlunoController";
 import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";

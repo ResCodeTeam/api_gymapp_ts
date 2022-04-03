@@ -35,7 +35,7 @@ class CriarDesafiosService {
         if (!exists_modalidade) {
             throw new Error("A modalidade não existe");
         }
-        
+
         const desafio = await client.desafios.create({
             data:{
                 ginasio_id: ginasioId,

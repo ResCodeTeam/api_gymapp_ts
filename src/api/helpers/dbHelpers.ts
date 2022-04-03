@@ -98,7 +98,7 @@ let checkModalidadeExists= async(modalidadeId : string) => {
     const search = await client.modalidades_ginasio.findMany({
         where:{
             modalidade_id : modalidadeId,
-            isDeleted: false
+            isDeleted : false
         }
     })
     return search.length != 0;
@@ -131,7 +131,7 @@ let getMarcaGym= async(ginasioId : string) => {
     return marca;
 }
 let checkDonoGinasio= async(ginasioId : string, donoId : string) => {
-    const search_admin = await client.ginasio.findFirst({
+    const searchAdmin = await client.ginasio.findFirst({
         where:{
             ginasio_id : ginasioId
         },
@@ -145,7 +145,7 @@ let checkDonoGinasio= async(ginasioId : string, donoId : string) => {
         }
     })
 
-    if (search_admin?.marcas.dono_id != donoId) {
+    if (searchAdmin?.marcas.dono_id != donoId) {
         throw new Error (`Não tem permissões`)
     }
 
@@ -267,6 +267,30 @@ let checkAutorExercicio = async(treinadorId, exercicioId)=>{
     return exercicio.length != 0
 }
 
+let checkTreinadorGinasio= async(ginasioId : string, treinadorId : string) => {
+    const searchMarca = await client.ginasio.findUnique({
+        where:{
+            ginasio_id : ginasioId
+        },
+        select : {
+            marca_id : true
+        }
+    })
+
+    const searchTreinador = await client.treinadores_marca.findMany({
+        where : {
+            marca_id : searchMarca.marca_id,
+            treinador_uid : treinadorId
+        }
+    })
+
+    if (!searchTreinador) {
+        throw new Error (`Não tem permissões`)
+    }
+
+    return true;
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -288,6 +312,7 @@ export {
     formatFullDate,
     checkMobilidadeMarcaUser,
     checkDesafioIdExists,
-    checkAutorExercicio
+    checkAutorExercicio,
+    checkTreinadorGinasio
 }
 
