@@ -60,7 +60,7 @@ treinadorRouter.delete("/:id/exercicios/:exercicios_id/", removerExercicioContro
 treinadorRouter.post("/exercicios/", criarExercicioController.handle);
 treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
 treinadorRouter.put("/:treinadorId/exercicios/:exercicioId/imagens",adicionarExercicioImagensController.handle)
-//treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
+treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
 //#endregion
 
 //#region Treinos
