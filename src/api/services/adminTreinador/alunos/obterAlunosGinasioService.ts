@@ -1,5 +1,5 @@
 import { Interface } from "readline";
-import { checkDonoGinasio, checkGinasioExists } from "../../../helpers/dbHelpers";
+import { checkDonoGinasio, checkGinasioExists, checkTreinadorGinasio } from "../../../helpers/dbHelpers";
 
 import { client } from '../../../prisma/client';
 
@@ -17,9 +17,13 @@ export class ObterAlunosGinasioService {
         }
 
         const checkDono = await checkDonoGinasio(ginasioId, userId);
-        if (!checkDono) {
+        const checkTreinador = await checkTreinadorGinasio(ginasioId, userId);
+
+        if (!checkDono && !checkTreinador) {
             throw new Error(`Não pode aceder a esse ginásio`);
         }
+
+        
 
         let users = [];
         const alunos = await client.aluno_ginasio.findMany({

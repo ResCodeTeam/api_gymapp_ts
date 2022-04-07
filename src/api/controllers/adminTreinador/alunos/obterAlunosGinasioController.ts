@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ObterAlunosGinasioService } from "../../../services/admin/alunos/obterAlunosGinasioService";
+import { ObterAlunosGinasioService } from "../../../services/adminTreinador/alunos/obterAlunosGinasioService";
 
 export class ObterAlunosGinasioController{
     async handle(request : Request, response :Response){

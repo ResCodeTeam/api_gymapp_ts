@@ -655,6 +655,91 @@
                         }
                     }          
                 }
+            },
+            "put":{
+                "summary": "Editar exercicios",
+                "description": "Esta rota vai editar na base de dados um exercicio",
+                "tags": ["Treinador | Exercicios"],
+                "parameters": [{
+                    "name": "exercicioId",
+                    "in": "path",
+                    "description": "Id do exercicio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "modalidadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "autorId",
+                    "in": "path",
+                    "description": "Id do autor",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "autorId":{
+                                "type":"string"
+                            }
+                        }
+                    }}
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "isTempo":{
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Exercicio":{
+                                    "value":{
+                                        "nome":"Teste1",
+                                        "descricao":"Teste2",
+                                        "isTempo":true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Modalidade":{
+                                        "value":{
+                                            "msg":"Exercicio editado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
         },
         "/treinador/avaliacoes/{avaliacao_id}": {
@@ -1739,6 +1824,70 @@
                                                 "imagem_url": null,
                                                 "estado": 1,
                                                 "isDeleted": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/treinador/{treinadorId}/exercicios/{exercicioId}/imagens":{
+            "post":{
+                "summary": "Editar imagens de exercicio",
+                "description": "Esta rota permite adicionar uma imagem a um exercicio",
+                "tags": ["Treinador | Exercicios"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "url":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Adicionar Imagem":{
+                                    "value":{
+                                        "email":"https://urlimagem.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "imagem_id":{
+                                            "type": "string"
+                                        },
+                                        "exercicio_id":{
+                                            "type": "string"
+                                        },
+                                        "url":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Adicionar Treinador":{
+                                        "value": {
+                                            "aluno": {
+                                                "imagem_id": "07c6127e-da68-4319-adec-65de3df7550d",
+                                                "exercicio_id": "07c6127e-da68-4319-adec-65de3df7550d",
+                                                "url": "https://urlimagem.com"
                                             }
                                         }
                                     }
