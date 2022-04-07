@@ -12,7 +12,7 @@ interface IEditarPerfil{
     funcaoId: String,
     genero: number,
     pontos: number,
-    descricao: String,
+    descricao: string,
     estado:number,
     imagemUrl: string  
 }
@@ -34,7 +34,7 @@ export class EditarPerfilService {
     imagemUrl 
 
   } : IEditarPerfil){
-    const editarModalidades = await client.users.updateMany({
+    const editarperfil = await client.users.updateMany({
         where : {
           uid:uId
               
@@ -52,8 +52,12 @@ export class EditarPerfilService {
           imagem_url:imagemUrl
         }
     })
+    return {
+      message:"Perfil alterada com sucesso",
+      
+    };
   }
-
+}
   
 
 
