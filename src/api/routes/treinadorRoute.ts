@@ -19,13 +19,15 @@ import { RemoverExercicioController } from "../controllers/Exercicios/removerExe
 import { CriarExercicioController } from "../controllers/Exercicios/criarExercicioController";
 import { CriarAvaliacaoService } from "../services/avaliacoes/criarAvaliacaoService";
 import { CriarAvaliacaoController } from "../controllers/avaliacoes/criarAvaliacaoController";
-import { EditarExercicioController } from "../controllers/Exercicios/editar/editarExercicioController"
+
 import { AdicionarExerciciosImagensController } from "../controllers/Exercicios/editar/adicionarExerciciosImagensController";
 import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
 
 //import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
 import { EditarDesafioController } from "../controllers/desafios/EditarDesafioController";
 import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
+import { EditarExercicioController } from "../controllers/Exercicios/editarExercicioController";
+import { RemoverExercicioImagemController } from "../controllers/Exercicios/editar/removerExercicioImagemController";
 
 
 //
@@ -51,6 +53,7 @@ const criarAvaliacaoController =new CriarAvaliacaoController();
 const removerExercicioController = new RemoverExercicioController();
 const criarExercicioController = new CriarExercicioController();
 const adicionarExercicioImagensController = new AdicionarExerciciosImagensController();
+const removerExercicioImagemController = new RemoverExercicioImagemController();
 const editarExercicioController = new EditarExercicioController();
 
 //const criarPlanoTreinoController = new CriarPlanoTreinoController();
@@ -65,6 +68,7 @@ treinadorRouter.delete("/:id/exercicios/:exercicios_id/", removerExercicioContro
 treinadorRouter.post("/exercicios/", criarExercicioController.handle);
 treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
 treinadorRouter.post("/:treinadorId/exercicios/:exercicioId/imagens",adicionarExercicioImagensController.handle)
+treinadorRouter.delete("/:treinadorId/exercicios/:exercicioId/imagens/:imagemId",removerExercicioImagemController.handle)
 treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
 //#endregion
 treinadorRouter.put("/:id/perfil", editarPerfilController.handle);

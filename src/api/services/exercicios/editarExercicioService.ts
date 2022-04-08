@@ -1,5 +1,5 @@
-import { client } from "../../../prisma/client";
-import { checkExercicioExists, checkAutorExercicio } from "../../../helpers/dbHelpers";
+import { client } from "../../prisma/client";
+import { checkExercicioExists, checkAutorExercicio } from "../../helpers/dbHelpers";
 
 interface IEditarExercicio {
     exercicioId: string,
