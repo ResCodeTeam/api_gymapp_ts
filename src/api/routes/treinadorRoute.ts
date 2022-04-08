@@ -5,9 +5,9 @@ const treinadorRouter = express.Router();
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 import { CriarComentarioController } from "../controllers/treinador/comentarios/criarComentarioController";
 import { VerTodosTreinosDosAlunosController } from "../controllers/treinador/treinos/verTodosTreinosDosAlunosController";
-// import { EditarDesafioController } from "../controllers/treinador/desafios/editarDesafioController";
+
 import { RemoverDesafioController } from "../controllers/treinador/desafios/removerDesafioController";
-// import { CriarDesafioController } from "../controllers/treinador/desafios/criarDesafioController";
+
 import { VerTodosOsExerciciosTreinadoresController } from "../controllers/treinador/Exercicios/VerTodosOsExerciciosTreinadoresController";
 
 import { RemoverAvaliacaoController } from "../controllers/treinador/avaliacoes/removerAvaliacaoController";
@@ -23,16 +23,18 @@ import { EditarExercicioController } from "../controllers/treinador/Exercicios/e
 import { AdicionarExerciciosImagensController } from "../controllers/treinador/Exercicios/editar/adicionarExerciciosImagensController";
 import { EditarPerfilController } from "../controllers/all/perfil/editarPerfilController";
 
-//import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
+import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
+import { EditarDesafioController } from "../controllers/treinador/desafios/EditarDesafioController";
+import { CriarDesafiosController } from "../controllers/admin/desafios/criarDesafiosController";
 
 
 //
 const criarComentarioController = new CriarComentarioController();
 const verTodosOsExerciciosTreinadoresController = new VerTodosOsExerciciosTreinadoresController();
 const verTodosTreinosDosAlunosController = new VerTodosTreinosDosAlunosController();
-// const editarDesafio = new EditarDesafioController()
+const editarDesafio = new EditarDesafioController()
 const removerDesafio = new RemoverDesafioController()
-// const criarDesafio = new CriarDesafioController()
+const criarDesafio = new CriarDesafiosController()
 
 const editarAvaliacao = new EditarAvaliacaoController()
 const removerAvaliacao = new RemoverAvaliacaoController()
@@ -51,7 +53,7 @@ const criarExercicioController = new CriarExercicioController();
 const adicionarExercicioImagensController = new AdicionarExerciciosImagensController();
 const editarExercicioController = new EditarExercicioController();
 
-//const criarPlanoTreinoController = new CriarPlanoTreinoController();
+const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
@@ -63,7 +65,7 @@ treinadorRouter.delete("/:id/exercicios/:exercicios_id/", removerExercicioContro
 treinadorRouter.post("/exercicios/", criarExercicioController.handle);
 treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
 treinadorRouter.post("/:treinadorId/exercicios/:exercicioId/imagens",adicionarExercicioImagensController.handle)
-//treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
+treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
 //#endregion
 treinadorRouter.put("/:id/Perfil", editarPerfilController.handle);
 //#region Treinos
@@ -71,9 +73,9 @@ treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
 //#endregion
 
 //#region Desafios
-// treinadorRouter.put("/desafio/:id", editarDesafio.handle);
+treinadorRouter.put("/desafio/:id", editarDesafio.handle);
 treinadorRouter.delete("/desafio/:id", removerDesafio.handle);
-// treinadorRouter.post("/desafio/:id", criarDesafio.handle)
+treinadorRouter.post("/desafio/:id", criarDesafio.handle)
 //#endregion
 
 
@@ -90,7 +92,7 @@ treinadorRouter.post("/agenda/avaliacao/", agendarAvaliacaoController.handle);
 //#endregion
 
 //#region Plano
-//treinadorRouter.post("/plano/", criarPlanoTreinoController.handle);
+treinadorRouter.post("/plano/", criarPlanoTreinoController.handle);
 //#endregion
 
 export { treinadorRouter };
