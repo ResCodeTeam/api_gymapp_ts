@@ -1060,7 +1060,7 @@
                                                 "refresh_token": null,
                                                 "genero": 0,
                                                 "pontos": 0,
-                                                "descricao": null,
+                                                "descricao": null, 
                                                 "imagem_url": null,
                                                 "estado": 1,
                                                 "isDeleted": false
