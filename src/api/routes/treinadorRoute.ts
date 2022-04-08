@@ -3,29 +3,29 @@ const treinadorRouter = express.Router();
 
 //Imports
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
-import { CriarComentarioController } from "../controllers/treinador/comentarios/criarComentarioController";
-import { VerTodosTreinosDosAlunosController } from "../controllers/treinador/treinos/verTodosTreinosDosAlunosController";
+import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
+import { VerTodosTreinosDosAlunosController } from "../controllers/treinos/verTodosTreinosDosAlunosController";
 
-import { RemoverDesafioController } from "../controllers/treinador/desafios/removerDesafioController";
+import { RemoverDesafioController } from "../controllers/desafios/removerDesafioController";
 
-import { VerTodosOsExerciciosTreinadoresController } from "../controllers/treinador/Exercicios/VerTodosOsExerciciosTreinadoresController";
+import { VerTodosOsExerciciosTreinadoresController } from "../controllers/Exercicios/VerTodosOsExerciciosTreinadoresController";
 
-import { RemoverAvaliacaoController } from "../controllers/treinador/avaliacoes/removerAvaliacaoController";
-import { EditarAvaliacaoController } from "../controllers/treinador/avaliacoes/editarAvaliacaoController";
+import { RemoverAvaliacaoController } from "../controllers/avaliacoes/removerAvaliacaoController";
+import { EditarAvaliacaoController } from "../controllers/avaliacoes/editarAvaliacaoController";
 
-import { AgendarDesafiosController } from "../controllers/treinador/agendamentos/agendarDesafiosController";
-import { AgendarAvaliacaoController } from "../controllers/treinador/agendamentos/agendarAvaliacaoController";
-import { RemoverExercicioController } from "../controllers/treinador/Exercicios/removerExercicioController"
-import { CriarExercicioController } from "../controllers/treinador/Exercicios/criarExercicioController";
-import { CriarAvaliacaoService } from "../services/treinador/avaliacoes/criarAvaliacaoService";
-import { CriarAvaliacaoController } from "../controllers/treinador/avaliacoes/criarAvaliacaoController";
-import { EditarExercicioController } from "../controllers/treinador/Exercicios/editar/editarExercicioController"
-import { AdicionarExerciciosImagensController } from "../controllers/treinador/Exercicios/editar/adicionarExerciciosImagensController";
-import { EditarPerfilController } from "../controllers/all/perfil/editarPerfilController";
+import { AgendarDesafiosController } from "../controllers/agendamentos/agendarDesafiosController";
+import { AgendarAvaliacaoController } from "../controllers/agendamentos/agendarAvaliacaoController";
+import { RemoverExercicioController } from "../controllers/Exercicios/removerExercicioController"
+import { CriarExercicioController } from "../controllers/Exercicios/criarExercicioController";
+import { CriarAvaliacaoService } from "../services/avaliacoes/criarAvaliacaoService";
+import { CriarAvaliacaoController } from "../controllers/avaliacoes/criarAvaliacaoController";
+import { EditarExercicioController } from "../controllers/Exercicios/editar/editarExercicioController"
+import { AdicionarExerciciosImagensController } from "../controllers/Exercicios/editar/adicionarExerciciosImagensController";
+import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
 
 //import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
-import { EditarDesafioController } from "../controllers/treinador/desafios/EditarDesafioController";
-import { CriarDesafiosController } from "../controllers/admin/desafios/criarDesafiosController";
+import { EditarDesafioController } from "../controllers/desafios/EditarDesafioController";
+import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
 
 
 //

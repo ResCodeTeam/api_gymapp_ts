@@ -1,13 +1,13 @@
 import express from "express";
 
-import { CriarPostsController } from "../controllers/all/posts/criarPostsController";
-import { RemoverPostController } from "../controllers/all/posts/removerPostController";
-import { VerTodosPostsController } from "../controllers/all/posts/obter/verTodosPostsController";
-import { VerTodosPostsUserController } from "../controllers/all/posts/obter/verTodosPostsUserController";
-import { VerInfoPostController } from "../controllers/all/posts/obter/verInfoPostController";
-import { EditarPublicacaoController } from "../controllers/all/posts/editarPublicacaoController";
-import { UpdateEstadoNotificacaoController } from "../controllers/all/notificacoes/updateEstadoNotificacaoController";
-import { CriarGostoController } from "../controllers/all/gostosPosts/criarGostoController";
+import { CriarPostsController } from "../controllers/posts/criarPostsController";
+import { RemoverPostController } from "../controllers/posts/removerPostController";
+import { VerTodosPostsController } from "../controllers/posts/obter/verTodosPostsController";
+import { VerTodosPostsUserController } from "../controllers/posts/obter/verTodosPostsUserController";
+import { VerInfoPostController } from "../controllers/posts/obter/verInfoPostController";
+import { EditarPublicacaoController } from "../controllers/posts/editarPublicacaoController";
+import { UpdateEstadoNotificacaoController } from "../controllers/posts/notificacoes/updateEstadoNotificacaoController";
+import { CriarGostoController } from "../controllers/posts/gostosPosts/criarGostoController";
 
 const allRouter = express.Router();
 

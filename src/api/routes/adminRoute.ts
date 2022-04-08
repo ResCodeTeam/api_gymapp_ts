@@ -4,35 +4,35 @@ const adminRouter = express.Router();
 //middlewares
 //import verificarAutenticacao from "../middlewares/verificarAutenticacao";
 
-import { CriarPostsController } from "../controllers/all/posts/criarPostsController";
+import { CriarPostsController } from "../controllers/posts/criarPostsController";
 
 //import { CriarNotificacaoUserController } from "../controllers/admin/notificacoes/criarNotificacaoUserController";
-import { RegistarUserMarcasController } from "../controllers/admin/marcas/registarUserMarcasController";
-import { RegistarMarcaGinasiosController } from "../controllers/admin/ginasios/registarMarcaGinasiosController";
-import { CriarGinasioModalidadesController } from "../controllers/admin/modalidades/criarGinasioModalidadesController";
-import { CriarDesafiosController } from "../controllers/admin/desafios/criarDesafiosController";
-import { CriarComentarioController } from "../controllers/admin/comments/criarComentarioController";
-import { VerTodosPostsController } from "../controllers/all/posts/obter/verTodosPostsController";
-import { RemoverPostController } from "../controllers/all/posts/removerPostController";
-import { RemoverModalidadesController } from "../controllers/admin/modalidades/removerModalidadesController";
-import { EliminarTreinadorController } from "../controllers/admin/treinadores/eliminarTreinadorController";
+import { RegistarUserMarcasController } from "../controllers/marcas/registarUserMarcasController";
+import { RegistarMarcaGinasiosController } from "../controllers/ginasios/registarMarcaGinasiosController";
+import { CriarGinasioModalidadesController } from "../controllers/modalidades/criarGinasioModalidadesController";
+import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
+import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
+import { VerTodosPostsController } from "../controllers/posts/obter/verTodosPostsController";
+import { RemoverPostController } from "../controllers/posts/removerPostController";
+import { RemoverModalidadesController } from "../controllers/modalidades/removerModalidadesController";
+import { EliminarTreinadorController } from "../controllers/treinadores/eliminarTreinadorController";
 //import { CriarGostoController } from "../controllers/admin/gostosPosts/criarGostoController";
 
 import { verificarAdmin } from "../middlewares/verificarAdmin";
 //import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
-import { CriarNotificacaoMarcaController } from "../controllers/admin/notificacoes/criarNotificacaoMarcaController";
-import { CriarNotificacaoGinasioController } from "../controllers/admin/notificacoes/criarNotificacaoGinasioController";
-import { ObterAlunosGinasioController } from "../controllers/adminTreinador/alunos/obterAlunosGinasioController";
-import { RemoverDesafiosController } from "../controllers/admin/desafios/removerDesafiosController";
-import { RegistarAlunoController } from "../controllers/admin/alunos/registarAlunoController";
-import { RegistarAdminController } from "../controllers/admin/admin/registarAdminControllers";
-import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
+import { CriarNotificacaoMarcaController } from "../controllers/notificacoes/criarNotificacaoMarcaController";
+import { CriarNotificacaoGinasioController } from "../controllers/notificacoes/criarNotificacaoGinasioController";
+import { ObterAlunosGinasioController } from "../controllers/alunos/obterAlunosGinasioController";
+import { RemoverDesafioController } from "../controllers/desafios/removerDesafioController";
+import { RegistarAlunoController } from "../controllers/alunos/registarAlunoController";
+import { RegistarAdminController } from "../controllers/admin/registarAdminControllers";
+import { EncerrarDesafiosController } from "../controllers/desafios/encerrarDesafiosController";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
-import { VerDesafiosParticipantesController } from "../controllers/admin/desafios/verDesafiosParticipantesController";
-import { RemoverMarcaController } from "../controllers/admin/marcas/removerMarcaController";
-import { RegistarTreinadorController } from "../controllers/admin/treinadores/registarTreinadorController";
-import { CriarNotificacaoUserController } from "../controllers/admin/notificacoes/criarNotificacaoUserController";
-import { EditarModalidadesController } from "../controllers/admin/modalidades/editarModalidadeController";
+import { VerDesafiosParticipantesController } from "../controllers/desafios/verDesafiosParticipantesController";
+import { RemoverMarcaController } from "../controllers/marcas/removerMarcaController";
+import { RegistarTreinadorController } from "../controllers/treinadores/registarTreinadorController";
+import { CriarNotificacaoUserController } from "../controllers/notificacoes/criarNotificacaoUserController";
+import { EditarModalidadesController } from "../controllers/modalidades/editarModalidadeController";
 
 
 
@@ -49,7 +49,7 @@ const eliminarTreinadorController = new EliminarTreinadorController();
 const encerrarDesafiosController  = new EncerrarDesafiosController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
 const registarAdminController = new RegistarAdminController();
-const removerDesafiosController = new RemoverDesafiosController();
+const removerDesafioController = new RemoverDesafioController();
 const  editarModalidadesController = new EditarModalidadesController();
 
 
@@ -79,7 +79,7 @@ adminRouter.post("/ginasio/:id/desafios/", criarDesafiosController.handle);
 adminRouter.get("/desafios/", verDesafiosParticipantesController.handle);
 adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
 adminRouter.put("/desafios/encerrar/:id", encerrarDesafiosController.handle);
-adminRouter.delete("/desafios/", removerDesafiosController.handle);
+adminRouter.delete("/desafios/:id", removerDesafioController.handle);
 //#endregion
 
 //#region Ginasios
