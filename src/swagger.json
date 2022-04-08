@@ -962,60 +962,77 @@
                 }
             }
         },
-       "/treinador/perfil/editarPerfil":{
+       "/treinador/{userId}/perfil":{
             "put":{
                 "summary": "Editar perfil",
                 "description": "Esta rota vai editar perfil",
                 "parameters": [
                 {
-                    "uId": "id",
+                    "name": "userId",
                     "in": "path",
                     "description": "Id do user a fazer o pedido",
                     "required": true,
                     "schema":{
                         "properties": {
-                            "uid":{
-                                "type": "string"
-                            },
-                            "email":{
-                                "type": "string"
-                            },"nome":{
-                                "type": "string"
-                            },
-                            "password":{
-                                "type": "string"
-                            },
-                            "data_nasc":{
-                                "type": "string"
-                            },
-                            "hashtag":{
-                                "type": "string"
-                            },"data_entrada":{
-                                "type": "string"
-                            },                            
-                            "refresh_token":{
-                                "type": "string"
-                            },
-                            "genero":{
-                                "type": "number"
-                            },
-                            "pontos":{
-                                "type": "number"
-                            },
-                            "descricao":{
-                                "type": "string"
-                            },
-                            "imagem_url":{
-                                "type": "string"
-                            },
-                            "estado":{
-                                "type": "number"
+                            "userId":{
+                                "type":"string"
                             }
+                        }
+                    },
+                    "examples": {
+                        "Editar Perfil":{
+                            "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
                         }
                     }
                 }
                 ],
                 "tags": ["Treinador"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "uid":{
+                                        "type": "string"
+                                    },
+                                    "email":{
+                                        "type": "string"
+                                    },"nome":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "hashtag":{
+                                        "type": "string"
+                                    },  
+                                    "genero":{
+                                        "type": "number"
+                                    },
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "imagemUrl":{
+                                        "type": "string"
+                                    }
+                                    
+                                }
+                            },
+                            "examples": {
+                                "Editar Perfil": {
+                                    "value": {
+                                        "email": "treinador@treinador.com",
+                                        "nome": "treinador",
+                                        "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+                                        "genero": 0,
+                                        "descricao": null,
+                                        "imagemUrl": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "500":{
                         "description": "ERROR"
@@ -1026,27 +1043,29 @@
                             "application/json":{
                                 "schema":{
                                     "type": "object",
-                                    "$ref": "#/components/schemas/users"
+                                    "$ref": "#/components/schemas/User"
                                 },
                                 "examples": {
                                     "Editar Perfil":{
                                         "value":{
-                                            "Perfil": [
-                                                {
-                                                  "uid":"07c6127e-da68-4319-adec-65de3df7550d",
-                                                  "email":"admin@admin.com",
-                                                  "nome":"Admin",
-                                                  "password":"$2b$08$dBT8qvPm6UIKi7FXdSmA/ewliBMzw3LMp6fS8zDXfvXuyyktHj7/y",
-                                                  "data_nasc":"2002-04-09T00:00:00.000Z",
-                                                  "data_entrada":"2022-03-23T00:00:00.000Z",
-                                                  "genero":0,
-                                                  "pontos":0,
-                                                  "descricao":"1",
-                                                  "estado":1,
-                                                  "imagem_url":null
-                                                }
-                                               
-                                              ]
+                                            "user":{
+                                                "uid": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                                "email": "treinador2@treinador.com",
+                                                "nome": "treinador",
+                                                "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+                                                "data_nasc": "2002-04-09T00:00:00.000Z",
+                                                "hashtag": "t_01",
+                                                "data_entrada": "2022-03-23T00:00:00.000Z",
+                                                "funcao_id": "4c1c8eaf-7207-4d06-864a-a50191e9f5a7",
+                                                "refresh_token": null,
+                                                "genero": 0,
+                                                "pontos": 0,
+                                                "descricao": null,
+                                                "imagem_url": null,
+                                                "estado": 1,
+                                                "isDeleted": false
+                                            }
+                                              
                                     }
                                 }
                             }

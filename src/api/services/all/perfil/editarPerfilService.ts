@@ -7,13 +7,8 @@ interface IEditarPerfil{
     email: string,
     nome:  string,
     password: string,
-    dataNasc: Date,  
-    dataEntrada: Date, 
-    
     genero: number,
-    pontos: number,
     descricao: string,
-    estado:number,
     imagemUrl: string  
 }
 
@@ -24,16 +19,18 @@ export class EditarPerfilService {
     email,
     nome,
     password,
-    dataNasc,
-    dataEntrada,
     genero,
-    pontos,
     descricao,
-    estado,
     imagemUrl 
 
   } : IEditarPerfil){
-    const editarperfil = await client.users.updateMany({
+    const existsUser = await checkUserIdExists(uId);
+    if(!existsUser){
+      throw new Error("Utilizaor inexistente")
+    }
+
+
+    const user = await client.users.update({
         where : {
           uid:uId
               
@@ -42,17 +39,13 @@ export class EditarPerfilService {
           email:email,
           nome:nome,
           password:password,
-          data_nasc:dataNasc,
-          data_entrada:dataEntrada,
           genero:genero,
-          pontos:pontos,
           descricao:descricao,
-          estado:estado,
           imagem_url:imagemUrl
         }
     })
     return {
-      message:"Perfil alterada com sucesso",
+      user,
       
     };
   }

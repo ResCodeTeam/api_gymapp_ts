@@ -67,7 +67,7 @@ treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.
 treinadorRouter.post("/:treinadorId/exercicios/:exercicioId/imagens",adicionarExercicioImagensController.handle)
 treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
 //#endregion
-treinadorRouter.put("/:id/Perfil", editarPerfilController.handle);
+treinadorRouter.put("/:id/perfil", editarPerfilController.handle);
 //#region Treinos
 treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
 //#endregion

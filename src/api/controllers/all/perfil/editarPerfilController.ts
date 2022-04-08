@@ -11,29 +11,25 @@ export class EditarPerfilController{
             email,
             nome,
             password,
-            dataNasc,
-            dataEntrada,
-         
             genero,
-            pontos,
             descricao,
-            estado,
             imagemUrl }=request.body;
-
-        const  editarPerfilController = new EditarPerfilService();
-    const resp = await editarPerfilController.execute({
-        uId,
-        email,
-        nome,
-        password,
-        dataNasc,
-        dataEntrada,
-  
-        genero,
-        pontos,
-        descricao,
-        estado,
-        imagemUrl });
-    response.json(resp);
+        console.log({ 
+            email,
+            nome,
+            password,
+            genero,
+            descricao,
+            imagemUrl } )
+        const editarPerfilController = new EditarPerfilService();
+        const resp = await editarPerfilController.execute({
+            uId,
+            email,
+            nome,
+            password,
+            genero,
+            descricao,
+            imagemUrl });
+        response.json(resp);
     }
 }
