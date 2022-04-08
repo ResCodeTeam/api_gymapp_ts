@@ -2034,6 +2034,162 @@
                     }
                 }
             }
+        },
+        "/aluno/user/{uid}/treinos":{
+            "post":{
+                "summary": "Criar treinos",
+                "description": "Esta rota vai criar na base de dados os treinos",
+                "tags": ["Treinos"],
+                "parameters":[
+                {
+                    "name": "uid",
+                    "in": "path",
+                    "description": "Id do utilizador",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "uid":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "tipoModalidade":{
+                                    "type": "number"
+                                },
+                                "atividadeId":{
+                                    "type": "string"
+                                },
+                                "modalidadeId":{
+                                    "type": "string"
+                                },
+                                "duracao":{
+                                    "type": "string"
+                                },
+                                "calorias":{
+                                    "type": "number"
+                                },
+                                "distancia":{
+                                    "type": "number"
+                                },
+                                "data":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Criar Treino":{
+                                "value":{
+                                    "tipoModalidade":1,
+                                    "atividadeId":"Teste",
+                                    "modalidadeId":"cf11f7c9-e47a-4574-8b93-79a1850c6636",
+                                    "duracao":"50",
+                                    "calorias": 20,
+                                    "distancia": 30,
+                                    "data": "2022-04-09"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+           
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                     "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }, 
+                                "examples": {
+                                    "Criar treino":{
+                                        "value":{
+                                            "msg":"Treino criado com sucesso"
+                                        }
+                                    }
+                                }                                       
+                            }
+                        }
+        
+                    }
+                    
+                }
+            }
+        },
+        "/backend/atividades":{
+            "post":{
+                "summary": "Criar atividades",
+                "description": "Esta rota vai criar atividades na base de dados",
+                "tags": ["Atividades"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "icon":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Criar Atividade":{
+                                    "value":{
+                                        "descricao": "Teste",
+                                        "icon":"Teste1"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },        
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                     "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }, 
+                                "examples": {
+                                    "Criar Atividades":{
+                                        "value":{
+                                            "msg":"Atividade criada com sucesso"
+                                        }
+                                    }
+                                }                                       
+                            }
+                        }
+        
+                    }
+                    
+                }
+            }
         }
     },
     "components": {
