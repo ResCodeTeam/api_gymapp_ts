@@ -2034,7 +2034,86 @@
                     }
                 }
             }
+        },"/treinador/{treinadorId}/exercicios/{exercicioId}/imagens/{imagemId}":{
+            "delete":{
+                "summary": "Remover imagens de exercicio",
+                "description": "Esta rota permite remover uma imagem a um exercicio",
+                "parameters": [{
+                    "name": "treinadorId",
+                    "in": "path",
+                    "description": "id do treinador",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Treinador Id":{
+                            "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                        }
+                    },
+                    "style": "simple"
+
+                },{
+                    "name": "exercicioId",
+                    "in": "path",
+                    "description": "id do exercicio",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Exercicio Id":{
+                            "value":"e219020a-9a6c-4193-8be1-473fccc52529"
+                        }
+                    },
+                    "style": "simple"
+
+                },{
+                    "name": "imagemId",
+                    "in": "path",
+                    "description": "id da imagem a remover",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Imagem Id":{
+                            "value":"40d02c22-ca90-4839-942e-ce46376d753d"
+                        }
+                    },
+                    "style": "simple"
+
+                }],
+                "tags": ["Exercicios"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Imagem":{
+                                        "value": {
+                                            "msg": "Imagem removida com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
+    }
     },
     "components": {
         "schemas": {

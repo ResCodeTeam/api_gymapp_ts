@@ -264,6 +264,7 @@ let checkAutorExercicio = async(treinadorId, exercicioId)=>{
             exercicio_id:exercicioId
         }
     })
+    
     return exercicio.length != 0
 }
 
