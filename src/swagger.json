@@ -45,7 +45,7 @@
             "post":{
                 "summary": "Registo de funções de user",
                 "description": "Esta rota vai registar na base de dados novas funções para os utilizadores",
-                "tags": ["Backend"],
+                "tags": ["Funções"],
                 "requestBody":{
                     "content":{
                         "application/json":{
@@ -100,7 +100,7 @@
             "post":{
                 "summary": "Registo de localidades",
                 "description": "Esta rota vai registar na base de dados localidades",
-                "tags": ["Backend"],
+                "tags": ["Localidades"],
                 "requestBody":{
                     "content":{
                         "application/json":{
@@ -167,7 +167,7 @@
             "post":{
                 "summary": "Registo de agendamentos de avaliação",
                 "description": "Esta rota vai registar na base de dados um agendamento de avaliações",
-                "tags": ["Treinador | Agenda"],
+                "tags": ["Agenda"],
                 "requestBody":{
                     "content":{
                         "application/json":{
@@ -236,7 +236,7 @@
             "post":{
                 "summary": "Registo de agendamentos de desafios",
                 "description": "Esta rota vai registar na base de dados um agendamento de desafios",
-                "tags": ["Treinador | Agenda"],
+                "tags": ["Agenda"],
                 "parameters": [{
                     "name": "desafioId",
                     "in": "path",
@@ -318,7 +318,7 @@
             "post":{
                 "summary": "Registo de marcas",
                 "description": "Esta rota vai registar na base de dados uma marca associada a um admin",
-                "tags": ["Admin | Marca"],
+                "tags": ["Marca"],
                 "parameters": [{
                     "name": "userId",
                     "in": "path",
@@ -396,7 +396,7 @@
             "post":{
                 "summary": "Registo de ginasios",
                 "description": "Esta rota vai registar na base de dados um ginasio que esta associado a uma marca",
-                "tags": ["Admin | Marca"],
+                "tags": ["Marca"],
                 "parameters": [{
                     "name": "marcaId",
                     "in": "path",
@@ -486,7 +486,7 @@
             "post":{
                 "summary": "Registo das modalidades do ginásio",
                 "description": "Esta rota vai registar na base de dados uma modalidade de um ginásio em específico",
-                "tags": ["Admin | Ginasio"],
+                "tags": ["Ginasio"],
                 "parameters": [{
                     "name": "ginasioId",
                     "in": "path",
@@ -556,7 +556,7 @@
             "delete":{
                 "summary": "Remover modalidades",
                 "description": "Esta rota vai apagar na base de dados uma modalidade de um ginásio em específico",
-                "tags": ["Admin"],
+                "tags": ["Modalidades"],
                 "parameters": [{
                     "name": "modalidadeId",
                     "in": "path",
@@ -602,7 +602,7 @@
             "delete":{
                 "summary": "Remover exercicios",
                 "description": "Esta rota vai apagar na base de dados um exercicio",
-                "tags": ["Treinador | Exercicios"],
+                "tags": ["Exercicios"],
                 "parameters": [{
                     "name": "exercicioId",
                     "in": "path",
@@ -659,7 +659,7 @@
             "put":{
                 "summary": "Editar exercicios",
                 "description": "Esta rota vai editar na base de dados um exercicio",
-                "tags": ["Treinador | Exercicios"],
+                "tags": ["Exercicios"],
                 "parameters": [{
                     "name": "exercicioId",
                     "in": "path",
@@ -754,6 +754,7 @@
   
                     }
                 ],
+                "tags": ["Avaliacoes"],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -814,6 +815,7 @@
   
                     }
                 ],
+                "tags": ["Avaliacoes"],
                 "responses": {
                     "500": {
                         "description": "ERROR"
@@ -841,7 +843,7 @@
             "post": {
                 "summary": "Criar Desafio",
                 "description": "Este pedido serve para criar um desafio",
-                "tags": ["Admin | Ginasio"],
+                "tags": ["Ginasio"],
                 "parameters": [{
                         "name": "ginasioId",
                         "in": "path",
@@ -986,7 +988,7 @@
                     }
                 }
                 ],
-                "tags": ["Treinador"],
+                "tags": ["Perfil"],
                 "requestBody":{
                     "content":{
                         "application/json":{
@@ -1094,7 +1096,7 @@
                         }
                     }
                     ],
-                    "tags": ["All"],
+                    "tags": ["Posts"],
                     "responses": {
                         "500":{
                             "description": "ERROR"
@@ -1170,7 +1172,7 @@
                     }
                 }
                 ],
-                "tags": ["All"],
+                "tags": ["Posts"],
                 "responses": {
                     "500":{
                         "description": "ERROR"
@@ -1245,7 +1247,7 @@
                 }
             }
             ],
-            "tags": ["All"],
+            "tags": ["Posts"],
             "responses": {
                 "500":{
                     "description": "ERROR"
@@ -1283,7 +1285,7 @@
             "delete":{
                 "summary": "Remover treinador",
                 "description": "Esta rota vai remover um treinador",
-                "tags": ["Admin"],
+                "tags": ["Funcionarios"],
                 "parameters": [{
                     "name": "treinador_id",
                     "in": "path",
@@ -1329,7 +1331,7 @@
             "delete":{
                 "summary": "Remover marca",
                 "description": "Esta rota vai remover uma marca de um ginásio",
-                "tags": ["Admin | Marca"],
+                "tags": ["Marca"],
                 "parameters": [{
                     "name": "marcaId",
                     "in": "path",
@@ -1386,7 +1388,7 @@
                     "style": "simple"
 
                 }],
-                "tags": ["Admin | Marca"],
+                "tags": ["Marca"],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -1479,7 +1481,7 @@
                         "style": "simple"
     
                     }],
-                    "tags": ["All"],
+                    "tags": ["Posts"],
                     "requestBody":{
                         "content": {
                             "application/json":{
@@ -1526,7 +1528,7 @@
             "post":{
                 "summary": "Criar um exercicio",
                 "description": "Esta rota permite adicionar um exercicio à base de dados",
-                "tags": ["Treinador | Exercicios"],
+                "tags": ["Exercicios"],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -1640,7 +1642,7 @@
             "post":{
                 "summary": "Registar um Admin",
                 "description": "Esta rota permite efetuar o registo de um administrador",
-                "tags": ["Admin"],
+                "tags": ["Administradores"],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -1745,7 +1747,7 @@
                     "style": "simple"
 
                 }],
-                "tags": ["Admin"],
+                "tags": ["Notificacoes"],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -1816,7 +1818,7 @@
             "delete":{
                 "summary": "remover desafio ",
                 "description": "Esta rota vai remover base de dados os desafios criad",
-                "tags": ["Admin"],
+                "tags": ["Desafios"],
                 "parameters":[{
                    
                     "name": "desafioId",
@@ -1860,7 +1862,7 @@
             "post":{
                 "summary": "Registar um aluno",
                 "description": "Esta rota permite efetuar o registo de um aluno numa marca ou ginasio",
-                "tags": ["Admin | Marca"],
+                "tags": ["Marca"],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -1951,7 +1953,7 @@
             "post":{
                 "summary": "Editar imagens de exercicio",
                 "description": "Esta rota permite adicionar uma imagem a um exercicio",
-                "tags": ["Treinador | Exercicios"],
+                "tags": ["Exercicios"],
                 "requestBody":{
                     "content": {
                         "application/json":{
