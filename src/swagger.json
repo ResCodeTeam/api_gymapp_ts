@@ -746,12 +746,19 @@
             "put": {
                 "summary": "Editar Avaliação",
                 "description": "Este pedido serve para atualizar uma avaliação",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "avaliacao_id",
                         "in": "path",
+                        "description": "Id da avaliação",
                         "required": true,
-                        "type": "string"
-  
+                        "schema":{
+                            "properties": {
+                                "avaliacao_id":{
+                                    "type": "string"
+                                }
+                            }
+                        }
                     }
                 ],
                 "tags": ["Avaliacoes"],
@@ -807,12 +814,19 @@
             "delete": {
                 "summary": "Apagar Avaliação",
                 "description": "Este pedido serve para apagar uma avaliação",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "avaliacao_id",
                         "in": "path",
+                        "description": "Id da avaliação",
                         "required": true,
-                        "type": "string"
-  
+                        "schema":{
+                            "properties": {
+                                "avaliacao_id":{
+                                    "type": "string"
+                                }
+                            }
+                        }
                     }
                 ],
                 "tags": ["Avaliacoes"],
@@ -1819,13 +1833,21 @@
                 "summary": "remover desafio ",
                 "description": "Esta rota vai remover base de dados os desafios criad",
                 "tags": ["Desafios"],
-                "parameters":[{
-                   
+                "parameters":[
+                {
                     "name": "desafioId",
                     "in": "path",
+                    "description": "Id do desafio",
                     "required": true,
-                    "type": "string"
-                }],
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ],
            
                 "responses": {
                     "500":{
