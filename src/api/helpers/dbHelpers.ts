@@ -86,6 +86,16 @@ let checkGinasioExists= async(ginasioId : string)=>{
     
     return search.length != 0;
 }
+let checkTreinoExists= async(treinoId : string)=>{
+    const search = await client.treinos.findMany({
+        where:{
+            treino_id : treinoId,
+            isDeleted: false
+        }
+    });
+    
+    return search.length != 0;
+}
 let checkMarcaExists= async(marcaId : string) =>{
     const search = await client.marcas.findMany({
         where:{
@@ -309,6 +319,7 @@ export {
     checkPostExists,
     checkGinasioExists,
     checkMarcaExists,
+    checkTreinoExists,
     checkModalidadeExists,
     checkAtividadeExists,
     checkExercicioExists,

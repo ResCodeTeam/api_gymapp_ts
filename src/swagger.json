@@ -2271,7 +2271,7 @@
         },
         "/backend/atividades/{atividadeId}":{
             "delete":{
-                "summary": "Remover atividade ",
+                "summary": "Remover atividade",
                 "description": "Esta rota vai remover da base de dados as atividades criadas",
                 "tags": ["Atividades"],
                 "parameters":[
@@ -2384,6 +2384,54 @@
                             }
                         }
                     }          
+                }
+            }
+        },
+        "/aluno/treino/{treinoId}":{
+            "delete":{
+                "summary": "Remover treino",
+                "description": "Esta rota vai remover da base de dados os treinos criados",
+                "tags": ["Treinos"],
+                "parameters":[
+                {
+                    "name": "treinoId",
+                    "in": "path",
+                    "description": "Id do treino",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "treinoId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                     "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }, 
+                                "examples": {
+                                    "Remover treino":{
+                                        "value":{
+                                            "msg":"Treino removido com sucesso"
+                                        }
+                                    }
+                                }                                       
+                            }
+                        }  
+                    }         
                 }
             }
         }
