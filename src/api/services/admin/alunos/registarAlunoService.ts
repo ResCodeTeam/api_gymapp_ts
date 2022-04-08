@@ -18,7 +18,7 @@ interface IRegistarAlunoService {
   ginasioId: string;
 }
 
-//TODO: Receber Marca e Gym para inserir o aluno
+
 export class RegistarAlunoService {
   async execute({
     email,
