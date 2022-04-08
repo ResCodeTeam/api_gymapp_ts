@@ -1,16 +1,15 @@
-import { Request, Response } from "express";
+import { Request, Response} from "express";
 import { CriarComentarioService } from "../../../services/posts/comments/criarComentarioService";
 
-
-class CriarComentarioController{
-    async handle(request:Request, response:Response){
-        const postId = request.params.id;
-        const {comentario,criadorId,data}=request.body;
-
+export class CriarComentarioController{
+    async handle(request : Request, response : Response) {
         const criarComentarioService = new CriarComentarioService();
-        const resp = await criarComentarioService.execute(postId,comentario,criadorId)
-        response.json(resp)
+        const publicacao_id = request.params.id;
+        const {comentario,criador_id}=request.body;
+
+        const resp = await criarComentarioService.execute(publicacao_id,comentario,criador_id)
+
+        response.json(resp);
+
     }
 }
-
-export{ CriarComentarioController }

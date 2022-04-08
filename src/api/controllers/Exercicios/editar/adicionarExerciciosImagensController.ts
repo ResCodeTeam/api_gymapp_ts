@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AdicionarExerciciosImagensService } from "../../../../services/exercicios/editar/adicionarExercicioImagensService";
+import { AdicionarExerciciosImagensService } from "../../../services/exercicios/editar/adicionarExercicioImagensService";
 
 export class AdicionarExerciciosImagensController{
   async handle(request:Request, response:Response){

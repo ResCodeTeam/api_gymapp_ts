@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RemoverExercicioService } from "../../../services/exercicios/removerExercicioService";
+import { RemoverExercicioService } from "../../services/exercicios/removerExercicioService";
 
 export class RemoverExercicioController {
     async handle(request: Request, response: Response) {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AgendarDesafiosService } from "../../../services/agendamentos/agendarDesafiosService";
+import { AgendarDesafiosService } from "../../services/agendamentos/agendarDesafiosService";
 
 export class AgendarDesafiosController {
     async handle(request: Request, response: Response){
