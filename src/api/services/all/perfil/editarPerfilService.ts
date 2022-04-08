@@ -9,7 +9,7 @@ interface IEditarPerfil{
     password: string,
     dataNasc: Date,  
     dataEntrada: Date, 
-    funcaoId: String,
+    
     genero: number,
     pontos: number,
     descricao: string,
@@ -26,7 +26,6 @@ export class EditarPerfilService {
     password,
     dataNasc,
     dataEntrada,
-    funcaoId,
     genero,
     pontos,
     descricao,

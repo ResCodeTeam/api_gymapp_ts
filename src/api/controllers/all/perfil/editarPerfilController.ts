@@ -1,14 +1,39 @@
 import { Request, Response } from "express";
-import { EditarPerfilService } from "../../../services/treinador/perfil/editarPerfilService";
+import { EditarPerfilService } from "../../../services/all/perfil/editarPerfilService";
 
-class EditarPerfilController{
 
+export class EditarPerfilController{
+    
     async handle (request: Request, response: Response){
-        const uid = request.params.id;
+        const uId = request.params.id;
+        
+        let { 
+            email,
+            nome,
+            password,
+            dataNasc,
+            dataEntrada,
+         
+            genero,
+            pontos,
+            descricao,
+            estado,
+            imagemUrl }=request.body;
 
         const  editarPerfilController = new EditarPerfilService();
-    const resp = await editarPerfilController.execute(uid);
+    const resp = await editarPerfilController.execute({
+        uId,
+        email,
+        nome,
+        password,
+        dataNasc,
+        dataEntrada,
+  
+        genero,
+        pontos,
+        descricao,
+        estado,
+        imagemUrl });
     response.json(resp);
     }
 }
-export{ EditarPerfilController }

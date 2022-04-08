@@ -962,6 +962,100 @@
                 }
             }
         },
+       "/treinador/perfil/editarPerfil":{
+            "put":{
+                "summary": "Editar perfil",
+                "description": "Esta rota vai editar perfil",
+                "parameters": [
+                {
+                    "uId": "id",
+                    "in": "path",
+                    "description": "Id do user a fazer o pedido",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "uid":{
+                                "type": "string"
+                            },
+                            "email":{
+                                "type": "string"
+                            },"nome":{
+                                "type": "string"
+                            },
+                            "password":{
+                                "type": "string"
+                            },
+                            "data_nasc":{
+                                "type": "string"
+                            },
+                            "hashtag":{
+                                "type": "string"
+                            },"data_entrada":{
+                                "type": "string"
+                            },                            
+                            "refresh_token":{
+                                "type": "string"
+                            },
+                            "genero":{
+                                "type": "number"
+                            },
+                            "pontos":{
+                                "type": "number"
+                            },
+                            "descricao":{
+                                "type": "string"
+                            },
+                            "imagem_url":{
+                                "type": "string"
+                            },
+                            "estado":{
+                                "type": "number"
+                            }
+                        }
+                    }
+                }
+                ],
+                "tags": ["Treinador"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/users"
+                                },
+                                "examples": {
+                                    "Editar Perfil":{
+                                        "value":{
+                                            "Perfil": [
+                                                {
+                                                  "uid":"07c6127e-da68-4319-adec-65de3df7550d",
+                                                  "email":"admin@admin.com",
+                                                  "nome":"Admin",
+                                                  "password":"$2b$08$dBT8qvPm6UIKi7FXdSmA/ewliBMzw3LMp6fS8zDXfvXuyyktHj7/y",
+                                                  "data_nasc":"2002-04-09T00:00:00.000Z",
+                                                  "data_entrada":"2022-03-23T00:00:00.000Z",
+                                                  "genero":0,
+                                                  "pontos":0,
+                                                  "descricao":"1",
+                                                  "estado":1,
+                                                  "imagem_url":null
+                                                }
+                                               
+                                              ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
         "/posts/all/{id}":{
                 "get":{
                     "summary": "Ver posts",
@@ -2173,6 +2267,7 @@
                     }
                 }
             },
+
             "Notificacao":{
                 "type": "object",
                 "properties": {
