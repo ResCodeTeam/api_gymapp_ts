@@ -17,7 +17,7 @@ class CriarAtividadeService {
         icon,    
       },
     });
-    return { msg: "O treino foi criado com sucesso!" };
+    return { msg: "A atividade foi criada com sucesso!" };
   }
 }
 export { CriarAtividadeService };

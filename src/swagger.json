@@ -2268,6 +2268,124 @@
                     }
                 }
             }
+        },
+        "/backend/atividades/{atividadeId}":{
+            "delete":{
+                "summary": "Remover atividade ",
+                "description": "Esta rota vai remover da base de dados as atividades criadas",
+                "tags": ["Atividades"],
+                "parameters":[
+                {
+                    "name": "atividadeId",
+                    "in": "path",
+                    "description": "Id da atividade",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "atividadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                     "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }, 
+                                "examples": {
+                                    "Remover desafio":{
+                                        "value":{
+                                            "msg":"Atividade removida com sucesso"
+                                        }
+                                    }
+                                }                                       
+                            }
+                        }
+        
+                    }
+                    
+                }
+            },
+            "put":{
+                "summary": "Editar atividades",
+                "description": "Esta rota vai editar na base de dados uma atividade",
+                "tags": ["Atividades"],
+                "parameters": [{
+                    "name": "atividadeId",
+                    "in": "path",
+                    "description": "Id da atividade",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "atividadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "icon":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Atividade":{
+                                    "value":{
+                                        "descricao":"Teste123",
+                                        "icon": "Teste456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Modalidade":{
+                                        "value":{
+                                            "msg":"Atividade editada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
         }
     },
     "components": {
