@@ -19,15 +19,15 @@ export class RemoverExercicioService{
 
 
        
-        //if(autorId == exercicio.autor_id){
-        //    await client.exercicios.update({
-        //        where: {exercicio_id:exercicioId},
-        //        data:{
-        //           isDeleted: true
-        //        }
-        //    })
-        //}
-        //else throw new Error ("O exercício não lhe pertence")
+        if(autorId == exercicio.autor_id){
+           await client.exercicios.update({
+               where: {exercicio_id:exercicioId},
+               data:{
+                  isDeleted: true
+               }
+           })
+        }
+        else throw new Error ("O exercício não lhe pertence")
         await client.exercicios.update({
             where: {exercicio_id:exercicioId},
             data:{
