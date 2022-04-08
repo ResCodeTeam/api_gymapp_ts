@@ -6,7 +6,7 @@ import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 import { CriarComentarioController } from "../controllers/treinador/comentarios/criarComentarioController";
 import { VerTodosTreinosDosAlunosController } from "../controllers/treinador/treinos/verTodosTreinosDosAlunosController";
 
-import { RemoverDesafioController } from "../controllers/treinador/desafios/removerDesafioController";
+import { RemoverDesafioController } from "../controllers/desafios/removerDesafioController";
 
 import { VerTodosOsExerciciosTreinadoresController } from "../controllers/treinador/Exercicios/VerTodosOsExerciciosTreinadoresController";
 
@@ -17,15 +17,15 @@ import { AgendarDesafiosController } from "../controllers/treinador/agendamentos
 import { AgendarAvaliacaoController } from "../controllers/treinador/agendamentos/agendarAvaliacaoController";
 import { RemoverExercicioController } from "../controllers/treinador/Exercicios/removerExercicioController"
 import { CriarExercicioController } from "../controllers/treinador/Exercicios/criarExercicioController";
-import { CriarAvaliacaoService } from "../services/treinador/avaliacoes/criarAvaliacaoService";
+import { CriarAvaliacaoService } from "../services/avaliacoes/criarAvaliacaoService";
 import { CriarAvaliacaoController } from "../controllers/treinador/avaliacoes/criarAvaliacaoController";
 import { EditarExercicioController } from "../controllers/treinador/Exercicios/editar/editarExercicioController"
 import { AdicionarExerciciosImagensController } from "../controllers/treinador/Exercicios/editar/adicionarExerciciosImagensController";
-import { EditarPerfilController } from "../controllers/all/perfil/editarPerfilController";
+import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
 
 //import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
-import { EditarDesafioController } from "../controllers/treinador/desafios/EditarDesafioController";
-import { CriarDesafiosController } from "../controllers/admin/desafios/criarDesafiosController";
+import { EditarDesafioController } from "../controllers/desafios/EditarDesafioController";
+import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
 
 
 //

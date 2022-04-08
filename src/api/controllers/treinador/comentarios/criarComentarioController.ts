@@ -1,5 +1,5 @@
 import { Request, Response} from "express";
-import { CriarComentarioService } from "../../../services/treinador/comentarios/criarComentarioService";
+import { CriarComentarioService } from "../../../services/posts/comments/criarComentarioService";
 
 export class CriarComentarioController{
     async handle(request : Request, response : Response) {

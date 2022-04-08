@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { EditarAvaliacaoService } from "../../../services/treinador/avaliacoes/editarAvaliacoesService";
+import { EditarAvaliacaoService } from "../../../services/avaliacoes/editarAvaliacoesService";
 
 
 export class EditarAvaliacaoController {
