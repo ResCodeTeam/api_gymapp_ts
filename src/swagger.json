@@ -2034,7 +2034,162 @@
                     }
                 }
             }
-        },"/treinador/{treinadorId}/exercicios/{exercicioId}/imagens/{imagemId}":{
+        },
+        "/aluno/user/{uid}/treinos":{
+            "post":{
+                "summary": "Criar treinos",
+                "description": "Esta rota vai criar na base de dados os treinos",
+                "tags": ["Treinos"],
+                "parameters":[
+                {
+                    "name": "uid",
+                    "in": "path",
+                    "description": "Id do utilizador",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "uid":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "tipoModalidade":{
+                                    "type": "number"
+                                },
+                                "atividadeId":{
+                                    "type": "string"
+                                },
+                                "modalidadeId":{
+                                    "type": "string"
+                                },
+                                "duracao":{
+                                    "type": "string"
+                                },
+                                "calorias":{
+                                    "type": "number"
+                                },
+                                "distancia":{
+                                    "type": "number"
+                                },
+                                "data":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Criar Treino":{
+                                "value":{
+                                    "tipoModalidade":1,
+                                    "atividadeId":"Teste",
+                                    "modalidadeId":"cf11f7c9-e47a-4574-8b93-79a1850c6636",
+                                    "duracao":"50",
+                                    "calorias": 20,
+                                    "distancia": 30,
+                                    "data": "2022-04-09"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+           
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                     "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }, 
+                                "examples": {
+                                    "Criar treino":{
+                                        "value":{
+                                            "msg":"Treino criado com sucesso"
+                                        }
+                                    }
+                                }                                       
+                            }
+                        }
+        
+                    }
+                    
+                }
+            }
+        },
+        "/backend/atividades":{
+            "post":{
+                "summary": "Criar atividades",
+                "description": "Esta rota vai criar atividades na base de dados",
+                "tags": ["Atividades"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "icon":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Criar Atividade":{
+                                    "value":{
+                                        "descricao": "Teste",
+                                        "icon":"Teste1"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },        
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                     "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }, 
+                                "examples": {
+                                    "Criar Atividades":{
+                                        "value":{
+                                            "msg":"Atividade criada com sucesso"
+                                        }
+                                    }
+                                }                
+                            }                             
+                        }
+                    }
+                }
+            }
+        },                       
+        "/treinador/{treinadorId}/exercicios/{exercicioId}/imagens/{imagemId}":{
             "delete":{
                 "summary": "Remover imagens de exercicio",
                 "description": "Esta rota permite remover uma imagem a um exercicio",
@@ -2093,6 +2248,297 @@
                         "description": "OK",
                         "content": {
                             "application/json":{
+                                "schema":{                                  
+                                    "type": "object",
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Imagem":{
+                                        "value": {
+                                            "msg": "Imagem removida com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/backend/atividades/{atividadeId}":{
+            "delete":{
+                "summary": "Remover atividade",
+                "description": "Esta rota vai remover da base de dados as atividades criadas",
+                "tags": ["Atividades"],
+                "parameters":[
+                {
+                    "name": "atividadeId",
+                    "in": "path",
+                    "description": "Id da atividade",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "atividadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                     "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }, 
+                                "examples": {
+                                    "Remover desafio":{
+                                        "value":{
+                                            "msg":"Atividade removida com sucesso"
+                                        }
+                                    }
+                                }                                       
+                            }
+                        }
+        
+                    }
+                    
+                }
+            },
+            "put":{
+                "summary": "Editar atividades",
+                "description": "Esta rota vai editar na base de dados uma atividade",
+                "tags": ["Atividades"],
+                "parameters": [{
+                    "name": "atividadeId",
+                    "in": "path",
+                    "description": "Id da atividade",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "atividadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "icon":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Atividade":{
+                                    "value":{
+                                        "descricao":"Teste123",
+                                        "icon": "Teste456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Modalidade":{
+                                        "value":{
+                                            "msg":"Atividade editada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            },
+            "get":{
+                "summary": "Ver toda a informação de uma atividade",
+                "description": "Esta rota vai apresentar todas as informações de uma atividade",
+                "tags": ["Atividades"],
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id da atividade que se deseja ver",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "atividadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Ver Atividade":{
+                                         "value":{
+                                            "msg":"Ver atividade com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/treino/{treinoId}":{
+            "delete":{
+                "summary": "Remover treino",
+                "description": "Esta rota vai remover da base de dados os treinos criados",
+                "tags": ["Treinos"],
+                "parameters":[
+                {
+                    "name": "treinoId",
+                    "in": "path",
+                    "description": "Id do treino",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "treinoId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                     "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }, 
+                                "examples": {
+                                    "Remover treino":{
+                                        "value":{
+                                            "msg":"Treino removido com sucesso"
+                                        }
+                                    }
+                                }                                       
+                            }
+                        }  
+                    }         
+                }
+            }
+        }
+        ,"/treinador/{treinadorId}/exercicios/{exercicioId}/musculos/{musculoId}":{
+            "post":{
+                "summary": "Adicionar musculo a um exercicio",
+                "description": "Esta rota permite adicionar um musculo a um exercicio",
+                "parameters": [{
+                    "name": "treinadorId",
+                    "in": "path",
+                    "description": "id do treinador",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Treinador Id":{
+                            "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                        }
+                    },
+                    "style": "simple"
+
+                },{
+                    "name": "exercicioId",
+                    "in": "path",
+                    "description": "id do exercicio",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Exercicio Id":{
+                            "value":"e219020a-9a6c-4193-8be1-473fccc52529"
+                        }
+                    },
+                    "style": "simple"
+
+                },{
+                    "name": "musculoId",
+                    "in": "path",
+                    "description": "id do musculo a adicionar",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Imagem Id":{
+                            "value":"40d02c22-ca90-4839-942e-ce46376d753d"
+                        }
+                    },
+                    "style": "simple"
+
+                }],
+                "tags": ["Exercicios"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
                                 "schema":{
                                     "type": "object",
                                     "properties": {
@@ -2113,87 +2559,7 @@
                 }
             }
         }
-        
-    },"/treinador/{treinadorId}/exercicios/{exercicioId}/musculos/{musculoId}":{
-        "post":{
-            "summary": "Adicionar musculo a um exercicio",
-            "description": "Esta rota permite adicionar um musculo a um exercicio",
-            "parameters": [{
-                "name": "treinadorId",
-                "in": "path",
-                "description": "id do treinador",
-                "required": true,
-                "schema":{
-                    "type": "string"
-                },
-                "examples": {
-                    "Treinador Id":{
-                        "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                    }
-                },
-                "style": "simple"
-
-            },{
-                "name": "exercicioId",
-                "in": "path",
-                "description": "id do exercicio",
-                "required": true,
-                "schema":{
-                    "type": "string"
-                },
-                "examples": {
-                    "Exercicio Id":{
-                        "value":"e219020a-9a6c-4193-8be1-473fccc52529"
-                    }
-                },
-                "style": "simple"
-
-            },{
-                "name": "musculoId",
-                "in": "path",
-                "description": "id do musculo a adicionar",
-                "required": true,
-                "schema":{
-                    "type": "string"
-                },
-                "examples": {
-                    "Imagem Id":{
-                        "value":"40d02c22-ca90-4839-942e-ce46376d753d"
-                    }
-                },
-                "style": "simple"
-
-            }],
-            "tags": ["Exercicios"],
-            "responses": {
-                "500":{
-                    "description": "ERROR"
-                },
-                "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "object",
-                                "properties": {
-                                    "msg":{
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "examples": {
-                                "Remover Imagem":{
-                                    "value": {
-                                        "msg": "Imagem removida com sucesso"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
-}
     },
     "components": {
         "schemas": {
@@ -2489,9 +2855,10 @@
                         "type": "number"
                     }
                 }
-            }
-            
+            }        
         }
     }
-
 }
+
+
+
