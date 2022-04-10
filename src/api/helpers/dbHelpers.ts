@@ -292,6 +292,26 @@ let checkTreinadorGinasio= async(ginasioId : string, treinadorId : string) => {
     return true;
 }
 
+let checkMusculoExists = async(musculoId:string)=>{
+    const musculos = await client.musculos.findMany({
+        where:{
+            musculo_id:musculoId
+        }
+    })
+    return musculos.length!=0
+}
+
+let checkExercicioMusculoExists = async(musculoId:string, exercicioId:string)=>{
+    console.log(exercicioId,musculoId)
+    const musculos = await client.exercicios_musculos.findMany({
+        where:{
+            exercicio_id:exercicioId,
+            musculo_id:musculoId
+        }
+    })
+    return musculos.length!=0
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -314,6 +334,8 @@ export {
     checkMobilidadeMarcaUser,
     checkDesafioIdExists,
     checkAutorExercicio,
-    checkTreinadorGinasio
+    checkTreinadorGinasio,
+    checkMusculoExists,
+    checkExercicioMusculoExists
 }
 
