@@ -2523,8 +2523,8 @@
                         "type": "string"
                     },
                     "examples": {
-                        "Imagem Id":{
-                            "value":"40d02c22-ca90-4839-942e-ce46376d753d"
+                        "Musculo Id":{
+                            "value":"1b1dd226-454a-4bb6-a126-1870411646e4"
                         }
                     },
                     "style": "simple"
@@ -2548,9 +2548,90 @@
                                     }
                                 },
                                 "examples": {
-                                    "Remover Imagem":{
+                                    "Adicionar Musculo":{
                                         "value": {
-                                            "msg": "Imagem removida com sucesso"
+                                            "musculo": {
+                                                "exercicio_id": "5ebe32db-1b03-4754-9305-d9f0645778e0",
+                                                "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4"
+                                            }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "delete":{
+            "summary": "Remover musculo de um exercicio",
+            "description": "Esta rota permite remover um musculo de um exercicio",
+            "parameters": [{
+                "name": "treinadorId",
+                "in": "path",
+                "description": "id do treinador",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "Treinador Id":{
+                        "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                    }
+                },
+                "style": "simple"
+
+            },{
+                "name": "exercicioId",
+                "in": "path",
+                "description": "id do exercicio",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "Exercicio Id":{
+                        "value":"e219020a-9a6c-4193-8be1-473fccc52529"
+                    }
+                },
+                "style": "simple"
+
+            },{
+                "name": "musculoId",
+                "in": "path",
+                "description": "id do musculo a adicionar",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "Musculo Id":{
+                        "value":"1b1dd226-454a-4bb6-a126-1870411646e4"
+                    }
+                },
+                "style": "simple"
+
+            }],
+            "tags": ["Exercicios"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "msg": "Musculo removido com sucesso"
                                     }
                                 }
                             }

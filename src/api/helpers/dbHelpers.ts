@@ -321,7 +321,6 @@ let checkMusculoExists = async(musculoId:string)=>{
 }
 
 let checkExercicioMusculoExists = async(musculoId:string, exercicioId:string)=>{
-    console.log(exercicioId,musculoId)
     const musculos = await client.exercicios_musculos.findMany({
         where:{
             exercicio_id:exercicioId,

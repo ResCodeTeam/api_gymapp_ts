@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AdicionarExercicioMusculoService } from "../../../services/exercicios/musculos/adicionarExercicioMusculosService";
+import { AdicionarExercicioMusculoService } from "../../../services/exercicios/musculos/adicionarExercicioMusculoService";
 
 export class AdicionarExercicioMusculoController{
   async handle(request:Request, response:Response){

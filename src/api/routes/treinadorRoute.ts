@@ -29,6 +29,7 @@ import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosCo
 import { EditarExercicioController } from "../controllers/Exercicios/editarExercicioController";
 import { RemoverExercicioImagemController } from "../controllers/Exercicios/editar/removerExercicioImagemController";
 import { AdicionarExercicioMusculoController } from "../controllers/Exercicios/musculos/adicionarExercicioMusculoController";
+import { RemoverExercicioMusculoController } from "../controllers/Exercicios/musculos/removerExercicioMusculoController";
 
 
 //
@@ -58,6 +59,7 @@ const removerExercicioImagemController = new RemoverExercicioImagemController();
 const editarExercicioController = new EditarExercicioController();
 
 const adicionarExercicioMusculoController = new AdicionarExercicioMusculoController();
+const removerExercicioMusculoController = new RemoverExercicioMusculoController();
 
 //const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
@@ -74,6 +76,7 @@ treinadorRouter.post("/:treinadorId/exercicios/:exercicioId/imagens",adicionarEx
 treinadorRouter.delete("/:treinadorId/exercicios/:exercicioId/imagens/:imagemId",removerExercicioImagemController.handle)
 treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
 treinadorRouter.post("/:treinadorId/exercicios/:exercicioId/musculos/:musculoId", adicionarExercicioMusculoController.handle);
+treinadorRouter.delete("/:treinadorId/exercicios/:exercicioId/musculos/:musculoId", removerExercicioMusculoController.handle);
 //#endregion
 treinadorRouter.put("/:id/perfil", editarPerfilController.handle);
 //#region Treinos
