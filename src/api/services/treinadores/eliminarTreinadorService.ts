@@ -15,7 +15,7 @@ export class EliminarTreinadorService{
 
         const users = await client.users.update({
         data:{
-            estado:0,
+            isDeleted:true,
         },
         where:{
             uid:treinador_id,

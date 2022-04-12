@@ -1,4 +1,5 @@
 import { checkMusculoNomeExists } from "../../helpers/dbHelpers";
+import { client } from "../../prisma/client";
 
 export class AddMusculoService{
   async execute(nome:string, image:string){
@@ -7,6 +8,13 @@ export class AddMusculoService{
       throw new Error("Musculo já existente")
     }
 
-    
+    const musculo = await client.musculos.create({
+      data:{
+        nome,
+        img_url:image
+      }
+    })
+
+    return {musculo}
   }
 }

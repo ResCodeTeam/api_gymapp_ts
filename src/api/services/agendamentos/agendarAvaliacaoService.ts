@@ -4,7 +4,6 @@ import { checkUserIdExists, checkGinasioExists } from "../../helpers/dbHelpers";
 interface IAgendarAvaliacaoService {
   uid: string;
   dataAgendamento: Date;
-  estado: number;
   ginasioId: string;
   treinadorId: string;
 }
@@ -13,7 +12,6 @@ export class AgendarAvaliacaoService {
   async execute({
     uid,
     dataAgendamento,
-    estado,
     ginasioId,
     treinadorId,
   }: IAgendarAvaliacaoService) {
@@ -33,7 +31,6 @@ export class AgendarAvaliacaoService {
         ginasio_id: ginasioId,
         uid,
         data_agendamento: dataAgendamento,
-        estado,
       }
     });
 

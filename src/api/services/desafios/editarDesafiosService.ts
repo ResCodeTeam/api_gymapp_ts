@@ -5,7 +5,7 @@ interface Idata {
     data_inicio: Date,
     data_fim: Date,
     recompensa: number,
-    estado: number,
+    isDeleted: boolean,
     descricao: string,
 }
 
@@ -33,7 +33,7 @@ export class EditarDesafioService {
                 data_inicio: data.data_inicio,
                 data_fim: data.data_fim,
                 recompensa: data.recompensa,
-                estado : data.estado,
+                isDeleted : data.isDeleted,
                 descricao: data.descricao
             }
         })

@@ -9,6 +9,7 @@ import { RemoverAtividadesController } from "../controllers/atividades/removerAt
 import { EditarAtividadesController } from "../controllers/atividades/editarAtividadesController";
 import { VerTodasAtividadesController } from "../controllers/atividades/verTodasAtividadesController";
 import { EditarMusculoController } from "../controllers/musculos/editarMusculoController";
+import { AddMusculoController } from "../controllers/musculos/addMusculoController";
 
 
 const registarFuncoesController = new RegistarFuncoesController();
@@ -19,6 +20,7 @@ const editarAtividadesController = new EditarAtividadesController;
 const verTodasAtividadesController = new VerTodasAtividadesController();
 
 const editarMusculoController = new EditarMusculoController();
+const addMusculoController = new AddMusculoController();
 
 backendRouter.post("/funcoes/", registarFuncoesController.handle);
 backendRouter.post("/cp/", registarCpController.handle);
@@ -29,5 +31,6 @@ backendRouter.put("/atividades/:id", editarAtividadesController.handle);
 backendRouter.get("/atividades/:id", verTodasAtividadesController.handle);
 
 backendRouter.put("/musculos/:musculoId", editarMusculoController.handle);
+backendRouter.post("/musculos", addMusculoController.handle);
 export { backendRouter };
 
