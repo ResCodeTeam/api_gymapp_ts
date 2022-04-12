@@ -3,30 +3,30 @@ import { client } from "../../prisma/client";
 
 interface IDesafio{
     agendamentoId:string
-    estado : number
+    isAceite : boolean
     desafioId : string
 }
 
 
 export class InscreverDesafiosService {
-    async execute({agendamentoId,estado, desafioId} : IDesafio){
+    async execute({agendamentoId,isAceite, desafioId} : IDesafio){
 
         if (desafioId == null) {
             throw new Error("Impossível inscrever no desafio.");
         }
 
-        if (estado == -1) {
+        if (isAceite == false) {
             const verificaInscricao = await client.agendamentos_desafios.findUnique({
                 where : {
                     agendamento_id : agendamentoId
                 },
                 select : {
-                    estado : true,
+                    isAceite:true,
                     desafio_id : true
                 }
             });
 
-            if(verificaInscricao.estado == -1){
+            if(verificaInscricao.isAceite == false){
                 throw new Error("O desafio já se encontra encerrado.");
             }
             
@@ -35,7 +35,7 @@ export class InscreverDesafiosService {
                     agendamento_id : agendamentoId
                 },
                 data: {
-                    estado,
+                    isAceite,
                     desafio_id : desafioId
 
                 }
