@@ -25,6 +25,14 @@ let checkDesafioIdExists = async(desafioId: string)=>{
     })
     return search.length != 0;
 }
+let checkAvaliacoesExists = async(avaliacaoId: string)=>{
+    const search = await client.avaliacoes.findMany({
+        where:{
+            avaliacao_id: avaliacaoId
+        }
+    })
+    return search.length != 0;
+}
 let checkUserIdExists= async(userId : string)=>{
     const search = await client.users.findMany({
         where:{
@@ -366,6 +374,7 @@ export {
     checkTreinadorGinasio,
     checkMusculoExists,
     checkExercicioMusculoExists,
+    checkAvaliacoesExists,
     checkMusculoNomeExists
 }
 
