@@ -11,7 +11,7 @@ model agendamentos_avaliacoes {
   agendamento_id   String   @id @default(uuid())
   uid              String
   data_agendamento DateTime @db.Timestamp(3)
-  estado           Int
+  isAceite         Boolean  @default(false)
   ginasio_id       String
   isDeleted        Boolean  @default(false)
   ginasio          ginasio  @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament980386")
@@ -22,7 +22,7 @@ model agendamentos_desafios {
   agendamento_id   String   @id @default(uuid())
   uid              String
   data_agendamento DateTime @db.Timestamp(3)
-  estado           Int
+  isAceite         Boolean  @default(false)
   desafio_id       String
   ginasio_id       String
   isDeleted        Boolean  @default(false)
@@ -107,11 +107,11 @@ model comentarios_publicacao {
 
 model definicoes_user {
   def_id         String  @id @default(uuid())
-  usersuid       String
+  usersuid       String  @unique
   is_privado     Boolean @default(false)
   identificacoes Boolean @default(false)
   mencoes        Boolean @default(false)
-  users          users   @relation(fields: [usersuid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkdefinicoes764689")
+  users          users   @relation(fields: [usersuid], references: [uid])
 }
 
 model desafios {
@@ -122,7 +122,7 @@ model desafios {
   data_inicio           DateTime                @db.Timestamp(3)
   data_fim              DateTime?               @db.Timestamp(3)
   recompensa            Int
-  estado                Int                     @default(0)
+  isEncerrado           Boolean                 @default(false)
   ginasio_id            String
   descricao             String?                 @db.VarChar(255)
   isDeleted             Boolean                 @default(false)
@@ -210,7 +210,6 @@ model ginasio {
   marca_id                String
   tag                     String                    @db.VarChar(255)
   desricao                String?                   @db.VarChar(255)
-  estado                  String                    @default("0") @db.VarChar(255)
   imagem_url              String                    @db.VarChar(255)
   lat                     String                    @db.VarChar(255)
   long                    String                    @db.VarChar(255)
@@ -344,7 +343,7 @@ model planos_treino {
   aluno_id                                String
   treinador_id                            String
   data                                    DateTime            @db.Date
-  estado                                  Boolean             @default(false)
+  isRealizado                             Boolean             @default(false) @db.Boolean()
   modalidade_id                           String
   isDeleted                               Boolean             @default(false)
   users_planos_treino_aluno_idTousers     users               @relation("planos_treino_aluno_idTousers", fields: [aluno_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre628891")
@@ -380,9 +379,7 @@ model series_desafio {
   serie_id             String             @id @default(uuid())
   exercicio_desafio_id String
   n_ordem_serie        Int
-  repeticoes           Int
-  peso                 Int
-  unidade_medida       String             @db.VarChar(255)
+  valor                String?            @db.VarChar(255)
   exercicios_desafio   exercicios_desafio @relation(fields: [exercicio_desafio_id], references: [exercicio_desafio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkseries_des841548")
 }
 
@@ -390,9 +387,7 @@ model series_exercicio {
   serie_id            String           @id @default(uuid())
   exercicios_bloco_id String
   n_ordem_serie       Int
-  valor               String           @db.VarChar(255)
-  peso                Int?
-  unidade_medida      String?          @db.VarChar(255)
+  valor               String?          @db.VarChar(255)
   exercicios_bloco    exercicios_bloco @relation(fields: [exercicios_bloco_id], references: [exercicios_bloco_id], onDelete: NoAction, onUpdate: NoAction, map: "fkseries_exe489955")
 }
 
@@ -400,7 +395,6 @@ model submissoes_desafios {
   submissao_id                                  String   @id @default(uuid())
   uid                                           String
   valor                                         String?  @db.VarChar(255)
-  estado                                        Int
   desafio_id                                    String
   treinador_id                                  String
   ginasio_id                                    String
@@ -449,7 +443,6 @@ model users {
   pontos                                                      Int?                         @default(0)
   descricao                                                   String?                      @db.VarChar(255)
   imagem_url                                                  String?                      @db.VarChar(255)
-  estado                                                      Int?                         @default(1)
   isDeleted                                                   Boolean                      @default(false)
   funcoes                                                     funcoes                      @relation(fields: [funcao_id], references: [funcao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkusers982872")
   agendamentos_avaliacoes                                     agendamentos_avaliacoes[]
@@ -459,7 +452,7 @@ model users {
   avaliacoes_avaliacoes_aluno_idTousers                       avaliacoes[]                 @relation("avaliacoes_aluno_idTousers")
   avaliacoes_avaliacoes_treinador_idTousers                   avaliacoes[]                 @relation("avaliacoes_treinador_idTousers")
   comentarios_publicacao                                      comentarios_publicacao[]
-  definicoes_user                                             definicoes_user[]
+  definicoes_user                                             definicoes_user?
   desafios                                                    desafios[]
   destinos_notificacao                                        destinos_notificacao[]
   exercicios                                                  exercicios[]
