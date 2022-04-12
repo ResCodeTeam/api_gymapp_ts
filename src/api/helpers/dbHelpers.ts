@@ -17,6 +17,14 @@ let checkEmail = async(email : string)=>{
     })
     return search.length != 0;
 }
+let findUserDefinicoes = async(uId: string)=>{
+    const search = await client.definicoes_user.findMany({
+        where:{
+            usersuid: uId,
+        }
+    })
+    return search[0].def_id;
+}
 let checkDesafioIdExists = async(desafioId: string)=>{
     const search = await client.desafios.findMany({
         where:{
@@ -374,6 +382,7 @@ export {
     checkTreinadorGinasio,
     checkMusculoExists,
     checkExercicioMusculoExists,
+    findUserDefinicoes,
     checkAvaliacoesExists,
     checkMusculoNomeExists
 }

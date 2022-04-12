@@ -30,6 +30,7 @@ import { EditarExercicioController } from "../controllers/Exercicios/editarExerc
 import { RemoverExercicioImagemController } from "../controllers/Exercicios/editar/removerExercicioImagemController";
 import { AdicionarExercicioMusculoController } from "../controllers/Exercicios/musculos/adicionarExercicioMusculoController";
 import { RemoverExercicioMusculoController } from "../controllers/Exercicios/musculos/removerExercicioMusculoController";
+import { EditarPerfilPrivadoController } from "../controllers/perfil/editarPerfilPrivadoController";
 
 
 //
@@ -63,6 +64,8 @@ const removerExercicioMusculoController = new RemoverExercicioMusculoController(
 
 //const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
+const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
+
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
 //#endregion
@@ -78,7 +81,12 @@ treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.
 treinadorRouter.post("/:treinadorId/exercicios/:exercicioId/musculos/:musculoId", adicionarExercicioMusculoController.handle);
 treinadorRouter.delete("/:treinadorId/exercicios/:exercicioId/musculos/:musculoId", removerExercicioMusculoController.handle);
 //#endregion
+
+//#region Perfil
 treinadorRouter.put("/:id/perfil", editarPerfilController.handle);
+treinadorRouter.put("/:id/perfil", editarPerfilPrivadoController.handle);
+//#endregion
+
 //#region Treinos
 treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
 //#endregion
