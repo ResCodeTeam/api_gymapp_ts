@@ -3,9 +3,9 @@ import { AddMusculoService } from "../../services/musculos/addMusculoService";
 
 export class AddMusculoController{
   async handle(request:Request, response:Response){
-    const {nome,imagem}=request.body;
+    const {nome,image}=request.body;
     const addMusculoService = new AddMusculoService();
-    const resp = addMusculoService.execute(nome,imagem);
+    const resp = await addMusculoService.execute(nome,image);
     response.json(resp);
   }
 }
