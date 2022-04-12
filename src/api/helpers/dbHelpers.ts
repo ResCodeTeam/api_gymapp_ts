@@ -330,6 +330,15 @@ let checkExercicioMusculoExists = async(musculoId:string, exercicioId:string)=>{
     return musculos.length!=0
 }
 
+let checkMusculoNomeExists = async(nome:string)=>{
+    const musculos = await client.musculos.findMany({
+        where:{
+            nome
+        }
+    })
+    return musculos.length!=0
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -356,6 +365,7 @@ export {
     checkAutorExercicio,
     checkTreinadorGinasio,
     checkMusculoExists,
-    checkExercicioMusculoExists
+    checkExercicioMusculoExists,
+    checkMusculoNomeExists
 }
 

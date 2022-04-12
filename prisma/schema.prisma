@@ -114,6 +114,8 @@ model definicoes_user {
   users          users   @relation(fields: [usersuid], references: [uid])
 }
 
+//teste
+
 model desafios {
   desafio_id            String                  @id @default(uuid())
   criador_id            String
