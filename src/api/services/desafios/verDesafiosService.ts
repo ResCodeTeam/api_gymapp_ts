@@ -12,7 +12,7 @@ export class VerDesafioService{
         const desafio = await client.desafios.findMany({
             where:{
                 desafio_id:desafioId,
-                isEncerrado:false,
+                 
                 isDeleted:false
                 
             },
