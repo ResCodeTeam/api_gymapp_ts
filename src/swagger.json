@@ -2724,7 +2724,8 @@
                         "examples": {
                             "Costas":{
                                 "value":{
-                                    "nome":"Costas"
+                                    "nome":"Costas",
+                                    "imagem":"http://imagem/costas"
                                 }
                             }
                         }
@@ -2753,7 +2754,7 @@
                                         "musculo": {
                                             "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4",
                                             "nome": "Costas",
-                                            "img_url": "url3"
+                                            "img_url": "http://imagem/costas"
                                         }
                                     }
                                 }
@@ -2768,22 +2769,6 @@
         "post":{
             "summary": "Adicionar musculo",
             "description": "Esta rota permite adcionar um musculo à base de dados",
-            "parameters": [{
-                "name": "musculoId",
-                "in": "path",
-                "description": "id do musculo",
-                "required": true,
-                "schema":{
-                    "type": "string"
-                },
-                "examples": {
-                    "Musculo Id":{
-                        "value":"1b1dd226-454a-4bb6-a126-1870411646e4"
-                    }
-                },
-                "style": "simple"
-
-            }],
             "tags": ["Musculos"],
             "requestBody": {
                 "content": {
@@ -2828,7 +2813,7 @@
                                         "musculo": {
                                             "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4",
                                             "nome": "Costas",
-                                            "img_url": "url3"
+                                            "img_url": "http://imagem/costas"
                                         }
                                     }
                                 }
