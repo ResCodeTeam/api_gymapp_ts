@@ -63,6 +63,8 @@ const removerExercicioMusculoController = new RemoverExercicioMusculoController(
 
 //const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
+const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
+
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
 //#endregion
@@ -78,7 +80,12 @@ treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.
 treinadorRouter.post("/:treinadorId/exercicios/:exercicioId/musculos/:musculoId", adicionarExercicioMusculoController.handle);
 treinadorRouter.delete("/:treinadorId/exercicios/:exercicioId/musculos/:musculoId", removerExercicioMusculoController.handle);
 //#endregion
+
+//#region Perfil
 treinadorRouter.put("/:id/perfil", editarPerfilController.handle);
+treinadorRouter.put("/:id/perfil", editarPerfilPrivadoController.handle);
+//#endregion
+
 //#region Treinos
 treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
 //#endregion
