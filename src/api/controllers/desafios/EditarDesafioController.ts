@@ -11,7 +11,7 @@ export class EditarDesafioController{
             data_inicio: new Date(request.body.data_inicio),
             data_fim: new Date(request.body.data_fim),
             recompensa: request.body.recompensa,
-            estado: request.body.estado,
+            isDeleted: request.body.isDeleted,
             descricao: request.body.descricao,
         }
         const desafioId = request.params.id;

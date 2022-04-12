@@ -4,7 +4,6 @@ import { checkUserIdExists, checkGinasioExists } from "../../helpers/dbHelpers";
 interface IAgendarDesafiosService {
   uid: string;
   dataAgendamento: Date;
-  estado: number;
   desafioId: string;
   ginasioId: string;
   treinadorId: string;
@@ -14,7 +13,6 @@ export class AgendarDesafiosService {
   async execute({
     uid,
     dataAgendamento,
-    estado,
     desafioId,
     ginasioId,
     treinadorId,
@@ -36,7 +34,6 @@ export class AgendarDesafiosService {
         desafio_id: desafioId,
         uid,
         data_agendamento: dataAgendamento,
-        estado,
       }
     });
 

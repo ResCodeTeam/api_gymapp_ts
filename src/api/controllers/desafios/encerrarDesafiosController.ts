@@ -4,11 +4,11 @@ import { EncerrarDesafiosService } from "../../services/desafios/encerrarDesafio
 export class EncerrarDesafiosController{
     async handle(request : Request, response : Response) {
         const desafioId = request.params.id;
-        const { estado } = request.body;
+        const { isEncerrado } = request.body;
         const encerrarDesafiosController = new EncerrarDesafiosService();
 
         const resp = await encerrarDesafiosController.execute({
-            estado, 
+            isEncerrado, 
             desafioId
         });
         response.json(resp);

@@ -1,28 +1,28 @@
 import { client } from "../../prisma/client";
 
 interface IDesafio{
-    estado : number
+    isEncerrado : boolean
     desafioId : string
 }
 
 export class EncerrarDesafiosService {
-    async execute({estado, desafioId} : IDesafio){
+    async execute({isEncerrado, desafioId} : IDesafio){
 
         if (desafioId == null) {
             throw new Error("Impossível encerrar desafio.");
         }
 
-        if (estado == -1) {
+        if (isEncerrado == false) {
             const verificarEncerrado = await client.desafios.findUnique({
                 where : {
                     desafio_id : desafioId
                 },
                 select : {
-                    estado : true,
+                    isEncerrado : true,
                 }
             });
 
-            if(verificarEncerrado.estado == -1){
+            if(verificarEncerrado.isEncerrado == false){
                 throw new Error("O desafio já se encontra encerrado.");
             }
             
@@ -31,7 +31,7 @@ export class EncerrarDesafiosService {
                     desafio_id : desafioId
                 },
                 data: {
-                    estado
+                    isEncerrado
                 }
             });
             return {
