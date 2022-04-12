@@ -9,7 +9,7 @@ class CriarDesafiosController {
         dataInicio = new Date(dataInicio);
         dataFim = new Date(dataFim);
 
-        // console.log(criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, descricao, exercicios, regras)
+        
         
         const criarDesafiosService = new CriarDesafiosService();
         const resp = await criarDesafiosService.execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, ginasioId, descricao, exercicios, regras });
