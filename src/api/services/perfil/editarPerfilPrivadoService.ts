@@ -1,5 +1,5 @@
 import { client } from "../../prisma/client";
-import { checkUserIdExists, findUser } from "../../helpers/dbHelpers";
+import { checkUserIdExists, findUserDefinicoes } from "../../helpers/dbHelpers";
 
 interface IEditarPerfilPrivado{
     uId:string,
@@ -17,11 +17,11 @@ export class EditarPerfilPrivadoService {
       throw new Error("Utilizador inexistente")
     }
 
-    findUser(uId);
+    const defId = await findUserDefinicoes(uId);
 
-    /*const user = await client.definicoes_user.update({
+    const user = await client.definicoes_user.update({
         where : {
-             def_id  
+          def_id: defId
         },
         data : {
           is_privado: true,
@@ -30,7 +30,6 @@ export class EditarPerfilPrivadoService {
     return {
       user, 
     };
-    */
   }
 }
   
