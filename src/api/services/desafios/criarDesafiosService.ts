@@ -10,7 +10,6 @@ interface ICriarDesafiosService {
     dataInicio: Date;
     dataFim: Date;
     recompensa: number;
-    estado: number;
     ginasioId: string;
     descricao: string;
     exercicios: Array<Exercicio>;
@@ -20,7 +19,7 @@ interface ICriarDesafiosService {
 }
 
 class CriarDesafiosService {
-    async execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras}: ICriarDesafiosService) {
+    async execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, ginasioId, descricao, exercicios, regras}: ICriarDesafiosService) {
         const exists_criador = await checkUserIdExists(criadorId);
         if (!exists_criador) {
             throw new Error("O user não existe");
