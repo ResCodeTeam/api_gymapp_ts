@@ -2,6 +2,7 @@ import express from "express";
 import { VerAvaliacoesController } from "../controllers/avaliacoes/verAvalicaoController";
 import { InscreverDesafiosController } from "../controllers/desafios/inscricaoDesafioController";
 import { VerDesafiosController } from "../controllers/desafios/verDesafiosController";
+import { VerPerfilController } from "../controllers/perfil/verPerfilController";
 
 const alunoRouter = express.Router();
 
@@ -14,6 +15,7 @@ const removerTreinosController = new RemoverTreinosController();
 const verAvaliacoesController = new VerAvaliacoesController();
 const inscreverDesafiosController = new InscreverDesafiosController();
 const verDesafiosController=new VerDesafiosController();
+const verPerfilController=new VerPerfilController();
 
 //#region Treinos
 alunoRouter.post("/user/:id/treinos", criarTreinosController.handle);
@@ -29,8 +31,12 @@ alunoRouter.put("/:id/agendamento_desafios", inscreverDesafiosController.handle)
 //#endregion
 
 //#region desafio
-alunoRouter.get("/:id/desafio", verDesafiosController.handle);
+alunoRouter.get("/:id/desafios", verDesafiosController.handle);
 
+//#end region
+
+//#region perfil
+alunoRouter.get("/:id/user", verPerfilController.handle);
 //#end region
 
 export { alunoRouter }
