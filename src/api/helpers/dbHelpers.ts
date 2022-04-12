@@ -29,13 +29,13 @@ let findUser = async(uId: string)=>{
         },
         select:{
             definicoes_user: {
-                select: {
+                select:{
                     def_id: true,
                 }
             }
         }
     })
-    user.definicoes_user
+    console.log(user.definicoes_user)
     return search.length != 0;
 }
 let checkDesafioIdExists = async(desafioId: string)=>{

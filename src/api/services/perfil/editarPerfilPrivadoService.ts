@@ -17,8 +17,9 @@ export class EditarPerfilPrivadoService {
       throw new Error("Utilizador inexistente")
     }
 
+    findUser(uId);
 
-    const user = await client.definicoes_user.update({
+    /*const user = await client.definicoes_user.update({
         where : {
              def_id  
         },
@@ -29,6 +30,7 @@ export class EditarPerfilPrivadoService {
     return {
       user, 
     };
+    */
   }
 }
   

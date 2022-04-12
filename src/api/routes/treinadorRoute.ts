@@ -30,6 +30,7 @@ import { EditarExercicioController } from "../controllers/Exercicios/editarExerc
 import { RemoverExercicioImagemController } from "../controllers/Exercicios/editar/removerExercicioImagemController";
 import { AdicionarExercicioMusculoController } from "../controllers/Exercicios/musculos/adicionarExercicioMusculoController";
 import { RemoverExercicioMusculoController } from "../controllers/Exercicios/musculos/removerExercicioMusculoController";
+import { EditarPerfilPrivadoController } from "../controllers/perfil/editarPerfilPrivadoController";
 
 
 //
