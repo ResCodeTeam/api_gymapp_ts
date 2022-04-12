@@ -8,6 +8,7 @@ import { CriarAtividadeController } from "../controllers/atividades/criarAtivida
 import { RemoverAtividadesController } from "../controllers/atividades/removerAtividadesController";
 import { EditarAtividadesController } from "../controllers/atividades/editarAtividadesController";
 import { VerTodasAtividadesController } from "../controllers/atividades/verTodasAtividadesController";
+import { EditarMusculoController } from "../controllers/musculos/editarMusculoController";
 
 
 const registarFuncoesController = new RegistarFuncoesController();
@@ -17,13 +18,16 @@ const removerAtividadesController = new RemoverAtividadesController();
 const editarAtividadesController = new EditarAtividadesController;
 const verTodasAtividadesController = new VerTodasAtividadesController();
 
+const editarMusculoController = new EditarMusculoController();
 
 backendRouter.post("/funcoes/", registarFuncoesController.handle);
 backendRouter.post("/cp/", registarCpController.handle);
+
 backendRouter.post("/atividades/", criarAtividadeController.handle);
 backendRouter.delete("/atividades/:id", removerAtividadesController.handle);
 backendRouter.put("/atividades/:id", editarAtividadesController.handle);
 backendRouter.get("/atividades/:id", verTodasAtividadesController.handle);
 
+backendRouter.put("/musculos/:musculoId", editarMusculoController.handle);
 export { backendRouter };
 

@@ -2640,6 +2640,80 @@
                 }
             }
         }
+    },
+    "/backend/musculos/{musculoId}":{
+        "put":{
+            "summary": "Editar musculo",
+            "description": "Esta rota permite editar um musculo",
+            "parameters": [{
+                "name": "musculoId",
+                "in": "path",
+                "description": "id do musculo",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "Musculo Id":{
+                        "value":"1b1dd226-454a-4bb6-a126-1870411646e4"
+                    }
+                },
+                "style": "simple"
+
+            }],
+            "tags": ["Musculos"],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "nome":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Costas":{
+                                "value":{
+                                    "nome":"Costas"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "musculo": {
+                                            "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4",
+                                            "nome": "Costas",
+                                            "img_url": "url3"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     },
     "components": {
