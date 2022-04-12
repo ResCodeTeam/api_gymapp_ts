@@ -1167,6 +1167,55 @@
                 }
             }
         },
+
+        "/aluno/{id}/desafios/":{
+            "get":{
+                "summary": "Ver desafios",
+                "description": "Esta rota vai apresentar todos os desafios",
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do desafio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "tags": ["Desafios"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ver desafios":{
+                                        "value":{
+                                            "msg":"operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
+        },
         "/posts/user/{id}":{
             "get":{
                 "summary": "Ver posts de user",
