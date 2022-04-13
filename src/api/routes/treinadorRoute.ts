@@ -33,6 +33,7 @@ import { RemoverAgendarDesafiosController } from "../controllers/agendamentos/re
 import { RemoverAgendarAvaliacaoController } from "../controllers/agendamentos/removerAgendarAvaliacaoController";
 import { VerAgendamentoAvaliacoesController } from "../controllers/agendamentos/verAgendamentoAvaliacoesController";
 import { VerAgendamentosDesafiosController } from "../controllers/agendamentos/verAgendamentosDesafiosController";
+import { SubmissaoDesafioController } from "../controllers/desafios/submissoes/submissaoDesafioController";
 
 
 //
@@ -66,6 +67,7 @@ const removerAgendarAvaliacaoController = new RemoverAgendarAvaliacaoController(
 const verAgendamentosDesafiosController = new VerAgendamentosDesafiosController();
 const verAgendamentoAvaliacoesController = new VerAgendamentoAvaliacoesController();
 
+const submissaoDesafioController = new SubmissaoDesafioController();
 //const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
 //#region Comentarios
@@ -92,6 +94,7 @@ treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
 treinadorRouter.put("/desafio/:id", editarDesafio.handle);
 treinadorRouter.delete("/desafio/:id", removerDesafio.handle);
 treinadorRouter.post("/desafio/:id", criarDesafio.handle)
+treinadorRouter.post("/desafio/:desafioId/submissoes", submissaoDesafioController.handle)
 //#endregion
 
 

@@ -28,7 +28,7 @@ let findUserDefinicoes = async(uId: string)=>{
 let checkDesafioIdExists = async(desafioId: string)=>{
     const search = await client.desafios.findMany({
         where:{
-            desafio_id: desafioId
+            desafio_id: desafioId,
         }
     })
     return search.length != 0;
@@ -388,6 +388,17 @@ let checkPerfilPrivado = async(uid:string)=>{
     return user.definicoes_user.is_privado;
 }
 
+let getDesafio = async(desafioId:string)=>{
+    const desafio = await client.desafios.findFirst({
+        where:{
+            desafio_id:desafioId,
+            isDeleted:false,
+            isEncerrado:false
+        }
+    })
+    return desafio
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -420,6 +431,7 @@ export {
     checkMusculoNomeExists,
     checkPerfilPrivado,
     checkAgendamentoAvaliacaoExists,
-    checkAgendamentoDesafiosExists
+    checkAgendamentoDesafiosExists,
+    getDesafio
 }
 
