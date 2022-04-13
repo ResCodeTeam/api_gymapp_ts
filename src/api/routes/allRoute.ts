@@ -9,7 +9,7 @@ import { EditarPublicacaoController } from "../controllers/posts/editarPublicaca
 import { UpdateEstadoNotificacaoController } from "../controllers/posts/notificacoes/updateEstadoNotificacaoController";
 import { CriarGostoController } from "../controllers/posts/gostosPosts/criarGostoController";
 import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
-import { EditarPerfilPrivadoController } from "../controllers/perfil/editarPerfilPrivadoController";
+import { EditarPerfilPrivadoController } from "../controllers/definicoes/editarPerfilPrivadoController";
 
 const allRouter = express.Router();
 

@@ -18,12 +18,12 @@ let checkEmail = async(email : string)=>{
     return search.length != 0;
 }
 let findUserDefinicoes = async(uId: string)=>{
-    const search = await client.definicoes_user.findMany({
+    const search = await client.definicoes_user.findFirst({
         where:{
             usersuid: uId,
         }
     })
-    return search[0].def_id;
+    return search.def_id;
 }
 let checkDesafioIdExists = async(desafioId: string)=>{
     const search = await client.desafios.findMany({
