@@ -2449,24 +2449,25 @@
                             "application/json":{
                                 "schema":{
                                     "properties": {
+                                        "atividadeId":{
+                                            "type": "string"
+                                        },
                                         "msg":{
                                             "type": "string"
                                         }
-                                    }
-                                },
-                                "examples": {
-                                    "Ver Atividade":{
-                                         "value":{
-                                            "msg":"Ver atividade com sucesso"
-                                        }
+                                    
                                     }
                                 }
+                        
                             }
                         }
                     }
                 }
             }
+        }
         },
+            
+            
         "/aluno/treino/{treinoId}":{
             "delete":{
                 "summary": "Remover treino",
@@ -2710,8 +2711,7 @@
                         "examples": {
                             "Costas":{
                                 "value":{
-                                    "nome":"Costas",
-                                    "imagem":"http://imagem/costas"
+                                    "nome":"Costas"
                                 }
                             }
                         }
@@ -2740,7 +2740,7 @@
                                         "musculo": {
                                             "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4",
                                             "nome": "Costas",
-                                            "img_url": "http://imagem/costas"
+                                            "img_url": "url3"
                                         }
                                     }
                                 }
@@ -2755,6 +2755,22 @@
         "post":{
             "summary": "Adicionar musculo",
             "description": "Esta rota permite adcionar um musculo à base de dados",
+            "parameters": [{
+                "name": "musculoId",
+                "in": "path",
+                "description": "id do musculo",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "Musculo Id":{
+                        "value":"1b1dd226-454a-4bb6-a126-1870411646e4"
+                    }
+                },
+                "style": "simple"
+
+            }],
             "tags": ["Musculos"],
             "requestBody": {
                 "content": {
