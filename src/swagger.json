@@ -1090,68 +1090,6 @@
             }
         }
     },
-    "/aluno/{id}/agendamentoDesafios":{
-        "put":{
-            "summary": "Agendar desafio",
-            "description": "Esta rota vai agendar um desafio",
-            "parameters": [
-            {
-                "name": "agendamentoId",
-                "in": "path",
-                "description": "Id do agendamento a fazer o pedido",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "agendamentoId":{
-                            "type":"string"
-                        }
-                    }
-                }
-                
-            }
-            ],
-            "tags": ["Desafio"],
-            "requestBody":{
-                "content":{
-                    "application/json":{
-                        "schema":{
-                            "properties": {
-                                "agendamentoId":{
-                                    "type": "string"
-                                },
-                                "isAceite":{
-                                    "type": "boolean"
-                                },"desafioId":{
-                                    "type": "string"
-                                }
-                                
-                            }
-                        },
-                        "examples": {
-                            "Inscrever desafio": {
-                                "value": {
-                                    "agendamentoId": "2b47f243-b0cb-49a8-b2db-1cf443eb6676",
-                                    "isAceite": false,
-                                    "desafioId": "9cad670e-32cc-4441-8b3a-117dcedabb14"
-                                   
-                                }
-                            }
-                        }
-                        
-                    }
-                }
-            },
-            "responses": {
-                "500":{
-                    "description": "ERROR"
-                },
-                "200":{
-                    "description": "OK"
-                    
-                }
-            }
-        }
-    },
         "/posts/all/{id}":{
                 "get":{
                     "summary": "Ver posts",
@@ -1266,6 +1204,54 @@
                                 },
                                 "examples": {
                                     "ver desafios":{
+                                        "value":{
+                                            "msg":"operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
+        },
+        "/aluno/{id}/user/":{
+            "get":{
+                "summary": "Ver avaliações",
+                "description": "Esta rota vai apresentar todas as avaliações",
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id da avaliação",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "alunoId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "tags": ["Avaliação"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ver avaliação":{
                                         "value":{
                                             "msg":"operação realizada com sucesso"
                                         }

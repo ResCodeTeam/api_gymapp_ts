@@ -1,6 +1,5 @@
 import express from "express";
 import { VerAvaliacoesController } from "../controllers/avaliacoes/verAvalicaoController";
-import { InscreverDesafiosController } from "../controllers/desafios/inscricaoDesafioController";
 import { VerDesafiosController } from "../controllers/desafios/verDesafiosController";
 import { VerPerfilController } from "../controllers/perfil/verPerfilController";
 
@@ -14,7 +13,6 @@ import { VerTreinosAlunosController } from "../controllers/treinos/verTreinosAlu
 const criarTreinosController = new CriarTreinosController();
 const removerTreinosController = new RemoverTreinosController();
 const verAvaliacoesController = new VerAvaliacoesController();
-const inscreverDesafiosController = new InscreverDesafiosController();
 const verDesafiosController = new VerDesafiosController();
 const verPerfilController = new VerPerfilController();
 const verTreinosAlunosController = new VerTreinosAlunosController();
@@ -29,9 +27,7 @@ alunoRouter.get("/:id/treinos/", verTreinosAlunosController.handle)
 alunoRouter.get("/:id/avaliacoes", verAvaliacoesController.handle);
 //#endregion
 
-//#region agendamento desafio
-alunoRouter.put("/:id/agendamentoDesafios", inscreverDesafiosController.handle);
-//#endregion
+
 
 //#region desafio
 alunoRouter.get("/:id/desafios", verDesafiosController.handle);
