@@ -3432,6 +3432,65 @@
                 }
             }
         }
+    },
+    "/definicoes/mencoes":{
+        "put":{
+            "summary": "Alterar as menções",
+            "description": "Esta rota permite alterar a permissão de menções do utilizador",
+            "tags": ["Definições"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "mencoes": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Mencoes false":{
+                                "value":{
+                                    "mencoes":false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "msg": "Logout com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     },            
     "components": {
