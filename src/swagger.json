@@ -3317,6 +3317,56 @@
                 }
             }
         }
+    },
+    "/auth/{id}/logout":{
+        "post":{
+            "summary": "Realizar o logout",
+            "description": "Esta rota permite gerar um nove token de sessão para um utilizador",
+            "tags": ["Autenticação"],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "description": "id do user",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "User Id":{
+                        "value":"0108ab5b-dc52-40ac-b077-91c68fe4629c"
+                    }
+                },
+                "style": "simple"
+
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "token":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk4NTgxNDQsImV4cCI6MTY0OTg1OTA0NCwic3ViIjoiMDEwOGFiNWItZGM1Mi00MGFjLWIwNzctOTFjNjhmZTQ2MjljIn0.a-zcCM6kOOmTy2WbzwpoTHZ2iamuwb-PXr8N9X6r4cc"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     },            
     "components": {
