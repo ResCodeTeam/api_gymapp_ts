@@ -1,4 +1,4 @@
-import { checkDesafioIdExists, checkGinasioExists, checkUserIdExists } from "../../../helpers/dbHelpers";
+import { checkDesafioIdExists, checkGinasioExists, checkUserIdExists, getDesafio, getMarcaGym } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
 interface ISubmissaoDesafio{
@@ -29,6 +29,14 @@ export class SubmissaoDesafioService{
     const existsGinasio = await checkGinasioExists(ginasioId);
     if(!existsGinasio){
       throw new Error("Ginasio inexistente")
+    }
+
+    const desafio = await getDesafio(desafioId);
+    const gymDesafio=desafio.ginasio_id;
+console.log(gymDesafio," | ", ginasioId)
+    const marca = await getMarcaGym(gymDesafio);
+    if(!marca.mobilidade && gymDesafio != ginasioId){
+      throw new Error("Entrada invalida")
     }
 
     const submissao = await client.submissoes_desafios.create({

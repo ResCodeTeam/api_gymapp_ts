@@ -3014,11 +3014,121 @@
                 }
             }
         }
+    },
+    "/treinador/desafio/{desafioId}/submissoes":{
+        "post":{
+            "summary": "Submeter o resultado de um aluno",
+            "description": "Esta rota permite submeter o resultado do desafio de um aluno",
+            "tags": ["Desafios"],
+            "parameters": [{
+                "name": "desafioId",
+                "in": "path",
+                "description": "id do desafio",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "Desafio Id":{
+                        "value":"f6cd7ea3-20c9-492b-9dbe-f65dc501e6fc"
+                    }
+                },
+                "style": "simple"
+
+            }],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "uid": {
+                                    "type": "string"
+                                },
+                                "valor": {
+                                    "type": "string"
+                                },
+                                "treinador_id": {
+                                    "type": "string"
+                                },
+                                "ginasio_id": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Submissao desafio":{
+                                "value":{
+                                    "uid":"034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
+                                    "valor":"teste submissao",
+                                    "treinadorId":"919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                    "ginasioId":"d81fdccd-e71c-46b1-bb8e-92b287777038"
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/SubmissaoDesafio"
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "submissao": {
+                                            "submissao_id": "7cb508a2-9e19-4a0b-b5e9-f79a4190f9e5",
+                                            "uid": "034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
+                                            "valor": "teste submissao",
+                                            "desafio_id": "f6cd7ea3-20c9-492b-9dbe-f65dc501e6fc",
+                                            "treinador_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                            "ginasio_id": "d81fdccd-e71c-46b1-bb8e-92b287777038"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     },            
     "components": {
         "schemas": {
             
+            "SubmissaoDesafio": {
+                "type": "object",
+                "properties": {
+                    "submissao_id": {
+                        "type": "string"
+                    },
+                    "uid": {
+                        "type": "string"
+                    },
+                    "valor": {
+                        "type": "string"
+                    },
+                    "desafio_id": {
+                        "type": "string"
+                    },
+                    "treinador_id": {
+                        "type": "string"
+                    },
+                    "ginasio_id": {
+                        "type": "string"
+                    }
+                    
+                }
+            },
             "Definicoes": {
                 "type": "object",
                 "properties": {
