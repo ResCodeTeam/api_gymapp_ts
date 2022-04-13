@@ -8,6 +8,8 @@ import { VerInfoPostController } from "../controllers/posts/obter/verInfoPostCon
 import { EditarPublicacaoController } from "../controllers/posts/editarPublicacaoController";
 import { UpdateEstadoNotificacaoController } from "../controllers/posts/notificacoes/updateEstadoNotificacaoController";
 import { CriarGostoController } from "../controllers/posts/gostosPosts/criarGostoController";
+import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
+import { EditarPerfilPrivadoController } from "../controllers/definicoes/editarPerfilPrivadoController";
 
 const allRouter = express.Router();
 
@@ -20,6 +22,8 @@ const verInfoPostInfoController = new VerInfoPostController();
 const editarPublicacaoController  = new EditarPublicacaoController();
 const updateEstadoNotificacaoController = new UpdateEstadoNotificacaoController();
 const criarGostoController=new CriarGostoController();
+const  editarPerfilController = new EditarPerfilController();
+const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
 
 
 
@@ -33,7 +37,10 @@ allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 
 //ver info de post
 
-
+//#region Perfil
+allRouter.put("/:id/perfil", editarPerfilController.handle);
+allRouter.put("/:id/perfil", editarPerfilPrivadoController.handle);
+//#endregion
 
 // adminRouter.put("/posts/:id", editarPublicacaoController.handle);
 allRouter.delete("/posts/:id", removerPostsController.handle);

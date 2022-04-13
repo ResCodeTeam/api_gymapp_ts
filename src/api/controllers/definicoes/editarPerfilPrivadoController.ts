@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { EditarPerfilPrivadoService } from "../../services/perfil/editarPerfilPrivadoService";
+import { EditarPerfilPrivadoService } from "../../services/definicoes/editarPerfilPrivadoService";
 
 
 export class EditarPerfilPrivadoController{

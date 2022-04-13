@@ -28,7 +28,7 @@ backendRouter.post("/cp/", registarCpController.handle);
 backendRouter.post("/atividades/", criarAtividadeController.handle);
 backendRouter.delete("/atividades/:id", removerAtividadesController.handle);
 backendRouter.put("/atividades/:id", editarAtividadesController.handle);
-backendRouter.get("/atividades/:id", verTodasAtividadesController.handle);
+backendRouter.get("/atividades/", verTodasAtividadesController.handle);
 
 backendRouter.put("/musculos/:musculoId", editarMusculoController.handle);
 backendRouter.post("/musculos", addMusculoController.handle);
