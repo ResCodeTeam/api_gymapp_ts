@@ -355,6 +355,22 @@ let checkMusculoNomeExists = async(nome:string)=>{
     return musculos.length!=0
 }
 
+let checkPerfilPrivado = async(uid:string)=>{
+    const user = await client.users.findUnique({
+        where:{
+            uid
+        },
+        select:{
+            definicoes_user:{
+                select:{
+                    is_privado:true
+                }
+            }
+        }
+    })
+    return user.definicoes_user.is_privado;
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -384,6 +400,7 @@ export {
     checkExercicioMusculoExists,
     findUserDefinicoes,
     checkAvaliacoesExists,
-    checkMusculoNomeExists
+    checkMusculoNomeExists,
+    checkPerfilPrivado
 }
 
