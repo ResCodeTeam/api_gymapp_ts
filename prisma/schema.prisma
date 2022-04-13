@@ -430,6 +430,12 @@ model treinos {
   users               users                @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fktreinos709983")
 }
 
+model black_list {
+  tokenId String @id
+  uid     String
+  users   users  @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkblack_list909983")
+}
+
 model users {
   uid                                                         String                       @id @default(uuid())
   email                                                       String                       @unique @db.VarChar(255)
@@ -469,4 +475,5 @@ model users {
   submissoes_desafios_submissoes_desafios_uidTousers          submissoes_desafios[]        @relation("submissoes_desafios_uidTousers")
   treinadores_marca                                           treinadores_marca[]
   treinos                                                     treinos[]
+  black_list                                                  black_list[]
 }
