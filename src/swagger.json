@@ -2082,7 +2082,7 @@
         },
         "/aluno/user/{uid}/treinos":{
             "post":{
-                "summary": "Criar treinos",
+                "summary": "Criar treino",
                 "description": "Esta rota vai criar na base de dados os treinos",
                 "tags": ["Treinos"],
                 "parameters":[
@@ -2109,10 +2109,12 @@
                                     "type": "number"
                                 },
                                 "atividadeId":{
-                                    "type": "string"
+                                    "type": "string",
+                                    "nullable": true
                                 },
                                 "modalidadeId":{
-                                    "type": "string"
+                                    "type": "string",
+                                    "nullable": true
                                 },
                                 "duracao":{
                                     "type": "string"
@@ -2132,8 +2134,8 @@
                             "Criar Treino":{
                                 "value":{
                                     "tipoModalidade":1,
-                                    "atividadeId":"Teste",
-                                    "modalidadeId":"cf11f7c9-e47a-4574-8b93-79a1850c6636",
+                                    "atividadeId":"cc4c5892-5ae4-4df8-a8d5-6a33f65b3402",
+                                    "modalidadeId":null,
                                     "duracao":"50",
                                     "calorias": 20,
                                     "distancia": 30,
