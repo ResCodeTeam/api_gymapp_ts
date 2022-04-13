@@ -45,8 +45,8 @@ allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 
 //#region Perfil
 allRouter.put("/:id/perfil", editarPerfilController.handle);
-allRouter.put("/:id/perfil", editarPerfilPrivadoController.handle);
 allRouter.put("/definicoes/mencoes",verificarAutenticacao, editarMencoesController.handle);
+allRouter.put("/:id/definicoes/perfil/privado", editarPerfilPrivadoController.handle);
 allRouter.get("/:id/definicoes", obterDefinicoesController.handle);
 allRouter.get("/perfil",verificarAutenticacao, verMeuPerfilController.handle);
 //#endregion

@@ -730,7 +730,7 @@
                                     }
                                 },
                                 "examples": {
-                                    "Remover Modalidade":{
+                                    "Editar Exercicio":{
                                         "value":{
                                             "msg":"Exercicio editado com sucesso"
                                         }
@@ -1204,6 +1204,54 @@
                                 },
                                 "examples": {
                                     "ver desafios":{
+                                        "value":{
+                                            "msg":"operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
+        },
+        "/aluno/{id}/user/":{
+            "get":{
+                "summary": "Ver avaliações",
+                "description": "Esta rota vai apresentar todas as avaliações",
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id da avaliação",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "alunoId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "tags": ["Avaliação"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ver avaliação":{
                                         "value":{
                                             "msg":"operação realizada com sucesso"
                                         }
@@ -3480,7 +3528,7 @@
                                 }
                             },
                             "examples": {
-                                "Adicionar Musculo":{
+                                "Logout Musculo":{
                                     "value": {
                                         "msg": "Logout com sucesso"
                                     }
