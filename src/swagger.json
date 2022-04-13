@@ -179,8 +179,8 @@
                                     "dataAgendamento":{
                                         "type": "string"
                                     },
-                                    "estado":{
-                                        "type": "number"
+                                    "isAceite":{
+                                        "type": "boolean"
                                     },
                                     "ginasioId":{
                                         "type": "string"
@@ -195,7 +195,7 @@
                                     "value": {
                                         "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
                                         "dataAgendamento":"2022-03-30",
-                                        "estado": 1,
+                                        "isAceite": true,
                                         "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
                                         "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                     }
@@ -261,8 +261,8 @@
                                     "dataAgendamento":{
                                         "type": "string"
                                     },
-                                    "estado":{
-                                        "type": "number"
+                                    "isAceite":{
+                                        "type": "boolean"
                                     },
                                     "ginasioId":{
                                         "type": "string"
@@ -277,7 +277,7 @@
                                     "value": {
                                         "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
                                         "dataAgendamento":"2022-03-30",
-                                        "estado": 1,
+                                        "isAceite": true,
                                         "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
                                         "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                     }
@@ -895,8 +895,8 @@
                                     "recompensa":{
                                         "type": "number"
                                     },
-                                    "estado":{
-                                        "type": "number"
+                                    "isEncerrado":{
+                                        "type": "boolean"
                                     },
                                     "descricao":{
                                         "type": "string"
@@ -928,7 +928,7 @@
                                         "dataInicio": "2022-03-23",
                                         "dataFim": "2022-03-24",
                                         "recompensa": 100,
-                                        "estado": 2,
+                                        "isEncerrado": true,
                                         "descricao": "2",
                                         "regras": [
                                             {
@@ -1078,7 +1078,6 @@
                                                 "pontos": 0,
                                                 "descricao": null, 
                                                 "imagem_url": null,
-                                                "estado": 1,
                                                 "isDeleted": false
                                             }
                                               
@@ -1509,7 +1508,6 @@
                                                 "pontos": 0,
                                                 "descricao": null,
                                                 "imagem_url": null,
-                                                "estado": 1,
                                                 "isDeleted": false
                                             }
                                         }
@@ -1776,7 +1774,6 @@
                                                 "pontos": 0,
                                                 "descricao": null,
                                                 "imagem_url": null,
-                                                "estado": 1,
                                                 "isDeleted": false
                                             }
                                         }
@@ -2008,7 +2005,6 @@
                                                 "pontos": 0,
                                                 "descricao": null,
                                                 "imagem_url": null,
-                                                "estado": 1,
                                                 "isDeleted": false
                                             }
                                         }
@@ -2885,8 +2881,8 @@
                     "recompensa":{
                         "type": "number"
                     },
-                    "estado":{
-                        "type": "number"
+                    "isEncerrado":{
+                        "type": "boolean"
                     },
                     "descricao":{
                         "type": "string"
@@ -2947,9 +2943,6 @@
                     },
                     "imagem_url":{
                         "type": "string"
-                    },
-                    "estado":{
-                        "type": "number"
                     },
                     "isDeleted":{
                         "type": "string"
@@ -3078,9 +3071,6 @@
                     },
                     "imagem_url":{
                         "type": "string"
-                    },
-                    "estado":{
-                        "type": "number"
                     },
                     "isDeleted":{
                         "type": "boolean"
