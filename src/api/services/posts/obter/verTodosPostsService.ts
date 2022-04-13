@@ -47,6 +47,9 @@ class VerTodosPostsService{
                             every:{
                                 ginasio_id:id['ginasio_id']
                             }
+                        },
+                        definicoes_user:{
+                            is_privado:false
                         }
                     }
                 },

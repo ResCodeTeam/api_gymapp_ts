@@ -8,9 +8,15 @@ export class VerInfoPostService{
             throw new Error("Publicação não existe")
         }
         
-        const post = await client.publicacoes.findUnique({
+        const post = await client.publicacoes.findFirst({
             where:{
-                publicacao_id:postId
+                publicacao_id:postId,
+                users:{
+                    definicoes_user:{
+                        is_privado:false
+                    }
+                }
+
             }
         })
         
