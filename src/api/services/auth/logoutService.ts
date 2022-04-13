@@ -2,7 +2,7 @@ import { getUserByID } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class LogoutService{
-    async execute(userId:string){
+    async execute(userId:string,token:string){
         const user =await getUserByID(userId)
         if(!user){
             throw new Error("User inexistente")
@@ -21,7 +21,12 @@ export class LogoutService{
             }
         })
 
-        
+        await client.black_list.create({
+            data:{
+                tokenId:token,
+                uid:userId,
+            }
+        })
         return {"msg":"Logout com sucesso"}
     }
 }

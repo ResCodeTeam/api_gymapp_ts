@@ -3347,27 +3347,16 @@
             }
         }
     },
-    "/auth/{id}/logout":{
-        "post":{
+    "/auth/logout":{
+        "delete":{
             "summary": "Realizar o logout",
             "description": "Esta rota permite gerar um novo token de sessão para um utilizador",
             "tags": ["Autenticação"],
-            "parameters": [{
-                "name": "id",
-                "in": "path",
-                "description": "id do user",
-                "required": true,
-                "schema":{
-                    "type": "string"
-                },
-                "examples": {
-                    "User Id":{
-                        "value":"0108ab5b-dc52-40ac-b077-91c68fe4629c"
-                    }
-                },
-                "style": "simple"
-
-            }],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"
