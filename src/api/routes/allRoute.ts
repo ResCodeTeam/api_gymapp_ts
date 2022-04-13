@@ -11,7 +11,9 @@ import { CriarGostoController } from "../controllers/posts/gostosPosts/criarGost
 import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
 import { EditarPerfilPrivadoController } from "../controllers/definicoes/editarPerfilPrivadoController";
 import { ObterDefinicoesController } from "../controllers/perfil/definições/obterDefinicoesController";
-import { client } from "../prisma/client";
+import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
+import { VerMeuPerfilController } from "../controllers/perfil/verMeuPerfilController";
+
 
 const allRouter = express.Router();
 
@@ -27,7 +29,7 @@ const criarGostoController=new CriarGostoController();
 const  editarPerfilController = new EditarPerfilController();
 const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
 const obterDefinicoesController = new ObterDefinicoesController();
-
+const verMeuPerfilController = new VerMeuPerfilController();
 
 //#region Publicacoes
 allRouter.post("/posts", criarPostsController.handle);
@@ -43,6 +45,7 @@ allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 allRouter.put("/:id/perfil", editarPerfilController.handle);
 allRouter.put("/:id/perfil", editarPerfilPrivadoController.handle);
 allRouter.get("/:id/definicoes", obterDefinicoesController.handle);
+allRouter.get("/perfil",verificarAutenticacao, verMeuPerfilController.handle);
 //#endregion
 
 // adminRouter.put("/posts/:id", editarPublicacaoController.handle);
