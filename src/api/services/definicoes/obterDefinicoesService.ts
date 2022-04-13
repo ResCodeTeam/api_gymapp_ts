@@ -1,5 +1,5 @@
-import { checkUserIdExists } from "../../../helpers/dbHelpers";
-import { client } from "../../../prisma/client";
+import { checkUserIdExists } from "../../helpers/dbHelpers";
+import { client } from "../../prisma/client";
 
 export class ObterDefinicoesService{
   async execute(uid:string){

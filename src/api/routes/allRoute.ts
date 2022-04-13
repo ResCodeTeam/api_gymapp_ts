@@ -10,9 +10,10 @@ import { UpdateEstadoNotificacaoController } from "../controllers/posts/notifica
 import { CriarGostoController } from "../controllers/posts/gostosPosts/criarGostoController";
 import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
 import { EditarPerfilPrivadoController } from "../controllers/definicoes/editarPerfilPrivadoController";
-import { ObterDefinicoesController } from "../controllers/perfil/definições/obterDefinicoesController";
+import { ObterDefinicoesController } from "../controllers/definicoes/obterDefinicoesController";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 import { VerMeuPerfilController } from "../controllers/perfil/verMeuPerfilController";
+import { EditarMencoesController } from "../controllers/definicoes/editarMencoesController";
 
 
 const allRouter = express.Router();
@@ -30,6 +31,7 @@ const  editarPerfilController = new EditarPerfilController();
 const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
 const obterDefinicoesController = new ObterDefinicoesController();
 const verMeuPerfilController = new VerMeuPerfilController();
+const editarMencoesController = new EditarMencoesController();
 
 //#region Publicacoes
 allRouter.post("/posts", criarPostsController.handle);
@@ -43,6 +45,7 @@ allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 
 //#region Perfil
 allRouter.put("/:id/perfil", editarPerfilController.handle);
+allRouter.put("/definicoes/mencoes",verificarAutenticacao, editarMencoesController.handle);
 allRouter.put("/:id/definicoes/perfil/privado", editarPerfilPrivadoController.handle);
 allRouter.get("/:id/definicoes", obterDefinicoesController.handle);
 allRouter.get("/perfil",verificarAutenticacao, verMeuPerfilController.handle);

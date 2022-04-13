@@ -3481,6 +3481,65 @@
             }
         }
     },
+    "/definicoes/mencoes":{
+        "put":{
+            "summary": "Alterar as menções",
+            "description": "Esta rota permite alterar a permissão de menções do utilizador",
+            "tags": ["Definições"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "mencoes": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Mencoes false":{
+                                "value":{
+                                    "mencoes":false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Logout Musculo":{
+                                    "value": {
+                                        "msg": "Logout com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
     "/aluno/{uId}/treinos/{treinoId}":{
         "put":{
             "summary": "Editar treinos",
@@ -3542,7 +3601,7 @@
                             "Editar Treino":{
                                 "value":{
                                     "atividadeId":null,
-                                    "modalidadeId":"f6b2a735-7d5c-4117-9ecf-7128d0631eda",
+                                    "modalidadeId":null,
                                     "duracao":"50",
                                     "calorias": 20,
                                     "distancia": 30,
@@ -3581,7 +3640,7 @@
             }
         }
     }
-    },            
+    },         
     "components": {
         "securitySchemes": {
             "basicAuth":{
