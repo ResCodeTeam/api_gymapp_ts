@@ -7,7 +7,7 @@ export class VerTodasAtividadesService{
 
         const exists_atividade= await checkAtividadeExists(atividadeId)
         if(!exists_atividade){
-            throw new Error("Utilizador não existe")
+            throw new Error("A atividade não existe")
         }
 
         const atividades = await client.atividades.findMany({
@@ -18,7 +18,7 @@ export class VerTodasAtividadesService{
             select:{
                 descricao: true,
                 icon: true
-            },
+            }
         })
 
         return {

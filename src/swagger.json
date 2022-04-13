@@ -978,7 +978,7 @@
                 }
             }
         },
-       "/treinador/{userId}/perfil":{
+       "/{userId}/perfil":{
             "put":{
                 "summary": "Editar perfil",
                 "description": "Esta rota vai editar perfil",
