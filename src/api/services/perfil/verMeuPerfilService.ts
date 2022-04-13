@@ -16,8 +16,9 @@ export class VerMeuPerfilService{
     })
 
     const verTodosPostsUserService = new VerTodosPostsUserService()
-    const posts = await verTodosPostsUserService.execute(uid);
+    const posts = (await verTodosPostsUserService.execute(uid)).posts;
 
+    
 
     return{perfil,posts}
   }

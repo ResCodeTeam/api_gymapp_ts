@@ -3106,6 +3106,11 @@
             "summary": "Obter o perfil do user autenticado",
             "description": "Esta rota permite obter o perfil do user autenticado",
             "tags": ["Perfil"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"
@@ -3116,19 +3121,126 @@
                         "application/json":{
                             "schema":{
                                 "type": "object",
-                                "$ref": "#/components/schemas/SubmissaoDesafio"
+                                "$ref":"#/components/schemas/Perfil"
+                            },
+                            "examples": {
+                                "Perfil":{
+                                    "value":{
+                                        "perfil": {
+                                          "uid": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                          "email": "ninapeixoto@gmail.com",
+                                          "nome": "Nina Peixoto",
+                                          "password": "$2b$08$gY5y.z/Rt7vqQhPYDd9YK.DBCMKj4CP8zyPPNAW9wkSGrORwFgkzu",
+                                          "data_nasc": "1968-06-19T00:00:00.000Z",
+                                          "hashtag": "NP_02",
+                                          "data_entrada": "2022-03-23T00:00:00.000Z",
+                                          "funcao_id": "6498274e-d7db-4e7d-81fe-c38f044deef6",
+                                          "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk4NTQ1NDEsImV4cCI6MTY4MTQxMjE0MSwic3ViIjoiMDEwOGFiNWItZGM1Mi00MGFjLWIwNzctOTFjNjhmZTQ2MjljIn0.UEOKtRjODWFbPT3a4hBT-JkVnvUlNc2J-cgaB2UN9oE",
+                                          "genero": 0,
+                                          "pontos": 0,
+                                          "descricao": null,
+                                          "imagem_url": null,
+                                          "isDeleted": false
+                                        },
+                                        "posts": [
+                                          {
+                                            "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                            "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                            "data": "2022-03-28T16:31:45.226Z",
+                                            "descricao": "teste1",
+                                            "tipo": 3,
+                                            "imagens_publicacao": [],
+                                            "gostos_publicacao": [
+                                              {
+                                                "gosto_id": "3db3afa6-2b21-4401-af94-e5d1b061b7e9",
+                                                "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                                "criador_id": "19fb2828-424f-425e-9fe4-828d9262a00f"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                            "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                            "data": "2022-05-28T00:00:00.000Z",
+                                            "descricao": "TesteFatimaaa",
+                                            "tipo": 3,
+                                            "imagens_publicacao": [],
+                                            "gostos_publicacao": [
+                                              {
+                                                "gosto_id": "c5b3cec9-7950-4351-9d32-2a1778dff617",
+                                                "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                "criador_id": "024eb3f7-34fb-49ac-ac32-612ae870d7b3"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/auth/login":{
+        "post":{
+            "summary": "Login do user",
+            "description": "Esta rota permite realizar o login e autenticação do user",
+            "tags": ["Autenticação"],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Submissao desafio":{
+                                "value":{
+                                    "email":"ninapeixoto@gmail.com",
+                                    "password":"passwd"
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "message":{
+                                        "type": "string"
+                                    },
+                                    "token":{
+                                        "type": "string"
+                                    },
+                                    "refreshToken":{
+                                        "type": "string"
+                                    }
+                                }
                             },
                             "examples": {
                                 "Adicionar Musculo":{
                                     "value": {
-                                        "submissao": {
-                                            "submissao_id": "7cb508a2-9e19-4a0b-b5e9-f79a4190f9e5",
-                                            "uid": "034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
-                                            "valor": "teste submissao",
-                                            "desafio_id": "f6cd7ea3-20c9-492b-9dbe-f65dc501e6fc",
-                                            "treinador_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
-                                            "ginasio_id": "d81fdccd-e71c-46b1-bb8e-92b287777038"
-                                        }
+                                        "message": "Login concluido com sucesso",
+                                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk4NTMzOTgsImV4cCI6MTY0OTg1NDI5OCwic3ViIjoiMDEwOGFiNWItZGM1Mi00MGFjLWIwNzctOTFjNjhmZTQ2MjljIn0.rOcVCmv9tDmXI2e59j5Ki0Bv-osf2xH3EukFhnalDtE",
+                                        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk4NTMzOTgsImV4cCI6MTY4MTQxMDk5OCwic3ViIjoiMDEwOGFiNWItZGM1Mi00MGFjLWIwNzctOTFjNjhmZTQ2MjljIn0.fMrt4XJoopSHoVeciN8tre0nS62NTLB2iavKF9WKXQM"
                                     }
                                 }
                             }
@@ -3138,11 +3250,32 @@
             }
         }
     }
-    
     },            
     "components": {
+        "securitySchemes": {
+            "basicAuth":{
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
         "schemas": {
-            
+            "Perfil": {
+                "type": "object",
+                "properties": {
+                    "Perfil": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "Posts": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "$ref": "#/components/schemas/Posts"
+                        }
+                    }
+                    
+                }
+            },
             "SubmissaoDesafio": {
                 "type": "object",
                 "properties": {

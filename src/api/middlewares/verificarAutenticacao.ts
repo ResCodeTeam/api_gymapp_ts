@@ -20,6 +20,7 @@ export async function verificarAutenticacao(request:Request,response:Response,ne
 
     //obter id do user
     let uid = decode(token)['sub'].toString();
+    response.locals.uid=uid;
 
     //verificar se o user existe
     const user = await getUserByID(uid)
