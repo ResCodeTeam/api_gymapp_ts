@@ -2785,11 +2785,7 @@
                         "application/json":{
                             "schema":{
                                 "type": "object",
-                                "properties": {
-                                    "msg":{
-                                        "type": "string"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/Musculo"
                             },
                             "examples": {
                                 "Adicionar Musculo":{
@@ -2807,10 +2803,98 @@
                 }
             }
         }
+    },
+    "/{uid}/definicoes":{
+        "get":{
+            "summary": "Obter definições do user",
+            "description": "Esta rota permite obter todas as definições do utilizador",
+            "tags": ["Definições"],
+            "parameters": [{
+                "name": "uid",
+                "in": "path",
+                "description": "id do utilizador",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "User Id":{
+                        "value":"0108ab5b-dc52-40ac-b077-91c68fe4629c"
+                    }
+                },
+                "style": "simple"
+
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Definicoes"
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "definicoes": {
+                                            "def_id": "0d100e85-830e-4da8-adda-c7c68f62c341",
+                                            "usersuid": "cacc87bb-a2dd-4af3-89c6-2ceedf33930a",
+                                            "is_privado": false,
+                                            "identificacoes": true,
+                                            "mencoes": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     },
     "components": {
         "schemas": {
+            
+            "Definicoes": {
+                "type": "object",
+                "properties": {
+                    "def_id": {
+                        "type": "string"
+                    },
+                    "usersuid": {
+                        "type": "string"
+                    },
+                    "is_privado": {
+                        "type": "boolean"
+                    },
+                    "identificacoes": {
+                        "type": "boolean"
+                    },
+                    "mencoes": {
+                        "type": "boolean"
+                    }
+                    
+                }
+            },
+            "Musculo": {
+                "type": "object",
+                "properties": {
+                    "musculo_id": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "img_url": {
+                        "type": "string"
+                    }
+                }
+            },
             "Funcao": {
                 "type": "object",
                 "properties": {
