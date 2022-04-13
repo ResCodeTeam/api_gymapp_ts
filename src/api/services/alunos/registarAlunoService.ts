@@ -127,6 +127,14 @@ export class RegistarAlunoService {
           },
         });
       }
+      await client.definicoes_user.create({
+        data:{
+            identificacoes:true,
+            is_privado:false,
+            mencoes:true,
+            usersuid:aluno.uid    
+        }
+    })
       return { msg: "Aluno Registado",aluno };
     } catch (e) {
       client.users.delete({
