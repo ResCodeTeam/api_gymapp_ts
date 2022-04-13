@@ -418,7 +418,6 @@ model treinadores_marca {
 model treinos {
   treino_id           String               @id @default(uuid())
   uid                 String
-  tipo_modalidade     Int
   atividade_id        String?
   modalidade_id       String?
   duracao             String               @db.VarChar(255)
