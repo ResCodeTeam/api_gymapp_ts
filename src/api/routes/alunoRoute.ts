@@ -27,7 +27,7 @@ alunoRouter.get("/:id/avaliacoes", verAvaliacoesController.handle);
 //#endregion
 
 //#region agendamento desafio
-alunoRouter.put("/:id/agendamento_desafios", inscreverDesafiosController.handle);
+alunoRouter.put("/:id/agendamentoDesafios", inscreverDesafiosController.handle);
 //#endregion
 
 //#region desafio

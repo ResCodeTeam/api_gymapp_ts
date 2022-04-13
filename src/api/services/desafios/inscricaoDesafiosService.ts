@@ -1,3 +1,4 @@
+import { getDesafio } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 
@@ -10,23 +11,14 @@ interface IDesafio{
 
 export class InscreverDesafiosService {
     async execute({agendamentoId,isAceite, desafioId} : IDesafio){
-
+console.log(agendamentoId,isAceite,desafioId)
         if (desafioId == null) {
             throw new Error("Impossível inscrever no desafio.");
         }
 
-        if (isAceite == false) {
-            const verificaInscricao = await client.agendamentos_desafios.findUnique({
-                where : {
-                    agendamento_id : agendamentoId
-                },
-                select : {
-                    isAceite:true,
-                    desafio_id : true
-                }
-            });
-
-            if(verificaInscricao.isAceite == false){
+        const desafio = await getDesafio(desafioId)
+            
+            if(desafio.isEncerrado){
                 throw new Error("O desafio já se encontra encerrado.");
             }
             
@@ -35,18 +27,14 @@ export class InscreverDesafiosService {
                     agendamento_id : agendamentoId
                 },
                 data: {
-                    isAceite,
+                    isAceite:false,
                     desafio_id : desafioId
 
                 }
             });
             return {
-                message: "Desafio encerrado com sucesso!"
+                message: "incriçao desafio com sucesso!"
             }
-        }
-
-        return {
-            message: "Impossível encerrar desafio."
-        }
+    
     }
 }
