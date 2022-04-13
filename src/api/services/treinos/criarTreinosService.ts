@@ -30,7 +30,6 @@ class CriarTreinosService {
       throw new Error("ERRO!!! A atividade e a modalidade não podem ser ambas diferentes de null, pelo menos uma deve ser null.");
     }
 
-    //verificar se a modalidade já existe
     const exist_nome = await checkUserIdExists(uid);
     if (!exist_nome) {
       throw new Error("O utilizador não existe");
