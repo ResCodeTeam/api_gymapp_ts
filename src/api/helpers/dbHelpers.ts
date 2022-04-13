@@ -137,6 +137,24 @@ let checkAtividadeExists= async(atividadeId : string) => {
     })
     return search.length != 0;
 }
+let checkAgendamentoAvaliacaoExists = async(agendamentoId : string) => {
+    const search = await client.agendamentos_avaliacoes.findMany({
+        where:{
+            agendamento_id: agendamentoId,
+            isDeleted: false
+        }
+    })
+    return search.length != 0;
+}
+let checkAgendamentoDesafiosExists = async(agendamentoId : string) => {
+    const search = await client.agendamentos_desafios.findMany({
+        where:{
+            agendamento_id: agendamentoId,
+            isDeleted: false
+        }
+    })
+    return search.length != 0;
+}
 let checkExercicioExists= async(exercicioId : string) => {
     const search = await client.exercicios.findMany({
         where:{
@@ -400,6 +418,8 @@ export {
     findUserDefinicoes,
     checkAvaliacoesExists,
     checkMusculoNomeExists,
-    checkPerfilPrivado
+    checkPerfilPrivado,
+    checkAgendamentoAvaliacaoExists,
+    checkAgendamentoDesafiosExists
 }
 

@@ -29,6 +29,10 @@ import { EditarExercicioController } from "../controllers/Exercicios/editarExerc
 import { RemoverExercicioImagemController } from "../controllers/Exercicios/editar/removerExercicioImagemController";
 import { AdicionarExercicioMusculoController } from "../controllers/Exercicios/musculos/adicionarExercicioMusculoController";
 import { RemoverExercicioMusculoController } from "../controllers/Exercicios/musculos/removerExercicioMusculoController";
+import { RemoverAgendarDesafiosController } from "../controllers/agendamentos/removerAgendarDesafiosController";
+import { RemoverAgendarAvaliacaoController } from "../controllers/agendamentos/removerAgendarAvaliacaoController";
+import { VerAgendamentoAvaliacoesController } from "../controllers/agendamentos/verAgendamentoAvaliacoesController";
+import { VerAgendamentosDesafiosController } from "../controllers/agendamentos/verAgendamentosDesafiosController";
 
 
 //
@@ -59,6 +63,8 @@ const adicionarExercicioMusculoController = new AdicionarExercicioMusculoControl
 const removerExercicioMusculoController = new RemoverExercicioMusculoController();
 const removerAgendarDesafiosController = new RemoverAgendarDesafiosController();
 const removerAgendarAvaliacaoController = new RemoverAgendarAvaliacaoController();
+const verAgendamentosDesafiosController = new VerAgendamentosDesafiosController();
+const verAgendamentoAvaliacoesController = new VerAgendamentoAvaliacoesController();
 
 //const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
@@ -99,8 +105,10 @@ treinadorRouter.post("/avaliacoes/:id", criarAvaliacaoController.handle);
 //#region Agendamentos
 treinadorRouter.post("/agenda/desafios/:id/", agendarDesafiosController.handle);
 treinadorRouter.post("/agenda/avaliacao/", agendarAvaliacaoController.handle);
-treinadorRouter.post("/agenda/desafios/:id/", removerAgendarDesafiosController.handle);
-treinadorRouter.post("/agenda/avaliacao/:id/", removerAgendarAvaliacaoController.handle);
+treinadorRouter.delete("/agenda/desafios/agendamento/:id/", removerAgendarDesafiosController.handle);
+treinadorRouter.delete("/agenda/avaliacao/agendamento/:id/", removerAgendarAvaliacaoController.handle);
+treinadorRouter.get("/agenda/desafios/", verAgendamentosDesafiosController.handle);
+treinadorRouter.get("/agenda/avaliacoes/", verAgendamentoAvaliacoesController.handle);
 //#endregion
 
 //#region Plano
