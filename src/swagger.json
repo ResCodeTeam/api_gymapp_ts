@@ -486,7 +486,7 @@
             "post":{
                 "summary": "Registo das modalidades do ginásio",
                 "description": "Esta rota vai registar na base de dados uma modalidade de um ginásio em específico",
-                "tags": ["Ginasio"],
+                "tags": ["Modalidades"],
                 "parameters": [{
                     "name": "ginasioId",
                     "in": "path",
@@ -2129,13 +2129,13 @@
                         },
                         "examples": {
                             "Criar Treino":{
-                                "value":{,
+                                "value":{
                                     "atividadeId":null,
                                     "modalidadeId":"f6b2a735-7d5c-4117-9ecf-7128d0631eda",
-                                    "duracao":"50",
-                                    "calorias": 20,
-                                    "distancia": 30,
-                                    "data": "2022-04-09"
+                                    "duracao":"10",
+                                    "calorias": 100,
+                                    "distancia": 500,
+                                    "data": "2022-06-12"
                                 }
                             }
                         }
@@ -2463,13 +2463,25 @@
                 }
             }
         },
-        "/aluno/treino/{treinoId}":{
+        "/aluno/{uId}/treino/{treinoId}/":{
             "delete":{
                 "summary": "Remover treino",
                 "description": "Esta rota vai remover da base de dados os treinos criados",
                 "tags": ["Treinos"],
                 "parameters":[
                 {
+                    "name": "uId",
+                    "in": "path",
+                    "description": "Id do utilizador",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "uId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                },{
                     "name": "treinoId",
                     "in": "path",
                     "description": "Id do treino",
@@ -2802,7 +2814,7 @@
             }
         }
     },
-    "/treinador/agenda/desafios/agendamento/{agendamentoId}/":{
+    "/treinador/agenda/desafios/{agendamentoId}/agendamento/{uId}/":{
         "delete":{
             "summary": "Remover agendamento de um desafio",
             "description": "Esta rota vai apagar na base de dados um agendamento de um desafio",
@@ -2819,6 +2831,18 @@
                         }
                     }
                 }
+            },{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do utilizador",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "uId":{
+                            "type": "string"
+                        }
+                    }
+                } 
             }],
             "responses": {
                 "500":{
@@ -2848,7 +2872,7 @@
             }
         }
     },
-    "/treinador/agenda/avaliacao/agendamento/{agendamentoId}/":{
+    "/treinador/agenda/avaliacao/{agendamentoId}/agendamento/{uId}/":{
         "delete":{
             "summary": "Remover agendamento de uma avaliação",
             "description": "Esta rota vai apagar na base de dados um agendamento de uma avaliação",
@@ -2865,6 +2889,18 @@
                         }
                     }
                 }
+            },{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do utilizador",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "uId":{
+                            "type": "string"
+                        }
+                    }
+                } 
             }],
             "responses": {
                 "500":{

@@ -19,7 +19,7 @@ const verPerfilController=new VerPerfilController();
 
 //#region Treinos
 alunoRouter.post("/user/:id/treinos", criarTreinosController.handle);
-alunoRouter.delete("/treino/:id", removerTreinosController.handle);
+alunoRouter.delete("/:id/treino/:treino_id", removerTreinosController.handle);
 //#endregion
 
 //#region avaliacao

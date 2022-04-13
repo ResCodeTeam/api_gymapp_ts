@@ -54,6 +54,7 @@ class CriarTreinosService {
       data: {
         uid,
         atividade_id: atividadeId,
+        modalidade_id: modalidadeId,
         duracao,
         calorias, 
         distancia,

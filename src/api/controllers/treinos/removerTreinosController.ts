@@ -3,10 +3,11 @@ import { RemoverTreinosService } from "../../services/treinos/removerTreinosServ
 
 class RemoverTreinosController{
     async handle(request: Request, response: Response){
-        const treinoId = request.params.id;
-
+        const uId = request.params.id;
+        const treinoId = request.params.treino_id;
+        
     const removerTreinosService = new RemoverTreinosService();
-    const resp = await removerTreinosService.execute(treinoId);
+    const resp = await removerTreinosService.execute(uId, treinoId);
     response.json(resp);
     }
 }

@@ -320,6 +320,38 @@ let checkAutorExercicio = async(treinadorId, exercicioId)=>{
     
     return exercicio.length != 0
 }
+let checkAutorTreino = async(uId, treinoId)=>{
+    const treino = await client.treinos.findMany({
+        where:{
+            uid:uId,
+            treino_id:treinoId
+        }
+    })
+    
+    return treino.length != 0
+}
+
+let checkAutorAgendamentoAvaliacoes = async(agendamentoId, uId)=>{
+    const agendamento = await client.agendamentos_avaliacoes.findMany({
+        where:{
+            agendamento_id: agendamentoId,
+            uid: uId
+        }
+    })
+    
+    return agendamento.length != 0
+}
+
+let checkAutorAgendamentoDesafios = async(agendamentoId, uId)=>{
+    const agendamento = await client.agendamentos_desafios.findMany({
+        where:{
+            agendamento_id: agendamentoId,
+            uid: uId         
+        }
+    })
+    
+    return agendamento.length != 0
+}
 
 let checkTreinadorGinasio= async(ginasioId : string, treinadorId : string) => {
     const searchMarca = await client.ginasio.findUnique({
@@ -433,6 +465,9 @@ export {
     checkPerfilPrivado,
     checkAgendamentoAvaliacaoExists,
     checkAgendamentoDesafiosExists,
-    getDesafio
+    getDesafio,
+    checkAutorTreino,
+    checkAutorAgendamentoAvaliacoes,
+    checkAutorAgendamentoDesafios
 }
 
