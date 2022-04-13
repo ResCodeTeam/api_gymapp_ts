@@ -132,7 +132,8 @@ let checkModalidadeExists= async(modalidadeId : string) => {
 let checkAtividadeExists= async(atividadeId : string) => {
     const search = await client.atividades.findMany({
         where:{
-            atividade_id : atividadeId
+            atividade_id : atividadeId,
+            isDeleted: false
         }
     })
     return search.length != 0;
