@@ -55,7 +55,6 @@ class CriarTreinosService {
     await client.treinos.create({
       data: {
         uid,
-        tipo_modalidade: tipoModalidade,
         atividade_id: atividadeId,
         duracao,
         calorias, 
