@@ -432,6 +432,16 @@ let getDesafio = async(desafioId:string)=>{
     return desafio
 }
 
+let checkInBlackList = async(token:string)=>{
+    const tokens = await client.black_list.findMany({
+        where:{
+            tokenId:token
+        }
+    })
+
+    return tokens.length != 0;
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -468,6 +478,7 @@ export {
     getDesafio,
     checkAutorTreino,
     checkAutorAgendamentoAvaliacoes,
-    checkAutorAgendamentoDesafios
+    checkAutorAgendamentoDesafios,
+    checkInBlackList
 }
 
