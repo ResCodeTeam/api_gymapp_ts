@@ -1,22 +1,20 @@
-import { client } from "../../prisma/client";
-import { checkUserIdExists, checkGinasioExists } from "../../helpers/dbHelpers";
+import { client } from "../../../prisma/client";
+import { checkUserIdExists, checkGinasioExists } from "../../../helpers/dbHelpers";
 
-interface IAgendarDesafiosService {
+interface IAgendarAvaliacaoService {
   uid: string;
   dataAgendamento: Date;
-  desafioId: string;
   ginasioId: string;
   treinadorId: string;
 }
 
-export class AgendarDesafiosService {
+export class AgendarAvaliacaoService {
   async execute({
     uid,
     dataAgendamento,
-    desafioId,
     ginasioId,
     treinadorId,
-  }: IAgendarDesafiosService) {
+  }: IAgendarAvaliacaoService) {
     
     const exists_user = await checkUserIdExists(uid);
     if (!exists_user) {
@@ -28,10 +26,9 @@ export class AgendarDesafiosService {
       throw new Error("O ginásio não existe");
     }
 
-    await client.agendamentos_desafios.create({
+    await client.agendamentos_avaliacoes.create({
       data: {        
         ginasio_id: ginasioId,
-        desafio_id: desafioId,
         uid,
         data_agendamento: dataAgendamento,
       }
@@ -41,7 +38,7 @@ export class AgendarDesafiosService {
     const notificacao = await client.notificacoes.create({
       data: {
         origem_uid: treinadorId,
-        conteudo: "O seu desafio foi agendado",
+        conteudo: "O seu agendamento foi aceite",
         data : new Date(),
         tipo: 1,
       }
@@ -49,16 +46,15 @@ export class AgendarDesafiosService {
 
     //#region Cria Destinos da Notificação
       await client.destinos_notificacao.create({
-        data : {
+        data : { 
           noti_id : notificacao.noti_id, // id da notificacao
           dest_uid: uid, // treinador que aceitou o pedido - id de quem vai receber a notificacao
         }
-      });
-    
+      }); 
     //#endregion
 
     return {
-      msg: "O agendamento do desafio foi criado com sucesso!"
+      msg: "O agendamento da avaliação foi criado com sucesso!"
     };
   }
 }

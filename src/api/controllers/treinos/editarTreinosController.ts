@@ -10,6 +10,7 @@ export class EditarTreinosController{
 
         data = new Date(data);
         const editarTreinosService = new EditarTreinosService();
+        console.log(uId)
         const resp = await editarTreinosService.execute({
             uId,
             treinoId,

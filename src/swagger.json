@@ -163,7 +163,7 @@
                 }
             }
         },
-        "/treinador/agenda/avaliacao/":{
+        "/aluno/agenda/avaliacao/":{
             "post":{
                 "summary": "Registo de agendamentos de avaliação",
                 "description": "Esta rota vai registar na base de dados um agendamento de avaliações",
@@ -232,7 +232,7 @@
                 }
             }
         },
-        "/treinador/agenda/desafios/{desafioId}":{
+        "/aluno/agenda/desafios/{desafioId}":{
             "post":{
                 "summary": "Registo de agendamentos de desafios",
                 "description": "Esta rota vai registar na base de dados um agendamento de desafios",
@@ -2875,7 +2875,7 @@
             }
         }
     },
-    "/treinador/agenda/desafios/{agendamentoId}/agendamento/{uId}/":{
+    "/aluno/agenda/desafios/{agendamentoId}/agendamento/{uId}/":{
         "delete":{
             "summary": "Remover agendamento de um desafio",
             "description": "Esta rota vai apagar na base de dados um agendamento de um desafio",
@@ -2933,7 +2933,7 @@
             }
         }
     },
-    "/treinador/agenda/avaliacao/{agendamentoId}/agendamento/{uId}/":{
+    "/aluno/agenda/avaliacao/{agendamentoId}/agendamento/{uId}/":{
         "delete":{
             "summary": "Remover agendamento de uma avaliação",
             "description": "Esta rota vai apagar na base de dados um agendamento de uma avaliação",
@@ -3541,8 +3541,8 @@
                         "examples": {
                             "Editar Treino":{
                                 "value":{
-                                    "atividadeId":null,
-                                    "modalidadeId":"f6b2a735-7d5c-4117-9ecf-7128d0631eda",
+                                    "atividadeId":"cc4c5892-5ae4-4df8-a8d5-6a33f65b3402",
+                                    "modalidadeId":null,
                                     "duracao":"50",
                                     "calorias": 20,
                                     "distancia": 30,
@@ -3580,7 +3580,285 @@
                 }          
             }
         }
-    }
+    },
+    "/treinador/agenda/avaliacao/{agendamentoId}/":{
+        "put":{
+            "summary": "Aceitar agendamento de uma avaliação",
+            "description": "Esta rota vai editar na base de dados um agendamento de uma avaliação",
+            "tags": ["Agenda"],
+            "parameters": [{
+                "name": "agendamentoId",
+                "in": "path",
+                "description": "Id do agendamento",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "agendamentoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Aceitar Agendamento":{
+                                    "value":{
+                                        "msg":"Agendamento de uma avaliação aceite com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        },
+        "delete":{
+            "summary": "Remover a aceitação de um agendamento de uma avaliação",
+            "description": "Esta rota vai remover da base de dados as aceitações dos agendamentos de avaliações",
+            "tags": ["Agenda"],
+            "parameters":[
+            {
+                "name": "agendamentoId",
+                "in": "path",
+                "description": "Id do agendamento",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "agendamentoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                 "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            }, 
+                            "examples": {
+                                "Remover Aceitação do Agendamento da Avaliação":{
+                                    "value":{
+                                        "msg":"Aceitação removida com sucesso"
+                                    }
+                                }
+                            }                                       
+                        }
+                    }  
+                }         
+            }
+        }
+    },
+    "/treinador/agenda/desafios/{agendamentoId}/":{
+        "put":{
+            "summary": "Aceitar agendamento de um desafio",
+            "description": "Esta rota vai editar na base de dados um agendamento de um desafio",
+            "tags": ["Agenda"],
+            "parameters": [{
+                "name": "agendamentoId",
+                "in": "path",
+                "description": "Id do agendamento",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "agendamentoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Aceitar Agendamento":{
+                                    "value":{
+                                        "msg":"Agendamento de uma avaliação aceite com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        },
+        "delete":{
+            "summary": "Remover a aceitação de um agendamento de um desafio",
+            "description": "Esta rota vai remover da base de dados as aceitações dos agendamentos de desafios",
+            "tags": ["Agenda"],
+            "parameters":[
+            {
+                "name": "agendamentoId",
+                "in": "path",
+                "description": "Id do agendamento",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "agendamentoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                 "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            }, 
+                            "examples": {
+                                "Remover Aceitação do Agendamento do Desafio":{
+                                    "value":{
+                                        "msg":"Aceitação removida com sucesso"
+                                    }
+                                }
+                            }                                       
+                        }
+                    }  
+                }         
+            }
+        }
+    },
+    "/aluno/agenda/avaliacoes/{uId}":{
+        "get":{
+            "summary": "Ver todos os pedidos de agendamento de avaliação de um aluno",
+            "description": "Esta rota vai obter todos os pedidos de agendamento de avaliação de um aluno",
+            "tags": ["Agenda"],
+            "parameters": [{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do utilizador",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "uId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Agendamentos de Avaliações de um Aluno":{
+                                    "value":{
+                                        "msg":"Ver agendamento de avaliações de um aluno obtido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/aluno/agenda/desafios/{uId}":{
+        "get":{
+            "summary": "Ver todos os pedidos de agendamento de desafios de um aluno",
+            "description": "Esta rota vai obter todos os pedidos de agendamento de desafios de um aluno",
+            "tags": ["Agenda"],
+            "parameters": [{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do utilizador",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "uId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Agendamentos de Desafios de um Aluno":{
+                                    "value":{
+                                        "msg":"Ver agendamento de desafios de um aluno obtido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } 
     },            
     "components": {
         "securitySchemes": {

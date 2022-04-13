@@ -1,15 +1,15 @@
-import { client } from "../../prisma/client";
-import { checkUserIdExists } from "../../helpers/dbHelpers";
+import { client } from "../../../prisma/client";
+import { checkUserIdExists } from "../../../helpers/dbHelpers";
 
-export class VerTreinosAlunosService{
+export class VerAgendamentosDesafiosAlunoService{
     async execute(uId: string){
 
         const exists_user = await checkUserIdExists(uId);
         if (!exists_user) {
             throw new Error("O utilizador não existe");
         }
-
-        const treinos = await client.treinos.findMany({
+        
+        const agendamentos = await client.agendamentos_desafios.findMany({
             where:{
                 uid: uId,
                 isDeleted:false
@@ -17,7 +17,7 @@ export class VerTreinosAlunosService{
         })
 
         return {
-            treinos
+            agendamentos
         }
     }
 }

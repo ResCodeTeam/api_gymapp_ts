@@ -147,6 +147,18 @@ let checkAgendamentoAvaliacaoExists = async(agendamentoId : string) => {
     })
     return search.length != 0;
 }
+
+let checkAgendamentoAvaliacaoIsAceiteExists = async(agendamentoId : string) => {
+    const search = await client.agendamentos_avaliacoes.findMany({
+        where:{
+            agendamento_id: agendamentoId,
+            isDeleted: false,
+            isAceite: true
+        }
+    })
+    return search.length != 0;
+}
+
 let checkAgendamentoDesafiosExists = async(agendamentoId : string) => {
     const search = await client.agendamentos_desafios.findMany({
         where:{
@@ -156,6 +168,18 @@ let checkAgendamentoDesafiosExists = async(agendamentoId : string) => {
     })
     return search.length != 0;
 }
+
+let checkAgendamentoDesafioIsAceiteExists = async(agendamentoId : string) => {
+    const search = await client.agendamentos_desafios.findMany({
+        where:{
+            agendamento_id: agendamentoId,
+            isDeleted: false,
+            isAceite: true
+        }
+    })
+    return search.length != 0;
+}
+
 let checkExercicioExists= async(exercicioId : string) => {
     const search = await client.exercicios.findMany({
         where:{
@@ -479,6 +503,8 @@ export {
     checkAutorTreino,
     checkAutorAgendamentoAvaliacoes,
     checkAutorAgendamentoDesafios,
-    checkInBlackList
+    checkInBlackList,
+    checkAgendamentoAvaliacaoIsAceiteExists,
+    checkAgendamentoDesafioIsAceiteExists
 }
 

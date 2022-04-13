@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { VerAgendamentoAvaliacoesService } from "../../services/agendamentos/verAgendamentoAvaliacoesService";
+import { VerAgendamentoAvaliacoesService } from "../../../services/agendamentos/treinador/verAgendamentoAvaliacoesService";
 
 export class VerAgendamentoAvaliacoesController{
     async handle(request:Request,response:Response){

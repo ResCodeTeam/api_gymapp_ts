@@ -1,5 +1,5 @@
-import { client } from "../../prisma/client";
-import { checkAgendamentoAvaliacaoExists, checkAutorAgendamentoAvaliacoes } from "../../helpers/dbHelpers";
+import { client } from "../../../prisma/client";
+import { checkAgendamentoAvaliacaoExists, checkAutorAgendamentoAvaliacoes } from "../../../helpers/dbHelpers";
 
 class RemoverAgendarAvaliacaoService {
   async execute(agendamentoId: string, uId: string) {
