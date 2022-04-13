@@ -15,7 +15,12 @@ export class VerTodosPostsUserService{
         const posts = await client.publicacoes.findMany({
             where:{
                 criador_id:userId,
-                isDeleted:false
+                isDeleted:false,
+                users:{
+                    definicoes_user:{
+                        is_privado:false
+                    }
+                }
             },
             select:{
                 publicacao_id:true,
