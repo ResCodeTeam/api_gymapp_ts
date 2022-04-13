@@ -354,7 +354,7 @@ let checkMusculoNomeExists = async(nome:string)=>{
     })
     return musculos.length!=0
 }
-
+//done
 let checkPerfilPrivado = async(uid:string)=>{
     const user = await client.users.findUnique({
         where:{
