@@ -84,6 +84,7 @@ treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
 treinadorRouter.put("/desafio/:id", editarDesafio.handle);
 treinadorRouter.delete("/desafio/:id", removerDesafio.handle);
 treinadorRouter.post("/desafio/:id", criarDesafio.handle)
+treinadorRouter.post("/desafio/:id", criarDesafio.handle)
 //#endregion
 
 
