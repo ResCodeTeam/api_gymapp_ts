@@ -38,7 +38,7 @@ alunoRouter.get("/:id/desafios", verDesafiosController.handle);
 //#end region
 
 //#region perfil
-alunoRouter.get("/:id/user", verPerfilController.handle);
+alunoRouter.get("/user/:id", verPerfilController.handle);
 //#end region
 
 export { alunoRouter }
