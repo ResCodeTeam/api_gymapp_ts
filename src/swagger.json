@@ -2434,25 +2434,13 @@
                         }
                     }          
                 }
-            },
+            }
+        },
+        "/backend/atividades/":{
             "get":{
                 "summary": "Ver toda a informação de uma atividade",
-                "description": "Esta rota vai apresentar todas as informações de uma atividade",
+                "description": "Esta rota vai apresentar todas as atividades existentes",
                 "tags": ["Atividades"],
-                "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "Id da atividade que se deseja ver",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "atividadeId":{
-                                "type": "string"
-                            }
-                        }
-                    }
-                }],
                 "responses": {
                     "500":{
                         "description": "ERROR"

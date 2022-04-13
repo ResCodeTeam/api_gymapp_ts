@@ -3,10 +3,9 @@ import { VerTodasAtividadesService } from "../../services/atividades/verTodasAti
 
 export class VerTodasAtividadesController{
     async handle(request:Request,response:Response){
-        const atividadeId = request.params.id;
 
         const verTodasAtividadesService = new VerTodasAtividadesService();
-        const resp = await verTodasAtividadesService.execute(atividadeId);
+        const resp = await verTodasAtividadesService.execute();
         response.json(resp)
     }
 }

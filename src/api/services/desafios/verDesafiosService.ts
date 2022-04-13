@@ -6,7 +6,7 @@ export class VerDesafioService{
 
         const exists_desafio= await checkDesafioIdExists(desafioId)
         if(!exists_desafio){
-            throw new Error("Utilizador não existe")
+            throw new Error("O desafio não existe")
         }
 
         const desafio = await client.desafios.findMany({
