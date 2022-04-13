@@ -56,6 +56,15 @@ export class RegistarTreinadorService{
       }
     })
 
+    await client.definicoes_user.create({
+      data:{
+          identificacoes:true,
+          is_privado:false,
+          mencoes:true,
+          usersuid:treinador.uid    
+      }
+  })
+
     return {treinador}
   }
 }

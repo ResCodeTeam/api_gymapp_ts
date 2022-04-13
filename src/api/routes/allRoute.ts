@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 
 import { CriarPostsController } from "../controllers/posts/criarPostsController";
 import { RemoverPostController } from "../controllers/posts/removerPostController";
@@ -10,6 +10,8 @@ import { UpdateEstadoNotificacaoController } from "../controllers/posts/notifica
 import { CriarGostoController } from "../controllers/posts/gostosPosts/criarGostoController";
 import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
 import { EditarPerfilPrivadoController } from "../controllers/definicoes/editarPerfilPrivadoController";
+import { ObterDefinicoesController } from "../controllers/perfil/definições/obterDefinicoesController";
+import { client } from "../prisma/client";
 
 const allRouter = express.Router();
 
@@ -24,7 +26,7 @@ const updateEstadoNotificacaoController = new UpdateEstadoNotificacaoController(
 const criarGostoController=new CriarGostoController();
 const  editarPerfilController = new EditarPerfilController();
 const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
-
+const obterDefinicoesController = new ObterDefinicoesController();
 
 
 //#region Publicacoes
@@ -40,6 +42,7 @@ allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 //#region Perfil
 allRouter.put("/:id/perfil", editarPerfilController.handle);
 allRouter.put("/:id/perfil", editarPerfilPrivadoController.handle);
+allRouter.get("/:id/definicoes", obterDefinicoesController.handle);
 //#endregion
 
 // adminRouter.put("/posts/:id", editarPublicacaoController.handle);
@@ -51,4 +54,5 @@ allRouter.delete("/posts/:id", removerPostsController.handle);
 //#region Notificacoes
 allRouter.put("/notificacao/", updateEstadoNotificacaoController.handle);
 //#endregion
+
 export { allRouter };
