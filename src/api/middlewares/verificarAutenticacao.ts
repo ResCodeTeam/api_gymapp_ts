@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { getUserByID } from "../helpers/dbHelpers";
+import { checkInBlackList, getUserByID } from "../helpers/dbHelpers";
 require('dotenv').config({ path: __dirname+'/.env' });
 import { verify, decode } from 'jsonwebtoken';
 
@@ -18,9 +18,15 @@ export async function verificarAutenticacao(request:Request,response:Response,ne
         throw new Error("Token invalido")
     }
 
+    const inBlackList = await checkInBlackList(token);
+    if(inBlackList){
+        throw new Error("Token invalido")
+    }
+
     //obter id do user
     let uid = decode(token)['sub'].toString();
     response.locals.uid=uid;
+    response.locals.token=token;
 
     //verificar se o user existe
     const user = await getUserByID(uid)

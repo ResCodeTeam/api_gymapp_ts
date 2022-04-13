@@ -14,6 +14,6 @@ const logoutController = new LogoutController();
 
 authRouter.post("/login", autenticacaoController.handle)
 authRouter.post("/:id/token",gerarTokenController.handle)
-authRouter.delete("/:id/logout",verificarAutenticacao,logoutController.handle)
+authRouter.delete("/logout",verificarAutenticacao,logoutController.handle)
 
 export { authRouter };
