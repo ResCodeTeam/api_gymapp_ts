@@ -57,6 +57,8 @@ const editarExercicioController = new EditarExercicioController();
 
 const adicionarExercicioMusculoController = new AdicionarExercicioMusculoController();
 const removerExercicioMusculoController = new RemoverExercicioMusculoController();
+const removerAgendarDesafiosController = new RemoverAgendarDesafiosController();
+const removerAgendarAvaliacaoController = new RemoverAgendarAvaliacaoController();
 
 //const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
@@ -97,6 +99,8 @@ treinadorRouter.post("/avaliacoes/:id", criarAvaliacaoController.handle);
 //#region Agendamentos
 treinadorRouter.post("/agenda/desafios/:id/", agendarDesafiosController.handle);
 treinadorRouter.post("/agenda/avaliacao/", agendarAvaliacaoController.handle);
+treinadorRouter.post("/agenda/desafios/:id/", removerAgendarDesafiosController.handle);
+treinadorRouter.post("/agenda/avaliacao/:id/", removerAgendarAvaliacaoController.handle);
 //#endregion
 
 //#region Plano
