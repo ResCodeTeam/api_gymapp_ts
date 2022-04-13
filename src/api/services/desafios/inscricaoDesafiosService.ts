@@ -11,7 +11,7 @@ interface IDesafio{
 
 export class InscreverDesafiosService {
     async execute({agendamentoId,isAceite, desafioId} : IDesafio){
-console.log(agendamentoId,isAceite,desafioId)
+
         if (desafioId == null) {
             throw new Error("Impossível inscrever no desafio.");
         }
