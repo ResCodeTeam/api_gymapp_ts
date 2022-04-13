@@ -45,6 +45,14 @@ export class RegistarAdminService{
                 funcao_id:funcaoId,
             }
         })
+        await client.definicoes_user.create({
+            data:{
+                identificacoes:true,
+                is_privado:false,
+                mencoes:true,
+                usersuid:admin.uid    
+            }
+        })
      
         
         

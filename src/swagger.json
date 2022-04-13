@@ -179,8 +179,8 @@
                                     "dataAgendamento":{
                                         "type": "string"
                                     },
-                                    "estado":{
-                                        "type": "number"
+                                    "isAceite":{
+                                        "type": "boolean"
                                     },
                                     "ginasioId":{
                                         "type": "string"
@@ -195,7 +195,7 @@
                                     "value": {
                                         "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
                                         "dataAgendamento":"2022-03-30",
-                                        "estado": 1,
+                                        "isAceite": true,
                                         "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
                                         "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                     }
@@ -261,8 +261,8 @@
                                     "dataAgendamento":{
                                         "type": "string"
                                     },
-                                    "estado":{
-                                        "type": "number"
+                                    "isAceite":{
+                                        "type": "boolean"
                                     },
                                     "ginasioId":{
                                         "type": "string"
@@ -277,7 +277,7 @@
                                     "value": {
                                         "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
                                         "dataAgendamento":"2022-03-30",
-                                        "estado": 1,
+                                        "isAceite": true,
                                         "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
                                         "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                     }
@@ -895,8 +895,8 @@
                                     "recompensa":{
                                         "type": "number"
                                     },
-                                    "estado":{
-                                        "type": "number"
+                                    "isEncerrado":{
+                                        "type": "boolean"
                                     },
                                     "descricao":{
                                         "type": "string"
@@ -928,7 +928,7 @@
                                         "dataInicio": "2022-03-23",
                                         "dataFim": "2022-03-24",
                                         "recompensa": 100,
-                                        "estado": 2,
+                                        "isEncerrado": true,
                                         "descricao": "2",
                                         "regras": [
                                             {
@@ -978,7 +978,7 @@
                 }
             }
         },
-       "/treinador/{userId}/perfil":{
+       "/{userId}/perfil":{
             "put":{
                 "summary": "Editar perfil",
                 "description": "Esta rota vai editar perfil",
@@ -1078,7 +1078,6 @@
                                                 "pontos": 0,
                                                 "descricao": null, 
                                                 "imagem_url": null,
-                                                "estado": 1,
                                                 "isDeleted": false
                                             }
                                               
@@ -1509,7 +1508,6 @@
                                                 "pontos": 0,
                                                 "descricao": null,
                                                 "imagem_url": null,
-                                                "estado": 1,
                                                 "isDeleted": false
                                             }
                                         }
@@ -1776,7 +1774,6 @@
                                                 "pontos": 0,
                                                 "descricao": null,
                                                 "imagem_url": null,
-                                                "estado": 1,
                                                 "isDeleted": false
                                             }
                                         }
@@ -2008,7 +2005,6 @@
                                                 "pontos": 0,
                                                 "descricao": null,
                                                 "imagem_url": null,
-                                                "estado": 1,
                                                 "isDeleted": false
                                             }
                                         }
@@ -2086,7 +2082,7 @@
         },
         "/aluno/user/{uid}/treinos":{
             "post":{
-                "summary": "Criar treinos",
+                "summary": "Criar treino",
                 "description": "Esta rota vai criar na base de dados os treinos",
                 "tags": ["Treinos"],
                 "parameters":[
@@ -2113,10 +2109,12 @@
                                     "type": "number"
                                 },
                                 "atividadeId":{
-                                    "type": "string"
+                                    "type": "string",
+                                    "nullable": true
                                 },
                                 "modalidadeId":{
-                                    "type": "string"
+                                    "type": "string",
+                                    "nullable": true
                                 },
                                 "duracao":{
                                     "type": "string"
@@ -2136,8 +2134,8 @@
                             "Criar Treino":{
                                 "value":{
                                     "tipoModalidade":1,
-                                    "atividadeId":"Teste",
-                                    "modalidadeId":"cf11f7c9-e47a-4574-8b93-79a1850c6636",
+                                    "atividadeId":"cc4c5892-5ae4-4df8-a8d5-6a33f65b3402",
+                                    "modalidadeId":null,
                                     "duracao":"50",
                                     "calorias": 20,
                                     "distancia": 30,
@@ -2434,26 +2432,13 @@
                         }
                     }          
                 }
-            },
-            "/backend/atividades/{atividadeId}":{
+            }
+        },
+        "/backend/atividades/":{
             "get":{
                 "summary": "Ver toda a informação de uma atividade",
-                "description": "Esta rota vai apresentar todas as informações de uma atividade",
+                "description": "Esta rota vai apresentar todas as atividades existentes",
                 "tags": ["Atividades"],
-                "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "Id da atividade que se deseja ver",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "atividadeId":{
-                                "type": "string"
-                            }
-                        }
-                    }
-                }],
                 "responses": {
                     "500":{
                         "description": "ERROR"
@@ -2818,11 +2803,7 @@
                         "application/json":{
                             "schema":{
                                 "type": "object",
-                                "properties": {
-                                    "msg":{
-                                        "type": "string"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/Musculo"
                             },
                             "examples": {
                                 "Adicionar Musculo":{
@@ -2830,7 +2811,304 @@
                                         "musculo": {
                                             "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4",
                                             "nome": "Costas",
-                                            "img_url": "url3"
+                                            "img_url": "http://imagem/costas"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/treinador/agenda/desafios/agendamento/{agendamentoId}/":{
+        "delete":{
+            "summary": "Remover agendamento de um desafio",
+            "description": "Esta rota vai apagar na base de dados um agendamento de um desafio",
+            "tags": ["Agenda"],
+            "parameters": [{
+                "name": "agendamentoId",
+                "in": "path",
+                "description": "Id do agendamento",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "agendamentoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Remover Agendamento de um Desafio":{
+                                    "value":{
+                                        "msg":"Agendamento do desafio removido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/treinador/agenda/avaliacao/agendamento/{agendamentoId}/":{
+        "delete":{
+            "summary": "Remover agendamento de uma avaliação",
+            "description": "Esta rota vai apagar na base de dados um agendamento de uma avaliação",
+            "tags": ["Agenda"],
+            "parameters": [{
+                "name": "agendamentoId",
+                "in": "path",
+                "description": "Id do agendamento",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "agendamentoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Remover Agendamento de uma Avaliação":{
+                                    "value":{
+                                        "msg":"Agendamento da avaliação removido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/treinador/agenda/desafios/":{
+        "get":{
+            "summary": "Ver todos os agendamentos de desafios",
+            "description": "Esta rota vai obter todos os agendamentos de todos os desafios",
+            "tags": ["Agenda"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Agendamentos de Desafios":{
+                                    "value":{
+                                        "msg":"Ver agendamento de desafios obtido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/treinador/agenda/avaliacoes/":{
+        "get":{
+            "summary": "Ver todos os agendamentos de avaliacoes",
+            "description": "Esta rota vai obter todos os agendamentos de avaliações",
+            "tags": ["Agenda"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Agendamentos de Avaliações":{
+                                    "value":{
+                                        "msg":"Ver agendamento de desafios obtido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/{uid}/definicoes":{
+        "get":{
+            "summary": "Obter definições do user",
+            "description": "Esta rota permite obter todas as definições do utilizador",
+            "tags": ["Definições"],
+            "parameters": [{
+                "name": "uid",
+                "in": "path",
+                "description": "id do utilizador",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "User Id":{
+                        "value":"0108ab5b-dc52-40ac-b077-91c68fe4629c"
+                    }
+                },
+                "style": "simple"
+
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Definicoes"
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "definicoes": {
+                                            "def_id": "0d100e85-830e-4da8-adda-c7c68f62c341",
+                                            "usersuid": "cacc87bb-a2dd-4af3-89c6-2ceedf33930a",
+                                            "is_privado": false,
+                                            "identificacoes": true,
+                                            "mencoes": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/treinador/desafio/{desafioId}/submissoes":{
+        "post":{
+            "summary": "Submeter o resultado de um aluno",
+            "description": "Esta rota permite submeter o resultado do desafio de um aluno",
+            "tags": ["Desafios"],
+            "parameters": [{
+                "name": "desafioId",
+                "in": "path",
+                "description": "id do desafio",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "Desafio Id":{
+                        "value":"f6cd7ea3-20c9-492b-9dbe-f65dc501e6fc"
+                    }
+                },
+                "style": "simple"
+
+            }],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "uid": {
+                                    "type": "string"
+                                },
+                                "valor": {
+                                    "type": "string"
+                                },
+                                "treinador_id": {
+                                    "type": "string"
+                                },
+                                "ginasio_id": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Submissao desafio":{
+                                "value":{
+                                    "uid":"034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
+                                    "valor":"teste submissao",
+                                    "treinadorId":"919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                    "ginasioId":"d81fdccd-e71c-46b1-bb8e-92b287777038"
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/SubmissaoDesafio"
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "submissao": {
+                                            "submissao_id": "7cb508a2-9e19-4a0b-b5e9-f79a4190f9e5",
+                                            "uid": "034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
+                                            "valor": "teste submissao",
+                                            "desafio_id": "f6cd7ea3-20c9-492b-9dbe-f65dc501e6fc",
+                                            "treinador_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                            "ginasio_id": "d81fdccd-e71c-46b1-bb8e-92b287777038"
                                         }
                                     }
                                 }
@@ -2841,9 +3119,69 @@
             }
         }
     }
-    },
+    },            
     "components": {
         "schemas": {
+            
+            "SubmissaoDesafio": {
+                "type": "object",
+                "properties": {
+                    "submissao_id": {
+                        "type": "string"
+                    },
+                    "uid": {
+                        "type": "string"
+                    },
+                    "valor": {
+                        "type": "string"
+                    },
+                    "desafio_id": {
+                        "type": "string"
+                    },
+                    "treinador_id": {
+                        "type": "string"
+                    },
+                    "ginasio_id": {
+                        "type": "string"
+                    }
+                    
+                }
+            },
+            "Definicoes": {
+                "type": "object",
+                "properties": {
+                    "def_id": {
+                        "type": "string"
+                    },
+                    "usersuid": {
+                        "type": "string"
+                    },
+                    "is_privado": {
+                        "type": "boolean"
+                    },
+                    "identificacoes": {
+                        "type": "boolean"
+                    },
+                    "mencoes": {
+                        "type": "boolean"
+                    }
+                    
+                }
+            },
+            "Musculo": {
+                "type": "object",
+                "properties": {
+                    "musculo_id": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "img_url": {
+                        "type": "string"
+                    }
+                }
+            },
             "Funcao": {
                 "type": "object",
                 "properties": {
@@ -2914,8 +3252,8 @@
                     "recompensa":{
                         "type": "number"
                     },
-                    "estado":{
-                        "type": "number"
+                    "isEncerrado":{
+                        "type": "boolean"
                     },
                     "descricao":{
                         "type": "string"
@@ -2976,9 +3314,6 @@
                     },
                     "imagem_url":{
                         "type": "string"
-                    },
-                    "estado":{
-                        "type": "number"
                     },
                     "isDeleted":{
                         "type": "string"
@@ -3107,9 +3442,6 @@
                     },
                     "imagem_url":{
                         "type": "string"
-                    },
-                    "estado":{
-                        "type": "number"
                     },
                     "isDeleted":{
                         "type": "boolean"

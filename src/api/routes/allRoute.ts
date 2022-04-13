@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 
 import { CriarPostsController } from "../controllers/posts/criarPostsController";
 import { RemoverPostController } from "../controllers/posts/removerPostController";
@@ -8,6 +8,10 @@ import { VerInfoPostController } from "../controllers/posts/obter/verInfoPostCon
 import { EditarPublicacaoController } from "../controllers/posts/editarPublicacaoController";
 import { UpdateEstadoNotificacaoController } from "../controllers/posts/notificacoes/updateEstadoNotificacaoController";
 import { CriarGostoController } from "../controllers/posts/gostosPosts/criarGostoController";
+import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
+import { EditarPerfilPrivadoController } from "../controllers/definicoes/editarPerfilPrivadoController";
+import { ObterDefinicoesController } from "../controllers/perfil/definições/obterDefinicoesController";
+import { client } from "../prisma/client";
 
 const allRouter = express.Router();
 
@@ -20,7 +24,9 @@ const verInfoPostInfoController = new VerInfoPostController();
 const editarPublicacaoController  = new EditarPublicacaoController();
 const updateEstadoNotificacaoController = new UpdateEstadoNotificacaoController();
 const criarGostoController=new CriarGostoController();
-
+const  editarPerfilController = new EditarPerfilController();
+const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
+const obterDefinicoesController = new ObterDefinicoesController();
 
 
 //#region Publicacoes
@@ -33,7 +39,11 @@ allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 
 //ver info de post
 
-
+//#region Perfil
+allRouter.put("/:id/perfil", editarPerfilController.handle);
+allRouter.put("/:id/perfil", editarPerfilPrivadoController.handle);
+allRouter.get("/:id/definicoes", obterDefinicoesController.handle);
+//#endregion
 
 // adminRouter.put("/posts/:id", editarPublicacaoController.handle);
 allRouter.delete("/posts/:id", removerPostsController.handle);
@@ -44,4 +54,5 @@ allRouter.delete("/posts/:id", removerPostsController.handle);
 //#region Notificacoes
 allRouter.put("/notificacao/", updateEstadoNotificacaoController.handle);
 //#endregion
+
 export { allRouter };
