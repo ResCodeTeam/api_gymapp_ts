@@ -4,10 +4,10 @@ import { EditarMusculoService } from "../../services/musculos/editarMusculoServi
 export class EditarMusculoController{
   async handle(request:Request, response:Response){
     const musculoId = request.params.musculoId;
-    const {nome} = request.body;
+    const {nome, imagem} = request.body;
 
     const editarMusculosService = new EditarMusculoService();
-    const resp = await editarMusculosService.execute(musculoId,nome);
+    const resp = await editarMusculosService.execute(musculoId,nome,imagem);
 
     response.json(resp)
   }

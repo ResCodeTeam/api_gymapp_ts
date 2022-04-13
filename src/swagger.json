@@ -1167,6 +1167,55 @@
                 }
             }
         },
+
+        "/aluno/{id}/desafios/":{
+            "get":{
+                "summary": "Ver desafios",
+                "description": "Esta rota vai apresentar todos os desafios",
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do desafio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "tags": ["Desafios"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ver desafios":{
+                                        "value":{
+                                            "msg":"operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            }
+        },
         "/posts/user/{id}":{
             "get":{
                 "summary": "Ver posts de user",
@@ -2675,7 +2724,8 @@
                         "examples": {
                             "Costas":{
                                 "value":{
-                                    "nome":"Costas"
+                                    "nome":"Costas",
+                                    "imagem":"http://imagem/costas"
                                 }
                             }
                         }
@@ -2704,7 +2754,66 @@
                                         "musculo": {
                                             "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4",
                                             "nome": "Costas",
-                                            "img_url": "url3"
+                                            "img_url": "http://imagem/costas"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/backend/musculos/":{
+        "post":{
+            "summary": "Adicionar musculo",
+            "description": "Esta rota permite adcionar um musculo à base de dados",
+            "tags": ["Musculos"],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "nome":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Costas":{
+                                "value":{
+                                    "nome":"Costas",
+                                    "image":"http://imagem/costas"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "musculo": {
+                                            "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4",
+                                            "nome": "Costas",
+                                            "img_url": "http://imagem/costas"
                                         }
                                     }
                                 }

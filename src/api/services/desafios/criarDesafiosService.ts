@@ -10,7 +10,6 @@ interface ICriarDesafiosService {
     dataInicio: Date;
     dataFim: Date;
     recompensa: number;
-    estado: number;
     ginasioId: string;
     descricao: string;
     exercicios: Array<Exercicio>;
@@ -20,7 +19,7 @@ interface ICriarDesafiosService {
 }
 
 class CriarDesafiosService {
-    async execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, estado, ginasioId, descricao, exercicios, regras}: ICriarDesafiosService) {
+    async execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, ginasioId, descricao, exercicios, regras}: ICriarDesafiosService) {
         const exists_criador = await checkUserIdExists(criadorId);
         if (!exists_criador) {
             throw new Error("O user não existe");
@@ -45,7 +44,6 @@ class CriarDesafiosService {
                 data_inicio: dataInicio,
                 data_fim: dataFim,
                 recompensa,
-                estado,
                 descricao,
             }, 
         });
@@ -81,9 +79,8 @@ class CriarDesafiosService {
                 await client.series_desafio.create({data:{
                     exercicio_desafio_id: exercicio.exercicio_desafio_id,
                     n_ordem_serie: series[j].nOrdem,
-                    repeticoes: series[j].repeticoes,
-                    peso: series[j].peso,
-                    unidade_medida: series[j].unidadeMedida},
+                    valor:series[j].valor,
+                },
                 });
             }
         }

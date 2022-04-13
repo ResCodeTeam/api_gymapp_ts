@@ -5,13 +5,13 @@ export class InscreverDesafiosController{
     async handle(request : Request, response : Response) {
         const agendamentoId = request.params.id;
         const { 
-            estado,
+            isAceite,
         desafioId } = request.body;
         const inscreverDesafiosService = new InscreverDesafiosService();
 
         const resp = await inscreverDesafiosService.execute({
             agendamentoId,
-            estado,
+            isAceite,
             desafioId
         });
         response.json(resp);
