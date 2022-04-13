@@ -2804,6 +2804,165 @@
             }
         }
     },
+    "/treinador/agenda/desafios/agendamento/{agendamentoId}/":{
+        "delete":{
+            "summary": "Remover agendamento de um desafio",
+            "description": "Esta rota vai apagar na base de dados um agendamento de um desafio",
+            "tags": ["Agenda"],
+            "parameters": [{
+                "name": "agendamentoId",
+                "in": "path",
+                "description": "Id do agendamento",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "agendamentoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Remover Agendamento de um Desafio":{
+                                    "value":{
+                                        "msg":"Agendamento do desafio removido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/treinador/agenda/avaliacao/agendamento/{agendamentoId}/":{
+        "delete":{
+            "summary": "Remover agendamento de uma avaliação",
+            "description": "Esta rota vai apagar na base de dados um agendamento de uma avaliação",
+            "tags": ["Agenda"],
+            "parameters": [{
+                "name": "agendamentoId",
+                "in": "path",
+                "description": "Id do agendamento",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "agendamentoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Remover Agendamento de uma Avaliação":{
+                                    "value":{
+                                        "msg":"Agendamento da avaliação removido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/treinador/agenda/desafios/":{
+        "get":{
+            "summary": "Ver todos os agendamentos de desafios",
+            "description": "Esta rota vai obter todos os agendamentos de todos os desafios",
+            "tags": ["Agenda"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Agendamentos de Desafios":{
+                                    "value":{
+                                        "msg":"Ver agendamento de desafios obtido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/treinador/agenda/avaliacoes/":{
+        "get":{
+            "summary": "Ver todos os agendamentos de avaliacoes",
+            "description": "Esta rota vai obter todos os agendamentos de avaliações",
+            "tags": ["Agenda"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Agendamentos de Avaliações":{
+                                    "value":{
+                                        "msg":"Ver agendamento de desafios obtido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
     "/{uid}/definicoes":{
         "get":{
             "summary": "Obter definições do user",
@@ -2856,7 +3015,7 @@
             }
         }
     }
-    },
+    },            
     "components": {
         "schemas": {
             

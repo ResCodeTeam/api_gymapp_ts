@@ -1,15 +1,16 @@
 import { client } from "../../prisma/client";
-export class VerTodasAtividadesService{
+
+export class VerAgendamentoAvaliacoesService{
     async execute(){
 
-        const atividades = await client.atividades.findMany({
+        const agendamentos = await client.agendamentos_avaliacoes.findMany({
             where:{
                 isDeleted:false
             },
         })
 
         return {
-            atividades
+            agendamentos
         }
     }
 }
