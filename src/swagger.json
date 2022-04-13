@@ -3297,6 +3297,53 @@
             }
         }
     },
+    "/aluno/{uId}/treinos/":{
+        "get":{
+            "summary": "Ver todos os treinos de um aluno",
+            "description": "Esta rota vai obter todos os treinos de um aluno",
+            "tags": ["Treinos"],
+            "parameters": [{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do utilizador",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "uId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Agendamentos de Avaliações":{
+                                    "value":{
+                                        "msg":"Ver agendamento de desafios obtido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
     "/auth/{id}/token":{
         "post":{
             "summary": "Gerar novo token de sessão",
