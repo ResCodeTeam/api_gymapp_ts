@@ -3539,8 +3539,108 @@
                 }
             }
         }
+    },
+    "/aluno/{uId}/treinos/{treinoId}":{
+        "put":{
+            "summary": "Editar treinos",
+            "description": "Esta rota vai editar na base de dados um treino de um utilizador",
+            "tags": ["Treinos"],
+            "parameters": [{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do utilizador",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "uId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            },{
+                "name": "treinoId",
+                "in": "path",
+                "description": "Id do treino",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "treinoId":{
+                            "type":"string"
+                        }
+                    }
+                }
+            }],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "atividadeId":{
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "modalidadeId":{
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "duracao":{
+                                    "type": "string"
+                                },
+                                "calorias":{
+                                    "type": "number"
+                                },
+                                "distancia":{
+                                    "type": "number"
+                                },
+                                "data":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Editar Treino":{
+                                "value":{
+                                    "atividadeId":null,
+                                    "modalidadeId":null,
+                                    "duracao":"50",
+                                    "calorias": 20,
+                                    "distancia": 30,
+                                    "data": "2022-06-12"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Exercicio":{
+                                    "value":{
+                                        "msg":"Treino editado com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
     }
-    },            
+    },         
     "components": {
         "securitySchemes": {
             "basicAuth":{
