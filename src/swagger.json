@@ -2464,8 +2464,8 @@
                     }
                 }
             }
-        }
         },
+        
             
             
         "/aluno/treino/{treinoId}":{
