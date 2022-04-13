@@ -20,6 +20,8 @@ export class LogoutService{
                 uid:userId
             }
         })
+
+        
         return {"msg":"Logout com sucesso"}
     }
 }
