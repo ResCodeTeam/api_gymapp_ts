@@ -2105,9 +2105,6 @@
                     "application/json":{
                         "schema":{
                             "properties":{
-                                "tipoModalidade":{
-                                    "type": "number"
-                                },
                                 "atividadeId":{
                                     "type": "string",
                                     "nullable": true
@@ -2132,10 +2129,9 @@
                         },
                         "examples": {
                             "Criar Treino":{
-                                "value":{
-                                    "tipoModalidade":1,
-                                    "atividadeId":"cc4c5892-5ae4-4df8-a8d5-6a33f65b3402",
-                                    "modalidadeId":null,
+                                "value":{,
+                                    "atividadeId":null,
+                                    "modalidadeId":"f6b2a735-7d5c-4117-9ecf-7128d0631eda",
                                     "duracao":"50",
                                     "calorias": 20,
                                     "distancia": 30,
