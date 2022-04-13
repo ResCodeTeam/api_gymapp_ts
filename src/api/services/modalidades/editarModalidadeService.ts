@@ -8,7 +8,7 @@ interface IEditarModalidades{
 
 export class EditarModalidadesService {
   async execute({imagemUrl, nome,modalidadeId} : IEditarModalidades) {
-      const editarModalidades = await client.modalidades_ginasio.updateMany({
+      const editarModalidades = await client.modalidades_ginasio.update({
           where : {
               modalidade_id:modalidadeId
           },
