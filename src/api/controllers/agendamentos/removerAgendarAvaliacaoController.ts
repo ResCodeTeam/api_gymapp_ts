@@ -3,10 +3,11 @@ import { RemoverAgendarAvaliacaoService } from "../../services/agendamentos/remo
 
 class RemoverAgendarAvaliacaoController{
     async handle(request: Request, response: Response){
-        const agendamentoId = request.params.id;
+        const agendamentoId = request.params.agendamento_id;
+        const uId = request.params.id
 
     const removerAgendarAvaliacaoService = new RemoverAgendarAvaliacaoService();
-    const resp = await removerAgendarAvaliacaoService.execute(agendamentoId);
+    const resp = await removerAgendarAvaliacaoService.execute(agendamentoId, uId);
     response.json(resp);
     }
 }

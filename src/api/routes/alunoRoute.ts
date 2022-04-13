@@ -8,18 +8,21 @@ const alunoRouter = express.Router();
 
 import { CriarTreinosController  } from "../controllers/treinos/criarTreinosController";
 import { RemoverTreinosController } from "../controllers/treinos/removerTreinosController";
+import { VerTreinosAlunosController } from "../controllers/treinos/verTreinosAlunosController";
 
 
 const criarTreinosController = new CriarTreinosController();
 const removerTreinosController = new RemoverTreinosController();
 const verAvaliacoesController = new VerAvaliacoesController();
 const inscreverDesafiosController = new InscreverDesafiosController();
-const verDesafiosController=new VerDesafiosController();
-const verPerfilController=new VerPerfilController();
+const verDesafiosController = new VerDesafiosController();
+const verPerfilController = new VerPerfilController();
+const verTreinosAlunosController = new VerTreinosAlunosController();
 
 //#region Treinos
 alunoRouter.post("/user/:id/treinos", criarTreinosController.handle);
-alunoRouter.delete("/treino/:id", removerTreinosController.handle);
+alunoRouter.delete("/:id/treino/:treino_id", removerTreinosController.handle);
+alunoRouter.get("/:id/treinos/", verTreinosAlunosController.handle)
 //#endregion
 
 //#region avaliacao

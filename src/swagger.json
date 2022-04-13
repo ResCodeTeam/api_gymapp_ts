@@ -486,7 +486,7 @@
             "post":{
                 "summary": "Registo das modalidades do ginásio",
                 "description": "Esta rota vai registar na base de dados uma modalidade de um ginásio em específico",
-                "tags": ["Ginasio"],
+                "tags": ["Modalidades"],
                 "parameters": [{
                     "name": "ginasioId",
                     "in": "path",
@@ -2167,9 +2167,6 @@
                     "application/json":{
                         "schema":{
                             "properties":{
-                                "tipoModalidade":{
-                                    "type": "number"
-                                },
                                 "atividadeId":{
                                     "type": "string",
                                     "nullable": true
@@ -2195,13 +2192,12 @@
                         "examples": {
                             "Criar Treino":{
                                 "value":{
-                                    "tipoModalidade":1,
-                                    "atividadeId":"cc4c5892-5ae4-4df8-a8d5-6a33f65b3402",
-                                    "modalidadeId":null,
-                                    "duracao":"50",
-                                    "calorias": 20,
-                                    "distancia": 30,
-                                    "data": "2022-04-09"
+                                    "atividadeId":null,
+                                    "modalidadeId":"f6b2a735-7d5c-4117-9ecf-7128d0631eda",
+                                    "duracao":"10",
+                                    "calorias": 100,
+                                    "distancia": 500,
+                                    "data": "2022-06-12"
                                 }
                             }
                         }
@@ -2527,16 +2523,25 @@
                 }
             }
         },
-        
-            
-            
-        "/aluno/treino/{treinoId}":{
+        "/aluno/{uId}/treino/{treinoId}/":{
             "delete":{
                 "summary": "Remover treino",
                 "description": "Esta rota vai remover da base de dados os treinos criados",
                 "tags": ["Treinos"],
                 "parameters":[
                 {
+                    "name": "uId",
+                    "in": "path",
+                    "description": "Id do utilizador",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "uId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                },{
                     "name": "treinoId",
                     "in": "path",
                     "description": "Id do treino",
@@ -2884,7 +2889,7 @@
             }
         }
     },
-    "/treinador/agenda/desafios/agendamento/{agendamentoId}/":{
+    "/treinador/agenda/desafios/{agendamentoId}/agendamento/{uId}/":{
         "delete":{
             "summary": "Remover agendamento de um desafio",
             "description": "Esta rota vai apagar na base de dados um agendamento de um desafio",
@@ -2901,6 +2906,18 @@
                         }
                     }
                 }
+            },{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do utilizador",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "uId":{
+                            "type": "string"
+                        }
+                    }
+                } 
             }],
             "responses": {
                 "500":{
@@ -2930,7 +2947,7 @@
             }
         }
     },
-    "/treinador/agenda/avaliacao/agendamento/{agendamentoId}/":{
+    "/treinador/agenda/avaliacao/{agendamentoId}/agendamento/{uId}/":{
         "delete":{
             "summary": "Remover agendamento de uma avaliação",
             "description": "Esta rota vai apagar na base de dados um agendamento de uma avaliação",
@@ -2947,6 +2964,18 @@
                         }
                     }
                 }
+            },{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do utilizador",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "uId":{
+                            "type": "string"
+                        }
+                    }
+                } 
             }],
             "responses": {
                 "500":{
@@ -3321,6 +3350,142 @@
                                         "message": "Login concluido com sucesso",
                                         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk4NTMzOTgsImV4cCI6MTY0OTg1NDI5OCwic3ViIjoiMDEwOGFiNWItZGM1Mi00MGFjLWIwNzctOTFjNjhmZTQ2MjljIn0.rOcVCmv9tDmXI2e59j5Ki0Bv-osf2xH3EukFhnalDtE",
                                         "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk4NTMzOTgsImV4cCI6MTY4MTQxMDk5OCwic3ViIjoiMDEwOGFiNWItZGM1Mi00MGFjLWIwNzctOTFjNjhmZTQ2MjljIn0.fMrt4XJoopSHoVeciN8tre0nS62NTLB2iavKF9WKXQM"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/aluno/{uId}/treinos/":{
+        "get":{
+            "summary": "Ver todos os treinos de um aluno",
+            "description": "Esta rota vai obter todos os treinos de um aluno",
+            "tags": ["Treinos"],
+            "parameters": [{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do utilizador",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "uId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Agendamentos de Avaliações":{
+                                    "value":{
+                                        "msg":"Ver agendamento de desafios obtido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/auth/{id}/token":{
+        "post":{
+            "summary": "Gerar novo token de sessão",
+            "description": "Esta rota permite gerar um nove token de sessão para um utilizador",
+            "tags": ["Autenticação"],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "description": "id do user",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "User Id":{
+                        "value":"0108ab5b-dc52-40ac-b077-91c68fe4629c"
+                    }
+                },
+                "style": "simple"
+
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "token":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk4NTgxNDQsImV4cCI6MTY0OTg1OTA0NCwic3ViIjoiMDEwOGFiNWItZGM1Mi00MGFjLWIwNzctOTFjNjhmZTQ2MjljIn0.a-zcCM6kOOmTy2WbzwpoTHZ2iamuwb-PXr8N9X6r4cc"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/auth/logout":{
+        "delete":{
+            "summary": "Realizar o logout",
+            "description": "Esta rota permite gerar um novo token de sessão para um utilizador",
+            "tags": ["Autenticação"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Adicionar Musculo":{
+                                    "value": {
+                                        "msg": "Logout com sucesso"
                                     }
                                 }
                             }

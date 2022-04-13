@@ -320,6 +320,38 @@ let checkAutorExercicio = async(treinadorId, exercicioId)=>{
     
     return exercicio.length != 0
 }
+let checkAutorTreino = async(uId, treinoId)=>{
+    const treino = await client.treinos.findMany({
+        where:{
+            uid:uId,
+            treino_id:treinoId
+        }
+    })
+    
+    return treino.length != 0
+}
+
+let checkAutorAgendamentoAvaliacoes = async(agendamentoId, uId)=>{
+    const agendamento = await client.agendamentos_avaliacoes.findMany({
+        where:{
+            agendamento_id: agendamentoId,
+            uid: uId
+        }
+    })
+    
+    return agendamento.length != 0
+}
+
+let checkAutorAgendamentoDesafios = async(agendamentoId, uId)=>{
+    const agendamento = await client.agendamentos_desafios.findMany({
+        where:{
+            agendamento_id: agendamentoId,
+            uid: uId         
+        }
+    })
+    
+    return agendamento.length != 0
+}
 
 let checkTreinadorGinasio= async(ginasioId : string, treinadorId : string) => {
     const searchMarca = await client.ginasio.findUnique({
@@ -400,6 +432,16 @@ let getDesafio = async(desafioId:string)=>{
     return desafio
 }
 
+let checkInBlackList = async(token:string)=>{
+    const tokens = await client.black_list.findMany({
+        where:{
+            tokenId:token
+        }
+    })
+
+    return tokens.length != 0;
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -433,6 +475,10 @@ export {
     checkPerfilPrivado,
     checkAgendamentoAvaliacaoExists,
     checkAgendamentoDesafiosExists,
-    getDesafio
+    getDesafio,
+    checkAutorTreino,
+    checkAutorAgendamentoAvaliacoes,
+    checkAutorAgendamentoDesafios,
+    checkInBlackList
 }
 

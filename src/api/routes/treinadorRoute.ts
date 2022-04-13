@@ -108,8 +108,8 @@ treinadorRouter.post("/avaliacoes/:id", criarAvaliacaoController.handle);
 //#region Agendamentos
 treinadorRouter.post("/agenda/desafios/:id/", agendarDesafiosController.handle);
 treinadorRouter.post("/agenda/avaliacao/", agendarAvaliacaoController.handle);
-treinadorRouter.delete("/agenda/desafios/agendamento/:id/", removerAgendarDesafiosController.handle);
-treinadorRouter.delete("/agenda/avaliacao/agendamento/:id/", removerAgendarAvaliacaoController.handle);
+treinadorRouter.delete("/agenda/desafios/:agendamento_id/agendamento/:id/", removerAgendarDesafiosController.handle);
+treinadorRouter.delete("/agenda/avaliacao/:agendamento_id/agendamento/:id/", removerAgendarAvaliacaoController.handle);
 treinadorRouter.get("/agenda/desafios/", verAgendamentosDesafiosController.handle);
 treinadorRouter.get("/agenda/avaliacoes/", verAgendamentoAvaliacoesController.handle);
 //#endregion

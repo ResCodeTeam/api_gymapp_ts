@@ -1,8 +1,4 @@
 import { client } from "../../prisma/client";
-
-import { NOMEM } from "dns";
-
-
 interface IEditarModalidades{
     
   modalidadeId: string,

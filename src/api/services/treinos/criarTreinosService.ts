@@ -3,7 +3,6 @@ import { checkUserIdExists, checkModalidadeExists, checkAtividadeExists } from "
 
 interface ICriarTreinosService {
   uid: string;
-  tipoModalidade: number;
   atividadeId: string;
   modalidadeId: string;
   duracao: string;
@@ -15,7 +14,6 @@ interface ICriarTreinosService {
 class CriarTreinosService {
   async execute({
     uid,
-    tipoModalidade,
     atividadeId,
     modalidadeId,
     duracao,
@@ -56,6 +54,7 @@ class CriarTreinosService {
       data: {
         uid,
         atividade_id: atividadeId,
+        modalidade_id: modalidadeId,
         duracao,
         calorias, 
         distancia,
