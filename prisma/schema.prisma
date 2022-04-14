@@ -91,7 +91,7 @@ model bloco_treino {
   n_ordem          Int
   nome             String             @db.VarChar(255)
   descricao        String             @db.VarChar(255)
-  planos_treino    planos_treino      @relation(fields: [plano_treino_id], references: [plano_treino_id], onDelete: NoAction, onUpdate: NoAction, map: "fkbloco_trei396073")
+  plano_treino     planos_treino      @relation(fields: [plano_treino_id], references: [plano_treino_id], onDelete: NoAction, onUpdate: NoAction, map: "fkbloco_trei396073")
   exercicios_bloco exercicios_bloco[]
 }
 
@@ -150,17 +150,17 @@ model destinos_notificacao {
 }
 
 model exercicios {
-  exercicio_id        String                @id @default(uuid())
-  nome                String                @db.VarChar(255)
-  descricao           String                @db.VarChar(255)
-  autor_id            String
-  is_tempo            Boolean
-  isDeleted           Boolean               @default(false)
-  users               users                 @relation(fields: [autor_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios806183")
-  exercicios_bloco    exercicios_bloco[]
-  exercicios_desafio  exercicios_desafio[]
-  exercicios_imagens  exercicios_imagens[]
-  exercicios_musculos exercicios_musculos[]
+  exercicio_id       String                @id @default(uuid())
+  nome               String                @db.VarChar(255)
+  descricao          String                @db.VarChar(255)
+  autor_id           String
+  is_tempo           Boolean
+  isDeleted          Boolean               @default(false)
+  users              users                 @relation(fields: [autor_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios806183")
+  exercicio_blocos   exercicios_bloco[]
+  exercicio_desafios exercicios_desafio[]
+  imagens            exercicios_imagens[]
+  musculos           exercicios_musculos[]
 }
 
 model exercicios_bloco {
@@ -169,7 +169,7 @@ model exercicios_bloco {
   exercicio_id        String
   n_ordem_exercicio   Int
   bloco_treino        bloco_treino       @relation(fields: [bloco_id], references: [bloco_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios619094")
-  exercicios          exercicios         @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios561801")
+  exercicio           exercicios         @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios561801")
   series_exercicio    series_exercicio[]
 }
 
@@ -351,17 +351,17 @@ model notificacoes {
 }
 
 model planos_treino {
-  plano_treino_id     String              @id @default(uuid())
-  aluno_id            String
-  treinador_id        String
-  data                DateTime            @db.Date
-  isRealizado         Boolean             @default(false) @db.Boolean()
-  modalidade_id       String
-  isDeleted           Boolean             @default(false)
-  aluno               users               @relation("planos_treino_aluno_idTousers", fields: [aluno_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre628891")
-  modalidades_ginasio modalidades_ginasio @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre425229")
-  treinador           users               @relation("planos_treino_treinador_idTousers", fields: [treinador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre703756")
-  bloco_treino        bloco_treino[]
+  plano_treino_id String              @id @default(uuid())
+  aluno_id        String
+  treinador_id    String
+  data            DateTime            @db.Date
+  isRealizado     Boolean             @default(false) @db.Boolean()
+  modalidade_id   String
+  isDeleted       Boolean             @default(false)
+  aluno           users               @relation("planos_treino_aluno_idTousers", fields: [aluno_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre628891")
+  modalidade      modalidades_ginasio @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre425229")
+  treinador       users               @relation("planos_treino_treinador_idTousers", fields: [treinador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre703756")
+  bloco_treino    bloco_treino[]
 }
 
 model publicacoes {
