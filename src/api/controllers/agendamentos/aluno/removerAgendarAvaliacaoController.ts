@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RemoverAgendarAvaliacaoService } from "../../services/agendamentos/removerAgendarAvaliacaoService";
+import { RemoverAgendarAvaliacaoService } from "../../../services/agendamentos/aluno/removerAgendarAvaliacaoService";
 
 class RemoverAgendarAvaliacaoController{
     async handle(request: Request, response: Response){

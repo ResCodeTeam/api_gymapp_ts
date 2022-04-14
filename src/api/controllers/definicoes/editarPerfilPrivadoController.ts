@@ -5,12 +5,11 @@ import { EditarPerfilPrivadoService } from "../../services/definicoes/editarPerf
 export class EditarPerfilPrivadoController{
     
     async handle (request: Request, response: Response){
-        const uId = request.params.id;
-        
-        let { isPrivado }=request.body;
+        const uId = request.params.id;  
+        const { is_privado }=request.body;
 
         const editarPerfilPrivadoController = new EditarPerfilPrivadoService();
-        const resp = await editarPerfilPrivadoController.execute({ uId, isPrivado });
+        const resp = await editarPerfilPrivadoController.execute( uId, is_privado );
         response.json(resp);
     }
 }
