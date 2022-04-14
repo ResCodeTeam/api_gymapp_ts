@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ObterDefinicoesService } from "../../../services/perfil/definicoes/obterDefinicoesService";
+import { ObterDefinicoesService } from "../../services/definicoes/obterDefinicoesService";
 
 export class ObterDefinicoesController{
   async handle(request:Request, response:Response){
