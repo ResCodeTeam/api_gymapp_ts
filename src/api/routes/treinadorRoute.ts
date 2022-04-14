@@ -21,7 +21,7 @@ import { CriarAvaliacaoController } from "../controllers/avaliacoes/criarAvaliac
 
 import { AdicionarExerciciosImagensController } from "../controllers/Exercicios/editar/adicionarExerciciosImagensController";
 
-//import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
+
 import { EditarDesafioController } from "../controllers/desafios/EditarDesafioController";
 import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
 import { EditarExercicioController } from "../controllers/Exercicios/editarExercicioController";
@@ -35,6 +35,7 @@ import { AceitarAvaliacoesController } from "../controllers/agendamentos/treinad
 import { AceitarDesafiosController } from "../controllers/agendamentos/treinador/aceitarDesafiosController";
 import { RemoverIsAceiteAvaliacoesController } from "../controllers/agendamentos/treinador/removerIsAceiteAvaliacoesController";
 import { RemoverIsAceiteDesafiosController } from "../controllers/agendamentos/treinador/removerIsAceiteDesafiosController";
+import { CriarPlanoTreinoController } from "../controllers/plano/criarPlanoTreinoController";
 import { RemoverPlanoTreinoController } from "../controllers/plano/removerPlanoTreinoController";
 import { VerMeusExerciciosController } from "../controllers/Exercicios/verMeusExerciciosController";
 
@@ -71,6 +72,7 @@ const verAgendamentoAvaliacoesController = new VerAgendamentoAvaliacoesControlle
 const submissaoDesafioController = new SubmissaoDesafioController();
 const removerIsAceiteDesafiosController = new RemoverIsAceiteDesafiosController();
 const removerIsAceiteAvaliacoesController = new RemoverIsAceiteAvaliacoesController();
+const criarPlanoTreinoController = new CriarPlanoTreinoController();
 const verMeusExerciciosController = new VerMeusExerciciosController();
 //const criarPlanoTreinoController = new CriarPlanoTreinoController();
 const removerPlanoTreinoController = new RemoverPlanoTreinoController();
@@ -121,7 +123,7 @@ treinadorRouter.get("/agenda/avaliacoes/", verAgendamentoAvaliacoesController.ha
 //#endregion
 
 //#region Plano
-//treinadorRouter.post("/plano/", criarPlanoTreinoController.handle);
+treinadorRouter.post("/planoTreino", criarPlanoTreinoController.handle);
 treinadorRouter.delete("plano/:plano_id", removerPlanoTreinoController.handle);
 //#endregion
 

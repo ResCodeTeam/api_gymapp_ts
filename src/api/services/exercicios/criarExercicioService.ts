@@ -60,7 +60,7 @@ export class CriarExercicioService{
         nome:true,
         descricao:true,
         is_tempo:true,
-        exercicios_imagens:{
+        imagens:{
           select:{
             imagem_id:true,
             url:true,
