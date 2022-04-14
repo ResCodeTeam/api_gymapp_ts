@@ -36,6 +36,8 @@ import { AceitarDesafiosController } from "../controllers/agendamentos/treinador
 import { RemoverIsAceiteAvaliacoesController } from "../controllers/agendamentos/treinador/removerIsAceiteAvaliacoesController";
 import { RemoverIsAceiteDesafiosController } from "../controllers/agendamentos/treinador/removerIsAceiteDesafiosController";
 import { CriarPlanoTreinoController } from "../controllers/plano/criarPlanoTreinoController";
+import { RemoverPlanoTreinoController } from "../controllers/plano/removerPlanoTreinoController";
+import { VerMeusExerciciosController } from "../controllers/Exercicios/verMeusExerciciosController";
 
 
 //
@@ -71,6 +73,9 @@ const submissaoDesafioController = new SubmissaoDesafioController();
 const removerIsAceiteDesafiosController = new RemoverIsAceiteDesafiosController();
 const removerIsAceiteAvaliacoesController = new RemoverIsAceiteAvaliacoesController();
 const criarPlanoTreinoController = new CriarPlanoTreinoController();
+const verMeusExerciciosController = new VerMeusExerciciosController();
+//const criarPlanoTreinoController = new CriarPlanoTreinoController();
+const removerPlanoTreinoController = new RemoverPlanoTreinoController();
 
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
@@ -86,6 +91,7 @@ treinadorRouter.delete("/:treinadorId/exercicios/:exercicioId/imagens/:imagemId"
 treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
 treinadorRouter.post("/:treinadorId/exercicios/:exercicioId/musculos/:musculoId", adicionarExercicioMusculoController.handle);
 treinadorRouter.delete("/:treinadorId/exercicios/:exercicioId/musculos/:musculoId", removerExercicioMusculoController.handle);
+treinadorRouter.get("/exercicios/:autorid", verMeusExerciciosController.handle);
 //#endregion
 
 //#region Treinos
@@ -118,6 +124,7 @@ treinadorRouter.get("/agenda/avaliacoes/", verAgendamentoAvaliacoesController.ha
 
 //#region Plano
 treinadorRouter.post("/planoTreino", criarPlanoTreinoController.handle);
+treinadorRouter.delete("plano/:plano_id", removerPlanoTreinoController.handle);
 //#endregion
 
 export { treinadorRouter };

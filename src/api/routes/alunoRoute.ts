@@ -8,7 +8,9 @@ import { VerAgendamentosDesafiosAlunoController } from "../controllers/agendamen
 import { VerAvaliacoesController } from "../controllers/avaliacoes/verAvalicaoController";
 import { VerDesafiosController } from "../controllers/desafios/verDesafiosController";
 import { VerPerfilController } from "../controllers/perfil/verPerfilController";
+import { EditarPlanoTreinoRealizadoController } from "../controllers/plano/editarPlanoTreinoRealizadoController";
 import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanal";
+import { RemoverPlanoTreinoRealizadoController } from "../controllers/plano/removerPlanoTreinoRealizadoController";
 
 const alunoRouter = express.Router();
 
@@ -32,6 +34,8 @@ const removerAgendarDesafiosController = new RemoverAgendarDesafiosController();
 const removerAgendarAvaliacaoController = new RemoverAgendarAvaliacaoController();
 const verAgendamentosDesafiosAlunoController = new VerAgendamentosDesafiosAlunoController();
 const verAgendamentosAvaliacoesAlunoController = new VerAgendamentosAvaliacoesAlunoController();
+const editarPlanoTreinoRealizadoController = new EditarPlanoTreinoRealizadoController();
+const removerPlanoTreinoRealizadoController = new RemoverPlanoTreinoRealizadoController();
 
 //#region Treinos
 alunoRouter.post("/user/:id/treinos", criarTreinosController.handle);
@@ -44,8 +48,10 @@ alunoRouter.put("/:uId/treinos/:treino_id", editarTreinosController.handle);
 alunoRouter.get("/:id/avaliacoes", verAvaliacoesController.handle);
 //#endregion
 
-//#region PlanoTreino
+//#region Plano de Treino
+alunoRouter.put("/:aluno_id/plano/:plano_id/realizado", editarPlanoTreinoRealizadoController.handle);
 alunoRouter.post("/planoTreino/", obterPlanoTreinoSemanalController.handle);
+alunoRouter.delete("/:aluno_id/plano/:plano_id/realizado", removerPlanoTreinoRealizadoController.handle);
 //#endregion
 
 //#region desafio

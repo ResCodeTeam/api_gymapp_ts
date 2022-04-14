@@ -165,7 +165,7 @@
         },
         "/aluno/agenda/avaliacao/":{
             "post":{
-                "summary": "Registo de agendamentos de avaliação",
+                "summary": "Registo de pedidos de agendamentos de avaliação",
                 "description": "Esta rota vai registar na base de dados um agendamento de avaliações",
                 "tags": ["Agenda"],
                 "requestBody":{
@@ -193,11 +193,11 @@
                             "examples": {
                                 "Inserir Agendamento de Avaliacoes":{
                                     "value": {
-                                        "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
-                                        "dataAgendamento":"2022-03-30",
+                                        "uid":"00b27390-ad57-47de-ac18-4c2a490caa97",
+                                        "dataAgendamento":"2022-03-12",
                                         "isAceite": true,
-                                        "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
-                                        "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                        "treinadorId": "6d112678-f40c-43bc-a80a-866f12fa26f2"
                                     }
                                 }
                             }
@@ -234,7 +234,7 @@
         },
         "/aluno/agenda/desafios/{desafioId}":{
             "post":{
-                "summary": "Registo de agendamentos de desafios",
+                "summary": "Registo de pedidos de agendamentos de desafios",
                 "description": "Esta rota vai registar na base de dados um agendamento de desafios",
                 "tags": ["Agenda"],
                 "parameters": [{
@@ -275,11 +275,11 @@
                             "examples": {
                                 "Inserir Agendamento de Desafios":{
                                     "value": {
-                                        "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
+                                        "uid":"00b27390-ad57-47de-ac18-4c2a490caa97",
                                         "dataAgendamento":"2022-03-30",
                                         "isAceite": true,
-                                        "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
-                                        "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                        "treinadorId": "6d112678-f40c-43bc-a80a-866f12fa26f2"
                                     }
                                 }
                             }
@@ -857,7 +857,7 @@
             "post": {
                 "summary": "Criar Desafio",
                 "description": "Este pedido serve para criar um desafio",
-                "tags": ["Ginasio"],
+                "tags": ["Desafios"],
                 "parameters": [{
                         "name": "ginasioId",
                         "in": "path",
@@ -922,9 +922,9 @@
                             "examples": {
                                 "Desafio": {
                                     "value": {
-                                        "criadorId": "024eb3f7-34fb-49ac-ac32-612ae870d7b3",
+                                        "criadorId": "332b256d-d646-4877-8a4f-f5538472e0d4",
                                         "nome": "Caminhar",
-                                        "modalidadeId": "f6b2a735-7d5c-4117-9ecf-7128d0631eda",
+                                        "modalidadeId": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                         "dataInicio": "2022-03-23",
                                         "dataFim": "2022-03-24",
                                         "recompensa": 100,
@@ -938,14 +938,12 @@
                                         "exercicios":[
                                             {
                                                 "nOrdem": 1,
-                                                "exercicioId":"a006be60-abb4-420a-a717-a30a77865363",
+                                                "exercicioId":"05bb0690-db08-4b46-97dc-3853eba58d51",
                                                 "genero":1,
                                                 "series":[
                                                     {
                                                         "nOrdem": 1,
-                                                        "repeticoes": 5,
-                                                        "peso": 100, 
-                                                        "unidadeMedida": "kg"
+                                                        "valor": "500"
                                                     }
                                                 ]
                                             }
@@ -1338,7 +1336,47 @@
                 }
             }
         }
-    },"/posts/{id}":{
+    },
+    "/treinador/exercicios/{autorId}":{
+        "get":{
+            "summary": "Ver todos os exercicios",
+            "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
+            "parameters": [
+            {
+                "name": "autorId",
+                "in": "path",
+                "description": "Id do autor para ver os exercicios criados",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "autorId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            ],
+            "tags": ["Exercicios"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/exercicios"
+                            }
+                        
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/posts/{id}":{
         "get":{
             "summary": "Ver toda a informação de um post",
             "description": "Esta rota vai apresentar todas as informações de um post",
@@ -1434,8 +1472,7 @@
             }
         }
     }
-}
-},
+}},
         "/admin/treinador/:id":{
             "delete":{
                 "summary": "Remover treinador",
@@ -2254,7 +2291,7 @@
                             "Criar Treino":{
                                 "value":{
                                     "atividadeId":null,
-                                    "modalidadeId":"f6b2a735-7d5c-4117-9ecf-7128d0631eda",
+                                    "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                     "duracao":"10",
                                     "calorias": 100,
                                     "distancia": 500,
@@ -4626,13 +4663,7 @@
                     "nOrdem": {
                         "type": "number"
                     },
-                    "repeticoes": {
-                        "type": "number"
-                    },
-                    "peso": {
-                        "type": "number"
-                    },
-                    "unidadeMedida": {
+                    "valor": {
                         "type": "string"
                     }
                 }
@@ -4961,7 +4992,7 @@
             }        
         }
     }
-}
+    }
 
 
 

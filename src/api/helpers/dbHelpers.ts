@@ -41,6 +41,25 @@ let checkAvaliacoesExists = async(avaliacaoId: string)=>{
     })
     return search.length != 0;
 }
+let checkPlanoTreinoExists = async(planoId: string)=>{
+    const search = await client.planos_treino.findMany({
+        where:{
+            plano_treino_id: planoId,
+            isDeleted: false
+        }
+    })
+    return search.length != 0;
+}
+let checkPlanoTreinoIsRealizado = async(planoId: string)=>{
+    const search = await client.planos_treino.findMany({
+        where:{
+            plano_treino_id: planoId,
+            isDeleted: false,
+            isRealizado: true
+        }
+    })
+    return search.length != 0;
+}
 let checkUserIdExists= async(userId : string)=>{
     const search = await client.users.findMany({
         where:{
@@ -185,6 +204,15 @@ let checkExercicioExists= async(exercicioId : string) => {
         where:{
             exercicio_id : exercicioId,
             isDeleted: false
+        }
+    })
+    return search.length != 0;
+}
+let checkExercicioBlocoExists= async(exercicioBlocoId : string) => {
+    const search = await client.exercicios_bloco.findMany({
+        where:{
+           exercicios_bloco_id:exercicioBlocoId
+           
         }
     })
     return search.length != 0;
@@ -354,7 +382,16 @@ let checkAutorTreino = async(uId, treinoId)=>{
     
     return treino.length != 0
 }
-
+let checkAutorPlanoTreino = async(alunoId, planoId)=>{
+    const treino = await client.planos_treino.findMany({
+        where:{
+            aluno_id:alunoId,
+            plano_treino_id:planoId
+        }
+    })
+    
+    return treino.length != 0
+}
 let checkAutorAgendamentoAvaliacoes = async(agendamentoId, uId)=>{
     const agendamento = await client.agendamentos_avaliacoes.findMany({
         where:{
@@ -504,7 +541,11 @@ export {
     checkAutorAgendamentoAvaliacoes,
     checkAutorAgendamentoDesafios,
     checkInBlackList,
+    checkExercicioBlocoExists,
     checkAgendamentoAvaliacaoIsAceiteExists,
-    checkAgendamentoDesafioIsAceiteExists
+    checkAgendamentoDesafioIsAceiteExists,
+    checkPlanoTreinoExists,
+    checkAutorPlanoTreino,
+    checkPlanoTreinoIsRealizado
 }
 
