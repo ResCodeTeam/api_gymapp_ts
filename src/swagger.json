@@ -4560,8 +4560,166 @@
                 }          
             }
         }
-    }
-    },         
+    },
+    "/aluno/{alunoId}/plano/{planoId}/realizado/":{
+        "put":{
+            "summary": "Meter um plano de treino como realizado",
+            "description": "Esta rota vai editar na base de dados o estado da realização de um plano de treino",
+            "tags": ["Plano Treino"],
+            "parameters": [{
+                "name": "alunoId",
+                "in": "path",
+                "description": "Id do aluno",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "alunoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            },{
+                "name": "planoId",
+                "in": "path",
+                "description": "Id do plano de treino",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "planoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Estado da Realização do Plano de Treino":{
+                                    "value":{
+                                        "msg":"Editar estado da realização do plano de treino aceite com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        },"delete":{
+            "summary": "Remover o estado realizado de um plano de treino",
+            "description": "Esta rota vai remover na base de dados o estado da realização de um plano de treino",
+            "tags": ["Plano Treino"],
+            "parameters": [{
+                "name": "alunoId",
+                "in": "path",
+                "description": "Id do aluno",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "alunoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            },{
+                "name": "planoId",
+                "in": "path",
+                "description": "Id do plano de treino",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "planoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Remover Estado da Realização do Plano de Treino":{
+                                    "value":{
+                                        "msg":"Remover estado da realização do plano de treino aceite com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },"/treinador/plano/{planoId}/":{
+        "delete":{
+            "summary": "Remover um plano de treino",
+            "description": "Esta rota vai remover na base de dados um plano de treino",
+            "tags": ["Plano Treino"],
+            "parameters": [{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do plano de treino",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "planoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Remover Plano de Treino":{
+                                    "value":{
+                                        "msg":"Remover plano de treino efetuado com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    }  
+    },        
     "components": {
         "securitySchemes": {
             "basicAuth":{
