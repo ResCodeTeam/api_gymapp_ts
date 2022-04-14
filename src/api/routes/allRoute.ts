@@ -16,6 +16,7 @@ import { VerMeuPerfilController } from "../controllers/perfil/verMeuPerfilContro
 import { EditarMencoesController } from "../controllers/definicoes/editarMencoesController";
 import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
 import { VerMeusExerciciosController } from "../controllers/Exercicios/verMeusExerciciosController";
+import { ImpedirIdentificacaoController } from "../controllers/definicoes/impedirIdentificacaoController";
 
 
 const allRouter = express.Router();
@@ -35,6 +36,7 @@ const obterDefinicoesController = new ObterDefinicoesController();
 const verMeuPerfilController = new VerMeuPerfilController();
 const editarMencoesController = new EditarMencoesController();
 const criarComentarioController = new CriarComentarioController();
+const impedirIdentificacaoController= new ImpedirIdentificacaoController();
 
 
 //#region Publicacoes
@@ -51,6 +53,7 @@ allRouter.post("/posts/:id/comentarios/", criarComentarioController.handle);
 //#region Perfil
 allRouter.put("/:id/perfil", editarPerfilController.handle);
 allRouter.put("/definicoes/mencoes",verificarAutenticacao, editarMencoesController.handle);
+allRouter.put("/definicoes/identificacao",verificarAutenticacao, impedirIdentificacaoController.handle);
 allRouter.put("/:id/definicoes/perfil/privado", editarPerfilPrivadoController.handle);
 allRouter.get("/:id/definicoes", obterDefinicoesController.handle);
 allRouter.get("/perfil",verificarAutenticacao, verMeuPerfilController.handle);

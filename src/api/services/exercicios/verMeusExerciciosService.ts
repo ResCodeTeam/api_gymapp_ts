@@ -1,6 +1,4 @@
 
-// ver esta função!!!
-
 import { checkExercicioExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
