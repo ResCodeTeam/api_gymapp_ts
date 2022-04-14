@@ -4009,8 +4009,54 @@
                 }
             }
         }
-    } 
-    },            
+    },
+    "/{uId}/definicoes/perfil/privado/":{
+        "put":{
+            "summary": "Meter o perfil privado",
+            "description": "Esta rota vai editar na base de dados o estado do perfil",
+            "tags": ["Definições"],
+            "parameters": [{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do user",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "uId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Estado do Perfil":{
+                                    "value":{
+                                        "msg":"Editar estado do perfil aceite com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    }  
+    },          
     "components": {
         "securitySchemes": {
             "basicAuth":{
