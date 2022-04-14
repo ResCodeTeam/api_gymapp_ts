@@ -31,7 +31,7 @@ export class ObterPlanoTreinoSemanalService{
             imagem_url:true,
           }
         },
-        modalidades_ginasio:{
+        modalidade:{
           select:{
             nome:true
           }
@@ -50,16 +50,16 @@ export class ObterPlanoTreinoSemanalService{
                     n_ordem_serie:true
                   }
                 },
-                exercicios:{
+                exercicio:{
                   select:{
                     nome:true,
                     descricao:true,
-                    exercicios_imagens:{
+                    imagens:{
                       select:{
                         url:true
                       }
                     },
-                    exercicios_musculos:{
+                    musculos:{
                       select:{
                         musculos:{
                           select:{

@@ -21,7 +21,7 @@ import { CriarAvaliacaoController } from "../controllers/avaliacoes/criarAvaliac
 
 import { AdicionarExerciciosImagensController } from "../controllers/Exercicios/editar/adicionarExerciciosImagensController";
 
-//import {CriarPlanoTreinoController } from "../controllers/treinador/plano/criarPlanoTreinoController";
+
 import { EditarDesafioController } from "../controllers/desafios/EditarDesafioController";
 import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
 import { EditarExercicioController } from "../controllers/Exercicios/editarExercicioController";
@@ -35,6 +35,7 @@ import { AceitarAvaliacoesController } from "../controllers/agendamentos/treinad
 import { AceitarDesafiosController } from "../controllers/agendamentos/treinador/aceitarDesafiosController";
 import { RemoverIsAceiteAvaliacoesController } from "../controllers/agendamentos/treinador/removerIsAceiteAvaliacoesController";
 import { RemoverIsAceiteDesafiosController } from "../controllers/agendamentos/treinador/removerIsAceiteDesafiosController";
+import { CriarPlanoTreinoController } from "../controllers/plano/criarPlanoTreinoController";
 
 
 //
@@ -69,7 +70,7 @@ const verAgendamentoAvaliacoesController = new VerAgendamentoAvaliacoesControlle
 const submissaoDesafioController = new SubmissaoDesafioController();
 const removerIsAceiteDesafiosController = new RemoverIsAceiteDesafiosController();
 const removerIsAceiteAvaliacoesController = new RemoverIsAceiteAvaliacoesController();
-//const criarPlanoTreinoController = new CriarPlanoTreinoController();
+const criarPlanoTreinoController = new CriarPlanoTreinoController();
 
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
@@ -116,7 +117,7 @@ treinadorRouter.get("/agenda/avaliacoes/", verAgendamentoAvaliacoesController.ha
 //#endregion
 
 //#region Plano
-//treinadorRouter.post("/plano/", criarPlanoTreinoController.handle);
+treinadorRouter.post("/planoTreino", criarPlanoTreinoController.handle);
 //#endregion
 
 export { treinadorRouter };
