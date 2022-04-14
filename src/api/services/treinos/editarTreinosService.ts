@@ -39,6 +39,7 @@ export class EditarTreinosService {
             }
         })
         const isAutor = await checkAutorTreino(uId,treinoId);
+        console.log(uId)
         if(!isAutor){
             throw new Error("O treino não lhe pertence");
         }

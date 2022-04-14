@@ -1,20 +1,22 @@
-import { client } from "../../prisma/client";
-import { checkUserIdExists, checkGinasioExists } from "../../helpers/dbHelpers";
+import { client } from "../../../prisma/client";
+import { checkUserIdExists, checkGinasioExists } from "../../../helpers/dbHelpers";
 
-interface IAgendarAvaliacaoService {
+interface IAgendarDesafiosService {
   uid: string;
   dataAgendamento: Date;
+  desafioId: string;
   ginasioId: string;
   treinadorId: string;
 }
 
-export class AgendarAvaliacaoService {
+export class AgendarDesafiosService {
   async execute({
     uid,
     dataAgendamento,
+    desafioId,
     ginasioId,
     treinadorId,
-  }: IAgendarAvaliacaoService) {
+  }: IAgendarDesafiosService) {
     
     const exists_user = await checkUserIdExists(uid);
     if (!exists_user) {
@@ -26,9 +28,10 @@ export class AgendarAvaliacaoService {
       throw new Error("O ginásio não existe");
     }
 
-    await client.agendamentos_avaliacoes.create({
+    await client.agendamentos_desafios.create({
       data: {        
         ginasio_id: ginasioId,
+        desafio_id: desafioId,
         uid,
         data_agendamento: dataAgendamento,
       }
@@ -38,7 +41,7 @@ export class AgendarAvaliacaoService {
     const notificacao = await client.notificacoes.create({
       data: {
         origem_uid: treinadorId,
-        conteudo: "O seu agendamento foi aceite",
+        conteudo: "O seu desafio foi agendado",
         data : new Date(),
         tipo: 1,
       }
@@ -46,15 +49,16 @@ export class AgendarAvaliacaoService {
 
     //#region Cria Destinos da Notificação
       await client.destinos_notificacao.create({
-        data : { 
+        data : {
           noti_id : notificacao.noti_id, // id da notificacao
           dest_uid: uid, // treinador que aceitou o pedido - id de quem vai receber a notificacao
         }
-      }); 
+      });
+    
     //#endregion
 
     return {
-      msg: "O agendamento da avaliação foi criado com sucesso!"
+      msg: "O agendamento do desafio foi criado com sucesso!"
     };
   }
 }
