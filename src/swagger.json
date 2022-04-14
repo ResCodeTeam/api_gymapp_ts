@@ -1338,7 +1338,46 @@
                 }
             }
         }
-    },"/posts/{id}":{
+    },
+    "/treinador/exercicios/{autorId}":{
+        "get":{
+            "summary": "Ver todos os exercicios",
+            "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
+            "parameters": [
+            {
+                "name": "autorId",
+                "in": "path",
+                "description": "Id do autor para ver os exercicios criados",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "autorId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            ],
+            "tags": ["Exercicios"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/exercicios"
+                            }
+                        
+                        }
+                    }
+                }
+            }
+        },
+    "/posts/{id}":{
         "get":{
             "summary": "Ver toda a informação de um post",
             "description": "Esta rota vai apresentar todas as informações de um post",
@@ -4742,6 +4781,7 @@
                 }
             }        
         }
+    }
     }
 }
 
