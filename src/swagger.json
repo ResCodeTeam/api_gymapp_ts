@@ -4480,6 +4480,52 @@
                 }          
             }
         }
+    },
+    "/treinador/plano/{planoId}/":{
+        "delete":{
+            "summary": "Remover um plano de treino",
+            "description": "Esta rota vai remover na base de dados um plano de treino",
+            "tags": ["Plano Treino"],
+            "parameters": [{
+                "name": "uId",
+                "in": "path",
+                "description": "Id do plano de treino",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "planoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Remover Plano de Treino":{
+                                    "value":{
+                                        "msg":"Remover plano de treino efetuado com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
     }  
     },         
     "components": {
