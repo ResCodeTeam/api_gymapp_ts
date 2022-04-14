@@ -1374,7 +1374,8 @@
                     }
                 }
             }
-        },
+        }
+    },
     "/posts/{id}":{
         "get":{
             "summary": "Ver toda a informação de um post",
@@ -2521,6 +2522,7 @@
                     
                 }
             },
+            
             "put":{
                 "summary": "Editar atividades",
                 "description": "Esta rota vai editar na base de dados uma atividade",
@@ -3669,6 +3671,60 @@
             }
         }
     },
+    "/definicoes/identificacao/":{
+        "put":{
+            "summary": "Alterar as identificacoes",
+            "description": "Esta rota permite alterar a permissão de identificacoes do utilizador",
+            "tags": ["Definições"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],           
+         
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "identificacoes": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "identificacoes false":{
+                                "value":{
+                                    "identificacoes":false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    },
     "/definicoes/mencoes":{
         "put":{
             "summary": "Alterar as menções",
@@ -4520,6 +4576,7 @@
             }
         }
     },
+
     "/treinador/plano/{planoId}/":{
         "delete":{
             "summary": "Remover um plano de treino",
@@ -4935,7 +4992,7 @@
         }
     }
     }
-}
+
 
 
 

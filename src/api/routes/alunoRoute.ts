@@ -12,6 +12,7 @@ import { EditarPlanoTreinoRealizadoController } from "../controllers/plano/edita
 import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanal";
 import { RemoverPlanoTreinoRealizadoController } from "../controllers/plano/removerPlanoTreinoRealizadoController";
 
+
 const alunoRouter = express.Router();
 
 import { CriarTreinosController  } from "../controllers/treinos/criarTreinosController";
@@ -37,6 +38,7 @@ const verAgendamentosAvaliacoesAlunoController = new VerAgendamentosAvaliacoesAl
 const editarPlanoTreinoRealizadoController = new EditarPlanoTreinoRealizadoController();
 const removerPlanoTreinoRealizadoController = new RemoverPlanoTreinoRealizadoController();
 
+
 //#region Treinos
 alunoRouter.post("/user/:id/treinos", criarTreinosController.handle);
 alunoRouter.delete("/:id/treino/:treino_id", removerTreinosController.handle);
@@ -46,6 +48,10 @@ alunoRouter.put("/:uId/treinos/:treino_id", editarTreinosController.handle);
 
 //#region avaliacao
 alunoRouter.get("/:id/avaliacoes", verAvaliacoesController.handle);
+//#endregion
+
+//#region publicaçoes
+alunoRouter.put("/")
 //#endregion
 
 //#region Plano de Treino
