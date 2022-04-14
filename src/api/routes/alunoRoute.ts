@@ -9,7 +9,7 @@ import { VerAvaliacoesController } from "../controllers/avaliacoes/verAvalicaoCo
 import { VerDesafiosController } from "../controllers/desafios/verDesafiosController";
 import { VerPerfilController } from "../controllers/perfil/verPerfilController";
 import { EditarPlanoTreinoRealizadoController } from "../controllers/plano/editarPlanoTreinoRealizadoController";
-import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanal";
+import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanalController";
 import { RemoverPlanoTreinoRealizadoController } from "../controllers/plano/removerPlanoTreinoRealizadoController";
 
 
@@ -56,7 +56,7 @@ alunoRouter.put("/")
 
 //#region Plano de Treino
 alunoRouter.put("/:aluno_id/plano/:plano_id/realizado", editarPlanoTreinoRealizadoController.handle);
-alunoRouter.post("/planoTreino/", obterPlanoTreinoSemanalController.handle);
+alunoRouter.get("/planoTreino/:startDate/:endDate", obterPlanoTreinoSemanalController.handle);
 alunoRouter.delete("/:aluno_id/plano/:plano_id/realizado", removerPlanoTreinoRealizadoController.handle);
 //#endregion
 
