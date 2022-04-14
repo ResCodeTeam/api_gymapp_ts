@@ -3,9 +3,9 @@ import { EditarPublicacaoService } from "../../services/posts/editarPublicacoesS
 
 export class EditarPublicacaoController{
   async handle(request : Request, response : Response) {
-      const postId = request.params.id;
-      const { publicacaoId, data, descricao, tipo, ginasioId } = request.body;
-      let newData = new Date(data);
+      
+      const { publicacaoId, descricao} = request.body;
+      let newData = new Date(Date.now());
       const editarPublicacaoController = new EditarPublicacaoService();
 
 
@@ -16,8 +16,6 @@ export class EditarPublicacaoController{
       });
 
       console.log(resp);
-      response.status(200).json({
-        'message': resp
-      });
+      response.status(200).json({resp});
   }
 }

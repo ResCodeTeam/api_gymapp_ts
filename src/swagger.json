@@ -64,7 +64,7 @@
                                 },
                                 "Criar Admin":{
                                     "value":{
-                                        "nome":"Admin"
+                                        "nome":"Administrador"
                                     }
                                 },
                                 "Criar Treinador":{
@@ -1389,7 +1389,52 @@
                 }
             }
         }
+    },"delete":{
+        "summary": "Remover publicação",
+        "description": "Esta rota vai permitir remover uma publicação",
+        "parameters": [
+        {
+            "name": "id",
+            "in": "path",
+            "description": "Id do post que se deseja remover",
+            "required": true,
+            "schema":{
+                "properties": {
+                    "ginasioId":{
+                        "type": "string"
+                    }
+                }
+            }
+        }
+        ],
+        "tags": ["Posts"],
+        "responses": {
+            "500":{
+                "description": "ERROR"
+            },
+            "200":{
+                "description": "OK",
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "msg":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Ver Posts":{
+                                "value":{
+                                    "msg":"Publicação removida com sucesso"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+}
 },
         "/admin/treinador/:id":{
             "delete":{
@@ -1521,6 +1566,19 @@
                                     },
                                     "genero":{
                                         "type": "number"
+                                    }
+                                }
+                            }, "examples": {
+                                "Registar Treinador":{
+                                    "value":{
+                                        
+                                        "email": "treinador@treinador.pt",
+                                        "nome": "treinador",
+                                        "password": "treinador",
+                                        "dataNasc": "2002-04-09",
+                                        "dataEntrada": "2022-03-23",
+                                        "genero": 0
+                                          
                                     }
                                 }
                             }
@@ -1673,21 +1731,37 @@
                             "examples": {
                                 "Criar Exercicio":{
                                     "value":{
-                                        "nome":"Push-Ups",
-                                        "descricao":"Deitar no chao e empurrar executando uma flexão",
-                                        "autor":"919dc8c8-9853-4b13-b0e7-9b88fe587137",
-                                        "isTempo":false,
-                                        "imagens":[
-                                            "url1",
-                                            "url2",
-                                            "url3",
-                                            "url4"
-                                        ],
-                                        "musculos":[
-                                            "1b1dd226-454a-4bb6-a126-1870411646e4",
-                                            "48727940-5e7d-4a91-8229-5f3a5e175147",
-                                            "fcb48f32-61fc-410e-9e81-8ced8330325e"
-                                        ]
+                                        
+                                        "resp": {
+                                            "nome": "Bicicleta",
+                                            "descricao": "Deitar no chao e subir saltando",
+                                            "is_tempo": true,
+                                            "exercicios_imagens": [
+                                            {
+                                                "imagem_id": "6295c29c-050d-4f04-bfb9-8cdc611b4479",
+                                                "url": "url1"
+                                            },
+                                            {
+                                                "imagem_id": "04121e76-7c7b-4b28-9eb5-67dcb8365473",
+                                                "url": "url2"
+                                            },
+                                            {
+                                                "imagem_id": "286900c8-41c7-49b4-984d-ba943a630a63",
+                                                "url": "url3"
+                                            },
+                                            {
+                                                "imagem_id": "92dc856a-4c0f-44e2-9926-9aa896cef391",
+                                                "url": "url4"
+                                            }
+                                            ],
+                                            "users": {
+                                            "uid": "a46c90e0-ef8a-49a1-b763-13fa0e6d7ef3",
+                                            "nome": "treinador2",
+                                            "email": "treinador2@treinador.com",
+                                            "imagem_url": null
+                                            }
+                                        }
+                                        
                                     }
                                 }
                             }
@@ -1808,15 +1882,16 @@
                                 "examples": {
                                     "Registar Treinador":{
                                         "value": {
-                                            "Treinador": {
-                                                "uid": "9c1877aa-d346-4eaa-bb6c-e032dadf4e57",
-                                                "email": "treinador@treinador.com",
-                                                "nome": "treinador",
-                                                "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+                                            "msg": "admin registado com sucesso",
+                                            "admin": {
+                                                "uid": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                                                "email": "admin@admin.com",
+                                                "nome": "admin",
+                                                "password": "$2b$08$NlzV/V2M9opQVh6f6CmCrOO61jePKlPus5XEUfQkOd9ZlON9DaTea",
                                                 "data_nasc": "2002-04-09T00:00:00.000Z",
-                                                "hashtag": "t_02",
+                                                "hashtag": "a_01",
                                                 "data_entrada": "2022-03-23T00:00:00.000Z",
-                                                "funcao_id": "418aaa6d-489e-471d-8f91-a798b9470773",
+                                                "funcao_id": "51cf11c7-e357-4d8c-9f19-ce9dcf89e0ed",
                                                 "refresh_token": null,
                                                 "genero": 0,
                                                 "pontos": 0,
@@ -2808,22 +2883,6 @@
         "post":{
             "summary": "Adicionar musculo",
             "description": "Esta rota permite adcionar um musculo à base de dados",
-            "parameters": [{
-                "name": "musculoId",
-                "in": "path",
-                "description": "id do musculo",
-                "required": true,
-                "schema":{
-                    "type": "string"
-                },
-                "examples": {
-                    "Musculo Id":{
-                        "value":"1b1dd226-454a-4bb6-a126-1870411646e4"
-                    }
-                },
-                "style": "simple"
-
-            }],
             "tags": ["Musculos"],
             "requestBody": {
                 "content": {
@@ -3732,6 +3791,263 @@
             }
         }
     },
+    
+    "/aluno/planoTreino":{
+        "post":{
+            "summary": "Obter plano de treino semanal",
+            "description": "Esta rota vai permitir obter plano de treino de uma semana dano o intervalo de tempo",
+            "tags": ["Plano Treino"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "startDate":{
+                                    "type": "string"
+                                },
+                                "endDate":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Editar Treino":{
+                                "value":{
+                                    "startDate":"2022-04-07",
+                                    "endDate":"2022-06-17"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Obter Treino":{
+                                    "value":{
+                                        "planos": [
+                                          {
+                                            "plano_treino_id": "f160ba3e-cd5d-4661-9e4e-3ac1590b7ada",
+                                            "aluno_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                            "treinador_id": "9c1877aa-d346-4eaa-bb6c-e032dadf4e57",
+                                            "data": "2022-04-07T00:00:00.000Z",
+                                            "isRealizado": false,
+                                            "modalidade_id": "cf11f7c9-e47a-4574-8b93-79a1850c6636",
+                                            "isDeleted": false
+                                          },
+                                          {
+                                            "plano_treino_id": "7574f36c-c3df-410e-bb64-5b13a740e014",
+                                            "aluno_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                            "treinador_id": "9c1877aa-d346-4eaa-bb6c-e032dadf4e57",
+                                            "data": "2022-04-07T00:00:00.000Z",
+                                            "isRealizado": false,
+                                            "modalidade_id": "cf11f7c9-e47a-4574-8b93-79a1850c6636",
+                                            "isDeleted": false
+                                          },
+                                          {
+                                            "plano_treino_id": "fa206e93-70a5-4ac5-ac77-f532162f4ddc",
+                                            "aluno_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                            "treinador_id": "9c1877aa-d346-4eaa-bb6c-e032dadf4e57",
+                                            "data": "2022-04-07T00:00:00.000Z",
+                                            "isRealizado": false,
+                                            "modalidade_id": "cf11f7c9-e47a-4574-8b93-79a1850c6636",
+                                            "isDeleted": false
+                                          }
+                                        ]
+                                      }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },"/posts":{
+        "post":{
+            "summary": "Criar publicação",
+            "description": "Esta rota vai permitir criar uma publicação",
+            "tags": ["Posts"],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "criadorId":{
+                                    "type": "string"
+                                }, 
+                                "descricao":{
+                                    "type": "string"
+                                },
+                                "tipo":{
+                                    "type": "number"
+                                }, 
+                                "ginasioId":{
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "identificacao":{
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Editar Treino":{
+                                "value":{
+                                    
+                                    "criadorId": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "descricao": "teste1",
+                                    "tipo": 3,
+                                    "ginasioId": null,
+                                    "indentificacao":null
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Publicacao":{
+                                    "value":{
+                                        "post": {
+                                            "publicacao_id": "0e062989-88e5-4c45-97ec-6af212ca566d",
+                                            "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "data": "2022-04-14T12:32:31.468Z",
+                                            "descricao": "teste1",
+                                            "tipo": 3,
+                                            "ginasio_id": null,
+                                            "isDeleted": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        },
+        "put":{
+            "summary": "Editar publicação",
+            "description": "Esta rota vai permitir editar uma publicação",
+            "tags": ["Posts"],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "publicacaoId":{
+                                    "type": "string"
+                                },
+                                "descricao":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Editar Treino":{
+                                "value":{
+                                    
+                                    "publicacaoId": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
+                                    "descricao": "teste2"
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "publicacao_id":{
+                                        "type": "string"
+                                    },
+                                    "criador_id":{
+                                        "type": "string"
+                                    },
+                                    "data":{
+                                        "type": "string"
+                                    },
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "tipo":{
+                                        "type": "number"
+                                    },
+                                    "ginasio_id":{
+                                        "type": "string"
+                                    },
+                                    "isDeleted":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Exercicio":{
+                                    "value":{
+                                        "publicação": {
+                                            "publicacao_id": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
+                                            "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "data": "2022-04-14T12:40:32.236Z",
+                                            "descricao": "teste2",
+                                            "tipo": 3,
+                                            "ginasio_id": null,
+                                            "isDeleted": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
     "/treinador/agenda/avaliacao/{agendamentoId}/":{
         "put":{
             "summary": "Aceitar agendamento de uma avaliação",
@@ -3823,8 +4139,7 @@
                 }         
             }
         }
-    },
-    "/treinador/agenda/desafios/{agendamentoId}/":{
+    },"/treinador/agenda/desafios/{agendamentoId}/":{
         "put":{
             "summary": "Aceitar agendamento de um desafio",
             "description": "Esta rota vai editar na base de dados um agendamento de um desafio",
@@ -3915,8 +4230,7 @@
                 }         
             }
         }
-    },
-    "/aluno/agenda/avaliacoes/{uId}":{
+    },"/aluno/agenda/avaliacoes/{uId}":{
         "get":{
             "summary": "Ver todos os pedidos de agendamento de avaliação de um aluno",
             "description": "Esta rota vai obter todos os pedidos de agendamento de avaliação de um aluno",
@@ -4009,8 +4323,7 @@
                 }
             }
         }
-    },
-    "/{uId}/definicoes/perfil/privado/":{
+    },"/{uId}/definicoes/perfil/privado/":{
         "put":{
             "summary": "Meter o perfil privado",
             "description": "Esta rota vai editar na base de dados o estado do perfil",
@@ -4056,7 +4369,7 @@
             }
         }
     }  
-    },          
+    },         
     "components": {
         "securitySchemes": {
             "basicAuth":{
