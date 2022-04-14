@@ -165,7 +165,7 @@
         },
         "/aluno/agenda/avaliacao/":{
             "post":{
-                "summary": "Registo de agendamentos de avaliação",
+                "summary": "Registo de pedidos de agendamentos de avaliação",
                 "description": "Esta rota vai registar na base de dados um agendamento de avaliações",
                 "tags": ["Agenda"],
                 "requestBody":{
@@ -193,11 +193,11 @@
                             "examples": {
                                 "Inserir Agendamento de Avaliacoes":{
                                     "value": {
-                                        "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
-                                        "dataAgendamento":"2022-03-30",
+                                        "uid":"00b27390-ad57-47de-ac18-4c2a490caa97",
+                                        "dataAgendamento":"2022-03-12",
                                         "isAceite": true,
-                                        "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
-                                        "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                        "treinadorId": "6d112678-f40c-43bc-a80a-866f12fa26f2"
                                     }
                                 }
                             }
@@ -234,7 +234,7 @@
         },
         "/aluno/agenda/desafios/{desafioId}":{
             "post":{
-                "summary": "Registo de agendamentos de desafios",
+                "summary": "Registo de pedidos de agendamentos de desafios",
                 "description": "Esta rota vai registar na base de dados um agendamento de desafios",
                 "tags": ["Agenda"],
                 "parameters": [{
@@ -275,11 +275,11 @@
                             "examples": {
                                 "Inserir Agendamento de Desafios":{
                                     "value": {
-                                        "uid":"08c77b38-aea2-4f3d-b32f-a38f477dbbe5",
+                                        "uid":"00b27390-ad57-47de-ac18-4c2a490caa97",
                                         "dataAgendamento":"2022-03-30",
                                         "isAceite": true,
-                                        "ginasioId":"f255db3f-f47a-4657-9a51-9751ce6a1923",
-                                        "treinadorId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                        "treinadorId": "6d112678-f40c-43bc-a80a-866f12fa26f2"
                                     }
                                 }
                             }
@@ -857,7 +857,7 @@
             "post": {
                 "summary": "Criar Desafio",
                 "description": "Este pedido serve para criar um desafio",
-                "tags": ["Ginasio"],
+                "tags": ["Desafios"],
                 "parameters": [{
                         "name": "ginasioId",
                         "in": "path",
@@ -922,9 +922,9 @@
                             "examples": {
                                 "Desafio": {
                                     "value": {
-                                        "criadorId": "024eb3f7-34fb-49ac-ac32-612ae870d7b3",
+                                        "criadorId": "332b256d-d646-4877-8a4f-f5538472e0d4",
                                         "nome": "Caminhar",
-                                        "modalidadeId": "f6b2a735-7d5c-4117-9ecf-7128d0631eda",
+                                        "modalidadeId": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                         "dataInicio": "2022-03-23",
                                         "dataFim": "2022-03-24",
                                         "recompensa": 100,
@@ -938,14 +938,12 @@
                                         "exercicios":[
                                             {
                                                 "nOrdem": 1,
-                                                "exercicioId":"a006be60-abb4-420a-a717-a30a77865363",
+                                                "exercicioId":"05bb0690-db08-4b46-97dc-3853eba58d51",
                                                 "genero":1,
                                                 "series":[
                                                     {
                                                         "nOrdem": 1,
-                                                        "repeticoes": 5,
-                                                        "peso": 100, 
-                                                        "unidadeMedida": "kg"
+                                                        "valor": "500"
                                                     }
                                                 ]
                                             }
@@ -2293,7 +2291,7 @@
                             "Criar Treino":{
                                 "value":{
                                     "atividadeId":null,
-                                    "modalidadeId":"f6b2a735-7d5c-4117-9ecf-7128d0631eda",
+                                    "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                     "duracao":"10",
                                     "calorias": 100,
                                     "distancia": 500,
@@ -4407,6 +4405,120 @@
                 }          
             }
         }
+    },
+    "/{alunoId}/plano/{planoId}/realizado/":{
+        "put":{
+            "summary": "Meter um plano de treino como realizado",
+            "description": "Esta rota vai editar na base de dados o estado da realização de um plano de treino",
+            "tags": ["Plano Treino"],
+            "parameters": [{
+                "name": "alunoId",
+                "in": "path",
+                "description": "Id do aluno",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "alunoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            },{
+                "name": "planoId",
+                "in": "path",
+                "description": "Id do plano de treino",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "planoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Estado da Realização do Plano de Treino":{
+                                    "value":{
+                                        "msg":"Editar estado da realização do plano de treino aceite com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        },
+        "delete":{
+            "summary": "Remover o estado realizado de um plano de treino",
+            "description": "Esta rota vai remover na base de dados o estado da realização de um plano de treino",
+            "tags": ["Plano Treino"],
+            "parameters": [{
+                "name": "alunoId",
+                "in": "path",
+                "description": "Id do aluno",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "alunoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            },{
+                "name": "planoId",
+                "in": "path",
+                "description": "Id do plano de treino",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "planoId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Remover Estado da Realização do Plano de Treino":{
+                                    "value":{
+                                        "msg":"Remover estado da realização do plano de treino aceite com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
     }  
     },         
     "components": {
@@ -4510,13 +4622,7 @@
                     "nOrdem": {
                         "type": "number"
                     },
-                    "repeticoes": {
-                        "type": "number"
-                    },
-                    "peso": {
-                        "type": "number"
-                    },
-                    "unidadeMedida": {
+                    "valor": {
                         "type": "string"
                     }
                 }
