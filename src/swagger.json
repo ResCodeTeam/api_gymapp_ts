@@ -2162,7 +2162,7 @@
         },
         "/treinador/{treinadorId}/exercicios/{exercicioId}/imagens":{
             "post":{
-                "summary": "Editar imagens de exercicio",
+                "summary": "Adicionar imagem a um exercicio",
                 "description": "Esta rota permite adicionar uma imagem a um exercicio",
                 "tags": ["Exercicios"],
                 "requestBody":{
