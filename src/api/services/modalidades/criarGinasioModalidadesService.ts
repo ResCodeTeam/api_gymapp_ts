@@ -1,5 +1,5 @@
 import { client } from "../../prisma/client";
-import { checkModalidadeNome } from "../../helpers/dbHelpers";
+import { checkModalidadeNome, checkGinasioExists } from "../../helpers/dbHelpers";
 
 interface ICriarGinasioModalidadesService {
   ginasioId: string;
@@ -15,6 +15,12 @@ class CriarGinasioModalidadesService {
     imagemUrl,
     
   }: ICriarGinasioModalidadesService) {
+    
+    const exist_ginasio = await checkGinasioExists(nome);
+    if (!exist_ginasio) {
+      throw new Error("O ginásio não existe");
+    }
+
     //verificar se a modalidade já existe
     const exist_nome = await checkModalidadeNome(nome);
     if (exist_nome) {
