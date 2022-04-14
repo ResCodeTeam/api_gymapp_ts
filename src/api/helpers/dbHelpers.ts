@@ -208,6 +208,15 @@ let checkExercicioExists= async(exercicioId : string) => {
     })
     return search.length != 0;
 }
+let checkExercicioBlocoExists= async(exercicioBlocoId : string) => {
+    const search = await client.exercicios_bloco.findMany({
+        where:{
+           exercicios_bloco_id:exercicioBlocoId
+           
+        }
+    })
+    return search.length != 0;
+}
 let getMarcaGym= async(ginasioId : string) => {
     const search = await client.ginasio.findFirst({
         where: {
@@ -532,6 +541,7 @@ export {
     checkAutorAgendamentoAvaliacoes,
     checkAutorAgendamentoDesafios,
     checkInBlackList,
+    checkExercicioBlocoExists,
     checkAgendamentoAvaliacaoIsAceiteExists,
     checkAgendamentoDesafioIsAceiteExists,
     checkPlanoTreinoExists,

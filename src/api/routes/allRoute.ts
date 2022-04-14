@@ -15,6 +15,7 @@ import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 import { VerMeuPerfilController } from "../controllers/perfil/verMeuPerfilController";
 import { EditarMencoesController } from "../controllers/definicoes/editarMencoesController";
 import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
+import { VerMeusExerciciosController } from "../controllers/Exercicios/verMeusExerciciosController";
 
 
 const allRouter = express.Router();
@@ -34,6 +35,7 @@ const obterDefinicoesController = new ObterDefinicoesController();
 const verMeuPerfilController = new VerMeuPerfilController();
 const editarMencoesController = new EditarMencoesController();
 const criarComentarioController = new CriarComentarioController();
+
 
 //#region Publicacoes
 allRouter.post("/posts", criarPostsController.handle);
