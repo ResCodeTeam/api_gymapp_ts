@@ -76,7 +76,7 @@ export class EditarPublicacaoService {
             }
         })
         return {
-            message: "Publicação editada com sucesso!",
+            
             publicação
         }
     }

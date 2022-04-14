@@ -41,7 +41,7 @@ const registarUserMarcasController = new RegistarUserMarcasController();
 const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
 const criarGinasioModalidadesController = new CriarGinasioModalidadesController();
 const criarDesafiosController = new CriarDesafiosController();
-const criarComentarioController = new CriarComentarioController();
+
 
 const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
@@ -70,9 +70,6 @@ adminRouter.post("/registo/", registarAdminController.handle);
 adminRouter.post("/marca/alunos/", registarAlunosController.handle);
 //#endregion
 
-//#region Comentarios
-adminRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
-//#endregion
 
 //#region Desafios
 adminRouter.post("/ginasio/:id/desafios/", criarDesafiosController.handle);

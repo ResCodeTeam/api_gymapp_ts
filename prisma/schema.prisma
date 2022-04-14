@@ -88,6 +88,7 @@ model avaliacoes {
 model bloco_treino {
   bloco_id         String             @id @default(uuid())
   plano_treino_id  String
+  n_ordem          Int
   nome             String             @db.VarChar(255)
   descricao        String             @db.VarChar(255)
   planos_treino    planos_treino      @relation(fields: [plano_treino_id], references: [plano_treino_id], onDelete: NoAction, onUpdate: NoAction, map: "fkbloco_trei396073")
@@ -95,14 +96,15 @@ model bloco_treino {
 }
 
 model comentarios_publicacao {
-  comentario_id     String              @id @default(uuid())
-  publicacao_id     String
-  comentario        String              @db.VarChar(255)
-  criador_id        String
-  data              DateTime            @db.Timestamp(3)
-  users             users               @relation(fields: [criador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkcomentario66141")
-  publicacoes       publicacoes         @relation(fields: [publicacao_id], references: [publicacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkcomentario286998")
-  gostos_comentario gostos_comentario[]
+  comentario_id              String                       @id @default(uuid())
+  publicacao_id              String
+  comentario                 String                       @db.VarChar(255)
+  criador_id                 String
+  data                       DateTime                     @db.Timestamp(3)
+  users                      users                        @relation(fields: [criador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkcomentario66141")
+  publicacoes                publicacoes                  @relation(fields: [publicacao_id], references: [publicacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkcomentario286998")
+  gostos_comentario          gostos_comentario[]
+  identificacoes_comentarios identificacoes_comentarios[]
 }
 
 model definicoes_user {
@@ -244,6 +246,14 @@ model gostos_publicacao {
   publicacoes   publicacoes @relation(fields: [publicacao_id], references: [publicacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkgostos_pub330742")
 }
 
+model identificacoes_comentarios {
+  identificacao_id String                 @id @default(uuid())
+  comentario_id    String
+  usersuid         String
+  comentario       comentarios_publicacao @relation(fields: [comentario_id], references: [comentario_id], onDelete: NoAction, onUpdate: NoAction, map: "fkidenticoment298313")
+  users            users                  @relation(fields: [usersuid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkidenticoment401249")
+}
+
 model identificacoes_publicacoes {
   identificacao_id String      @id @default(uuid())
   publicacao_id    String
@@ -341,17 +351,17 @@ model notificacoes {
 }
 
 model planos_treino {
-  plano_treino_id                         String              @id @default(uuid())
-  aluno_id                                String
-  treinador_id                            String
-  data                                    DateTime            @db.Date
-  isRealizado                             Boolean             @default(false) @db.Boolean()
-  modalidade_id                           String
-  isDeleted                               Boolean             @default(false)
-  users_planos_treino_aluno_idTousers     users               @relation("planos_treino_aluno_idTousers", fields: [aluno_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre628891")
-  modalidades_ginasio                     modalidades_ginasio @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre425229")
-  users_planos_treino_treinador_idTousers users               @relation("planos_treino_treinador_idTousers", fields: [treinador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre703756")
-  bloco_treino                            bloco_treino[]
+  plano_treino_id     String              @id @default(uuid())
+  aluno_id            String
+  treinador_id        String
+  data                DateTime            @db.Date
+  isRealizado         Boolean             @default(false) @db.Boolean()
+  modalidade_id       String
+  isDeleted           Boolean             @default(false)
+  aluno               users               @relation("planos_treino_aluno_idTousers", fields: [aluno_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre628891")
+  modalidades_ginasio modalidades_ginasio @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre425229")
+  treinador           users               @relation("planos_treino_treinador_idTousers", fields: [treinador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre703756")
+  bloco_treino        bloco_treino[]
 }
 
 model publicacoes {
@@ -476,4 +486,5 @@ model users {
   treinadores_marca                                           treinadores_marca[]
   treinos                                                     treinos[]
   black_list                                                  black_list[]
+  identificacoes_comentarios                                  identificacoes_comentarios[]
 }

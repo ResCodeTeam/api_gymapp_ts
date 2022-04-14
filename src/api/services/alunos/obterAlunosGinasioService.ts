@@ -64,7 +64,6 @@ export class ObterAlunosGinasioService {
         }
 
         return {
-            msg: "Obter alunos efetuada com sucesso",
             users
         }
     }

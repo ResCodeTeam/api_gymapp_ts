@@ -32,10 +32,11 @@ def inserir_localidades(limite=1000):
          "cp":cp,
          "cpExt":all_info[-1]
       })
+      
    for localidade in localidades:
       response = req.request(
          "POST", 
-         "http://localhost:8000/api/v1/cp",
+         "http://localhost:8000/api/v1/backend/cp",
          json={
             "cp":int(localidade['cp']),
             "cpExt":int(localidade['cpExt']),
@@ -43,4 +44,5 @@ def inserir_localidades(limite=1000):
             "localidade":localidade['local']
          }
       )
+      
 

@@ -29,7 +29,7 @@ export class RegistarAdminService{
         let passwd = await hash(password, 8);
         
         // obter o id da função
-        let funcaoId = await getFuncaoId("Admin")
+        let funcaoId = await getFuncaoId("Administrador")
         
         
         const admin = await client.users.create({
@@ -56,7 +56,7 @@ export class RegistarAdminService{
      
         
         
-        return {"msg":"admin registado com sucesso",admin}
+        return {admin}
         
     }
     
