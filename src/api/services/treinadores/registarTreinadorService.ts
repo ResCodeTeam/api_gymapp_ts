@@ -8,13 +8,13 @@ interface IRegistarTreinadorService{
   email:string,
   nome:string,
   password:string,
-  data_nasc:Date,
-  data_entrada:Date,
+  dataNasc:Date,
+  dataEntrada:Date,
   genero:number,
 }
 
 export class RegistarTreinadorService{
-  async execute({marcaId,email,nome,password,data_nasc,data_entrada,genero}:IRegistarTreinadorService){
+  async execute({marcaId,email,nome,password,dataNasc,dataEntrada,genero}:IRegistarTreinadorService){
     // verificar se o aluno já está registado
     let existsEmail = await checkEmail(email);
     if(existsEmail){
@@ -41,14 +41,15 @@ export class RegistarTreinadorService{
           email,
           nome,
           password:passwd,
-          data_nasc,
+          data_nasc:dataNasc,
           hashtag,
-          data_entrada,
+          data_entrada:dataEntrada,
           genero,
           funcao_id:funcaoId,
           
       }
     })
+
     await client.treinadores_marca.create({
       data:{
         treinador_uid:treinador.uid,
