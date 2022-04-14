@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AgendarAvaliacaoService } from "../../services/agendamentos/agendarAvaliacaoService";
+import { AgendarAvaliacaoService } from "../../../services/agendamentos/aluno/agendarAvaliacaoService";
 
 
 export class AgendarAvaliacaoController {

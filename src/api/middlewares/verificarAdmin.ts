@@ -16,7 +16,7 @@ export async function verificarAdmin(request:Request, response:Response, next:Ne
     }
 
     const funcao_id = await getUserFuncao(uid);
-    const admin_id = await getFuncaoId("admin")
+    const admin_id = await getFuncaoId("Administrador")
 
     if(funcao_id==admin_id){
         next();

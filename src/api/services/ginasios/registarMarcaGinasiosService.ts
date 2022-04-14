@@ -65,7 +65,6 @@ export class RegistarMarcaGinasiosService {
     });
     console.log("teste1");
     return {
-      msg: "O ginásio foi criado com sucesso!",
       ginasio
     };
   }

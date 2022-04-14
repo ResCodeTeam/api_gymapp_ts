@@ -1,5 +1,4 @@
 import { client } from "../../prisma/client";
-import { Identificacao } from "../../Providers/identificacao";
 
 interface ICriarPostsService {
   criadorId: string;
@@ -7,7 +6,7 @@ interface ICriarPostsService {
   descricao: string;
   tipo: number;
   ginasioId: string;
-  identificacao: Array<Identificacao>;
+  identificacao: Array<string>;
 }
 
 class CriarPostsService {
@@ -33,16 +32,17 @@ class CriarPostsService {
           ginasio_id: ginasioId,
        }
       })
+      if(identificacao!=null && identificacao.length>0){
+        for(let i = 0; i < identificacao.length; i++){
+          await client.identificacoes_publicacoes.create({
+              data:{
 
-      for(let i = 0; i < identificacao.length; i++){
-        await client.identificacoes_publicacoes.create({
-            data:{
-
-          publicacao_id:identificacao[i].publicacaoId,
-          usersuid:identificacao[i].userId
-        }})
+              publicacao_id:post.publicacao_id,
+              usersuid:identificacao[i]
+          }})
+        }
       }
-      return { msg: "post criado com sucesso!",  post};
+      return { post};
     } 
   }
 }

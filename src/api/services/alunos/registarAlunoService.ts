@@ -62,7 +62,7 @@ export class RegistarAlunoService {
 
     // obter o id da função
     const funcaoId = await getFuncaoId("Aluno");
-
+    console.log(ginasioId)
     let existsGym = await checkGinasioExists(ginasioId);
     
     if (!existsGym) {

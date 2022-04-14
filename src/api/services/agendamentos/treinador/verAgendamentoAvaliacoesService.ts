@@ -1,4 +1,4 @@
-import { client } from "../../prisma/client";
+import { client } from "../../../prisma/client";
 
 export class VerAgendamentoAvaliacoesService{
     async execute(){

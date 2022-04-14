@@ -1,9 +1,8 @@
 import { checkPostExists, checkUserIdExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
-import { Identificacao } from "../../../Providers/identificacao";
 
 export class CriarComentarioService {
-    async execute(publicacao_id:string, comentario:string,criador_id:string,identificacao:Array<Identificacao>){
+    async execute(publicacao_id:string, comentario:string,criador_id:string,identificacao:Array<string>){
         
         if(publicacao_id == null){
             throw new Error("Identificador da publicação não inserido.")
@@ -29,14 +28,15 @@ export class CriarComentarioService {
                 data : new Date()
             }
         })
-        
-        for(let i = 0; i < identificacao.length; i++){
-            await client.identificacoes_publicacoes.create({
-                data:{
-    
-              publicacao_id:identificacao[i].publicacaoId,
-              usersuid:identificacao[i].userId
-            }})
+        if(identificacao!=null &&identificacao.length>0){
+            for(let i = 0; i < identificacao.length; i++){
+                await client.identificacoes_comentarios.create({
+                    data:{
+                        comentario_id:novoComentario.comentario_id,
+                        usersuid:identificacao[i]
+                    }
+                })
+            }
         }
     
         return novoComentario;

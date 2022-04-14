@@ -14,6 +14,7 @@ import { ObterDefinicoesController } from "../controllers/definicoes/obterDefini
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 import { VerMeuPerfilController } from "../controllers/perfil/verMeuPerfilController";
 import { EditarMencoesController } from "../controllers/definicoes/editarMencoesController";
+import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
 
 
 const allRouter = express.Router();
@@ -32,15 +33,17 @@ const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
 const obterDefinicoesController = new ObterDefinicoesController();
 const verMeuPerfilController = new VerMeuPerfilController();
 const editarMencoesController = new EditarMencoesController();
+const criarComentarioController = new CriarComentarioController();
 
 //#region Publicacoes
 allRouter.post("/posts", criarPostsController.handle);
-allRouter.get("/posts/all/:id", verTodosPostsController.handle);
-allRouter.get("/posts/user/:id", verTodosPostsUserController.handle)
 allRouter.put("/posts", editarPublicacaoController.handle);
 allRouter.get("/posts/:id", verInfoPostInfoController.handle)
+allRouter.delete("/posts/:id", removerPostsController.handle);
+allRouter.get("/posts/all/:id", verTodosPostsController.handle);
+allRouter.get("/posts/user/:id", verTodosPostsUserController.handle)
 allRouter.post("/posts/:id/gostos", criarGostoController.handle)
-
+allRouter.post("/posts/:id/comentarios/", criarComentarioController.handle);
 //ver info de post
 
 //#region Perfil
@@ -49,11 +52,6 @@ allRouter.put("/definicoes/mencoes",verificarAutenticacao, editarMencoesControll
 allRouter.put("/:id/definicoes/perfil/privado", editarPerfilPrivadoController.handle);
 allRouter.get("/:id/definicoes", obterDefinicoesController.handle);
 allRouter.get("/perfil",verificarAutenticacao, verMeuPerfilController.handle);
-//#endregion
-
-// adminRouter.put("/posts/:id", editarPublicacaoController.handle);
-allRouter.delete("/posts/:id", removerPostsController.handle);
-// adminRouter.post("/posts/:id/gostos", criarGostoController.handle);
 //#endregion
 
 
