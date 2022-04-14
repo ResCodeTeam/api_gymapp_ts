@@ -6,11 +6,12 @@ export class EditarTreinosController{
         const uId = request.params.uId;
         const treinoId = request.params.treino_id;
         
-        let { atividadeId, modalidadeId, duracao, calorias, distancia, data } = request.body;
+        let { atividadeId, modalidadeId, duracao, calorias, distancia } = request.body;
 
-        data = new Date(data);
+        const data = new Date(Date.now());
         const editarTreinosService = new EditarTreinosService();
         console.log(uId)
+        console.log(treinoId)
         const resp = await editarTreinosService.execute({
             uId,
             treinoId,

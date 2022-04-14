@@ -6,7 +6,7 @@ class RemoverIsAceiteAvaliacoesService {
 
     const exists_agendamento = await checkAgendamentoAvaliacaoIsAceiteExists(agendamentoId);
     if (!exists_agendamento) {
-      throw new Error("O agendamento da avaliação ainda não foi aceite");
+      throw new Error("O agendamento da avaliação ainda não foi aceite ou não existe");
     }
 
     const agendamento = await client.agendamentos_avaliacoes.findUnique({

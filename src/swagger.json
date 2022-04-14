@@ -176,12 +176,6 @@
                                     "uid":{
                                         "type": "string"
                                     },
-                                    "dataAgendamento":{
-                                        "type": "string"
-                                    },
-                                    "isAceite":{
-                                        "type": "boolean"
-                                    },
                                     "ginasioId":{
                                         "type": "string"
                                     },
@@ -194,8 +188,6 @@
                                 "Inserir Agendamento de Avaliacoes":{
                                     "value": {
                                         "uid":"00b27390-ad57-47de-ac18-4c2a490caa97",
-                                        "dataAgendamento":"2022-03-12",
-                                        "isAceite": true,
                                         "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
                                         "treinadorId": "6d112678-f40c-43bc-a80a-866f12fa26f2"
                                     }
@@ -258,12 +250,6 @@
                                     "uid":{
                                         "type": "string"
                                     },
-                                    "dataAgendamento":{
-                                        "type": "string"
-                                    },
-                                    "isAceite":{
-                                        "type": "boolean"
-                                    },
                                     "ginasioId":{
                                         "type": "string"
                                     },
@@ -276,8 +262,6 @@
                                 "Inserir Agendamento de Desafios":{
                                     "value": {
                                         "uid":"00b27390-ad57-47de-ac18-4c2a490caa97",
-                                        "dataAgendamento":"2022-03-30",
-                                        "isAceite": true,
                                         "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
                                         "treinadorId": "6d112678-f40c-43bc-a80a-866f12fa26f2"
                                     }
@@ -925,8 +909,8 @@
                                         "criadorId": "332b256d-d646-4877-8a4f-f5538472e0d4",
                                         "nome": "Caminhar",
                                         "modalidadeId": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
-                                        "dataInicio": "2022-03-23",
-                                        "dataFim": "2022-03-24",
+                                        "dataInicio": "2022-03-23 15:51:45.663",
+                                        "dataFim": "2022-03-24 20:00:00.000",
                                         "recompensa": 100,
                                         "isEncerrado": true,
                                         "descricao": "2",
@@ -1374,7 +1358,8 @@
                     }
                 }
             }
-        },
+        }
+    },
     "/posts/{id}":{
         "get":{
             "summary": "Ver toda a informação de um post",
@@ -2281,9 +2266,6 @@
                                 },
                                 "distancia":{
                                     "type": "number"
-                                },
-                                "data":{
-                                    "type": "string"
                                 }
                             }
                         },
@@ -2294,8 +2276,7 @@
                                     "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                     "duracao":"10",
                                     "calorias": 100,
-                                    "distancia": 500,
-                                    "data": "2022-06-12"
+                                    "distancia": 500
                                 }
                             }
                         }
@@ -3779,21 +3760,17 @@
                                 },
                                 "distancia":{
                                     "type": "number"
-                                },
-                                "data":{
-                                    "type": "string"
                                 }
                             }
                         },
                         "examples": {
                             "Editar Treino":{
                                 "value":{
-                                    "atividadeId":"cc4c5892-5ae4-4df8-a8d5-6a33f65b3402",
+                                    "atividadeId":"7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
                                     "modalidadeId":null,
                                     "duracao":"50",
                                     "calorias": 20,
-                                    "distancia": 30,
-                                    "data": "2022-06-12"
+                                    "distancia": 30
                                 }
                             }
                         }
@@ -4406,7 +4383,7 @@
             }
         }
     },
-    "/{alunoId}/plano/{planoId}/realizado/":{
+    "/aluno/{alunoId}/plano/{planoId}/realizado/":{
         "put":{
             "summary": "Meter um plano de treino como realizado",
             "description": "Esta rota vai editar na base de dados o estado da realização de um plano de treino",
@@ -4526,7 +4503,7 @@
             "description": "Esta rota vai remover na base de dados um plano de treino",
             "tags": ["Plano Treino"],
             "parameters": [{
-                "name": "uId",
+                "name": "planoId",
                 "in": "path",
                 "description": "Id do plano de treino",
                 "required": true,
@@ -4934,8 +4911,8 @@
             }        
         }
     }
-    }
 }
+
 
 
 

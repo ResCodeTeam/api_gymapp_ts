@@ -6,7 +6,7 @@ class RemoverIsAceiteDesafiosService {
 
     const exists_agendamento = await checkAgendamentoDesafioIsAceiteExists(agendamentoId);
     if (!exists_agendamento) {
-      throw new Error("O agendamento do desafio ainda não foi aceite");
+      throw new Error("O agendamento do desafio ainda não foi aceite ou não existe");
     }
 
     const agendamento = await client.agendamentos_desafios.findUnique({

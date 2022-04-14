@@ -4,9 +4,9 @@ import { AgendarDesafiosService } from "../../../services/agendamentos/aluno/age
 export class AgendarDesafiosController {
     async handle(request: Request, response: Response){
       const desafioId = request.params.id;
-      let { uid, dataAgendamento, ginasioId, treinadorId } = request.body;
+      let { uid, ginasioId, treinadorId } = request.body;
       
-      dataAgendamento = new Date(dataAgendamento);
+      const dataAgendamento = new Date(Date.now());
       const agendarDesafiosService = new AgendarDesafiosService();
       const resp = await agendarDesafiosService.execute({uid, dataAgendamento, desafioId, ginasioId, treinadorId});
       response.json(resp);

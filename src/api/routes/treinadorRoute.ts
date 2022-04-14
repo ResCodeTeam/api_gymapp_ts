@@ -122,7 +122,7 @@ treinadorRouter.get("/agenda/avaliacoes/", verAgendamentoAvaliacoesController.ha
 
 //#region Plano
 //treinadorRouter.post("/plano/", criarPlanoTreinoController.handle);
-treinadorRouter.delete("plano/:plano_id", removerPlanoTreinoController.handle);
+treinadorRouter.delete("/plano/:plano_id/", removerPlanoTreinoController.handle);
 //#endregion
 
 export { treinadorRouter };

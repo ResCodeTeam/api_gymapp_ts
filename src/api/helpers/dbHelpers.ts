@@ -29,6 +29,7 @@ let checkDesafioIdExists = async(desafioId: string)=>{
     const search = await client.desafios.findMany({
         where:{
             desafio_id: desafioId,
+            isDeleted: false
         }
     })
     return search.length != 0;

@@ -1,5 +1,5 @@
 import { client } from "../../prisma/client";
-import { checkAutorTreino, checkTreinoExists, checkUserIdExists } from "../../helpers/dbHelpers";
+import { checkAutorTreino, checkTreinoExists, checkUserIdExists, checkAtividadeExists, checkModalidadeExists } from "../../helpers/dbHelpers";
 
 interface ITreino{
     treinoId:string,
@@ -39,12 +39,24 @@ export class EditarTreinosService {
             }
         })
         const isAutor = await checkAutorTreino(uId,treinoId);
-        console.log(uId)
         if(!isAutor){
             throw new Error("O treino não lhe pertence");
         }
 
-
+        if(atividadeId != null){
+            const exists_atividades = await checkAtividadeExists(atividadeId);
+            if (!exists_atividades) {
+                throw new Error("A atividade não existe");
+            }
+        }
+        
+        if(modalidadeId != null){
+            const exists_modalidades = await checkModalidadeExists(modalidadeId);
+            if (!exists_modalidades) {
+                throw new Error("A modalidade não existe");
+            }
+        }
+        
         const editarTreinos = await client.treinos.update({
             where:{
                 treino_id: treinoId

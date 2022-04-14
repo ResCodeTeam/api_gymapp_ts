@@ -5,8 +5,7 @@ import { CriarAvaliacaoService } from "../../services/avaliacoes/criarAvaliacaoS
 export class CriarAvaliacaoController{
   async handle(request:Request, response:Response){
     const {
-         alunoId,
-        data,
+        alunoId,
         peso,
         unidadePeso,
         treinadorId,
@@ -21,6 +20,7 @@ export class CriarAvaliacaoController{
         medidas
     }= request.body;
 
+    const data = new Date(Date.now());
     const criarAvaliacaoService = new CriarAvaliacaoService();
     const resp = await criarAvaliacaoService.execute({ 
         alunoId,
