@@ -962,6 +962,55 @@
                 }
             }
         },
+        "adminTreinador/alunos/ginasio/{id}":{
+            "get":{
+                "summary": "Ver todos os alunos de um ginásio",
+                "description": "Esta rota vai apresentar todos os alunos de um ginásio",
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do ginásio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "tags": ["Alunos"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Alunos"
+                                },
+                                "examples": {
+                                    "Ver Alunos Ginásio":{
+                                        "value":{
+                                            "user": {
+                                                "uid" : "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                "nome" : "Luiz Fernando Gonçalves",
+                                                "hashtag" : "LFG_01",
+                                                "imagem_url" : "Teste Ângela"
+                                              }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
        "/{userId}/perfil":{
             "put":{
                 "summary": "Editar perfil",
@@ -5021,6 +5070,7 @@
             }
         }
     } 
+        }
     },        
     "components": {
         "securitySchemes": {
