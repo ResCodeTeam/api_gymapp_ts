@@ -16,7 +16,7 @@ class CriarGinasioModalidadesService {
     
   }: ICriarGinasioModalidadesService) {
     
-    const exist_ginasio = await checkGinasioExists(nome);
+    const exist_ginasio = await checkGinasioExists(ginasioId);
     if (!exist_ginasio) {
       throw new Error("O ginásio não existe");
     }
