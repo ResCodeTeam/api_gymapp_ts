@@ -45,7 +45,7 @@ allRouter.post("/posts", criarPostsController.handle);
 allRouter.put("/posts", editarPublicacaoController.handle);
 allRouter.get("/posts/post/:id", verInfoPostInfoController.handle)
 allRouter.delete("/posts/post/:id", removerPostsController.handle);
-allRouter.get("/posts/all", verificarAutenticacao, verTodosPostsController.handle);
+allRouter.get("/posts", verificarAutenticacao, verTodosPostsController.handle);
 allRouter.get("/posts/user/", verificarAutenticacao, verTodosPostsUserController.handle)
 allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 allRouter.post("/posts/:id/comentarios/", criarComentarioController.handle);

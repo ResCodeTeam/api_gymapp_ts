@@ -944,64 +944,109 @@
                 }
             }
         },
-        "/posts/all":{
-                "get":{
-                    "summary": "Ver posts",
-                    "description": "Esta rota vai apresentar todos os posts",
-                    "security": [
-                        {
-                            "basicAuth":[]
+       "/{userId}/perfil":{
+            "put":{
+                "summary": "Editar perfil",
+                "description": "Esta rota vai editar perfil",
+                "parameters": [
+                {
+                    "name": "userId",
+                    "in": "path",
+                    "description": "Id do user a fazer o pedido",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "userId":{
+                                "type":"string"
+                            }
                         }
-                    ],
-                    "tags": ["Posts"],
-                    "responses": {
-                        "500":{
-                            "description": "ERROR"
-                        },
-                        "200":{
-                            "description": "OK",
-                            "content": {
-                                "application/json":{
-                                    "schema":{
-                                        "type": "object",
-                                        "$ref": "#/components/schemas/Posts"
+                    },
+                    "examples": {
+                        "Editar Perfil":{
+                            "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                        }
+                    }
+                }
+                ],
+                "tags": ["Perfil"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "uid":{
+                                        "type": "string"
                                     },
-                                    "examples": {
-                                        "Ver Posts":{
-                                            "value":{
-                                                "publicacoes": [
-                                                    {
-                                                      "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
-                                                      "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                                      "data": "2022-03-28T16:31:45.226Z",
-                                                      "descricao": "teste1",
-                                                      "tipo": 3,
-                                                      "imagens_publicacao": [],
-                                                      "gostos_publicacao": [
-                                                        {
-                                                          "gosto_id": "3db3afa6-2b21-4401-af94-e5d1b061b7e9",
-                                                          "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
-                                                          "criador_id": "19fb2828-424f-425e-9fe4-828d9262a00f"
-                                                        }
-                                                      ]
-                                                    },
-                                                    {
-                                                      "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                                      "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                                      "data": "2022-05-28T00:00:00.000Z",
-                                                      "descricao": "TesteFatimaaa",
-                                                      "tipo": 3,
-                                                      "imagens_publicacao": [],
-                                                      "gostos_publicacao": [
-                                                        {
-                                                          "gosto_id": "c5b3cec9-7950-4351-9d32-2a1778dff617",
-                                                          "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                                          "criador_id": "024eb3f7-34fb-49ac-ac32-612ae870d7b3"
-                                                        }
-                                                      ]
-                                                    }
-                                                  ]
-                                        }
+                                    "email":{
+                                        "type": "string"
+                                    },"nome":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "hashtag":{
+                                        "type": "string"
+                                    },  
+                                    "genero":{
+                                        "type": "number"
+                                    },
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "imagemUrl":{
+                                        "type": "string"
+                                    }
+                                    
+                                }
+                            },
+                            "examples": {
+                                "Editar Perfil": {
+                                    "value": {
+                                        "email": "treinador@treinador.com",
+                                        "nome": "treinador",
+                                        "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+                                        "genero": 0,
+                                        "descricao": null,
+                                        "imagemUrl": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                },
+                                "examples": {
+                                    "Editar Perfil":{
+                                        "value":{
+                                            "user":{
+                                                "uid": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                                "email": "treinador2@treinador.com",
+                                                "nome": "treinador",
+                                                "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+                                                "data_nasc": "2002-04-09T00:00:00.000Z",
+                                                "hashtag": "t_01",
+                                                "data_entrada": "2022-03-23T00:00:00.000Z",
+                                                "funcao_id": "4c1c8eaf-7207-4d06-864a-a50191e9f5a7",
+                                                "refresh_token": null,
+                                                "genero": 0,
+                                                "pontos": 0,
+                                                "descricao": null, 
+                                                "imagem_url": null,
+                                                "isDeleted": false
+                                            }
+                                              
                                     }
                                 }
                             }
@@ -1009,8 +1054,9 @@
                     }
                 }
             }
-        },
-
+        }
+    },
+        
         "/aluno/{id}/desafios/":{
             "get":{
                 "summary": "Ver desafios",
@@ -3454,7 +3500,7 @@
                         "examples": {
                             "Submissao desafio":{
                                 "value":{
-                                    "email":"ninapeixoto@gmail.com",
+                                    "email":"biancasilva@gmail.com",
                                     "password":"passwd"
                                     
                                 }
@@ -4166,16 +4212,75 @@
                 }
             }
     },"/posts":{
-        "post":{
-            "summary": "Criar publicação",
-            "description": "Esta rota vai criar na base de dados os posts",
-            "tags": ["Posts"],
+        "get":{
+            "summary": "Ver posts",
+            "description": "Esta rota vai apresentar todos os posts",
             "security": [
                 {
                     "basicAuth":[]
                 }
             ],
-            "requestBody":{
+            "tags": ["Posts"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Posts"
+                            },
+                            "examples": {
+                                "Ver Posts":{
+                                    "value":{
+                                        "publicacoes": [
+                                            {
+                                              "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                              "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                              "data": "2022-03-28T16:31:45.226Z",
+                                              "descricao": "teste1",
+                                              "tipo": 3,
+                                              "imagens_publicacao": [],
+                                              "gostos_publicacao": [
+                                                {
+                                                  "gosto_id": "3db3afa6-2b21-4401-af94-e5d1b061b7e9",
+                                                  "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                                  "criador_id": "19fb2828-424f-425e-9fe4-828d9262a00f"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                              "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                              "data": "2022-05-28T00:00:00.000Z",
+                                              "descricao": "TesteFatimaaa",
+                                              "tipo": 3,
+                                              "imagens_publicacao": [],
+                                              "gostos_publicacao": [
+                                                {
+                                                  "gosto_id": "c5b3cec9-7950-4351-9d32-2a1778dff617",
+                                                  "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                  "criador_id": "024eb3f7-34fb-49ac-ac32-612ae870d7b3"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+        "post":{
+            "summary": "Criar publicação",
+            "description": "Esta rota vai permitir criar uma publicação",
+            "tags": ["Posts"],
+            "requestBody": {
                 "content": {
                     "application/json":{
                         "schema":{
@@ -4227,19 +4332,25 @@
                                         "type": "string"
                                     }
                                 }
-                            }, 
+                            },
                             "examples": {
-                                "Criar posts":{
+                                "Publicacao":{
                                     "value":{
-                                        "msg":"Publicação criada com sucesso"
+                                        "post": {
+                                            "publicacao_id": "0e062989-88e5-4c45-97ec-6af212ca566d",
+                                            "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "data": "2022-04-14T12:32:31.468Z",
+                                            "descricao": "teste1",
+                                            "tipo": 3,
+                                            "ginasio_id": null,
+                                            "isDeleted": false
+                                        }
                                     }
                                 }
-                            }                                       
+                            }
                         }
                     }
-    
-                }
-                
+                }          
             }
         },
         "put":{
