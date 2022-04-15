@@ -8,7 +8,7 @@ const should = chai.should();
 const baseUrl = "/api/v1"
 const server = "localhost:8000"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
-const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjc4NzAsImV4cCI6MTY1MDAyODc3MCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.7NXM_YCg1Q3h0m5KquLkk0Gc4N1uvmsrUHX6jdr8VvY'
+const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjg4MzYsImV4cCI6MTY1MDAyOTczNiwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.mm_rN1CviCPfCIFaWvChwhgjCztJ8Dyf9y0G6QKkgag'
 
 describe('Obter todos posts sem token', () => {
   it('Deve retornar erro de token invalido', () => {
