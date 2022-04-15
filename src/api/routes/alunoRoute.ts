@@ -71,8 +71,8 @@ alunoRouter.get("/user/:id", verPerfilController.handle);
 //#end region
 
 //#region agendamentos
-alunoRouter.post("/agenda/desafios/:id/", agendarDesafiosController.handle);
-alunoRouter.post("/agenda/avaliacao/", agendarAvaliacaoController.handle);
+alunoRouter.post("/agenda/desafios/:id/", verificarAutenticacao, agendarDesafiosController.handle);
+alunoRouter.post("/agenda/avaliacao/", verificarAutenticacao, agendarAvaliacaoController.handle);
 alunoRouter.delete("/agenda/desafios/:agendamento_id/agendamento/:id/", removerAgendarDesafiosController.handle);
 alunoRouter.delete("/agenda/avaliacao/:agendamento_id/agendamento/:id/", removerAgendarAvaliacaoController.handle);
 alunoRouter.get("/agenda/desafios/:id", verAgendamentosDesafiosAlunoController.handle);

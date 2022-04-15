@@ -168,6 +168,11 @@
                 "summary": "Registo de pedidos de agendamentos de avaliação",
                 "description": "Esta rota vai registar na base de dados um agendamento de avaliações",
                 "tags": ["Agenda"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "requestBody":{
                     "content":{
                         "application/json":{
@@ -229,6 +234,11 @@
                 "summary": "Registo de pedidos de agendamentos de desafios",
                 "description": "Esta rota vai registar na base de dados um agendamento de desafios",
                 "tags": ["Agenda"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "desafioId",
                     "in": "path",
