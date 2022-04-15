@@ -981,6 +981,19 @@
                     }
                 }
                 ],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "userId":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "tags": ["Alunos"],
                 "responses": {
                     "500":{
