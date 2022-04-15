@@ -1203,26 +1203,17 @@
             }
         }
     },
-    "/treinador/exercicios/{autorId}":{
+    "/treinador/exercicios":{
         "get":{
             "summary": "Ver todos os exercicios",
             "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
-            "parameters": [
-            {
-                "name": "autorId",
-                "in": "path",
-                "description": "Id do autor para ver os exercicios criados",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "autorId":{
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-            ],
+           
             "tags": ["Exercicios"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"
@@ -1240,7 +1231,98 @@
                     }
                 }
             }
+        },
+        "post":{
+            "summary": "Registo de avaliacao",
+            "description": "Esta rota vai registar na base de dados avaliacao",
+            "tags": ["Avaliacao"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "requestBody":{
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "alunoId":{
+                                    "type": "string"
+                                },
+                                "peso":{
+                                    "type": "number"
+                                },
+                                "unidadePeso":{
+                                    "type": "string"
+                                },
+                                "treinadorId":{
+                                    "type": "string"
+                                },
+                                "musculo":{
+                                    "type": "string"
+                                },
+                                "gorduraCorporal":{
+                                    "type": "number"
+                                },
+                                "gorduraVisceral":{
+                                    "type": "number"
+                                },
+                                "agua":{
+                                    "type": "number"
+                                },
+                                "proteina":{
+                                    "type": "string"
+                                },
+                                "massaOssea":{
+                                    "type": "number"
+                                },
+                                "metabolismo":{
+                                    "type": "number"
+                                },
+                                "medidas": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "$ref":"#/components/schemas/avaliacao"
+                                    }
+                            } }
+                        }
+                        
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Criar avaliacao":{
+                                    "value":{
+                                        "msg":"avaliacao criada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+                
+            }
         }
+
+    
+        
     },
     "/posts/post/{id}":{
         "get":{
@@ -2053,6 +2135,11 @@
                 "summary": "Adicionar imagem a um exercicio",
                 "description": "Esta rota permite adicionar uma imagem a um exercicio",
                 "tags": ["Exercicios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -2264,22 +2351,12 @@
             "delete":{
                 "summary": "Remover imagens de exercicio",
                 "description": "Esta rota permite remover uma imagem a um exercicio",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
-                    "name": "treinadorId",
-                    "in": "path",
-                    "description": "id do treinador",
-                    "required": true,
-                    "schema":{
-                        "type": "string"
-                    },
-                    "examples": {
-                        "Treinador Id":{
-                            "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                        }
-                    },
-                    "style": "simple"
-
-                },{
                     "name": "exercicioId",
                     "in": "path",
                     "description": "id do exercicio",
@@ -2550,26 +2627,16 @@
                 }
             }
         }
-        ,"/treinador/{treinadorId}/exercicios/{exercicioId}/musculos/{musculoId}":{
+        ,"/treinador/exercicios/{exercicioId}/musculos/{musculoId}":{
             "post":{
                 "summary": "Adicionar musculo a um exercicio",
                 "description": "Esta rota permite adicionar um musculo a um exercicio",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
-                    "name": "treinadorId",
-                    "in": "path",
-                    "description": "id do treinador",
-                    "required": true,
-                    "schema":{
-                        "type": "string"
-                    },
-                    "examples": {
-                        "Treinador Id":{
-                            "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                        }
-                    },
-                    "style": "simple"
-
-                },{
                     "name": "exercicioId",
                     "in": "path",
                     "description": "id do exercicio",
@@ -2635,22 +2702,12 @@
         "delete":{
             "summary": "Remover musculo de um exercicio",
             "description": "Esta rota permite remover um musculo de um exercicio",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
-                "name": "treinadorId",
-                "in": "path",
-                "description": "id do treinador",
-                "required": true,
-                "schema":{
-                    "type": "string"
-                },
-                "examples": {
-                    "Treinador Id":{
-                        "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                    }
-                },
-                "style": "simple"
-
-            },{
                 "name": "exercicioId",
                 "in": "path",
                 "description": "id do exercicio",
@@ -3080,6 +3137,11 @@
             "summary": "Submeter o resultado de um aluno",
             "description": "Esta rota permite submeter o resultado do desafio de um aluno",
             "tags": ["Desafios"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "desafioId",
                 "in": "path",
@@ -3681,6 +3743,8 @@
                 }
             }
         }
+    
+        
     },
     "/definicoes/identificacao/":{
         "put":{
@@ -5334,7 +5398,65 @@
                     }
                 }
             },
-            "Exercicio":{
+            "avaliacao":{
+                "type": "object",
+                "properties": {
+                    "alunoId":{
+                        "type": "string"
+                    },
+                    "peso":{
+                        "type": "number"
+                    },
+                    "unidadePeso":{
+                        "type": "string"
+                    },
+                    "treinadorId":{
+                        "type": "string"
+                    },
+                    "musculo":{
+                        "type": "string"
+                    },
+                    "gorduraCorporal":{
+                        "type": "number"
+                    },
+                    "gorduraVisceral":{
+                        "type": "number"
+                    },
+                    "agua":{
+                        "type": "number"
+                    },
+                    "proteina":{
+                        "type": "string"
+                    },
+                    "massaOssea":{
+                        "type": "number"
+                    },
+                    "metabolismo":{
+                        "type": "number"
+                    },
+                    "medidas":{
+                        "type": "array",
+                        "items":{
+                            "type": "object",
+                            "properties": {
+                                "avaliacaoId":{
+                                    "type": "string"
+                                },
+                                "medida":{
+                                    "type": "string"
+                                },
+                                "unidadeMedida":{
+                                    "type": "string"
+                                },
+                                "localMedidaId":{
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+                    },
+                    "Exercicio":{
                 "type": "object",
                 "properties": {
                     "imagem_id":{
