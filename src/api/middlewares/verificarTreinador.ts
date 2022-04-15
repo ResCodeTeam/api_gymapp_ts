@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { decode } from "jsonwebtoken";
 import { checkUserIdExists, getFuncaoId, getUserFuncao } from "../helpers/dbHelpers";
 
 export async function verificarAdmin(request:Request, response:Response, next:NextFunction){
