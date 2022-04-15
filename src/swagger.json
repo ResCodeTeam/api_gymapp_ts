@@ -298,24 +298,16 @@
                 }
             }
         },
-        "/admin/{userId}/marca/":{
+        "/admin/marca/":{
             "post":{
                 "summary": "Registo de marcas",
                 "description": "Esta rota vai registar na base de dados uma marca associada a um admin",
                 "tags": ["Marca"],
-                "parameters": [{
-                    "name": "userId",
-                    "in": "path",
-                    "description": "Id do dono",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "userId":{
-                                "type": "string"
-                            }
-                        }
+                "security": [
+                    {
+                        "basicAuth":[]
                     }
-                }],
+                ],
                 "requestBody":{
                     "content":{
                         "application/json":{
@@ -582,11 +574,16 @@
                 }
             }
         },
-        "/treinador/{autorId}/exercicios/{exercicioId}":{
+        "/treinador/exercicios/{exercicioId}":{
             "delete":{
                 "summary": "Remover exercicios",
                 "description": "Esta rota vai apagar na base de dados um exercicio",
                 "tags": ["Exercicios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "exercicioId",
                     "in": "path",
@@ -599,20 +596,7 @@
                             }
                         }
                     }
-                },
-                {
-                    "name": "autorId",
-                    "in": "path",
-                    "description": "Id do autor",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "autorId":{
-                                "type":"string"
-                            }
-                        }
-                    }}
-                ],
+                }],
                 "responses": {
                     "500":{
                         "description": "ERROR"  
@@ -1121,26 +1105,16 @@
                 }
             }
         },
-        "/aluno/{id}/user/":{
+        "/aluno/avaliacoes/":{
             "get":{
                 "summary": "Ver avaliações",
                 "description": "Esta rota vai apresentar todas as avaliações",
-                "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "Id da avaliação",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "alunoId":{
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-                ],
                 "tags": ["Avaliação"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "responses": {
                     "500":{
                         "description": "ERROR"  
@@ -1169,24 +1143,14 @@
                 }
             }
         },
-        "/posts/user/{id}":{
+        "/posts/user/":{
             "get":{
                 "summary": "Ver posts de user",
                 "description": "Esta rota vai apresentar todos os posts de um user",
-                "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "Id do user a que se deseja ver posts",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "ginasioId":{
-                                "type": "string"
-                            }
-                        }
+                "security": [
+                    {
+                        "basicAuth":[]
                     }
-                }
                 ],
                 "tags": ["Posts"],
                 "responses": {
@@ -1284,7 +1248,7 @@
             }
         }
     },
-    "/posts/{id}":{
+    "/posts/post/{id}":{
         "get":{
             "summary": "Ver toda a informação de um post",
             "description": "Esta rota vai apresentar todas as informações de um post",
@@ -3198,6 +3162,100 @@
         }
     }
     ,"/perfil":{
+        "put":{
+            "summary": "Editar perfil",
+            "description": "Esta rota vai editar perfil",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Perfil"],
+            "requestBody":{
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "uid":{
+                                    "type": "string"
+                                },
+                                "email":{
+                                    "type": "string"
+                                },"nome":{
+                                    "type": "string"
+                                },
+                                "password":{
+                                    "type": "string"
+                                },
+                                "hashtag":{
+                                    "type": "string"
+                                },  
+                                "genero":{
+                                    "type": "number"
+                                },
+                                "descricao":{
+                                    "type": "string"
+                                },
+                                "imagemUrl":{
+                                    "type": "string"
+                                }
+                                
+                            }
+                        },
+                        "examples": {
+                            "Editar Perfil": {
+                                "value": {
+                                    "email": "treinador@treinador.com",
+                                    "nome": "treinador",
+                                    "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+                                    "genero": 0,
+                                    "descricao": null,
+                                    "imagemUrl": null
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "Editar Perfil":{
+                                    "value":{
+                                        "user":{
+                                            "uid": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                                            "email": "treinador2@treinador.com",
+                                            "nome": "treinador",
+                                            "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+                                            "data_nasc": "2002-04-09T00:00:00.000Z",
+                                            "hashtag": "t_01",
+                                            "data_entrada": "2022-03-23T00:00:00.000Z",
+                                            "funcao_id": "4c1c8eaf-7207-4d06-864a-a50191e9f5a7",
+                                            "refresh_token": null,
+                                            "genero": 0,
+                                            "pontos": 0,
+                                            "descricao": null, 
+                                            "imagem_url": null,
+                                            "isDeleted": false
+                                        }                                         
+                                    }
+                                }
+                            }   
+                        }
+                    }
+                }
+            }
+        },
         "get":{
             "summary": "Obter o perfil do user autenticado",
             "description": "Esta rota permite obter o perfil do user autenticado",
@@ -4177,37 +4235,32 @@
                     "application/json":{
                         "schema":{
                             "properties":{
-                                "criadorId":{
-                                    "type": "string"
-                                }, 
                                 "descricao":{
                                     "type": "string"
                                 },
                                 "tipo":{
                                     "type": "number"
-                                }, 
+                                },
                                 "ginasioId":{
                                     "type": "string",
                                     "nullable": true
                                 },
-                                "identificacao":{
+                                "identificacao": {
                                     "type": "array",
                                     "items": {
                                         "type": "string"
                                     }
+                        
                                 }
                             }
                         },
                         "examples": {
-                            "Editar Treino":{
+                            "Criar Posts":{
                                 "value":{
-                                    
-                                    "criadorId": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                    "descricao": "teste1",
-                                    "tipo": 3,
-                                    "ginasioId": null,
-                                    "indentificacao":null
-                                    
+                                    "descricao":"teste",
+                                    "tipo":1,
+                                    "ginasio_id": "a97e6887-31dc-4186-ad27-09e0fb7d645e",
+                                    "identificacao": ["02de0f10-df8b-4d1e-955f-22d3211b66da","0a169c30-208d-4931-9400-15d44ba57690"]
                                 }
                             }
                         }
@@ -4218,11 +4271,12 @@
                 "500":{
                     "description": "ERROR"  
                 },
-                "200":{
+                 "200":{
                     "description": "OK",
                     "content": {
                         "application/json":{
                             "schema":{
+                                
                                 "properties": {
                                     "msg":{
                                         "type": "string"
@@ -4915,96 +4969,7 @@
                 }          
             }
         }
-    },
-    "/{criadorId}/posts":{
-        "post":{
-            "summary": "Criar publicação",
-            "description": "Esta rota vai criar na base de dados os posts",
-            "tags": ["Posts"],
-            "parameters":[
-            {
-                "name": "criadorId",
-                "in": "path",
-                "description": "Id do criador",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "criador":{
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        ],
-        "requestBody":{
-            "content": {
-                "application/json":{
-                    "schema":{
-                        "properties":{
-                            "descricao":{
-                                "type": "string"
-                            },
-                            "tipo":{
-                                "type": "number"
-                            },
-                            "ginasioId":{
-                                "type": "string",
-                                "nullable": true
-                            },
-                            "identificacao": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                    
-                            }
-                        }
-                    },
-                    "examples": {
-                        "Criar Posts":{
-                            "value":{
-                                "descricao":"teste",
-                                "tipo":1,
-                                "ginasio_id": null,
-                                "identificacao": ["02de0f10-df8b-4d1e-955f-22d3211b66da","0a169c30-208d-4931-9400-15d44ba57690"]
-                            }
-                        }
-                    }
-                }
-            }
-        },
-       
-            "responses": {
-                "500":{
-                    "description": "ERROR"  
-                },
-                 "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                
-                                "properties": {
-                                    "msg":{
-                                        "type": "string"
-                                    }
-                                }
-                            }, 
-                            "examples": {
-                                "Criar posts":{
-                                    "value":{
-                                        "msg":"Publicação criada com sucesso"
-                                    }
-                                }
-                            }                                       
-                        }
-                    }
-    
-                }
-                
-            }
-        }
-    }  
+    } 
     },        
     "components": {
         "securitySchemes": {

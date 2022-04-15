@@ -1,4 +1,4 @@
-import { checkAvaliacoesExists } from "../../helpers/dbHelpers";
+import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 
@@ -6,9 +6,9 @@ import { client } from "../../prisma/client";
 export class VerAvaliacoesService{
     async execute(alunoId:string){
 
-        const exists_avaliacao= await checkAvaliacoesExists(alunoId)
-        if(!exists_avaliacao){
-            throw new Error("Utilizador não existe")
+        const exists_aluno= await checkUserIdExists(alunoId)
+        if(!exists_aluno){
+            throw new Error("O utilizador não existe")
         }
 
         const avaliacao = await client.avaliacoes.findMany({

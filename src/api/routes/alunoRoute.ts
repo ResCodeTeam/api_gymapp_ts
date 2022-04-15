@@ -19,6 +19,8 @@ import { CriarTreinosController  } from "../controllers/treinos/criarTreinosCont
 import { EditarTreinosController } from "../controllers/treinos/editarTreinosController";
 import { RemoverTreinosController } from "../controllers/treinos/removerTreinosController";
 import { VerTreinosAlunosController } from "../controllers/treinos/verTreinosAlunosController";
+import { verificarAdmin } from "../middlewares/verificarAdmin";
+import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 
 
 const criarTreinosController = new CriarTreinosController();
@@ -47,7 +49,7 @@ alunoRouter.put("/:uId/treinos/:treino_id", editarTreinosController.handle);
 //#endregion
 
 //#region avaliacao
-alunoRouter.get("/:id/avaliacoes", verAvaliacoesController.handle);
+alunoRouter.get("/avaliacoes", verificarAutenticacao, verAvaliacoesController.handle);
 //#endregion
 
 //#region publicaçoes

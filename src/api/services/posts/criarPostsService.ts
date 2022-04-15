@@ -25,6 +25,7 @@ class CriarPostsService {
       throw new Error("Impossível criar post!");
     } else {
       
+      
       const exists_user = await checkUserIdExists(criadorId)
       if(!exists_user){
         throw new Error("O utilizador não existe!");
