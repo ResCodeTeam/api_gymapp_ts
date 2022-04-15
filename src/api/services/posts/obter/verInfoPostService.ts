@@ -70,10 +70,7 @@ export class VerInfoPostService{
                     }
                 }
             },
-        })
-        
+        })    
         return post
-
-
     }
 }

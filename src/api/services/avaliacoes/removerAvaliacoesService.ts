@@ -18,6 +18,6 @@ export class RemoverAvaliacoesService{
                isDeleted: true
             }
         })
-        return removerAvaliacao;
+        return { msg: "A avaliação foi removida com sucesso" };
     }
 }

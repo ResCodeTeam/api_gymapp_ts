@@ -18,8 +18,6 @@ export class ImpedirIdentificacaoService{
       }
     })
 
-    return{identificacaoEditada}
-
-    
+    return identificacaoEditada;    
   }
 }

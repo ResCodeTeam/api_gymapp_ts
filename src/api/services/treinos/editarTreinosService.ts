@@ -71,8 +71,6 @@ export class EditarTreinosService {
             }
         })
         
-        return {
-            message: "Treino editado com sucesso!"
-        }
+        return editarTreinos;
     }
 }

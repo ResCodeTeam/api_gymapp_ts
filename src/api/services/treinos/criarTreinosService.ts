@@ -49,7 +49,7 @@ class CriarTreinosService {
       }
     }
 
-    await client.treinos.create({
+    const treino = await client.treinos.create({
       data: {
         uid,
         atividade_id: atividadeId,
@@ -60,7 +60,7 @@ class CriarTreinosService {
         data,    
       },
     });
-    return { msg: "O treino foi criado com sucesso!" };
+    return treino;
   }
 }
 export { CriarTreinosService };

@@ -8,7 +8,7 @@ class AceitarDesafiosService {
       throw new Error("O agendamento não existe");
     }
 
-    await client.agendamentos_desafios.update({
+    const agendamentos = await client.agendamentos_desafios.update({
      where: {
        agendamento_id: agendamentoId
       },
@@ -17,9 +17,7 @@ class AceitarDesafiosService {
      }
     })
 
-    return {
-      msg: "Agendamento aceite com sucesso",
-    };
+    return agendamentos;
   }
 }
 
