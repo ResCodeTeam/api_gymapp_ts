@@ -4,7 +4,7 @@ import { RemoverAgendarDesafiosService } from "../../../services/agendamentos/al
 class RemoverAgendarDesafiosController{
     async handle(request: Request, response: Response){
         const agendamentoId = request.params.agendamento_id;
-        const uId = request.params.id
+        const uId = response.locals.uid;
 
     const removerAgendarDesafiosService = new RemoverAgendarDesafiosService();
     const resp = await removerAgendarDesafiosService.execute(agendamentoId, uId);
