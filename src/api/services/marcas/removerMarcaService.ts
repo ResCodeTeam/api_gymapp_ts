@@ -1,15 +1,21 @@
 import { client } from "../../prisma/client";
-import { checkMarcaExists } from "../../helpers/dbHelpers";
+import { checkMarcaExists, checkAutorMarca } from "../../helpers/dbHelpers";
 
-interface IMarca{
-  marcaId :string
-}
 class RemoverMarcaService {
-  async execute({marcaId} : IMarca) {
-
+  async execute(uId: string, marcaId: string) {
     const exists_dst = await checkMarcaExists(marcaId);
     if (!exists_dst) {
       throw new Error("A marca não existe");
+    }
+
+    const autor_marca = await client.marcas.findUnique({
+      where:{
+          marca_id:marcaId
+      }
+    })
+    const isAutor = await checkAutorMarca(uId,marcaId);
+    if(!isAutor){
+      throw new Error("A marca não lhe pertence");
     }
 
     const marca = await client.marcas.update({
