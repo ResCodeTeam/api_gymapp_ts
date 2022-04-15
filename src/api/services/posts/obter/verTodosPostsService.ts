@@ -29,15 +29,18 @@ class VerTodosPostsService{
                     data:true,
                     descricao:true,
                     tipo:true,
-                    imagens_publicacao:true,
+                    imagens_publicacao:{
+                        select:{
+                            url:true
+                        }
+                    },
                     gostos_publicacao:true
                 },
                 
             })
                 
-            return {
-                publicacoes
-            }
+            return publicacoes
+            
         }else{
             const publicacoes = await client.publicacoes.findMany({
                 where:{
@@ -59,15 +62,26 @@ class VerTodosPostsService{
                     data:true,
                     descricao:true,
                     tipo:true,
-                    imagens_publicacao:true,
-                    gostos_publicacao:true
+                    imagens_publicacao:{
+                        select:{
+                            url:true
+                        }
+                    },
+                    gostos_publicacao:{
+                        select:{
+                            users:{
+                                select:{
+                                    nome:true,
+                                }
+                            }
+                        }
+                    }
                 },
                 
             })
                 
-            return {
-                publicacoes
-            }
+            return publicacoes
+            
         }
     }
     
