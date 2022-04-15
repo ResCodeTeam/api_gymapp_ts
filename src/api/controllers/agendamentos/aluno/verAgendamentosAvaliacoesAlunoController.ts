@@ -3,7 +3,7 @@ import { VerAgendamentosAvaliacoesAlunoService } from "../../../services/agendam
 
 export class VerAgendamentosAvaliacoesAlunoController{
     async handle(request:Request,response:Response){
-        const uId = request.params.id;
+        const uId = response.locals.uid;
 
         const verAgendamentosAvaliacoesAlunoService = new VerAgendamentosAvaliacoesAlunoService();
         const resp = await verAgendamentosAvaliacoesAlunoService.execute(uId);

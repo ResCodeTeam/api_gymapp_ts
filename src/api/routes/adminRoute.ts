@@ -10,7 +10,6 @@ import { CriarPostsController } from "../controllers/posts/criarPostsController"
 import { RegistarUserMarcasController } from "../controllers/marcas/registarUserMarcasController";
 import { RegistarMarcaGinasiosController } from "../controllers/ginasios/registarMarcaGinasiosController";
 import { CriarGinasioModalidadesController } from "../controllers/modalidades/criarGinasioModalidadesController";
-import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
 import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
 import { VerTodosPostsController } from "../controllers/posts/obter/verTodosPostsController";
 import { RemoverPostController } from "../controllers/posts/removerPostController";
@@ -23,12 +22,9 @@ import { verificarAdmin } from "../middlewares/verificarAdmin";
 import { CriarNotificacaoMarcaController } from "../controllers/notificacoes/criarNotificacaoMarcaController";
 import { CriarNotificacaoGinasioController } from "../controllers/notificacoes/criarNotificacaoGinasioController";
 import { ObterAlunosGinasioController } from "../controllers/alunos/obterAlunosGinasioController";
-import { RemoverDesafioController } from "../controllers/desafios/removerDesafioController";
 import { RegistarAlunoController } from "../controllers/alunos/registarAlunoController";
 import { RegistarAdminController } from "../controllers/admin/registarAdminControllers";
-import { EncerrarDesafiosController } from "../controllers/desafios/encerrarDesafiosController";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
-import { VerDesafiosParticipantesController } from "../controllers/desafios/verDesafiosParticipantesController";
 import { RemoverMarcaController } from "../controllers/marcas/removerMarcaController";
 import { RegistarTreinadorController } from "../controllers/treinadores/registarTreinadorController";
 import { CriarNotificacaoUserController } from "../controllers/notificacoes/criarNotificacaoUserController";
@@ -40,21 +36,16 @@ const registarAlunosController = new RegistarAlunoController();
 const registarUserMarcasController = new RegistarUserMarcasController();
 const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
 const criarGinasioModalidadesController = new CriarGinasioModalidadesController();
-const criarDesafiosController = new CriarDesafiosController();
 
 
 const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
 // const criarGostoController  = new CriarGostoController();
-const encerrarDesafiosController  = new EncerrarDesafiosController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
 const registarAdminController = new RegistarAdminController();
-const removerDesafioController = new RemoverDesafioController();
 const  editarModalidadesController = new EditarModalidadesController();
 
 
-
-const verDesafiosParticipantesController = new VerDesafiosParticipantesController();
 const removerMarcaController = new RemoverMarcaController();
 
 const registarTreinadorController = new RegistarTreinadorController();
@@ -63,32 +54,21 @@ const registarTreinadorController = new RegistarTreinadorController();
 
 
 //#region Admin
-adminRouter.post("/registo/", registarAdminController.handle);
+adminRouter.post("/registo/", verificarAutenticacao ,registarAdminController.handle);
 //#endregion
 
 //#region Alunos
-adminRouter.post("/marca/alunos/", registarAlunosController.handle);
-adminRouter.post("/alunos/ginasio/:id", obterAlunosGinasioController.handle)
-//#endregion
-
-
-//#region Desafios
-adminRouter.post("/ginasio/:id/desafios/", criarDesafiosController.handle);
-adminRouter.get("/desafios/", verDesafiosParticipantesController.handle);
-adminRouter.put("/desafios/:id", encerrarDesafiosController.handle);
-adminRouter.put("/desafios/encerrar/:id", encerrarDesafiosController.handle);
-adminRouter.delete("/desafios/:id", removerDesafioController.handle);
+adminRouter.post("/marca/alunos/", verificarAutenticacao ,registarAlunosController.handle);
+adminRouter.post("/alunos/ginasio/:id", obterAlunosGinasioController.handle);
 //#endregion
 
 //#region Ginasios
-adminRouter.post("/marca/:id/ginasio/", registarMarcaGinasiosController.handle);
+adminRouter.post("/marca/:id/ginasio/", verificarAutenticacao, registarMarcaGinasiosController.handle);
 //#endregion
 
 //#region Marcas
-adminRouter.post("/:id/marca/", registarUserMarcasController.handle);
-adminRouter.post("/ginasio/:id/desafios", criarDesafiosController.handle);
-adminRouter.delete("/marca/:id", removerMarcaController.handle);
-
+adminRouter.post("/marca/", verificarAutenticacao, registarUserMarcasController.handle);
+adminRouter.delete("/marca/:id", verificarAutenticacao, removerMarcaController.handle);
 //#endregion
 
 //#region Modalidades

@@ -4,7 +4,8 @@ import { AgendarAvaliacaoService } from "../../../services/agendamentos/aluno/ag
 
 export class AgendarAvaliacaoController {
     async handle(request: Request, response: Response){
-      let {uid, ginasioId, treinadorId} = request.body;
+      const uid = response.locals.uid;
+      let {ginasioId, treinadorId} = request.body;
       
       const dataAgendamento = new Date(Date.now());
       const agendarAvaliacaoService = new AgendarAvaliacaoService();

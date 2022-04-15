@@ -16,6 +16,7 @@ import {authRouter} from "./api/routes/authRoute";
 import { backendRouter } from "./api/routes/backendRoute";
 import { allRouter } from "./api/routes/allRoute";
 import { alunoRouter } from "./api/routes/alunoRoute";
+import { adminTreinadorRouter } from "./api/routes/adminTreinadorRoute";
 
 dotenv.config()
 
@@ -30,10 +31,11 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/", allRouter);
 app.use("/api/v1/backend", backendRouter);
 app.use("/api/v1/aluno", alunoRouter);
+app.use("/api/v1/adminTreinador", adminTreinadorRouter);
 
 app.use((error:Error,request:Request,response:Response,next:NextFunction)=>{
     console.log(error)
-    return response.json({
+    return response.status(500).json({
         status:"Error",
         message:error.message
     })

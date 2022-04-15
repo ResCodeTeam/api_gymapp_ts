@@ -3,7 +3,7 @@ import { CriarTreinosService } from "../../services/treinos/criarTreinosService"
 
 class CriarTreinosController {
   async handle(request: Request, response: Response) {
-    const uid = request.params.id;
+    const uid = response.locals.uid;
     let { atividadeId, modalidadeId, duracao, calorias, distancia } = request.body;
 
     const data = new Date(Date.now());

@@ -17,6 +17,8 @@ import { EditarMencoesController } from "../controllers/definicoes/editarMencoes
 import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
 import { VerMeusExerciciosController } from "../controllers/Exercicios/verMeusExerciciosController";
 import { ImpedirIdentificacaoController } from "../controllers/definicoes/impedirIdentificacaoController";
+import { AlterarVistoController } from "../controllers/notificacoes/alterarVistoController";
+import { VerPerfilController } from "../controllers/perfil/verPerfilController";
 
 
 const allRouter = express.Router();
@@ -37,31 +39,34 @@ const verMeuPerfilController = new VerMeuPerfilController();
 const editarMencoesController = new EditarMencoesController();
 const criarComentarioController = new CriarComentarioController();
 const impedirIdentificacaoController= new ImpedirIdentificacaoController();
-
+const alterarVistoController= new AlterarVistoController();
+const verPerfilController = new VerPerfilController();
 
 //#region Publicacoes
 allRouter.post("/posts", criarPostsController.handle);
 allRouter.put("/posts", editarPublicacaoController.handle);
-allRouter.get("/posts/:id", verInfoPostInfoController.handle)
-allRouter.delete("/posts/:id", removerPostsController.handle);
-allRouter.get("/posts/all/:id", verTodosPostsController.handle);
-allRouter.get("/posts/user/:id", verTodosPostsUserController.handle)
+allRouter.get("/posts/post/:id", verInfoPostInfoController.handle)
+allRouter.delete("/posts/post/:id", removerPostsController.handle);
+allRouter.get("/posts", verificarAutenticacao, verTodosPostsController.handle);
+allRouter.get("/posts/user/", verificarAutenticacao, verTodosPostsUserController.handle)
 allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 allRouter.post("/posts/:id/comentarios/", criarComentarioController.handle);
 //ver info de post
 
 //#region Perfil
-allRouter.put("/:id/perfil", editarPerfilController.handle);
+allRouter.put("/perfil", verificarAutenticacao, editarPerfilController.handle);
 allRouter.put("/definicoes/mencoes",verificarAutenticacao, editarMencoesController.handle);
 allRouter.put("/definicoes/identificacao",verificarAutenticacao, impedirIdentificacaoController.handle);
 allRouter.put("/:id/definicoes/perfil/privado", editarPerfilPrivadoController.handle);
 allRouter.get("/:id/definicoes", obterDefinicoesController.handle);
 allRouter.get("/perfil",verificarAutenticacao, verMeuPerfilController.handle);
+allRouter.get("/user/:id", verPerfilController.handle);
 //#endregion
 
 
 //#region Notificacoes
 allRouter.put("/notificacao/", updateEstadoNotificacaoController.handle);
+allRouter.put("/destinosNotificacao",verificarAutenticacao,alterarVistoController.handle);
 //#endregion
 
 export { allRouter };

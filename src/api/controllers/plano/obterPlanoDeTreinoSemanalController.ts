@@ -4,12 +4,14 @@ import { ObterPlanoTreinoSemanalService } from "../../services/plano/obterPlanoT
 export class ObterPlanoTreinoSemanalController{
   async handle(request:Request, response:Response){
     const uid = response.locals.uid;
-    let {startDate, endDate} = request.body;
+    const startDate = request.params.startDate;
+    const endDate = request.params.endDate;
 
-    startDate = new Date(startDate)
-    endDate=new Date(endDate)
+    const startDateParsed = new Date(startDate)
+    const endDateParsed =new Date(endDate)
+    console.log(startDateParsed,endDateParsed)
     const obterPlanoTreinoSemanalService = new ObterPlanoTreinoSemanalService();
-    const resp = await obterPlanoTreinoSemanalService.execute(uid,startDate,endDate)
+    const resp = await obterPlanoTreinoSemanalService.execute(uid,startDateParsed,endDateParsed)
     response.json(resp)
     
   }
