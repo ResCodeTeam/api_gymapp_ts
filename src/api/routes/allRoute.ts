@@ -63,7 +63,7 @@ allRouter.get("/perfil",verificarAutenticacao, verMeuPerfilController.handle);
 
 //#region Notificacoes
 allRouter.put("/notificacao/", updateEstadoNotificacaoController.handle);
-allRouter.put("/destinosNotificacao",alterarVistoController.handle);
+allRouter.put("/destinosNotificacao",verificarAutenticacao,alterarVistoController.handle);
 //#endregion
 
 export { allRouter };
