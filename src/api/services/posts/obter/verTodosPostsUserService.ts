@@ -52,8 +52,6 @@ export class VerTodosPostsUserService{
                 },
             },
         })
-
-        return posts
-        
+        return posts       
     }
 }

@@ -39,6 +39,6 @@ export class CriarNotificacaoUserService{
       }
     })
 
-    return {notificacao}
+    return notificacao;
   }
 }

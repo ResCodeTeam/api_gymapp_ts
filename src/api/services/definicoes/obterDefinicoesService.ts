@@ -19,6 +19,6 @@ export class ObterDefinicoesService{
 
     
     const definicoes = def.definicoes_user
-    return{definicoes}
+    return definicoes;
   }
 }

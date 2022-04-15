@@ -17,8 +17,6 @@ export class VerDesafioService{
                 
             },
                 })
-        return {
-            desafio
-        }
+        return desafio;
     }
 }

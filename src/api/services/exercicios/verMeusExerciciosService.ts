@@ -27,8 +27,6 @@ export class VerMeusExerciciosService{
             }
         
              })
-        return {
-            exercicio
-        }
+        return exercicio;
     }
 }

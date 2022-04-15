@@ -63,10 +63,7 @@ export class RegistarMarcaGinasiosService {
         }
       },
     });
-    console.log("teste1");
-    return {
-      ginasio
-    };
+    return ginasio;
   }
 }
 

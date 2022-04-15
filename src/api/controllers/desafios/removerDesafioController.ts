@@ -6,13 +6,13 @@ export class RemoverDesafioController{
     async handle(request : Request, response : Response) {
 
         //Serviço
-        const removerDesavioService = new RemoverDesafioService();
-
+        const removerDesafioService = new RemoverDesafioService();
+        
         //Pedir Id do desafio por parametro
         const desafioId = request.params.id;
 
         //Invocar Função
-        const resp = await removerDesavioService.execute(desafioId);
+        const resp = await removerDesafioService.execute(desafioId);
 
         //Responder
         response.json(resp);
