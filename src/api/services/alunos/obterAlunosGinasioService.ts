@@ -58,13 +58,13 @@ export class ObterAlunosGinasioService {
         //     throw new Error(`Não foi encontrado nenhum utilizador`);
         // }
 
+        console.log(alunos);
+
         for (let i = 0; i < alunos.length; i++) {
             console.log(alunos[i].users);
             users.push(alunos[i].users);
         }
 
-        return {
-            users
-        }
+        return users;
     }
 }

@@ -68,6 +68,7 @@ adminRouter.post("/registo/", registarAdminController.handle);
 
 //#region Alunos
 adminRouter.post("/marca/alunos/", registarAlunosController.handle);
+adminRouter.post("/alunos/ginasio/:id", obterAlunosGinasioController.handle)
 //#endregion
 
 
