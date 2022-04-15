@@ -3,7 +3,7 @@ import { ObterDefinicoesService } from "../../services/definicoes/obterDefinicoe
 
 export class ObterDefinicoesController{
   async handle(request:Request, response:Response){
-    const uid = request.params.uid;
+    const uid = response.locals.uid;
 
     const obterDefinicoesService = new ObterDefinicoesService();
 
