@@ -628,6 +628,11 @@
                 "summary": "Editar exercicios",
                 "description": "Esta rota vai editar na base de dados um exercicio",
                 "tags": ["Exercicios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "exercicioId",
                     "in": "path",
@@ -640,19 +645,8 @@
                             }
                         }
                     }
-                },
-                {
-                    "name": "autorId",
-                    "in": "path",
-                    "description": "Id do autor",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "autorId":{
-                                "type":"string"
-                            }
-                        }
-                    }}
+                }
+                
                 ],
                 "requestBody": {
                     "content": {
@@ -1605,6 +1599,12 @@
                 "summary": "Criar um exercicio",
                 "description": "Esta rota permite adicionar um exercicio à base de dados",
                 "tags": ["Exercicios"],
+                  "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+
                 "requestBody":{
                     "content": {
                         "application/json":{

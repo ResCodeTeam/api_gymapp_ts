@@ -76,8 +76,8 @@ treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComen
 //#region Exercicios
 treinadorRouter.get("/exercicios/", verTodosOsExerciciosTreinadoresController.handle);
 treinadorRouter.delete("/exercicios/:exercicios_id/", verificarAutenticacao, removerExercicioController.handle);
-treinadorRouter.post("/exercicios/", criarExercicioController.handle);
-treinadorRouter.put("/exercicios/:exercicios_id", editarExercicioController.handle);
+treinadorRouter.post("/exercicios/", verificarAutenticacao,criarExercicioController.handle);
+treinadorRouter.put("/exercicios/:exercicios_id",verificarAutenticacao, editarExercicioController.handle);
 treinadorRouter.post("/:treinadorId/exercicios/:exercicioId/imagens",adicionarExercicioImagensController.handle)
 treinadorRouter.delete("/:treinadorId/exercicios/:exercicioId/imagens/:imagemId",removerExercicioImagemController.handle)
 treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
