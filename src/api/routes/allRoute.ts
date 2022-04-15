@@ -3,7 +3,6 @@ import express, { Request, Response } from "express";
 import { CriarPostsController } from "../controllers/posts/criarPostsController";
 import { RemoverPostController } from "../controllers/posts/removerPostController";
 import { VerTodosPostsController } from "../controllers/posts/obter/verTodosPostsController";
-import { VerTodosPostsUserController } from "../controllers/posts/obter/verTodosPostsUserController";
 import { VerInfoPostController } from "../controllers/posts/obter/verInfoPostController";
 import { EditarPublicacaoController } from "../controllers/posts/editarPublicacaoController";
 import { UpdateEstadoNotificacaoController } from "../controllers/posts/notificacoes/updateEstadoNotificacaoController";
@@ -27,7 +26,6 @@ const allRouter = express.Router();
 const criarPostsController = new CriarPostsController();
 const verTodosPostsController = new VerTodosPostsController();
 const removerPostsController = new RemoverPostController();
-const verTodosPostsUserController = new VerTodosPostsUserController();
 const verInfoPostInfoController = new VerInfoPostController();
 const editarPublicacaoController  = new EditarPublicacaoController();
 const updateEstadoNotificacaoController = new UpdateEstadoNotificacaoController();
@@ -48,7 +46,6 @@ allRouter.put("/posts", editarPublicacaoController.handle);
 allRouter.get("/posts/post/:id", verInfoPostInfoController.handle)
 allRouter.delete("/posts/post/:id", removerPostsController.handle);
 allRouter.get("/posts", verificarAutenticacao, verTodosPostsController.handle);
-allRouter.get("/posts/user/", verificarAutenticacao, verTodosPostsUserController.handle)
 allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 allRouter.post("/posts/:id/comentarios/", criarComentarioController.handle);
 //ver info de post
