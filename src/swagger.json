@@ -837,7 +837,7 @@
                 }
             }
         },
-        "/admin/ginasio/{ginasioId}/desafios":{
+        "/adminTreinador/ginasio/{ginasioId}/desafio/":{
             "post": {
                 "summary": "Criar Desafio",
                 "description": "Este pedido serve para criar um desafio",
@@ -1942,7 +1942,7 @@
             }
                     
         },
-        "/admin/desafios":{
+        "/adminTreinador/desafio/{desafioId}":{
             "delete":{
                 "summary": "remover desafio ",
                 "description": "Esta rota vai remover base de dados os desafios criad",
@@ -4913,6 +4913,95 @@
                         }
                     }
                 }          
+            }
+        }
+    },
+    "/{criadorId}/posts":{
+        "post":{
+            "summary": "Criar publicação",
+            "description": "Esta rota vai criar na base de dados os posts",
+            "tags": ["Posts"],
+            "parameters":[
+            {
+                "name": "criadorId",
+                "in": "path",
+                "description": "Id do criador",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "criador":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        ],
+        "requestBody":{
+            "content": {
+                "application/json":{
+                    "schema":{
+                        "properties":{
+                            "descricao":{
+                                "type": "string"
+                            },
+                            "tipo":{
+                                "type": "number"
+                            },
+                            "ginasioId":{
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "identificacao": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                    
+                            }
+                        }
+                    },
+                    "examples": {
+                        "Criar Posts":{
+                            "value":{
+                                "descricao":"teste",
+                                "tipo":1,
+                                "ginasio_id": null,
+                                "identificacao": ["02de0f10-df8b-4d1e-955f-22d3211b66da","0a169c30-208d-4931-9400-15d44ba57690"]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+       
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                 "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            }, 
+                            "examples": {
+                                "Criar posts":{
+                                    "value":{
+                                        "msg":"Publicação criada com sucesso"
+                                    }
+                                }
+                            }                                       
+                        }
+                    }
+    
+                }
+                
             }
         }
     }  
