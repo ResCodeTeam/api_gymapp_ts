@@ -2,7 +2,7 @@ import { checkMobilidadeMarcaUser, checkUserIdExists } from "../../../helpers/db
 import { client } from "../../../prisma/client";
 class VerTodosPostsService{
     async execute(userId:string){
-        let posts = [];
+        
         
         const existsUser = await checkUserIdExists(userId)
         if(!existsUser){
@@ -24,8 +24,9 @@ class VerTodosPostsService{
                     }
                 },
                 select:{
-                    publicacao_id:true,
+                    publicacao_id:true,    
                     criador_id:true,
+                    ginasio_id:true,
                     data:true,
                     descricao:true,
                     tipo:true,
@@ -34,7 +35,11 @@ class VerTodosPostsService{
                             url:true
                         }
                     },
-                    gostos_publicacao:true
+                    _count:{
+                        select:{
+                            gostos_publicacao:true
+                        }
+                    }
                 },
                 
             })
@@ -57,8 +62,9 @@ class VerTodosPostsService{
                     }
                 },
                 select:{
-                    publicacao_id:true,
+                    publicacao_id:true,    
                     criador_id:true,
+                    ginasio_id:true,
                     data:true,
                     descricao:true,
                     tipo:true,
@@ -67,15 +73,12 @@ class VerTodosPostsService{
                             url:true
                         }
                     },
-                    gostos_publicacao:{
+                    _count:{
                         select:{
-                            users:{
-                                select:{
-                                    nome:true,
-                                }
-                            }
+                            gostos_publicacao:true
                         }
                     }
+
                 },
                 
             })
