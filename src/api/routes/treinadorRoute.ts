@@ -6,7 +6,6 @@ import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
 import { VerTodosTreinosDosAlunosController } from "../controllers/treinos/verTodosTreinosDosAlunosController";
 
-import { RemoverDesafioController } from "../controllers/desafios/removerDesafioController";
 
 import { VerTodosOsExerciciosTreinadoresController } from "../controllers/Exercicios/VerTodosOsExerciciosTreinadoresController";
 
@@ -16,21 +15,16 @@ import { EditarAvaliacaoController } from "../controllers/avaliacoes/editarAvali
 
 import { RemoverExercicioController } from "../controllers/Exercicios/removerExercicioController"
 import { CriarExercicioController } from "../controllers/Exercicios/criarExercicioController";
-import { CriarAvaliacaoService } from "../services/avaliacoes/criarAvaliacaoService";
 import { CriarAvaliacaoController } from "../controllers/avaliacoes/criarAvaliacaoController";
 
 import { AdicionarExerciciosImagensController } from "../controllers/Exercicios/editar/adicionarExerciciosImagensController";
 
-
-import { EditarDesafioController } from "../controllers/desafios/EditarDesafioController";
-import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
 import { EditarExercicioController } from "../controllers/Exercicios/editarExercicioController";
 import { RemoverExercicioImagemController } from "../controllers/Exercicios/editar/removerExercicioImagemController";
 import { AdicionarExercicioMusculoController } from "../controllers/Exercicios/musculos/adicionarExercicioMusculoController";
 import { RemoverExercicioMusculoController } from "../controllers/Exercicios/musculos/removerExercicioMusculoController";
 import { VerAgendamentoAvaliacoesController } from "../controllers/agendamentos/treinador/verAgendamentoAvaliacoesController";
 import { VerAgendamentosDesafiosController } from "../controllers/agendamentos/treinador/verAgendamentosDesafiosController";
-import { SubmissaoDesafioController } from "../controllers/desafios/submissoes/submissaoDesafioController";
 import { AceitarAvaliacoesController } from "../controllers/agendamentos/treinador/aceitarAvaliacoesController";
 import { AceitarDesafiosController } from "../controllers/agendamentos/treinador/aceitarDesafiosController";
 import { RemoverIsAceiteAvaliacoesController } from "../controllers/agendamentos/treinador/removerIsAceiteAvaliacoesController";
@@ -38,23 +32,20 @@ import { RemoverIsAceiteDesafiosController } from "../controllers/agendamentos/t
 import { CriarPlanoTreinoController } from "../controllers/plano/criarPlanoTreinoController";
 import { RemoverPlanoTreinoController } from "../controllers/plano/removerPlanoTreinoController";
 import { VerMeusExerciciosController } from "../controllers/Exercicios/verMeusExerciciosController";
+import { ObterPlanoTreinoAlunoController } from "../controllers/plano/obterPlanoTreinoAlunoController";
+import { SubmissaoDesafioController } from "../controllers/desafios/submissoes/submissaoDesafioController";
 
 
 //
 const criarComentarioController = new CriarComentarioController();
 const verTodosOsExerciciosTreinadoresController = new VerTodosOsExerciciosTreinadoresController();
 const verTodosTreinosDosAlunosController = new VerTodosTreinosDosAlunosController();
-const editarDesafio = new EditarDesafioController()
-const removerDesafio = new RemoverDesafioController()
-const criarDesafio = new CriarDesafiosController()
 
 const editarAvaliacao = new EditarAvaliacaoController()
 const removerAvaliacao = new RemoverAvaliacaoController()
 
 const aceitarDesafiosController = new AceitarDesafiosController();
 const aceitarAvaliacoesController = new AceitarAvaliacoesController();
-
-const criarAvaliacaoService = new CriarAvaliacaoService();
 
 const criarAvaliacaoController =new CriarAvaliacaoController();
 
@@ -69,13 +60,14 @@ const removerExercicioMusculoController = new RemoverExercicioMusculoController(
 const verAgendamentosDesafiosController = new VerAgendamentosDesafiosController();
 const verAgendamentoAvaliacoesController = new VerAgendamentoAvaliacoesController();
 
-const submissaoDesafioController = new SubmissaoDesafioController();
 const removerIsAceiteDesafiosController = new RemoverIsAceiteDesafiosController();
 const removerIsAceiteAvaliacoesController = new RemoverIsAceiteAvaliacoesController();
 const criarPlanoTreinoController = new CriarPlanoTreinoController();
 const verMeusExerciciosController = new VerMeusExerciciosController();
 //const criarPlanoTreinoController = new CriarPlanoTreinoController();
 const removerPlanoTreinoController = new RemoverPlanoTreinoController();
+const obterPlanoTreinoAlunoController = new ObterPlanoTreinoAlunoController()
+const submissaoDesafioController = new SubmissaoDesafioController();
 
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
@@ -83,9 +75,9 @@ treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComen
 
 //#region Exercicios
 treinadorRouter.get("/exercicios/", verTodosOsExerciciosTreinadoresController.handle);
-treinadorRouter.delete("/:id/exercicios/:exercicios_id/", removerExercicioController.handle);
+treinadorRouter.delete("/exercicios/:exercicios_id/", verificarAutenticacao, removerExercicioController.handle);
 treinadorRouter.post("/exercicios/", criarExercicioController.handle);
-treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
+treinadorRouter.put("/exercicios/:exercicios_id", editarExercicioController.handle);
 treinadorRouter.post("/:treinadorId/exercicios/:exercicioId/imagens",adicionarExercicioImagensController.handle)
 treinadorRouter.delete("/:treinadorId/exercicios/:exercicioId/imagens/:imagemId",removerExercicioImagemController.handle)
 treinadorRouter.put("/:id/exercicios/:exercicios_id", editarExercicioController.handle);
@@ -99,12 +91,8 @@ treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
 //#endregion
 
 //#region Desafios
-treinadorRouter.put("/desafio/:id", editarDesafio.handle);
-treinadorRouter.delete("/desafio/:id", removerDesafio.handle);
-treinadorRouter.post("/desafio/:id", criarDesafio.handle)
-treinadorRouter.post("/desafio/:desafioId/submissoes", submissaoDesafioController.handle)
+treinadorRouter.post("/desafio/:desafioId/submissoes", submissaoDesafioController.handle);
 //#endregion
-
 
 //#region Avaliacoes
 treinadorRouter.put("/avaliacoes/:id", editarAvaliacao.handle);
@@ -122,9 +110,9 @@ treinadorRouter.get("/agenda/desafios/", verAgendamentosDesafiosController.handl
 treinadorRouter.get("/agenda/avaliacoes/", verAgendamentoAvaliacoesController.handle);
 //#endregion
 
-//#region Plano
-//treinadorRouter.post("/plano/", criarPlanoTreinoController.handle);
+//#region PlanoTreino
 treinadorRouter.delete("/plano/:plano_id/", removerPlanoTreinoController.handle);
+treinadorRouter.get("/plano/:uid/:startDate/:endDate", obterPlanoTreinoAlunoController.handle);
 treinadorRouter.post("/planoTreino", criarPlanoTreinoController.handle);
 //#endregion
 

@@ -9,7 +9,7 @@ import { VerAvaliacoesController } from "../controllers/avaliacoes/verAvalicaoCo
 import { VerDesafiosController } from "../controllers/desafios/verDesafiosController";
 import { VerPerfilController } from "../controllers/perfil/verPerfilController";
 import { EditarPlanoTreinoRealizadoController } from "../controllers/plano/editarPlanoTreinoRealizadoController";
-import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanal";
+import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanalController";
 import { RemoverPlanoTreinoRealizadoController } from "../controllers/plano/removerPlanoTreinoRealizadoController";
 
 
@@ -19,6 +19,8 @@ import { CriarTreinosController  } from "../controllers/treinos/criarTreinosCont
 import { EditarTreinosController } from "../controllers/treinos/editarTreinosController";
 import { RemoverTreinosController } from "../controllers/treinos/removerTreinosController";
 import { VerTreinosAlunosController } from "../controllers/treinos/verTreinosAlunosController";
+import { verificarAdmin } from "../middlewares/verificarAdmin";
+import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 
 
 const criarTreinosController = new CriarTreinosController();
@@ -47,7 +49,7 @@ alunoRouter.put("/:uId/treinos/:treino_id", editarTreinosController.handle);
 //#endregion
 
 //#region avaliacao
-alunoRouter.get("/:id/avaliacoes", verAvaliacoesController.handle);
+alunoRouter.get("/avaliacoes", verificarAutenticacao, verAvaliacoesController.handle);
 //#endregion
 
 //#region publicaçoes
@@ -56,7 +58,7 @@ alunoRouter.put("/")
 
 //#region Plano de Treino
 alunoRouter.put("/:aluno_id/plano/:plano_id/realizado", editarPlanoTreinoRealizadoController.handle);
-alunoRouter.post("/planoTreino/", obterPlanoTreinoSemanalController.handle);
+alunoRouter.get("/planoTreino/:startDate/:endDate", obterPlanoTreinoSemanalController.handle);
 alunoRouter.delete("/:aluno_id/plano/:plano_id/realizado", removerPlanoTreinoRealizadoController.handle);
 //#endregion
 

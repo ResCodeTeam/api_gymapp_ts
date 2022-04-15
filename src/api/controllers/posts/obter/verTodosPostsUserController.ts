@@ -3,7 +3,7 @@ import { VerTodosPostsUserService } from "../../../services/posts/obter/verTodos
 
 export class VerTodosPostsUserController{
     async handle(request:Request,response:Response){
-        const userId = request.params.id;
+        const userId = response.locals.uid;
 
         const verTodosPostsUserService = new VerTodosPostsUserService();
         const resp = await verTodosPostsUserService.execute(userId);
