@@ -122,6 +122,17 @@ let checkGinasioExists= async(ginasioId : string)=>{
     
     return search.length != 0;
 }
+let checknotificacaoExists= async(notiId: string)=>{
+    const search = await client.destinos_notificacao.findMany({
+        where:{
+            noti_id:notiId,
+            visto:false
+
+        }
+    });
+    
+    return search.length != 0;
+}
 let checkTreinoExists= async(treinoId : string)=>{
     const search = await client.treinos.findMany({
         where:{
@@ -547,6 +558,7 @@ export {
     checkAgendamentoDesafioIsAceiteExists,
     checkPlanoTreinoExists,
     checkAutorPlanoTreino,
-    checkPlanoTreinoIsRealizado
+    checkPlanoTreinoIsRealizado,
+    checknotificacaoExists
 }
 
