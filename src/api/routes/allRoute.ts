@@ -40,7 +40,7 @@ const impedirIdentificacaoController= new ImpedirIdentificacaoController();
 
 
 //#region Publicacoes
-allRouter.post("/posts", criarPostsController.handle);
+allRouter.post("/:id/posts", criarPostsController.handle);
 allRouter.put("/posts", editarPublicacaoController.handle);
 allRouter.get("/posts/:id", verInfoPostInfoController.handle)
 allRouter.delete("/posts/:id", removerPostsController.handle);
