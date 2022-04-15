@@ -70,7 +70,7 @@ adminRouter.post("/marca/:id/ginasio/", registarMarcaGinasiosController.handle);
 //#endregion
 
 //#region Marcas
-adminRouter.post("/:id/marca/", registarUserMarcasController.handle);
+adminRouter.post("/marca/", verificarAutenticacao, registarUserMarcasController.handle);
 adminRouter.post("/ginasio/:id/desafios", criarDesafiosController.handle);
 adminRouter.delete("/marca/:id", removerMarcaController.handle);
 

@@ -4,7 +4,7 @@ import { CriarPostsService } from "../../services/posts/criarPostsService";
 
 class CriarPostsController {
   async handle(request: Request, response: Response) {
-    const criadorId = request.params.id
+    const criadorId = response.locals.uid
     let { descricao, tipo, ginasioId,identificacao } = request.body;
     const data = new Date(Date.now())
 

@@ -3,7 +3,7 @@ import { RegistarUserMarcasService } from "../../services/marcas/registarUserMar
 
 class RegistarUserMarcasController {
   async handle(request: Request, response: Response) {
-    const userId = request.params.id;
+    const userId = response.locals.uid;
     const { nome, mobilidade, cor, logotipo } = request.body;
 
     const registarUserMarcasController = new RegistarUserMarcasService();

@@ -40,18 +40,18 @@ const impedirIdentificacaoController= new ImpedirIdentificacaoController();
 
 
 //#region Publicacoes
-allRouter.post("/:id/posts", criarPostsController.handle);
+allRouter.post("/posts", criarPostsController.handle);
 allRouter.put("/posts", editarPublicacaoController.handle);
-allRouter.get("/posts/:id", verInfoPostInfoController.handle)
-allRouter.delete("/posts/:id", removerPostsController.handle);
-allRouter.get("/posts/all/:id", verTodosPostsController.handle);
-allRouter.get("/posts/user/:id", verTodosPostsUserController.handle)
+allRouter.get("/posts/post/:id", verInfoPostInfoController.handle)
+allRouter.delete("/posts/post/:id", removerPostsController.handle);
+allRouter.get("/posts/all", verificarAutenticacao, verTodosPostsController.handle);
+allRouter.get("/posts/user/", verificarAutenticacao, verTodosPostsUserController.handle)
 allRouter.post("/posts/:id/gostos", criarGostoController.handle)
 allRouter.post("/posts/:id/comentarios/", criarComentarioController.handle);
 //ver info de post
 
 //#region Perfil
-allRouter.put("/:id/perfil", editarPerfilController.handle);
+allRouter.put("/perfil", verificarAutenticacao, editarPerfilController.handle);
 allRouter.put("/definicoes/mencoes",verificarAutenticacao, editarMencoesController.handle);
 allRouter.put("/definicoes/identificacao",verificarAutenticacao, impedirIdentificacaoController.handle);
 allRouter.put("/:id/definicoes/perfil/privado", editarPerfilPrivadoController.handle);
