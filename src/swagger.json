@@ -1072,83 +1072,7 @@
             }
         }
     },
-        "/posts/all/{id}":{
-                "get":{
-                    "summary": "Ver posts",
-                    "description": "Esta rota vai apresentar todos os posts",
-                    "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id do user a fazer o pedido",
-                        "required": true,
-                        "schema":{
-                            "properties": {
-                                "ginasioId":{
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                    ],
-                    "tags": ["Posts"],
-                    "responses": {
-                        "500":{
-                            "description": "ERROR"
-                        },
-                        "200":{
-                            "description": "OK",
-                            "content": {
-                                "application/json":{
-                                    "schema":{
-                                        "type": "object",
-                                        "$ref": "#/components/schemas/Posts"
-                                    },
-                                    "examples": {
-                                        "Ver Posts":{
-                                            "value":{
-                                                "publicacoes": [
-                                                    {
-                                                      "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
-                                                      "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                                      "data": "2022-03-28T16:31:45.226Z",
-                                                      "descricao": "teste1",
-                                                      "tipo": 3,
-                                                      "imagens_publicacao": [],
-                                                      "gostos_publicacao": [
-                                                        {
-                                                          "gosto_id": "3db3afa6-2b21-4401-af94-e5d1b061b7e9",
-                                                          "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
-                                                          "criador_id": "19fb2828-424f-425e-9fe4-828d9262a00f"
-                                                        }
-                                                      ]
-                                                    },
-                                                    {
-                                                      "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                                      "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                                      "data": "2022-05-28T00:00:00.000Z",
-                                                      "descricao": "TesteFatimaaa",
-                                                      "tipo": 3,
-                                                      "imagens_publicacao": [],
-                                                      "gostos_publicacao": [
-                                                        {
-                                                          "gosto_id": "c5b3cec9-7950-4351-9d32-2a1778dff617",
-                                                          "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                                          "criador_id": "024eb3f7-34fb-49ac-ac32-612ae870d7b3"
-                                                        }
-                                                      ]
-                                                    }
-                                                  ]
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-
+        
         "/aluno/{id}/desafios/":{
             "get":{
                 "summary": "Ver desafios",
@@ -1359,6 +1283,72 @@
                 }
             }
         }
+    },
+    "/posts/":{
+        "get":{
+            "summary": "Ver posts",
+            "description": "Esta rota vai apresentar todos os posts",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Posts"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Posts"
+                            },
+                            "examples": {
+                                "Ver Posts":{
+                                    "value":{
+                                        "publicacoes": [
+                                            {
+                                              "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                              "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                              "data": "2022-03-28T16:31:45.226Z",
+                                              "descricao": "teste1",
+                                              "tipo": 3,
+                                              "imagens_publicacao": [],
+                                              "gostos_publicacao": [
+                                                {
+                                                  "gosto_id": "3db3afa6-2b21-4401-af94-e5d1b061b7e9",
+                                                  "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                                  "criador_id": "19fb2828-424f-425e-9fe4-828d9262a00f"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                              "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                              "data": "2022-05-28T00:00:00.000Z",
+                                              "descricao": "TesteFatimaaa",
+                                              "tipo": 3,
+                                              "imagens_publicacao": [],
+                                              "gostos_publicacao": [
+                                                {
+                                                  "gosto_id": "c5b3cec9-7950-4351-9d32-2a1778dff617",
+                                                  "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                  "criador_id": "024eb3f7-34fb-49ac-ac32-612ae870d7b3"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     },
     "/posts/{id}":{
         "get":{
@@ -3468,7 +3458,7 @@
                         "examples": {
                             "Submissao desafio":{
                                 "value":{
-                                    "email":"ninapeixoto@gmail.com",
+                                    "email":"biancasilva@gmail.com",
                                     "password":"passwd"
                                     
                                 }
