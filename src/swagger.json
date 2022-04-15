@@ -332,7 +332,7 @@
                             "examples": {
                                 "Inserir Marca":{
                                     "value": {
-                                        "nome":"Fitness-Up",
+                                        "nome":"Galopa",
                                         "mobilidade":true,
                                         "cor": "vermelho",
                                         "logotipo":"teste"
@@ -375,6 +375,11 @@
                 "summary": "Registo de ginasios",
                 "description": "Esta rota vai registar na base de dados um ginasio que esta associado a uma marca",
                 "tags": ["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "marcaId",
                     "in": "path",
@@ -828,6 +833,11 @@
                 "summary": "Criar Desafio",
                 "description": "Este pedido serve para criar um desafio",
                 "tags": ["Desafios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                         "name": "ginasioId",
                         "in": "path",
@@ -847,9 +857,6 @@
                         "application/json":{
                             "schema":{
                                 "properties": {
-                                    "criadorId":{
-                                        "type": "string"
-                                    },
                                     "nome":{
                                         "type": "string"
                                     },
@@ -892,7 +899,6 @@
                             "examples": {
                                 "Desafio": {
                                     "value": {
-                                        "criadorId": "332b256d-d646-4877-8a4f-f5538472e0d4",
                                         "nome": "Caminhar",
                                         "modalidadeId": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                         "dataInicio": "2022-03-23 15:51:45.663",
@@ -1403,6 +1409,11 @@
                 "summary": "Remover marca",
                 "description": "Esta rota vai remover uma marca de um ginásio",
                 "tags": ["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "marcaId",
                     "in": "path",
@@ -1742,6 +1753,11 @@
                 "summary": "Registar um Admin",
                 "description": "Esta rota permite efetuar o registo de um administrador",
                 "tags": ["Administradores"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -1970,6 +1986,11 @@
                 "summary": "Registar um aluno",
                 "description": "Esta rota permite efetuar o registo de um aluno numa marca ou ginasio",
                 "tags": ["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "requestBody":{
                     "content": {
                         "application/json":{

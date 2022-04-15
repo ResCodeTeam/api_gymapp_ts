@@ -6,6 +6,7 @@ import { EditarDesafioController } from "../controllers/desafios/EditarDesafioCo
 import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
 import { VerDesafiosParticipantesController } from "../controllers/desafios/verDesafiosParticipantesController";
 import { EncerrarDesafiosController } from "../controllers/desafios/encerrarDesafiosController";
+import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 
 const editarDesafio = new EditarDesafioController()
 const removerDesafio = new RemoverDesafioController()
@@ -16,7 +17,7 @@ const encerrarDesafiosController = new EncerrarDesafiosController();
 //#region Desafios
 adminTreinadorRouter.put("/desafio/:id", editarDesafio.handle);
 adminTreinadorRouter.delete("/desafio/:id", removerDesafio.handle);
-adminTreinadorRouter.post("/ginasio/:id/desafio/", criarDesafio.handle);
+adminTreinadorRouter.post("/ginasio/:id/desafio/", verificarAutenticacao ,criarDesafio.handle);
 adminTreinadorRouter.get("/desafios/", verDesafiosParticipantesController.handle);
 adminTreinadorRouter.put("/desafios/:id", encerrarDesafiosController.handle);
 //#endregion
