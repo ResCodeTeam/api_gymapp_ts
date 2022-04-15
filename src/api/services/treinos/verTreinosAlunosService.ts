@@ -16,8 +16,6 @@ export class VerTreinosAlunosService{
             },
         })
 
-        return {
-            treinos
-        }
+        return treinos;
     }
 }

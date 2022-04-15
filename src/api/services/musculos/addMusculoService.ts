@@ -15,6 +15,6 @@ export class AddMusculoService{
       }
     })
 
-    return {musculo}
+    return musculo;
   }
 }

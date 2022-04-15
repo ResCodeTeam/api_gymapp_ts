@@ -77,7 +77,6 @@ export class ObterPlanoTreinoSemanalService{
         },
       }
     })
-    
-    return {planos}
+    return planos;
   }
 }

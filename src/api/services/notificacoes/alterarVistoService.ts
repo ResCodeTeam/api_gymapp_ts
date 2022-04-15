@@ -29,8 +29,6 @@ export class AlterarVistoService{
       }
     })
 
-    return{alterarVisto}
-
-    
+    return alterarVisto; 
   }
 }

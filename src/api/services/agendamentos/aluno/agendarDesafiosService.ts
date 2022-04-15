@@ -33,7 +33,7 @@ export class AgendarDesafiosService {
       throw new Error("O desafio não existe");
     }
 
-    await client.agendamentos_desafios.create({
+    const agendamento = await client.agendamentos_desafios.create({
       data: {        
         ginasio_id: ginasioId,
         desafio_id: desafioId,
@@ -62,9 +62,7 @@ export class AgendarDesafiosService {
     
     //#endregion
 
-    return {
-      msg: "O agendamento do desafio foi criado com sucesso!"
-    };
+    return agendamento;
   }
 }
 

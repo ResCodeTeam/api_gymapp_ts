@@ -7,8 +7,6 @@ export class RegistarFuncoesService{
                 descricao:nome
             }
         })
-        return{
-            funcao
-        }
+        return funcao;
     }
 }

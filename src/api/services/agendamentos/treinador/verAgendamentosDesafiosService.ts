@@ -9,8 +9,6 @@ export class VerAgendamentosDesafiosService{
             },
         })
 
-        return {
-            agendamentos
-        }
+        return agendamentos
     }
 }

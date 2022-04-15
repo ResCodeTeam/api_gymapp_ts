@@ -25,6 +25,23 @@ let findUserDefinicoes = async(uId: string)=>{
     })
     return search.def_id;
 }
+let getTreinadorFuncaoId =  async()=>{
+    const search = await client.funcoes.findFirst({
+        where:{
+            descricao: "Treinador",
+        }
+    })
+    return search.funcao_id;
+}
+let checkTreinador = async(uId: string)=>{
+    const search = await client.users.findMany({
+        where:{
+            uid: uId,
+            funcao_id: await getTreinadorFuncaoId(),
+        }
+    })
+    return search.length != 0;
+}
 let checkDesafioIdExists = async(desafioId: string)=>{
     const search = await client.desafios.findMany({
         where:{
@@ -41,6 +58,15 @@ let checkAvaliacoesExists = async(avaliacaoId: string)=>{
         }
     })
     return search.length != 0;
+}
+let checkAutorPublicacoes = async(uId, publicacaoId)=>{
+    const publicacao = await client.publicacoes.findMany({
+        where:{
+            criador_id: uId,
+            publicacao_id: publicacaoId
+        }
+    })
+    return publicacao.length != 0;
 }
 let checkAutorMarca = async(uId, marcaId)=>{
     const marca = await client.marcas.findMany({
@@ -614,6 +640,9 @@ export {
     checkPlanoTreinoIsRealizado,
     checknotificacaoExists,
     checkAutorMarca,
-    checkAutorDesafio
+    checkAutorDesafio,
+    checkTreinador,
+    getTreinadorFuncaoId,
+    checkAutorPublicacoes
 }
 

@@ -8,7 +8,7 @@ class AceitarAvaliacoesService {
       throw new Error("O agendamento não existe");
     }
 
-    await client.agendamentos_avaliacoes.update({
+    const agendamentos = await client.agendamentos_avaliacoes.update({
      where: {
        agendamento_id: agendamentoId
       },
@@ -17,9 +17,7 @@ class AceitarAvaliacoesService {
      }
     })
 
-    return {
-      msg: "Agendamento aceite com sucesso",
-    };
+    return agendamentos;
   }
 }
 

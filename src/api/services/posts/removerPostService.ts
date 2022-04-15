@@ -1,13 +1,23 @@
 import { client } from "../../prisma/client";
-import { checkPostExists } from "../../helpers/dbHelpers";
+import { checkPostExists, checkAutorPublicacoes } from "../../helpers/dbHelpers";
 
 
 class RemoverPostService{
 
-    async execute(postId : string){
+    async execute(uId: string, postId : string){
         const existsPost = await checkPostExists(postId);
         if (!existsPost) {
-        throw new Error("A modalidade não existe");
+        throw new Error("A publicação não existe");
+        }
+
+        const publicacao = await client.publicacoes.findUnique({
+            where:{
+                publicacao_id:postId
+            }
+          })
+        const isAutor = await checkAutorPublicacoes(uId,postId);
+          if(!isAutor){
+            throw new Error("A publicação não lhe pertence");
         }
 
         await client.publicacoes.update({
@@ -20,7 +30,7 @@ class RemoverPostService{
         })
 
         return {
-            msg:"publicacao removida com sucesso"
+            msg:"Publicação removida com sucesso"
         }
     }
 }

@@ -75,9 +75,6 @@ export class EditarPublicacaoService {
                 descricao
             }
         })
-        return {
-            
-            publicação
-        }
+        return publicação;
     }
 }

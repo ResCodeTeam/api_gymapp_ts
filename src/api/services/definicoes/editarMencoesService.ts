@@ -18,8 +18,6 @@ export class EditarMencoesService{
       }
     })
 
-    return{mencoesEdited}
-
-    
+    return mencoesEdited; 
   }
 }

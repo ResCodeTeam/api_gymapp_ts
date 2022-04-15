@@ -16,8 +16,6 @@ export class VerAgendamentosAvaliacoesAlunoService{
             },
         })
 
-        return {
-            agendamentos
-        }
+        return agendamentos;     
     }
 }
