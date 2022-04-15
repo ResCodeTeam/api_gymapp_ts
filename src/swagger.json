@@ -837,7 +837,7 @@
                 }
             }
         },
-        "/admin/ginasio/{ginasioId}/desafios":{
+        "/adminTreinador/ginasio/{ginasioId}/desafio/":{
             "post": {
                 "summary": "Criar Desafio",
                 "description": "Este pedido serve para criar um desafio",
@@ -2018,7 +2018,7 @@
             }
                     
         },
-        "/admin/desafios":{
+        "/adminTreinador/desafio/{desafioId}":{
             "delete":{
                 "summary": "remover desafio ",
                 "description": "Esta rota vai remover base de dados os desafios criad",
