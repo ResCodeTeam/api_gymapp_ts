@@ -42,6 +42,16 @@ let checkAvaliacoesExists = async(avaliacaoId: string)=>{
     })
     return search.length != 0;
 }
+let checkAutorMarca = async(uId, marcaId)=>{
+    const marca = await client.marcas.findMany({
+        where:{
+            dono_id:uId,
+            marca_id:marcaId
+        }
+    })
+    
+    return marca.length != 0
+}
 let checkPlanoTreinoExists = async(planoId: string)=>{
     const search = await client.planos_treino.findMany({
         where:{
@@ -404,6 +414,16 @@ let checkAutorPlanoTreino = async(alunoId, planoId)=>{
     
     return treino.length != 0
 }
+let checkAutorDesafio = async(criadorId, desafioId)=>{
+    const treino = await client.desafios.findMany({
+        where:{
+            criador_id:criadorId,
+            desafio_id:desafioId
+        }
+    })
+    
+    return treino.length != 0
+}
 let checkAutorAgendamentoAvaliacoes = async(agendamentoId, uId)=>{
     const agendamento = await client.agendamentos_avaliacoes.findMany({
         where:{
@@ -559,6 +579,8 @@ export {
     checkPlanoTreinoExists,
     checkAutorPlanoTreino,
     checkPlanoTreinoIsRealizado,
-    checknotificacaoExists
+    checknotificacaoExists,
+    checkAutorMarca,
+    checkAutorDesafio
 }
 
