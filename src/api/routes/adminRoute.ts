@@ -54,21 +54,21 @@ const registarTreinadorController = new RegistarTreinadorController();
 
 
 //#region Admin
-adminRouter.post("/registo/", verificarAutenticacao ,registarAdminController.handle);
+adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdminController.handle);
 //#endregion
 
 //#region Alunos
-adminRouter.post("/marca/alunos/", verificarAutenticacao ,registarAlunosController.handle);
+adminRouter.post("/marca/alunos/", verificarAutenticacao, verificarAdmin ,registarAlunosController.handle);
 adminRouter.post("/alunos/ginasio/:id", obterAlunosGinasioController.handle);
 //#endregion
 
 //#region Ginasios
-adminRouter.post("/marca/:id/ginasio/", verificarAutenticacao, registarMarcaGinasiosController.handle);
+adminRouter.post("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, registarMarcaGinasiosController.handle);
 //#endregion
 
 //#region Marcas
-adminRouter.post("/marca/", verificarAutenticacao, registarUserMarcasController.handle);
-adminRouter.delete("/marca/:id", verificarAutenticacao, removerMarcaController.handle);
+adminRouter.post("/marca/", verificarAutenticacao, verificarAdmin, registarUserMarcasController.handle);
+adminRouter.delete("/marca/:id", verificarAutenticacao, verificarAdmin, removerMarcaController.handle);
 //#endregion
 
 //#region Modalidades

@@ -19,6 +19,7 @@ import { EditarTreinosController } from "../controllers/treinos/editarTreinosCon
 import { RemoverTreinosController } from "../controllers/treinos/removerTreinosController";
 import { VerTreinosAlunosController } from "../controllers/treinos/verTreinosAlunosController";
 import { verificarAdmin } from "../middlewares/verificarAdmin";
+import { verificarAluno } from "../middlewares/verificarAluno";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 
 
@@ -40,33 +41,33 @@ const removerPlanoTreinoRealizadoController = new RemoverPlanoTreinoRealizadoCon
 
 
 //#region Treinos
-alunoRouter.post("/user/treinos", verificarAutenticacao, criarTreinosController.handle);
-alunoRouter.delete("/treino/:treino_id", verificarAutenticacao, removerTreinosController.handle);
-alunoRouter.get("/treinos/", verificarAutenticacao, verTreinosAlunosController.handle);
-alunoRouter.put("/treinos/:treino_id", verificarAutenticacao, editarTreinosController.handle);
+alunoRouter.post("/user/treinos", verificarAutenticacao,verificarAluno, criarTreinosController.handle);
+alunoRouter.delete("/treino/:treino_id", verificarAutenticacao, verificarAluno, removerTreinosController.handle);
+alunoRouter.get("/treinos/", verificarAutenticacao, verificarAluno, verTreinosAlunosController.handle);
+alunoRouter.put("/treinos/:treino_id", verificarAutenticacao, verificarAluno, editarTreinosController.handle);
 //#endregion
 
 //#region avaliacao
-alunoRouter.get("/avaliacoes", verificarAutenticacao, verAvaliacoesController.handle);
+alunoRouter.get("/avaliacoes", verificarAutenticacao, verificarAluno, verAvaliacoesController.handle);
 //#endregion
 
 //#region Plano de Treino
-alunoRouter.put("/plano/:plano_id/realizado", verificarAutenticacao, editarPlanoTreinoRealizadoController.handle);
-alunoRouter.get("/planoTreino/:startDate/:endDate", verificarAutenticacao, obterPlanoTreinoSemanalController.handle);
-alunoRouter.delete("/plano/:plano_id/realizado", verificarAutenticacao, removerPlanoTreinoRealizadoController.handle);
+alunoRouter.put("/plano/:plano_id/realizado", verificarAutenticacao, verificarAluno, editarPlanoTreinoRealizadoController.handle);
+alunoRouter.get("/planoTreino/:startDate/:endDate", verificarAutenticacao, verificarAluno, obterPlanoTreinoSemanalController.handle);
+alunoRouter.delete("/plano/:plano_id/realizado", verificarAutenticacao, verificarAluno, removerPlanoTreinoRealizadoController.handle);
 //#endregion
 
 //#region desafio
-alunoRouter.get("/:id/desafios", verificarAutenticacao ,verDesafiosController.handle);
+alunoRouter.get("/:id/desafios", verificarAutenticacao ,verificarAluno, verDesafiosController.handle);
 //#end region
 
 //#region agendamentos
-alunoRouter.post("/agenda/desafios/:id/", verificarAutenticacao, agendarDesafiosController.handle);
-alunoRouter.post("/agenda/avaliacao/", verificarAutenticacao, agendarAvaliacaoController.handle);
-alunoRouter.delete("/agenda/desafios/:agendamento_id/agendamento/", verificarAutenticacao, removerAgendarDesafiosController.handle);
-alunoRouter.delete("/agenda/avaliacao/:agendamento_id/agendamento/", verificarAutenticacao, removerAgendarAvaliacaoController.handle);
-alunoRouter.get("/agenda/desafios/", verificarAutenticacao, verAgendamentosDesafiosAlunoController.handle);
-alunoRouter.get("/agenda/avaliacoes/", verificarAutenticacao, verAgendamentosAvaliacoesAlunoController.handle);
+alunoRouter.post("/agenda/desafios/:id/", verificarAutenticacao, verificarAluno, agendarDesafiosController.handle);
+alunoRouter.post("/agenda/avaliacao/", verificarAutenticacao, verificarAluno, agendarAvaliacaoController.handle);
+alunoRouter.delete("/agenda/desafios/:agendamento_id/agendamento/", verificarAutenticacao, verificarAluno, removerAgendarDesafiosController.handle);
+alunoRouter.delete("/agenda/avaliacao/:agendamento_id/agendamento/", verificarAutenticacao, verificarAluno, removerAgendarAvaliacaoController.handle);
+alunoRouter.get("/agenda/desafios/", verificarAutenticacao, verificarAluno, verAgendamentosDesafiosAlunoController.handle);
+alunoRouter.get("/agenda/avaliacoes/", verificarAutenticacao, verificarAluno, verAgendamentosAvaliacoesAlunoController.handle);
 //#endregion
 
 export { alunoRouter }
