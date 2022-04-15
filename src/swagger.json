@@ -962,7 +962,7 @@
                 }
             }
         },
-        "adminTreinador/alunos/ginasio/{id}":{
+        "/adminTreinador/alunos/ginasio/{id}":{
             "get":{
                 "summary": "Ver todos os alunos de um ginásio",
                 "description": "Esta rota vai apresentar todos os alunos de um ginásio",
