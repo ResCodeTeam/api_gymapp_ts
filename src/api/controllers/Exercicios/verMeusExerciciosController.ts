@@ -6,7 +6,7 @@ import { VerMeusExerciciosService } from "../../services/exercicios/verMeusExerc
 export class VerMeusExerciciosController{
  
     async handle(request:Request,response:Response){
-        const autorId = request.params.id;
+        const autorId = response.locals.uid;
 
         const verMeusExerciciosService = new VerMeusExerciciosService();
         const resp = await verMeusExerciciosService.execute({autorId});

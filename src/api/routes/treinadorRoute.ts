@@ -82,7 +82,7 @@ treinadorRouter.post("/exercicios/:exercicioId/imagens",verificarAutenticacao,ad
 treinadorRouter.delete("/exercicios/:exercicioId/imagens/:imagemId",verificarAutenticacao,removerExercicioImagemController.handle)
 treinadorRouter.put("/exercicios/:exercicios_id",verificarAutenticacao, editarExercicioController.handle);
 treinadorRouter.post("/exercicios/:exercicioId/musculos/:musculoId",verificarAutenticacao, adicionarExercicioMusculoController.handle);
-treinadorRouter.delete("/:treinadorId/exercicios/:exercicioId/musculos/:musculoId",verificarAutenticacao, removerExercicioMusculoController.handle);
+treinadorRouter.delete("exercicios/:exercicioId/musculos/:musculoId",verificarAutenticacao, removerExercicioMusculoController.handle);
 treinadorRouter.get("/exercicios", verificarAutenticacao,verMeusExerciciosController.handle);
 //#endregion
 
