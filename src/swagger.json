@@ -470,6 +470,11 @@
                 "summary": "Registo das modalidades do ginásio",
                 "description": "Esta rota vai registar na base de dados uma modalidade de um ginásio em específico",
                 "tags": ["Modalidades"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "ginasioId",
                     "in": "path",
@@ -499,7 +504,7 @@
                             "examples": {
                                 "Inserir Modalidade":{
                                     "value": {
-                                        "nome":"Crossfit",
+                                        "nome":"Caminhada",
                                         "imagemUrl":"teste"
                                     }
                                 }
@@ -540,6 +545,11 @@
                 "summary": "Remover modalidades",
                 "description": "Esta rota vai apagar na base de dados uma modalidade de um ginásio em específico",
                 "tags": ["Modalidades"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "modalidadeId",
                     "in": "path",
@@ -1265,6 +1275,11 @@
         "get":{
             "summary": "Ver toda a informação de um post",
             "description": "Esta rota vai apresentar todas as informações de um post",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [
             {
                 "name": "id",
@@ -1315,6 +1330,11 @@
     },"delete":{
         "summary": "Remover publicação",
         "description": "Esta rota vai permitir remover uma publicação",
+        "security": [
+            {
+                "basicAuth":[]
+            }
+        ],
         "parameters": [
         {
             "name": "id",
@@ -1358,11 +1378,16 @@
         }
     }
 }},
-        "/admin/treinador/:id":{
+        "/admin/treinador/{treinador_id}":{
             "delete":{
                 "summary": "Remover treinador",
                 "description": "Esta rota vai remover um treinador",
-                "tags": ["Funcionarios"],
+                "tags": ["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "treinador_id",
                     "in": "path",
@@ -1459,6 +1484,11 @@
             "post":{
                 "summary": "Registar Treinadores",
                 "description": "Esta rota permite registar treinadores numa marca",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "marca_id",
                     "in": "path",
@@ -1557,6 +1587,11 @@
                 "post":{
                     "summary": "Adicionar gosto a uma publicação",
                     "description": "Esta rota permite adicionar uma publicação ao gostos",
+                    "security": [
+                        {
+                            "basicAuth":[]
+                        }
+                    ],
                     "parameters": [{
                         "name": "post_id",
                         "in": "path",
@@ -1606,8 +1641,7 @@
                                             "value":{
                                                 "Gostos": {
                                                     "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
-                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
-                                                    "criador_id": "cd948b87-6860-4844-af7a-6df37278732d"
+                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                                 }
                                             }
                                         }
@@ -1844,6 +1878,11 @@
             "post":{
                 "summary": "Notificação para user",
                 "description": "Esta rota permite efetuar o registo de um administrador",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "destino_id",
                     "in": "path",
@@ -1868,9 +1907,6 @@
                         "application/json":{
                             "schema":{
                                 "properties":{
-                                    "origemId":{
-                                        "type": "string"
-                                    },
                                     "conteudo":{
                                         "type": "string"
                                     },
@@ -1885,7 +1921,6 @@
                             "examples": {
                                 "Criar Notificação":{
                                     "value":{
-                                        "origemId":"6202549c-4fda-46cd-afcd-65160b577baf",
                                         "conteudo":"Teste",
                                         "data":"2022-03-21",
                                         "tipo":0
@@ -1912,7 +1947,6 @@
                                         "value": {
                                             "notificacao": {
                                                 "noti_id": "018aec31-d1c1-407c-9b5b-78e1d7929a0f",
-                                                "origem_uid": "cacc87bb-a2dd-4af3-89c6-2ceedf33930a",
                                                 "conteudo": "Teste",
                                                 "data": "2022-04-01T15:16:33.695Z",
                                                 "tipo": 0
@@ -1926,8 +1960,7 @@
                         
                     }
                 }
-            }
-                    
+            }            
         },
         "/adminTreinador/desafio/{desafioId}":{
             "delete":{
@@ -3020,27 +3053,16 @@
             }
         }
     },
-    "/{uid}/definicoes":{
+    "/definicoes":{
         "get":{
             "summary": "Obter definições do user",
             "description": "Esta rota permite obter todas as definições do utilizador",
             "tags": ["Definições"],
-            "parameters": [{
-                "name": "uid",
-                "in": "path",
-                "description": "id do utilizador",
-                "required": true,
-                "schema":{
-                    "type": "string"
-                },
-                "examples": {
-                    "User Id":{
-                        "value":"0108ab5b-dc52-40ac-b077-91c68fe4629c"
-                    }
-                },
-                "style": "simple"
-
-            }],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"
@@ -3054,7 +3076,7 @@
                                 "$ref": "#/components/schemas/Definicoes"
                             },
                             "examples": {
-                                "Adicionar Musculo":{
+                                "Obter Definições do Utilizador":{
                                     "value": {
                                         "definicoes": {
                                             "def_id": "0d100e85-830e-4da8-adda-c7c68f62c341",
@@ -3389,6 +3411,11 @@
             "summary": "Obter o perfil do utilizador",
             "description": "Esta rota permite obter o perfil de um utilizador",
             "tags": ["Perfil"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters":[
                 {
                     "name": "uId",
@@ -4262,6 +4289,11 @@
             "summary": "Criar publicação",
             "description": "Esta rota vai permitir criar uma publicação",
             "tags": ["Posts"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "requestBody": {
                 "content": {
                     "application/json":{
@@ -4339,6 +4371,11 @@
             "summary": "Editar publicação",
             "description": "Esta rota vai permitir editar uma publicação",
             "tags": ["Posts"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "requestBody": {
                 "content": {
                     "application/json":{
@@ -4679,24 +4716,36 @@
                 }
             }
         }
-    },"/{uId}/definicoes/perfil/privado/":{
+    },"/definicoes/perfil/privado/":{
         "put":{
             "summary": "Meter o perfil privado",
             "description": "Esta rota vai editar na base de dados o estado do perfil",
             "tags": ["Definições"],
-            "parameters": [{
-                "name": "uId",
-                "in": "path",
-                "description": "Id do user",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "uId":{
-                            "type": "string"
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "is_privado": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Privado true":{
+                                "value":{
+                                    "is_privado":true
+                                }
+                            }
                         }
                     }
                 }
-            }],
+            },
             "responses": {
                 "500":{
                     "description": "ERROR"  

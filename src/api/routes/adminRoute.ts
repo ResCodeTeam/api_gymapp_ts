@@ -72,8 +72,8 @@ adminRouter.delete("/marca/:id", verificarAutenticacao, verificarAdmin, removerM
 //#endregion
 
 //#region Modalidades
-adminRouter.post("/ginasio/:id/modalidades", criarGinasioModalidadesController.handle);
-adminRouter.delete("/modalidades/:id", removerModalidadesController.handle);
+adminRouter.post("/ginasio/:id/modalidades", verificarAutenticacao ,criarGinasioModalidadesController.handle);
+adminRouter.delete("/modalidades/:id", verificarAutenticacao ,removerModalidadesController.handle);
 //adminRouter.delete("/modalidades", editarModalidadesController.handle);
 adminRouter.put("/modalidades/:id", editarModalidadesController.handle);
 //#endregion
@@ -83,16 +83,16 @@ adminRouter.put("/modalidades/:id", editarModalidadesController.handle);
 const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController();
 const criarNotificacaoUserController = new CriarNotificacaoUserController();
-adminRouter.post("/notificacao/user/:id", criarNotificacaoUserController.handle);
-adminRouter.post("/notificacao/marca/", criarNotificacaoMarcaController.handle);
-adminRouter.post("/notificacao/ginasio/", criarNotificacaoGinasioController.handle);
+adminRouter.post("/notificacao/user/:id", verificarAutenticacao ,criarNotificacaoUserController.handle);
+adminRouter.post("/notificacao/marca/", verificarAutenticacao, criarNotificacaoMarcaController.handle);
+adminRouter.post("/notificacao/ginasio/", verificarAutenticacao ,criarNotificacaoGinasioController.handle);
 //#endregion
 
 
 
 //#region Treinadores
-adminRouter.delete("/treinador/:id", eliminarTreinadorController.handle);
-adminRouter.post("/marca/:id/treinadores", registarTreinadorController.handle)
+adminRouter.delete("/treinador/:id", verificarAutenticacao ,eliminarTreinadorController.handle);
+adminRouter.post("/marca/:id/treinadores", verificarAutenticacao, registarTreinadorController.handle);
 //#endregion
 
 export { adminRouter };

@@ -3,10 +3,11 @@ import { CriarNotificacaoMarcaService } from "../../services/notificacoes/criarN
 
 export class CriarNotificacaoMarcaController{
     async handle(request:Request,response:Response){
-        let {userId, marcaId, conteudo, tipo}=request.body;
+        const userId = response.locals.uid;
+        let {marcaId, conteudo, tipo}=request.body;
 
-        const criarNotificacaoMarcarController = new CriarNotificacaoMarcaService();
-        const resp = await criarNotificacaoMarcarController.execute({
+        const criarNotificacaoMarcaService = new CriarNotificacaoMarcaService();
+        const resp = await criarNotificacaoMarcaService.execute({
             userId,
             marcaId,
             conteudo,
