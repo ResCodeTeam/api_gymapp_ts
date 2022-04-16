@@ -982,14 +982,13 @@
                     },
                     {
                         "in": "body",
-                        "content":{
-                            "application/json":{
-                                "schema":{
-                                    "properties": {
-                                        "userId":{
-                                            "type": "string"
-                                        }
-                                    }
+                        "name": "userId",
+                        "description": "Id de quem está a fazer o pedido",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "userId": {
+                                    "type": "string"
                                 }
                             }
                         }
