@@ -26,7 +26,7 @@ export class AgendarAvaliacaoService {
       throw new Error("O ginásio não existe");
     }
 
-    await client.agendamentos_avaliacoes.create({
+    const agendamento = await client.agendamentos_avaliacoes.create({
       data: {        
         ginasio_id: ginasioId,
         uid,
@@ -53,9 +53,7 @@ export class AgendarAvaliacaoService {
       }); 
     //#endregion
 
-    return {
-      msg: "O agendamento da avaliação foi criado com sucesso!"
-    };
+    return agendamento;
   }
 }
 

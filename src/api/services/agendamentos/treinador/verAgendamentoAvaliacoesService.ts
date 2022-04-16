@@ -9,8 +9,6 @@ export class VerAgendamentoAvaliacoesService{
             },
         })
 
-        return {
-            agendamentos
-        }
+        return agendamentos;
     }
 }

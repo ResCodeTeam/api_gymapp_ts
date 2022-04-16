@@ -64,8 +64,7 @@ export class RegistarTreinadorService{
           mencoes:true,
           usersuid:treinador.uid    
       }
-  })
-
-    return {treinador}
+    })
+    return treinador;
   }
 }

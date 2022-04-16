@@ -31,7 +31,7 @@ class RegistarUserMarcasService {
         logotipo,
       },
     });
-    return { msg: "A marca foi criada com sucesso!",marca };
+    return marca;
   }
 }
 

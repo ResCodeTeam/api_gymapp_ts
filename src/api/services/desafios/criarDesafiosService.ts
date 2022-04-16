@@ -84,9 +84,7 @@ class CriarDesafiosService {
                 });
             }
         }
-        return {
-            msg: "O desafio foi criado com sucesso!",
-        };
+        return desafio;
     }
 }
 

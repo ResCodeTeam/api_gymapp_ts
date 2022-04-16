@@ -20,10 +20,6 @@ export class EditarModalidadesService {
       })
 
   
-      return {
-          message:"Notificação alterada com sucesso",
-          
-        };
-      
+      return editarModalidades;    
   }
 }

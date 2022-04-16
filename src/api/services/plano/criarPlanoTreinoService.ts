@@ -72,8 +72,6 @@ export class CriarPlanoTreinoService{
             }
           }
         }
-        return {
-            msg: "O plano de treino foi criado com sucesso!",
-        };
+        return plano;
     }
 }
