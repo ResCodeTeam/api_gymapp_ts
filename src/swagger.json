@@ -1009,22 +1009,20 @@
                                 },
                                 "examples": {
                                     "Ver Alunos Ginásio":{
-                                        "value":{
-                                            "alunos": [
-                                                {
-                                                    "uid" : "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                                    "nome" : "Luiz Fernando Gonçalves",
-                                                    "hashtag" : "LFG_01",
-                                                    "imagem_url" : "Teste1 Ângela"
-                                                },
-                                                {
-                                                    "uid" : "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                                    "nome" : "Luiz Fernando Gonçalves",
-                                                    "hashtag" : "LFG_01",
-                                                    "imagem_url" : "Teste2 Ângela"
-                                                }
-                                            ]
-                                        }
+                                        "value":[
+                                            {
+                                                "uid" : "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                "nome" : "Luiz Fernando Gonçalves",
+                                                "hashtag" : "LFG_01",
+                                                "imagem_url" : "Teste1"
+                                            },
+                                            {
+                                                "uid" : "1d2ee3a7-1505-4035-a089-1fa15b47080e",
+                                                "nome" : "Luna Fernandes Gonçalves",
+                                                "hashtag" : "LFG_02",
+                                                "imagem_url" : "Teste2"
+                                            }
+                                        ]
                                     }
                                 }
                             }
