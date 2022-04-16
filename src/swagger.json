@@ -366,9 +366,190 @@
                         }
                     }          
                 }
+            },
+        
+        
+
+            "put":{
+                "summary": "Editar exercicios",
+                "description": "Esta rota vai editar na base de dados um exercicio",
+                "tags": ["Exercicios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters": [{
+                    "name": "exercicioId",
+                    "in": "path",
+                    "description": "Id do exercicio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "modalidadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "isTempo":{
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Exercicio":{
+                                    "value":{
+                                        "nome":"Teste1",
+                                        "descricao":"Teste2",
+                                        "isTempo":true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Editar Exercicio":{
+                                        "value":{
+                                            "msg":"Exercicio editado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
         },
-        "/admin/marca/{marcaId}/ginasio/":{
+        "/admin/marca/editar/{marcaId}":{
+        "put":{
+            "summary": "Editar Marca",
+            "description": "Esta rota vai editar uma Marca criada",
+            "tags": ["Marca"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "marcaId",
+                "in": "path",
+                "description": "Id do exercicio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "marcaId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "nome":{
+                                    "type": "string"
+                                },
+                                "cor":{
+                                    "type": "string"
+                                },
+                                "donoId":{
+                                    "type": "string"
+                                },
+                                "logotipo":{
+                                    "type": "string"
+                                },
+                                "marcaId":{
+                                    "type": "string"
+                                },
+                                "mobilidade":{
+                                    "type": "boolean"
+                                },
+                                "isDeleted":{
+                                    "type": "boolean"
+                                }
+
+                            }
+                        },
+                        "examples": {
+                            "Editar Marca":{
+                                "value":{
+                                    "marcaId":"52cbfb83-69da-4de3-9cac-914ec4fbd4e3",
+                                    "nome":"Galo",
+                                    "cor":"vermelho",
+                                    "donoId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "mobilidade":true,
+                                    "isDeleted":false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Marca":{
+                                    "value":{
+                                        "msg":"Marca editada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    
+
+     "/admin/marca/{marcaId}/ginasio/":{
             "post":{
                 "summary": "Registo de ginasios",
                 "description": "Esta rota vai registar na base de dados um ginasio que esta associado a uma marca",
@@ -3018,6 +3199,11 @@
             "summary": "Ver todos os agendamentos de desafios",
             "description": "Esta rota vai obter todos os agendamentos de todos os desafios",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -3051,6 +3237,11 @@
             "summary": "Ver todos os agendamentos de avaliacoes",
             "description": "Esta rota vai obter todos os agendamentos de avaliações",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -4116,24 +4307,12 @@
                 "summary": "Obter plano de treino semanal de um aluno",
                 "description": "Esta rota vai permitir obter plano de treino de uma semana de um aluno dando o intervalo de tempo",
                 "tags": ["Plano Treino"],
-                "parameters": [{
-                    "name": "uid",
-                    "in": "path",
-                    "description": "Id do aluno",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "uid":{
-                                "type": "string"
-                            }
-                        }
-                    },
-                    "examples": {
-                        "uid":{
-                            "value":"000d1e14-617e-423e-8a1a-f63d4fa5af6a"
-                        }
+                "security": [
+                    {
+                        "basicAuth":[]
                     }
-                },{
+                ],
+                "parameters": [{
                     "name": "startDate",
                     "in": "path",
                     "description": "data de inicio",
@@ -4507,6 +4686,11 @@
             "summary": "Aceitar agendamento de uma avaliação",
             "description": "Esta rota vai editar na base de dados um agendamento de uma avaliação",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "agendamentoId",
                 "in": "path",
@@ -4551,6 +4735,11 @@
             "summary": "Remover a aceitação de um agendamento de uma avaliação",
             "description": "Esta rota vai remover da base de dados as aceitações dos agendamentos de avaliações",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters":[
             {
                 "name": "agendamentoId",
@@ -4598,6 +4787,11 @@
             "summary": "Aceitar agendamento de um desafio",
             "description": "Esta rota vai editar na base de dados um agendamento de um desafio",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "agendamentoId",
                 "in": "path",
@@ -4822,12 +5016,18 @@
                 }          
             }
         }
+    
     },
     "/treinador/planoTreino":{
         "post":{
             "summary": "Criar Plano de Treino",
             "description": "Esta rota vai criar um plano de treino",
             "tags": ["Plano Treino"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "requestBody": {
                 "content": {
                     "application/json":{
@@ -5043,6 +5243,11 @@
             "summary": "Remover um plano de treino",
             "description": "Esta rota vai remover na base de dados um plano de treino",
             "tags": ["Plano Treino"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "planoId",
                 "in": "path",
@@ -5083,7 +5288,8 @@
                 }          
             }
         }
-    } 
+    }
+    
     },        
     "components": {
         "securitySchemes": {
