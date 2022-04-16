@@ -1,4 +1,4 @@
-import { checkGinasioExists, checkUserIdExists } from "../../helpers/dbHelpers";
+import {  checkDonoGinasio, checkGinasioExists, } from "../../helpers/dbHelpers";
 import{client}from "../../prisma/client";
 
 interface IEditarGinasio{
@@ -19,7 +19,7 @@ export class EditarGinasioService{
         {
             throw new Error("Ginasio não existe")
         }
-        const existsAdmin= await checkUserIdExists(adminId)
+        const existsAdmin= await checkDonoGinasio(ginasioId,adminId)
         if(!existsAdmin)
         {
             throw new Error("Utilizador não existe")
@@ -39,5 +39,7 @@ export class EditarGinasioService{
 
             }
         })
+        return EditarGinasio
     }
+    
 }
