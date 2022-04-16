@@ -368,6 +368,42 @@
                         }
                     }          
                 }
+            },
+            "get":{
+                "summary": "Ver todas as marcas de um admin",
+                "description": "Esta rota vai apresentar todas as marcas de um admin",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Marca"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Ver Marcas de um Admin":{
+                                        "value":{
+                                            "msg":"Operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
         },
         "/admin/marca/{marcaId}/ginasio/":{
@@ -383,7 +419,7 @@
                 "parameters": [{
                     "name": "marcaId",
                     "in": "path",
-                    "description": "Id do ginasio",
+                    "description": "Id da marca",
                     "required": true,
                     "schema":{
                         "properties": {
@@ -456,6 +492,57 @@
                                     "Inserir Agendamento":{
                                         "value":{
                                             "msg":" O ginasio foi criado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            },
+            "get":{
+                "summary": "Ver todos os ginásios de uma marca",
+                "description": "Esta rota vai apresentar todos os ginásios de uma marca",
+                "parameters": [
+                {
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "Id da marca",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "marcaId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Marca"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Ver Ginásios de uma Marca":{
+                                        "value":{
+                                            "msg":"Operação realizada com sucesso"
                                         }
                                     }
                                 }
@@ -1429,7 +1516,7 @@
                 }
             }
         },
-        "/admin/marca/:id":{
+        "/admin/marca/{marcaId}":{
             "delete":{
                 "summary": "Remover marca",
                 "description": "Esta rota vai remover uma marca de um ginásio",
@@ -1477,6 +1564,57 @@
                             }
                         }
                     }
+                }
+            },
+            "get":{
+                "summary": "Ver a informação de uma marca",
+                "description": "Esta rota vai apresentar a informação de uma marca",
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id da marca",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "marcaId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Marca"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Ver Ginasio":{
+                                        "value":{
+                                            "msg":"Operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
                 }
             }
         },
@@ -2593,8 +2731,8 @@
                     }         
                 }
             }
-        }
-        ,"/treinador/{treinadorId}/exercicios/{exercicioId}/musculos/{musculoId}":{
+        },
+        "/treinador/{treinadorId}/exercicios/{exercicioId}/musculos/{musculoId}":{
             "post":{
                 "summary": "Adicionar musculo a um exercicio",
                 "description": "Esta rota permite adicionar um musculo a um exercicio",
@@ -5012,6 +5150,110 @@
                                 "Remover Plano de Treino":{
                                     "value":{
                                         "msg":"Remover plano de treino efetuado com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/admin/ginasio/{ginasioId}/":{
+        "delete":{
+            "summary": "Remover ginásio",
+            "description": "Esta rota vai remover da base de dados os ginasios",
+            "tags": ["Marca"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters":[
+            {
+                "name": "ginasioId",
+                "in": "path",
+                "description": "Id do ginasio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "ginasioId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                 "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            }, 
+                            "examples": {
+                                "Remover ginasio":{
+                                    "value":{
+                                        "msg":"Ginasio removido com sucesso"
+                                    }
+                                }
+                            }                                       
+                        }
+                    }  
+                }         
+            }
+        },
+        "get":{
+            "summary": "Ver a informação de um ginásio",
+            "description": "Esta rota vai apresentar a informação de um ginásio",
+            "parameters": [
+            {
+                "name": "ginasioId",
+                "in": "path",
+                "description": "Id do ginásio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "ginasioId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            ],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Marca"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Ginasio":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
                                     }
                                 }
                             }
