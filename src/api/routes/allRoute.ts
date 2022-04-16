@@ -18,6 +18,7 @@ import { ImpedirIdentificacaoController } from "../controllers/definicoes/impedi
 import { AlterarVistoController } from "../controllers/notificacoes/alterarVistoController";
 import { VerPerfilController } from "../controllers/perfil/verPerfilController";
 import { VerTodosDesafiosController } from "../controllers/desafios/verTodosDesafiosController";
+import { VerDesafiosDisponiveisController } from "../controllers/desafios/verDesafiosDisponiveisController";
 
 
 const allRouter = express.Router();
@@ -40,6 +41,7 @@ const impedirIdentificacaoController= new ImpedirIdentificacaoController();
 const alterarVistoController= new AlterarVistoController();
 const verPerfilController = new VerPerfilController();
 const verTodosDesafiosController = new VerTodosDesafiosController();
+const verDesafiosDisponiveisController = new VerDesafiosDisponiveisController();
 
 //#region Publicacoes
 allRouter.post("/posts", verificarAutenticacao, criarPostsController.handle);
@@ -69,6 +71,7 @@ allRouter.put("/destinosNotificacao",verificarAutenticacao,alterarVistoControlle
 
 //#region Desafios
 allRouter.get("/ginasio/:id/desafios/", verificarAutenticacao, verTodosDesafiosController.handle);
+allRouter.get("/ginasio/:id/desafios/disponiveis", verDesafiosDisponiveisController.handle);
 //#endregion
 
 export { allRouter };
