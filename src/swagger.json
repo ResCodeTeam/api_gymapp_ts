@@ -4751,6 +4751,7 @@
                     }
                 }
             }
+
         },
         "/aluno/agenda/desafios/":{
             "get":{
@@ -4782,6 +4783,77 @@
                                     "Ver Agendamentos de Desafios de um Aluno":{
                                         "value":{
                                             "msg":"Ver agendamento de desafios de um aluno obtido com sucesso"
+
+        }
+    },
+    "/treinador/planoTreino":{
+        "post":{
+            "summary": "Criar Plano de Treino",
+            "description": "Esta rota vai criar um plano de treino",
+            "tags": ["Plano Treino"],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "atividadeId":{
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "modalidadeId":{
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "duracao":{
+                                    "type": "string"
+                                },
+                                "calorias":{
+                                    "type": "number"
+                                },
+                                "distancia":{
+                                    "type": "number"
+                                },
+                                "data":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Criar Treino":{
+                                "value":{
+                                    "alunoId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "treinadorId":"6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                    "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "blocos":[
+                                        {
+                                            "nOrdem":0,
+                                            "nome":"Aquecimento",
+                                            "descricao":"5 Rondas",
+                                            "exercicios":[
+                                                {
+                                                    "exercicioId":"05bb0690-db08-4b46-97dc-3853eba58d51",
+                                                    "nOrdem":0,
+                                                    "series":[
+                                                        {
+                                                            "nOrdem":0,
+                                                            "valor":"12"
+                                                        },
+                                                        {
+                                                            "nOrdem":1,
+                                                            "valor":"12"
+                                                        },
+                                                        {
+                                                            "nOrdem":2,
+                                                            "valor":"12"
+                                                        },
+                                                        {
+                                                            "nOrdem":3,
+                                                            "valor":"12"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+
                                         }
                                     }
                                 }
@@ -4844,6 +4916,152 @@
                                     }
                                 }
                             }
+
+                }          
+            }
+        }
+    },
+    "/treinador/planoTreino/{planoId}":{
+        "put":{
+            "summary": "Editar Plano de Treino",
+            "description": "Esta rota vai editar um plano de treino",
+            "tags": ["Plano Treino"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "planoId",
+                "in": "path",
+                "description": "Id do plano de treino",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "planoId":{
+                            "type": "string"
+                        }
+                    }
+                },
+                "examples": {
+                    "Plano id":{
+                        "value":"06622c79-e84e-4c64-8e69-dfaf8570c392"
+                    }
+                }
+            }],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "atividadeId":{
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "modalidadeId":{
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "duracao":{
+                                    "type": "string"
+                                },
+                                "calorias":{
+                                    "type": "number"
+                                },
+                                "distancia":{
+                                    "type": "number"
+                                },
+                                "data":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Editar Treino":{
+                                "value":{
+                                    
+                                    "alunoId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "treinadorId":"6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                    "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "blocos":[
+                                        {
+                                            "nOrdem":0,
+                                            "nome":"Aquecimento2",
+                                            "descricao":"5 Rondas",
+                                            "exercicios":[
+                                                {
+                                                    "exercicioId":"05bb0690-db08-4b46-97dc-3853eba58d51",
+                                                    "nOrdem":0,
+                                                    "series":[
+                                                        {
+                                                            "nOrdem":0,
+                                                            "valor":"12"
+                                                        },
+                                                        {
+                                                            "nOrdem":1,
+                                                            "valor":"12"
+                                                        },
+                                                        {
+                                                            "nOrdem":2,
+                                                            "valor":"12"
+                                                        },
+                                                        {
+                                                            "nOrdem":3,
+                                                            "valor":"12"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Exercicio":{
+                                    "value":{
+                                        "msg":"Treino editado com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/aluno/plano/{planoId}/realizado/":{
+        "put":{
+            "summary": "Meter um plano de treino como realizado",
+            "description": "Esta rota vai editar na base de dados o estado da realização de um plano de treino",
+            "tags": ["Plano Treino"],
+            "parameters": [{
+                "name": "planoId",
+                "in": "path",
+                "description": "Id do plano de treino",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "planoId":{
+                            "type": "string"
                         }
                     }          
                 }
