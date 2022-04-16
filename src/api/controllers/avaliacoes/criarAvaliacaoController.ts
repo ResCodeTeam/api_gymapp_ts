@@ -19,6 +19,9 @@ export class CriarAvaliacaoController{
         imagens,
         medidas
     }= request.body;
+    if(alunoId === undefined || peso === undefined || unidadePeso === undefined || treinadorId === undefined || musculo === undefined || gorduraCorporal === undefined || gorduraVisceral === undefined || agua === undefined || proteina === undefined || massaOssea === undefined || metabolismoBasal === undefined || imagens === undefined || medidas === undefined){
+      throw new Error("Pedido inválido")
+    }
 
     const data = new Date(Date.now());
     const criarAvaliacaoService = new CriarAvaliacaoService();

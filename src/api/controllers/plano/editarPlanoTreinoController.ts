@@ -6,7 +6,10 @@ export class EditarPlanoTreinoController{
     const treinadorId = response.locals.uid;
     const planoId = request.params.id;
     const { alunoId, modalidadeId, blocos } = request.body;
-    console.log(request.body)
+    if(alunoId === undefined || modalidadeId === undefined || blocos === undefined){
+      throw new Error("Pedido inválido")
+    }
+
     const data = new Date(Date.now())
     const editarPlanoTreinoService = new EditarPlanoTreinoService();
     const resp = await editarPlanoTreinoService.execute({planoId,alunoId,treinadorId, modalidadeId, blocos, data})

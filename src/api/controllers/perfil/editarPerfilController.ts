@@ -14,13 +14,11 @@ export class EditarPerfilController{
             genero,
             descricao,
             imagemUrl }=request.body;
-        console.log({ 
-            email,
-            nome,
-            password,
-            genero,
-            descricao,
-            imagemUrl } )
+        
+            if(email === undefined || nome === undefined || password === undefined || genero === undefined || descricao === undefined || imagemUrl === undefined){
+                throw new Error("Pedido inválido")
+            }
+
         const editarPerfilController = new EditarPerfilService();
         const resp = await editarPerfilController.execute({
             uId,

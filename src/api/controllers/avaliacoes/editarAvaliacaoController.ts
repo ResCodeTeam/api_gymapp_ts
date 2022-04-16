@@ -20,6 +20,9 @@ export class EditarAvaliacaoController {
             massa_ossea: request.body.massa_ossea,
             metabolismo_basal: request.body.metabolismo_basal,
         }
+        if(data.data === undefined || data.peso === undefined || data.unidade_peso === undefined || data.musculo === undefined || data.gordura_corporal === undefined || data.gordura_visceral === undefined || data.agua === undefined || data.proteina === undefined || data.massa_ossea === undefined || data.metabolismo_basal === undefined){
+            throw new Error("Pedido inválido")
+          }
 
         //Avaliação ID por parametro
         const avaliacao_id = request.params.id;

@@ -6,6 +6,9 @@ export class CriarNotificacaoUserController{
     const destinoId = request.params.id;
     const origemId = response.locals.uid;
     const {conteudo,tipo}= request.body;
+    if(conteudo === undefined || tipo === undefined){
+      throw new Error("Pedido inválido")
+    }
 
     const criarNotificacaoUserService = new CriarNotificacaoUserService();
     const resp = await criarNotificacaoUserService.execute({destinoId,origemId, conteudo,tipo});
