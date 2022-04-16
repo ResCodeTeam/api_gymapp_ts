@@ -1,21 +1,28 @@
 
+import { checkGinasioExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 interface IGinasios{
-    donoId: string   
+    ginasioId: string   
 }
 
-export class VerTodasMarcasService{
-    async execute({donoId}: IGinasios){
+export class VerTodasModalidadesService{
+    async execute({ginasioId}: IGinasios){
 
-        const marcas = await client.marcas.findMany({
+        const exists_ginasio = checkGinasioExists(ginasioId)
+        if(!exists_ginasio)
+        {
+            throw new Error ("O ginásio não existe");
+        }
+
+        const marcas = await client.modalidades_ginasio.findMany({
             where:{
-                dono_id: donoId,
+                ginasio_id: ginasioId,
                 isDeleted: false
 
             }, select:{
                 nome:true,
-                logotipo:true,
+                imagem_url:true,
             }        
          })
         return marcas;
