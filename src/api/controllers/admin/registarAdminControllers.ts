@@ -4,6 +4,9 @@ import { RegistarAdminService } from "../../services/admin/registarAdminService"
 export class RegistarAdminController{
     async handle (request:Request, response:Response) {
     let { email,nome,password,dataNasc,dataEntrada,genero } = request.body;
+    if(email === undefined || nome === undefined || password === undefined || dataNasc === undefined || dataEntrada === undefined || genero === undefined){
+      throw new Error("Pedido inválido")
+    }
     
     const registarAdminService = new RegistarAdminService();
     dataNasc = new Date(dataNasc);

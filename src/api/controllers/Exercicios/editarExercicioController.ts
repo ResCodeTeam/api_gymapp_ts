@@ -8,6 +8,9 @@ export class EditarExercicioController {
         const exercicioId = request.params.exercicios_id
         const autorId = response.locals.uid;
         const {nome, descricao, isTempo}= request.body;
+        if(nome === undefined || descricao === undefined || isTempo === undefined){
+            throw new Error("Pedido inválido")
+        }
         
         const editarExercicioService = new EditarExercicioService()
         const resp = await editarExercicioService.execute({exercicioId, autorId, nome, descricao, isTempo});

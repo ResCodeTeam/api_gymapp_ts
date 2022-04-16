@@ -6,7 +6,10 @@ class CriarDesafiosController {
         const criadorId = response.locals.uid
         const ginasioId = request.params.id;
         let { nome, modalidadeId, dataInicio, dataFim, recompensa, descricao, exercicios, regras } = request.body;
-        
+        if(nome === undefined || modalidadeId === undefined || dataInicio === undefined || dataFim === undefined || recompensa === undefined || descricao === undefined || exercicios === undefined || regras === undefined){
+            throw new Error("Pedido inválido")
+        }
+
         dataInicio = new Date(dataInicio);
         dataFim = new Date(dataFim);
   

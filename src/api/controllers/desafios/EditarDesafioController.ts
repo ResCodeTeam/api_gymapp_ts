@@ -14,6 +14,9 @@ export class EditarDesafioController{
             isDeleted: request.body.isDeleted,
             descricao: request.body.descricao,
         }
+        if(data.nome === undefined || data.data_inicio === undefined || data.data_fim === undefined || data.recompensa === undefined || data.isDeleted === undefined || data.descricao === undefined){
+            throw new Error("Pedido inválido")
+          }
         const desafioId = request.params.id;
         
         const resp = await editarDesafioService.execute(data,desafioId)

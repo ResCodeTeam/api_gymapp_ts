@@ -6,6 +6,9 @@ export class AgendarDesafiosController {
       const uid = response.locals.uid;
       const desafioId = request.params.id;
       let { ginasioId, treinadorId } = request.body;
+      if(ginasioId === undefined || treinadorId === undefined){
+        throw new Error("Pedido inválido")
+      }
       
       const dataAgendamento = new Date(Date.now());
       const agendarDesafiosService = new AgendarDesafiosService();

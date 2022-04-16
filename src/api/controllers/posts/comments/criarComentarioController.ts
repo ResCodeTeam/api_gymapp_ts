@@ -7,6 +7,9 @@ export class CriarComentarioController{
         const publicacao_id = request.params.id;
         const criador_id = response.locals.uid
         const {comentario,identificacao}=request.body;
+        if(comentario === undefined || identificacao === undefined){
+            throw new Error("Pedido inválido")
+        }
 
         const resp = await criarComentarioService.execute(publicacao_id,comentario,criador_id,identificacao)
 

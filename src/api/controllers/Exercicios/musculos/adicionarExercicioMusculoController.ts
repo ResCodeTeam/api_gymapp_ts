@@ -7,14 +7,9 @@ export class AdicionarExercicioMusculoController{
     const exercicioId = request.params.exercicioId;
     const musculoId = request.params.musculoId;
 
-    console.log(treinadorId,exercicioId,musculoId)
-
     const adicionarExercicioMusculoService = new AdicionarExercicioMusculoService();
     const resp = await adicionarExercicioMusculoService.execute(treinadorId,exercicioId,musculoId);
 
-    response.json(resp)
-    
-    
-    
+    response.json(resp)    
   }
 }
