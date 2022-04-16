@@ -1100,6 +1100,7 @@
                 }
             }
         },
+
        "/{userId}/perfil":{
             "put":{
                 "summary": "Editar perfil",
@@ -1465,7 +1466,8 @@
                 }
             }
         }
-    },"delete":{
+    },
+    "delete":{
         "summary": "Remover publicação",
         "description": "Esta rota vai permitir remover uma publicação",
         "security": [
@@ -1515,7 +1517,8 @@
             }
         }
     }
-}},
+}
+},
         "/admin/treinador/{treinador_id}":{
             "delete":{
                 "summary": "Remover treinador",
@@ -2868,7 +2871,8 @@
         "delete":{
             "summary": "Remover musculo de um exercicio",
             "description": "Esta rota permite remover um musculo de um exercicio",
-            "parameters": [{
+            "parameters": [
+                {
                 "name": "treinadorId",
                 "in": "path",
                 "description": "id do treinador",
@@ -2882,8 +2886,8 @@
                     }
                 },
                 "style": "simple"
-
-            },{
+            },
+            {
                 "name": "exercicioId",
                 "in": "path",
                 "description": "id do exercicio",
@@ -2897,8 +2901,8 @@
                     }
                 },
                 "style": "simple"
-
-            },{
+            },
+            {
                 "name": "musculoId",
                 "in": "path",
                 "description": "id do musculo a adicionar",
@@ -2912,8 +2916,8 @@
                     }
                 },
                 "style": "simple"
-
-            }],
+            }
+        ],
             "tags": ["Exercicios"],
             "responses": {
                 "500":{
@@ -4250,7 +4254,8 @@
                 "summary": "Obter plano de treino semanal de um aluno",
                 "description": "Esta rota vai permitir obter plano de treino de uma semana de um aluno dando o intervalo de tempo",
                 "tags": ["Plano Treino"],
-                "parameters": [{
+                "parameters": [
+                    {
                     "name": "uid",
                     "in": "path",
                     "description": "Id do aluno",
@@ -4267,7 +4272,8 @@
                             "value":"000d1e14-617e-423e-8a1a-f63d4fa5af6a"
                         }
                     }
-                },{
+                },
+                {
                     "name": "startDate",
                     "in": "path",
                     "description": "data de inicio",
@@ -4284,7 +4290,8 @@
                             "value":"2022-04-11"
                         }
                     }
-                },{
+                },
+                {
                     "name": "endDate",
                     "in": "path",
                     "description": "data de fim",
@@ -4301,7 +4308,8 @@
                             "value":"2022-04-17"
                         }
                     }
-                }],
+                }
+            ],
                 "responses": {
                     "500":{
                         "description": "ERROR"  
@@ -4409,7 +4417,8 @@
                     }          
                 }
             }
-    },"/posts":{
+    },
+    "/posts":{
         "get":{
             "summary": "Ver posts",
             "description": "Esta rota vai apresentar todos os posts",
@@ -4737,7 +4746,8 @@
                 }         
             }
         }
-    },"/treinador/agenda/desafios/{agendamentoId}/":{
+    },
+    "/treinador/agenda/desafios/{agendamentoId}/":{
         "put":{
             "summary": "Aceitar agendamento de um desafio",
             "description": "Esta rota vai editar na base de dados um agendamento de um desafio",
@@ -4828,7 +4838,8 @@
                 }         
             }
         }
-    },"/aluno/agenda/avaliacoes/":{
+    },
+    "/aluno/agenda/avaliacoes/":{
         "get":{
             "summary": "Ver todos os pedidos de agendamento de avaliação de um aluno",
             "description": "Esta rota vai obter todos os pedidos de agendamento de avaliação de um aluno",
@@ -4905,7 +4916,8 @@
                 }
             }
         }
-    },"/definicoes/perfil/privado/":{
+    },
+    "/definicoes/perfil/privado/":{
         "put":{
             "summary": "Meter o perfil privado",
             "description": "Esta rota vai editar na base de dados o estado do perfil",
@@ -4998,9 +5010,9 @@
                         "examples": {
                             "Editar Treino":{
                                 "value":{
-                                    "aluno_id":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                    "treinador_id":"6d112678-f40c-43bc-a80a-866f12fa26f2",
-                                    "modalidade_id":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "alunoId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "treinadorId":"6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                    "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                     "blocos":[
                                         {
                                             "nOrdem":0,
@@ -5164,7 +5176,8 @@
                 }          
             }
         }
-    },"/treinador/plano/{planoId}/":{
+    },
+    "/treinador/plano/{planoId}/":{
         "delete":{
             "summary": "Remover um plano de treino",
             "description": "Esta rota vai remover na base de dados um plano de treino",
@@ -5210,6 +5223,7 @@
             }
         }
     },
+
     "/treinador/planoTreino/{planoId}":{
         "put":{
             "summary": "Editar Plano de Treino",
@@ -5869,10 +5883,25 @@
                         "type": "number"
                     }
                 }
-            }        
+            },
+            
+            "Aluno": {
+                "type": "object",
+                "properties": {
+                    "uid" : {
+                        "type": "string"
+                    },
+                    "nome" : {
+                        "type": "string"
+                    },
+                    "hashtag" : {
+                        "type": "string"
+                    },
+                    "imagem_url" : {
+                        "type": "string"
+                    }
+                }
+            }            
         }
     }
 }
-
-
-
