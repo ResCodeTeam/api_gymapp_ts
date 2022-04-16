@@ -1464,39 +1464,11 @@
             }
         }
     },
-    "/treinador/exercicios":{
-        "get":{
-            "summary": "Ver todos os exercicios",
-            "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
-           
-            "tags": ["Exercicios"],
-            "security": [
-                {
-                    "basicAuth":[]
-                }
-            ],
-            "responses": {
-                "500":{
-                    "description": "ERROR"
-                },
-                "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "object",
-                                "$ref": "#/components/schemas/exercicios"
-                            }
-                        
-                        }
-                    }
-                }
-            }
-        },
+    "/treinador/avaliacoes/":{
         "post":{
             "summary": "Registo de avaliacao",
             "description": "Esta rota vai registar na base de dados avaliacao",
-            "tags": ["Avaliacao"],
+            "tags": ["Avaliacoes"],
             "security": [
                 {
                     "basicAuth":[]
@@ -1507,46 +1479,12 @@
                     "application/json":{
                         "schema":{
                             "properties": {
-                                "alunoId":{
-                                    "type": "string"
-                                },
-                                "peso":{
-                                    "type": "number"
-                                },
-                                "unidadePeso":{
-                                    "type": "string"
-                                },
-                                "treinadorId":{
-                                    "type": "string"
-                                },
-                                "musculo":{
-                                    "type": "string"
-                                },
-                                "gorduraCorporal":{
-                                    "type": "number"
-                                },
-                                "gorduraVisceral":{
-                                    "type": "number"
-                                },
-                                "agua":{
-                                    "type": "number"
-                                },
-                                "proteina":{
-                                    "type": "string"
-                                },
-                                "massaOssea":{
-                                    "type": "number"
-                                },
-                                "metabolismo":{
-                                    "type": "number"
-                                },
-                                "medidas": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "$ref":"#/components/schemas/avaliacao"
-                                    }
-                            } }
+                                "Avaliacao": {
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/avaliacao"
+                                    
+                                } 
+                            }
                         }
                         
                     }
@@ -1581,6 +1519,37 @@
                 
             }
         }
+    },
+    "/treinador/exercicios":{
+        "get":{
+            "summary": "Ver todos os exercicios",
+            "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
+           
+            "tags": ["Exercicios"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/exercicios"
+                            }
+                        
+                        }
+                    }
+                }
+            }
+        }
+        
 
     
         
