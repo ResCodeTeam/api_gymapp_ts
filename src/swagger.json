@@ -406,108 +406,6 @@
                 }
             }
         },
-        "/admin/marca/{marcaId}":{
-            "delete":{
-                "summary": "Remover marca",
-                "description": "Esta rota vai remover uma marca de um ginásio",
-                "tags": ["Marca"],
-                "security": [
-                    {
-                        "basicAuth":[]
-                    }
-                ],
-                "parameters": [{
-                    "name": "marcaId",
-                    "in": "path",
-                    "description": "Id da marca",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "marcaId":{
-                                "type": "string"
-                            }
-                        }
-                    }
-                }],
-                "responses": {
-                    "500":{
-                        "description": "ERROR"
-                    },
-                    "200":{
-                        "description": "OK",
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                    "properties": {
-                                        "msg":{
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "Remover Marca":{
-                                        "value":{
-                                            "msg":"Marca removida com sucesso"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "get":{
-                "summary": "Ver a informação de uma marca",
-                "description": "Esta rota vai apresentar a informação de uma marca",
-                "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "Id da marca",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "marcaId":{
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-                ],
-                "security": [
-                    {
-                        "basicAuth":[]
-                    }
-                ],
-                "tags": ["Marca"],
-                "responses": {
-                    "500":{
-                        "description": "ERROR"  
-                    },
-                    "200":{
-                        "description": "OK",
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                    "properties": {
-                                        "msg":{
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "Ver Ginasio":{
-                                        "value":{
-                                            "msg":"Operação realizada com sucesso"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }          
-                }
-            }
-        },
         "/admin/marca/{marcaId}/ginasio/":{
             "post":{
                 "summary": "Registo de ginasios",
@@ -1669,6 +1567,108 @@
                             }
                         }
                     }
+                }
+            }
+        },
+        "/admin/marca/{marcaId}":{
+            "delete":{
+                "summary": "Remover marca",
+                "description": "Esta rota vai remover uma marca de um ginásio",
+                "tags": ["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters": [{
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "Id da marca",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "marcaId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Marca":{
+                                        "value":{
+                                            "msg":"Marca removida com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get":{
+                "summary": "Ver a informação de uma marca",
+                "description": "Esta rota vai apresentar a informação de uma marca",
+                "parameters": [
+                {
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "Id da marca",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "marcaId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Marca"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Ver Ginasio":{
+                                        "value":{
+                                            "msg":"Operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
                 }
             }
         },
