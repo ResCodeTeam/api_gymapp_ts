@@ -97,7 +97,6 @@ adminRouter.get("/ginasio/:id/modalidades/", verificarAutenticacao, verificarAdm
 //#endregion
 
 //#region Notificacoes
-// const criarNotificacaoUserController = new CriarNotificacaoUserController();
 const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController();
 const criarNotificacaoUserController = new CriarNotificacaoUserController();

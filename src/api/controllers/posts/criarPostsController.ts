@@ -5,6 +5,7 @@ import { CriarPostsService } from "../../services/posts/criarPostsService";
 class CriarPostsController {
   async handle(request: Request, response: Response) {
     const criadorId = response.locals.uid
+    
     let { descricao, tipo, ginasioId,identificacao } = request.body;
     if(descricao === undefined || tipo === undefined || ginasioId === undefined || identificacao === undefined){
       throw new Error("Pedido inválido")

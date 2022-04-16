@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import 'mocha';
-//TODO: finish this shiit morde a foca
+
 chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
