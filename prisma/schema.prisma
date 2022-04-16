@@ -211,7 +211,7 @@ model ginasio {
   cp_id                   String
   marca_id                String
   tag                     String                    @db.VarChar(255)
-  desricao                String?                   @db.VarChar(255)
+  descricao               String?                   @db.VarChar(255)
   imagem_url              String                    @db.VarChar(255)
   lat                     String                    @db.VarChar(255)
   long                    String                    @db.VarChar(255)
