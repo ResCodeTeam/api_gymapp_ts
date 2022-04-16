@@ -32,7 +32,7 @@ export class EditarGinasioService{
             data:{
                 nome:nome,
                 rua:rua,
-                desricao:descricao,
+                descricao:descricao,
                 imagem_url:imagemUrl,
                 lat:lat,
                 long:long
