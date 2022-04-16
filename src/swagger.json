@@ -967,33 +967,34 @@
                 "summary": "Ver todos os alunos de um ginásio",
                 "description": "Esta rota vai apresentar todos os alunos de um ginásio",
                 "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "Id do ginásio",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "ginasioId":{
-                                "type": "string"
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do ginásio",
+                        "required": true,
+                        "schema":{
+                            "properties": {
+                                "ginasioId":{
+                                    "type": "string"
+                                }
                             }
                         }
-                    }
-                }
-                ],
-                "requestBody":{
-                    "content":{
-                        "application/json":{
-                            "schema":{
-                                "properties": {
-                                    "userId":{
-                                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "userId":{
+                                            "type": "string"
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                },
+                ],
                 "tags": ["Alunos"],
                 "responses": {
                     "500":{
@@ -1004,7 +1005,7 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
+                                    "type": "array",
                                     "$ref": "#/components/schemas/Aluno"
                                 },
                                 "examples": {
