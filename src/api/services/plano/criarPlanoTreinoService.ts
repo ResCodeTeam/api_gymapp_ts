@@ -5,37 +5,37 @@ import { Bloco } from "../../Providers/blocoProvider";
 
 
 interface IPlano{
-    aluno_id : string;
-    treinador_id : string;
+    alunoId : string;
+    treinadorId : string;
     data : Date;
-    modalidade_id : string;
+    modalidadeId : string;
     blocos: Array<Bloco>;
 }
 
 export class CriarPlanoTreinoService{
-    async execute({ aluno_id, treinador_id, data, modalidade_id, blocos}: IPlano) {
+    async execute({ alunoId, treinadorId, data, modalidadeId, blocos}: IPlano) {
         console.log(blocos)
-        const exists_aluno = await checkUserIdExists(aluno_id);
+        const exists_aluno = await checkUserIdExists(alunoId);
         if (!exists_aluno) {
           throw new Error("O aluno não existe");
         }
 
-        const exists_treinador = await checkUserIdExists(treinador_id);
+        const exists_treinador = await checkUserIdExists(treinadorId);
         if (!exists_treinador) {
           throw new Error("Ginásio não existe");
         }
 
-        const exists_modalidade = await checkModalidadeExists(modalidade_id);
+        const exists_modalidade = await checkModalidadeExists(modalidadeId);
         if (!exists_modalidade) {
           throw new Error("A modalidade não existe");
         }
 
         const plano = await client.planos_treino.create({
           data:{
-            aluno_id: aluno_id,
-            treinador_id: treinador_id,
+            aluno_id: alunoId,
+            treinador_id: treinadorId,
             data: data,
-            modalidade_id: modalidade_id
+            modalidade_id: modalidadeId
           },
         })
 

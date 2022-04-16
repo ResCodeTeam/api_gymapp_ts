@@ -21,7 +21,6 @@ import { verificarAdmin } from "../middlewares/verificarAdmin";
 //import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { CriarNotificacaoMarcaController } from "../controllers/notificacoes/criarNotificacaoMarcaController";
 import { CriarNotificacaoGinasioController } from "../controllers/notificacoes/criarNotificacaoGinasioController";
-import { ObterAlunosGinasioController } from "../controllers/alunos/obterAlunosGinasioController";
 import { RegistarAlunoController } from "../controllers/alunos/registarAlunoController";
 import { RegistarAdminController } from "../controllers/admin/registarAdminControllers";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
@@ -34,6 +33,7 @@ import { VerUmGinasioController } from "../controllers/ginasios/verUmGinasioCont
 import { VerTodosGinasiosController } from "../controllers/ginasios/verTodosGinasiosController";
 import { VerUmaMarcaController } from "../controllers/marcas/verUmaMarcaController";
 import { VerTodasMarcasController } from "../controllers/marcas/verTodasMarcasController";
+import { VerTodasModalidadesController } from "../controllers/modalidades/verTodasModalidadesController";
 
 
 
@@ -46,7 +46,6 @@ const criarGinasioModalidadesController = new CriarGinasioModalidadesController(
 const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
 // const criarGostoController  = new CriarGostoController();
-const obterAlunosGinasioController = new ObterAlunosGinasioController();
 const registarAdminController = new RegistarAdminController();
 const  editarModalidadesController = new EditarModalidadesController();
 
@@ -59,6 +58,7 @@ const verUmGinasioController = new VerUmGinasioController();
 const verTodosGinasiosController = new VerTodosGinasiosController();
 const verUmaMarcaController = new VerUmaMarcaController();
 const verTodasMarcasController = new VerTodasMarcasController();
+const verTodasModalidadesController = new VerTodasModalidadesController();
 
 
 //#region Admin
@@ -66,29 +66,29 @@ adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdm
 //#endregion
 
 //#region Alunos
-adminRouter.post("/marca/alunos/", verificarAutenticacao, verificarAdmin ,registarAlunosController.handle);
-adminRouter.post("/alunos/ginasio/:id", obterAlunosGinasioController.handle);
+adminRouter.post("/marca/alunos/", verificarAutenticacao ,registarAlunosController.handle);
 //#endregion
 
 //#region Ginasios
-adminRouter.post("/marca/:id/ginasio/", verificarAutenticacao, registarMarcaGinasiosController.handle);
+adminRouter.post("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, registarMarcaGinasiosController.handle);
 adminRouter.delete("/ginasio/:id/", verificarAutenticacao, verificarAdmin, removerGinasioController.handle);
-adminRouter.get("/ginasio/:id/", verificarAutenticacao, verUmGinasioController.handle);
-adminRouter.get("/marca/:id/ginasio/", verificarAutenticacao, verTodosGinasiosController.handle);
+adminRouter.get("/ginasio/:id/", verificarAutenticacao, verificarAdmin, verUmGinasioController.handle);
+adminRouter.get("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, verTodosGinasiosController.handle);
 //#endregion
 
 //#region Marcas
-adminRouter.post("/marca/", verificarAutenticacao, registarUserMarcasController.handle);
-adminRouter.delete("/marca/:id", verificarAutenticacao, removerMarcaController.handle);
-adminRouter.get("/marca/:id/", verificarAutenticacao, verUmaMarcaController.handle);
-adminRouter.get("/marca/", verificarAutenticacao, verTodasMarcasController.handle);
+adminRouter.post("/marca/", verificarAutenticacao, verificarAdmin, registarUserMarcasController.handle);
+adminRouter.delete("/marca/:id", verificarAutenticacao, verificarAdmin, removerMarcaController.handle);
+adminRouter.get("/marca/:id/", verificarAutenticacao, verificarAdmin, verUmaMarcaController.handle);
+adminRouter.get("/marca/", verificarAutenticacao, verificarAdmin, verTodasMarcasController.handle);
 //#endregion
 
 //#region Modalidades
-adminRouter.post("/ginasio/:id/modalidades", verificarAutenticacao ,criarGinasioModalidadesController.handle);
-adminRouter.delete("/modalidades/:id", verificarAutenticacao ,removerModalidadesController.handle);
+adminRouter.post("/ginasio/:id/modalidades", verificarAutenticacao , verificarAdmin,criarGinasioModalidadesController.handle);
+adminRouter.delete("/modalidades/:id", verificarAutenticacao , verificarAdmin, removerModalidadesController.handle);
 //adminRouter.delete("/modalidades", editarModalidadesController.handle);
 adminRouter.put("/modalidades/:id", editarModalidadesController.handle);
+adminRouter.get("/ginasio/:id/modalidades/", verificarAutenticacao, verificarAdmin, verTodasModalidadesController.handle);
 //#endregion
 
 //#region Notificacoes
@@ -96,16 +96,16 @@ adminRouter.put("/modalidades/:id", editarModalidadesController.handle);
 const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController();
 const criarNotificacaoUserController = new CriarNotificacaoUserController();
-adminRouter.post("/notificacao/user/:id", verificarAutenticacao ,criarNotificacaoUserController.handle);
-adminRouter.post("/notificacao/marca/", verificarAutenticacao, criarNotificacaoMarcaController.handle);
-adminRouter.post("/notificacao/ginasio/", verificarAutenticacao ,criarNotificacaoGinasioController.handle);
+adminRouter.post("/notificacao/user/:id", verificarAutenticacao , verificarAdmin,criarNotificacaoUserController.handle);
+adminRouter.post("/notificacao/marca/", verificarAutenticacao, verificarAdmin, criarNotificacaoMarcaController.handle);
+adminRouter.post("/notificacao/ginasio/", verificarAutenticacao ,verificarAdmin, criarNotificacaoGinasioController.handle);
 //#endregion
 
 
 
 //#region Treinadores
-adminRouter.delete("/treinador/:id", verificarAutenticacao ,eliminarTreinadorController.handle);
-adminRouter.post("/marca/:id/treinadores", verificarAutenticacao, registarTreinadorController.handle);
+adminRouter.delete("/treinador/:id", verificarAutenticacao ,verificarAdmin, eliminarTreinadorController.handle);
+adminRouter.post("/marca/:id/treinadores", verificarAutenticacao, verificarAdmin, registarTreinadorController.handle);
 //#endregion
 
 export { adminRouter };

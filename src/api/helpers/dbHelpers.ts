@@ -304,6 +304,38 @@ let checkDonoGinasio= async(ginasioId : string, donoId : string) => {
 
     return true;
 }
+let checkDonoOuTreinadorGinasio= async(ginasioId : string, userId : string) => {
+    const search = await client.ginasio.findFirst({
+        where:{
+            ginasio_id : ginasioId
+        },
+        select : {
+            marca_id : true,
+            marcas : {
+                select : {
+                    dono_id: true,
+                }
+            }
+        }
+    })
+
+    if (search?.marcas.dono_id == userId) {
+        return true;
+    } else {
+    
+        const searchTreinador = await client.treinadores_marca.findMany({
+            where : {
+                marca_id : search.marca_id,
+                treinador_uid : userId
+            }
+        })
+        if (searchTreinador.length != 0) {
+            return true;
+        }
+    }
+    
+    return false;
+}
 let checkDonoMarca= async(marcaID : string, userId : string) => {
     const search = await client.marcas.findFirst({
         where:{
@@ -561,6 +593,8 @@ let checkInBlackList = async(token:string)=>{
     return tokens.length != 0;
 }
 
+
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -575,6 +609,7 @@ export {
     checkExercicioExists,
     getMarcaGym,
     checkDonoGinasio,
+    checkDonoOuTreinadorGinasio,
     checkDonoMarca,
     checkModalidadeNome,
     checkNomeMarca,
