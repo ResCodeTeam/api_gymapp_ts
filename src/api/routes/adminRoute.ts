@@ -78,7 +78,7 @@ adminRouter.post("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, r
 adminRouter.delete("/ginasio/:id/", verificarAutenticacao, verificarAdmin, removerGinasioController.handle);
 adminRouter.get("/ginasio/:id/", verificarAutenticacao, verificarAdmin, verUmGinasioController.handle);
 adminRouter.get("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, verTodosGinasiosController.handle);
-adminRouter.put("/ginasio/editar/:ginasioId",verificarAdmin,verificarAutenticacao,editarGinasioController.handle);
+adminRouter.put("/ginasio/editar/:ginasioId",verificarAutenticacao,verificarAdmin,editarGinasioController.handle);
 //#endregion
 
 //#region Marcas
