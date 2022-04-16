@@ -625,6 +625,57 @@
                         }
                     }          
                 }
+            },
+            "get":{
+                "summary": "Ver todas as modalidades de um ginásio",
+                "description": "Esta rota vai apresentar todas as modalidades de um ginásio",
+                "parameters": [
+                {
+                    "name": "ginasioId",
+                    "in": "path",
+                    "description": "Id da ginasio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Modalidades"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Ver Modalidades de um Ginásio":{
+                                        "value":{
+                                            "msg":"Operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
         },
         "/admin/modalidades/{modalidadeId}":{
