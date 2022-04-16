@@ -6,7 +6,7 @@ export class EditarExercicioController {
     async handle(request: Request, response: Response) {
         //Declarar Serviço
         const exercicioId = request.params.exercicios_id
-        const autorId = request.params.id
+        const autorId = response.locals.uid;
         const {nome, descricao, isTempo}= request.body;
         
         const editarExercicioService = new EditarExercicioService()
