@@ -1010,12 +1010,20 @@
                                 "examples": {
                                     "Ver Alunos Ginásio":{
                                         "value":{
-                                            "aluno": {
-                                                "uid" : "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                                "nome" : "Luiz Fernando Gonçalves",
-                                                "hashtag" : "LFG_01",
-                                                "imagem_url" : "Teste Ângela"
-                                            }
+                                            "alunos": [
+                                                {
+                                                    "uid" : "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                    "nome" : "Luiz Fernando Gonçalves",
+                                                    "hashtag" : "LFG_01",
+                                                    "imagem_url" : "Teste1 Ângela"
+                                                },
+                                                {
+                                                    "uid" : "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                    "nome" : "Luiz Fernando Gonçalves",
+                                                    "hashtag" : "LFG_01",
+                                                    "imagem_url" : "Teste2 Ângela"
+                                                }
+                                            ]
                                         }
                                     }
                                 }
