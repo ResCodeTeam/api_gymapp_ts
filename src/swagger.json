@@ -1005,17 +1005,18 @@
                             "application/json":{
                                 "schema":{
                                     "type": "object",
-                                    "$ref": "#/components/schemas/Alunos"
+                                    "$ref": "#/components/schemas/Aluno"
                                 },
                                 "examples": {
                                     "Ver Alunos Ginásio":{
                                         "value":{
-                                            "user": {
+                                            "aluno": {
                                                 "uid" : "1d2ee3a7-1505-4235-a089-1fa15b47080e",
                                                 "nome" : "Luiz Fernando Gonçalves",
                                                 "hashtag" : "LFG_01",
                                                 "imagem_url" : "Teste Ângela"
-                                              }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -5510,6 +5511,24 @@
                     },
                     "tipo":{
                         "type": "number"
+                    }
+                }
+            },
+            
+            "Aluno": {
+                "type": "object",
+                "properties": {
+                    "uid" : {
+                        "type": "string"
+                    },
+                    "nome" : {
+                        "type": "string"
+                    },
+                    "hashtag" : {
+                        "type": "string"
+                    },
+                    "imagem_url" : {
+                        "type": "string"
                     }
                 }
             }        
