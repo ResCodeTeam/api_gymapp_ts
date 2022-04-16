@@ -419,7 +419,7 @@
             "parameters": [{
                 "name": "marcaId",
                 "in": "path",
-                "description": "Id do exercicio",
+                "description": "Id da marca",
                 "required": true,
                 "schema":{
                     "properties": {
@@ -436,13 +436,13 @@
                     "application/json":{
                         "schema":{
                             "properties":{
+                                "adminId":{
+                                    "type":"string"
+                                },
                                 "nome":{
                                     "type": "string"
                                 },
                                 "cor":{
-                                    "type": "string"
-                                },
-                                "donoId":{
                                     "type": "string"
                                 },
                                 "logotipo":{
@@ -466,9 +466,9 @@
                                     "marcaId":"52cbfb83-69da-4de3-9cac-914ec4fbd4e3",
                                     "nome":"Galo",
                                     "cor":"vermelho",
-                                    "donoId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                    "mobilidade":true,
-                                    "isDeleted":false
+                                    "adminId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "mobilidade":true
+   
                                 }
                             }
                         }
