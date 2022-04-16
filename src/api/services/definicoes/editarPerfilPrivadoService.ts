@@ -18,9 +18,7 @@ export class EditarPerfilPrivadoService {
           is_privado: true,
         }
     })
-    return {
-      perfilEdited, 
-    };
+    return perfilEdited;
   }
 }
   

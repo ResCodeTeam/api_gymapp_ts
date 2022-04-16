@@ -19,6 +19,6 @@ export class RemoverDesafioService {
             }
         })
 
-        return desafioDeleted;
+        return {msg :"O desafio foi eliminado com sucesso"};
     }
 }

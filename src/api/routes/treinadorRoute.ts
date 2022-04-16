@@ -34,6 +34,7 @@ import { RemoverPlanoTreinoController } from "../controllers/plano/removerPlanoT
 import { VerMeusExerciciosController } from "../controllers/Exercicios/verMeusExerciciosController";
 import { ObterPlanoTreinoAlunoController } from "../controllers/plano/obterPlanoTreinoAlunoController";
 import { SubmissaoDesafioController } from "../controllers/desafios/submissoes/submissaoDesafioController";
+import { EditarPlanoTreinoController } from "../controllers/plano/editarPlanoTreinoController";
 
 
 //
@@ -64,11 +65,10 @@ const removerIsAceiteDesafiosController = new RemoverIsAceiteDesafiosController(
 const removerIsAceiteAvaliacoesController = new RemoverIsAceiteAvaliacoesController();
 const criarPlanoTreinoController = new CriarPlanoTreinoController();
 const verMeusExerciciosController = new VerMeusExerciciosController();
-//const criarPlanoTreinoController = new CriarPlanoTreinoController();
 const removerPlanoTreinoController = new RemoverPlanoTreinoController();
 const obterPlanoTreinoAlunoController = new ObterPlanoTreinoAlunoController()
 const submissaoDesafioController = new SubmissaoDesafioController();
-
+const editarPlanoTreinoController = new EditarPlanoTreinoController()
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
 //#endregion
@@ -114,6 +114,9 @@ treinadorRouter.get("/agenda/avaliacoes/",verificarAutenticacao, verAgendamentoA
 treinadorRouter.delete("/plano/:plano_id/", verificarAutenticacao,removerPlanoTreinoController.handle);
 treinadorRouter.get("/plano/:uid/:startDate/:endDate", verificarAutenticacao,obterPlanoTreinoAlunoController.handle);
 treinadorRouter.post("/planoTreino", verificarAutenticacao,criarPlanoTreinoController.handle);
+
+treinadorRouter.put("/plano/:id/", editarPlanoTreinoController.handle);
+
 //#endregion
 
 export { treinadorRouter };

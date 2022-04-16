@@ -23,7 +23,7 @@ class EditarPlanoTreinoRealizadoService {
       throw new Error("O plano de treino não lhe pertence");
     }
 
-    await client.planos_treino.update({
+    const update = await client.planos_treino.update({
      where: {
        plano_treino_id: planoId
       },
@@ -32,9 +32,7 @@ class EditarPlanoTreinoRealizadoService {
      }
     })
 
-    return {
-      msg: "Plano de treino realizado com sucesso",
-    };
+    return update;
   }
 }
 

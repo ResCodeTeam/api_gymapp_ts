@@ -76,6 +76,6 @@ export class CriarExercicioService{
         },
       }
     })
-    return {resp}
+    return resp;
   }
 }
