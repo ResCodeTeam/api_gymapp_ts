@@ -5454,6 +5454,59 @@
                 }          
             }
         }
+    },
+    "/ginasio/{ginasioId}/desafios/":{
+        "get":{
+            "summary": "Ver todas os desafios de um ginásio",
+            "description": "Esta rota vai apresentar todas os desafios de um ginásio",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "ginasioId",
+                    "in": "path",
+                    "description": "Id do ginásio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ],
+            "tags": ["Desafios"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Desafios de um Ginásio":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
     } 
     },        
     "components": {
