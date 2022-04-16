@@ -26,11 +26,11 @@ export class VerUmaMarcaService{
             throw new Error("A marca não lhe pertence");
         }
 
-        const marca = await client.marcas.findMany({
+        const marca = await client.marcas.findFirst({
             where:{
+                marca_id:marcaId,
                 dono_id:donoId,
                 isDeleted: false
-
             }
         })
         return marca;

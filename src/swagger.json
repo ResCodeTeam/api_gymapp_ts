@@ -1622,7 +1622,7 @@
                 "description": "Esta rota vai apresentar a informação de uma marca",
                 "parameters": [
                 {
-                    "name": "id",
+                    "name": "marcaId",
                     "in": "path",
                     "description": "Id da marca",
                     "required": true,

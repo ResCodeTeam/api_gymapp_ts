@@ -79,7 +79,7 @@ adminRouter.get("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, ve
 //#region Marcas
 adminRouter.post("/marca/", verificarAutenticacao, verificarAdmin, registarUserMarcasController.handle);
 adminRouter.delete("/marca/:id", verificarAutenticacao, verificarAdmin, removerMarcaController.handle);
-adminRouter.get("/marca/:id/", verificarAutenticacao, verificarAdmin, verUmaMarcaController.handle);
+adminRouter.get("/marca/:id/", verificarAutenticacao, verificarAdmin,verUmaMarcaController.handle);
 adminRouter.get("/marca/", verificarAutenticacao, verificarAdmin, verTodasMarcasController.handle);
 //#endregion
 
