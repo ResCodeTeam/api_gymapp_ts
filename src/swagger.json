@@ -1004,7 +1004,7 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "array",
+                                    "type": "object",
                                     "$ref": "#/components/schemas/Aluno"
                                 },
                                 "examples": {
