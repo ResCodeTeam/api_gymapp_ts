@@ -6,26 +6,29 @@ import { EditarMarcaService } from "../../services/marcas/editarMarcaService";
 export class EditarMarcaController{
     
     async handle (request: Request, response: Response){
-        const marcaId = request.params.id;
+        const marcaId = request.params.marcaId;
+        const adminId=response.locals.uid;
         
-        let {
+        const {
             nome,
-            donoId,
             cor,
             logotipo,
             mobilidade,
-            isDeleted
         }=request.body;
+        if(nome === undefined || cor === undefined || logotipo === undefined || mobilidade === undefined){
+            throw new Error("Pedido inválido")
+          }
 
-        const  editarMarcaController = new EditarMarcaService();
-    const resp = await editarMarcaController.execute({ 
+        const  editarMarcaService = new EditarMarcaService();
+        console.log(marcaId);
+    const resp = await editarMarcaService.execute({
+        adminId,
         marcaId,
         nome,
-        donoId,
         cor,
         logotipo,
         mobilidade,
-        isDeleted});
+        });
     response.json(resp);
     }
 }

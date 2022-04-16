@@ -35,6 +35,7 @@ import { VerTodosGinasiosController } from "../controllers/ginasios/verTodosGina
 import { VerUmaMarcaController } from "../controllers/marcas/verUmaMarcaController";
 import { VerTodasMarcasController } from "../controllers/marcas/verTodasMarcasController";
 import { VerTodasModalidadesController } from "../controllers/modalidades/verTodasModalidadesController";
+import { EditarGinasioController } from "../controllers/ginasios/editarGinasioController";
 
 
 
@@ -60,7 +61,7 @@ const verTodosGinasiosController = new VerTodosGinasiosController();
 const verUmaMarcaController = new VerUmaMarcaController();
 const verTodasMarcasController = new VerTodasMarcasController();
 const verTodasModalidadesController = new VerTodasModalidadesController();
-
+const editarGinasioController=new EditarGinasioController();
 
 //#region Admin
 adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdminController.handle);
@@ -68,8 +69,8 @@ adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdm
 
 //#region Alunos
 
-adminRouter.put("/marca/editar/:marcaId",verificarAutenticacao,editarMarcaController.handle);
-adminRouter.post("/marca/alunos/", verificarAutenticacao ,registarAlunosController.handle);
+adminRouter.put("/marca/editar/:marcaId",verificarAutenticacao,verificarAdmin,editarMarcaController.handle);
+adminRouter.post("/marca/alunos/", verificarAutenticacao ,verificarAdmin,registarAlunosController.handle);
 //#endregion
 
 //#region Ginasios
@@ -77,6 +78,7 @@ adminRouter.post("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, r
 adminRouter.delete("/ginasio/:id/", verificarAutenticacao, verificarAdmin, removerGinasioController.handle);
 adminRouter.get("/ginasio/:id/", verificarAutenticacao, verificarAdmin, verUmGinasioController.handle);
 adminRouter.get("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, verTodosGinasiosController.handle);
+adminRouter.put("/ginasio/editar/:ginasioId",verificarAutenticacao,verificarAdmin,editarGinasioController.handle);
 //#endregion
 
 //#region Marcas
