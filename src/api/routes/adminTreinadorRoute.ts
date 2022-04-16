@@ -14,7 +14,7 @@ const verDesafiosParticipantesController = new VerDesafiosParticipantesControlle
 const encerrarDesafiosController = new EncerrarDesafiosController();
 
 //#region Desafios
-adminTreinadorRouter.put("/desafio/:id", editarDesafio.handle);
+adminTreinadorRouter.put("/desafio/:id/editar", editarDesafio.handle);
 adminTreinadorRouter.delete("/desafio/:id", removerDesafio.handle);
 adminTreinadorRouter.post("/ginasio/:id/desafio/", criarDesafio.handle);
 adminTreinadorRouter.get("/desafios/", verDesafiosParticipantesController.handle);

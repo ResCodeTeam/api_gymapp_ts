@@ -8,11 +8,13 @@ interface IDesafio{
 export class EncerrarDesafiosService {
     async execute({isEncerrado, desafioId} : IDesafio){
 
+
         if (desafioId == null) {
             throw new Error("Impossível encerrar desafio.");
         }
-
-        if (isEncerrado == false) {
+        
+        if (isEncerrado == true) {
+            
             const verificarEncerrado = await client.desafios.findUnique({
                 where : {
                     desafio_id : desafioId
@@ -22,7 +24,8 @@ export class EncerrarDesafiosService {
                 }
             });
 
-            if(verificarEncerrado.isEncerrado == false){
+
+            if(verificarEncerrado.isEncerrado == true){
                 throw new Error("O desafio já se encontra encerrado.");
             }
             

@@ -42,7 +42,7 @@ const alterarVistoController= new AlterarVistoController();
 
 //#region Publicacoes
 allRouter.post("/posts", criarPostsController.handle);
-allRouter.put("/posts", editarPublicacaoController.handle);
+allRouter.put("/posts/post/:id", editarPublicacaoController.handle);
 allRouter.get("/posts/post/:id", verInfoPostInfoController.handle)
 allRouter.delete("/posts/post/:id", removerPostsController.handle);
 allRouter.get("/posts", verificarAutenticacao, verTodosPostsController.handle);

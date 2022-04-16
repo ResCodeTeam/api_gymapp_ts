@@ -5,9 +5,9 @@ export class EncerrarDesafiosController{
     async handle(request : Request, response : Response) {
         const desafioId = request.params.id;
         const { isEncerrado } = request.body;
-        const encerrarDesafiosController = new EncerrarDesafiosService();
+        const encerrarDesafiosService = new EncerrarDesafiosService();
 
-        const resp = await encerrarDesafiosController.execute({
+        const resp = await encerrarDesafiosService.execute({
             isEncerrado, 
             desafioId
         });

@@ -8,6 +8,7 @@ export class EditarDesafioController{
         
         const data = {
             nome: request.body.nome,
+            modalidade: request.body.modalidade,
             data_inicio: new Date(request.body.data_inicio),
             data_fim: new Date(request.body.data_fim),
             recompensa: request.body.recompensa,
