@@ -503,8 +503,109 @@
             }
         }
     },
-    
+    "/admin/ginasio/editar/{ginasioId}":{
+        "put":{
+            "summary": "Editar ginasio",
+            "description": "Esta rota vai editar um ginasio criado",
+            "tags": ["Ginasio"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "ginasioId",
+                "in": "path",
+                "description": "Id do ginasio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "ginasioId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "adminId":{
+                                    "type":"string"
+                                },
+                                "nome":{
+                                    "type": "string"
+                                },
+                                "rua":{
+                                    "type": "string"
+                                },
+                                "descricao":{
+                                    "type": "string"
+                                },
+                                "ginasioId":{
+                                    "type": "string"
+                                },
+                                "imagemUrl":{
+                                    "type": "boolean"
+                                },
+                                "lat":{
+                                    "type": "boolean"
+                                },
+                                "long":{
+                                    "type": "boolean"
+                                }
 
+                            }
+                        },
+                        "examples": {
+                            "Editar ginasio":{
+                                "value":{
+                                    "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                    "nome":"Ginásio 4",
+                                    "rua":"Rua das Castanhas",
+                                    "adminId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "descricao":"null",
+                                    "imagem_url":"teste",
+                                    "lat":"0",
+                                    "long":"0"
+   
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar ginasio":{
+                                    "value":{
+                                        "msg":"Ginasio editado com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
      "/admin/marca/{marcaId}/ginasio/":{
             "post":{
                 "summary": "Registo de ginasios",

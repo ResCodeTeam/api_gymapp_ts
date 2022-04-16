@@ -78,6 +78,7 @@ let checkAutorMarca = async(uId, marcaId)=>{
     
     return marca.length != 0
 }
+
 let checkPlanoTreinoExists = async(planoId: string)=>{
     const search = await client.planos_treino.findMany({
         where:{
@@ -107,7 +108,7 @@ let checkUserIdExists= async(userId : string)=>{
 }
 
 let getUserByID = async(userId:string)=>{
-    console.log(userId)
+
     const user = await client.users.findUnique({
         where:{
             uid: userId
@@ -129,13 +130,14 @@ let getFuncaoId=async(nome : string)=>{
     }
     return search?.funcao_id;
 }
-let getUserFuncao=async(uid: string)=>{
+async function getUserFuncao(uid: string) {
+    console.log(uid)
     const search = await client.users.findUnique({
-        where:{
+        where: {
             uid
         },
         select: {
-            funcao_id : true
+            funcao_id: true
         }
     });
 
