@@ -35,6 +35,7 @@ import { VerMeusExerciciosController } from "../controllers/Exercicios/verMeusEx
 import { ObterPlanoTreinoAlunoController } from "../controllers/plano/obterPlanoTreinoAlunoController";
 import { SubmissaoDesafioController } from "../controllers/desafios/submissoes/submissaoDesafioController";
 import { EditarPlanoTreinoController } from "../controllers/plano/editarPlanoTreinoController";
+import { verificarTreinador } from "../middlewares/verificarTreinador";
 
 
 //
@@ -115,7 +116,7 @@ treinadorRouter.delete("/plano/:plano_id/", verificarAutenticacao,removerPlanoTr
 treinadorRouter.get("/plano/:uid/:startDate/:endDate", verificarAutenticacao,obterPlanoTreinoAlunoController.handle);
 treinadorRouter.post("/planoTreino", verificarAutenticacao,criarPlanoTreinoController.handle);
 
-treinadorRouter.put("/plano/:id/", editarPlanoTreinoController.handle);
+treinadorRouter.put("/plano/:id/",verificarAutenticacao,verificarTreinador, editarPlanoTreinoController.handle);
 
 //#endregion
 
