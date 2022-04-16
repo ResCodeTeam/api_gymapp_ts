@@ -53,15 +53,12 @@ const  editarModalidadesController = new EditarModalidadesController();
 const removerMarcaController = new RemoverMarcaController();
 
 const registarTreinadorController = new RegistarTreinadorController();
-<<<<<<< HEAD
 const removerGinasioController = new RemoverGinasioController();
 const verUmGinasioController = new VerUmGinasioController();
 const verTodosGinasiosController = new VerTodosGinasiosController();
 const verUmaMarcaController = new VerUmaMarcaController();
 const verTodasMarcasController = new VerTodasMarcasController();
 const verTodasModalidadesController = new VerTodasModalidadesController();
-=======
->>>>>>> 5143981ab09afd0b6551eb6c3e6f6cece538de32
 
 
 //#region Admin
