@@ -36,6 +36,9 @@ import { VerUmaMarcaController } from "../controllers/marcas/verUmaMarcaControll
 import { VerTodasMarcasController } from "../controllers/marcas/verTodasMarcasController";
 import { VerTodasModalidadesController } from "../controllers/modalidades/verTodasModalidadesController";
 import { EditarGinasioController } from "../controllers/ginasios/editarGinasioController";
+import { RemoverAlunoController } from "../controllers/alunos/removerAlunoController";
+import { VerTreinadorGinasioService } from "../services/ginasios/obterTreinadoresGinasioService";
+import { VerTreinadorGinasioController } from "../controllers/ginasios/obterTreinadorGinasioController";
 
 
 
@@ -62,6 +65,8 @@ const verUmaMarcaController = new VerUmaMarcaController();
 const verTodasMarcasController = new VerTodasMarcasController();
 const verTodasModalidadesController = new VerTodasModalidadesController();
 const editarGinasioController=new EditarGinasioController();
+const removerAlunoController= new RemoverAlunoController();
+const verTreinadorGinasioController= new VerTreinadorGinasioController();
 
 //#region Admin
 adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdminController.handle);
@@ -71,6 +76,7 @@ adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdm
 
 adminRouter.put("/marca/editar/:marcaId",verificarAutenticacao,verificarAdmin,editarMarcaController.handle);
 adminRouter.post("/marca/alunos/", verificarAutenticacao ,verificarAdmin,registarAlunosController.handle);
+adminRouter.put("/aluno/remover/:uId",verificarAutenticacao,verificarAdmin, removerAlunoController.handle);
 //#endregion
 
 //#region Ginasios
@@ -79,6 +85,7 @@ adminRouter.delete("/ginasio/:id/", verificarAutenticacao, verificarAdmin, remov
 adminRouter.get("/ginasio/:id/", verificarAutenticacao, verificarAdmin, verUmGinasioController.handle);
 adminRouter.get("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, verTodosGinasiosController.handle);
 adminRouter.put("/ginasio/editar/:ginasioId",verificarAutenticacao,verificarAdmin,editarGinasioController.handle);
+adminRouter.get("/ginasio/treinador/ver/:marcaId", verificarAutenticacao,verificarAdmin,verTreinadorGinasioController.handle);
 //#endregion
 
 //#region Marcas
