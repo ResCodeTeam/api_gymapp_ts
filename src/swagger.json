@@ -6332,6 +6332,44 @@
             }
         }
     },
+    "/treinador/locaisMedida/":{
+        "get":{
+            "summary": "Ver os locais de medida de uma marca",
+            "description": "Esta rota vai apresentar todas os locais de medida de uma marca",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Locais de Medida"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Locais de Medida":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
     "/admin/marca/{marcaId}/localMedida":{
         "post":{
             "summary": "Criar local de medida",
