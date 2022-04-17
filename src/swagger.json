@@ -4814,7 +4814,26 @@
                         "basicAuth":[]
                     }
                 ],
-                "parameters": [{
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "in": "path",
+                        "description": "Id do aluno",
+                        "required": true,
+                        "schema":{
+                            "properties": {
+                                "uid":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "uid":{
+                                "value":"000d1e14-617e-423e-8a1a-f63d4fa5af6a"
+                            }
+                        }
+                    },
+                    {
                     "name": "startDate",
                     "in": "path",
                     "description": "data de inicio",
