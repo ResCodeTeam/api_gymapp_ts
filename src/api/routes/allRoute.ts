@@ -22,6 +22,8 @@ import { VerDesafiosDisponiveisController } from "../controllers/desafios/verDes
 import { RemoverGostoPublicacaoController } from "../controllers/posts/gostosPosts/removerGostoController";
 import { CriarGostoCommentController } from "../controllers/posts/gostosComments/criarGostoCommentController";
 import { RemoverGostoCommentController } from "../controllers/posts/gostosComments/removerGostoCommentController";
+import { RemoverComentarioController } from "../controllers/posts/comments/removerComentarioController";
+import { VerTodasAtividadesController } from "../controllers/atividades/verTodasAtividadesController";
 
 
 const allRouter = express.Router();
@@ -48,6 +50,8 @@ const verDesafiosDisponiveisController = new VerDesafiosDisponiveisController();
 const removerGostoPublicacaoController = new RemoverGostoPublicacaoController();
 const criarGostoCommentController = new CriarGostoCommentController();
 const removerGostoCommentController = new RemoverGostoCommentController();
+const removerComentarioController = new RemoverComentarioController();
+const verTodasAtividadesController = new VerTodasAtividadesController();
 
 //#region Publicacoes
 allRouter.post("/posts", verificarAutenticacao, criarPostsController.handle);
@@ -58,10 +62,12 @@ allRouter.delete("/posts/:id", verificarAutenticacao, removerPostsController.han
 allRouter.post("/posts/:id/gostos", verificarAutenticacao, criarGostoController.handle)
 allRouter.delete("/posts/:id/gostos", verificarAutenticacao, removerGostoPublicacaoController.handle)
 allRouter.post("/posts/:id/comentarios/", verificarAutenticacao, criarComentarioController.handle);
+allRouter.delete("/posts/:publicacaoId/comentario/:comentarioId", verificarAutenticacao, removerComentarioController.handle);
 allRouter.post("/posts/:publicacaoId/comentario/:comentarioId/gosto", verificarAutenticacao, criarGostoCommentController.handle);
 allRouter.delete("/posts/:publicacaoId/comentario/:comentarioId/gosto", verificarAutenticacao, removerGostoCommentController.handle);
 //#endregion
 
+allRouter.get("/atividades/",verificarAutenticacao, verTodasAtividadesController.handle);
 
 //#region Perfil
 allRouter.put("/perfil", verificarAutenticacao, editarPerfilController.handle);
