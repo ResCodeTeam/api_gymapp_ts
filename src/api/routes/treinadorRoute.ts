@@ -86,7 +86,7 @@ treinadorRouter.get("/exercicios/treinador", verificarAutenticacao, verificarTre
 //#endregion
 
 //#region Treinos
-treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
+treinadorRouter.get("/treinos/", verificarAutenticacao,verificarTreinador,verTodosTreinosDosAlunosController.handle);
 //#endregion
 
 //#region Desafios
