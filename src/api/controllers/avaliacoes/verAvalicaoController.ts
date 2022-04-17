@@ -1,10 +1,6 @@
 import { Request, Response } from "express";
 import { VerAvaliacoesService } from "../../services/avaliacoes/verAvaliacaoService";
 
-
-
-
-
 export class VerAvaliacoesController{
  
     async handle(request:Request,response:Response){

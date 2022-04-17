@@ -15,7 +15,7 @@ export class EditarPerfilPrivadoService {
           usersuid: uId
         },
         data : {
-          is_privado: true,
+          is_privado
         }
     })
     return perfilEdited;
