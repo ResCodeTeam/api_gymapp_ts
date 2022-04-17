@@ -1433,9 +1433,9 @@
             }
         }
     },
-    "/treinador/exercicios":{
+    "/treinador/exercicios/treinador":{
         "get":{
-            "summary": "Ver todos os exercicios",
+            "summary": "Ver todos os exercicios de um treinador",
             "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
            
             "tags": ["Exercicios"],
