@@ -222,7 +222,6 @@ model ginasio {
   agendamentos_desafios   agendamentos_desafios[]
   aluno_ginasio           aluno_ginasio[]
   desafios                desafios[]
-  local_medidas_ginasio   local_medidas_ginasio[]
   modalidades_ginasio     modalidades_ginasio[]
   publicacoes             publicacoes[]
   submissoes_desafios     submissoes_desafios[]
@@ -268,21 +267,21 @@ model imagens_publicacao {
 }
 
 model locais_medidas {
-  local_medida_id       String                  @id @default(uuid())
-  descricao             String                  @db.VarChar(255)
-  unilado               Boolean
-  local_medidas_ginasio local_medidas_ginasio[]
-  medidas_avaliacao     medidas_avaliacao[]
+  local_medida_id     String                @id @default(uuid())
+  descricao           String                @db.VarChar(255)
+  unilado             Boolean
+  local_medidas_marca local_medidas_marca[]
+  medidas_avaliacao   medidas_avaliacao[]
 }
 
-model local_medidas_ginasio {
+model local_medidas_marca {
   local_medida_id String         @default(uuid())
-  ginasio_id      String
-  ginasio         ginasio        @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fklocal_medi973208")
+  marca_id        String
+  marca           marcas         @relation(fields: [marca_id], references: [marca_id], onDelete: NoAction, onUpdate: NoAction, map: "fklocal_medi973208")
   locais_medidas  locais_medidas @relation(fields: [local_medida_id], references: [local_medida_id], onDelete: NoAction, onUpdate: NoAction, map: "fklocal_medi780121")
 
 
-  @@id([local_medida_id, ginasio_id])
+  @@id([local_medida_id, marca_id])
 }
 
 model localidades {
@@ -295,17 +294,18 @@ model localidades {
 }
 
 model marcas {
-  marca_id          String              @id @default(uuid())
-  dono_id           String
-  nome              String              @db.VarChar(255)
-  mobilidade        Boolean
-  cor               String              @db.VarChar(255)
-  logotipo          String              @db.VarChar(255)
-  isDeleted         Boolean             @default(false)
-  users             users               @relation(fields: [dono_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkmarcas260834")
-  alunos_marca      alunos_marca[]
-  ginasio           ginasio[]
-  treinadores_marca treinadores_marca[]
+  marca_id            String                @id @default(uuid())
+  dono_id             String
+  nome                String                @db.VarChar(255)
+  mobilidade          Boolean
+  cor                 String                @db.VarChar(255)
+  logotipo            String                @db.VarChar(255)
+  isDeleted           Boolean               @default(false)
+  users               users                 @relation(fields: [dono_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkmarcas260834")
+  alunos_marca        alunos_marca[]
+  ginasio             ginasio[]
+  local_medidas_marca local_medidas_marca[]
+  treinadores_marca   treinadores_marca[]
 }
 
 model medidas_avaliacao {
