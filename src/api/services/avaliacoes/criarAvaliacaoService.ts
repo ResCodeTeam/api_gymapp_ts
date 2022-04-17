@@ -86,10 +86,7 @@ interface ICriarAvaliacaoService{
 
 
         }
-            return {
-            msg: "A avaliacao foi criada com sucesso!",
-        };
-    }
-    }
-
+            return avaliacao;
+      }
+  }
 }

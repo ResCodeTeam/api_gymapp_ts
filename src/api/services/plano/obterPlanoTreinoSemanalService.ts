@@ -11,7 +11,7 @@ export class ObterPlanoTreinoSemanalService{
     if(startDate.getTime()===endDate.getTime() || startDate.getTime() > endDate.getTime()){
       throw new Error("Intervalo de tempo invalido")
     }
-//TODO:series
+
     const planos = await client.planos_treino.findMany({
       where:{
         aluno_id:uid,
@@ -36,7 +36,6 @@ export class ObterPlanoTreinoSemanalService{
             nome:true
           }
         },
-
         bloco_treino:{
           select:{
             nome:true,
@@ -77,7 +76,6 @@ export class ObterPlanoTreinoSemanalService{
         },
       }
     })
-    
-    return {planos}
+    return planos;
   }
 }

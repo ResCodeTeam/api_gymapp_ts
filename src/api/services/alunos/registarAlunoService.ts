@@ -135,7 +135,7 @@ export class RegistarAlunoService {
             usersuid:aluno.uid    
         }
     })
-      return { msg: "Aluno Registado",aluno };
+      return aluno;
     } catch (e) {
       client.users.delete({
         where: {

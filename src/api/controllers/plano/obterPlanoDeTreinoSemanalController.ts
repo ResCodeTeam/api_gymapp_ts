@@ -9,7 +9,7 @@ export class ObterPlanoTreinoSemanalController{
 
     const startDateParsed = new Date(startDate)
     const endDateParsed =new Date(endDate)
-    console.log(startDateParsed,endDateParsed)
+
     const obterPlanoTreinoSemanalService = new ObterPlanoTreinoSemanalService();
     const resp = await obterPlanoTreinoSemanalService.execute(uid,startDateParsed,endDateParsed)
     response.json(resp)

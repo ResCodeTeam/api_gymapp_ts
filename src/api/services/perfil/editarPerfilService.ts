@@ -44,10 +44,7 @@ export class EditarPerfilService {
           imagem_url:imagemUrl
         }
     })
-    return {
-      user,
-      
-    };
+    return user;
   }
 }
   

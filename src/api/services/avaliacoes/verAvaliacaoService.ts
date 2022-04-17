@@ -17,9 +17,7 @@ export class VerAvaliacoesService{
                 isDeleted:false
                 
             },
-                })
-        return {
-            avaliacao
-        }
+        })
+        return avaliacao;
     }
 }

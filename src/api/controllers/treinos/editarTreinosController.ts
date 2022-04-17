@@ -3,15 +3,17 @@ import { EditarTreinosService } from "../../services//treinos/editarTreinosServi
 
 export class EditarTreinosController{
     async handle(request : Request, response : Response) {
-        const uId = request.params.uId;
+        const uId = response.locals.uid;
         const treinoId = request.params.treino_id;
         
         let { atividadeId, modalidadeId, duracao, calorias, distancia } = request.body;
+        if(atividadeId === undefined || modalidadeId === undefined || duracao === undefined || calorias === undefined || distancia === undefined){
+            throw new Error("Pedido inválido")
+        }
 
         const data = new Date(Date.now());
         const editarTreinosService = new EditarTreinosService();
-        console.log(uId)
-        console.log(treinoId)
+
         const resp = await editarTreinosService.execute({
             uId,
             treinoId,

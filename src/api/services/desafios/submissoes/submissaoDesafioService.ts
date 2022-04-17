@@ -49,6 +49,6 @@ console.log(gymDesafio," | ", ginasioId)
       }
     })
 
-    return { submissao}
+    return submissao;
   }
 }

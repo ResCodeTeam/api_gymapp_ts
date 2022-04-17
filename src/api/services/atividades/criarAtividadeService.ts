@@ -11,13 +11,13 @@ class CriarAtividadeService {
     icon
   }: IAtividadeService) {
 
-    await client.atividades.create({
+    const atividade = await client.atividades.create({
       data: {
         descricao,
         icon,    
       },
     });
-    return { msg: "A atividade foi criada com sucesso!" };
+    return atividade;
   }
 }
 export { CriarAtividadeService };

@@ -4,7 +4,7 @@ import { VerInfoPostService } from "../../../services/posts/obter/verInfoPostSer
 export class VerInfoPostController{
     async handle(request:Request, response:Response){
         const postId = request.params.id;
-        console.log(postId)
+
         const verInfoPostService = new VerInfoPostService();
         const resp = await verInfoPostService.execute(postId)
         

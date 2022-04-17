@@ -178,9 +178,6 @@
                         "application/json":{
                             "schema":{
                                 "properties": {
-                                    "uid":{
-                                        "type": "string"
-                                    },
                                     "ginasioId":{
                                         "type": "string"
                                     },
@@ -192,7 +189,6 @@
                             "examples": {
                                 "Inserir Agendamento de Avaliacoes":{
                                     "value": {
-                                        "uid":"00b27390-ad57-47de-ac18-4c2a490caa97",
                                         "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
                                         "treinadorId": "6d112678-f40c-43bc-a80a-866f12fa26f2"
                                     }
@@ -257,9 +253,6 @@
                         "application/json":{
                             "schema":{
                                 "properties": {
-                                    "uid":{
-                                        "type": "string"
-                                    },
                                     "ginasioId":{
                                         "type": "string"
                                     },
@@ -271,7 +264,6 @@
                             "examples": {
                                 "Inserir Agendamento de Desafios":{
                                     "value": {
-                                        "uid":"00b27390-ad57-47de-ac18-4c2a490caa97",
                                         "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
                                         "treinadorId": "6d112678-f40c-43bc-a80a-866f12fa26f2"
                                     }
@@ -340,7 +332,7 @@
                             "examples": {
                                 "Inserir Marca":{
                                     "value": {
-                                        "nome":"Fitness-Up",
+                                        "nome":"Galopa",
                                         "mobilidade":true,
                                         "cor": "vermelho",
                                         "logotipo":"teste"
@@ -376,17 +368,258 @@
                         }
                     }          
                 }
+            },
+            "get":{
+                "summary": "Ver todas as marcas de um admin",
+                "description": "Esta rota vai apresentar todas as marcas de um admin",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Marca"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Ver Marcas de um Admin":{
+                                        "value":{
+                                            "msg":"Operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
         },
-        "/admin/marca/{marcaId}/ginasio/":{
+        "/admin/marca/editar/{marcaId}":{
+        "put":{
+            "summary": "Editar Marca",
+            "description": "Esta rota vai editar uma Marca criada",
+            "tags": ["Marca"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "marcaId",
+                "in": "path",
+                "description": "Id da marca",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "marcaId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "adminId":{
+                                    "type":"string"
+                                },
+                                "nome":{
+                                    "type": "string"
+                                },
+                                "cor":{
+                                    "type": "string"
+                                },
+                                "logotipo":{
+                                    "type": "string"
+                                },
+                                "marcaId":{
+                                    "type": "string"
+                                },
+                                "mobilidade":{
+                                    "type": "boolean"
+                                },
+                                "isDeleted":{
+                                    "type": "boolean"
+                                }
+
+                            }
+                        },
+                        "examples": {
+                            "Editar Marca":{
+                                "value":{
+                                    "marcaId":"52cbfb83-69da-4de3-9cac-914ec4fbd4e3",
+                                    "nome":"Galo",
+                                    "cor":"vermelho",
+                                    "adminId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "mobilidade":true
+   
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Marca":{
+                                    "value":{
+                                        "msg":"Marca editada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/admin/ginasio/editar/{ginasioId}":{
+        "put":{
+            "summary": "Editar ginasio",
+            "description": "Esta rota vai editar um ginasio criado",
+            "tags": ["Ginasio"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "ginasioId",
+                "in": "path",
+                "description": "Id do ginasio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "ginasioId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "adminId":{
+                                    "type":"string"
+                                },
+                                "nome":{
+                                    "type": "string"
+                                },
+                                "rua":{
+                                    "type": "string"
+                                },
+                                "descricao":{
+                                    "type": "string"
+                                },
+                                "ginasioId":{
+                                    "type": "string"
+                                },
+                                "imagemUrl":{
+                                    "type": "boolean"
+                                },
+                                "lat":{
+                                    "type": "boolean"
+                                },
+                                "long":{
+                                    "type": "boolean"
+                                }
+
+                            }
+                        },
+                        "examples": {
+                            "Editar ginasio":{
+                                "value":{
+                                    "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                    "nome":"Ginásio 4",
+                                    "rua":"Rua das Castanhas",
+                                    "adminId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "descricao":"null",
+                                    "imagem_url":"teste",
+                                    "lat":"0",
+                                    "long":"0"
+   
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar ginasio":{
+                                    "value":{
+                                        "msg":"Ginasio editado com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+     "/admin/marca/{marcaId}/ginasio/":{
             "post":{
                 "summary": "Registo de ginasios",
                 "description": "Esta rota vai registar na base de dados um ginasio que esta associado a uma marca",
                 "tags": ["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "marcaId",
                     "in": "path",
-                    "description": "Id do ginasio",
+                    "description": "Id da marca",
                     "required": true,
                     "schema":{
                         "properties": {
@@ -466,6 +699,57 @@
                         }
                     }          
                 }
+            },
+            "get":{
+                "summary": "Ver todos os ginásios de uma marca",
+                "description": "Esta rota vai apresentar todos os ginásios de uma marca",
+                "parameters": [
+                {
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "Id da marca",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "marcaId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Marca"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Ver Ginásios de uma Marca":{
+                                        "value":{
+                                            "msg":"Operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
         },
         "/admin/ginasio/{ginasioId}/modalidades":{
@@ -473,6 +757,11 @@
                 "summary": "Registo das modalidades do ginásio",
                 "description": "Esta rota vai registar na base de dados uma modalidade de um ginásio em específico",
                 "tags": ["Modalidades"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "ginasioId",
                     "in": "path",
@@ -502,7 +791,7 @@
                             "examples": {
                                 "Inserir Modalidade":{
                                     "value": {
-                                        "nome":"Crossfit",
+                                        "nome":"Caminhada",
                                         "imagemUrl":"teste"
                                     }
                                 }
@@ -536,6 +825,57 @@
                         }
                     }          
                 }
+            },
+            "get":{
+                "summary": "Ver todas as modalidades de um ginásio",
+                "description": "Esta rota vai apresentar todas as modalidades de um ginásio",
+                "parameters": [
+                {
+                    "name": "ginasioId",
+                    "in": "path",
+                    "description": "Id da ginasio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Modalidades"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Ver Modalidades de um Ginásio":{
+                                        "value":{
+                                            "msg":"Operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
         },
         "/admin/modalidades/{modalidadeId}":{
@@ -543,6 +883,11 @@
                 "summary": "Remover modalidades",
                 "description": "Esta rota vai apagar na base de dados uma modalidade de um ginásio em específico",
                 "tags": ["Modalidades"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "modalidadeId",
                     "in": "path",
@@ -638,6 +983,11 @@
                 "summary": "Editar exercicios",
                 "description": "Esta rota vai editar na base de dados um exercicio",
                 "tags": ["Exercicios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "exercicioId",
                     "in": "path",
@@ -650,19 +1000,8 @@
                             }
                         }
                     }
-                },
-                {
-                    "name": "autorId",
-                    "in": "path",
-                    "description": "Id do autor",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "autorId":{
-                                "type":"string"
-                            }
-                        }
-                    }}
+                }
+                
                 ],
                 "requestBody": {
                     "content": {
@@ -892,6 +1231,11 @@
                 "summary": "Criar Desafio",
                 "description": "Este pedido serve para criar um desafio",
                 "tags": ["Desafios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                         "name": "ginasioId",
                         "in": "path",
@@ -911,9 +1255,6 @@
                         "application/json":{
                             "schema":{
                                 "properties": {
-                                    "criadorId":{
-                                        "type": "string"
-                                    },
                                     "nome":{
                                         "type": "string"
                                     },
@@ -956,7 +1297,6 @@
                             "examples": {
                                 "Desafio": {
                                     "value": {
-                                        "criadorId": "332b256d-d646-4877-8a4f-f5538472e0d4",
                                         "nome": "Caminhar",
                                         "modalidadeId": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                         "dataInicio": "2022-03-23 15:51:45.663",
@@ -1124,8 +1464,7 @@
                             "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
                         }
                     }
-                }
-                ],
+                }],
                 "tags": ["Perfil"],
                 "requestBody":{
                     "content":{
@@ -1233,6 +1572,11 @@
                         }
                     }
                 }
+                ],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
                 ],
                 "tags": ["Desafios"],
                 "responses": {
@@ -1381,26 +1725,73 @@
             }
         }
     },
-    "/treinador/exercicios/{autorId}":{
+    "/treinador/avaliacoes/":{
+        "post":{
+            "summary": "Registo de avaliacao",
+            "description": "Esta rota vai registar na base de dados avaliacao",
+            "tags": ["Avaliacoes"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "requestBody":{
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "Avaliacao": {
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/avaliacao"
+                                    
+                                } 
+                            }
+                        }
+                        
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Criar avaliacao":{
+                                    "value":{
+                                        "msg":"avaliacao criada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+                
+            }
+        }
+    },
+    "/treinador/exercicios":{
         "get":{
             "summary": "Ver todos os exercicios",
             "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
-            "parameters": [
-            {
-                "name": "autorId",
-                "in": "path",
-                "description": "Id do autor para ver os exercicios criados",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "autorId":{
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-            ],
+           
             "tags": ["Exercicios"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"
@@ -1418,12 +1809,17 @@
                     }
                 }
             }
-        }
+        }     
     },
     "/posts/post/{id}":{
         "get":{
             "summary": "Ver toda a informação de um post",
             "description": "Esta rota vai apresentar todas as informações de um post",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [
             {
                 "name": "id",
@@ -1545,6 +1941,11 @@
     },"delete":{
         "summary": "Remover publicação",
         "description": "Esta rota vai permitir remover uma publicação",
+        "security": [
+            {
+                "basicAuth":[]
+            }
+        ],
         "parameters": [
         {
             "name": "id",
@@ -1587,12 +1988,83 @@
             }
         }
     }
-}},
-        "/admin/treinador/:id":{
+},
+        "put":{
+            "summary": "Editar informação de uma publicação",
+            "description": "Esta rota vai permitir editar as informações de um post",
+            "tags": ["Posts"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "publicacaoId":{
+                                    "type": "string"
+                                },
+                                "descricao":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Editar Treino":{
+                                "value":{                                   
+                                    "publicacaoId": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
+                                    "descricao":"Proteína da PROZIS #PROZIS #VACACIONES #VIDA"                                   
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Posts"
+                            },
+                            "examples": {
+                                "Editar Exercicio":{
+                                    "value":{
+                                        "publicação": {
+                                            "publicacao_id": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
+                                            "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "data": "2022-04-14T12:40:32.236Z",
+                                            "descricao": "teste2",
+                                            "tipo": 3,
+                                            "ginasio_id": null,
+                                            "isDeleted": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+        "/admin/treinador/{treinador_id}":{
             "delete":{
                 "summary": "Remover treinador",
                 "description": "Esta rota vai remover um treinador",
-                "tags": ["Funcionarios"],
+                "tags": ["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "treinador_id",
                     "in": "path",
@@ -1634,11 +2106,16 @@
                 }
             }
         },
-        "/admin/marca/:id":{
+        "/admin/marca/{marcaId}":{
             "delete":{
                 "summary": "Remover marca",
                 "description": "Esta rota vai remover uma marca de um ginásio",
                 "tags": ["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "marcaId",
                     "in": "path",
@@ -1678,12 +2155,68 @@
                         }
                     }
                 }
+            },
+            "get":{
+                "summary": "Ver a informação de uma marca",
+                "description": "Esta rota vai apresentar a informação de uma marca",
+                "parameters": [
+                {
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "Id da marca",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "marcaId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Marca"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Ver Ginasio":{
+                                        "value":{
+                                            "msg":"Operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
         },
         "/admin/marca/{marca_id}/treinadores":{
             "post":{
                 "summary": "Registar Treinadores",
                 "description": "Esta rota permite registar treinadores numa marca",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "marca_id",
                     "in": "path",
@@ -1782,6 +2315,11 @@
                 "post":{
                     "summary": "Adicionar gosto a uma publicação",
                     "description": "Esta rota permite adicionar uma publicação ao gostos",
+                    "security": [
+                        {
+                            "basicAuth":[]
+                        }
+                    ],
                     "parameters": [{
                         "name": "post_id",
                         "in": "path",
@@ -1831,8 +2369,7 @@
                                             "value":{
                                                 "Gostos": {
                                                     "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
-                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
-                                                    "criador_id": "cd948b87-6860-4844-af7a-6df37278732d"
+                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                                 }
                                             }
                                         }
@@ -1848,6 +2385,12 @@
                 "summary": "Criar um exercicio",
                 "description": "Esta rota permite adicionar um exercicio à base de dados",
                 "tags": ["Exercicios"],
+                  "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -2000,6 +2543,11 @@
                 "summary": "Registar um Admin",
                 "description": "Esta rota permite efetuar o registo de um administrador",
                 "tags": ["Administradores"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -2086,6 +2634,11 @@
             "post":{
                 "summary": "Notificação para user",
                 "description": "Esta rota permite efetuar o registo de um administrador",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
                     "name": "destino_id",
                     "in": "path",
@@ -2110,9 +2663,6 @@
                         "application/json":{
                             "schema":{
                                 "properties":{
-                                    "origemId":{
-                                        "type": "string"
-                                    },
                                     "conteudo":{
                                         "type": "string"
                                     },
@@ -2127,7 +2677,6 @@
                             "examples": {
                                 "Criar Notificação":{
                                     "value":{
-                                        "origemId":"6202549c-4fda-46cd-afcd-65160b577baf",
                                         "conteudo":"Teste",
                                         "data":"2022-03-21",
                                         "tipo":0
@@ -2154,7 +2703,6 @@
                                         "value": {
                                             "notificacao": {
                                                 "noti_id": "018aec31-d1c1-407c-9b5b-78e1d7929a0f",
-                                                "origem_uid": "cacc87bb-a2dd-4af3-89c6-2ceedf33930a",
                                                 "conteudo": "Teste",
                                                 "data": "2022-04-01T15:16:33.695Z",
                                                 "tipo": 0
@@ -2168,8 +2716,7 @@
                         
                     }
                 }
-            }
-                    
+            }            
         },
         "/adminTreinador/desafio/{desafioId}":{
             "delete":{
@@ -2228,6 +2775,11 @@
                 "summary": "Registar um aluno",
                 "description": "Esta rota permite efetuar o registo de um aluno numa marca ou ginasio",
                 "tags": ["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -2318,6 +2870,11 @@
                 "summary": "Adicionar imagem a um exercicio",
                 "description": "Esta rota permite adicionar uma imagem a um exercicio",
                 "tags": ["Exercicios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -2377,26 +2934,16 @@
                 }
             }
         },
-        "/aluno/user/{uid}/treinos":{
+        "/aluno/user/treinos":{
             "post":{
                 "summary": "Criar treino",
                 "description": "Esta rota vai criar na base de dados os treinos",
                 "tags": ["Treinos"],
-                "parameters":[
-                {
-                    "name": "uid",
-                    "in": "path",
-                    "description": "Id do utilizador",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "uid":{
-                                "type": "string"
-                            }
-                        }
+                "security": [
+                    {
+                        "basicAuth":[]
                     }
-                }
-            ],
+                ],
             "requestBody":{
                 "content": {
                     "application/json":{
@@ -2529,22 +3076,12 @@
             "delete":{
                 "summary": "Remover imagens de exercicio",
                 "description": "Esta rota permite remover uma imagem a um exercicio",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
-                    "name": "treinadorId",
-                    "in": "path",
-                    "description": "id do treinador",
-                    "required": true,
-                    "schema":{
-                        "type": "string"
-                    },
-                    "examples": {
-                        "Treinador Id":{
-                            "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                        }
-                    },
-                    "style": "simple"
-
-                },{
                     "name": "exercicioId",
                     "in": "path",
                     "description": "id do exercicio",
@@ -2755,25 +3292,18 @@
                 }
             }
         },
-        "/aluno/{uId}/treino/{treinoId}/":{
+        "/aluno/treino/{treinoId}/":{
             "delete":{
                 "summary": "Remover treino",
                 "description": "Esta rota vai remover da base de dados os treinos criados",
                 "tags": ["Treinos"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters":[
                 {
-                    "name": "uId",
-                    "in": "path",
-                    "description": "Id do utilizador",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "uId":{
-                                "type": "string"
-                            }
-                        }
-                    }
-                },{
                     "name": "treinoId",
                     "in": "path",
                     "description": "Id do treino",
@@ -2815,26 +3345,16 @@
                 }
             }
         }
-        ,"/treinador/{treinadorId}/exercicios/{exercicioId}/musculos/{musculoId}":{
+        ,"/treinador/exercicios/{exercicioId}/musculos/{musculoId}":{
             "post":{
                 "summary": "Adicionar musculo a um exercicio",
                 "description": "Esta rota permite adicionar um musculo a um exercicio",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [{
-                    "name": "treinadorId",
-                    "in": "path",
-                    "description": "id do treinador",
-                    "required": true,
-                    "schema":{
-                        "type": "string"
-                    },
-                    "examples": {
-                        "Treinador Id":{
-                            "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                        }
-                    },
-                    "style": "simple"
-
-                },{
                     "name": "exercicioId",
                     "in": "path",
                     "description": "id do exercicio",
@@ -2900,22 +3420,12 @@
         "delete":{
             "summary": "Remover musculo de um exercicio",
             "description": "Esta rota permite remover um musculo de um exercicio",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
-                "name": "treinadorId",
-                "in": "path",
-                "description": "id do treinador",
-                "required": true,
-                "schema":{
-                    "type": "string"
-                },
-                "examples": {
-                    "Treinador Id":{
-                        "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                    }
-                },
-                "style": "simple"
-
-            },{
                 "name": "exercicioId",
                 "in": "path",
                 "description": "id do exercicio",
@@ -2929,8 +3439,8 @@
                     }
                 },
                 "style": "simple"
-
-            },{
+            },
+            {
                 "name": "musculoId",
                 "in": "path",
                 "description": "id do musculo a adicionar",
@@ -2944,8 +3454,8 @@
                     }
                 },
                 "style": "simple"
-
-            }],
+            }
+        ],
             "tags": ["Exercicios"],
             "responses": {
                 "500":{
@@ -3105,11 +3615,16 @@
             }
         }
     },
-    "/aluno/agenda/desafios/{agendamentoId}/agendamento/{uId}/":{
+    "/aluno/agenda/desafios/{agendamentoId}/agendamento/":{
         "delete":{
             "summary": "Remover agendamento de um desafio",
             "description": "Esta rota vai apagar na base de dados um agendamento de um desafio",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "agendamentoId",
                 "in": "path",
@@ -3122,18 +3637,6 @@
                         }
                     }
                 }
-            },{
-                "name": "uId",
-                "in": "path",
-                "description": "Id do utilizador",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "uId":{
-                            "type": "string"
-                        }
-                    }
-                } 
             }],
             "responses": {
                 "500":{
@@ -3163,11 +3666,16 @@
             }
         }
     },
-    "/aluno/agenda/avaliacao/{agendamentoId}/agendamento/{uId}/":{
+    "/aluno/agenda/avaliacao/{agendamentoId}/agendamento/":{
         "delete":{
             "summary": "Remover agendamento de uma avaliação",
             "description": "Esta rota vai apagar na base de dados um agendamento de uma avaliação",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "agendamentoId",
                 "in": "path",
@@ -3180,18 +3688,6 @@
                         }
                     }
                 }
-            },{
-                "name": "uId",
-                "in": "path",
-                "description": "Id do utilizador",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "uId":{
-                            "type": "string"
-                        }
-                    }
-                } 
             }],
             "responses": {
                 "500":{
@@ -3226,6 +3722,11 @@
             "summary": "Ver todos os agendamentos de desafios",
             "description": "Esta rota vai obter todos os agendamentos de todos os desafios",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -3259,6 +3760,11 @@
             "summary": "Ver todos os agendamentos de avaliacoes",
             "description": "Esta rota vai obter todos os agendamentos de avaliações",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -3288,27 +3794,16 @@
             }
         }
     },
-    "/{uid}/definicoes":{
+    "/definicoes":{
         "get":{
             "summary": "Obter definições do user",
             "description": "Esta rota permite obter todas as definições do utilizador",
             "tags": ["Definições"],
-            "parameters": [{
-                "name": "uid",
-                "in": "path",
-                "description": "id do utilizador",
-                "required": true,
-                "schema":{
-                    "type": "string"
-                },
-                "examples": {
-                    "User Id":{
-                        "value":"0108ab5b-dc52-40ac-b077-91c68fe4629c"
-                    }
-                },
-                "style": "simple"
-
-            }],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"
@@ -3322,7 +3817,7 @@
                                 "$ref": "#/components/schemas/Definicoes"
                             },
                             "examples": {
-                                "Adicionar Musculo":{
+                                "Obter Definições do Utilizador":{
                                     "value": {
                                         "definicoes": {
                                             "def_id": "0d100e85-830e-4da8-adda-c7c68f62c341",
@@ -3345,6 +3840,11 @@
             "summary": "Submeter o resultado de um aluno",
             "description": "Esta rota permite submeter o resultado do desafio de um aluno",
             "tags": ["Desafios"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "desafioId",
                 "in": "path",
@@ -3652,11 +4152,16 @@
             }
         }
     },
-    "/aluno/user/{uId}":{
+    "/user/{uId}":{
         "get":{
             "summary": "Obter o perfil do utilizador",
             "description": "Esta rota permite obter o perfil de um utilizador",
             "tags": ["Perfil"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters":[
                 {
                     "name": "uId",
@@ -3811,24 +4316,16 @@
             }
         }
     },
-    "/aluno/{uId}/treinos/":{
+    "/aluno/treinos/":{
         "get":{
             "summary": "Ver todos os treinos de um aluno",
             "description": "Esta rota vai obter todos os treinos de um aluno",
             "tags": ["Treinos"],
-            "parameters": [{
-                "name": "uId",
-                "in": "path",
-                "description": "Id do utilizador",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "uId":{
-                            "type": "string"
-                        }
-                    }
+            "security": [
+                {
+                    "basicAuth":[]
                 }
-            }],
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -3846,9 +4343,9 @@
                                 }
                             },
                             "examples": {
-                                "Ver Agendamentos de Avaliações":{
+                                "Ver Todos os Treinos de um Aluno":{
                                     "value":{
-                                        "msg":"Ver agendamento de desafios obtido com sucesso"
+                                        "msg":"Ver treinos de um aluno obtido com sucesso"
                                     }
                                 }
                             }
@@ -3946,6 +4443,8 @@
                 }
             }
         }
+    
+        
     },
     "/definicoes/identificacao/":{
         "put":{
@@ -4060,24 +4559,17 @@
             }
         }
     },
-    "/aluno/{uId}/treinos/{treinoId}":{
+    "/aluno/treinos/{treinoId}":{
         "put":{
             "summary": "Editar treinos",
             "description": "Esta rota vai editar na base de dados um treino de um utilizador",
             "tags": ["Treinos"],
-            "parameters": [{
-                "name": "uId",
-                "in": "path",
-                "description": "Id do utilizador",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "uId":{
-                            "type": "string"
-                        }
-                    }
+            "security": [
+                {
+                    "basicAuth":[]
                 }
-            },{
+            ],
+            "parameters": [{
                 "name": "treinoId",
                 "in": "path",
                 "description": "Id do treino",
@@ -4317,24 +4809,12 @@
                 "summary": "Obter plano de treino semanal de um aluno",
                 "description": "Esta rota vai permitir obter plano de treino de uma semana de um aluno dando o intervalo de tempo",
                 "tags": ["Plano Treino"],
-                "parameters": [{
-                    "name": "uid",
-                    "in": "path",
-                    "description": "Id do aluno",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "uid":{
-                                "type": "string"
-                            }
-                        }
-                    },
-                    "examples": {
-                        "uid":{
-                            "value":"000d1e14-617e-423e-8a1a-f63d4fa5af6a"
-                        }
+                "security": [
+                    {
+                        "basicAuth":[]
                     }
-                },{
+                ],
+                "parameters": [{
                     "name": "startDate",
                     "in": "path",
                     "description": "data de inicio",
@@ -4351,7 +4831,8 @@
                             "value":"2022-04-11"
                         }
                     }
-                },{
+                },
+                {
                     "name": "endDate",
                     "in": "path",
                     "description": "data de fim",
@@ -4368,7 +4849,8 @@
                             "value":"2022-04-17"
                         }
                     }
-                }],
+                }
+            ],
                 "responses": {
                     "500":{
                         "description": "ERROR"  
@@ -4476,7 +4958,8 @@
                     }          
                 }
             }
-    },"/posts":{
+    },
+    "/posts":{
         "get":{
             "summary": "Ver posts",
             "description": "Esta rota vai apresentar todos os posts",
@@ -4545,6 +5028,11 @@
             "summary": "Criar publicação",
             "description": "Esta rota vai permitir criar uma publicação",
             "tags": ["Posts"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "requestBody": {
                 "content": {
                     "application/json":{
@@ -4624,6 +5112,11 @@
             "summary": "Aceitar agendamento de uma avaliação",
             "description": "Esta rota vai editar na base de dados um agendamento de uma avaliação",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "agendamentoId",
                 "in": "path",
@@ -4668,6 +5161,11 @@
             "summary": "Remover a aceitação de um agendamento de uma avaliação",
             "description": "Esta rota vai remover da base de dados as aceitações dos agendamentos de avaliações",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters":[
             {
                 "name": "agendamentoId",
@@ -4710,11 +5208,17 @@
                 }         
             }
         }
-    },"/treinador/agenda/desafios/{agendamentoId}/":{
+    },
+    "/treinador/agenda/desafios/{agendamentoId}/":{
         "put":{
             "summary": "Aceitar agendamento de um desafio",
             "description": "Esta rota vai editar na base de dados um agendamento de um desafio",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "agendamentoId",
                 "in": "path",
@@ -4759,6 +5263,11 @@
             "summary": "Remover a aceitação de um agendamento de um desafio",
             "description": "Esta rota vai remover da base de dados as aceitações dos agendamentos de desafios",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters":[
             {
                 "name": "agendamentoId",
@@ -4801,24 +5310,17 @@
                 }         
             }
         }
-    },"/aluno/agenda/avaliacoes/{uId}":{
+    },
+    "/aluno/agenda/avaliacoes/":{
         "get":{
             "summary": "Ver todos os pedidos de agendamento de avaliação de um aluno",
             "description": "Esta rota vai obter todos os pedidos de agendamento de avaliação de um aluno",
             "tags": ["Agenda"],
-            "parameters": [{
-                "name": "uId",
-                "in": "path",
-                "description": "Id do utilizador",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "uId":{
-                            "type": "string"
-                        }
-                    }
+            "security": [
+                {
+                    "basicAuth":[]
                 }
-            }],
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -4848,24 +5350,16 @@
             }
         }
     },
-    "/aluno/agenda/desafios/{uId}":{
+    "/aluno/agenda/desafios/":{
         "get":{
             "summary": "Ver todos os pedidos de agendamento de desafios de um aluno",
             "description": "Esta rota vai obter todos os pedidos de agendamento de desafios de um aluno",
             "tags": ["Agenda"],
-            "parameters": [{
-                "name": "uId",
-                "in": "path",
-                "description": "Id do utilizador",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "uId":{
-                            "type": "string"
-                        }
-                    }
+            "security": [
+                {
+                    "basicAuth":[]
                 }
-            }],
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -4894,24 +5388,37 @@
                 }
             }
         }
-    },"/{uId}/definicoes/perfil/privado/":{
+    },
+    "/definicoes/perfil/privado/":{
         "put":{
             "summary": "Meter o perfil privado",
             "description": "Esta rota vai editar na base de dados o estado do perfil",
             "tags": ["Definições"],
-            "parameters": [{
-                "name": "uId",
-                "in": "path",
-                "description": "Id do user",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "uId":{
-                            "type": "string"
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "is_privado": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Privado true":{
+                                "value":{
+                                    "is_privado":true
+                                }
+                            }
                         }
                     }
                 }
-            }],
+            },
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -4939,12 +5446,18 @@
                 }          
             }
         }
+    
     },
     "/treinador/planoTreino":{
         "post":{
             "summary": "Criar Plano de Treino",
             "description": "Esta rota vai criar um plano de treino",
             "tags": ["Plano Treino"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "requestBody": {
                 "content": {
                     "application/json":{
@@ -4975,9 +5488,9 @@
                         "examples": {
                             "Editar Treino":{
                                 "value":{
-                                    "aluno_id":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                    "treinador_id":"6d112678-f40c-43bc-a80a-866f12fa26f2",
-                                    "modalidade_id":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "alunoId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "treinadorId":"6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                    "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                     "blocos":[
                                         {
                                             "nOrdem":0,
@@ -5043,24 +5556,12 @@
             }
         }
     },
-    "/aluno/{alunoId}/plano/{planoId}/realizado/":{
+    "/aluno/plano/{planoId}/realizado/":{
         "put":{
             "summary": "Meter um plano de treino como realizado",
             "description": "Esta rota vai editar na base de dados o estado da realização de um plano de treino",
             "tags": ["Plano Treino"],
             "parameters": [{
-                "name": "alunoId",
-                "in": "path",
-                "description": "Id do aluno",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "alunoId":{
-                            "type": "string"
-                        }
-                    }
-                }
-            },{
                 "name": "planoId",
                 "in": "path",
                 "description": "Id do plano de treino",
@@ -5073,6 +5574,11 @@
                     }
                 }
             }],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -5104,18 +5610,6 @@
             "description": "Esta rota vai remover na base de dados o estado da realização de um plano de treino",
             "tags": ["Plano Treino"],
             "parameters": [{
-                "name": "alunoId",
-                "in": "path",
-                "description": "Id do aluno",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "alunoId":{
-                            "type": "string"
-                        }
-                    }
-                }
-            },{
                 "name": "planoId",
                 "in": "path",
                 "description": "Id do plano de treino",
@@ -5128,6 +5622,11 @@
                     }
                 }
             }],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -5155,7 +5654,8 @@
                 }          
             }
         }
-    },"/treinador/plano/{planoId}/":{
+    },
+    "/treinador/plano/{planoId}/":{
         "delete":{
             "summary": "Remover um plano de treino",
             "description": "Esta rota vai remover na base de dados um plano de treino",
@@ -5200,7 +5700,516 @@
                 }          
             }
         }
-    } 
+    },
+
+    "/treinador/planoTreino/{planoId}":{
+        "put":{
+            "summary": "Editar Plano de Treino",
+            "description": "Esta rota vai editar um plano de treino",
+            "tags": ["Plano Treino"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "planoId",
+                "in": "path",
+                "description": "Id do plano de treino",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "planoId":{
+                            "type": "string"
+                        }
+                    }
+                },
+                "examples": {
+                    "Plano id":{
+                        "value":"06622c79-e84e-4c64-8e69-dfaf8570c392"
+                    }
+                }
+            }],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "atividadeId":{
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "modalidadeId":{
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "duracao":{
+                                    "type": "string"
+                                },
+                                "calorias":{
+                                    "type": "number"
+                                },
+                                "distancia":{
+                                    "type": "number"
+                                },
+                                "data":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Editar Treino":{
+                                "value":{
+                                    
+                                    "alunoId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "treinadorId":"6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                    "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "blocos":[
+                                        {
+                                            "nOrdem":0,
+                                            "nome":"Aquecimento2",
+                                            "descricao":"5 Rondas",
+                                            "exercicios":[
+                                                {
+                                                    "exercicioId":"05bb0690-db08-4b46-97dc-3853eba58d51",
+                                                    "nOrdem":0,
+                                                    "series":[
+                                                        {
+                                                            "nOrdem":0,
+                                                            "valor":"12"
+                                                        },
+                                                        {
+                                                            "nOrdem":1,
+                                                            "valor":"12"
+                                                        },
+                                                        {
+                                                            "nOrdem":2,
+                                                            "valor":"12"
+                                                        },
+                                                        {
+                                                            "nOrdem":3,
+                                                            "valor":"12"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Exercicio":{
+                                    "value":{
+                                        "msg":"Treino editado com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/admin/ginasio/{ginasioId}/":{
+        "delete":{
+            "summary": "Remover ginásio",
+            "description": "Esta rota vai remover da base de dados os ginasios",
+            "tags": ["Marca"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters":[
+            {
+                "name": "ginasioId",
+                "in": "path",
+                "description": "Id do ginasio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "ginasioId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                 "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            }, 
+                            "examples": {
+                                "Remover ginasio":{
+                                    "value":{
+                                        "msg":"Ginasio removido com sucesso"
+                                    }
+                                }
+                            }                                       
+                        }
+                    }  
+                }         
+            }
+        },
+        "get":{
+            "summary": "Ver a informação de um ginásio",
+            "description": "Esta rota vai apresentar a informação de um ginásio",
+            "parameters": [
+            {
+                "name": "ginasioId",
+                "in": "path",
+                "description": "Id do ginásio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "ginasioId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            ],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Marca"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Ginasio":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/ginasio/{ginasioId}/desafios/":{
+        "get":{
+            "summary": "Ver todas os desafios de um ginásio",
+            "description": "Esta rota vai apresentar todas os desafios de um ginásio",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "ginasioId",
+                    "in": "path",
+                    "description": "Id do ginásio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ],
+            "tags": ["Desafios"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Desafios de um Ginásio":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/ginasio/{ginasioId}/desafios/disponiveis":{
+        "get":{
+            "summary": "Ver todos os desafios disponiveis de um ginásio",
+            "description": "Esta rota vai apresentar todas os desafios disponiveis de um ginásio",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "ginasioId",
+                    "in": "path",
+                    "description": "Id do ginásio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ],
+            "tags": ["Desafios"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Desafios Disponiveis de um Ginásio":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/adminTreinador/desafios/{desafioId}":{
+        "put": {
+            "summary": "Encerrar Desafio",
+            "description": "Este pedido server para encerrar um desafio pelo seu ID",
+            "tags":["Desafios"],
+            "parameters":[{
+                "name": "desafioId",
+                "in":"path",
+                "description":"Id do desafio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "desafioId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Desafio"
+                        },
+                        "examples": {
+                            "Avaliacao": {
+                                "value": {
+                                    "isEncerrado": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500": {
+                    "description": "ERROR"
+
+                },
+                "404": {
+                    "description": "Not Found"
+                },
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/Desafio"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/adminTreinador/desafio/{desafioId}/editar":{
+        "put":{
+            "summary": "Editar desafio",
+            "description": "Esta rota vai editar o desafio",
+            "tags": ["Desafios"],
+            "parameters": [
+            {
+                "name": "desafioId",
+                "in": "path",
+                "description": "Id do desafio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "desafioId":{
+                            "type":"string"
+                        }
+                    }
+                },
+                "examples": {
+                    "Editar Desafio":{
+                        "value":"19738118-f243-4937-a138-89ff2daa19c1"
+                    }
+                }
+            }
+            ],
+            "requestBody":{
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "nome":{
+                                    "type": "string"
+                                },
+                                "modalidade":{
+                                    "type": "string"
+                                },
+                                "data_inicio":{
+                                    "type": "Date"
+                                },
+                                "data_fim":{
+                                    "type": "Date"
+                                },
+                                "recompensa":{
+                                    "type": "number"
+                                },
+                                "isDeleted":{
+                                    "type": "boolean"
+                                },
+                                "descricao":{
+                                    "type": "string"
+                                }    
+                            }
+                        },
+                        "examples": {
+                            "Desafio": {
+                                "value": {
+                                    "nome": "Caminhar",
+                                    "modalidade" : "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "data_inicio": "2022-03-23 15:51:45.663",
+                                    "fim": "2022-03-24 20:00:00.000",
+                                    "recompensa": 100,
+                                    "isEncerrado": true,
+                                    "descricao": "2"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500": {
+                    "description": "ERROR"
+
+                },
+                "404": {
+                    "description": "Not Found"
+                },
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/Desafio"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/treinador/treinos/":{
+        "get":{
+            "summary": "Ver avaliações",
+            "description": "Esta rota vai apresentar todas as avaliações",
+            "tags": ["Treinos"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "schema":{
+                            "properties": {
+                                "msg":{
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }            
+            }
+        }
+    }
     },        
     "components": {
         "securitySchemes": {
@@ -5515,7 +6524,65 @@
                     }
                 }
             },
-            "Exercicio":{
+            "avaliacao":{
+                "type": "object",
+                "properties": {
+                    "alunoId":{
+                        "type": "string"
+                    },
+                    "peso":{
+                        "type": "number"
+                    },
+                    "unidadePeso":{
+                        "type": "string"
+                    },
+                    "treinadorId":{
+                        "type": "string"
+                    },
+                    "musculo":{
+                        "type": "string"
+                    },
+                    "gorduraCorporal":{
+                        "type": "number"
+                    },
+                    "gorduraVisceral":{
+                        "type": "number"
+                    },
+                    "agua":{
+                        "type": "number"
+                    },
+                    "proteina":{
+                        "type": "string"
+                    },
+                    "massaOssea":{
+                        "type": "number"
+                    },
+                    "metabolismo":{
+                        "type": "number"
+                    },
+                    "medidas":{
+                        "type": "array",
+                        "items":{
+                            "type": "object",
+                            "properties": {
+                                "avaliacaoId":{
+                                    "type": "string"
+                                },
+                                "medida":{
+                                    "type": "string"
+                                },
+                                "unidadeMedida":{
+                                    "type": "string"
+                                },
+                                "localMedidaId":{
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+                    },
+                    "Exercicio":{
                 "type": "object",
                 "properties": {
                     "imagem_id":{
@@ -5629,11 +6696,25 @@
                         "type": "number"
                     }
                 }
-            }        
+            },
+            
+            "Aluno": {
+                "type": "object",
+                "properties": {
+                    "uid" : {
+                        "type": "string"
+                    },
+                    "nome" : {
+                        "type": "string"
+                    },
+                    "hashtag" : {
+                        "type": "string"
+                    },
+                    "imagem_url" : {
+                        "type": "string"
+                    }
+                }
+            }            
         }
     }
 }
-
-
-
-

@@ -1,5 +1,5 @@
 import { Interface } from "readline";
-import { checkDonoGinasio, checkGinasioExists, checkTreinadorGinasio } from "../../helpers/dbHelpers";
+import { checkDonoOuTreinadorGinasio, checkGinasioExists } from "../../helpers/dbHelpers";
 
 import { client } from '../../prisma/client';
 
@@ -16,15 +16,12 @@ export class ObterAlunosGinasioService {
             throw new Error(`Ginásio não existe`);
         }
 
-        const checkDono = await checkDonoGinasio(ginasioId, userId);
-        const checkTreinador = await checkTreinadorGinasio(ginasioId, userId);
-
-        if (!checkDono && !checkTreinador) {
+        const checkPermissao = await checkDonoOuTreinadorGinasio(ginasioId, userId);
+        console.log(checkPermissao);
+        if (!checkPermissao) {
             throw new Error(`Não pode aceder a esse ginásio`);
         }
-
         
-
         let users = [];
         const alunos = await client.aluno_ginasio.findMany({
             where : {
@@ -46,25 +43,10 @@ export class ObterAlunosGinasioService {
             throw new Error(`Não foi encontrado nenhum aluno`);
         }
 
-        // for (let i = 0; i < alunos.length; i++) {
-        //     const utilizadores = await models.users.findOne({
-        //         attributes: ['uid', 'nome', 'hashtag', 'imagem_url'],
-        //         where: {uid: alunos[i].user_id}
-        //     });
-        //     users.push(utilizadores);
-        // }
+        alunos.forEach(aluno => {
+            users.push(aluno.users);
+        });
 
-        // if (users.length == 0) {
-        //     throw new Error(`Não foi encontrado nenhum utilizador`);
-        // }
-
-        for (let i = 0; i < alunos.length; i++) {
-            console.log(alunos[i].users);
-            users.push(alunos[i].users);
-        }
-
-        return {
-            users
-        }
+        return users;
     }
 }

@@ -91,7 +91,7 @@ model bloco_treino {
   n_ordem          Int
   nome             String             @db.VarChar(255)
   descricao        String             @db.VarChar(255)
-  plano_treino     planos_treino      @relation(fields: [plano_treino_id], references: [plano_treino_id], onDelete: NoAction, onUpdate: NoAction, map: "fkbloco_trei396073")
+  plano_treino     planos_treino      @relation(fields: [plano_treino_id], references: [plano_treino_id], onDelete: Cascade, onUpdate: NoAction, map: "fkbloco_trei396073")
   exercicios_bloco exercicios_bloco[]
 }
 
@@ -115,8 +115,6 @@ model definicoes_user {
   mencoes        Boolean @default(false)
   users          users   @relation(fields: [usersuid], references: [uid])
 }
-
-//teste
 
 model desafios {
   desafio_id            String                  @id @default(uuid())
@@ -168,7 +166,7 @@ model exercicios_bloco {
   bloco_id            String
   exercicio_id        String
   n_ordem_exercicio   Int
-  bloco_treino        bloco_treino       @relation(fields: [bloco_id], references: [bloco_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios619094")
+  bloco_treino        bloco_treino       @relation(fields: [bloco_id], references: [bloco_id], onDelete: Cascade, onUpdate: NoAction, map: "fkexercicios619094")
   exercicio           exercicios         @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios561801")
   series_exercicio    series_exercicio[]
 }
@@ -213,7 +211,7 @@ model ginasio {
   cp_id                   String
   marca_id                String
   tag                     String                    @db.VarChar(255)
-  desricao                String?                   @db.VarChar(255)
+  descricao               String?                   @db.VarChar(255)
   imagem_url              String                    @db.VarChar(255)
   lat                     String                    @db.VarChar(255)
   long                    String                    @db.VarChar(255)
@@ -400,7 +398,7 @@ model series_exercicio {
   exercicios_bloco_id String
   n_ordem_serie       Int
   valor               String?          @db.VarChar(255)
-  exercicios_bloco    exercicios_bloco @relation(fields: [exercicios_bloco_id], references: [exercicios_bloco_id], onDelete: NoAction, onUpdate: NoAction, map: "fkseries_exe489955")
+  exercicios_bloco    exercicios_bloco @relation(fields: [exercicios_bloco_id], references: [exercicios_bloco_id], onDelete: Cascade, onUpdate: NoAction, map: "fkseries_exe489955")
 }
 
 model submissoes_desafios {

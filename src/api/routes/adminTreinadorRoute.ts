@@ -6,19 +6,27 @@ import { EditarDesafioController } from "../controllers/desafios/EditarDesafioCo
 import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
 import { VerDesafiosParticipantesController } from "../controllers/desafios/verDesafiosParticipantesController";
 import { EncerrarDesafiosController } from "../controllers/desafios/encerrarDesafiosController";
+import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
+import { ObterAlunosGinasioController } from "../controllers/alunos/obterAlunosGinasioController";
+import { verificarAdminTreinador } from "../middlewares/verificarAdminTreinador";
 
 const editarDesafio = new EditarDesafioController()
 const removerDesafio = new RemoverDesafioController()
 const criarDesafio = new CriarDesafiosController()
 const verDesafiosParticipantesController = new VerDesafiosParticipantesController();
 const encerrarDesafiosController = new EncerrarDesafiosController();
+const obterAlunosGinasioController = new ObterAlunosGinasioController();
 
 //#region Desafios
 adminTreinadorRouter.put("/desafio/:id/editar", editarDesafio.handle);
 adminTreinadorRouter.delete("/desafio/:id", removerDesafio.handle);
-adminTreinadorRouter.post("/ginasio/:id/desafio/", criarDesafio.handle);
+adminTreinadorRouter.post("/ginasio/:id/desafio/", verificarAutenticacao, verificarAdminTreinador, criarDesafio.handle);
 adminTreinadorRouter.get("/desafios/", verDesafiosParticipantesController.handle);
 adminTreinadorRouter.put("/desafios/:id", encerrarDesafiosController.handle);
+//#endregion
+
+//#region 
+adminTreinadorRouter.get("/alunos/ginasio/:id", obterAlunosGinasioController.handle);
 //#endregion
 
 export { adminTreinadorRouter };

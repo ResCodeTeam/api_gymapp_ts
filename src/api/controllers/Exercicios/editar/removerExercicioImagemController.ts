@@ -4,7 +4,7 @@ import { RemoverExercicioImagemService } from "../../../services/exercicios/edit
 export class RemoverExercicioImagemController{
   async handle(request:Request, response:Response){
     const imagemId=request.params.imagemId;
-    const treinadorId=request.params.treinadorId;
+    const treinadorId=response.locals.treiandorId;
     const exercicioId=request.params.exercicioId;
 
     const removerExercicioImagemService = new RemoverExercicioImagemService();

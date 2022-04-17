@@ -22,7 +22,7 @@ export class VerPerfilService{
                 })
 
                 const verTodosPostsUserService = new VerTodosPostsUserService()
-                const posts = (await verTodosPostsUserService.execute(uId)).posts;
+                const posts = await verTodosPostsUserService.execute(uId);
         
         return {perfil,posts}
     }

@@ -37,9 +37,7 @@ export class EncerrarDesafiosService {
                     isEncerrado
                 }
             });
-            return {
-                message: "Desafio encerrado com sucesso!"
-            }
+            return verificarEncerrado;
         }
 
         return {
