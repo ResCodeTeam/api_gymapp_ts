@@ -1,6 +1,7 @@
 import { publicacoes } from "@prisma/client";
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
+import { VerInfoPostService } from "./obter/verInfoPostService";
 
 interface ICriarPostsService {
   criadorId: string;
@@ -65,7 +66,10 @@ class CriarPostsService {
           }})
         }
       }
-      return { post};
+
+      const verInfoPostService = new VerInfoPostService();
+      const resp = await verInfoPostService.execute(post.publicacao_id)
+      return resp;
     } 
   }
 }
