@@ -606,7 +606,49 @@ let checkInBlackList = async(token:string)=>{
     return tokens.length != 0;
 }
 
+let checkGostoPublicacaoExists = async(publicacaoId:string, criadorId:string)=>{
+    const gosto = await client.gostos_publicacao.findFirst({
+        where:{
+            publicacao_id:publicacaoId,
+            criador_id:criadorId
+        }
+    })
 
+    return gosto
+}
+
+let checkGostoComentarioExists = async(comentarioId:string, criadorId:string)=>{
+    const gosto = await client.gostos_comentario.findFirst({
+        where:{
+            comentario_id:comentarioId,
+            criador_id:criadorId
+        }
+    })
+
+    return gosto
+}
+
+let checkComentarioExists = async(comentarioId:string)=>{
+    const comentario = await client.comentarios_publicacao.findMany({
+        where:{
+            comentario_id:comentarioId,
+            
+        }
+    })
+
+    return comentario.length != 0
+}
+
+let checkIsComentarioPublicacaoExists = async(comentarioId:string, publicacaoId:string)=>{
+    const comentario = await client.comentarios_publicacao.findMany({
+        where:{
+            comentario_id:comentarioId,
+            publicacao_id:publicacaoId
+        }
+    })
+
+    return comentario.length != 0
+}
 
 export {
     checkEmail,
@@ -659,6 +701,10 @@ export {
     checkTreinador,
     getTreinadorFuncaoId,
     checkAutorPublicacoes,
-    checkDesafioDisponivel
+    checkDesafioDisponivel,
+    checkGostoPublicacaoExists,
+    checkGostoComentarioExists,
+    checkComentarioExists,
+    checkIsComentarioPublicacaoExists
 }
 

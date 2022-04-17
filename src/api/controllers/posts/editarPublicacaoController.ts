@@ -11,7 +11,7 @@ export class EditarPublicacaoController{
       throw new Error("Pedido inválido")
     }
     let newData = new Date(Date.now());
-    const editarPublicacaoController = new EditarPublicacaoService();
+    const editarPublicacaoService = new EditarPublicacaoService();
 
     const resp = await editarPublicacaoService.execute({
       publicacaoId,
