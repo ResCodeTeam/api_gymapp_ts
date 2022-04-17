@@ -74,7 +74,7 @@ adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdm
 
 //#region Alunos
 
-adminRouter.put("/marca/editar/:marcaId",verificarAutenticacao,verificarAdmin,editarMarcaController.handle);
+
 adminRouter.post("/marca/alunos/", verificarAutenticacao ,verificarAdmin,registarAlunosController.handle);
 adminRouter.put("/aluno/remover/:uId",verificarAutenticacao,verificarAdmin, removerAlunoController.handle);
 //#endregion
@@ -93,6 +93,7 @@ adminRouter.post("/marca/", verificarAutenticacao, verificarAdmin, registarUserM
 adminRouter.delete("/marca/:id", verificarAutenticacao, verificarAdmin, removerMarcaController.handle);
 adminRouter.get("/marca/:id/", verificarAutenticacao, verificarAdmin,verUmaMarcaController.handle);
 adminRouter.get("/marca/", verificarAutenticacao, verificarAdmin, verTodasMarcasController.handle);
+adminRouter.put("/marca/:marcaId",verificarAutenticacao,verificarAdmin,editarMarcaController.handle);
 //#endregion
 
 //#region Modalidades
