@@ -19,6 +19,8 @@ import { AlterarVistoController } from "../controllers/notificacoes/alterarVisto
 import { VerPerfilController } from "../controllers/perfil/verPerfilController";
 import { VerTodosDesafiosController } from "../controllers/desafios/verTodosDesafiosController";
 import { VerDesafiosDisponiveisController } from "../controllers/desafios/verDesafiosDisponiveisController";
+import { RemoverGostoPublicacaoController } from "../controllers/posts/gostosPosts/removerGostoController";
+import { CriarGostoCommentController } from "../controllers/posts/gostosComments/criarGostoCommentController";
 
 
 const allRouter = express.Router();
@@ -42,6 +44,8 @@ const alterarVistoController= new AlterarVistoController();
 const verPerfilController = new VerPerfilController();
 const verTodosDesafiosController = new VerTodosDesafiosController();
 const verDesafiosDisponiveisController = new VerDesafiosDisponiveisController();
+const removerGostoPublicacaoController = new RemoverGostoPublicacaoController();
+const criarGostoCommentController = new CriarGostoCommentController();
 
 //#region Publicacoes
 allRouter.post("/posts", verificarAutenticacao, criarPostsController.handle);
@@ -50,7 +54,9 @@ allRouter.put("/posts/:id", verificarAutenticacao, editarPublicacaoController.ha
 allRouter.get("/posts/:id", verificarAutenticacao, verInfoPostInfoController.handle)
 allRouter.delete("/posts/:id", verificarAutenticacao, removerPostsController.handle);
 allRouter.post("/posts/:id/gostos", verificarAutenticacao, criarGostoController.handle)
+allRouter.delete("/posts/:id/gostos", verificarAutenticacao, removerGostoPublicacaoController.handle)
 allRouter.post("/posts/:id/comentarios/", verificarAutenticacao, criarComentarioController.handle);
+allRouter.post("/posts/:publicacaoId/comentario/:comentarioId/gosto", verificarAutenticacao, criarGostoCommentController.handle);
 //ver info de post
 
 //#region Perfil
