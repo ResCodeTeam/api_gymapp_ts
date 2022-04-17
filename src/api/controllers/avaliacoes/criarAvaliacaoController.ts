@@ -4,11 +4,11 @@ import { CriarAvaliacaoService } from "../../services/avaliacoes/criarAvaliacaoS
 
 export class CriarAvaliacaoController{
   async handle(request:Request, response:Response){
+    const treinadorId = response.locals.uid;
+    const alunoId = request.params.id;
     const {
-        alunoId,
         peso,
         unidadePeso,
-        treinadorId,
         musculo,
         gorduraCorporal,
         gorduraVisceral,
@@ -19,7 +19,7 @@ export class CriarAvaliacaoController{
         imagens,
         medidas
     }= request.body;
-    if(alunoId === undefined || peso === undefined || unidadePeso === undefined || treinadorId === undefined || musculo === undefined || gorduraCorporal === undefined || gorduraVisceral === undefined || agua === undefined || proteina === undefined || massaOssea === undefined || metabolismoBasal === undefined || imagens === undefined || medidas === undefined){
+    if(peso === undefined || unidadePeso === undefined || treinadorId === undefined || musculo === undefined || gorduraCorporal === undefined || gorduraVisceral === undefined || agua === undefined || proteina === undefined || massaOssea === undefined || metabolismoBasal === undefined || imagens === undefined || medidas === undefined){
       throw new Error("Pedido inválido")
     }
 
