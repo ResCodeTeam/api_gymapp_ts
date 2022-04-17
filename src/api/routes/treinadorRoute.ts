@@ -73,7 +73,7 @@ const editarPlanoTreinoController = new EditarPlanoTreinoController()
 
 
 //#region Exercicios
-treinadorRouter.get("/exercicios/", verTodosOsExerciciosTreinadoresController.handle);
+treinadorRouter.get("/exercicios/",verificarAutenticacao,verificarTreinador, verTodosOsExerciciosTreinadoresController.handle);
 treinadorRouter.delete("/exercicios/:exercicios_id/", verificarAutenticacao, verificarTreinador, removerExercicioController.handle);
 treinadorRouter.post("/exercicios/", verificarAutenticacao, verificarTreinador, criarExercicioController.handle);
 treinadorRouter.put("/exercicios/:exercicios_id",verificarAutenticacao, verificarTreinador, editarExercicioController.handle);

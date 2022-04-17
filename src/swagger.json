@@ -2276,11 +2276,11 @@
                 "summary": "Criar um exercicio",
                 "description": "Esta rota permite adicionar um exercicio à base de dados",
                 "tags": ["Exercicios"],
-                  "security": [
+                "security": [
                 {
                     "basicAuth":[]
                 }
-            ],
+                ],
 
                 "requestBody":{
                     "content": {
@@ -2410,6 +2410,11 @@
                 "summary": "Ver todos os exercicios criados por treinadores",
                 "description": "Esta rota permite ver todos os exercicios criados por treinadores",
                 "tags": ["Exercicios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "responses": {
                     "500":{
                         "description": "ERROR"
