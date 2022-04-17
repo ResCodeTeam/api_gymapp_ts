@@ -6098,8 +6098,13 @@
     },
     "/treinador/treinos/":{
         "get":{
-            "summary": "Ver avaliações",
-            "description": "Esta rota vai apresentar todas as avaliações",
+            "summary": "Ver treinos",
+            "description": "Esta rota vai apresentar todos os treinos",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "tags": ["Treinos"],
             "responses": {
                 "500":{
