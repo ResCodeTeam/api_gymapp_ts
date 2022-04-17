@@ -1973,65 +1973,51 @@
         },
         "/posts/{id}/gostos":{
             
-                "post":{
-                    "summary": "Adicionar gosto a uma publicação",
-                    "description": "Esta rota permite adicionar uma publicação ao gostos",
-                    "security": [
-                        {
-                            "basicAuth":[]
+            "post":{
+                "summary": "Adicionar gosto a uma publicação",
+                "description": "Esta rota permite adicionar uma publicação ao gostos",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "id do post a adicionar gosto",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Criar Gosto":{
+                            
+                                "value":"07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8"
+                            
                         }
-                    ],
-                    "parameters": [{
-                        "name": "id",
-                        "in": "path",
-                        "description": "id do post a adicionar gosto",
-                        "required": true,
-                        "schema":{
-                            "type": "string"
-                        },
-                        "examples": {
-                            "Criar Gosto":{
-                                
-                                    "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                                
-                            }
-                        },
-                        "style": "simple"
-    
-                    }],
-                    "tags": ["Posts"],
-                    "requestBody":{
+                    },
+                    "style": "simple"
+
+                }],
+                "tags": ["Posts"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "properties":{
-                                        "criadorId":{
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "responses": {
-                        "500":{
-                            "description": "ERROR"
-                        },
-                        "200":{
-                            "description": "OK",
-                            "content": {
-                                "application/json":{
-                                    "schema":{
-                                        "type": "object",
-                                        "$ref": "#/components/schemas/Gosto"
-                                    },
-                                    "examples": {
-                                        "Criar Gosto":{
-                                            "value":{
-                                                "Gostos": {
-                                                    "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
-                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                                                }
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Gosto"
+                                },
+                                "examples": {
+                                    "Criar Gosto":{
+                                        "value":{
+                                            "Gostos": {
+                                                "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
+                                                "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                             }
                                         }
                                     }
@@ -2040,6 +2026,62 @@
                         }
                     }
                 }
+            },
+            "delete":{
+                "summary": "Remover gosto a uma publicação",
+                "description": "Esta rota permite remover uma publicação ao gostos",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "id do post a remover gosto",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Remover Gosto":{
+                            
+                                "value":"07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8"
+                            
+                        }
+                    },
+                    "style": "simple"
+
+                }],
+                "tags": ["Posts"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Gosto":{
+                                        "value":{
+                                            "msg": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         },
         "/treinador/exercicios/":{
             "post":{
