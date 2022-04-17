@@ -76,7 +76,7 @@ treinadorRouter.post("/posts/:id/comentarios/", verificarAutenticacao, verificar
 //#endregion
 
 //#region Exercicios
-treinadorRouter.get("/exercicios/", verTodosOsExerciciosTreinadoresController.handle);
+treinadorRouter.get("/exercicios/", verificarAutenticacao,verTodosOsExerciciosTreinadoresController.handle);
 treinadorRouter.delete("/exercicios/:exercicios_id/", verificarAutenticacao, verificarTreinador, removerExercicioController.handle);
 treinadorRouter.post("/exercicios/", verificarAutenticacao, verificarTreinador, criarExercicioController.handle);
 treinadorRouter.put("/exercicios/:exercicios_id",verificarAutenticacao, verificarTreinador, editarExercicioController.handle);
@@ -89,7 +89,7 @@ treinadorRouter.get("/exercicios", verificarAutenticacao, verificarTreinador, ve
 //#endregion
 
 //#region Treinos
-treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
+treinadorRouter.get("/treinos/", verificarAutenticacao,verificarTreinador,verTodosTreinosDosAlunosController.handle);
 //#endregion
 
 //#region Desafios

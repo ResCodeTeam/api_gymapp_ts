@@ -5,7 +5,6 @@ import { RemoverPostController } from "../controllers/posts/removerPostControlle
 import { VerTodosPostsController } from "../controllers/posts/obter/verTodosPostsController";
 import { VerInfoPostController } from "../controllers/posts/obter/verInfoPostController";
 import { EditarPublicacaoController } from "../controllers/posts/editarPublicacaoController";
-import { UpdateEstadoNotificacaoController } from "../controllers/posts/notificacoes/updateEstadoNotificacaoController";
 import { CriarGostoController } from "../controllers/posts/gostosPosts/criarGostoController";
 import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
 import { EditarPerfilPrivadoController } from "../controllers/definicoes/editarPerfilPrivadoController";
@@ -32,7 +31,7 @@ const verTodosPostsController = new VerTodosPostsController();
 const removerPostsController = new RemoverPostController();
 const verInfoPostInfoController = new VerInfoPostController();
 const editarPublicacaoController  = new EditarPublicacaoController();
-const updateEstadoNotificacaoController = new UpdateEstadoNotificacaoController();
+
 const criarGostoController=new CriarGostoController();
 const  editarPerfilController = new EditarPerfilController();
 const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
@@ -75,13 +74,13 @@ allRouter.get("/user/:id", verificarAutenticacao, verPerfilController.handle);
 
 
 //#region Notificacoes
-allRouter.put("/notificacao/", updateEstadoNotificacaoController.handle);
+
 allRouter.put("/destinosNotificacao",verificarAutenticacao,alterarVistoController.handle);
 //#endregion
 
 //#region Desafios
 allRouter.get("/ginasio/:id/desafios/", verificarAutenticacao, verTodosDesafiosController.handle);
-allRouter.get("/ginasio/:id/desafios/disponiveis", verDesafiosDisponiveisController.handle);
+allRouter.get("/ginasio/:id/desafios/disponiveis",verificarAutenticacao, verDesafiosDisponiveisController.handle);
 //#endregion
 
 export { allRouter };
