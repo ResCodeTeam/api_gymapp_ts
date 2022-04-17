@@ -5585,6 +5585,11 @@
             "summary": "Remover um plano de treino",
             "description": "Esta rota vai remover na base de dados um plano de treino",
             "tags": ["Plano Treino"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "planoId",
                 "in": "path",
