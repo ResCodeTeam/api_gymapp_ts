@@ -6369,6 +6369,88 @@
                 }          
             }
         }
+    },
+    "/admin/marca/{marcaId}/localMedida":{
+        "post":{
+            "summary": "Criar local de medida",
+            "description": "Esta rota vai criar um local de medida",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Locais de Medida"],
+            "parameters": [
+                {
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "id da marca a associar",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type":"string"
+                            }
+                        }
+                    },
+                    "examples": {
+                        "Marca":{
+                            "value":"19738118-f243-4937-a138-89ff2daa19c1"
+                        }
+                    }
+                }
+            ],
+            "requestBody":{
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "descricao":{
+                                    "type": "string"
+                                },
+                                "unilado":{
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Desafio": {
+                                "value": {
+                                    "descricao": "Peito",
+                                    "unilado" : false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Notificacoes":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
     }
     },        
     "components": {

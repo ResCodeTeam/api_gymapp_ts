@@ -579,7 +579,7 @@ let checkMusculoNomeExists = async(nome:string)=>{
     })
     return musculos.length!=0
 }
-//done
+
 let checkPerfilPrivado = async(uid:string)=>{
     const user = await client.users.findUnique({
         where:{
@@ -690,6 +690,8 @@ let checkAutorComentario = async(comentarioId:string, criadorId:string)=>{
 
     return comentario.length != 0
 }
+
+
 
 export {
     checkEmail,
