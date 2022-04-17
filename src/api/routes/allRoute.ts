@@ -45,10 +45,10 @@ const verDesafiosDisponiveisController = new VerDesafiosDisponiveisController();
 
 //#region Publicacoes
 allRouter.post("/posts", verificarAutenticacao, criarPostsController.handle);
-allRouter.put("/posts/post/:id", verificarAutenticacao, editarPublicacaoController.handle);
-allRouter.get("/posts/post/:id", verificarAutenticacao, verInfoPostInfoController.handle)
-allRouter.delete("/posts/post/:id", verificarAutenticacao, removerPostsController.handle);
 allRouter.get("/posts", verificarAutenticacao, verTodosPostsController.handle);
+allRouter.put("/posts/:id", verificarAutenticacao, editarPublicacaoController.handle);
+allRouter.get("/posts/:id", verificarAutenticacao, verInfoPostInfoController.handle)
+allRouter.delete("/posts/:id", verificarAutenticacao, removerPostsController.handle);
 allRouter.post("/posts/:id/gostos", verificarAutenticacao, criarGostoController.handle)
 allRouter.post("/posts/:id/comentarios/", verificarAutenticacao, criarComentarioController.handle);
 //ver info de post

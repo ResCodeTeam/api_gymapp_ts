@@ -1463,7 +1463,87 @@
             }
         }     
     },
-    "/posts/post/{id}":{
+    "/posts/{id}/comentarios":{
+        "post":{
+            "summary": "Criar comentário",
+            "description": "Esta rota permite criar um comentário para uma publicação",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "description": "id da da publicação",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "style": "simple"
+
+            }],
+            "tags": ["Posts"],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "comentario":{
+                                    "type": "string"
+                                },
+                                "identificacao":{
+                                    "type":"array",
+                                    "items":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }, "examples": {
+                            "Criar Comentário":{
+                                "value":{
+                                    "comentario":"Estou a comentar uma publicação",
+                                    "identificacao":[
+                                        "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "00b27390-ad57-47de-ac18-4c2a490caa97"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Comentario"
+                            },
+                            "examples": {
+                                "Ver Posts":{
+                                    "value":{
+                                    "comentario_id": "c7446c39-2cf1-4e88-9dd3-7697f912c5e8",
+                                    "publicacao_id": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
+                                    "comentario": "Estou a comentar uma publicação",
+                                    "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "data": "2022-04-17T11:31:20.669Z"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    },
+    "/posts/{id}":{
         "get":{
             "summary": "Ver toda a informação de um post",
             "description": "Esta rota vai apresentar todas as informações de um post",
@@ -1891,7 +1971,7 @@
                 }
             }
         },
-        "/posts/{post_id}/gostos":{
+        "/posts/{id}/gostos":{
             
                 "post":{
                     "summary": "Adicionar gosto a uma publicação",
@@ -1902,7 +1982,7 @@
                         }
                     ],
                     "parameters": [{
-                        "name": "post_id",
+                        "name": "id",
                         "in": "path",
                         "description": "id do post a adicionar gosto",
                         "required": true,
@@ -6297,7 +6377,27 @@
                         "type": "string"
                     }
                 }
-            }            
+            },
+            "Comentario": {
+                "type": "object",
+                "properties": {
+                    "comentario_id" : {
+                        "type": "string"
+                    },
+                    "publicacao_id" : {
+                        "type": "string"
+                    },
+                    "comentario" : {
+                        "type": "string"
+                    },
+                    "criador_id" : {
+                        "type": "string"
+                    },
+                    "data" : {
+                        "type": "string"
+                    }
+                }
+            }              
         }
     }
 }
