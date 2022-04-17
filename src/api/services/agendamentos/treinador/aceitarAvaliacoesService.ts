@@ -1,11 +1,16 @@
 import { client } from "../../../prisma/client";
-import { checkAgendamentoAvaliacaoExists } from "../../../helpers/dbHelpers";
+import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExists } from "../../../helpers/dbHelpers";
 
 class AceitarAvaliacoesService {
   async execute(agendamentoId: string) {
     const exists_agendamento = await checkAgendamentoAvaliacaoExists(agendamentoId);
     if (!exists_agendamento) {
-      throw new Error("O agendamento não existe");
+      throw new Error("O pedido de agendamento não existe");
+    }
+
+    const is_aceite = await checkAgendamentoAvaliacaoIsAceiteExists(agendamentoId);
+    if (!is_aceite) {
+      throw new Error("O pedido de agendamento já foi aceite");
     }
 
     const agendamentos = await client.agendamentos_avaliacoes.update({

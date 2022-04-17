@@ -46,7 +46,17 @@ let checkDesafioIdExists = async(desafioId: string)=>{
     const search = await client.desafios.findMany({
         where:{
             desafio_id: desafioId,
-            isDeleted: false
+            isDeleted: false,
+        }
+    })
+    return search.length != 0;
+}
+let checkDesafioDisponivel = async(desafioId: string)=>{
+    const search = await client.desafios.findMany({
+        where:{
+            desafio_id: desafioId,
+            isDeleted: false,
+            isEncerrado: false
         }
     })
     return search.length != 0;
@@ -154,7 +164,8 @@ let checkPostExists = async(postId : string)=>{
 let checkGinasioExists= async(ginasioId : string)=>{
     const search = await client.ginasio.findMany({
         where:{
-            ginasio_id : ginasioId
+            ginasio_id : ginasioId,
+            isDeleted: false
         }
     });
     
@@ -222,7 +233,7 @@ let checkAgendamentoAvaliacaoIsAceiteExists = async(agendamentoId : string) => {
         where:{
             agendamento_id: agendamentoId,
             isDeleted: false,
-            isAceite: true
+            isAceite: false
         }
     })
     return search.length != 0;
@@ -243,7 +254,7 @@ let checkAgendamentoDesafioIsAceiteExists = async(agendamentoId : string) => {
         where:{
             agendamento_id: agendamentoId,
             isDeleted: false,
-            isAceite: true
+            isAceite: false
         }
     })
     return search.length != 0;
@@ -647,6 +658,7 @@ export {
     checkAutorDesafio,
     checkTreinador,
     getTreinadorFuncaoId,
-    checkAutorPublicacoes
+    checkAutorPublicacoes,
+    checkDesafioDisponivel
 }
 

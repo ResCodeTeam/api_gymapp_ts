@@ -1,5 +1,5 @@
 import { client } from "../../../prisma/client";
-import { checkUserIdExists, checkGinasioExists } from "../../../helpers/dbHelpers";
+import { checkUserIdExists, checkGinasioExists, checkTreinador } from "../../../helpers/dbHelpers";
 
 interface IAgendarAvaliacaoService {
   uid: string;
@@ -24,6 +24,11 @@ export class AgendarAvaliacaoService {
     const exist_gym = await checkGinasioExists(ginasioId);
     if (!exist_gym){
       throw new Error("O ginásio não existe");
+    }
+
+    const exist_treinador = await checkTreinador(treinadorId);
+    if (!exist_treinador){
+      throw new Error("O treinador não existe");
     }
 
     const agendamento = await client.agendamentos_avaliacoes.create({
