@@ -2817,7 +2817,73 @@
                 }
             }            
         },
+        "/desafios/{desafioId}":{
+            "get": {
+                "summary": "Obter submissões de um Desafio",
+                "description": "Este pedido serve para obter as submissões de um desafio pelo seu ID",
+                "tags":["Desafios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters":[{
+                    "name": "desafioId",
+                    "in":"path",
+                    "description":"Id do desafio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500": {
+                        "description": "ERROR"
+    
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Desafio"
+                                },
+                                "examples": {
+                                    "Desafios":{
+                                        "value":[
+                                            {
+                                              "desafio_id": "19738118-f243-4937-a138-89ff2daa19c1",
+                                              "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                                              "nome": "Caminharrrrr",
+                                              "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                              "data_inicio": "2022-03-23T15:51:45.663Z",
+                                              "data_fim": null,
+                                              "recompensa": 100,
+                                              "isEncerrado": true,
+                                              "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                              "descricao": "2",
+                                              "isDeleted": false,
+                                              "submissoes_desafios": []
+                                            }
+                                          ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/adminTreinador/desafio/{desafioId}":{
+           
             "delete":{
                 "summary": "remover desafio ",
                 "description": "Esta rota vai remover base de dados os desafios criad",
