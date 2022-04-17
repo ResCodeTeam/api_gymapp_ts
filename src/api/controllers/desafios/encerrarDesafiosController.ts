@@ -9,7 +9,7 @@ export class EncerrarDesafiosController{
             throw new Error("Pedido inválido")
         }
         
-        const encerrarDesafiosController = new EncerrarDesafiosService();
+        const encerrarDesafiosService = new EncerrarDesafiosService();
 
         const resp = await encerrarDesafiosService.execute({
             isEncerrado, 
