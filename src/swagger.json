@@ -773,7 +773,7 @@
                 }
             }
         },
-        "/admin/modalidades/{modalidadeId}":{
+        "/admin/ginasio/{ginasioId}/modalidades/{modalidadeId}":{
             "delete":{
                 "summary": "Remover modalidades",
                 "description": "Esta rota vai apagar na base de dados uma modalidade de um ginásio em específico",
@@ -787,6 +787,18 @@
                     "name": "modalidadeId",
                     "in": "path",
                     "description": "Id da modalidade",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "modalidadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                },{
+                    "name": "ginasioId",
+                    "in": "path",
+                    "description": "Id do ginasio",
                     "required": true,
                     "schema":{
                         "properties": {
@@ -822,7 +834,93 @@
                         }
                     }          
                 }
+            },
+            "put":{
+                "summary": "Editar modalidades",
+                "description": "Esta rota vai editar uma modalidade de um ginásio em específico",
+                "tags": ["Modalidades"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters": [{
+                    "name": "modalidadeId",
+                    "in": "path",
+                    "description": "Id da modalidade",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "modalidadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                },{
+                    "name": "ginasioId",
+                    "in": "path",
+                    "description": "Id do ginasio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "modalidadeId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "imagemUrl":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Editar Exercicio":{
+                                    "value":{
+                                        "nome":"VO5",
+                                        "imagemUrl":"Teste2"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Modalidade":{
+                                        "value":{
+                                            "msg":"Modalidada removida com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
             }
+            
         },
         "/treinador/exercicios/{exercicioId}":{
             "delete":{
@@ -6517,6 +6615,88 @@
                             },
                             "examples": {
                                 "Remover locais de medida":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/admin/marca/{marcaId}/localMedida":{
+        "post":{
+            "summary": "Criar local de medida",
+            "description": "Esta rota vai criar um local de medida",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Locais de Medida"],
+            "parameters": [
+                {
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "id da marca a associar",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type":"string"
+                            }
+                        }
+                    },
+                    "examples": {
+                        "Marca":{
+                            "value":"19738118-f243-4937-a138-89ff2daa19c1"
+                        }
+                    }
+                }
+            ],
+            "requestBody":{
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "descricao":{
+                                    "type": "string"
+                                },
+                                "unilado":{
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Desafio": {
+                                "value": {
+                                    "descricao": "Peito",
+                                    "unilado" : false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Notificacoes":{
                                     "value":{
                                         "msg":"Operação realizada com sucesso"
                                     }
