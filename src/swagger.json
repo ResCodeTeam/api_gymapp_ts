@@ -1670,6 +1670,67 @@
         }
         
     },
+    "/posts/{id}/comentario/{comentarioId}":{
+        "delete":{
+            "summary": "Remover comentário",
+            "description": "Esta rota permite remover num comentário",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "description": "id da publicação",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "style": "simple"
+
+            },{
+                "name": "comentarioId",
+                "in": "path",
+                "description": "id do comentário",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "style": "simple"
+
+            }],
+            "tags": ["Posts"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples":{
+                                "gosto":{
+                                    "value":{
+                                        "msg":"Comentário removido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    },
     "/posts/{id}":{
         "get":{
             "summary": "Ver toda a informação de um post",
