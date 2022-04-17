@@ -18,11 +18,11 @@ const encerrarDesafiosController = new EncerrarDesafiosController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
 
 //#region Desafios
-adminTreinadorRouter.put("/desafio/:id/editar", editarDesafio.handle);
-adminTreinadorRouter.delete("/desafio/:id", removerDesafio.handle);
+adminTreinadorRouter.put("/desafio/:id/editar",verificarAutenticacao,verificarAdminTreinador, editarDesafio.handle);
+adminTreinadorRouter.delete("/desafio/:id",verificarAutenticacao,verificarAdminTreinador,  removerDesafio.handle);
 adminTreinadorRouter.post("/ginasio/:id/desafio/", verificarAutenticacao, verificarAdminTreinador, criarDesafio.handle);
-adminTreinadorRouter.get("/desafios/", verDesafiosParticipantesController.handle);
-adminTreinadorRouter.put("/desafios/:id", encerrarDesafiosController.handle);
+adminTreinadorRouter.get("/desafios/",verificarAutenticacao,verificarAdminTreinador,  verDesafiosParticipantesController.handle);
+adminTreinadorRouter.put("/desafios/:id",verificarAutenticacao,verificarAdminTreinador,  encerrarDesafiosController.handle);
 //#endregion
 
 //#region 
