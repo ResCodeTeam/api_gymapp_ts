@@ -517,7 +517,7 @@ let checkAutorAgendamentoDesafios = async(agendamentoId, uId)=>{
     return agendamento.length != 0
 }
 
-let checkTreinadorGinasio= async(ginasioId : string, treinadorId : string) => {
+let checkTreinadorGinasio = async(ginasioId : string, treinadorId : string) => {
     const searchMarca = await client.ginasio.findUnique({
         where:{
             ginasio_id : ginasioId
@@ -539,6 +539,18 @@ let checkTreinadorGinasio= async(ginasioId : string, treinadorId : string) => {
     }
 
     return true;
+}
+
+let getTreinadorMarca =  async(marcaId : string, treinadorId : string) => {
+
+    const searchTreinador = await client.treinadores_marca.findFirst({
+        where : {
+            marca_id : marcaId,
+            treinador_uid : treinadorId
+        }
+    })
+
+    return searchTreinador.marca_id;
 }
 
 let checkMusculoExists = async(musculoId:string)=>{
