@@ -39,6 +39,7 @@ import { EditarGinasioController } from "../controllers/ginasios/editarGinasioCo
 import { RemoverAlunoController } from "../controllers/alunos/removerAlunoController";
 import { VerTreinadorGinasioService } from "../services/ginasios/obterTreinadoresGinasioService";
 import { VerTreinadorGinasioController } from "../controllers/ginasios/obterTreinadorGinasioController";
+import { CriarLocalMedidaController } from "../controllers/localMedida/criarLocalMedidaController";
 
 
 
@@ -67,6 +68,8 @@ const verTodasModalidadesController = new VerTodasModalidadesController();
 const editarGinasioController=new EditarGinasioController();
 const removerAlunoController= new RemoverAlunoController();
 const verTreinadorGinasioController= new VerTreinadorGinasioController();
+
+const criarLocalMedidaController = new CriarLocalMedidaController();
 
 //#region Admin
 adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdminController.handle);
@@ -119,5 +122,7 @@ adminRouter.post("/notificacao/ginasio/", verificarAutenticacao ,verificarAdmin,
 adminRouter.delete("/treinador/:id", verificarAutenticacao ,verificarAdmin, eliminarTreinadorController.handle);
 adminRouter.post("/marca/:id/treinadores", verificarAutenticacao, verificarAdmin, registarTreinadorController.handle);
 //#endregion
+
+adminRouter.post("/marca/:marcaId/localMedida", verificarAutenticacao, verificarAdmin, criarLocalMedidaController.handle);
 
 export { adminRouter };

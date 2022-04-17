@@ -32,5 +32,6 @@ backendRouter.put("/atividades/:id", editarAtividadesController.handle);
 
 backendRouter.put("/musculos/:musculoId", editarMusculoController.handle);
 backendRouter.post("/musculos", addMusculoController.handle);
+
 export { backendRouter };
 
