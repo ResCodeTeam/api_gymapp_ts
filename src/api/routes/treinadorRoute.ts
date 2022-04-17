@@ -71,9 +71,6 @@ const obterPlanoTreinoAlunoController = new ObterPlanoTreinoAlunoController()
 const submissaoDesafioController = new SubmissaoDesafioController();
 const editarPlanoTreinoController = new EditarPlanoTreinoController()
 
-//#region Comentarios
-treinadorRouter.post("/posts/:id/comentarios/", verificarAutenticacao, verificarTreinador, criarComentarioController.handle);
-//#endregion
 
 //#region Exercicios
 treinadorRouter.get("/exercicios/", verTodosOsExerciciosTreinadoresController.handle);

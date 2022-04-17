@@ -23,6 +23,7 @@ import { RemoverGostoPublicacaoController } from "../controllers/posts/gostosPos
 import { CriarGostoCommentController } from "../controllers/posts/gostosComments/criarGostoCommentController";
 import { RemoverGostoCommentController } from "../controllers/posts/gostosComments/removerGostoCommentController";
 import { RemoverComentarioController } from "../controllers/posts/comments/removerComentarioController";
+import { VerTodasAtividadesController } from "../controllers/atividades/verTodasAtividadesController";
 
 
 const allRouter = express.Router();
@@ -50,6 +51,7 @@ const removerGostoPublicacaoController = new RemoverGostoPublicacaoController();
 const criarGostoCommentController = new CriarGostoCommentController();
 const removerGostoCommentController = new RemoverGostoCommentController();
 const removerComentarioController = new RemoverComentarioController();
+const verTodasAtividadesController = new VerTodasAtividadesController();
 
 //#region Publicacoes
 allRouter.post("/posts", verificarAutenticacao, criarPostsController.handle);
@@ -65,6 +67,7 @@ allRouter.post("/posts/:publicacaoId/comentario/:comentarioId/gosto", verificarA
 allRouter.delete("/posts/:publicacaoId/comentario/:comentarioId/gosto", verificarAutenticacao, removerGostoCommentController.handle);
 //#endregion
 
+allRouter.get("/atividades/",verificarAutenticacao, verTodasAtividadesController.handle);
 
 //#region Perfil
 allRouter.put("/perfil", verificarAutenticacao, editarPerfilController.handle);

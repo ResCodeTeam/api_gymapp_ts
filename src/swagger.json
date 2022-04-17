@@ -3152,9 +3152,9 @@
                 }
             }
         },
-        "/backend/atividades/":{
+        "/atividades/":{
             "get":{
-                "summary": "Ver toda a informação de uma atividade",
+                "summary": "Ver toda a informação das atividades",
                 "description": "Esta rota vai apresentar todas as atividades existentes",
                 "tags": ["Atividades"],
                 "responses": {
