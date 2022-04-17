@@ -541,11 +541,10 @@ let checkTreinadorGinasio = async(ginasioId : string, treinadorId : string) => {
     return true;
 }
 
-let getTreinadorMarca =  async(marcaId : string, treinadorId : string) => {
+let getTreinadorMarca =  async(treinadorId : string) => {
 
     const searchTreinador = await client.treinadores_marca.findFirst({
         where : {
-            marca_id : marcaId,
             treinador_uid : treinadorId
         }
     })
@@ -750,6 +749,7 @@ export {
     checkIsComentarioPublicacaoExists,
     checkAutorComentario,
     getGostosComentario,
-    getIdentificacoesComentario
+    getIdentificacoesComentario,
+    getTreinadorMarca
 }
 

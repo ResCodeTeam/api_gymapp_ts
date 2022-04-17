@@ -37,6 +37,7 @@ import { SubmissaoDesafioController } from "../controllers/desafios/submissoes/s
 import { EditarPlanoTreinoController } from "../controllers/plano/editarPlanoTreinoController";
 import { verificarTreinador } from "../middlewares/verificarTreinador";
 import { VerAvaliacaoAlunoController } from "../controllers/avaliacoes/verAvaliacaoAlunoController";
+import { VerLocaisMedidaController } from "../controllers/localMedida/verLocaisMedidaController";
 
 
 //
@@ -72,6 +73,7 @@ const obterPlanoTreinoAlunoController = new ObterPlanoTreinoAlunoController()
 const submissaoDesafioController = new SubmissaoDesafioController();
 const editarPlanoTreinoController = new EditarPlanoTreinoController();
 const verAvaliacaoAlunoController = new VerAvaliacaoAlunoController();
+const verLocaisMedidaController = new VerLocaisMedidaController();
 
 
 //#region Exercicios
@@ -116,7 +118,11 @@ treinadorRouter.get("/agenda/avaliacoes/",verificarAutenticacao, verificarTreina
 treinadorRouter.delete("/plano/:plano_id/", verificarAutenticacao, verificarTreinador, removerPlanoTreinoController.handle);
 treinadorRouter.get("/plano/:uid/:startDate/:endDate", verificarAutenticacao, verificarTreinador, obterPlanoTreinoAlunoController.handle);
 treinadorRouter.post("/planoTreino", verificarAutenticacao, verificarTreinador, criarPlanoTreinoController.handle);
-treinadorRouter.put("/plano/:id/",verificarAutenticacao,verificarTreinador, verificarTreinador, editarPlanoTreinoController.handle);
+treinadorRouter.put("/plano/:id/",verificarAutenticacao,verificarTreinador, editarPlanoTreinoController.handle);
 //#endregion
+
+//#region Locais Medida
+treinadorRouter.get("/locaisMedida/", verificarAutenticacao, verificarTreinador, verLocaisMedidaController.handle);
+//endregion
 
 export { treinadorRouter };
