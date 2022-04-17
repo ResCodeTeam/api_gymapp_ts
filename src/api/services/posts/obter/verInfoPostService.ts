@@ -7,7 +7,7 @@ export class VerInfoPostService{
         if(!existsPost){
             throw new Error("Publicação não existe")
         }
-        
+        console.log(postId)
         const post = await client.publicacoes.findFirst({
             where:{
                 publicacao_id:postId,
@@ -16,7 +16,6 @@ export class VerInfoPostService{
                         is_privado:false
                     }
                 }
-
             },
             select:{
                 publicacao_id:true,
@@ -71,6 +70,6 @@ export class VerInfoPostService{
                 }
             },
         })    
-        return post
+        return post == null? {} : post
     }
 }

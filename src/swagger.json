@@ -1170,62 +1170,7 @@
                 }
             }
         },
-        "/adminTreinador/desafios/{desafioId}":{
-            "put": {
-                "summary": "Encerrar Desafio",
-                "description": "Este pedido server para encerrar um desafio pelo seu ID",
-                "tags":["Desafios"],
-                "parameters":[{
-                    "name": "desafioId",
-                    "in":"path",
-                    "description":"Id do desafio",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "desafioId":{
-                                "type": "string"
-                            }
-                        }
-                    }
-                }],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Desafio"
-                            },
-                            "examples": {
-                                "Avaliacao": {
-                                    "value": {
-                                        "isEncerrado": true
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "500": {
-                        "description": "ERROR"
-  
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Desafio"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
+        
         "/adminTreinador/ginasio/{ginasioId}/desafio/":{
             "post": {
                 "summary": "Criar Desafio",
@@ -1350,97 +1295,7 @@
                 }
             }
         },
-        "/adminTreinador/desafio/{desafioId}/editar":{
-            "put":{
-                "summary": "Editar desafio",
-                "description": "Esta rota vai editar o desafio",
-                "tags": ["Desafios"],
-                "parameters": [
-                {
-                    "name": "desafioId",
-                    "in": "path",
-                    "description": "Id do desafio",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "desafioId":{
-                                "type":"string"
-                            }
-                        }
-                    },
-                    "examples": {
-                        "Editar Desafio":{
-                            "value":"19738118-f243-4937-a138-89ff2daa19c1"
-                        }
-                    }
-                }
-                ],
-                "requestBody":{
-                    "content":{
-                        "application/json":{
-                            "schema":{
-                                "properties": {
-                                    "nome":{
-                                        "type": "string"
-                                    },
-                                    "modalidade":{
-                                        "type": "string"
-                                    },
-                                    "data_inicio":{
-                                        "type": "Date"
-                                    },
-                                    "data_fim":{
-                                        "type": "Date"
-                                    },
-                                    "recompensa":{
-                                        "type": "number"
-                                    },
-                                    "isDeleted":{
-                                        "type": "boolean"
-                                    },
-                                    "descricao":{
-                                        "type": "string"
-                                    }    
-                                }
-                            },
-                            "examples": {
-                                "Desafio": {
-                                    "value": {
-                                        "nome": "Caminhar",
-                                        "modalidade" : "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
-                                        "data_inicio": "2022-03-23 15:51:45.663",
-                                        "fim": "2022-03-24 20:00:00.000",
-                                        "recompensa": 100,
-                                        "isEncerrado": true,
-                                        "descricao": "2"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "500": {
-                        "description": "ERROR"
-  
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Desafio"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
+        
 
        "/{userId}/perfil":{
             "put":{
@@ -1635,30 +1490,7 @@
                 }
             }
         },
-        "/treinador/treinos/":{
-            "get":{
-                "summary": "Ver avaliações",
-                "description": "Esta rota vai apresentar todas as avaliações",
-                "tags": ["Treinos"],
-                "responses": {
-                    "500":{
-                        "description": "ERROR"  
-                    },
-                    "200":{
-                        "description": "OK",
-                        "content": {
-                            "schema":{
-                                "properties": {
-                                    "msg":{
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                    }            
-                }
-            }
-        },
+        
         "/posts/user/":{
             "get":{
                 "summary": "Ver posts de user",
@@ -1836,77 +1668,6 @@
             }
             ],
             "tags": ["Posts"],
-            "responses": {
-                "500":{
-                    "description": "ERROR"
-                },
-                "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "object",
-                                "$ref": "#/components/schemas/Posts"
-                            },
-                            "examples": {
-                                "Ver Posts":{
-                                    "value":{
-                                        "post": {
-                                            "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                            "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                            "data": "2022-05-28T00:00:00.000Z",
-                                            "descricao": "TesteFatimaaa",
-                                            "tipo": 3,
-                                            "ginasio_id": null,
-                                            "isDeleted": false
-                                          }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "put": {
-        "summary": "Editar informação de uma publicação",
-        "description": "Esta rota vai permitir editar as informações de um post",
-        "parameters": [
-        {
-            "name": "id",
-            "in": "path",
-            "description": "Id do post que se deseja editar",
-            "required": true,
-            "schema":{
-                "properties": {
-                    "postId":{
-                        "type": "string"
-                    }
-                }
-            }
-        }
-    ],
-    "requestBody": {
-        "content": {
-            "application/json":{
-                "schema":{
-                    "properties":{
-                        "descricao":{
-                            "type": "string"
-                        }
-                    }
-                },
-                "examples": {
-                    "Criar Posts":{
-                        "value":{
-                            "descricao":"Proteína da PROZIS #PROZIS #VACACIONES #VIDA"
-                           }
-                    }
-                }
-            }
-        }
-    },
-    "tags": ["Posts"],
             "responses": {
                 "500":{
                     "description": "ERROR"
@@ -6132,10 +5893,10 @@
                                     "type": "string"
                                 },
                                 "data_inicio":{
-                                    "type": "Date"
+                                    "type": "string"
                                 },
                                 "data_fim":{
-                                    "type": "Date"
+                                    "type": "string"
                                 },
                                 "recompensa":{
                                     "type": "number"
@@ -6198,10 +5959,12 @@
                 "200":{
                     "description": "OK",
                     "content": {
-                        "schema":{
-                            "properties": {
-                                "msg":{
-                                    "type": "string"
+                        "application/json": {
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
                                 }
                             }
                         }
