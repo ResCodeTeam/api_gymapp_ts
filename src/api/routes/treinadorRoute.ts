@@ -71,20 +71,20 @@ const obterPlanoTreinoAlunoController = new ObterPlanoTreinoAlunoController()
 const submissaoDesafioController = new SubmissaoDesafioController();
 const editarPlanoTreinoController = new EditarPlanoTreinoController()
 //#region Comentarios
-treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
+treinadorRouter.post("/posts/:id/comentarios/", verificarAutenticacao, verificarTreinador, criarComentarioController.handle);
 //#endregion
 
 //#region Exercicios
 treinadorRouter.get("/exercicios/", verTodosOsExerciciosTreinadoresController.handle);
-treinadorRouter.delete("/exercicios/:exercicios_id/", verificarAutenticacao, removerExercicioController.handle);
-treinadorRouter.post("/exercicios/", verificarAutenticacao,criarExercicioController.handle);
-treinadorRouter.put("/exercicios/:exercicios_id",verificarAutenticacao, editarExercicioController.handle);
-treinadorRouter.post("/exercicios/:exercicioId/imagens",verificarAutenticacao,adicionarExercicioImagensController.handle)
-treinadorRouter.delete("/exercicios/:exercicioId/imagens/:imagemId",verificarAutenticacao,removerExercicioImagemController.handle)
-treinadorRouter.put("/exercicios/:exercicios_id",verificarAutenticacao, editarExercicioController.handle);
-treinadorRouter.post("/exercicios/:exercicioId/musculos/:musculoId",verificarAutenticacao, adicionarExercicioMusculoController.handle);
-treinadorRouter.delete("exercicios/:exercicioId/musculos/:musculoId",verificarAutenticacao, removerExercicioMusculoController.handle);
-treinadorRouter.get("/exercicios", verificarAutenticacao,verMeusExerciciosController.handle);
+treinadorRouter.delete("/exercicios/:exercicios_id/", verificarAutenticacao, verificarTreinador, removerExercicioController.handle);
+treinadorRouter.post("/exercicios/", verificarAutenticacao, verificarTreinador, criarExercicioController.handle);
+treinadorRouter.put("/exercicios/:exercicios_id",verificarAutenticacao, verificarTreinador, editarExercicioController.handle);
+treinadorRouter.post("/exercicios/:exercicioId/imagens",verificarAutenticacao, verificarTreinador, adicionarExercicioImagensController.handle)
+treinadorRouter.delete("/exercicios/:exercicioId/imagens/:imagemId",verificarAutenticacao,verificarTreinador, removerExercicioImagemController.handle)
+treinadorRouter.put("/exercicios/:exercicios_id",verificarAutenticacao, verificarTreinador, editarExercicioController.handle);
+treinadorRouter.post("/exercicios/:exercicioId/musculos/:musculoId",verificarAutenticacao, verificarTreinador, adicionarExercicioMusculoController.handle);
+treinadorRouter.delete("exercicios/:exercicioId/musculos/:musculoId",verificarAutenticacao, verificarTreinador, removerExercicioMusculoController.handle);
+treinadorRouter.get("/exercicios", verificarAutenticacao, verificarTreinador, verMeusExerciciosController.handle);
 //#endregion
 
 //#region Treinos
@@ -92,30 +92,30 @@ treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
 //#endregion
 
 //#region Desafios
-treinadorRouter.post("/desafio/:desafioId/submissoes", verificarAutenticacao,submissaoDesafioController.handle);
+treinadorRouter.post("/desafio/:desafioId/submissoes", verificarAutenticacao, verificarTreinador, submissaoDesafioController.handle);
 //#endregion
 
 //#region Avaliacoes
 treinadorRouter.put("/avaliacoes/:id", editarAvaliacao.handle);
 treinadorRouter.delete("/avaliacoes/:id", removerAvaliacao.handle);
-treinadorRouter.post("/avaliacoes/:id", verificarAutenticacao,criarAvaliacaoController.handle);
+treinadorRouter.post("/avaliacoes/:id", verificarAutenticacao, verificarTreinador, criarAvaliacaoController.handle);
 //#endregion
 
 
 //#region Agendamentos
-treinadorRouter.put("/agenda/desafios/:id/", verificarAutenticacao,aceitarDesafiosController.handle);
-treinadorRouter.put("/agenda/avaliacao/:id/", verificarAutenticacao,aceitarAvaliacoesController.handle);
-treinadorRouter.delete("/agenda/desafios/:agendamento_id/",verificarAutenticacao, removerIsAceiteDesafiosController.handle);
-treinadorRouter.delete("/agenda/avaliacao/:agendamento_id/", verificarAutenticacao,removerIsAceiteAvaliacoesController.handle);
-treinadorRouter.get("/agenda/desafios/",verificarAutenticacao, verAgendamentosDesafiosController.handle);
-treinadorRouter.get("/agenda/avaliacoes/",verificarAutenticacao, verAgendamentoAvaliacoesController.handle);
+treinadorRouter.put("/agenda/desafios/:id/", verificarAutenticacao, verificarTreinador, aceitarDesafiosController.handle);
+treinadorRouter.put("/agenda/avaliacao/:id/", verificarAutenticacao, verificarTreinador, aceitarAvaliacoesController.handle);
+treinadorRouter.delete("/agenda/desafios/:agendamento_id/",verificarAutenticacao, verificarTreinador, removerIsAceiteDesafiosController.handle);
+treinadorRouter.delete("/agenda/avaliacao/:agendamento_id/", verificarAutenticacao, verificarTreinador, removerIsAceiteAvaliacoesController.handle);
+treinadorRouter.get("/agenda/desafios/",verificarAutenticacao, verificarTreinador, verAgendamentosDesafiosController.handle);
+treinadorRouter.get("/agenda/avaliacoes/",verificarAutenticacao, verificarTreinador, verAgendamentoAvaliacoesController.handle);
 //#endregion
 
 //#region PlanoTreino
-treinadorRouter.delete("/plano/:plano_id/", verificarAutenticacao,removerPlanoTreinoController.handle);
-treinadorRouter.get("/plano/:uid/:startDate/:endDate", verificarAutenticacao,obterPlanoTreinoAlunoController.handle);
-treinadorRouter.post("/planoTreino", verificarAutenticacao,criarPlanoTreinoController.handle);
-treinadorRouter.put("/plano/:id/",verificarAutenticacao,verificarTreinador, editarPlanoTreinoController.handle);
+treinadorRouter.delete("/plano/:plano_id/", verificarAutenticacao, verificarTreinador, removerPlanoTreinoController.handle);
+treinadorRouter.get("/plano/:uid/:startDate/:endDate", verificarAutenticacao, verificarTreinador, obterPlanoTreinoAlunoController.handle);
+treinadorRouter.post("/planoTreino", verificarAutenticacao, verificarTreinador, criarPlanoTreinoController.handle);
+treinadorRouter.put("/plano/:id/",verificarAutenticacao,verificarTreinador, verificarTreinador, editarPlanoTreinoController.handle);
 //#endregion
 
 export { treinadorRouter };

@@ -11,7 +11,7 @@ export class EncerrarDesafiosController{
         
         const encerrarDesafiosController = new EncerrarDesafiosService();
 
-        const resp = await encerrarDesafiosController.execute({
+        const resp = await encerrarDesafiosService.execute({
             isEncerrado, 
             desafioId
         });
