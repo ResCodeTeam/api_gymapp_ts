@@ -36,6 +36,7 @@ import { VerUmaMarcaController } from "../controllers/marcas/verUmaMarcaControll
 import { VerTodasMarcasController } from "../controllers/marcas/verTodasMarcasController";
 import { VerTodasModalidadesController } from "../controllers/modalidades/verTodasModalidadesController";
 import { EditarGinasioController } from "../controllers/ginasios/editarGinasioController";
+import { RemoverAlunoController } from "../controllers/alunos/removerAlunoController";
 
 
 
@@ -62,6 +63,7 @@ const verUmaMarcaController = new VerUmaMarcaController();
 const verTodasMarcasController = new VerTodasMarcasController();
 const verTodasModalidadesController = new VerTodasModalidadesController();
 const editarGinasioController=new EditarGinasioController();
+const removerAlunoController= new RemoverAlunoController();
 
 //#region Admin
 adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdminController.handle);
@@ -71,6 +73,7 @@ adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdm
 
 adminRouter.put("/marca/editar/:marcaId",verificarAutenticacao,verificarAdmin,editarMarcaController.handle);
 adminRouter.post("/marca/alunos/", verificarAutenticacao ,verificarAdmin,registarAlunosController.handle);
+adminRouter.put("/aluno/remover/:uId",verificarAutenticacao,verificarAdmin, removerAlunoController.handle);
 //#endregion
 
 //#region Ginasios

@@ -1407,6 +1407,60 @@
             }
         }
     },
+    "/admin/aluno/remover/{uId}":{
+    "put":{
+        "summary": "Remover Aluno",
+        "description": "Esta rota vai remover um Aluno",
+        "tags": ["Aluno"],
+        "security": [
+            {
+                "basicAuth":[]
+            }
+        ],
+        "parameters": [{
+            "name": "uId",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "schema":{
+                "properties": {
+                    "uId":{
+                        "type": "string"
+                    }
+                }
+            }
+        }
+        
+        ],
+ 
+        "responses": {
+            "500":{
+                "description": "ERROR"  
+            },
+            "200":{
+                "description": "OK",
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "msg":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Remover Aluno":{
+                                "value":{
+                                    "msg":"Aluno removido com sucesso"
+                                }
+                            }
+                        }
+                    }
+                }
+            }          
+        }
+    }
+    },
         
         "/aluno/{id}/desafios/":{
             "get":{
