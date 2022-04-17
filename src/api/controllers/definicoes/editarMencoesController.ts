@@ -5,7 +5,9 @@ export class EditarMencoesController{
   async handle(request:Request, response:Response){
     const uid = response.locals.uid;
     const {mencoes}=request.body;
-
+    if(mencoes === undefined){
+      throw new Error("Pedido inválido")
+    }
 
     const editarMencoesService = new EditarMencoesService();
     const resp = await editarMencoesService.execute(uid,mencoes);

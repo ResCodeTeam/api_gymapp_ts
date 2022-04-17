@@ -1170,6 +1170,7 @@
                 }
             }
         },
+        
         "/adminTreinador/ginasio/{ginasioId}/desafio/":{
             "post": {
                 "summary": "Criar Desafio",
@@ -1294,227 +1295,6 @@
                 }
             }
         },
-
-       "/{userId}/perfil":{
-            "put":{
-                "summary": "Editar perfil",
-                "description": "Esta rota vai editar perfil",
-                "parameters": [
-                {
-                    "name": "userId",
-                    "in": "path",
-                    "description": "Id do user a fazer o pedido",
-                    "required": true,
-                    "schema":{
-                        "properties": {
-                            "userId":{
-                                "type":"string"
-                            }
-                        }
-                    },
-                    "examples": {
-                        "Editar Perfil":{
-                            "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                        }
-                    }
-                }
-                ],
-                "tags": ["Perfil"],
-                "requestBody":{
-                    "content":{
-                        "application/json":{
-                            "schema":{
-                                "properties": {
-                                    "uid":{
-                                        "type": "string"
-                                    },
-                                    "email":{
-                                        "type": "string"
-                                    },"nome":{
-                                        "type": "string"
-                                    },
-                                    "password":{
-                                        "type": "string"
-                                    },
-                                    "hashtag":{
-                                        "type": "string"
-                                    },  
-                                    "genero":{
-                                        "type": "number"
-                                    },
-                                    "descricao":{
-                                        "type": "string"
-                                    },
-                                    "imagemUrl":{
-                                        "type": "string"
-                                    }
-                                    
-                                }
-                            },
-                            "examples": {
-                                "Editar Perfil": {
-                                    "value": {
-                                        "email": "treinador@treinador.com",
-                                        "nome": "treinador",
-                                        "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
-                                        "genero": 0,
-                                        "descricao": null,
-                                        "imagemUrl": null
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "500":{
-                        "description": "ERROR"
-                    },
-                    "200":{
-                        "description": "OK",
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/User"
-                                },
-                                "examples": {
-                                    "Editar Perfil":{
-                                        "value":{
-                                            "user":{
-                                                "uid": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
-                                                "email": "treinador2@treinador.com",
-                                                "nome": "treinador",
-                                                "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
-                                                "data_nasc": "2002-04-09T00:00:00.000Z",
-                                                "hashtag": "t_01",
-                                                "data_entrada": "2022-03-23T00:00:00.000Z",
-                                                "funcao_id": "4c1c8eaf-7207-4d06-864a-a50191e9f5a7",
-                                                "refresh_token": null,
-                                                "genero": 0,
-                                                "pontos": 0,
-                                                "descricao": null, 
-                                                "imagem_url": null,
-                                                "isDeleted": false
-                                            }
-                                              
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "/admin/aluno/remover/{uId}":{
-    "put":{
-        "summary": "Remover Aluno",
-        "description": "Esta rota vai remover um Aluno",
-        "tags": ["Aluno"],
-        "security": [
-            {
-                "basicAuth":[]
-            }
-        ],
-        "parameters": [{
-            "name": "uId",
-            "in": "path",
-            "description": "Id do aluno",
-            "required": true,
-            "schema":{
-                "properties": {
-                    "uId":{
-                        "type": "string"
-                    }
-                }
-            }
-        }
-        
-        ],
- 
-        "responses": {
-            "500":{
-                "description": "ERROR"  
-            },
-            "200":{
-                "description": "OK",
-                "content": {
-                    "application/json":{
-                        "schema":{
-                            "properties": {
-                                "msg":{
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "examples": {
-                            "Remover Aluno":{
-                                "value":{
-                                    "msg":"Aluno removido com sucesso"
-                                }
-                            }
-                        }
-                    }
-                }
-            }          
-        }
-    }
-    },
-    "/admin/ginasio/treinador/ver/{marcaId}":{
-        "get":{
-            "summary": "Ver treinador",
-            "description": "Esta rota vai ver os treinadores de uma marca",
-            "tags": ["Ginasio"],
-            "security": [
-                {
-                    "basicAuth":[]
-                }
-            ],
-            "parameters": [{
-                "name": "marcaId",
-                "in": "path",
-                "description": "Id da marca",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "marcaId":{
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-            
-            ],
-     
-            "responses": {
-                "500":{
-                    "description": "ERROR"  
-                },
-                "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "properties": {
-                                    "msg":{
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "examples": {
-                                "Ver treinadores":{
-                                    "value":{
-                                        "msg":"operação realizada com sucesso"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }          
-            }
-        }
-        },
         
         "/aluno/{id}/desafios/":{
             "get":{
@@ -1588,18 +1368,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "properties": {
-                                        "msg":{
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "ver avaliação":{
-                                        "value":{
-                                            "msg":"operação realizada com sucesso"
-                                        }
-                                    }
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
                                 }
                             }
                         }
@@ -1607,105 +1377,11 @@
                 }
             }
         },
-        "/posts/user/":{
-            "get":{
-                "summary": "Ver posts de user",
-                "description": "Esta rota vai apresentar todos os posts de um user",
-                "security": [
-                    {
-                        "basicAuth":[]
-                    }
-                ],
-                "tags": ["Posts"],
-                "responses": {
-                    "500":{
-                        "description": "ERROR"
-                    },
-                    "200":{
-                        "description": "OK",
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Posts"
-                                },
-                                "examples": {
-                                    "Ver Posts":{
-                                        "value":{
-                                            "publicacoes": [
-                                                {
-                                                  "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
-                                                  "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                                  "data": "2022-03-28T16:31:45.226Z",
-                                                  "descricao": "teste1",
-                                                  "tipo": 3,
-                                                  "imagens_publicacao": [],
-                                                  "gostos_publicacao": [
-                                                    {
-                                                      "gosto_id": "3db3afa6-2b21-4401-af94-e5d1b061b7e9",
-                                                      "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
-                                                      "criador_id": "19fb2828-424f-425e-9fe4-828d9262a00f"
-                                                    }
-                                                  ]
-                                                },
-                                                {
-                                                  "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                                  "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                                  "data": "2022-05-28T00:00:00.000Z",
-                                                  "descricao": "TesteFatimaaa",
-                                                  "tipo": 3,
-                                                  "imagens_publicacao": [],
-                                                  "gostos_publicacao": [
-                                                    {
-                                                      "gosto_id": "c5b3cec9-7950-4351-9d32-2a1778dff617",
-                                                      "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                                      "criador_id": "024eb3f7-34fb-49ac-ac32-612ae870d7b3"
-                                                    }
-                                                  ]
-                                                }
-                                              ]
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "/treinador/exercicios":{
-        "get":{
-            "summary": "Ver todos os exercicios",
-            "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
-           
-            "tags": ["Exercicios"],
-            "security": [
-                {
-                    "basicAuth":[]
-                }
-            ],
-            "responses": {
-                "500":{
-                    "description": "ERROR"
-                },
-                "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "object",
-                                "$ref": "#/components/schemas/exercicios"
-                            }
-                        
-                        }
-                    }
-                }
-            }
-        },
+    "/treinador/avaliacoes/":{
         "post":{
             "summary": "Registo de avaliacao",
             "description": "Esta rota vai registar na base de dados avaliacao",
-            "tags": ["Avaliacao"],
+            "tags": ["Avaliacoes"],
             "security": [
                 {
                     "basicAuth":[]
@@ -1716,46 +1392,12 @@
                     "application/json":{
                         "schema":{
                             "properties": {
-                                "alunoId":{
-                                    "type": "string"
-                                },
-                                "peso":{
-                                    "type": "number"
-                                },
-                                "unidadePeso":{
-                                    "type": "string"
-                                },
-                                "treinadorId":{
-                                    "type": "string"
-                                },
-                                "musculo":{
-                                    "type": "string"
-                                },
-                                "gorduraCorporal":{
-                                    "type": "number"
-                                },
-                                "gorduraVisceral":{
-                                    "type": "number"
-                                },
-                                "agua":{
-                                    "type": "number"
-                                },
-                                "proteina":{
-                                    "type": "string"
-                                },
-                                "massaOssea":{
-                                    "type": "number"
-                                },
-                                "metabolismo":{
-                                    "type": "number"
-                                },
-                                "medidas": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "$ref":"#/components/schemas/avaliacao"
-                                    }
-                            } }
+                                "Avaliacao": {
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/avaliacao"
+                                    
+                                } 
+                            }
                         }
                         
                     }
@@ -1790,11 +1432,245 @@
                 
             }
         }
+    },
+    "/treinador/exercicios":{
+        "get":{
+            "summary": "Ver todos os exercicios",
+            "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
+           
+            "tags": ["Exercicios"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Exercicio"
+                            }
+                        
+                        }
+                    }
+                }
+            }
+        }     
+    },
+    "/posts/{id}/comentarios":{
+        "post":{
+            "summary": "Criar comentário",
+            "description": "Esta rota permite criar um comentário para uma publicação",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "description": "id da da publicação",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "style": "simple"
 
-    
+            }],
+            "tags": ["Posts"],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "comentario":{
+                                    "type": "string"
+                                },
+                                "identificacao":{
+                                    "type":"array",
+                                    "items":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }, "examples": {
+                            "Criar Comentário":{
+                                "value":{
+                                    "comentario":"Estou a comentar uma publicação",
+                                    "identificacao":[
+                                        "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "00b27390-ad57-47de-ac18-4c2a490caa97"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Comentario"
+                            },
+                            "examples": {
+                                "Ver Posts":{
+                                    "value":{
+                                    "comentario_id": "c7446c39-2cf1-4e88-9dd3-7697f912c5e8",
+                                    "publicacao_id": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
+                                    "comentario": "Estou a comentar uma publicação",
+                                    "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "data": "2022-04-17T11:31:20.669Z"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         
     },
-    "/posts/post/{id}":{
+    "/posts/{id}/comentario/{comentarioId}/gosto":{
+        "post":{
+            "summary": "Criar gosto comentário",
+            "description": "Esta rota permite criar gosto num comentário",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "description": "id da publicação",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "style": "simple"
+
+            },{
+                "name": "comentarioId",
+                "in": "path",
+                "description": "id do comentário",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "style": "simple"
+
+            }],
+            "tags": ["Posts"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "gosto_id":{
+                                        "type": "string"
+                                    },
+                                    "criador_id":{
+                                        "type": "string"
+                                    },
+                                    "comentario_id":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples":{
+                                "gosto":{
+                                    "value":{
+                                        "gosto_id": "48d80d96-cc18-4ff5-ba97-de83401facbe",
+                                        "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "comentario_id": "6da9c95a-e92a-4b12-bc3e-ac990aa0d60c"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "delete":{
+            "summary": "Remover gosto comentário",
+            "description": "Esta rota permite remover gosto num comentário",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "description": "id da publicação",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "style": "simple"
+
+            },{
+                "name": "comentarioId",
+                "in": "path",
+                "description": "id do comentário",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "style": "simple"
+
+            }],
+            "tags": ["Posts"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples":{
+                                "gosto":{
+                                    "value":{
+                                        "msg":"Gosto removido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    },
+    "/posts/{id}":{
         "get":{
             "summary": "Ver toda a informação de um post",
             "description": "Esta rota vai apresentar todas as informações de um post",
@@ -1850,8 +1726,7 @@
                 }
             }
         }
-    },
-    "delete":{
+    },"delete":{
         "summary": "Remover publicação",
         "description": "Esta rota vai permitir remover uma publicação",
         "security": [
@@ -1901,8 +1776,73 @@
             }
         }
     }
-}
 },
+        "put":{
+            "summary": "Editar informação de uma publicação",
+            "description": "Esta rota vai permitir editar as informações de um post",
+            "tags": ["Posts"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "properties":{
+                                "publicacaoId":{
+                                    "type": "string"
+                                },
+                                "descricao":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Editar Treino":{
+                                "value":{                                   
+                                    "publicacaoId": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
+                                    "descricao":"Proteína da PROZIS #PROZIS #VACACIONES #VIDA"                                   
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref": "#/components/schemas/Posts"
+                            },
+                            "examples": {
+                                "Editar Exercicio":{
+                                    "value":{
+                                        "publicação": {
+                                            "publicacao_id": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
+                                            "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "data": "2022-04-14T12:40:32.236Z",
+                                            "descricao": "teste2",
+                                            "tipo": 3,
+                                            "ginasio_id": null,
+                                            "isDeleted": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
         "/admin/treinador/{treinador_id}":{
             "delete":{
                 "summary": "Remover treinador",
@@ -2158,67 +2098,53 @@
                 }
             }
         },
-        "/posts/{post_id}/gostos":{
+        "/posts/{id}/gostos":{
             
-                "post":{
-                    "summary": "Adicionar gosto a uma publicação",
-                    "description": "Esta rota permite adicionar uma publicação ao gostos",
-                    "security": [
-                        {
-                            "basicAuth":[]
+            "post":{
+                "summary": "Adicionar gosto a uma publicação",
+                "description": "Esta rota permite adicionar uma publicação ao gostos",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "id do post a adicionar gosto",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Criar Gosto":{
+                            
+                                "value":"07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8"
+                            
                         }
-                    ],
-                    "parameters": [{
-                        "name": "post_id",
-                        "in": "path",
-                        "description": "id do post a adicionar gosto",
-                        "required": true,
-                        "schema":{
-                            "type": "string"
-                        },
-                        "examples": {
-                            "Criar Gosto":{
-                                
-                                    "value":"919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                                
-                            }
-                        },
-                        "style": "simple"
-    
-                    }],
-                    "tags": ["Posts"],
-                    "requestBody":{
+                    },
+                    "style": "simple"
+
+                }],
+                "tags": ["Posts"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "properties":{
-                                        "criadorId":{
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "responses": {
-                        "500":{
-                            "description": "ERROR"
-                        },
-                        "200":{
-                            "description": "OK",
-                            "content": {
-                                "application/json":{
-                                    "schema":{
-                                        "type": "object",
-                                        "$ref": "#/components/schemas/Gosto"
-                                    },
-                                    "examples": {
-                                        "Criar Gosto":{
-                                            "value":{
-                                                "Gostos": {
-                                                    "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
-                                                    "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                                                }
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Gosto"
+                                },
+                                "examples": {
+                                    "Criar Gosto":{
+                                        "value":{
+                                            "Gostos": {
+                                                "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
+                                                "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
                                             }
                                         }
                                     }
@@ -2227,6 +2153,62 @@
                         }
                     }
                 }
+            },
+            "delete":{
+                "summary": "Remover gosto a uma publicação",
+                "description": "Esta rota permite remover uma publicação ao gostos",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "id do post a remover gosto",
+                    "required": true,
+                    "schema":{
+                        "type": "string"
+                    },
+                    "examples": {
+                        "Remover Gosto":{
+                            
+                                "value":"07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8"
+                            
+                        }
+                    },
+                    "style": "simple"
+
+                }],
+                "tags": ["Posts"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Remover Gosto":{
+                                        "value":{
+                                            "msg": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         },
         "/treinador/exercicios/":{
             "post":{
@@ -2358,6 +2340,28 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            },
+            "get":{
+                "summary": "Ver todos os exercicios criados por treinadores",
+                "description": "Esta rota permite ver todos os exercicios criados por treinadores",
+                "tags": ["Exercicios"],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/exercicios"
+                                }
+                            
                             }
                         }
                     }
@@ -4640,7 +4644,26 @@
                         "basicAuth":[]
                     }
                 ],
-                "parameters": [{
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "in": "path",
+                        "description": "Id do aluno",
+                        "required": true,
+                        "schema":{
+                            "properties": {
+                                "uid":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "uid":{
+                                "value":"000d1e14-617e-423e-8a1a-f63d4fa5af6a"
+                            }
+                        }
+                    },
+                    {
                     "name": "startDate",
                     "in": "path",
                     "description": "data de inicio",
@@ -4931,95 +4954,6 @@
                     }
                 }          
             }
-        },
-        "put":{
-            "summary": "Editar publicação",
-            "description": "Esta rota vai permitir editar uma publicação",
-            "tags": ["Posts"],
-            "security": [
-                {
-                    "basicAuth":[]
-                }
-            ],
-            "requestBody": {
-                "content": {
-                    "application/json":{
-                        "schema":{
-                            "properties":{
-                                "publicacaoId":{
-                                    "type": "string"
-                                },
-                                "descricao":{
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "examples": {
-                            "Editar Treino":{
-                                "value":{
-                                    
-                                    "publicacaoId": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
-                                    "descricao": "teste2"
-                                    
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "500":{
-                    "description": "ERROR"  
-                },
-                "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "object",
-                                "properties": {
-                                    "publicacao_id":{
-                                        "type": "string"
-                                    },
-                                    "criador_id":{
-                                        "type": "string"
-                                    },
-                                    "data":{
-                                        "type": "string"
-                                    },
-                                    "descricao":{
-                                        "type": "string"
-                                    },
-                                    "tipo":{
-                                        "type": "number"
-                                    },
-                                    "ginasio_id":{
-                                        "type": "string"
-                                    },
-                                    "isDeleted":{
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "examples": {
-                                "Editar Exercicio":{
-                                    "value":{
-                                        "publicação": {
-                                            "publicacao_id": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
-                                            "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                            "data": "2022-04-14T12:40:32.236Z",
-                                            "descricao": "teste2",
-                                            "tipo": 3,
-                                            "ginasio_id": null,
-                                            "isDeleted": false
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }          
-            }
         }
     },
     "/treinador/agenda/avaliacao/{agendamentoId}/":{
@@ -5178,6 +5112,11 @@
             "summary": "Remover a aceitação de um agendamento de um desafio",
             "description": "Esta rota vai remover da base de dados as aceitações dos agendamentos de desafios",
             "tags": ["Agenda"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters":[
             {
                 "name": "agendamentoId",
@@ -5948,7 +5887,180 @@
                 }          
             }
         }
-    } 
+    },
+    "/adminTreinador/desafios/{desafioId}":{
+        "put": {
+            "summary": "Encerrar Desafio",
+            "description": "Este pedido server para encerrar um desafio pelo seu ID",
+            "tags":["Desafios"],
+            "parameters":[{
+                "name": "desafioId",
+                "in":"path",
+                "description":"Id do desafio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "desafioId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Desafio"
+                        },
+                        "examples": {
+                            "Avaliacao": {
+                                "value": {
+                                    "isEncerrado": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500": {
+                    "description": "ERROR"
+
+                },
+                "404": {
+                    "description": "Not Found"
+                },
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/Desafio"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/adminTreinador/desafio/{desafioId}/editar":{
+        "put":{
+            "summary": "Editar desafio",
+            "description": "Esta rota vai editar o desafio",
+            "tags": ["Desafios"],
+            "parameters": [
+            {
+                "name": "desafioId",
+                "in": "path",
+                "description": "Id do desafio",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "desafioId":{
+                            "type":"string"
+                        }
+                    }
+                },
+                "examples": {
+                    "Editar Desafio":{
+                        "value":"19738118-f243-4937-a138-89ff2daa19c1"
+                    }
+                }
+            }
+            ],
+            "requestBody":{
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "nome":{
+                                    "type": "string"
+                                },
+                                "modalidade":{
+                                    "type": "string"
+                                },
+                                "data_inicio":{
+                                    "type": "string"
+                                },
+                                "data_fim":{
+                                    "type": "string"
+                                },
+                                "recompensa":{
+                                    "type": "number"
+                                },
+                                "isDeleted":{
+                                    "type": "boolean"
+                                },
+                                "descricao":{
+                                    "type": "string"
+                                }    
+                            }
+                        },
+                        "examples": {
+                            "Desafio": {
+                                "value": {
+                                    "nome": "Caminhar",
+                                    "modalidade" : "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "data_inicio": "2022-03-23 15:51:45.663",
+                                    "fim": "2022-03-24 20:00:00.000",
+                                    "recompensa": 100,
+                                    "isEncerrado": true,
+                                    "descricao": "2"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500": {
+                    "description": "ERROR"
+
+                },
+                "404": {
+                    "description": "Not Found"
+                },
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/Desafio"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/treinador/treinos/":{
+        "get":{
+            "summary": "Ver avaliações",
+            "description": "Esta rota vai apresentar todas as avaliações",
+            "tags": ["Treinos"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }            
+            }
+        }
+    }
     },        
     "components": {
         "securitySchemes": {
@@ -6453,7 +6565,27 @@
                         "type": "string"
                     }
                 }
-            }            
+            },
+            "Comentario": {
+                "type": "object",
+                "properties": {
+                    "comentario_id" : {
+                        "type": "string"
+                    },
+                    "publicacao_id" : {
+                        "type": "string"
+                    },
+                    "comentario" : {
+                        "type": "string"
+                    },
+                    "criador_id" : {
+                        "type": "string"
+                    },
+                    "data" : {
+                        "type": "string"
+                    }
+                }
+            }              
         }
     }
 }

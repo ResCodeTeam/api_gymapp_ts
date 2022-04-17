@@ -5,6 +5,9 @@ class CriarTreinosController {
   async handle(request: Request, response: Response) {
     const uid = response.locals.uid;
     let { atividadeId, modalidadeId, duracao, calorias, distancia } = request.body;
+    if(atividadeId === undefined || modalidadeId === undefined || duracao === undefined || calorias === undefined || distancia === undefined){
+      throw new Error("Pedido inválido")
+    }
 
     const data = new Date(Date.now());
     const criarTreinosService = new CriarTreinosService();

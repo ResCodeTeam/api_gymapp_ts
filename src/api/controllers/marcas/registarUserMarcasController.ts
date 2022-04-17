@@ -5,6 +5,9 @@ class RegistarUserMarcasController {
   async handle(request: Request, response: Response) {
     const userId = response.locals.uid;
     const { nome, mobilidade, cor, logotipo } = request.body;
+    if(nome === undefined || mobilidade === undefined || cor === undefined || logotipo === undefined){
+      throw new Error("Pedido inválido")
+    }
 
     const registarUserMarcasController = new RegistarUserMarcasService();
     const resp = await registarUserMarcasController.execute({

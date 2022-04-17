@@ -32,7 +32,6 @@ export class VerTodosOsExerciciosTreinadoresService {
                     }
                 }
             },
-
         })
 
         var exerci = []

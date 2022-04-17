@@ -46,7 +46,17 @@ let checkDesafioIdExists = async(desafioId: string)=>{
     const search = await client.desafios.findMany({
         where:{
             desafio_id: desafioId,
-            isDeleted: false
+            isDeleted: false,
+        }
+    })
+    return search.length != 0;
+}
+let checkDesafioDisponivel = async(desafioId: string)=>{
+    const search = await client.desafios.findMany({
+        where:{
+            desafio_id: desafioId,
+            isDeleted: false,
+            isEncerrado: false
         }
     })
     return search.length != 0;
@@ -154,7 +164,8 @@ let checkPostExists = async(postId : string)=>{
 let checkGinasioExists= async(ginasioId : string)=>{
     const search = await client.ginasio.findMany({
         where:{
-            ginasio_id : ginasioId
+            ginasio_id : ginasioId,
+            isDeleted: false
         }
     });
     
@@ -222,7 +233,7 @@ let checkAgendamentoAvaliacaoIsAceiteExists = async(agendamentoId : string) => {
         where:{
             agendamento_id: agendamentoId,
             isDeleted: false,
-            isAceite: true
+            isAceite: false
         }
     })
     return search.length != 0;
@@ -243,7 +254,7 @@ let checkAgendamentoDesafioIsAceiteExists = async(agendamentoId : string) => {
         where:{
             agendamento_id: agendamentoId,
             isDeleted: false,
-            isAceite: true
+            isAceite: false
         }
     })
     return search.length != 0;
@@ -595,7 +606,49 @@ let checkInBlackList = async(token:string)=>{
     return tokens.length != 0;
 }
 
+let checkGostoPublicacaoExists = async(publicacaoId:string, criadorId:string)=>{
+    const gosto = await client.gostos_publicacao.findFirst({
+        where:{
+            publicacao_id:publicacaoId,
+            criador_id:criadorId
+        }
+    })
 
+    return gosto
+}
+
+let checkGostoComentarioExists = async(comentarioId:string, criadorId:string)=>{
+    const gosto = await client.gostos_comentario.findFirst({
+        where:{
+            comentario_id:comentarioId,
+            criador_id:criadorId
+        }
+    })
+
+    return gosto
+}
+
+let checkComentarioExists = async(comentarioId:string)=>{
+    const comentario = await client.comentarios_publicacao.findMany({
+        where:{
+            comentario_id:comentarioId,
+            
+        }
+    })
+
+    return comentario.length != 0
+}
+
+let checkIsComentarioPublicacaoExists = async(comentarioId:string, publicacaoId:string)=>{
+    const comentario = await client.comentarios_publicacao.findMany({
+        where:{
+            comentario_id:comentarioId,
+            publicacao_id:publicacaoId
+        }
+    })
+
+    return comentario.length != 0
+}
 
 export {
     checkEmail,
@@ -647,6 +700,11 @@ export {
     checkAutorDesafio,
     checkTreinador,
     getTreinadorFuncaoId,
-    checkAutorPublicacoes
+    checkAutorPublicacoes,
+    checkDesafioDisponivel,
+    checkGostoPublicacaoExists,
+    checkGostoComentarioExists,
+    checkComentarioExists,
+    checkIsComentarioPublicacaoExists
 }
 

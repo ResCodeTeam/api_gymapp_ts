@@ -1,5 +1,5 @@
 import { client } from "../../../prisma/client";
-import { checkUserIdExists, checkGinasioExists, checkDesafioIdExists } from "../../../helpers/dbHelpers";
+import { checkUserIdExists, checkGinasioExists, checkDesafioIdExists, checkTreinador, checkDesafioDisponivel } from "../../../helpers/dbHelpers";
 
 interface IAgendarDesafiosService {
   uid: string;
@@ -23,6 +23,11 @@ export class AgendarDesafiosService {
       throw new Error("O utilizador não existe");
     }
 
+    const exist_treinador = await checkTreinador(treinadorId);
+    if (!exist_treinador){
+      throw new Error("O treinador não existe");
+    }
+
     const exist_gym = await checkGinasioExists(ginasioId);
     if (!exist_gym){
       throw new Error("O ginásio não existe");
@@ -31,6 +36,11 @@ export class AgendarDesafiosService {
     const exists_desafio = await checkDesafioIdExists(desafioId);
     if (!exists_desafio) {
       throw new Error("O desafio não existe");
+    }
+
+    const desafio_disponivel = await checkDesafioDisponivel(desafioId);
+    if (!desafio_disponivel) {
+      throw new Error("O desafio já foi encerrado");
     }
 
     const agendamento = await client.agendamentos_desafios.create({
