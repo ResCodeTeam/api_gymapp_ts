@@ -94,8 +94,8 @@ treinadorRouter.post("/desafio/:desafioId/submissoes", verificarAutenticacao, ve
 //#endregion
 
 //#region Avaliacoes
-treinadorRouter.put("/avaliacoes/:id", editarAvaliacao.handle);
-treinadorRouter.delete("/avaliacoes/:id", removerAvaliacao.handle);
+treinadorRouter.put("/avaliacoes/:id",verificarAutenticacao,verificarTreinador, editarAvaliacao.handle);
+treinadorRouter.delete("/avaliacoes/:id",verificarAutenticacao,verificarTreinador, removerAvaliacao.handle);
 treinadorRouter.post("/avaliacoes/:id", verificarAutenticacao, verificarTreinador, criarAvaliacaoController.handle);
 //#endregion
 

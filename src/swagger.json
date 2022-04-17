@@ -1063,6 +1063,11 @@
             "put": {
                 "summary": "Editar Avaliação",
                 "description": "Este pedido serve para atualizar uma avaliação",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "avaliacao_id",
@@ -1131,6 +1136,11 @@
             "delete": {
                 "summary": "Apagar Avaliação",
                 "description": "Este pedido serve para apagar uma avaliação",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "avaliacao_id",
