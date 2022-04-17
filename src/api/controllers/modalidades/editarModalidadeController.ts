@@ -5,7 +5,9 @@ import { EditarModalidadesService } from "../../services/modalidades/editarModal
 export class EditarModalidadesController{
     
     async handle (request: Request, response: Response){
+        const uid = response.locals.uid;
         const modalidadeId = request.params.id;
+        const ginasioId = request.params.ginasioId;
         
         let {imagemUrl, nome}=request.body;
         if(imagemUrl === undefined || nome === undefined){
@@ -13,7 +15,7 @@ export class EditarModalidadesController{
           }
 
         const  editarModalidadesController = new EditarModalidadesService();
-    const resp = await editarModalidadesController.execute({imagemUrl,nome,modalidadeId});
+    const resp = await editarModalidadesController.execute({imagemUrl,nome,modalidadeId, ginasioId, uid});
     response.json(resp);
     }
 }
