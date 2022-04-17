@@ -17,6 +17,41 @@ export class VerAvaliacoesService{
                 isDeleted:false
                 
             },
+            select:{
+                avaliacao_id:true,
+                data:true,
+                peso:true,
+                musculo:true,
+                gordura_corporal:true,
+                gordura_visceral:true,
+                agua:true,
+                proteina:true,
+                massa_ossea:true,
+                metabolismo_basal:true,
+                avaliacao_imagens:{
+                    select:{
+                        url:true
+                    }
+                },
+                medidas_avaliacao:{
+                    select:{
+                        medida:true,
+                        unidade_medida:true,
+                        locais_medidas:{
+                            select:{
+                                descricao:true,
+                                unilado:true
+                            }
+                        },
+                    }
+                },
+                users_avaliacoes_treinador_idTousers:{
+                    select:{
+                        nome:true,
+                        imagem_url:true
+                    }
+                }
+            }
         })
         return avaliacao;
     }

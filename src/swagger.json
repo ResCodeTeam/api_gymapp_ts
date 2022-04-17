@@ -962,6 +962,163 @@
                 }
             }
         },
+        "/treinador/avaliacoes/{aluno_id}": {
+            "get": {
+                "summary": "Obter Avaliações do aluno",
+                "description": "Este pedido serve para obter as avaliações do aluno",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "aluno_id",
+                        "in": "path",
+                        "description": "Id do aluno",
+                        "required": true,
+                        "schema":{
+                            "properties": {
+                                "avaliacao_id":{
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "tags": ["Avaliações"],
+                "responses": {
+                    "500": {
+                        "description": "ERROR"
+  
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Avaliacao"
+                                },"examples": {
+                                    "Obter Avaliação":{
+                                        "value":{
+                                            "avaliacao_id": "e35f4ea0-d579-4256-ad4f-e8b4ca8189a9",
+                                            "data": "2022-04-17T18:10:35.233Z",
+                                            "peso": 55,
+                                            "musculo": 80,
+                                            "gordura_corporal": 1,
+                                            "gordura_visceral": 1,
+                                            "agua": 30,
+                                            "proteina": 20,
+                                            "massa_ossea": 10,
+                                            "metabolismo_basal": 1600,
+                                            "avaliacao_imagens": [],
+                                            "medidas_avaliacao": [],
+                                            "users_avaliacoes_treinador_idTousers": {
+                                              "nome": "treinador",
+                                              "imagem_url": null
+                                            }
+                                          }
+                                    }
+                                }
+                            }
+                        }
+  
+                    }
+  
+                }
+  
+            },
+            "post":{
+                "summary": "Registo de avaliacao",
+                "description": "Esta rota vai registar na base de dados avaliacao",
+                "tags": ["Avaliações"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "aluno_id",
+                        "in": "path",
+                        "description": "Id do aluno",
+                        "required": true,
+                        "schema":{
+                            "properties": {
+                                "avaliacao_id":{
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "Avaliacao": {
+                                        "type": "object",
+                                        "$ref":"#/components/schemas/avaliacao"
+                                        
+                                    } 
+                                }
+                            },
+                            "examples": {
+                                "Avaliacao": {
+                                    "value": {
+                                        "data": "2022-04-17T18:10:35.233Z",
+                                        "peso": 55,
+                                        "musculo": 80,
+                                        "gorduraCorporal": 1,
+                                        "gorduraVisceral": 1,
+                                        "agua": 30,
+                                        "proteina": 20,
+                                        "massaOssea": 10,
+                                        "metabolismoBasal": 1600,
+                                        "imagens": [],
+                                        "medidas": []
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Criar avaliacao":{
+                                        "value":{
+                                            "msg":"avaliacao criada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+    
+                    }
+                    
+                }
+            }
+        },
         "/treinador/avaliacoes/{avaliacao_id}": {
             "put": {
                 "summary": "Editar Avaliação",
@@ -986,7 +1143,7 @@
                         }
                     }
                 ],
-                "tags": ["Avaliacoes"],
+                "tags": ["Avaliações"],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1059,7 +1216,7 @@
                         }
                     }
                 ],
-                "tags": ["Avaliacoes"],
+                "tags": ["Avaliações"],
                 "responses": {
                     "500": {
                         "description": "ERROR"
@@ -1266,7 +1423,7 @@
             "get":{
                 "summary": "Ver avaliações",
                 "description": "Esta rota vai apresentar todas as avaliações",
-                "tags": ["Avaliação"],
+                "tags": ["Avaliações"],
                 "security": [
                     {
                         "basicAuth":[]
@@ -1290,62 +1447,6 @@
                 }
             }
         },
-    "/treinador/avaliacoes/":{
-        "post":{
-            "summary": "Registo de avaliacao",
-            "description": "Esta rota vai registar na base de dados avaliacao",
-            "tags": ["Avaliacoes"],
-            "security": [
-                {
-                    "basicAuth":[]
-                }
-            ],
-            "requestBody":{
-                "content":{
-                    "application/json":{
-                        "schema":{
-                            "properties": {
-                                "Avaliacao": {
-                                    "type": "object",
-                                    "$ref":"#/components/schemas/avaliacao"
-                                    
-                                } 
-                            }
-                        }
-                        
-                    }
-                }
-            },
-            "responses": {
-                "500":{
-                    "description": "ERROR"  
-                },
-                "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "properties": {
-                                    "msg":{
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "examples": {
-                                "Criar avaliacao":{
-                                    "value":{
-                                        "msg":"avaliacao criada com sucesso"
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                }
-                
-            }
-        }
-    },
     "/treinador/exercicios/treinador":{
         "get":{
             "summary": "Ver todos os exercicios de um treinador",

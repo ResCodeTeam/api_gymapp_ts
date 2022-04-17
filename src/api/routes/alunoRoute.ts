@@ -5,7 +5,7 @@ import { RemoverAgendarAvaliacaoController } from "../controllers/agendamentos/a
 import { RemoverAgendarDesafiosController } from "../controllers/agendamentos/aluno/removerAgendarDesafiosController";
 import { VerAgendamentosAvaliacoesAlunoController } from "../controllers/agendamentos/aluno/verAgendamentosAvaliacoesAlunoController";
 import { VerAgendamentosDesafiosAlunoController } from "../controllers/agendamentos/aluno/verAgendamentosDesafiosAlunoController";
-import { VerAvaliacoesController } from "../controllers/avaliacoes/verAvalicaoController";
+import { VerAvaliacoesController } from "../controllers/avaliacoes/verAvaliacaoController";
 import { VerDesafiosController } from "../controllers/desafios/verDesafiosController";
 import { EditarPlanoTreinoRealizadoController } from "../controllers/plano/editarPlanoTreinoRealizadoController";
 import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanalController";
@@ -18,7 +18,6 @@ import { CriarTreinosController  } from "../controllers/treinos/criarTreinosCont
 import { EditarTreinosController } from "../controllers/treinos/editarTreinosController";
 import { RemoverTreinosController } from "../controllers/treinos/removerTreinosController";
 import { VerTreinosAlunosController } from "../controllers/treinos/verTreinosAlunosController";
-import { verificarAdmin } from "../middlewares/verificarAdmin";
 import { verificarAluno } from "../middlewares/verificarAluno";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 
