@@ -691,7 +691,15 @@ let checkAutorComentario = async(comentarioId:string, criadorId:string)=>{
     return comentario.length != 0
 }
 
+let getMobilidadeMarca = async(marcaId:string)=>{
+    const marca = await client.marcas.findFirst({
+        where:{
+            marca_id:marcaId
+        }
+    })
 
+    return marca.marca_id
+}
 
 export {
     checkEmail,
@@ -752,6 +760,7 @@ export {
     checkAutorComentario,
     getGostosComentario,
     getIdentificacoesComentario,
-    getTreinadorMarca
+    getTreinadorMarca,
+    getMobilidadeMarca
 }
 

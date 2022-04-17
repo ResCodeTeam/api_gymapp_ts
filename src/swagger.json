@@ -826,7 +826,11 @@
                                 "examples": {
                                     "Remover Modalidade":{
                                         "value":{
-                                            "msg":"Modalidada removida com sucesso"
+                                            "modalidade_id": "047ea26d-bc43-4463-a3d1-8ea726a27b9f",
+                                            "ginasio_id": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0",
+                                            "nome": "Corrida",
+                                            "imagem_url": "https://corrida.imagem",
+                                            "isDeleted": false
                                         }
                                     }
                                 }
@@ -885,8 +889,8 @@
                             "examples": {
                                 "Editar Exercicio":{
                                     "value":{
-                                        "nome":"VO5",
-                                        "imagemUrl":"Teste2"
+                                        "nome":"Corrida",
+                                        "imagemUrl":"https://corrida.imagem"
                                     }
                                 }
                             }
@@ -2752,7 +2756,7 @@
                     "style": "simple"
 
                 }],
-                "tags": ["Notificacoes"],
+                "tags": ["Notificações"],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -6401,7 +6405,7 @@
                     "basicAuth":[]
                 }
             ],
-            "tags": ["Notificacoes"],
+            "tags": ["Notificações"],
             "responses": {
                 "500":{
                     "description": "ERROR"  
@@ -6411,17 +6415,47 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "properties": {
-                                    "msg":{
-                                        "type": "string"
+                                "type": "array",
+                                "items":{
+                                    "type": "object",
+                                    "properties": {
+                                        "notificacoes":{
+                                            "type": "object",
+                                            "properties": {
+                                                "noti_id":{
+                                                    "type": "string"
+                                                },
+                                                "origem_uid":{
+                                                    "type": "string"
+                                                },
+                                                "conteudo":{
+                                                    "type": "string"
+                                                },
+                                                "data":{
+                                                    "type": "string"
+                                                },
+                                                "tipo":{
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             },
                             "examples": {
                                 "Ver Notificacoes":{
-                                    "value":{
-                                        "msg":"Operação realizada com sucesso"
-                                    }
+                                    "value":[
+                                        {
+                                            "notificacoes": {
+                                            "noti_id": "5af2353d-0269-4776-9b3b-8f744179e3aa",
+                                            "origem_uid": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                            "conteudo": "O seu agendamento foi aceite",
+                                            "data": "2022-04-14T12:02:02.162Z",
+                                            "tipo": 1
+                                            }
+                                        }                                            
+                                    ]
+                                    
                                 }
                             }
                         }
@@ -6550,16 +6584,16 @@
             }
         }
     },
-    "/admin/marca/{marcaId}/localMedida":{
+    "/admin/notificacao/marca/{marcaId}":{
         "post":{
-            "summary": "Criar local de medida",
-            "description": "Esta rota vai criar um local de medida",
+            "summary": "Criar notificação para todos os users da marca",
+            "description": "Esta rota vai criar uma notificação para todos os users de uma marca",
             "security": [
                 {
                     "basicAuth":[]
                 }
             ],
-            "tags": ["Locais de Medida"],
+            "tags": ["Notificações"],
             "parameters": [
                 {
                     "name": "marcaId",
@@ -6575,7 +6609,7 @@
                     },
                     "examples": {
                         "Marca":{
-                            "value":"19738118-f243-4937-a138-89ff2daa19c1"
+                            "value":"f7b01c96-bf6d-4781-866e-c35e63a2ecf2"
                         }
                     }
                 }
@@ -6585,19 +6619,101 @@
                     "application/json":{
                         "schema":{
                             "properties": {
-                                "descricao":{
+                                "conteudo":{
                                     "type": "string"
                                 },
-                                "unilado":{
-                                    "type": "boolean"
+                                "tipo":{
+                                    "type": "number"
                                 }
                             }
                         },
                         "examples": {
-                            "Desafio": {
+                            "Notificação": {
                                 "value": {
-                                    "descricao": "Peito",
-                                    "unilado" : false
+                                    "conteudo": "Teste de notificação",
+                                    "tipo" : 0
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Notificacoes":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/admin/notificacao/ginasio/{ginasioId}":{
+        "post":{
+            "summary": "Criar notificação para todos os users de um ginasio",
+            "description": "Esta rota vai criar uma notificação para todos os users de um ginasio",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Notificações"],
+            "parameters": [
+                {
+                    "name": "ginasioId",
+                    "in": "path",
+                    "description": "id do ginasio a associar",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type":"string"
+                            }
+                        }
+                    },
+                    "examples": {
+                        "Ginasio":{
+                            "value":"dc8acc46-89eb-4d0f-a14a-2388b21c90a0"
+                        }
+                    }
+                }
+            ],
+            "requestBody":{
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "properties": {
+                                "conteudo":{
+                                    "type": "string"
+                                },
+                                "tipo":{
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Notificação": {
+                                "value": {
+                                    "conteudo": "Teste de notificação",
+                                    "tipo" : 0
                                 }
                             }
                         }
@@ -6632,7 +6748,7 @@
             }
         }
     }
-    },        
+    }, 
     "components": {
         "securitySchemes": {
             "basicAuth":{

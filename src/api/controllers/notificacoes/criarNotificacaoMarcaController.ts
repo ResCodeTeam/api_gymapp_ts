@@ -4,11 +4,12 @@ import { CriarNotificacaoMarcaService } from "../../services/notificacoes/criarN
 export class CriarNotificacaoMarcaController{
     async handle(request:Request,response:Response){
         const userId = response.locals.uid;
-        let {marcaId, conteudo, tipo}=request.body;
+        const marcaId = request.params.marcaId;
+        let {conteudo, tipo}=request.body;
         if(marcaId === undefined || conteudo === undefined || tipo === undefined){
             throw new Error("Pedido inválido")
         }
-
+        
         const criarNotificacaoMarcaService = new CriarNotificacaoMarcaService();
         const resp = await criarNotificacaoMarcaService.execute({
             userId,

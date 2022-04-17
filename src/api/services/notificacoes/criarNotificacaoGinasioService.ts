@@ -10,6 +10,7 @@ interface INotificacaoGinasio {
 
 export class CriarNotificacaoGinasioService {
   async execute({userId, ginasioId, conteudo, tipo} : INotificacaoGinasio) {
+    console.log(userId, ginasioId)
     //#region Verifica se o admin existe
     const existsUser = await checkUserIdExists(userId);
     if (!existsUser) {

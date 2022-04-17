@@ -111,8 +111,8 @@ const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController();
 const criarNotificacaoUserController = new CriarNotificacaoUserController();
 adminRouter.post("/notificacao/user/:id", verificarAutenticacao , verificarAdmin,criarNotificacaoUserController.handle);
-adminRouter.post("/notificacao/marca/", verificarAutenticacao, verificarAdmin, criarNotificacaoMarcaController.handle);
-adminRouter.post("/notificacao/ginasio/", verificarAutenticacao ,verificarAdmin, criarNotificacaoGinasioController.handle);
+adminRouter.post("/notificacao/marca/:marcaId", verificarAutenticacao, verificarAdmin, criarNotificacaoMarcaController.handle);
+adminRouter.post("/notificacao/ginasio/:ginasioId", verificarAutenticacao ,verificarAdmin, criarNotificacaoGinasioController.handle);
 //#endregion
 
 

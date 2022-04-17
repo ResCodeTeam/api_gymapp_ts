@@ -1,4 +1,4 @@
-import { checkDonoMarca, checkMarcaExists, checkUserIdExists, formatDateHour } from "../../helpers/dbHelpers";
+import { checkDonoMarca, checkMarcaExists, checkModalidadeExists, checkUserIdExists, formatDateHour, getMobilidadeMarca } from "../../helpers/dbHelpers";
 import { client } from '../../prisma/client'; 
 
 interface INotificacaoMarca {
@@ -31,6 +31,7 @@ export class CriarNotificacaoMarcaService {
       throw new Error("Não tem permições nesta marca");
     }
     //#endregion
+
 
     //#region Procurar todos os Alunos de uma Marca
     const ginasios = await client.ginasio.findMany({
@@ -69,10 +70,6 @@ export class CriarNotificacaoMarcaService {
       }
     });
     //#endregion
-
-    console.log(`ID Notificação : ${notificacao.noti_id}`);
-    console.log(`Data : ${(await formatDateHour(notificacao.data))}`);
-    console.log(ginasios[0].aluno_ginasio);
     
     //#region Cria Destinos da Notificação
     let dstNoti;
