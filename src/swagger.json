@@ -6572,7 +6572,83 @@
                                 }
                             },
                             "examples": {
-                                "Ver Notificacoes":{
+                                "Criar Local de Medida":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/admin/marca/{marcaId}/localMedida/{localId}":{
+        "delete":{
+            "summary": "Remover locais de medida",
+            "description": "Esta rota vai remover da base de dados um local de medida de uma marca",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Locais de Medida"],
+            "parameters": [
+                {
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "Id da marca a associar",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type":"string"
+                            }
+                        }
+                    },
+                    "examples": {
+                        "Marca":{
+                            "value":"19738118-f243-4937-a138-89ff2daa19c1"
+                        }
+                    }
+                },
+                {
+                    "name": "localId",
+                    "in": "path",
+                    "description": "Id do local de medida",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "localId":{
+                                "type":"string"
+                            }
+                        }
+                    },
+                    "examples": {
+                        "localId":{
+                            "value":"8d15aee7-d8a4-405d-acbb-2694243ae668"
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Remover locais de medida":{
                                     "value":{
                                         "msg":"Operação realizada com sucesso"
                                     }
