@@ -2,6 +2,7 @@ import { client } from "../../prisma/client";
 
 interface Idata {
     nome: string,
+    modalidade: string,
     data_inicio: Date,
     data_fim: Date,
     recompensa: number,
@@ -20,6 +21,8 @@ export class EditarDesafioService {
             where:{desafio_id: desafio_id}
         })
 
+        console.log(atualizarDesafio)
+
         if(atualizarDesafio == null){
             throw new Error("Não existe desafio com o id fornecido")
         }
@@ -30,6 +33,7 @@ export class EditarDesafioService {
             },
             data:{
                 nome: data.nome,
+                modalidade_id: data.modalidade,
                 data_inicio: data.data_inicio,
                 data_fim: data.data_fim,
                 recompensa: data.recompensa,
