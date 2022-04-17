@@ -406,103 +406,6 @@
                 }
             }
         },
-        "/admin/marca/editar/{marcaId}":{
-        "put":{
-            "summary": "Editar Marca",
-            "description": "Esta rota vai editar uma Marca criada",
-            "tags": ["Marca"],
-            "security": [
-                {
-                    "basicAuth":[]
-                }
-            ],
-            "parameters": [{
-                "name": "marcaId",
-                "in": "path",
-                "description": "Id da marca",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "marcaId":{
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-            
-            ],
-            "requestBody": {
-                "content": {
-                    "application/json":{
-                        "schema":{
-                            "properties":{
-                                "adminId":{
-                                    "type":"string"
-                                },
-                                "nome":{
-                                    "type": "string"
-                                },
-                                "cor":{
-                                    "type": "string"
-                                },
-                                "logotipo":{
-                                    "type": "string"
-                                },
-                                "marcaId":{
-                                    "type": "string"
-                                },
-                                "mobilidade":{
-                                    "type": "boolean"
-                                },
-                                "isDeleted":{
-                                    "type": "boolean"
-                                }
-
-                            }
-                        },
-                        "examples": {
-                            "Editar Marca":{
-                                "value":{
-                                    "marcaId":"52cbfb83-69da-4de3-9cac-914ec4fbd4e3",
-                                    "nome":"Galo",
-                                    "cor":"vermelho",
-                                    "adminId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                    "mobilidade":true
-   
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "500":{
-                    "description": "ERROR"  
-                },
-                "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "properties": {
-                                    "msg":{
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "examples": {
-                                "Editar Marca":{
-                                    "value":{
-                                        "msg":"Marca editada com sucesso"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }          
-            }
-        }
-    },
     "/admin/ginasio/editar/{ginasioId}":{
         "put":{
             "summary": "Editar ginasio",
@@ -1987,6 +1890,101 @@
                                     "Ver Ginasio":{
                                         "value":{
                                             "msg":"Operação realizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }          
+                }
+            },
+            "put":{
+                "summary": "Editar Marca",
+                "description": "Esta rota vai editar uma Marca criada",
+                "tags": ["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters": [{
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "Id da marca",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "marcaId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties":{
+                                    "adminId":{
+                                        "type":"string"
+                                    },
+                                    "nome":{
+                                        "type": "string"
+                                    },
+                                    "cor":{
+                                        "type": "string"
+                                    },
+                                    "logotipo":{
+                                        "type": "string"
+                                    },
+                                    "marcaId":{
+                                        "type": "string"
+                                    },
+                                    "mobilidade":{
+                                        "type": "boolean"
+                                    },
+                                    "isDeleted":{
+                                        "type": "boolean"
+                                    }
+    
+                                }
+                            },
+                            "examples": {
+                                "Editar Marca":{
+                                    "value":{
+                                        "marcaId":"52cbfb83-69da-4de3-9cac-914ec4fbd4e3",
+                                        "nome":"Galo",
+                                        "cor":"vermelho",
+                                        "adminId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "mobilidade":true
+       
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"  
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Editar Marca":{
+                                        "value":{
+                                            "msg":"Marca editada com sucesso"
                                         }
                                     }
                                 }
