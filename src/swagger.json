@@ -1063,6 +1063,11 @@
             "put": {
                 "summary": "Editar Avaliação",
                 "description": "Este pedido serve para atualizar uma avaliação",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "avaliacao_id",
@@ -1131,6 +1136,11 @@
             "delete": {
                 "summary": "Apagar Avaliação",
                 "description": "Este pedido serve para apagar uma avaliação",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "avaliacao_id",
@@ -1433,9 +1443,9 @@
             }
         }
     },
-    "/treinador/exercicios":{
+    "/treinador/exercicios/treinador":{
         "get":{
-            "summary": "Ver todos os exercicios",
+            "summary": "Ver todos os exercicios de um treinador",
             "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
            
             "tags": ["Exercicios"],
@@ -1660,6 +1670,67 @@
                                 "gosto":{
                                     "value":{
                                         "msg":"Gosto removido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    },
+    "/posts/{id}/comentario/{comentarioId}":{
+        "delete":{
+            "summary": "Remover comentário",
+            "description": "Esta rota permite remover num comentário",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "description": "id da publicação",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "style": "simple"
+
+            },{
+                "name": "comentarioId",
+                "in": "path",
+                "description": "id do comentário",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "style": "simple"
+
+            }],
+            "tags": ["Posts"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples":{
+                                "gosto":{
+                                    "value":{
+                                        "msg":"Comentário removido com sucesso"
                                     }
                                 }
                             }
@@ -2215,11 +2286,11 @@
                 "summary": "Criar um exercicio",
                 "description": "Esta rota permite adicionar um exercicio à base de dados",
                 "tags": ["Exercicios"],
-                  "security": [
+                "security": [
                 {
                     "basicAuth":[]
                 }
-            ],
+                ],
 
                 "requestBody":{
                     "content": {
@@ -2349,6 +2420,11 @@
                 "summary": "Ver todos os exercicios criados por treinadores",
                 "description": "Esta rota permite ver todos os exercicios criados por treinadores",
                 "tags": ["Exercicios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "responses": {
                     "500":{
                         "description": "ERROR"
@@ -3091,9 +3167,9 @@
                 }
             }
         },
-        "/backend/atividades/":{
+        "/atividades/":{
             "get":{
-                "summary": "Ver toda a informação de uma atividade",
+                "summary": "Ver toda a informação das atividades",
                 "description": "Esta rota vai apresentar todas as atividades existentes",
                 "tags": ["Atividades"],
                 "responses": {
@@ -5509,6 +5585,11 @@
             "summary": "Remover um plano de treino",
             "description": "Esta rota vai remover na base de dados um plano de treino",
             "tags": ["Plano Treino"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [{
                 "name": "planoId",
                 "in": "path",
@@ -6037,8 +6118,13 @@
     },
     "/treinador/treinos/":{
         "get":{
-            "summary": "Ver avaliações",
-            "description": "Esta rota vai apresentar todas as avaliações",
+            "summary": "Ver treinos",
+            "description": "Esta rota vai apresentar todos os treinos",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "tags": ["Treinos"],
             "responses": {
                 "500":{

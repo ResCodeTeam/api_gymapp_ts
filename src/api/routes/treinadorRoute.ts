@@ -71,12 +71,9 @@ const obterPlanoTreinoAlunoController = new ObterPlanoTreinoAlunoController()
 const submissaoDesafioController = new SubmissaoDesafioController();
 const editarPlanoTreinoController = new EditarPlanoTreinoController()
 
-//#region Comentarios
-treinadorRouter.post("/posts/:id/comentarios/", verificarAutenticacao, verificarTreinador, criarComentarioController.handle);
-//#endregion
 
 //#region Exercicios
-treinadorRouter.get("/exercicios/", verificarAutenticacao,verTodosOsExerciciosTreinadoresController.handle);
+treinadorRouter.get("/exercicios/",verificarAutenticacao,verificarTreinador, verTodosOsExerciciosTreinadoresController.handle);
 treinadorRouter.delete("/exercicios/:exercicios_id/", verificarAutenticacao, verificarTreinador, removerExercicioController.handle);
 treinadorRouter.post("/exercicios/", verificarAutenticacao, verificarTreinador, criarExercicioController.handle);
 treinadorRouter.put("/exercicios/:exercicios_id",verificarAutenticacao, verificarTreinador, editarExercicioController.handle);
@@ -85,7 +82,7 @@ treinadorRouter.delete("/exercicios/:exercicioId/imagens/:imagemId",verificarAut
 treinadorRouter.put("/exercicios/:exercicios_id",verificarAutenticacao, verificarTreinador, editarExercicioController.handle);
 treinadorRouter.post("/exercicios/:exercicioId/musculos/:musculoId",verificarAutenticacao, verificarTreinador, adicionarExercicioMusculoController.handle);
 treinadorRouter.delete("exercicios/:exercicioId/musculos/:musculoId",verificarAutenticacao, verificarTreinador, removerExercicioMusculoController.handle);
-treinadorRouter.get("/exercicios", verificarAutenticacao, verificarTreinador, verMeusExerciciosController.handle);
+treinadorRouter.get("/exercicios/treinador", verificarAutenticacao, verificarTreinador, verMeusExerciciosController.handle);
 //#endregion
 
 //#region Treinos
@@ -97,8 +94,8 @@ treinadorRouter.post("/desafio/:desafioId/submissoes", verificarAutenticacao, ve
 //#endregion
 
 //#region Avaliacoes
-treinadorRouter.put("/avaliacoes/:id", editarAvaliacao.handle);
-treinadorRouter.delete("/avaliacoes/:id", removerAvaliacao.handle);
+treinadorRouter.put("/avaliacoes/:id",verificarAutenticacao,verificarTreinador, editarAvaliacao.handle);
+treinadorRouter.delete("/avaliacoes/:id",verificarAutenticacao,verificarTreinador, removerAvaliacao.handle);
 treinadorRouter.post("/avaliacoes/:id", verificarAutenticacao, verificarTreinador, criarAvaliacaoController.handle);
 //#endregion
 

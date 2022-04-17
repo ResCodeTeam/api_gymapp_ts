@@ -628,6 +628,26 @@ let checkGostoComentarioExists = async(comentarioId:string, criadorId:string)=>{
     return gosto
 }
 
+let getGostosComentario = async(comentarioId:string)=>{
+    const gostos = await client.gostos_comentario.findMany({
+        where:{
+            comentario_id:comentarioId,
+        }
+    })
+
+    return gostos
+}
+
+let getIdentificacoesComentario = async(comentarioId:string)=>{
+    const identificacoes = await client.identificacoes_comentarios.findMany({
+        where:{
+            comentario_id:comentarioId,
+        }
+    })
+
+    return identificacoes
+}
+
 let checkComentarioExists = async(comentarioId:string)=>{
     const comentario = await client.comentarios_publicacao.findMany({
         where:{
@@ -644,6 +664,16 @@ let checkIsComentarioPublicacaoExists = async(comentarioId:string, publicacaoId:
         where:{
             comentario_id:comentarioId,
             publicacao_id:publicacaoId
+        }
+    })
+
+    return comentario.length != 0
+}
+let checkAutorComentario = async(comentarioId:string, criadorId:string)=>{
+    const comentario = await client.comentarios_publicacao.findMany({
+        where:{
+            comentario_id:comentarioId,
+            criador_id:criadorId
         }
     })
 
@@ -705,6 +735,9 @@ export {
     checkGostoPublicacaoExists,
     checkGostoComentarioExists,
     checkComentarioExists,
-    checkIsComentarioPublicacaoExists
+    checkIsComentarioPublicacaoExists,
+    checkAutorComentario,
+    getGostosComentario,
+    getIdentificacoesComentario
 }
 

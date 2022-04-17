@@ -16,8 +16,8 @@ const registarFuncoesController = new RegistarFuncoesController();
 const registarCpController = new RegistarCpController();
 const criarAtividadeController = new CriarAtividadeController();
 const removerAtividadesController = new RemoverAtividadesController();
-const editarAtividadesController = new EditarAtividadesController;
-const verTodasAtividadesController = new VerTodasAtividadesController();
+const editarAtividadesController = new EditarAtividadesController();
+
 
 const editarMusculoController = new EditarMusculoController();
 const addMusculoController = new AddMusculoController();
@@ -28,7 +28,7 @@ backendRouter.post("/cp/", registarCpController.handle);
 backendRouter.post("/atividades/", criarAtividadeController.handle);
 backendRouter.delete("/atividades/:id", removerAtividadesController.handle);
 backendRouter.put("/atividades/:id", editarAtividadesController.handle);
-backendRouter.get("/atividades/", verTodasAtividadesController.handle);
+
 
 backendRouter.put("/musculos/:musculoId", editarMusculoController.handle);
 backendRouter.post("/musculos", addMusculoController.handle);
