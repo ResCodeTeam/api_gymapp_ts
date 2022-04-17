@@ -23,6 +23,7 @@ import { CriarGostoCommentController } from "../controllers/posts/gostosComments
 import { RemoverGostoCommentController } from "../controllers/posts/gostosComments/removerGostoCommentController";
 import { RemoverComentarioController } from "../controllers/posts/comments/removerComentarioController";
 import { VerTodasAtividadesController } from "../controllers/atividades/verTodasAtividadesController";
+import { VerNotificacoesController } from "../controllers/notificacoes/verNotificacoesController";
 
 
 const allRouter = express.Router();
@@ -51,6 +52,7 @@ const criarGostoCommentController = new CriarGostoCommentController();
 const removerGostoCommentController = new RemoverGostoCommentController();
 const removerComentarioController = new RemoverComentarioController();
 const verTodasAtividadesController = new VerTodasAtividadesController();
+const verNotificacoesController = new VerNotificacoesController();
 
 //#region Publicacoes
 allRouter.post("/posts", verificarAutenticacao, criarPostsController.handle);
@@ -74,14 +76,14 @@ allRouter.put("/definicoes/mencoes",verificarAutenticacao, editarMencoesControll
 allRouter.put("/definicoes/identificacao",verificarAutenticacao, impedirIdentificacaoController.handle);
 allRouter.put("/definicoes/perfil/privado", verificarAutenticacao ,editarPerfilPrivadoController.handle);
 allRouter.get("/definicoes", verificarAutenticacao, obterDefinicoesController.handle);
-allRouter.get("/perfil",verificarAutenticacao, verMeuPerfilController.handle);
+allRouter.get("/perfil", verificarAutenticacao, verMeuPerfilController.handle);
 allRouter.get("/user/:id", verificarAutenticacao, verPerfilController.handle);
 //#endregion
 
 
 //#region Notificacoes
-
-allRouter.put("/destinosNotificacao",verificarAutenticacao,alterarVistoController.handle);
+allRouter.put("/destinosNotificacao", verificarAutenticacao,alterarVistoController.handle);
+allRouter.get("/notificacoes", verificarAutenticacao, verNotificacoesController.handle);
 //#endregion
 
 //#region Desafios
