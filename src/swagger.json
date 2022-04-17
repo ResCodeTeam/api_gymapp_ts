@@ -2627,6 +2627,11 @@
                 "summary": "remover desafio ",
                 "description": "Esta rota vai remover base de dados os desafios criad",
                 "tags": ["Desafios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "parameters":[
                 {
                     "name": "desafioId",
@@ -2671,6 +2676,65 @@
         
                     }
                     
+                }
+            },
+            "put": {
+                "summary": "Encerrar Desafio",
+                "description": "Este pedido server para encerrar um desafio pelo seu ID",
+                "tags":["Desafios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters":[{
+                    "name": "desafioId",
+                    "in":"path",
+                    "description":"Id do desafio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Desafio"
+                            },
+                            "examples": {
+                                "Avaliacao": {
+                                    "value": {
+                                        "isEncerrado": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "ERROR"
+    
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Desafio"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
@@ -3170,6 +3234,11 @@
                 "summary": "Ver toda a informação das atividades",
                 "description": "Esta rota vai apresentar todas as atividades existentes",
                 "tags": ["Atividades"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
                 "responses": {
                     "500":{
                         "description": "ERROR"
@@ -5967,67 +6036,16 @@
             }
         }
     },
-    "/adminTreinador/desafios/{desafioId}":{
-        "put": {
-            "summary": "Encerrar Desafio",
-            "description": "Este pedido server para encerrar um desafio pelo seu ID",
-            "tags":["Desafios"],
-            "parameters":[{
-                "name": "desafioId",
-                "in":"path",
-                "description":"Id do desafio",
-                "required": true,
-                "schema":{
-                    "properties": {
-                        "desafioId":{
-                            "type": "string"
-                        }
-                    }
-                }
-            }],
-            "requestBody": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Desafio"
-                        },
-                        "examples": {
-                            "Avaliacao": {
-                                "value": {
-                                    "isEncerrado": true
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "500": {
-                    "description": "ERROR"
-
-                },
-                "404": {
-                    "description": "Not Found"
-                },
-                "200": {
-                    "description": "OK",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "$ref": "#/components/schemas/Desafio"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
     "/adminTreinador/desafio/{desafioId}/editar":{
         "put":{
             "summary": "Editar desafio",
             "description": "Esta rota vai editar o desafio",
             "tags": ["Desafios"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
             "parameters": [
             {
                 "name": "desafioId",
