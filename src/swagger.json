@@ -1461,6 +1461,60 @@
         }
     }
     },
+    "/admin/ginasio/treinador/ver/{marcaId}":{
+        "get":{
+            "summary": "Ver treinador",
+            "description": "Esta rota vai ver os treinadores de uma marca",
+            "tags": ["Ginasio"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters": [{
+                "name": "marcaId",
+                "in": "path",
+                "description": "Id da marca",
+                "required": true,
+                "schema":{
+                    "properties": {
+                        "marcaId":{
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+            
+            ],
+     
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver treinadores":{
+                                    "value":{
+                                        "msg":"operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+        },
         
         "/aluno/{id}/desafios/":{
             "get":{
