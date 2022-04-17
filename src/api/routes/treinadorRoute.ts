@@ -70,6 +70,7 @@ const removerPlanoTreinoController = new RemoverPlanoTreinoController();
 const obterPlanoTreinoAlunoController = new ObterPlanoTreinoAlunoController()
 const submissaoDesafioController = new SubmissaoDesafioController();
 const editarPlanoTreinoController = new EditarPlanoTreinoController()
+
 //#region Comentarios
 treinadorRouter.post("/posts/:id/comentarios/",verificarAutenticacao, criarComentarioController.handle);
 //#endregion
