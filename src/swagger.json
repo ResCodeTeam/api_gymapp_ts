@@ -180,17 +180,13 @@
                                 "properties": {
                                     "ginasioId":{
                                         "type": "string"
-                                    },
-                                    "treinadorId":{
-                                        "type": "string"
                                     }
                                 }
                             },
                             "examples": {
                                 "Inserir Agendamento de Avaliacoes":{
                                     "value": {
-                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
-                                        "treinadorId": "6d112678-f40c-43bc-a80a-866f12fa26f2"
+                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48"
                                     }
                                 }
                             }
@@ -255,17 +251,13 @@
                                 "properties": {
                                     "ginasioId":{
                                         "type": "string"
-                                    },
-                                    "treinadorId":{
-                                        "type": "string"
                                     }
                                 }
                             },
                             "examples": {
                                 "Inserir Agendamento de Desafios":{
                                     "value": {
-                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
-                                        "treinadorId": "6d112678-f40c-43bc-a80a-866f12fa26f2"
+                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48"
                                     }
                                 }
                             }
@@ -6261,6 +6253,82 @@
                         }
                     }
                 }            
+            }
+        }
+    },
+    "/adminTreinador/musculos/":{
+        "get":{
+            "summary": "Ver todas os músculos",
+            "description": "Esta rota vai apresentar todos músculos existentes",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Musculos"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Musculos":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/notificacoes":{
+        "get":{
+            "summary": "Ver todas as notificacões do utilizador",
+            "description": "Esta rota vai apresentar todas as notificações do utilizador",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Notificacoes"],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Notificacoes":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
             }
         }
     }

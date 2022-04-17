@@ -4,10 +4,11 @@ import { AceitarDesafiosService } from "../../../services/agendamentos/treinador
 
 export class AceitarDesafiosController {
     async handle(request: Request, response: Response) {
-        const agendamentoId = request.params.id
+        const treinadorId = response.locals.uid;
+        const agendamentoId = request.params.id;
                 
         const aceitarDesafiosService = new AceitarDesafiosService()
-        const resp = await aceitarDesafiosService.execute(agendamentoId);
+        const resp = await aceitarDesafiosService.execute(agendamentoId,treinadorId);
         response.json(resp)
     }
 }
