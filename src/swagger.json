@@ -5522,7 +5522,15 @@
                             "examples": {
                                 "Editar Exercicio":{
                                     "value":{
-                                        "msg":"Treino editado com sucesso"
+                                        "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
+                                        "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                        "modalidade_id": null,
+                                        "duracao": "50",
+                                        "calorias": 20,
+                                        "distancia": 30,
+                                        "data": "2022-04-18T17:53:33.437Z",
+                                        "isDeleted": false
                                     }
                                 }
                             }
