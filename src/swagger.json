@@ -3556,6 +3556,13 @@
                                 "schema": {
                                     "type": "object",
                                     "$ref": "#/components/schemas/Desafio"
+                                },
+                                "examples": {
+                                    "Encerrar Desafio":{
+                                        "value":{
+                                            "message":"Desafio encerrado com sucesso"
+                                        }
+                                    }
                                 }
                             }
                         }
