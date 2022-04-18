@@ -1596,8 +1596,57 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "type": "object",
-                                "$ref": "#/components/schemas/Exercicio"
+                                "type":"array",
+                                "items":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Exercicio"
+                                }
+                            },
+                            "examples": {
+                                "Exercicios":{
+                                    "value":[
+                                        {
+                                          "exercicio_id": "05bb0690-db08-4b46-97dc-3853eba58d51",
+                                          "nome": "Teste1",
+                                          "descricao": "Teste2",
+                                          "is_tempo": true,
+                                          "imagens": [
+                                            {
+                                              "url": "url1"
+                                            },
+                                            {
+                                              "url": "url2"
+                                            },
+                                            {
+                                              "url": "url3"
+                                            },
+                                            {
+                                              "url": "url4"
+                                            }
+                                          ],
+                                          "musculos": [
+                                            {
+                                              "musculos": {
+                                                "nome": "Costas",
+                                                "img_url": "http://imagem/costas"
+                                              }
+                                            },
+                                            {
+                                              "musculos": {
+                                                "nome": "Bicep",
+                                                "img_url": "http://imagem/bicep"
+                                              }
+                                            },
+                                            {
+                                              "musculos": {
+                                                "nome": "Tricep",
+                                                "img_url": "http://imagem/tricep"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                }
                             }
                         
                         }
