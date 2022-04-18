@@ -1135,24 +1135,81 @@
                                     "Obter Avaliações":{
                                         "value":[
                                             {
-                                            "avaliacao_id": "e35f4ea0-d579-4256-ad4f-e8b4ca8189a9",
-                                            "data": "2022-04-17T18:10:35.233Z",
-                                            "peso": 55,
-                                            "musculo": 80,
-                                            "gordura_corporal": 1,
-                                            "gordura_visceral": 1,
-                                            "agua": 30,
-                                            "proteina": 20,
-                                            "massa_ossea": 10,
-                                            "metabolismo_basal": 1600,
-                                            "avaliacao_imagens": [],
-                                            "medidas_avaliacao": [],
-                                            "users_avaliacoes_treinador_idTousers": {
+                                              "avaliacao_id": "e35f4ea0-d579-4256-ad4f-e8b4ca8189a9",
+                                              "data": "2022-04-17T18:10:35.233Z",
+                                              "peso": 55,
+                                              "musculo": 80,
+                                              "gordura_corporal": 1,
+                                              "gordura_visceral": 1,
+                                              "agua": 30,
+                                              "proteina": 20,
+                                              "massa_ossea": 10,
+                                              "metabolismo_basal": 1600,
+                                              "avaliacao_imagens": [],
+                                              "medidas_avaliacao": [],
+                                              "users_avaliacoes_treinador_idTousers": {
                                                 "nome": "treinador",
                                                 "imagem_url": null
+                                              }
+                                            },
+                                            {
+                                              "avaliacao_id": "640e1f20-938f-4ed6-8ef4-7b02ab98b486",
+                                              "data": "2022-04-18T15:06:37.318Z",
+                                              "peso": 55,
+                                              "musculo": 80,
+                                              "gordura_corporal": 1,
+                                              "gordura_visceral": 1,
+                                              "agua": 30,
+                                              "proteina": 20,
+                                              "massa_ossea": 10,
+                                              "metabolismo_basal": 1600,
+                                              "avaliacao_imagens": [],
+                                              "medidas_avaliacao": [],
+                                              "users_avaliacoes_treinador_idTousers": {
+                                                "nome": "treinador",
+                                                "imagem_url": null
+                                              }
+                                            },
+                                            {
+                                              "avaliacao_id": "89bb2521-b35e-42ac-beb7-bf0485a415d7",
+                                              "data": "2022-04-18T15:14:52.695Z",
+                                              "peso": 55,
+                                              "musculo": 80,
+                                              "gordura_corporal": 1,
+                                              "gordura_visceral": 1,
+                                              "agua": 30,
+                                              "proteina": 20,
+                                              "massa_ossea": 10,
+                                              "metabolismo_basal": 1600,
+                                              "avaliacao_imagens": [
+                                                {
+                                                  "url": "https://imagem.1"
+                                                }
+                                              ],
+                                              "medidas_avaliacao": [
+                                                {
+                                                  "medida": "50",
+                                                  "unidade_medida": "cm",
+                                                  "locais_medidas": {
+                                                    "descricao": "Peito",
+                                                    "unilado": true
+                                                  }
+                                                },
+                                                {
+                                                  "medida": "30x30",
+                                                  "unidade_medida": "cm",
+                                                  "locais_medidas": {
+                                                    "descricao": "Braço",
+                                                    "unilado": false
+                                                  }
+                                                }
+                                              ],
+                                              "users_avaliacoes_treinador_idTousers": {
+                                                "nome": "treinador",
+                                                "imagem_url": null
+                                              }
                                             }
-                                            }
-                                        ]
+                                          ]
                                     }
                                 }
                             }
@@ -1202,8 +1259,8 @@
                             "examples": {
                                 "Avaliacao": {
                                     "value": {
-                                        "data": "2022-04-17T18:10:35.233Z",
                                         "peso": 55,
+                                        "unidadePeso":"Kg",
                                         "musculo": 80,
                                         "gorduraCorporal": 1,
                                         "gorduraVisceral": 1,
@@ -1211,9 +1268,24 @@
                                         "proteina": 20,
                                         "massaOssea": 10,
                                         "metabolismoBasal": 1600,
-                                        "imagens": [],
-                                        "medidas": []
-                                    }
+                                        "imagens": [
+                                            "https://imagem.1",
+                                            "https://imagem.2",
+                                            "https://imagem.3",
+                                            "https://imagem.4"
+                                        ],
+                                        "medidas": [
+                                            {
+                                                "medida":"50",
+                                                "unidadeMedida":"cm",
+                                                "localMedidaId":"df7b9d8a-d149-4d68-9caa-6809ec090f88"
+                                            },{
+                                                "medida":"30x30",
+                                                "unidadeMedida":"cm",
+                                                "localMedidaId":"a6b6c833-16ef-4a16-bf51-3014f28fd149"
+                                            }
+                                        ]
+                                      }
                                 }
                             }
                             
@@ -1238,7 +1310,43 @@
                                 "examples": {
                                     "Criar avaliacao":{
                                         "value":{
-                                            "msg":"avaliacao criada com sucesso"
+                                            "avaliacao_id": "89bb2521-b35e-42ac-beb7-bf0485a415d7",
+                                            "data": "2022-04-18T15:14:52.695Z",
+                                            "peso": 55,
+                                            "musculo": 80,
+                                            "gordura_corporal": 1,
+                                            "gordura_visceral": 1,
+                                            "agua": 30,
+                                            "proteina": 20,
+                                            "massa_ossea": 10,
+                                            "metabolismo_basal": 1600,
+                                            "avaliacao_imagens": [
+                                              {
+                                                "url": "https://imagem.1"
+                                              }
+                                            ],
+                                            "medidas_avaliacao": [
+                                              {
+                                                "medida": "50",
+                                                "unidade_medida": "cm",
+                                                "locais_medidas": {
+                                                  "descricao": "Peito",
+                                                  "unilado": true
+                                                }
+                                              },
+                                              {
+                                                "medida": "30x30",
+                                                "unidade_medida": "cm",
+                                                "locais_medidas": {
+                                                  "descricao": "Braço",
+                                                  "unilado": false
+                                                }
+                                              }
+                                            ],
+                                            "users_avaliacoes_treinador_idTousers": {
+                                              "nome": "treinador",
+                                              "imagem_url": null
+                                            }
                                         }
                                     }
                                 }
