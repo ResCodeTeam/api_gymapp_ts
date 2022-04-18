@@ -7271,9 +7271,92 @@
                         "application/json": {
                             "schema":{
                                 "properties": {
-                                    "msg":{
-                                        "type": "string"
-                                    }
+                                    "msg":[
+                                        {
+                                          "nome": "Nicole Barros",
+                                          "treinos": {
+                                            "treino_id": "5b7d8120-996e-4438-89f8-c95ad344e11e",
+                                            "uid": "09e0470c-8051-420b-9414-2c51b9c271db",
+                                            "atividade_id": null,
+                                            "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                            "duracao": "10",
+                                            "calorias": 100,
+                                            "distancia": 500,
+                                            "data": "2022-04-14T14:50:35.663Z",
+                                            "isDeleted": false
+                                          }
+                                        },
+                                        {
+                                          "nome": "Nicole Barros",
+                                          "treinos": {
+                                            "treino_id": "dcc4ef6e-9e81-4cc3-8ccc-5d69f90cc29f",
+                                            "uid": "09e0470c-8051-420b-9414-2c51b9c271db",
+                                            "atividade_id": null,
+                                            "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                            "duracao": "10",
+                                            "calorias": 100,
+                                            "distancia": 500,
+                                            "data": "2022-06-12T00:00:00.000Z",
+                                            "isDeleted": false
+                                          }
+                                        },
+                                        {
+                                          "nome": "Sophie Costela",
+                                          "treinos": {
+                                            "treino_id": "b8dbe538-ef25-4445-8cbe-5e82382b2e0b",
+                                            "uid": "0261d9b3-aaac-4a30-b6c9-f919b2205098",
+                                            "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                            "modalidade_id": null,
+                                            "duracao": "50",
+                                            "calorias": 20,
+                                            "distancia": 30,
+                                            "data": "2022-04-14T15:49:18.070Z",
+                                            "isDeleted": false
+                                          }
+                                        },
+                                        {
+                                          "nome": "Bianca Silva",
+                                          "treinos": {
+                                            "treino_id": "48474843-d48b-4786-9678-fe69248923dc",
+                                            "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "atividade_id": null,
+                                            "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                            "duracao": "10",
+                                            "calorias": 100,
+                                            "distancia": 500,
+                                            "data": "2022-04-15T13:50:48.224Z",
+                                            "isDeleted": true
+                                          }
+                                        },
+                                        {
+                                          "nome": "Bianca Silva",
+                                          "treinos": {
+                                            "treino_id": "98a44040-f84d-44d3-a141-b60c9bbf73c4",
+                                            "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                            "modalidade_id": null,
+                                            "duracao": "50",
+                                            "calorias": 20,
+                                            "distancia": 30,
+                                            "data": "2022-04-15T13:56:13.821Z",
+                                            "isDeleted": false
+                                          }
+                                        },
+                                        {
+                                          "nome": "Bianca Silva",
+                                          "treinos": {
+                                            "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
+                                            "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                            "modalidade_id": null,
+                                            "duracao": "50",
+                                            "calorias": 20,
+                                            "distancia": 30,
+                                            "data": "2022-04-18T17:53:33.437Z",
+                                            "isDeleted": false
+                                          }
+                                        }
+                                    ]
                                 }
                             }
                         }
