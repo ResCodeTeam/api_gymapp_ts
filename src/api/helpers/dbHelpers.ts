@@ -92,7 +92,7 @@ let checkAutorMarca = async(uId, marcaId)=>{
 let checkAutorSubmissaoDesafio = async(uId, submissao_id)=>{
     const marca = await client.submissoes_desafios.findMany({
         where:{
-            uid:uId,
+            treinador_id:uId,
             submissao_id:submissao_id
         }
     })
@@ -723,6 +723,17 @@ let getMobilidadeMarca = async(marcaId:string)=>{
     return marca.marca_id
 }
 
+let checkIsSubmissaoDesafio = async(desafioId:string, submissaoId:string)=>{
+    const submissao = await client.submissoes_desafios.findMany({
+        where:{
+            submissao_id:submissaoId,
+            desafio_id:desafioId
+        }
+    })
+
+    return submissao.length != 0;
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -785,6 +796,7 @@ export {
     getTreinadorMarca,
     getMobilidadeMarca,
     checkAutorSubmissaoDesafio,
-    checkSubmissaoExists
+    checkSubmissaoExists,
+    checkIsSubmissaoDesafio
 }
 

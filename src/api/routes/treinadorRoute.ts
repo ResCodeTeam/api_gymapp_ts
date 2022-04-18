@@ -97,7 +97,7 @@ treinadorRouter.get("/treinos/", verificarAutenticacao,verificarTreinador,verTod
 
 //#region Desafios
 treinadorRouter.post("/desafio/:desafioId/submissoes", verificarAutenticacao, verificarTreinador, submissaoDesafioController.handle);
-treinadorRouter.delete("/submissao/:id", verificarAutenticacao, verificarTreinador, removerSubmissaoDesafioController.handle);
+treinadorRouter.delete("/desafio/:desafioId/submissoes/:id", verificarAutenticacao, verificarTreinador, removerSubmissaoDesafioController.handle);
 //#endregion
 
 //#region Avaliacoes

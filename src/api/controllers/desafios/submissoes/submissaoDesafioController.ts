@@ -4,7 +4,9 @@ import { SubmissaoDesafioService } from "../../../services/desafios/submissoes/s
 export class SubmissaoDesafioController{
   async handle(request:Request, response:Response){
     const desafioId = request.params.desafioId;
-    const {uid,valor,treinadorId,ginasioId}=request.body;
+    const treinadorId = response.locals.uid;
+  
+    const {uid,valor,ginasioId}=request.body;
     if(uid === undefined || valor === undefined || treinadorId === undefined || ginasioId === undefined){
       throw new Error("Pedido inválido")
     }
