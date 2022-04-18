@@ -3886,10 +3886,9 @@
                                 "examples": {
                                     "Adicionar Musculo":{
                                         "value": {
-                                            "musculo": {
-                                                "exercicio_id": "5ebe32db-1b03-4754-9305-d9f0645778e0",
-                                                "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4"
-                                            }
+                                            "exercicio_id": "5ebe32db-1b03-4754-9305-d9f0645778e0",
+                                            "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4"
+                                            
                                     }
                                 }
                             }
