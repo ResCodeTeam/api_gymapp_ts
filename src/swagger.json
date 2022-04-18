@@ -6919,9 +6919,50 @@
                             },
                             "examples": {
                                 "Ver Desafios Disponiveis de um Ginásio":{
-                                    "value":{
-                                        "msg":"Operação realizada com sucesso"
-                                    }
+                                    "value":[
+                                        {
+                                          "nome": "Caminhar",
+                                          "data_inicio": "2022-03-23T00:00:00.000Z",
+                                          "data_fim": "2022-03-24T00:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Caminharrrrr",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": null,
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Caminhar",
+                                          "data_inicio": "2022-03-23T00:00:00.000Z",
+                                          "data_fim": "2022-03-24T00:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Crossfit",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": "2022-03-24T20:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Crossfit2",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": "2022-03-24T20:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Crossfit2",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": "2022-03-24T20:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        }
+                                    ]
                                 }
                             }
                         }
