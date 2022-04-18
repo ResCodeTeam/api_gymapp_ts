@@ -1,4 +1,4 @@
-import { checkMobilidadeMarcaUser, checkUserIdExists } from "../../../helpers/dbHelpers";
+import { checkMobilidadeMarcaUser, checkUserIdExists, getFuncaoId, getUserFuncao } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 class VerTodosPostsService{
     async execute(userId:string){
@@ -8,20 +8,105 @@ class VerTodosPostsService{
         if(!existsUser){
             throw new Error("Utilizador invalido")
         }
-
+        
         const {mobilidade,id} = await checkMobilidadeMarcaUser(userId);
-        console.log(mobilidade,id)
-        if(mobilidade){
+        
+        const funcTreinador = await getFuncaoId('Treinador')
+        const userFuncao = await getUserFuncao(userId)
+        
+        if(userFuncao!= funcTreinador){
+            if(mobilidade){
+                const publicacoes = await client.publicacoes.findMany({
+                    where:{
+                        isDeleted:false,
+                        users:{
+                            alunos_marca:{
+                                every:{
+                                    marca_id:id['marca_id']
+                                }
+                            }
+                        },
+                    },
+                    select:{
+                        publicacao_id:true,    
+                        criador_id:true,
+                        ginasio_id:true,
+                        data:true,
+                        descricao:true,
+                        tipo:true,
+                        imagens_publicacao:{
+                            select:{
+                                url:true
+                            }
+                        },
+                        _count:{
+                            select:{
+                                gostos_publicacao:true
+                            }
+                        }
+                    },
+                    
+                })
+                    
+                return publicacoes
+                
+            }else{
+                const publicacoes = await client.publicacoes.findMany({
+                    where:{
+                        isDeleted:false,
+                        users:{
+                            aluno_ginasio:{
+                                every:{
+                                    ginasio_id:id['ginasio_id']
+                                }
+                            },
+                            definicoes_user:{
+                                is_privado:false
+                            }
+                        }
+                    },
+                    select:{
+                        publicacao_id:true,    
+                        criador_id:true,
+                        ginasio_id:true,
+                        data:true,
+                        descricao:true,
+                        tipo:true,
+                        imagens_publicacao:{
+                            select:{
+                                url:true
+                            }
+                        },
+                        _count:{
+                            select:{
+                                gostos_publicacao:true
+                            }
+                        }
+
+                    },
+                    
+                })
+                    
+                return publicacoes
+                
+            }
+        }else{
+            const marca = await client.treinadores_marca.findFirst({
+                where:{
+                    treinador_uid:userId
+                }
+            })
+
             const publicacoes = await client.publicacoes.findMany({
                 where:{
                     isDeleted:false,
                     users:{
                         alunos_marca:{
                             every:{
-                                marca_id:id['marca_id']
+                                marca_id:marca.marca_id
                             }
                         }
-                    }
+                    },
                 },
                 select:{
                     publicacao_id:true,    
@@ -45,46 +130,6 @@ class VerTodosPostsService{
             })
                 
             return publicacoes
-            
-        }else{
-            const publicacoes = await client.publicacoes.findMany({
-                where:{
-                    isDeleted:false,
-                    users:{
-                        aluno_ginasio:{
-                            every:{
-                                ginasio_id:id['ginasio_id']
-                            }
-                        },
-                        definicoes_user:{
-                            is_privado:false
-                        }
-                    }
-                },
-                select:{
-                    publicacao_id:true,    
-                    criador_id:true,
-                    ginasio_id:true,
-                    data:true,
-                    descricao:true,
-                    tipo:true,
-                    imagens_publicacao:{
-                        select:{
-                            url:true
-                        }
-                    },
-                    _count:{
-                        select:{
-                            gostos_publicacao:true
-                        }
-                    }
-
-                },
-                
-            })
-                
-            return publicacoes
-            
         }
     }
     

@@ -21,7 +21,7 @@ const verTodosMusculosController = new VerTodosMusculosController();
 adminTreinadorRouter.put("/desafio/:id/editar",verificarAutenticacao,verificarAdminTreinador, editarDesafio.handle);
 adminTreinadorRouter.delete("/desafio/:id",verificarAutenticacao,verificarAdminTreinador,  removerDesafio.handle);
 adminTreinadorRouter.post("/ginasio/:id/desafio/", verificarAutenticacao, verificarAdminTreinador, criarDesafio.handle);
-adminTreinadorRouter.put("/desafios/:id",verificarAutenticacao,verificarAdminTreinador,  encerrarDesafiosController.handle);
+adminTreinadorRouter.put("/desafio/:id",verificarAutenticacao,verificarAdminTreinador,  encerrarDesafiosController.handle);
 //#endregion
 
 //#region 

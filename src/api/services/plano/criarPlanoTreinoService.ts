@@ -72,6 +72,66 @@ export class CriarPlanoTreinoService{
             }
           }
         }
-        return plano;
+
+        const planoTreino = await client.planos_treino.findFirst({
+          where:{
+            plano_treino_id:plano.plano_treino_id
+          },
+          select:{
+            data:true,
+            isRealizado:true,
+            treinador:{
+              select:{
+                nome:true,
+                email:true,
+                imagem_url:true,
+              }
+            },
+            modalidade:{
+              select:{
+                nome:true
+              }
+            },
+            bloco_treino:{
+              select:{
+                nome:true,
+                descricao:true,
+                exercicios_bloco:{
+                  select:{
+                    n_ordem_exercicio:true,
+                    series_exercicio:{
+                      select:{
+                        valor:true,
+                        n_ordem_serie:true
+                      }
+                    },
+                    exercicio:{
+                      select:{
+                        nome:true,
+                        descricao:true,
+                        imagens:{
+                          select:{
+                            url:true
+                          }
+                        },
+                        musculos:{
+                          select:{
+                            musculos:{
+                              select:{
+                                nome:true,
+                                img_url:true
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+          }
+        })
+        return planoTreino;
     }
 }

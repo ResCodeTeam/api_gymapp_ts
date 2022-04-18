@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { VerDesafioService } from "../../services/desafios/verDesafiosService";
+import { VerDesafioService } from "../../services/desafios/verDesafioService";
 
 
-export class VerDesafiosController{
+export class VerDesafioController{
  
     async handle(request:Request,response:Response){
         const desafioId = request.params.id;

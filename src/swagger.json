@@ -463,7 +463,7 @@
                                     "rua":"Rua das Castanhas",
                                     "adminId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
                                     "descricao":"null",
-                                    "imagem_url":"teste",
+                                    "imagemUrl":"teste",
                                     "lat":"0",
                                     "long":"0"
    
@@ -491,7 +491,17 @@
                             "examples": {
                                 "Editar ginasio":{
                                     "value":{
-                                        "msg":"Ginasio editado com sucesso"
+                                        "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                        "nome": "Ginásio Teste",
+                                        "rua": "Rua das Castanhas",
+                                        "cp_id": "f1d6a939-abde-40c9-aa17-97916e3d2b94",
+                                        "marca_id": "f34fdd41-8670-4b50-9311-ebdb0ad993c4",
+                                        "tag": "G4_01",
+                                        "descricao": "null",
+                                        "imagem_url": "teste",
+                                        "lat": "0",
+                                        "long": "0",
+                                        "isDeleted": false
                                     }
                                 }
                             }
@@ -558,7 +568,7 @@
                                         "nome": "Ginásio 4",
                                         "rua": "Rua das Castanhas",
                                         "cp": 3850,
-                                        "imagem_url": "3",
+                                        "imagemUrl": "3",
                                         "lat":"0",
                                         "long":"0",
                                         "cpExt":821
@@ -586,8 +596,18 @@
                                 "examples": {
                                     "Inserir Agendamento":{
                                         "value":{
-                                            "msg":" O ginasio foi criado com sucesso"
-                                        }
+                                            "ginasio_id": "cca94698-1048-487e-a67f-e238f2edb9d3",
+                                            "nome": "Ginásio 4",
+                                            "rua": "Rua das Castanhas",
+                                            "cp_id": "867277a8-8f5a-4148-a028-32621a4a1a48",
+                                            "marca_id": "d9017634-c824-423d-96a3-6da7f162917a",
+                                            "tag": "G4_03",
+                                            "descricao": null,
+                                            "imagem_url": "teste",
+                                            "lat": "0",
+                                            "long": "0",
+                                            "isDeleted": false
+                                          }
                                     }
                                 }
                             }
@@ -712,7 +732,11 @@
                                 "examples": {
                                     "Inserir Modalidade":{
                                         "value":{
-                                            "msg":"Modalidada inserida com sucesso"
+                                            "modalidade_id": "a7204142-de0b-4c5e-915f-7905109612c5",
+                                            "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                            "nome": "Musculação",
+                                            "imagem_url": "http://musculacao.imagem",
+                                            "isDeleted": false
                                         }
                                     }
                                 }
@@ -762,9 +786,12 @@
                                 },
                                 "examples": {
                                     "Ver Modalidades de um Ginásio":{
-                                        "value":{
-                                            "msg":"Operação realizada com sucesso"
-                                        }
+                                        "value":[
+                                            {
+                                              "nome": "Musculação",
+                                              "imagem_url": "http://musculacao.imagem"
+                                            }
+                                        ]
                                     }
                                 }
                             }
@@ -889,8 +916,11 @@
                             "examples": {
                                 "Editar Exercicio":{
                                     "value":{
-                                        "nome":"Corrida",
-                                        "imagemUrl":"https://corrida.imagem"
+                                        "modalidade_id": "b7e38157-b226-479e-84cf-0b793b575495",
+                                        "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                        "nome": "Crossfit",
+                                        "imagem_url": "https://crossfit.imagem",
+                                        "isDeleted": false
                                     }
                                 }
                             }
@@ -1046,7 +1076,12 @@
                                 "examples": {
                                     "Editar Exercicio":{
                                         "value":{
-                                            "msg":"Exercicio editado com sucesso"
+                                            "exercicio_id": "05bb0690-db08-4b46-97dc-3853eba58d51",
+                                            "nome": "Teste1",
+                                            "descricao": "Teste2",
+                                            "autor_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                            "is_tempo": true,
+                                            "isDeleted": false
                                         }
                                     }
                                 }
@@ -1097,25 +1132,84 @@
                                     "type": "object",
                                     "$ref": "#/components/schemas/Avaliacao"
                                 },"examples": {
-                                    "Obter Avaliação":{
-                                        "value":{
-                                            "avaliacao_id": "e35f4ea0-d579-4256-ad4f-e8b4ca8189a9",
-                                            "data": "2022-04-17T18:10:35.233Z",
-                                            "peso": 55,
-                                            "musculo": 80,
-                                            "gordura_corporal": 1,
-                                            "gordura_visceral": 1,
-                                            "agua": 30,
-                                            "proteina": 20,
-                                            "massa_ossea": 10,
-                                            "metabolismo_basal": 1600,
-                                            "avaliacao_imagens": [],
-                                            "medidas_avaliacao": [],
-                                            "users_avaliacoes_treinador_idTousers": {
-                                              "nome": "treinador",
-                                              "imagem_url": null
+                                    "Obter Avaliações":{
+                                        "value":[
+                                            {
+                                              "avaliacao_id": "e35f4ea0-d579-4256-ad4f-e8b4ca8189a9",
+                                              "data": "2022-04-17T18:10:35.233Z",
+                                              "peso": 55,
+                                              "musculo": 80,
+                                              "gordura_corporal": 1,
+                                              "gordura_visceral": 1,
+                                              "agua": 30,
+                                              "proteina": 20,
+                                              "massa_ossea": 10,
+                                              "metabolismo_basal": 1600,
+                                              "avaliacao_imagens": [],
+                                              "medidas_avaliacao": [],
+                                              "users_avaliacoes_treinador_idTousers": {
+                                                "nome": "treinador",
+                                                "imagem_url": null
+                                              }
+                                            },
+                                            {
+                                              "avaliacao_id": "640e1f20-938f-4ed6-8ef4-7b02ab98b486",
+                                              "data": "2022-04-18T15:06:37.318Z",
+                                              "peso": 55,
+                                              "musculo": 80,
+                                              "gordura_corporal": 1,
+                                              "gordura_visceral": 1,
+                                              "agua": 30,
+                                              "proteina": 20,
+                                              "massa_ossea": 10,
+                                              "metabolismo_basal": 1600,
+                                              "avaliacao_imagens": [],
+                                              "medidas_avaliacao": [],
+                                              "users_avaliacoes_treinador_idTousers": {
+                                                "nome": "treinador",
+                                                "imagem_url": null
+                                              }
+                                            },
+                                            {
+                                              "avaliacao_id": "89bb2521-b35e-42ac-beb7-bf0485a415d7",
+                                              "data": "2022-04-18T15:14:52.695Z",
+                                              "peso": 55,
+                                              "musculo": 80,
+                                              "gordura_corporal": 1,
+                                              "gordura_visceral": 1,
+                                              "agua": 30,
+                                              "proteina": 20,
+                                              "massa_ossea": 10,
+                                              "metabolismo_basal": 1600,
+                                              "avaliacao_imagens": [
+                                                {
+                                                  "url": "https://imagem.1"
+                                                }
+                                              ],
+                                              "medidas_avaliacao": [
+                                                {
+                                                  "medida": "50",
+                                                  "unidade_medida": "cm",
+                                                  "locais_medidas": {
+                                                    "descricao": "Peito",
+                                                    "unilado": true
+                                                  }
+                                                },
+                                                {
+                                                  "medida": "30x30",
+                                                  "unidade_medida": "cm",
+                                                  "locais_medidas": {
+                                                    "descricao": "Braço",
+                                                    "unilado": false
+                                                  }
+                                                }
+                                              ],
+                                              "users_avaliacoes_treinador_idTousers": {
+                                                "nome": "treinador",
+                                                "imagem_url": null
+                                              }
                                             }
-                                          }
+                                          ]
                                     }
                                 }
                             }
@@ -1165,8 +1259,8 @@
                             "examples": {
                                 "Avaliacao": {
                                     "value": {
-                                        "data": "2022-04-17T18:10:35.233Z",
                                         "peso": 55,
+                                        "unidadePeso":"Kg",
                                         "musculo": 80,
                                         "gorduraCorporal": 1,
                                         "gorduraVisceral": 1,
@@ -1174,9 +1268,24 @@
                                         "proteina": 20,
                                         "massaOssea": 10,
                                         "metabolismoBasal": 1600,
-                                        "imagens": [],
-                                        "medidas": []
-                                    }
+                                        "imagens": [
+                                            "https://imagem.1",
+                                            "https://imagem.2",
+                                            "https://imagem.3",
+                                            "https://imagem.4"
+                                        ],
+                                        "medidas": [
+                                            {
+                                                "medida":"50",
+                                                "unidadeMedida":"cm",
+                                                "localMedidaId":"df7b9d8a-d149-4d68-9caa-6809ec090f88"
+                                            },{
+                                                "medida":"30x30",
+                                                "unidadeMedida":"cm",
+                                                "localMedidaId":"a6b6c833-16ef-4a16-bf51-3014f28fd149"
+                                            }
+                                        ]
+                                      }
                                 }
                             }
                             
@@ -1201,7 +1310,43 @@
                                 "examples": {
                                     "Criar avaliacao":{
                                         "value":{
-                                            "msg":"avaliacao criada com sucesso"
+                                            "avaliacao_id": "89bb2521-b35e-42ac-beb7-bf0485a415d7",
+                                            "data": "2022-04-18T15:14:52.695Z",
+                                            "peso": 55,
+                                            "musculo": 80,
+                                            "gordura_corporal": 1,
+                                            "gordura_visceral": 1,
+                                            "agua": 30,
+                                            "proteina": 20,
+                                            "massa_ossea": 10,
+                                            "metabolismo_basal": 1600,
+                                            "avaliacao_imagens": [
+                                              {
+                                                "url": "https://imagem.1"
+                                              }
+                                            ],
+                                            "medidas_avaliacao": [
+                                              {
+                                                "medida": "50",
+                                                "unidade_medida": "cm",
+                                                "locais_medidas": {
+                                                  "descricao": "Peito",
+                                                  "unilado": true
+                                                }
+                                              },
+                                              {
+                                                "medida": "30x30",
+                                                "unidade_medida": "cm",
+                                                "locais_medidas": {
+                                                  "descricao": "Braço",
+                                                  "unilado": false
+                                                }
+                                              }
+                                            ],
+                                            "users_avaliacoes_treinador_idTousers": {
+                                              "nome": "treinador",
+                                              "imagem_url": null
+                                            }
                                         }
                                     }
                                 }
@@ -1278,6 +1423,49 @@
                                 "schema": {
                                     "type": "object",
                                     "$ref": "#/components/schemas/Avaliacao"
+                                },
+                                "examples": {
+                                    "Editar Avaliação":{
+                                        "value":{
+                                            "avaliacao_id": "89bb2521-b35e-42ac-beb7-bf0485a415d7",
+                                            "data": "2022-04-18T15:14:52.695Z",
+                                            "peso": 55,
+                                            "musculo": 80,
+                                            "gordura_corporal": 1,
+                                            "gordura_visceral": 1,
+                                            "agua": 30,
+                                            "proteina": 20,
+                                            "massa_ossea": 10,
+                                            "metabolismo_basal": 1600,
+                                            "avaliacao_imagens": [
+                                              {
+                                                "url": "https://imagem.1"
+                                              }
+                                            ],
+                                            "medidas_avaliacao": [
+                                              {
+                                                "medida": "50",
+                                                "unidade_medida": "cm",
+                                                "locais_medidas": {
+                                                  "descricao": "Peito",
+                                                  "unilado": true
+                                                }
+                                              },
+                                              {
+                                                "medida": "30x30",
+                                                "unidade_medida": "cm",
+                                                "locais_medidas": {
+                                                  "descricao": "Braço",
+                                                  "unilado": false
+                                                }
+                                              }
+                                            ],
+                                            "users_avaliacoes_treinador_idTousers": {
+                                              "nome": "treinador",
+                                              "imagem_url": null
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -1406,32 +1594,78 @@
                             "examples": {
                                 "Desafio": {
                                     "value": {
-                                        "nome": "Caminhar",
-                                        "modalidadeId": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
-                                        "dataInicio": "2022-03-23 15:51:45.663",
-                                        "dataFim": "2022-03-24 20:00:00.000",
+                                        "desafio_id": "55036574-d7a8-43ec-87b5-2e72f25fbccf",
+                                        "nome": "Crossfit2",
+                                        "data_inicio": "2022-03-23T15:51:45.663Z",
+                                        "data_fim": "2022-03-24T20:00:00.000Z",
                                         "recompensa": 100,
-                                        "isEncerrado": true,
+                                        "isEncerrado": false,
                                         "descricao": "2",
-                                        "regras": [
-                                            {
-                                                "descricao": "1"
-                                            }
+                                        "users": {
+                                          "nome": "treinador",
+                                          "email": "treinador@treinador.com",
+                                          "imagem_url": null
+                                        },
+                                        "modalidades_ginasio": {
+                                          "nome": "Crossfit"
+                                        },
+                                        "regras_desafio": [
+                                          {
+                                            "descricao": "1"
+                                          }
                                         ],
-                                        "exercicios":[
-                                            {
-                                                "nOrdem": 1,
-                                                "exercicioId":"05bb0690-db08-4b46-97dc-3853eba58d51",
-                                                "genero":1,
-                                                "series":[
-                                                    {
-                                                        "nOrdem": 1,
-                                                        "valor": "500"
-                                                    }
-                                                ]
-                                            }
+                                        "exercicios_desafio": [
+                                          {
+                                            "n_ordem_exercicio": 1,
+                                            "genero": 1,
+                                            "exercicios": {
+                                              "nome": "Teste1",
+                                              "descricao": "Teste2",
+                                              "is_tempo": true,
+                                              "imagens": [
+                                                {
+                                                  "url": "url1"
+                                                },
+                                                {
+                                                  "url": "url2"
+                                                },
+                                                {
+                                                  "url": "url3"
+                                                },
+                                                {
+                                                  "url": "url4"
+                                                }
+                                              ],
+                                              "musculos": [
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Bicep",
+                                                    "img_url": "http://imagem/bicep"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Tricep",
+                                                    "img_url": "http://imagem/tricep"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Costas",
+                                                    "img_url": "http://imagem/costas"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "series_desafio": [
+                                              {
+                                                "n_ordem_serie": 1,
+                                                "valor": "500"
+                                              }
+                                            ]
+                                          }
                                         ]
-                                    }
+                                      }
                                 }
                             }
                         }
@@ -1460,15 +1694,20 @@
             }
         },
         
-        "/aluno/{id}/desafios/":{
-            "get":{
-                "summary": "Ver desafios",
-                "description": "Esta rota vai apresentar todos os desafios",
-                "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "Id do desafio",
+        "/desafios/{desafioId}/submissoes":{
+            "get": {
+                "summary": "Obter submissões de um Desafio",
+                "description": "Este pedido serve para obter as submissões de um desafio pelo seu ID",
+                "tags":["Desafios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters":[{
+                    "name": "desafioId",
+                    "in":"path",
+                    "description":"Id do desafio",
                     "required": true,
                     "schema":{
                         "properties": {
@@ -1477,39 +1716,40 @@
                             }
                         }
                     }
-                }
-                ],
-                "security": [
-                    {
-                        "basicAuth":[]
-                    }
-                ],
-                "tags": ["Desafios"],
+                }],
                 "responses": {
-                    "500":{
-                        "description": "ERROR"  
+                    "500": {
+                        "description": "ERROR"
+    
                     },
-                    "200":{
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
                         "description": "OK",
                         "content": {
-                            "application/json":{
-                                "schema":{
-                                    "properties": {
-                                        "msg":{
-                                            "type": "string"
-                                        }
-                                    }
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Desafio"
                                 },
                                 "examples": {
-                                    "ver desafios":{
-                                        "value":{
-                                            "msg":"operação realizada com sucesso"
-                                        }
+                                    "Desafios":{
+                                        "value":[
+                                            {
+                                              "submissao_id": "e1c60b4f-de81-45ea-823d-e2d699bb0800",
+                                              "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                              "valor": "teste submissao",
+                                              "desafio_id": "55036574-d7a8-43ec-87b5-2e72f25fbccf",
+                                              "treinador_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                              "ginasio_id": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0"
+                                            }
+                                        ]
                                     }
                                 }
                             }
                         }
-                    }          
+                    }
                 }
             }
         },
@@ -1534,6 +1774,69 @@
                                 "schema":{
                                     "type": "object",
                                     "$ref": "#/components/schemas/User"
+                                },
+                                "examples": {
+                                    "Obter Avaliações":{
+                                        "value":[
+                                            {
+                                              "avaliacao_id": "640e1f20-938f-4ed6-8ef4-7b02ab98b486",
+                                              "data": "2022-04-18T15:06:37.318Z",
+                                              "peso": 55,
+                                              "musculo": 80,
+                                              "gordura_corporal": 1,
+                                              "gordura_visceral": 1,
+                                              "agua": 30,
+                                              "proteina": 20,
+                                              "massa_ossea": 10,
+                                              "metabolismo_basal": 1600,
+                                              "avaliacao_imagens": [],
+                                              "medidas_avaliacao": [],
+                                              "users_avaliacoes_treinador_idTousers": {
+                                                "nome": "treinador",
+                                                "imagem_url": null
+                                              }
+                                            },
+                                            {
+                                              "avaliacao_id": "89bb2521-b35e-42ac-beb7-bf0485a415d7",
+                                              "data": "2022-04-18T15:14:52.695Z",
+                                              "peso": 55,
+                                              "musculo": 80,
+                                              "gordura_corporal": 1,
+                                              "gordura_visceral": 1,
+                                              "agua": 30,
+                                              "proteina": 20,
+                                              "massa_ossea": 10,
+                                              "metabolismo_basal": 1600,
+                                              "avaliacao_imagens": [
+                                                {
+                                                  "url": "https://imagem.1"
+                                                }
+                                              ],
+                                              "medidas_avaliacao": [
+                                                {
+                                                  "medida": "50",
+                                                  "unidade_medida": "cm",
+                                                  "locais_medidas": {
+                                                    "descricao": "Peito",
+                                                    "unilado": true
+                                                  }
+                                                },
+                                                {
+                                                  "medida": "30x30",
+                                                  "unidade_medida": "cm",
+                                                  "locais_medidas": {
+                                                    "descricao": "Braço",
+                                                    "unilado": false
+                                                  }
+                                                }
+                                              ],
+                                              "users_avaliacoes_treinador_idTousers": {
+                                                "nome": "treinador",
+                                                "imagem_url": null
+                                              }
+                                            }
+                                        ]
+                                    }
                                 }
                             }
                         }
@@ -1561,8 +1864,57 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "type": "object",
-                                "$ref": "#/components/schemas/Exercicio"
+                                "type":"array",
+                                "items":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Exercicio"
+                                }
+                            },
+                            "examples": {
+                                "Exercicios":{
+                                    "value":[
+                                        {
+                                          "exercicio_id": "05bb0690-db08-4b46-97dc-3853eba58d51",
+                                          "nome": "Teste1",
+                                          "descricao": "Teste2",
+                                          "is_tempo": true,
+                                          "imagens": [
+                                            {
+                                              "url": "url1"
+                                            },
+                                            {
+                                              "url": "url2"
+                                            },
+                                            {
+                                              "url": "url3"
+                                            },
+                                            {
+                                              "url": "url4"
+                                            }
+                                          ],
+                                          "musculos": [
+                                            {
+                                              "musculos": {
+                                                "nome": "Costas",
+                                                "img_url": "http://imagem/costas"
+                                              }
+                                            },
+                                            {
+                                              "musculos": {
+                                                "nome": "Bicep",
+                                                "img_url": "http://imagem/bicep"
+                                              }
+                                            },
+                                            {
+                                              "musculos": {
+                                                "nome": "Tricep",
+                                                "img_url": "http://imagem/tricep"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                }
                             }
                         
                         }
@@ -1879,16 +2231,35 @@
                             "examples": {
                                 "Ver Posts":{
                                     "value":{
-                                        "post": {
-                                            "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                            "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                            "data": "2022-05-28T00:00:00.000Z",
-                                            "descricao": "TesteFatimaaa",
-                                            "tipo": 3,
-                                            "ginasio_id": null,
-                                            "isDeleted": false
+                                        "publicacao_id": "333f741a-a13d-4cd0-9528-5ae4c085d516",
+                                        "criador_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                        "ginasio_id": null,
+                                        "data": "2022-04-18T17:03:45.401Z",
+                                        "descricao": "Proteína da PROZIS #PROZIS #VACACIONES #VIDA",
+                                        "tipo": 1,
+                                        "imagens_publicacao": [],
+                                        "gostos_publicacao": [],
+                                        "identificacoes_publicacoes": [
+                                          {
+                                            "users": {
+                                              "nome": "Luiz Fernando Gonçalves",
+                                              "uid": "02de0f10-df8b-4d1e-955f-22d3211b66da",
+                                              "imagem_url": null
+                                            }
+                                          },
+                                          {
+                                            "users": {
+                                              "nome": "Bárbara Oliveira",
+                                              "uid": "0a169c30-208d-4931-9400-15d44ba57690",
+                                              "imagem_url": null
+                                            }
                                           }
-                                }
+                                        ],
+                                        "comentarios_publicacao": [],
+                                        "_count": {
+                                          "gostos_publicacao": 0
+                                        }
+                                    }
                             }
                         }
                     }
@@ -1955,6 +2326,21 @@
                     "basicAuth":[]
                 }
             ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do post que se deseja remover",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+                ],
             "requestBody": {
                 "content": {
                     "application/json":{
@@ -1971,7 +2357,6 @@
                         "examples": {
                             "Editar Treino":{
                                 "value":{                                   
-                                    "publicacaoId": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
                                     "descricao":"Proteína da PROZIS #PROZIS #VACACIONES #VIDA"                                   
                                 }
                             }
@@ -1994,14 +2379,33 @@
                             "examples": {
                                 "Editar Exercicio":{
                                     "value":{
-                                        "publicação": {
-                                            "publicacao_id": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
-                                            "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                            "data": "2022-04-14T12:40:32.236Z",
-                                            "descricao": "teste2",
-                                            "tipo": 3,
-                                            "ginasio_id": null,
-                                            "isDeleted": false
+                                        "publicacao_id": "333f741a-a13d-4cd0-9528-5ae4c085d516",
+                                        "criador_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                        "ginasio_id": null,
+                                        "data": "2022-04-18T17:03:45.401Z",
+                                        "descricao": "Proteína da PROZIS #PROZIS #VACACIONES #VIDA",
+                                        "tipo": 1,
+                                        "imagens_publicacao": [],
+                                        "gostos_publicacao": [],
+                                        "identificacoes_publicacoes": [
+                                          {
+                                            "users": {
+                                              "nome": "Luiz Fernando Gonçalves",
+                                              "uid": "02de0f10-df8b-4d1e-955f-22d3211b66da",
+                                              "imagem_url": null
+                                            }
+                                          },
+                                          {
+                                            "users": {
+                                              "nome": "Bárbara Oliveira",
+                                              "uid": "0a169c30-208d-4931-9400-15d44ba57690",
+                                              "imagem_url": null
+                                            }
+                                          }
+                                        ],
+                                        "comentarios_publicacao": [],
+                                        "_count": {
+                                          "gostos_publicacao": 0
                                         }
                                     }
                                 }
@@ -2398,10 +2802,9 @@
                                 "examples": {
                                     "Criar Gosto":{
                                         "value":{
-                                            "Gostos": {
-                                                "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
-                                                "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                                            }
+                                            "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
+                                            "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                                            
                                         }
                                     }
                                 }
@@ -2511,37 +2914,21 @@
                             },
                             "examples": {
                                 "Criar Exercicio":{
-                                    "value":{
-                                        
-                                        "resp": {
+                                    "value": {
                                             "nome": "Bicicleta",
-                                            "descricao": "Deitar no chao e subir saltando",
-                                            "is_tempo": true,
-                                            "exercicios_imagens": [
-                                            {
-                                                "imagem_id": "6295c29c-050d-4f04-bfb9-8cdc611b4479",
-                                                "url": "url1"
-                                            },
-                                            {
-                                                "imagem_id": "04121e76-7c7b-4b28-9eb5-67dcb8365473",
-                                                "url": "url2"
-                                            },
-                                            {
-                                                "imagem_id": "286900c8-41c7-49b4-984d-ba943a630a63",
-                                                "url": "url3"
-                                            },
-                                            {
-                                                "imagem_id": "92dc856a-4c0f-44e2-9926-9aa896cef391",
-                                                "url": "url4"
-                                            }
+                                            "descricao": "Andar de bicicleta",
+                                            "isTempo": true,
+                                            "imagens": [
+                                                "url1",
+                                                "url2",
+                                                "url3",
+                                                "url4"
                                             ],
-                                            "users": {
-                                            "uid": "a46c90e0-ef8a-49a1-b763-13fa0e6d7ef3",
-                                            "nome": "treinador2",
-                                            "email": "treinador2@treinador.com",
-                                            "imagem_url": null
-                                            }
-                                        }
+                                            "musculos":[
+                                                "13d6659f-b559-4545-b74d-8a7ba4896a3e",
+                                                "2a7fe3e5-368e-4e0c-88b5-b84270e93af2",
+                                                "7c21ea99-d663-408a-bb5e-7e7e9d4c2a9e"
+                                            ]
                                         
                                     }
                                 }
@@ -2619,8 +3006,185 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/exercicios"
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "$ref": "#/components/schemas/Exercicio"
+                                    }
+                                },
+                                "examples": {
+                                    "Exercicios":{
+                                        "value":[
+                                            {
+                                              "exercicio_id": "6549ed7d-7dc8-4fec-9e1d-e275f77418de",
+                                              "nome": "Bicicleta",
+                                              "descricao": "Andar de bicicleta estatica",
+                                              "is_tempo": true,
+                                              "imagens": [
+                                                {
+                                                  "url": "url1"
+                                                },
+                                                {
+                                                  "url": "url2"
+                                                },
+                                                {
+                                                  "url": "url3"
+                                                },
+                                                {
+                                                  "url": "url4"
+                                                }
+                                              ],
+                                              "musculos": [
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Costas",
+                                                    "img_url": "http://imagem/costas"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Bicep",
+                                                    "img_url": "http://imagem/bicep"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Tricep",
+                                                    "img_url": "http://imagem/tricep"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "exercicio_id": "e8d359ef-1aa5-42fe-95b7-3bfb89163a37",
+                                              "nome": "Burpees",
+                                              "descricao": "Deitar no chao e subir saltando",
+                                              "is_tempo": false,
+                                              "imagens": [
+                                                {
+                                                  "url": "url1"
+                                                },
+                                                {
+                                                  "url": "url2"
+                                                },
+                                                {
+                                                  "url": "url3"
+                                                },
+                                                {
+                                                  "url": "url4"
+                                                }
+                                              ],
+                                              "musculos": [
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Costas",
+                                                    "img_url": "http://imagem/costas"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Bicep",
+                                                    "img_url": "http://imagem/bicep"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Tricep",
+                                                    "img_url": "http://imagem/tricep"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "exercicio_id": "05bb0690-db08-4b46-97dc-3853eba58d51",
+                                              "nome": "Teste1",
+                                              "descricao": "Teste2",
+                                              "is_tempo": true,
+                                              "imagens": [
+                                                {
+                                                  "url": "url1"
+                                                },
+                                                {
+                                                  "url": "url2"
+                                                },
+                                                {
+                                                  "url": "url3"
+                                                },
+                                                {
+                                                  "url": "url4"
+                                                }
+                                              ],
+                                              "musculos": [
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Costas",
+                                                    "img_url": "http://imagem/costas"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Bicep",
+                                                    "img_url": "http://imagem/bicep"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Tricep",
+                                                    "img_url": "http://imagem/tricep"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "exercicio_id": "d29b24dc-3ee2-4641-9760-9f283e655ad9",
+                                              "nome": "Bicicleta",
+                                              "descricao": "Andar de bicicleta",
+                                              "is_tempo": true,
+                                              "imagens": [],
+                                              "musculos": []
+                                            },
+                                            {
+                                              "exercicio_id": "3d47690e-4ef3-4f91-9f3d-5d489e27dec0",
+                                              "nome": "Bicicleta",
+                                              "descricao": "Andar de bicicleta",
+                                              "is_tempo": true,
+                                              "imagens": [
+                                                {
+                                                  "url": "url1"
+                                                },
+                                                {
+                                                  "url": "url2"
+                                                },
+                                                {
+                                                  "url": "url3"
+                                                },
+                                                {
+                                                  "url": "url4"
+                                                }
+                                              ],
+                                              "musculos": [
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Costas",
+                                                    "img_url": "http://imagem/costas"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Bicep",
+                                                    "img_url": "http://imagem/bicep"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Tricep",
+                                                    "img_url": "http://imagem/tricep"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                    }
                                 }
                             
                             }
@@ -2757,9 +3321,6 @@
                                     "conteudo":{
                                         "type": "string"
                                     },
-                                    "data":{
-                                        "type": "string"
-                                    },
                                     "tipo":{
                                         "type":"number"
                                     }
@@ -2769,7 +3330,6 @@
                                 "Criar Notificação":{
                                     "value":{
                                         "conteudo":"Teste",
-                                        "data":"2022-03-21",
                                         "tipo":0
                                     }
                                 }
@@ -2792,12 +3352,11 @@
                                 "examples": {
                                     "Criar Notificação":{
                                         "value": {
-                                            "notificacao": {
-                                                "noti_id": "018aec31-d1c1-407c-9b5b-78e1d7929a0f",
-                                                "conteudo": "Teste",
-                                                "data": "2022-04-01T15:16:33.695Z",
-                                                "tipo": 0
-                                            }
+                                            "noti_id": "4363ff26-e2ae-426b-aaa9-6c9524858e56",
+                                            "origem_uid": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                                            "conteudo": "Teste5",
+                                            "data": "2022-04-18T17:40:21.382Z",
+                                            "tipo": 0
                                         }
                                     }
                                 }
@@ -2810,19 +3369,14 @@
             }            
         },
         "/desafios/{desafioId}":{
-            "get": {
-                "summary": "Obter submissões de um Desafio",
-                "description": "Este pedido serve para obter as submissões de um desafio pelo seu ID",
-                "tags":["Desafios"],
-                "security": [
-                    {
-                        "basicAuth":[]
-                    }
-                ],
-                "parameters":[{
+            "get":{
+                "summary": "Ver desafios",
+                "description": "Esta rota vai apresentar todos os desafios",
+                "parameters": [
+                {
                     "name": "desafioId",
-                    "in":"path",
-                    "description":"Id do desafio",
+                    "in": "path",
+                    "description": "Id do desafio",
                     "required": true,
                     "schema":{
                         "properties": {
@@ -2831,48 +3385,112 @@
                             }
                         }
                     }
-                }],
+                }
+                ],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Desafios"],
                 "responses": {
-                    "500": {
-                        "description": "ERROR"
-    
+                    "500":{
+                        "description": "ERROR"  
                     },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "200": {
+                    "200":{
                         "description": "OK",
                         "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Desafio"
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
                                 },
                                 "examples": {
-                                    "Desafios":{
-                                        "value":[
-                                            {
-                                              "desafio_id": "19738118-f243-4937-a138-89ff2daa19c1",
-                                              "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
-                                              "nome": "Caminharrrrr",
-                                              "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
-                                              "data_inicio": "2022-03-23T15:51:45.663Z",
-                                              "data_fim": null,
-                                              "recompensa": 100,
-                                              "isEncerrado": true,
-                                              "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
-                                              "descricao": "2",
-                                              "isDeleted": false,
-                                              "submissoes_desafios": []
-                                            }
-                                          ]
+                                    "ver desafios":{
+                                        "value":{
+                                            "desafio_id": "55036574-d7a8-43ec-87b5-2e72f25fbccf",
+                                            "nome": "Crossfit2",
+                                            "data_inicio": "2022-03-23T15:51:45.663Z",
+                                            "data_fim": "2022-03-24T20:00:00.000Z",
+                                            "recompensa": 100,
+                                            "isEncerrado": false,
+                                            "descricao": "2",
+                                            "users": {
+                                              "nome": "treinador",
+                                              "email": "treinador@treinador.com",
+                                              "imagem_url": null
+                                            },
+                                            "modalidades_ginasio": {
+                                              "nome": "Crossfit"
+                                            },
+                                            "regras_desafio": [
+                                              {
+                                                "descricao": "1"
+                                              }
+                                            ],
+                                            "exercicios_desafio": [
+                                              {
+                                                "n_ordem_exercicio": 1,
+                                                "genero": 1,
+                                                "exercicios": {
+                                                  "nome": "Teste1",
+                                                  "descricao": "Teste2",
+                                                  "is_tempo": true,
+                                                  "imagens": [
+                                                    {
+                                                      "url": "url1"
+                                                    },
+                                                    {
+                                                      "url": "url2"
+                                                    },
+                                                    {
+                                                      "url": "url3"
+                                                    },
+                                                    {
+                                                      "url": "url4"
+                                                    }
+                                                  ],
+                                                  "musculos": [
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Bicep",
+                                                        "img_url": "http://imagem/bicep"
+                                                      }
+                                                    },
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Tricep",
+                                                        "img_url": "http://imagem/tricep"
+                                                      }
+                                                    },
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Costas",
+                                                        "img_url": "http://imagem/costas"
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "series_desafio": [
+                                                  {
+                                                    "n_ordem_serie": 1,
+                                                    "valor": "500"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
                                     }
                                 }
                             }
                         }
-                    }
+                    }          
                 }
             }
+            
         },
         "/adminTreinador/desafio/{desafioId}":{
            
@@ -2984,6 +3602,13 @@
                                 "schema": {
                                     "type": "object",
                                     "$ref": "#/components/schemas/Desafio"
+                                },
+                                "examples": {
+                                    "Encerrar Desafio":{
+                                        "value":{
+                                            "message":"Desafio encerrado com sucesso"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -3059,24 +3684,22 @@
                                     "$ref": "#/components/schemas/User"
                                 },
                                 "examples": {
-                                    "Registar Treinador":{
+                                    "Registar":{
                                         "value": {
-                                            "aluno": {
-                                                "uid": "07c6127e-da68-4319-adec-65de3df7550d",
-                                                "email": "aluno1@aluno.com",
-                                                "nome": "aluno teste",
-                                                "password": "$2b$08$dBT8qvPm6UIKi7FXdSmA/ewliBMzw3LMp6fS8zDXfvXuyyktHj7/y",
-                                                "data_nasc": "2002-04-09T00:00:00.000Z",
-                                                "hashtag": "at_01",
-                                                "data_entrada": "2022-03-23T00:00:00.000Z",
-                                                "funcao_id": "6498274e-d7db-4e7d-81fe-c38f044deef6",
-                                                "refresh_token": null,
-                                                "genero": 0,
-                                                "pontos": 0,
-                                                "descricao": null,
-                                                "imagem_url": null,
-                                                "isDeleted": false
-                                            }
+                                            "uid": "07c6127e-da68-4319-adec-65de3df7550d",
+                                            "email": "aluno1@aluno.com",
+                                            "nome": "aluno teste",
+                                            "password": "$2b$08$dBT8qvPm6UIKi7FXdSmA/ewliBMzw3LMp6fS8zDXfvXuyyktHj7/y",
+                                            "data_nasc": "2002-04-09T00:00:00.000Z",
+                                            "hashtag": "at_01",
+                                            "data_entrada": "2022-03-23T00:00:00.000Z",
+                                            "funcao_id": "6498274e-d7db-4e7d-81fe-c38f044deef6",
+                                            "refresh_token": null,
+                                            "genero": 0,
+                                            "pontos": 0,
+                                            "descricao": null,
+                                            "imagem_url": null,
+                                            "isDeleted": false
                                         }
                                     }
                                 }
@@ -3086,7 +3709,7 @@
                 }
             }
         },
-        "/treinador/{treinadorId}/exercicios/{exercicioId}/imagens":{
+        "/treinador/exercicios/{exercicioId}/imagens":{
             "post":{
                 "summary": "Adicionar imagem a um exercicio",
                 "description": "Esta rota permite adicionar uma imagem a um exercicio",
@@ -3096,6 +3719,20 @@
                         "basicAuth":[]
                     }
                 ],
+                "parameters":[
+                {
+                    "name": "exercicioId",
+                    "in":"path",
+                    "description":"Id do exercicio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "desafioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -3109,7 +3746,7 @@
                             "examples": {
                                 "Adicionar Imagem":{
                                     "value":{
-                                        "email":"https://urlimagem.com"
+                                        "url":"https://urlimagem.com"
                                     }
                                 }
                             }
@@ -3139,13 +3776,11 @@
                                     }
                                 },
                                 "examples": {
-                                    "Adicionar Treinador":{
+                                    "Adicionar Imagem":{
                                         "value": {
-                                            "aluno": {
-                                                "imagem_id": "07c6127e-da68-4319-adec-65de3df7550d",
-                                                "exercicio_id": "07c6127e-da68-4319-adec-65de3df7550d",
-                                                "url": "https://urlimagem.com"
-                                            }
+                                            "imagem_id": "8f9aa36c-5ce1-42a0-a44f-8e56819fcc3c",
+                                            "exercicio_id": "05bb0690-db08-4b46-97dc-3853eba58d51",
+                                            "url": "https://urlimagem.com"
                                         }
                                     }
                                 }
@@ -3155,7 +3790,7 @@
                 }
             }
         },
-        "/aluno/user/treinos":{
+        "/aluno/treinos":{
             "post":{
                 "summary": "Criar treino",
                 "description": "Esta rota vai criar na base de dados os treinos",
@@ -3192,11 +3827,15 @@
                         "examples": {
                             "Criar Treino":{
                                 "value":{
-                                    "atividadeId":null,
-                                    "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
-                                    "duracao":"10",
+                                    "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
+                                    "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "atividade_id": null,
+                                    "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "duracao": "10",
                                     "calorias": 100,
-                                    "distancia": 500
+                                    "distancia": 500,
+                                    "data": "2022-04-18T17:51:26.567Z",
+                                    "isDeleted": false
                                 }
                             }
                         }
@@ -3223,7 +3862,15 @@
                                 "examples": {
                                     "Criar treino":{
                                         "value":{
-                                            "msg":"Treino criado com sucesso"
+                                            "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
+                                            "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                            "modalidade_id": null,
+                                            "duracao": "50",
+                                            "calorias": 20,
+                                            "distancia": 30,
+                                            "data": "2022-04-18T17:53:33.437Z",
+                                            "isDeleted": false
                                         }
                                     }
                                 }                                       
@@ -3283,7 +3930,10 @@
                                 "examples": {
                                     "Criar Atividades":{
                                         "value":{
-                                            "msg":"Atividade criada com sucesso"
+                                            "atividade_id": "66780189-0415-4639-8bd2-60f6bf5277e1",
+                                            "descricao": "Teste5",
+                                            "icon": "Teste1",
+                                            "isDeleted": false
                                         }
                                     }
                                 }                
@@ -3293,7 +3943,7 @@
                 }
             }
         },                       
-        "/treinador/{treinadorId}/exercicios/{exercicioId}/imagens/{imagemId}":{
+        "/treinador/exercicios/{exercicioId}/imagens/{imagemId}":{
             "delete":{
                 "summary": "Remover imagens de exercicio",
                 "description": "Esta rota permite remover uma imagem a um exercicio",
@@ -3472,7 +4122,10 @@
                                 "examples": {
                                     "Remover Modalidade":{
                                         "value":{
-                                            "msg":"Atividade editada com sucesso"
+                                            "atividade_id": "4b584fcf-f8ab-43aa-abba-0c32f48f0e1b",
+                                            "descricao": "Teste123",
+                                            "icon": "Teste456",
+                                            "isDeleted": false
                                         }
                                     }
                                 }
@@ -3509,6 +4162,24 @@
                                             "type": "string"
                                         }
                                     
+                                    }
+                                },
+                                "examples": {
+                                    "Obter atividades":{
+                                        "value":[
+                                            {
+                                              "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                              "descricao": "Teste",
+                                              "icon": "Teste1",
+                                              "isDeleted": false
+                                            },
+                                            {
+                                              "atividade_id": "66780189-0415-4639-8bd2-60f6bf5277e1",
+                                              "descricao": "Teste5",
+                                              "icon": "Teste1",
+                                              "isDeleted": false
+                                            }
+                                        ]
                                     }
                                 }
                         
@@ -3631,10 +4302,9 @@
                                 "examples": {
                                     "Adicionar Musculo":{
                                         "value": {
-                                            "musculo": {
-                                                "exercicio_id": "5ebe32db-1b03-4754-9305-d9f0645778e0",
-                                                "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4"
-                                            }
+                                            "exercicio_id": "5ebe32db-1b03-4754-9305-d9f0645778e0",
+                                            "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4"
+                                            
                                     }
                                 }
                             }
@@ -3746,7 +4416,8 @@
                         "examples": {
                             "Costas":{
                                 "value":{
-                                    "nome":"Costas"
+                                    "nome": "abdominal",
+                                    "imagem": "http://imagem/abdominal"
                                 }
                             }
                         }
@@ -3772,11 +4443,9 @@
                             "examples": {
                                 "Adicionar Musculo":{
                                     "value": {
-                                        "musculo": {
-                                            "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4",
-                                            "nome": "Costas",
-                                            "img_url": "url3"
-                                        }
+                                        "musculo_id": "29e65948-6e09-441c-a6f3-422ec625acad",
+                                        "nome": "abdominal",
+                                        "img_url": "http://imagem/abdominal"
                                     }
                                 }
                             }
@@ -3827,11 +4496,9 @@
                             "examples": {
                                 "Adicionar Musculo":{
                                     "value": {
-                                        "musculo": {
-                                            "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4",
-                                            "nome": "Costas",
-                                            "img_url": "http://imagem/costas"
-                                        }
+                                        "musculo_id": "29e65948-6e09-441c-a6f3-422ec625acad",
+                                        "nome": "Abdomi",
+                                        "img_url": "http://imagem/abdominal"
                                     }
                                 }
                             }
@@ -4045,13 +4712,11 @@
                             "examples": {
                                 "Obter Definições do Utilizador":{
                                     "value": {
-                                        "definicoes": {
-                                            "def_id": "0d100e85-830e-4da8-adda-c7c68f62c341",
-                                            "usersuid": "cacc87bb-a2dd-4af3-89c6-2ceedf33930a",
-                                            "is_privado": false,
-                                            "identificacoes": true,
-                                            "mencoes": true
-                                        }
+                                        "def_id": "e097c8c2-d2fb-4871-bca4-3ac333adec5d",
+                                        "usersuid": "6fde0d82-c64d-45f8-8c0d-68d9ee124624",
+                                        "is_privado": true,
+                                        "identificacoes": true,
+                                        "mencoes": true
                                     }
                                 }
                             }
@@ -4160,7 +4825,7 @@
                     "basicAuth":[]
                 }
             ],
-            "tags": ["Notificação"],
+            "tags": ["Notificações"],
             "requestBody":{
                 "content":{
                     "application/json":{
@@ -4181,8 +4846,7 @@
                             "Editar visto": {
                                 "value": {
                                     "notiId": "1d4da8a7-aabd-4ede-b5ab-f74c3e5405a2",
-                                    "destUid": "00b27390-ad57-47de-ac18-4c2a490caa97",
-                                    "visto": false
+                                    "destUid": "00b27390-ad57-47de-ac18-4c2a490caa97"
                                 }
                             }
                         }
@@ -4201,172 +4865,171 @@
             }
         },
         "/perfil":{
-        "put":{
-            "summary": "Editar perfil",
-            "description": "Esta rota vai editar perfil",
-            "security": [
-                {
-                    "basicAuth":[]
-                }
-            ],
-            "tags": ["Perfil"],
-            "requestBody":{
-                "content":{
-                    "application/json":{
-                        "schema":{
-                            "properties": {
-                                "uid":{
-                                    "type": "string"
-                                },
-                                "email":{
-                                    "type": "string"
-                                },"nome":{
-                                    "type": "string"
-                                },
-                                "password":{
-                                    "type": "string"
-                                },
-                                "hashtag":{
-                                    "type": "string"
-                                },  
-                                "genero":{
-                                    "type": "number"
-                                },
-                                "descricao":{
-                                    "type": "string"
-                                },
-                                "imagemUrl":{
-                                    "type": "string"
+            "put":{
+                "summary": "Editar perfil",
+                "description": "Esta rota vai editar perfil",
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Perfil"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "uid":{
+                                        "type": "string"
+                                    },
+                                    "email":{
+                                        "type": "string"
+                                    },"nome":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "hashtag":{
+                                        "type": "string"
+                                    },  
+                                    "genero":{
+                                        "type": "number"
+                                    },
+                                    "descricao":{
+                                        "type": "string"
+                                    },
+                                    "imagemUrl":{
+                                        "type": "string"
+                                    }
+                                    
                                 }
-                                
+                            },
+                            "examples": {
+                                "Editar Perfil": {
+                                    "value": {
+                                        "email": "treinador@treinador.com",
+                                        "nome": "treinador",
+                                        "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+                                        "genero": 0,
+                                        "descricao": null,
+                                        "imagemUrl": null
+                                    }
+                                }
                             }
-                        },
-                        "examples": {
-                            "Editar Perfil": {
-                                "value": {
-                                    "email": "treinador@treinador.com",
-                                    "nome": "treinador",
-                                    "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
-                                    "genero": 0,
-                                    "descricao": null,
-                                    "imagemUrl": null
-                                }
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                },
+                                "examples": {
+                                    "Editar Perfil":{
+                                        "value":{
+                                            "uid": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                            "email": "treinador@treinador.com",
+                                            "nome": "treinador teste",
+                                            "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+                                            "data_nasc": "2002-04-09T00:00:00.000Z",
+                                            "hashtag": "t_01",
+                                            "data_entrada": "2022-03-23T00:00:00.000Z",
+                                            "funcao_id": "b65870ab-43ce-47ed-bf86-baba4d876757",
+                                            "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAyOTEyMDEsImV4cCI6MTY4MTg0ODgwMSwic3ViIjoiNmQxMTI2NzgtZjQwYy00M2JjLWE4MGEtODY2ZjEyZmEyNmYyIn0.mKLG8FcVBzKAMJP1gav_7WzBwx8sDFM18x5O37ZHH2A",
+                                            "genero": 0,
+                                            "pontos": 0,
+                                            "descricao": null,
+                                            "imagem_url": null,
+                                            "isDeleted": true
+                                        }
+                                    }
+                                }   
                             }
                         }
                     }
                 }
             },
-            "responses": {
-                "500":{
-                    "description": "ERROR"
-                },
-                "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "object",
-                                "$ref": "#/components/schemas/User"
-                            },
-                            "examples": {
-                                "Editar Perfil":{
-                                    "value":{
-                                        "user":{
-                                            "uid": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
-                                            "email": "treinador2@treinador.com",
-                                            "nome": "treinador",
-                                            "password": "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
-                                            "data_nasc": "2002-04-09T00:00:00.000Z",
-                                            "hashtag": "t_01",
+            "get":{
+                "summary": "Obter o perfil do user autenticado",
+                "description": "Esta rota permite obter o perfil do user autenticado",
+                "tags": ["Perfil"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "responses": {
+                    "500":{
+                        "description": "ERROR"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/Perfil"
+                                },
+                                "examples": {
+                                    "Perfil":{
+                                        "value":{
+                                            "perfil": {
+                                            "uid": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                            "email": "ninapeixoto@gmail.com",
+                                            "nome": "Nina Peixoto",
+                                            "password": "$2b$08$gY5y.z/Rt7vqQhPYDd9YK.DBCMKj4CP8zyPPNAW9wkSGrORwFgkzu",
+                                            "data_nasc": "1968-06-19T00:00:00.000Z",
+                                            "hashtag": "NP_02",
                                             "data_entrada": "2022-03-23T00:00:00.000Z",
-                                            "funcao_id": "4c1c8eaf-7207-4d06-864a-a50191e9f5a7",
-                                            "refresh_token": null,
+                                            "funcao_id": "6498274e-d7db-4e7d-81fe-c38f044deef6",
+                                            "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk4NTQ1NDEsImV4cCI6MTY4MTQxMjE0MSwic3ViIjoiMDEwOGFiNWItZGM1Mi00MGFjLWIwNzctOTFjNjhmZTQ2MjljIn0.UEOKtRjODWFbPT3a4hBT-JkVnvUlNc2J-cgaB2UN9oE",
                                             "genero": 0,
                                             "pontos": 0,
-                                            "descricao": null, 
+                                            "descricao": null,
                                             "imagem_url": null,
                                             "isDeleted": false
-                                        }                                         
-                                    }
-                                }
-                            }   
-                        }
-                    }
-                }
-            }
-        },
-        "get":{
-            "summary": "Obter o perfil do user autenticado",
-            "description": "Esta rota permite obter o perfil do user autenticado",
-            "tags": ["Perfil"],
-            "security": [
-                {
-                    "basicAuth":[]
-                }
-            ],
-            "responses": {
-                "500":{
-                    "description": "ERROR"
-                },
-                "200":{
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "object",
-                                "$ref":"#/components/schemas/Perfil"
-                            },
-                            "examples": {
-                                "Perfil":{
-                                    "value":{
-                                        "perfil": {
-                                          "uid": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                          "email": "ninapeixoto@gmail.com",
-                                          "nome": "Nina Peixoto",
-                                          "password": "$2b$08$gY5y.z/Rt7vqQhPYDd9YK.DBCMKj4CP8zyPPNAW9wkSGrORwFgkzu",
-                                          "data_nasc": "1968-06-19T00:00:00.000Z",
-                                          "hashtag": "NP_02",
-                                          "data_entrada": "2022-03-23T00:00:00.000Z",
-                                          "funcao_id": "6498274e-d7db-4e7d-81fe-c38f044deef6",
-                                          "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk4NTQ1NDEsImV4cCI6MTY4MTQxMjE0MSwic3ViIjoiMDEwOGFiNWItZGM1Mi00MGFjLWIwNzctOTFjNjhmZTQ2MjljIn0.UEOKtRjODWFbPT3a4hBT-JkVnvUlNc2J-cgaB2UN9oE",
-                                          "genero": 0,
-                                          "pontos": 0,
-                                          "descricao": null,
-                                          "imagem_url": null,
-                                          "isDeleted": false
-                                        },
-                                        "posts": [
-                                          {
-                                            "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
-                                            "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                            "data": "2022-03-28T16:31:45.226Z",
-                                            "descricao": "teste1",
-                                            "tipo": 3,
-                                            "imagens_publicacao": [],
-                                            "gostos_publicacao": [
-                                              {
-                                                "gosto_id": "3db3afa6-2b21-4401-af94-e5d1b061b7e9",
+                                            },
+                                            "posts": [
+                                            {
                                                 "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
-                                                "criador_id": "19fb2828-424f-425e-9fe4-828d9262a00f"
-                                              }
-                                            ]
-                                          },
-                                          {
-                                            "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                            "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                            "data": "2022-05-28T00:00:00.000Z",
-                                            "descricao": "TesteFatimaaa",
-                                            "tipo": 3,
-                                            "imagens_publicacao": [],
-                                            "gostos_publicacao": [
-                                              {
-                                                "gosto_id": "c5b3cec9-7950-4351-9d32-2a1778dff617",
+                                                "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                                "data": "2022-03-28T16:31:45.226Z",
+                                                "descricao": "teste1",
+                                                "tipo": 3,
+                                                "imagens_publicacao": [],
+                                                "gostos_publicacao": [
+                                                {
+                                                    "gosto_id": "3db3afa6-2b21-4401-af94-e5d1b061b7e9",
+                                                    "publicacao_id": "f876932b-7158-4479-884d-a21fe00a0924",
+                                                    "criador_id": "19fb2828-424f-425e-9fe4-828d9262a00f"
+                                                }
+                                                ]
+                                            },
+                                            {
                                                 "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                                "criador_id": "024eb3f7-34fb-49ac-ac32-612ae870d7b3"
-                                              }
+                                                "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
+                                                "data": "2022-05-28T00:00:00.000Z",
+                                                "descricao": "TesteFatimaaa",
+                                                "tipo": 3,
+                                                "imagens_publicacao": [],
+                                                "gostos_publicacao": [
+                                                {
+                                                    "gosto_id": "c5b3cec9-7950-4351-9d32-2a1778dff617",
+                                                    "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
+                                                    "criador_id": "024eb3f7-34fb-49ac-ac32-612ae870d7b3"
+                                                }
+                                                ]
+                                            }
                                             ]
-                                          }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -4374,7 +5037,6 @@
                     }
                 }
             }
-        }
     },
     "/user/{uId}":{
         "get":{
@@ -4582,9 +5244,30 @@
                             },
                             "examples": {
                                 "Ver Todos os Treinos de um Aluno":{
-                                    "value":{
-                                        "msg":"Ver treinos de um aluno obtido com sucesso"
-                                    }
+                                    "value":[
+                                        {
+                                          "treino_id": "98a44040-f84d-44d3-a141-b60c9bbf73c4",
+                                          "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                          "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                          "modalidade_id": null,
+                                          "duracao": "50",
+                                          "calorias": 20,
+                                          "distancia": 30,
+                                          "data": "2022-04-15T13:56:13.821Z",
+                                          "isDeleted": false
+                                        },
+                                        {
+                                          "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
+                                          "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                          "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                          "modalidade_id": null,
+                                          "duracao": "50",
+                                          "calorias": 20,
+                                          "distancia": 30,
+                                          "data": "2022-04-18T17:53:33.437Z",
+                                          "isDeleted": false
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -4730,6 +5413,17 @@
                                         "type": "string"
                                     }
                                 }
+                            },
+                            "examples":{
+                                "Definições identificação":{
+                                    "value":{
+                                        "def_id": "dddbc9db-4eab-4631-aa88-86ca343ae8af",
+                                        "usersuid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "is_privado": false,
+                                        "identificacoes": false,
+                                        "mencoes": true
+                                    }
+                                }
                             }
                             
                         }
@@ -4785,10 +5479,14 @@
                                 }
                             },
                             "examples": {
-                                "Logout Musculo":{
+                                "Definições":{
                                     "value": {
-                                        "msg": "Logout com sucesso"
-                                    }
+                                        "def_id": "dddbc9db-4eab-4631-aa88-86ca343ae8af",
+                                        "usersuid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "is_privado": false,
+                                        "identificacoes": false,
+                                        "mencoes": false
+                                      }
                                 }
                             }
                         }
@@ -4876,7 +5574,15 @@
                             "examples": {
                                 "Editar Exercicio":{
                                     "value":{
-                                        "msg":"Treino editado com sucesso"
+                                        "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
+                                        "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                        "modalidade_id": null,
+                                        "duracao": "50",
+                                        "calorias": 20,
+                                        "distancia": 30,
+                                        "data": "2022-04-18T17:53:33.437Z",
+                                        "isDeleted": false
                                     }
                                 }
                             }
@@ -4951,89 +5657,87 @@
                             },
                             "examples": {
                                 "Obter Treino":{
-                                    "value":{
-                                        "planos": [
-                                          {
-                                            "data": "2022-04-14T00:00:00.000Z",
-                                            "isRealizado": false,
-                                            "treinador": {
-                                              "nome": "treinador",
-                                              "email": "treinador@treinador.com",
-                                              "imagem_url": null
-                                            },
-                                            "modalidade": {
-                                              "nome": "Crossfit"
-                                            },
-                                            "bloco_treino": [
-                                              {
-                                                "nome": "Aquecimento",
-                                                "descricao": "5 Rondas",
-                                                "exercicios_bloco": [
-                                                  {
-                                                    "n_ordem_exercicio": 0,
-                                                    "series_exercicio": [
+                                    "value":[
+                                        {
+                                          "data": "2022-04-14T00:00:00.000Z",
+                                          "isRealizado": false,
+                                          "treinador": {
+                                            "nome": "treinador teste",
+                                            "email": "treinador@treinador.com",
+                                            "imagem_url": null
+                                          },
+                                          "modalidade": {
+                                            "nome": "Crossfit"
+                                          },
+                                          "bloco_treino": [
+                                            {
+                                              "nome": "Aquecimento",
+                                              "descricao": "5 Rondas",
+                                              "exercicios_bloco": [
+                                                {
+                                                  "n_ordem_exercicio": 0,
+                                                  "series_exercicio": [
+                                                    {
+                                                      "valor": "12",
+                                                      "n_ordem_serie": 0
+                                                    },
+                                                    {
+                                                      "valor": "12",
+                                                      "n_ordem_serie": 1
+                                                    },
+                                                    {
+                                                      "valor": "12",
+                                                      "n_ordem_serie": 2
+                                                    },
+                                                    {
+                                                      "valor": "12",
+                                                      "n_ordem_serie": 3
+                                                    }
+                                                  ],
+                                                  "exercicio": {
+                                                    "nome": "Teste1",
+                                                    "descricao": "Teste2",
+                                                    "imagens": [
                                                       {
-                                                        "valor": "12",
-                                                        "n_ordem_serie": 0
+                                                        "url": "url1"
                                                       },
                                                       {
-                                                        "valor": "12",
-                                                        "n_ordem_serie": 1
+                                                        "url": "url2"
                                                       },
                                                       {
-                                                        "valor": "12",
-                                                        "n_ordem_serie": 2
+                                                        "url": "url3"
                                                       },
                                                       {
-                                                        "valor": "12",
-                                                        "n_ordem_serie": 3
+                                                        "url": "url4"
                                                       }
                                                     ],
-                                                    "exercicio": {
-                                                      "nome": "Push-Ups",
-                                                      "descricao": "Deitar no chao e empurrar executando uma flexão",
-                                                      "imagens": [
-                                                        {
-                                                          "url": "url1"
-                                                        },
-                                                        {
-                                                          "url": "url2"
-                                                        },
-                                                        {
-                                                          "url": "url3"
-                                                        },
-                                                        {
-                                                          "url": "url4"
+                                                    "musculos": [
+                                                      {
+                                                        "musculos": {
+                                                          "nome": "Bicep",
+                                                          "img_url": "http://imagem/bicep"
                                                         }
-                                                      ],
-                                                      "musculos": [
-                                                        {
-                                                          "musculos": {
-                                                            "nome": "Costas",
-                                                            "img_url": "http://imagem/costas"
-                                                          }
-                                                        },
-                                                        {
-                                                          "musculos": {
-                                                            "nome": "Bicep",
-                                                            "img_url": "http://imagem/bicep"
-                                                          }
-                                                        },
-                                                        {
-                                                          "musculos": {
-                                                            "nome": "Tricep",
-                                                            "img_url": "http://imagem/tricep"
-                                                          }
+                                                      },
+                                                      {
+                                                        "musculos": {
+                                                          "nome": "Tricep",
+                                                          "img_url": "http://imagem/tricep"
                                                         }
-                                                      ]
-                                                    }
+                                                      },
+                                                      {
+                                                        "musculos": {
+                                                          "nome": "Costas",
+                                                          "img_url": "http://imagem/costas"
+                                                        }
+                                                      }
+                                                    ]
                                                   }
-                                                ]
-                                              }
-                                            ]
-                                          }
-                                        ]
-                                      }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
                                 }
                             }
                         }
@@ -5125,89 +5829,87 @@
                                 },
                                 "examples": {
                                     "Obter Treino":{
-                                        "value":{
-                                            "planos": [
-                                              {
-                                                "data": "2022-04-14T00:00:00.000Z",
-                                                "isRealizado": false,
-                                                "treinador": {
-                                                  "nome": "treinador",
-                                                  "email": "treinador@treinador.com",
-                                                  "imagem_url": null
-                                                },
-                                                "modalidade": {
-                                                  "nome": "Crossfit"
-                                                },
-                                                "bloco_treino": [
-                                                  {
-                                                    "nome": "Aquecimento",
-                                                    "descricao": "5 Rondas",
-                                                    "exercicios_bloco": [
-                                                      {
-                                                        "n_ordem_exercicio": 0,
-                                                        "series_exercicio": [
+                                        "value":[
+                                            {
+                                              "data": "2022-04-14T00:00:00.000Z",
+                                              "isRealizado": false,
+                                              "treinador": {
+                                                "nome": "treinador teste",
+                                                "email": "treinador@treinador.com",
+                                                "imagem_url": null
+                                              },
+                                              "modalidade": {
+                                                "nome": "Crossfit"
+                                              },
+                                              "bloco_treino": [
+                                                {
+                                                  "nome": "Aquecimento",
+                                                  "descricao": "5 Rondas",
+                                                  "exercicios_bloco": [
+                                                    {
+                                                      "n_ordem_exercicio": 0,
+                                                      "series_exercicio": [
+                                                        {
+                                                          "valor": "12",
+                                                          "n_ordem_serie": 0
+                                                        },
+                                                        {
+                                                          "valor": "12",
+                                                          "n_ordem_serie": 1
+                                                        },
+                                                        {
+                                                          "valor": "12",
+                                                          "n_ordem_serie": 2
+                                                        },
+                                                        {
+                                                          "valor": "12",
+                                                          "n_ordem_serie": 3
+                                                        }
+                                                      ],
+                                                      "exercicio": {
+                                                        "nome": "Teste1",
+                                                        "descricao": "Teste2",
+                                                        "imagens": [
                                                           {
-                                                            "valor": "12",
-                                                            "n_ordem_serie": 0
+                                                            "url": "url1"
                                                           },
                                                           {
-                                                            "valor": "12",
-                                                            "n_ordem_serie": 1
+                                                            "url": "url2"
                                                           },
                                                           {
-                                                            "valor": "12",
-                                                            "n_ordem_serie": 2
+                                                            "url": "url3"
                                                           },
                                                           {
-                                                            "valor": "12",
-                                                            "n_ordem_serie": 3
+                                                            "url": "url4"
                                                           }
                                                         ],
-                                                        "exercicio": {
-                                                          "nome": "Push-Ups",
-                                                          "descricao": "Deitar no chao e empurrar executando uma flexão",
-                                                          "imagens": [
-                                                            {
-                                                              "url": "url1"
-                                                            },
-                                                            {
-                                                              "url": "url2"
-                                                            },
-                                                            {
-                                                              "url": "url3"
-                                                            },
-                                                            {
-                                                              "url": "url4"
+                                                        "musculos": [
+                                                          {
+                                                            "musculos": {
+                                                              "nome": "Bicep",
+                                                              "img_url": "http://imagem/bicep"
                                                             }
-                                                          ],
-                                                          "musculos": [
-                                                            {
-                                                              "musculos": {
-                                                                "nome": "Costas",
-                                                                "img_url": "http://imagem/costas"
-                                                              }
-                                                            },
-                                                            {
-                                                              "musculos": {
-                                                                "nome": "Bicep",
-                                                                "img_url": "http://imagem/bicep"
-                                                              }
-                                                            },
-                                                            {
-                                                              "musculos": {
-                                                                "nome": "Tricep",
-                                                                "img_url": "http://imagem/tricep"
-                                                              }
+                                                          },
+                                                          {
+                                                            "musculos": {
+                                                              "nome": "Tricep",
+                                                              "img_url": "http://imagem/tricep"
                                                             }
-                                                          ]
-                                                        }
+                                                          },
+                                                          {
+                                                            "musculos": {
+                                                              "nome": "Costas",
+                                                              "img_url": "http://imagem/costas"
+                                                            }
+                                                          }
+                                                        ]
                                                       }
-                                                    ]
-                                                  }
-                                                ]
-                                              }
-                                            ]
-                                          }
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
                                     }
                                 }
                             }
@@ -5347,14 +6049,35 @@
                                 "Publicacao":{
                                     "value":{
                                         "post": {
-                                            "publicacao_id": "0e062989-88e5-4c45-97ec-6af212ca566d",
-                                            "criador_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                            "data": "2022-04-14T12:32:31.468Z",
-                                            "descricao": "teste1",
-                                            "tipo": 3,
+                                            "publicacao_id": "333f741a-a13d-4cd0-9528-5ae4c085d516",
+                                            "criador_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
                                             "ginasio_id": null,
-                                            "isDeleted": false
-                                        }
+                                            "data": "2022-04-18T16:56:48.834Z",
+                                            "descricao": "teste",
+                                            "tipo": 1,
+                                            "imagens_publicacao": [],
+                                            "gostos_publicacao": [],
+                                            "identificacoes_publicacoes": [
+                                              {
+                                                "users": {
+                                                  "nome": "Luiz Fernando Gonçalves",
+                                                  "uid": "02de0f10-df8b-4d1e-955f-22d3211b66da",
+                                                  "imagem_url": null
+                                                }
+                                              },
+                                              {
+                                                "users": {
+                                                  "nome": "Bárbara Oliveira",
+                                                  "uid": "0a169c30-208d-4931-9400-15d44ba57690",
+                                                  "imagem_url": null
+                                                }
+                                              }
+                                            ],
+                                            "comentarios_publicacao": [],
+                                            "_count": {
+                                              "gostos_publicacao": 0
+                                            }
+                                          }
                                     }
                                 }
                             }
@@ -5694,7 +6417,11 @@
                             "examples": {
                                 "Editar Estado do Perfil":{
                                     "value":{
-                                        "msg":"Editar estado do perfil aceite com sucesso"
+                                        "def_id": "dddbc9db-4eab-4631-aa88-86ca343ae8af",
+                                        "usersuid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "is_privado": true,
+                                        "identificacoes": false,
+                                        "mencoes": true
                                     }
                                 }
                             }
@@ -5803,8 +6530,84 @@
                             "examples": {
                                 "Editar Exercicio":{
                                     "value":{
-                                        "msg":"Treino editado com sucesso"
-                                    }
+                                        "data": "2022-04-18T00:00:00.000Z",
+                                        "isRealizado": false,
+                                        "treinador": {
+                                          "nome": "treinador teste",
+                                          "email": "treinador@treinador.com",
+                                          "imagem_url": null
+                                        },
+                                        "modalidade": {
+                                          "nome": "Crossfit"
+                                        },
+                                        "bloco_treino": [
+                                          {
+                                            "nome": "Aquecimento",
+                                            "descricao": "5 Rondas",
+                                            "exercicios_bloco": [
+                                              {
+                                                "n_ordem_exercicio": 0,
+                                                "series_exercicio": [
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 0
+                                                  },
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 1
+                                                  },
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 2
+                                                  },
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 3
+                                                  }
+                                                ],
+                                                "exercicio": {
+                                                  "nome": "Teste1",
+                                                  "descricao": "Teste2",
+                                                  "imagens": [
+                                                    {
+                                                      "url": "url1"
+                                                    },
+                                                    {
+                                                      "url": "url2"
+                                                    },
+                                                    {
+                                                      "url": "url3"
+                                                    },
+                                                    {
+                                                      "url": "url4"
+                                                    }
+                                                  ],
+                                                  "musculos": [
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Bicep",
+                                                        "img_url": "http://imagem/bicep"
+                                                      }
+                                                    },
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Tricep",
+                                                        "img_url": "http://imagem/tricep"
+                                                      }
+                                                    },
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Costas",
+                                                        "img_url": "http://imagem/costas"
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
                                 }
                             }
                         }
@@ -5815,7 +6618,7 @@
     },
     "/aluno/plano/{planoId}/realizado/":{
         "put":{
-            "summary": "Meter um plano de treino como realizado",
+            "summary": "Colocar um plano de treino como realizado",
             "description": "Esta rota vai editar na base de dados o estado da realização de um plano de treino",
             "tags": ["Plano Treino"],
             "parameters": [{
@@ -5854,7 +6657,13 @@
                             "examples": {
                                 "Editar Estado da Realização do Plano de Treino":{
                                     "value":{
-                                        "msg":"Editar estado da realização do plano de treino aceite com sucesso"
+                                        "plano_treino_id": "89db473b-69d2-477a-9a83-d77193ea6b86",
+                                        "aluno_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "treinador_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                        "data": "2022-04-18T00:00:00.000Z",
+                                        "isRealizado": true,
+                                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                        "isDeleted": false
                                     }
                                 }
                             }
@@ -5964,7 +6773,7 @@
         }
     },
 
-    "/treinador/planoTreino/{planoId}":{
+    "/treinador/plano/{planoId}":{
         "put":{
             "summary": "Editar Plano de Treino",
             "description": "Esta rota vai editar um plano de treino",
@@ -6081,8 +6890,84 @@
                             "examples": {
                                 "Editar Exercicio":{
                                     "value":{
-                                        "msg":"Treino editado com sucesso"
-                                    }
+                                        "data": "2022-04-18T00:00:00.000Z",
+                                        "isRealizado": false,
+                                        "treinador": {
+                                          "nome": "treinador teste",
+                                          "email": "treinador@treinador.com",
+                                          "imagem_url": null
+                                        },
+                                        "modalidade": {
+                                          "nome": "Crossfit"
+                                        },
+                                        "bloco_treino": [
+                                          {
+                                            "nome": "Aquecimento2",
+                                            "descricao": "5 Rondas",
+                                            "exercicios_bloco": [
+                                              {
+                                                "n_ordem_exercicio": 0,
+                                                "series_exercicio": [
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 0
+                                                  },
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 1
+                                                  },
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 2
+                                                  },
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 3
+                                                  }
+                                                ],
+                                                "exercicio": {
+                                                  "nome": "Teste1",
+                                                  "descricao": "Teste2",
+                                                  "imagens": [
+                                                    {
+                                                      "url": "url1"
+                                                    },
+                                                    {
+                                                      "url": "url2"
+                                                    },
+                                                    {
+                                                      "url": "url3"
+                                                    },
+                                                    {
+                                                      "url": "url4"
+                                                    }
+                                                  ],
+                                                  "musculos": [
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Bicep",
+                                                        "img_url": "http://imagem/bicep"
+                                                      }
+                                                    },
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Tricep",
+                                                        "img_url": "http://imagem/tricep"
+                                                      }
+                                                    },
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Costas",
+                                                        "img_url": "http://imagem/costas"
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
                                 }
                             }
                         }
@@ -6237,9 +7122,50 @@
                             },
                             "examples": {
                                 "Ver Desafios de um Ginásio":{
-                                    "value":{
-                                        "msg":"Operação realizada com sucesso"
-                                    }
+                                    "value":[
+                                        {
+                                          "nome": "Caminhar",
+                                          "data_inicio": "2022-03-23T00:00:00.000Z",
+                                          "data_fim": "2022-03-24T00:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Caminharrrrr",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": null,
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Caminhar",
+                                          "data_inicio": "2022-03-23T00:00:00.000Z",
+                                          "data_fim": "2022-03-24T00:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Crossfit",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": "2022-03-24T20:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Crossfit2",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": "2022-03-24T20:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Crossfit2",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": "2022-03-24T20:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -6290,9 +7216,50 @@
                             },
                             "examples": {
                                 "Ver Desafios Disponiveis de um Ginásio":{
-                                    "value":{
-                                        "msg":"Operação realizada com sucesso"
-                                    }
+                                    "value":[
+                                        {
+                                          "nome": "Caminhar",
+                                          "data_inicio": "2022-03-23T00:00:00.000Z",
+                                          "data_fim": "2022-03-24T00:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Caminharrrrr",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": null,
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Caminhar",
+                                          "data_inicio": "2022-03-23T00:00:00.000Z",
+                                          "data_fim": "2022-03-24T00:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Crossfit",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": "2022-03-24T20:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Crossfit2",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": "2022-03-24T20:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        },
+                                        {
+                                          "nome": "Crossfit2",
+                                          "data_inicio": "2022-03-23T15:51:45.663Z",
+                                          "data_fim": "2022-03-24T20:00:00.000Z",
+                                          "recompensa": 100,
+                                          "descricao": "2"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -6363,11 +7330,10 @@
                             "Desafio": {
                                 "value": {
                                     "nome": "Caminhar",
-                                    "modalidade" : "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
-                                    "data_inicio": "2022-03-23 15:51:45.663",
-                                    "fim": "2022-03-24 20:00:00.000",
+                                    "modalidade": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "dataInicio": "2022-03-23 15:51:45.663",
+                                    "dataFim": "2022-03-30 15:51:45.663",
                                     "recompensa": 100,
-                                    "isEncerrado": true,
                                     "descricao": "2"
                                 }
                             }
@@ -6390,6 +7356,83 @@
                             "schema": {
                                 "type": "object",
                                 "$ref": "#/components/schemas/Desafio"
+                            },
+                            "examples":{
+                                "Editar Desafios":{
+                                    "value":{
+                                        "desafio_id": "55036574-d7a8-43ec-87b5-2e72f25fbccf",
+                                        "nome": "Caminhar",
+                                        "data_inicio": "2022-03-23T15:51:45.663Z",
+                                        "data_fim": "2022-03-30T14:51:45.663Z",
+                                        "recompensa": 100,
+                                        "isEncerrado": false,
+                                        "descricao": "2",
+                                        "users": {
+                                          "nome": "treinador",
+                                          "email": "treinador@treinador.com",
+                                          "imagem_url": null
+                                        },
+                                        "modalidades_ginasio": {
+                                          "nome": "Crossfit"
+                                        },
+                                        "regras_desafio": [
+                                          {
+                                            "descricao": "1"
+                                          }
+                                        ],
+                                        "exercicios_desafio": [
+                                          {
+                                            "n_ordem_exercicio": 1,
+                                            "genero": 1,
+                                            "exercicios": {
+                                              "nome": "Teste1",
+                                              "descricao": "Teste2",
+                                              "is_tempo": true,
+                                              "imagens": [
+                                                {
+                                                  "url": "url1"
+                                                },
+                                                {
+                                                  "url": "url2"
+                                                },
+                                                {
+                                                  "url": "url3"
+                                                },
+                                                {
+                                                  "url": "url4"
+                                                }
+                                              ],
+                                              "musculos": [
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Bicep",
+                                                    "img_url": "http://imagem/bicep"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Tricep",
+                                                    "img_url": "http://imagem/tricep"
+                                                  }
+                                                },
+                                                {
+                                                  "musculos": {
+                                                    "nome": "Costas",
+                                                    "img_url": "http://imagem/costas"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "series_desafio": [
+                                              {
+                                                "n_ordem_serie": 1,
+                                                "valor": "500"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                    }
+                                }
                             }
                         }
                     }
@@ -6420,6 +7463,96 @@
                                     "msg":{
                                         "type": "string"
                                     }
+                                }
+                            },
+                            "examples": {
+                                "Ver treinos aluno":{
+                                    "value":[
+                                        {
+                                          "nome": "Nicole Barros",
+                                          "treinos": {
+                                            "treino_id": "5b7d8120-996e-4438-89f8-c95ad344e11e",
+                                            "uid": "09e0470c-8051-420b-9414-2c51b9c271db",
+                                            "atividade_id": null,
+                                            "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                            "duracao": "10",
+                                            "calorias": 100,
+                                            "distancia": 500,
+                                            "data": "2022-04-14T14:50:35.663Z",
+                                            "isDeleted": false
+                                          }
+                                        },
+                                        {
+                                          "nome": "Nicole Barros",
+                                          "treinos": {
+                                            "treino_id": "dcc4ef6e-9e81-4cc3-8ccc-5d69f90cc29f",
+                                            "uid": "09e0470c-8051-420b-9414-2c51b9c271db",
+                                            "atividade_id": null,
+                                            "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                            "duracao": "10",
+                                            "calorias": 100,
+                                            "distancia": 500,
+                                            "data": "2022-06-12T00:00:00.000Z",
+                                            "isDeleted": false
+                                          }
+                                        },
+                                        {
+                                          "nome": "Sophie Costela",
+                                          "treinos": {
+                                            "treino_id": "b8dbe538-ef25-4445-8cbe-5e82382b2e0b",
+                                            "uid": "0261d9b3-aaac-4a30-b6c9-f919b2205098",
+                                            "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                            "modalidade_id": null,
+                                            "duracao": "50",
+                                            "calorias": 20,
+                                            "distancia": 30,
+                                            "data": "2022-04-14T15:49:18.070Z",
+                                            "isDeleted": false
+                                          }
+                                        },
+                                        {
+                                          "nome": "Bianca Silva",
+                                          "treinos": {
+                                            "treino_id": "48474843-d48b-4786-9678-fe69248923dc",
+                                            "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "atividade_id": null,
+                                            "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                            "duracao": "10",
+                                            "calorias": 100,
+                                            "distancia": 500,
+                                            "data": "2022-04-15T13:50:48.224Z",
+                                            "isDeleted": true
+                                          }
+                                        },
+                                        {
+                                          "nome": "Bianca Silva",
+                                          "treinos": {
+                                            "treino_id": "98a44040-f84d-44d3-a141-b60c9bbf73c4",
+                                            "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                            "modalidade_id": null,
+                                            "duracao": "50",
+                                            "calorias": 20,
+                                            "distancia": 30,
+                                            "data": "2022-04-15T13:56:13.821Z",
+                                            "isDeleted": false
+                                          }
+                                        },
+                                        {
+                                          "nome": "Bianca Silva",
+                                          "treinos": {
+                                            "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
+                                            "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                            "modalidade_id": null,
+                                            "duracao": "50",
+                                            "calorias": 20,
+                                            "distancia": 30,
+                                            "data": "2022-04-18T17:53:33.437Z",
+                                            "isDeleted": false
+                                          }
+                                        }
+                                      ]
                                 }
                             }
                         }
@@ -6561,9 +7694,18 @@
                             },
                             "examples": {
                                 "Ver Locais de Medida":{
-                                    "value":{
-                                        "msg":"Operação realizada com sucesso"
-                                    }
+                                    "value":[
+                                        {
+                                          "local_medida_id": "a6b6c833-16ef-4a16-bf51-3014f28fd149",
+                                          "descricao": "Braço",
+                                          "unilado": false
+                                        },
+                                        {
+                                          "local_medida_id": "df7b9d8a-d149-4d68-9caa-6809ec090f88",
+                                          "descricao": "Peito",
+                                          "unilado": true
+                                        }
+                                      ]
                                 }
                             }
                         }
@@ -6802,8 +7944,58 @@
                             "examples": {
                                 "Ver Notificacoes":{
                                     "value":{
-                                        "msg":"Operação realizada com sucesso"
-                                    }
+                                        "message": "Notificação enviada com sucesso",
+                                        "ginasios": [
+                                          {
+                                            "marca_id": "f34fdd41-8670-4b50-9311-ebdb0ad993c4",
+                                            "ginasio_id": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0",
+                                            "aluno_ginasio": [
+                                              {
+                                                "user_id": "8d4f77b4-96ce-4fb9-bcaf-152ed36a659f",
+                                                "users": {
+                                                  "nome": "Miguel Ferreira"
+                                                }
+                                              },
+                                              {
+                                                "user_id": "d32d5940-1e18-4330-a603-9f3c32fb28cc",
+                                                "users": {
+                                                  "nome": "Vitor Gabriel Costa"
+                                                }
+                                              },
+                                              {
+                                                "user_id": "b3594524-b963-4905-94c1-f7cdfc4c1e90",
+                                                "users": {
+                                                  "nome": "Benjamin Pinto"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "marca_id": "f34fdd41-8670-4b50-9311-ebdb0ad993c4",
+                                            "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                            "aluno_ginasio": [
+                                              {
+                                                "user_id": "fc7b167a-096a-4a86-9098-bde8fe6c10a1",
+                                                "users": {
+                                                  "nome": "Augusto Nogueira"
+                                                }
+                                              },
+                                              {
+                                                "user_id": "b86f436d-0e68-49f9-83ed-3a194500aa8a",
+                                                "users": {
+                                                  "nome": "Luiz Gustavo Azevedo"
+                                                }
+                                              },
+                                              {
+                                                "user_id": "f6bf8f42-178c-4446-b9f0-ca720f8378ef",
+                                                "users": {
+                                                  "nome": "Marcelo Moraes"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
                                 }
                             }
                         }
@@ -6884,8 +8076,31 @@
                             "examples": {
                                 "Ver Notificacoes":{
                                     "value":{
-                                        "msg":"Operação realizada com sucesso"
-                                    }
+                                        "message": "Notificação enviada com sucesso",
+                                        "ginasios": {
+                                          "ginasio_id": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0",
+                                          "aluno_ginasio": [
+                                            {
+                                              "user_id": "8d4f77b4-96ce-4fb9-bcaf-152ed36a659f",
+                                              "users": {
+                                                "nome": "Miguel Ferreira"
+                                              }
+                                            },
+                                            {
+                                              "user_id": "d32d5940-1e18-4330-a603-9f3c32fb28cc",
+                                              "users": {
+                                                "nome": "Vitor Gabriel Costa"
+                                              }
+                                            },
+                                            {
+                                              "user_id": "b3594524-b963-4905-94c1-f7cdfc4c1e90",
+                                              "users": {
+                                                "nome": "Benjamin Pinto"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
                                 }
                             }
                         }

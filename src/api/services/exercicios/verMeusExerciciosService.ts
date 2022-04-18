@@ -11,22 +11,35 @@ interface IMeusExercicios{
 export class VerMeusExerciciosService{
     async execute({autorId}: IMeusExercicios){
 
-        const exists_exercicio= await checkExercicioExists(autorId)
-        if(!exists_exercicio){
-            throw new Error(" O exercicio não existe")
-        }
-
         const exercicio = await client.exercicios.findMany({
             where:{
-                autor_id:autorId
+                autor_id:autorId,
+                isDeleted:false
 
             }, select:{
                 exercicio_id:true,
                 nome:true,
-                descricao:true
+                descricao:true,
+                is_tempo:true,
+                imagens:{
+                    select:{
+                        url:true
+                    }
+                },
+                musculos:{
+                    select:{
+                        musculos:{
+                            select:{
+                                nome:true,
+                                img_url:true
+                            }
+                        }
+                    }
+                }
+
             }
         
-             })
+        })
         return exercicio;
     }
 }

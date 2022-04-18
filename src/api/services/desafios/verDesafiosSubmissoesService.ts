@@ -2,14 +2,14 @@ import { client } from "../../prisma/client";
 
 export class VerDesafiosSubmissoesService {
     async execute(desafioId:string){
-        const  desafios = await client.desafios.findMany({
+        const  desafios = await client.submissoes_desafios.findMany({
             where:{
                 desafio_id:desafioId,
-                isDeleted:false
+                desafios:{
+                    isDeleted:false,
+                    isEncerrado:false
+                }
             },
-            include: {
-                submissoes_desafios: true
-            }
         })
         
         return desafios;
