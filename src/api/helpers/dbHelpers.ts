@@ -89,6 +89,27 @@ let checkAutorMarca = async(uId, marcaId)=>{
     return marca.length != 0
 }
 
+let checkAutorSubmissaoDesafio = async(uId, submissao_id)=>{
+    const marca = await client.submissoes_desafios.findMany({
+        where:{
+            uid:uId,
+            submissao_id:submissao_id
+        }
+    })
+    
+    return marca.length != 0
+}
+
+let checkSubmissaoExists = async(submissao_id)=>{
+    const marca = await client.submissoes_desafios.findMany({
+        where:{
+            submissao_id:submissao_id
+        }
+    })
+    
+    return marca.length != 0
+}
+
 let checkPlanoTreinoExists = async(planoId: string)=>{
     const search = await client.planos_treino.findMany({
         where:{
@@ -195,7 +216,8 @@ let checkTreinoExists= async(treinoId : string)=>{
 let checkMarcaExists= async(marcaId : string) =>{
     const search = await client.marcas.findMany({
         where:{
-            marca_id: marcaId
+            marca_id: marcaId,
+            isDeleted: false
         }
     })
     return search.length != 0;
@@ -761,6 +783,8 @@ export {
     getGostosComentario,
     getIdentificacoesComentario,
     getTreinadorMarca,
-    getMobilidadeMarca
+    getMobilidadeMarca,
+    checkAutorSubmissaoDesafio,
+    checkSubmissaoExists
 }
 
