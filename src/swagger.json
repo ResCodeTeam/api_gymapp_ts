@@ -7271,7 +7271,14 @@
                         "application/json": {
                             "schema":{
                                 "properties": {
-                                    "msg":[
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver treinos aluno":{
+                                    "value":[
                                         {
                                           "nome": "Nicole Barros",
                                           "treinos": {
@@ -7356,7 +7363,7 @@
                                             "isDeleted": false
                                           }
                                         }
-                                    ]
+                                      ]
                                 }
                             }
                         }
