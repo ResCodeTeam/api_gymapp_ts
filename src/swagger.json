@@ -1132,8 +1132,9 @@
                                     "type": "object",
                                     "$ref": "#/components/schemas/Avaliacao"
                                 },"examples": {
-                                    "Obter Avaliação":{
-                                        "value":{
+                                    "Obter Avaliações":{
+                                        "value":[
+                                            {
                                             "avaliacao_id": "e35f4ea0-d579-4256-ad4f-e8b4ca8189a9",
                                             "data": "2022-04-17T18:10:35.233Z",
                                             "peso": 55,
@@ -1147,10 +1148,11 @@
                                             "avaliacao_imagens": [],
                                             "medidas_avaliacao": [],
                                             "users_avaliacoes_treinador_idTousers": {
-                                              "nome": "treinador",
-                                              "imagem_url": null
+                                                "nome": "treinador",
+                                                "imagem_url": null
                                             }
-                                          }
+                                            }
+                                        ]
                                     }
                                 }
                             }
