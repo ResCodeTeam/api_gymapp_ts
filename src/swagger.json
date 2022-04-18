@@ -4712,13 +4712,11 @@
                             "examples": {
                                 "Obter Definições do Utilizador":{
                                     "value": {
-                                        "definicoes": {
-                                            "def_id": "0d100e85-830e-4da8-adda-c7c68f62c341",
-                                            "usersuid": "cacc87bb-a2dd-4af3-89c6-2ceedf33930a",
-                                            "is_privado": false,
-                                            "identificacoes": true,
-                                            "mencoes": true
-                                        }
+                                        "def_id": "e097c8c2-d2fb-4871-bca4-3ac333adec5d",
+                                        "usersuid": "6fde0d82-c64d-45f8-8c0d-68d9ee124624",
+                                        "is_privado": true,
+                                        "identificacoes": true,
+                                        "mencoes": true
                                     }
                                 }
                             }
