@@ -2193,9 +2193,6 @@
                         "application/json":{
                             "schema":{
                                 "properties":{
-                                    "adminId":{
-                                        "type":"string"
-                                    },
                                     "nome":{
                                         "type": "string"
                                     },
@@ -2203,9 +2200,6 @@
                                         "type": "string"
                                     },
                                     "logotipo":{
-                                        "type": "string"
-                                    },
-                                    "marcaId":{
                                         "type": "string"
                                     },
                                     "mobilidade":{
@@ -2220,12 +2214,10 @@
                             "examples": {
                                 "Editar Marca":{
                                     "value":{
-                                        "marcaId":"52cbfb83-69da-4de3-9cac-914ec4fbd4e3",
                                         "nome":"Galo",
                                         "cor":"vermelho",
-                                        "adminId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                        "mobilidade":true
-       
+                                        "logotipo":"teste1",
+                                        "mobilidade":true      
                                     }
                                 }
                             }
@@ -6879,6 +6871,59 @@
                             },
                             "examples": {
                                 "Ver Notificacoes":{
+                                    "value":{
+                                        "msg":"Operação realizada com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }          
+            }
+        }
+    },
+    "/treinador/submissao/{submissaoId}":{
+        "delete":{
+            "summary": "Remover submissão de um desafio",
+            "description": "Esta rota vai remover da base de dados uma submissão de um desafio",
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "tags": ["Desafios"],
+            "parameters": [
+                {
+                    "name": "submissaoId",
+                    "in": "path",
+                    "description": "Id da submissao",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "submissaoId":{
+                                "type":"string"
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Remover Submissão de um desafio":{
                                     "value":{
                                         "msg":"Operação realizada com sucesso"
                                     }

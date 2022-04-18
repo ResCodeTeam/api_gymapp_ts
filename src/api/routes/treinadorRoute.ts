@@ -38,6 +38,7 @@ import { EditarPlanoTreinoController } from "../controllers/plano/editarPlanoTre
 import { verificarTreinador } from "../middlewares/verificarTreinador";
 import { VerAvaliacaoAlunoController } from "../controllers/avaliacoes/verAvaliacaoAlunoController";
 import { VerLocaisMedidaController } from "../controllers/localMedida/verLocaisMedidaController";
+import { RemoverSubmissaoDesafioController } from "../controllers/desafios/submissoes/removersubmissaoDesafioController";
 
 
 //
@@ -74,6 +75,7 @@ const submissaoDesafioController = new SubmissaoDesafioController();
 const editarPlanoTreinoController = new EditarPlanoTreinoController();
 const verAvaliacaoAlunoController = new VerAvaliacaoAlunoController();
 const verLocaisMedidaController = new VerLocaisMedidaController();
+const removerSubmissaoDesafioController = new RemoverSubmissaoDesafioController();
 
 
 //#region Exercicios
@@ -95,6 +97,7 @@ treinadorRouter.get("/treinos/", verificarAutenticacao,verificarTreinador,verTod
 
 //#region Desafios
 treinadorRouter.post("/desafio/:desafioId/submissoes", verificarAutenticacao, verificarTreinador, submissaoDesafioController.handle);
+treinadorRouter.delete("/submissao/:id", verificarAutenticacao, verificarTreinador, removerSubmissaoDesafioController.handle);
 //#endregion
 
 //#region Avaliacoes
