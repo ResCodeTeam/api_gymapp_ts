@@ -6618,7 +6618,7 @@
     },
     "/aluno/plano/{planoId}/realizado/":{
         "put":{
-            "summary": "Meter um plano de treino como realizado",
+            "summary": "Colocar um plano de treino como realizado",
             "description": "Esta rota vai editar na base de dados o estado da realização de um plano de treino",
             "tags": ["Plano Treino"],
             "parameters": [{
@@ -6657,7 +6657,13 @@
                             "examples": {
                                 "Editar Estado da Realização do Plano de Treino":{
                                     "value":{
-                                        "msg":"Editar estado da realização do plano de treino aceite com sucesso"
+                                        "plano_treino_id": "89db473b-69d2-477a-9a83-d77193ea6b86",
+                                        "aluno_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "treinador_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                        "data": "2022-04-18T00:00:00.000Z",
+                                        "isRealizado": true,
+                                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                        "isDeleted": false
                                     }
                                 }
                             }
