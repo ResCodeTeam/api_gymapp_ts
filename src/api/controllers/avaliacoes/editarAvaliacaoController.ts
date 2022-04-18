@@ -30,10 +30,6 @@ export class EditarAvaliacaoController {
         //Utilizar Serviço criado
         const resp = await editarAvaliacaoService.execute(data,avaliacao_id)
 
-        //Enviar Resposta
-        if(resp == "404"){
-            response.status(404).json("Não existe avaliação com o id fornecido")
-        }
         response.json(resp)
 
 

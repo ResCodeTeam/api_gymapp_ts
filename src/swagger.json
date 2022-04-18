@@ -1423,6 +1423,49 @@
                                 "schema": {
                                     "type": "object",
                                     "$ref": "#/components/schemas/Avaliacao"
+                                },
+                                "examples": {
+                                    "Editar Avaliação":{
+                                        "value":{
+                                            "avaliacao_id": "89bb2521-b35e-42ac-beb7-bf0485a415d7",
+                                            "data": "2022-04-18T15:14:52.695Z",
+                                            "peso": 55,
+                                            "musculo": 80,
+                                            "gordura_corporal": 1,
+                                            "gordura_visceral": 1,
+                                            "agua": 30,
+                                            "proteina": 20,
+                                            "massa_ossea": 10,
+                                            "metabolismo_basal": 1600,
+                                            "avaliacao_imagens": [
+                                              {
+                                                "url": "https://imagem.1"
+                                              }
+                                            ],
+                                            "medidas_avaliacao": [
+                                              {
+                                                "medida": "50",
+                                                "unidade_medida": "cm",
+                                                "locais_medidas": {
+                                                  "descricao": "Peito",
+                                                  "unilado": true
+                                                }
+                                              },
+                                              {
+                                                "medida": "30x30",
+                                                "unidade_medida": "cm",
+                                                "locais_medidas": {
+                                                  "descricao": "Braço",
+                                                  "unilado": false
+                                                }
+                                              }
+                                            ],
+                                            "users_avaliacoes_treinador_idTousers": {
+                                              "nome": "treinador",
+                                              "imagem_url": null
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
