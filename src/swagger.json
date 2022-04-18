@@ -4081,7 +4081,7 @@
                 },
                 "examples": {
                     "Desafio Id":{
-                        "value":"f6cd7ea3-20c9-492b-9dbe-f65dc501e6fc"
+                        "value":"58c681db-0d1e-4578-82db-54882735b15c"
                     }
                 },
                 "style": "simple"
@@ -4109,11 +4109,9 @@
                         "examples": {
                             "Submissao desafio":{
                                 "value":{
-                                    "uid":"034309ce-e4cc-4ab6-ad2a-bc95eaa5405a",
-                                    "valor":"teste submissao",
-                                    "treinadorId":"919dc8c8-9853-4b13-b0e7-9b88fe587137",
-                                    "ginasioId":"d81fdccd-e71c-46b1-bb8e-92b287777038"
-                                    
+                                    "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "valor": "teste submissao",
+                                    "ginasioId": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0"
                                 }
                             }
                         }
@@ -4494,10 +4492,24 @@
                             }
                         },
                         "examples": {
-                            "Submissao desafio":{
+                            "Aluno":{
                                 "value":{
                                     "email":"biancasilva@gmail.com",
                                     "password":"passwd"
+                                    
+                                }
+                            },
+                            "Admin":{
+                                "value":{
+                                    "email":"admin@admin.com",
+                                    "password":"admin"
+                                    
+                                }
+                            },
+                            "Treinador":{
+                                "value":{
+                                    "email":"treinador@treinador.com",
+                                    "password":"treinador"
                                     
                                 }
                             }
@@ -6882,7 +6894,7 @@
             }
         }
     },
-    "/treinador/submissao/{submissaoId}":{
+    "/treinador/desafio/{desafioId}/submissoes/{submissaoId}":{
         "delete":{
             "summary": "Remover submissão de um desafio",
             "description": "Esta rota vai remover da base de dados uma submissão de um desafio",
@@ -6897,6 +6909,19 @@
                     "name": "submissaoId",
                     "in": "path",
                     "description": "Id da submissao",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "submissaoId":{
+                                "type":"string"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "desafioId",
+                    "in": "path",
+                    "description": "Id do desafio",
                     "required": true,
                     "schema":{
                         "properties": {
