@@ -3396,7 +3396,7 @@
                                     }
                                 },
                                 "examples": {
-                                    "Adicionar Treinador":{
+                                    "Adicionar Imagem":{
                                         "value": {
                                             "imagem_id": "8f9aa36c-5ce1-42a0-a44f-8e56819fcc3c",
                                             "exercicio_id": "05bb0690-db08-4b46-97dc-3853eba58d51",
@@ -3548,7 +3548,7 @@
                 }
             }
         },                       
-        "/treinador/{treinadorId}/exercicios/{exercicioId}/imagens/{imagemId}":{
+        "/treinador/exercicios/{exercicioId}/imagens/{imagemId}":{
             "delete":{
                 "summary": "Remover imagens de exercicio",
                 "description": "Esta rota permite remover uma imagem a um exercicio",
