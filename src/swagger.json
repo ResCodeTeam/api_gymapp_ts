@@ -4497,11 +4497,9 @@
                             "examples": {
                                 "Adicionar Musculo":{
                                     "value": {
-                                        "musculo": {
-                                            "musculo_id": "1b1dd226-454a-4bb6-a126-1870411646e4",
-                                            "nome": "Costas",
-                                            "img_url": "http://imagem/costas"
-                                        }
+                                        "musculo_id": "29e65948-6e09-441c-a6f3-422ec625acad",
+                                        "nome": "Abdomi",
+                                        "img_url": "http://imagem/abdominal"
                                     }
                                 }
                             }
