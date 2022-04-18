@@ -558,7 +558,7 @@
                                         "nome": "Ginásio 4",
                                         "rua": "Rua das Castanhas",
                                         "cp": 3850,
-                                        "imagem_url": "3",
+                                        "imagemUrl": "3",
                                         "lat":"0",
                                         "long":"0",
                                         "cpExt":821
@@ -586,8 +586,18 @@
                                 "examples": {
                                     "Inserir Agendamento":{
                                         "value":{
-                                            "msg":" O ginasio foi criado com sucesso"
-                                        }
+                                            "ginasio_id": "cca94698-1048-487e-a67f-e238f2edb9d3",
+                                            "nome": "Ginásio 4",
+                                            "rua": "Rua das Castanhas",
+                                            "cp_id": "867277a8-8f5a-4148-a028-32621a4a1a48",
+                                            "marca_id": "d9017634-c824-423d-96a3-6da7f162917a",
+                                            "tag": "G4_03",
+                                            "descricao": null,
+                                            "imagem_url": "teste",
+                                            "lat": "0",
+                                            "long": "0",
+                                            "isDeleted": false
+                                          }
                                     }
                                 }
                             }
