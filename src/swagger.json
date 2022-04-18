@@ -3827,11 +3827,15 @@
                         "examples": {
                             "Criar Treino":{
                                 "value":{
-                                    "atividadeId":null,
-                                    "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
-                                    "duracao":"10",
+                                    "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
+                                    "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                    "atividade_id": null,
+                                    "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "duracao": "10",
                                     "calorias": 100,
-                                    "distancia": 500
+                                    "distancia": 500,
+                                    "data": "2022-04-18T17:51:26.567Z",
+                                    "isDeleted": false
                                 }
                             }
                         }
@@ -3858,7 +3862,15 @@
                                 "examples": {
                                     "Criar treino":{
                                         "value":{
-                                            "msg":"Treino criado com sucesso"
+                                            "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
+                                            "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                            "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                            "modalidade_id": null,
+                                            "duracao": "50",
+                                            "calorias": 20,
+                                            "distancia": 30,
+                                            "data": "2022-04-18T17:53:33.437Z",
+                                            "isDeleted": false
                                         }
                                     }
                                 }                                       
