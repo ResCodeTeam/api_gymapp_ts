@@ -5482,10 +5482,14 @@
                                 }
                             },
                             "examples": {
-                                "Logout Musculo":{
+                                "Definições":{
                                     "value": {
-                                        "msg": "Logout com sucesso"
-                                    }
+                                        "def_id": "dddbc9db-4eab-4631-aa88-86ca343ae8af",
+                                        "usersuid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "is_privado": false,
+                                        "identificacoes": false,
+                                        "mencoes": false
+                                      }
                                 }
                             }
                         }
@@ -6420,7 +6424,11 @@
                             "examples": {
                                 "Editar Estado do Perfil":{
                                     "value":{
-                                        "msg":"Editar estado do perfil aceite com sucesso"
+                                        "def_id": "dddbc9db-4eab-4631-aa88-86ca343ae8af",
+                                        "usersuid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                                        "is_privado": true,
+                                        "identificacoes": false,
+                                        "mencoes": true
                                     }
                                 }
                             }
