@@ -2231,16 +2231,35 @@
                             "examples": {
                                 "Ver Posts":{
                                     "value":{
-                                        "post": {
-                                            "publicacao_id": "1d2ee3a7-1505-4235-a089-1fa15b47080e",
-                                            "criador_id": "0108ab5b-dc52-40ac-b077-91c68fe4629c",
-                                            "data": "2022-05-28T00:00:00.000Z",
-                                            "descricao": "TesteFatimaaa",
-                                            "tipo": 3,
-                                            "ginasio_id": null,
-                                            "isDeleted": false
+                                        "publicacao_id": "333f741a-a13d-4cd0-9528-5ae4c085d516",
+                                        "criador_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                        "ginasio_id": null,
+                                        "data": "2022-04-18T17:03:45.401Z",
+                                        "descricao": "Proteína da PROZIS #PROZIS #VACACIONES #VIDA",
+                                        "tipo": 1,
+                                        "imagens_publicacao": [],
+                                        "gostos_publicacao": [],
+                                        "identificacoes_publicacoes": [
+                                          {
+                                            "users": {
+                                              "nome": "Luiz Fernando Gonçalves",
+                                              "uid": "02de0f10-df8b-4d1e-955f-22d3211b66da",
+                                              "imagem_url": null
+                                            }
+                                          },
+                                          {
+                                            "users": {
+                                              "nome": "Bárbara Oliveira",
+                                              "uid": "0a169c30-208d-4931-9400-15d44ba57690",
+                                              "imagem_url": null
+                                            }
                                           }
-                                }
+                                        ],
+                                        "comentarios_publicacao": [],
+                                        "_count": {
+                                          "gostos_publicacao": 0
+                                        }
+                                    }
                             }
                         }
                     }
