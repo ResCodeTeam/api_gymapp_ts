@@ -3321,9 +3321,6 @@
                                     "conteudo":{
                                         "type": "string"
                                     },
-                                    "data":{
-                                        "type": "string"
-                                    },
                                     "tipo":{
                                         "type":"number"
                                     }
@@ -3333,7 +3330,6 @@
                                 "Criar Notificação":{
                                     "value":{
                                         "conteudo":"Teste",
-                                        "data":"2022-03-21",
                                         "tipo":0
                                     }
                                 }
@@ -3356,12 +3352,11 @@
                                 "examples": {
                                     "Criar Notificação":{
                                         "value": {
-                                            "notificacao": {
-                                                "noti_id": "018aec31-d1c1-407c-9b5b-78e1d7929a0f",
-                                                "conteudo": "Teste",
-                                                "data": "2022-04-01T15:16:33.695Z",
-                                                "tipo": 0
-                                            }
+                                            "noti_id": "4363ff26-e2ae-426b-aaa9-6c9524858e56",
+                                            "origem_uid": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                                            "conteudo": "Teste5",
+                                            "data": "2022-04-18T17:40:21.382Z",
+                                            "tipo": 0
                                         }
                                     }
                                 }
@@ -7620,8 +7615,58 @@
                             "examples": {
                                 "Ver Notificacoes":{
                                     "value":{
-                                        "msg":"Operação realizada com sucesso"
-                                    }
+                                        "message": "Notificação enviada com sucesso",
+                                        "ginasios": [
+                                          {
+                                            "marca_id": "f34fdd41-8670-4b50-9311-ebdb0ad993c4",
+                                            "ginasio_id": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0",
+                                            "aluno_ginasio": [
+                                              {
+                                                "user_id": "8d4f77b4-96ce-4fb9-bcaf-152ed36a659f",
+                                                "users": {
+                                                  "nome": "Miguel Ferreira"
+                                                }
+                                              },
+                                              {
+                                                "user_id": "d32d5940-1e18-4330-a603-9f3c32fb28cc",
+                                                "users": {
+                                                  "nome": "Vitor Gabriel Costa"
+                                                }
+                                              },
+                                              {
+                                                "user_id": "b3594524-b963-4905-94c1-f7cdfc4c1e90",
+                                                "users": {
+                                                  "nome": "Benjamin Pinto"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "marca_id": "f34fdd41-8670-4b50-9311-ebdb0ad993c4",
+                                            "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                            "aluno_ginasio": [
+                                              {
+                                                "user_id": "fc7b167a-096a-4a86-9098-bde8fe6c10a1",
+                                                "users": {
+                                                  "nome": "Augusto Nogueira"
+                                                }
+                                              },
+                                              {
+                                                "user_id": "b86f436d-0e68-49f9-83ed-3a194500aa8a",
+                                                "users": {
+                                                  "nome": "Luiz Gustavo Azevedo"
+                                                }
+                                              },
+                                              {
+                                                "user_id": "f6bf8f42-178c-4446-b9f0-ca720f8378ef",
+                                                "users": {
+                                                  "nome": "Marcelo Moraes"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
                                 }
                             }
                         }
@@ -7702,8 +7747,31 @@
                             "examples": {
                                 "Ver Notificacoes":{
                                     "value":{
-                                        "msg":"Operação realizada com sucesso"
-                                    }
+                                        "message": "Notificação enviada com sucesso",
+                                        "ginasios": {
+                                          "ginasio_id": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0",
+                                          "aluno_ginasio": [
+                                            {
+                                              "user_id": "8d4f77b4-96ce-4fb9-bcaf-152ed36a659f",
+                                              "users": {
+                                                "nome": "Miguel Ferreira"
+                                              }
+                                            },
+                                            {
+                                              "user_id": "d32d5940-1e18-4330-a603-9f3c32fb28cc",
+                                              "users": {
+                                                "nome": "Vitor Gabriel Costa"
+                                              }
+                                            },
+                                            {
+                                              "user_id": "b3594524-b963-4905-94c1-f7cdfc4c1e90",
+                                              "users": {
+                                                "nome": "Benjamin Pinto"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
                                 }
                             }
                         }
