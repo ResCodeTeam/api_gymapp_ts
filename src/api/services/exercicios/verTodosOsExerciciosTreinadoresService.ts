@@ -3,35 +3,40 @@ import { client } from "../../prisma/client";
 
 export class VerTodosOsExerciciosTreinadoresService {
     async execute(){
-       /* const exer = await client.exercicios.findMany({
-            where:{
-                autor_id : {
-                    where: {au}
-                }
-            },
-            include : {
-                users : {
-                    include : {
-                      
-
-                    },
-                }
-            },
-            
-        })*/
-
         const exer = await client.funcoes.findMany({
             where:{
                 descricao : "Treinador"
             },
-            
-            include:{
+            select:{
                 users: {
-                    include: {
-                        exercicios:true,
+                    select: {
+                        exercicios:{
+                            select:{
+                                exercicio_id:true,
+                                nome:true,
+                                descricao:true,
+                                is_tempo:true,
+                                imagens:{
+                                    select:{
+                                        url:true
+                                    }
+                                },
+                                musculos:{
+                                    select:{
+                                        musculos:{
+                                            select:{
+                                                nome:true,
+                                                img_url:true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
                     }
                 }
             },
+            
         })
 
         var exerci = []

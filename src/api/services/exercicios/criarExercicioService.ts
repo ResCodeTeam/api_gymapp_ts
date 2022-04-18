@@ -29,10 +29,12 @@ export class CriarExercicioService{
 
 
     for(let i = 0; i < imagens.length; i++){
-      await client.exercicios_imagens.create({data:{
-        url:imagens[i],
-        exercicio_id:exercicio.exercicio_id
-      }})
+      await client.exercicios_imagens.create({
+        data:{
+          url:imagens[i],
+          exercicio_id:exercicio.exercicio_id
+        }
+      })
     }
     for(let i = 0; i < musculos.length; i++){
       console.log(musculos[i])

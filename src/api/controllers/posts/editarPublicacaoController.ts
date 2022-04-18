@@ -20,6 +20,6 @@ export class EditarPublicacaoController{
     });
 
     console.log(resp);
-    response.status(200).json({ resp });
+    response.status(200).json(resp);
   }
 }

@@ -92,7 +92,7 @@ let checkAutorMarca = async(uId, marcaId)=>{
 let checkAutorSubmissaoDesafio = async(uId, submissao_id)=>{
     const marca = await client.submissoes_desafios.findMany({
         where:{
-            uid:uId,
+            treinador_id:uId,
             submissao_id:submissao_id
         }
     })
@@ -162,7 +162,7 @@ let getFuncaoId=async(nome : string)=>{
     return search?.funcao_id;
 }
 async function getUserFuncao(uid: string) {
-    console.log(uid)
+    
     const search = await client.users.findUnique({
         where: {
             uid
@@ -172,7 +172,7 @@ async function getUserFuncao(uid: string) {
         }
     });
 
-    return search?.funcao_id;
+    return search.funcao_id;
 }
 let checkPostExists = async(postId : string)=>{
     const search = await client.publicacoes.findMany({
@@ -414,15 +414,17 @@ let checkMobilidadeMarcaUser = async (userId:string)=>{
             uid:userId,
         }
     })
-    if(!userMarca){
+    console.log(userMarca)
+    if(userMarca===null){
         const userGinasio = await client.aluno_ginasio.findFirst({
             where:{
                 user_id:userId
             }
         })
+        
         return {mobilidade:false,id:userGinasio }
     }else{
-        return {mobilidade:false,id:userMarca }
+        return {mobilidade:true,id:userMarca }
     }
 }
 
@@ -723,6 +725,17 @@ let getMobilidadeMarca = async(marcaId:string)=>{
     return marca.marca_id
 }
 
+let checkIsSubmissaoDesafio = async(desafioId:string, submissaoId:string)=>{
+    const submissao = await client.submissoes_desafios.findMany({
+        where:{
+            submissao_id:submissaoId,
+            desafio_id:desafioId
+        }
+    })
+
+    return submissao.length != 0;
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -785,6 +798,7 @@ export {
     getTreinadorMarca,
     getMobilidadeMarca,
     checkAutorSubmissaoDesafio,
-    checkSubmissaoExists
+    checkSubmissaoExists,
+    checkIsSubmissaoDesafio
 }
 

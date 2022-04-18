@@ -33,7 +33,7 @@ export class SubmissaoDesafioService{
 
     const desafio = await getDesafio(desafioId);
     const gymDesafio=desafio.ginasio_id;
-console.log(gymDesafio," | ", ginasioId)
+
     const marca = await getMarcaGym(gymDesafio);
     if(!marca.mobilidade && gymDesafio != ginasioId){
       throw new Error("Entrada invalida")

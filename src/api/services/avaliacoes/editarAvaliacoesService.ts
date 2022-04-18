@@ -1,3 +1,4 @@
+import { checkAvaliacoesExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 interface IAvaliacao {
@@ -16,15 +17,12 @@ interface IAvaliacao {
 export class EditarAvaliacaoService{
     async execute(dados:IAvaliacao, avaliacao_id : string){
         
-        var atualizarAvaliacao = await client.avaliacoes.findUnique({
-            where:{avaliacao_id:avaliacao_id}
-        })
-        
-        if(atualizarAvaliacao == null){
-            return "404";
+        const existsAvaliacao = await checkAvaliacoesExists(avaliacao_id)
+        if(!existsAvaliacao){
+            throw new Error("Avaliação não existe")
         }
 
-        atualizarAvaliacao = await client.avaliacoes.update({
+        const atualizarAvaliacao = await client.avaliacoes.update({
             where: {avaliacao_id:avaliacao_id},
             data:{
                 data: dados.data,
@@ -37,6 +35,41 @@ export class EditarAvaliacaoService{
                 proteina: dados.proteina,
                 massa_ossea: dados.massa_ossea,
                 metabolismo_basal:dados.metabolismo_basal,
+            },
+            select:{
+                avaliacao_id:true,
+                data:true,
+                peso:true,
+                musculo:true,
+                gordura_corporal:true,
+                gordura_visceral:true,
+                agua:true,
+                proteina:true,
+                massa_ossea:true,
+                metabolismo_basal:true,
+                avaliacao_imagens:{
+                    select:{
+                        url:true
+                    }
+                },
+                medidas_avaliacao:{
+                    select:{
+                        medida:true,
+                        unidade_medida:true,
+                        locais_medidas:{
+                            select:{
+                                descricao:true,
+                                unilado:true
+                            }
+                        },
+                    }
+                },
+                users_avaliacoes_treinador_idTousers:{
+                    select:{
+                        nome:true,
+                        imagem_url:true
+                    }
+                }
             }
         })
 

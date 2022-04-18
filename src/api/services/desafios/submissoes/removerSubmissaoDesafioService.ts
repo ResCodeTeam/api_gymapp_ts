@@ -1,9 +1,19 @@
-import { checkSubmissaoExists, checkAutorSubmissaoDesafio } from "../../../helpers/dbHelpers";
+import { checkSubmissaoExists, checkAutorSubmissaoDesafio, checkDesafioIdExists, checkIsSubmissaoDesafio } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
 export class RemoverSubmissaoDesafioService{
-  async execute(uid:string,submissaoId:string){
+  async execute(uid:string,submissaoId:string, desafioId:string){
     
+    const existsDesafio = await checkDesafioIdExists(desafioId);
+    if(!existsDesafio){
+      throw new Error("Desafio inexistente")
+    }
+
+    const isSubmissaoDesafio = await checkIsSubmissaoDesafio(desafioId,submissaoId);
+    if(!isSubmissaoDesafio){
+      throw new Error("Não é submissao do desafio")
+    }
+
     const exists_submissao = await checkSubmissaoExists(submissaoId);
     if(!exists_submissao){
       throw new Error("A submissao do desafio não existe")
@@ -20,7 +30,7 @@ export class RemoverSubmissaoDesafioService{
         },
       })
 
-    return submissoes
+    return {"msg": "submissao removida com sucesso"}
 
   }
 }

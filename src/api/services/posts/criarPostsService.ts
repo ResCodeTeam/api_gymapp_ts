@@ -39,7 +39,7 @@ class CriarPostsService {
             criador_id: undefined,
             data,
             descricao,
-            tipo,
+            tipo:0,
             ginasio_id: ginasioId,
          }
         })
@@ -50,7 +50,7 @@ class CriarPostsService {
             criador_id: criadorId,
             data,
             descricao,
-            tipo,
+            tipo:1,
             ginasio_id: undefined,
          }
         })

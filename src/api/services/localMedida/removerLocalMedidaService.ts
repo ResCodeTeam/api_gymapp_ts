@@ -29,7 +29,7 @@ export class RemoverLocalMedidaService{
         }
     })
 
-    return localMedida
+    return {"msg":"Local removido com sucesso"}
 
   }
 }
