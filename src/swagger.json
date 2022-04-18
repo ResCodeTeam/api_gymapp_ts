@@ -6773,7 +6773,7 @@
         }
     },
 
-    "/treinador/planoTreino/{planoId}":{
+    "/treinador/plano/{planoId}":{
         "put":{
             "summary": "Editar Plano de Treino",
             "description": "Esta rota vai editar um plano de treino",
@@ -6890,8 +6890,84 @@
                             "examples": {
                                 "Editar Exercicio":{
                                     "value":{
-                                        "msg":"Treino editado com sucesso"
-                                    }
+                                        "data": "2022-04-18T00:00:00.000Z",
+                                        "isRealizado": false,
+                                        "treinador": {
+                                          "nome": "treinador teste",
+                                          "email": "treinador@treinador.com",
+                                          "imagem_url": null
+                                        },
+                                        "modalidade": {
+                                          "nome": "Crossfit"
+                                        },
+                                        "bloco_treino": [
+                                          {
+                                            "nome": "Aquecimento2",
+                                            "descricao": "5 Rondas",
+                                            "exercicios_bloco": [
+                                              {
+                                                "n_ordem_exercicio": 0,
+                                                "series_exercicio": [
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 0
+                                                  },
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 1
+                                                  },
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 2
+                                                  },
+                                                  {
+                                                    "valor": "12",
+                                                    "n_ordem_serie": 3
+                                                  }
+                                                ],
+                                                "exercicio": {
+                                                  "nome": "Teste1",
+                                                  "descricao": "Teste2",
+                                                  "imagens": [
+                                                    {
+                                                      "url": "url1"
+                                                    },
+                                                    {
+                                                      "url": "url2"
+                                                    },
+                                                    {
+                                                      "url": "url3"
+                                                    },
+                                                    {
+                                                      "url": "url4"
+                                                    }
+                                                  ],
+                                                  "musculos": [
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Bicep",
+                                                        "img_url": "http://imagem/bicep"
+                                                      }
+                                                    },
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Tricep",
+                                                        "img_url": "http://imagem/tricep"
+                                                      }
+                                                    },
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Costas",
+                                                        "img_url": "http://imagem/costas"
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
                                 }
                             }
                         }
@@ -7618,9 +7694,18 @@
                             },
                             "examples": {
                                 "Ver Locais de Medida":{
-                                    "value":{
-                                        "msg":"Operação realizada com sucesso"
-                                    }
+                                    "value":[
+                                        {
+                                          "local_medida_id": "a6b6c833-16ef-4a16-bf51-3014f28fd149",
+                                          "descricao": "Braço",
+                                          "unilado": false
+                                        },
+                                        {
+                                          "local_medida_id": "df7b9d8a-d149-4d68-9caa-6809ec090f88",
+                                          "descricao": "Peito",
+                                          "unilado": true
+                                        }
+                                      ]
                                 }
                             }
                         }
