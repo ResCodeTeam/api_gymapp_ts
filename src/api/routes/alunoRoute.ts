@@ -6,7 +6,7 @@ import { RemoverAgendarDesafiosController } from "../controllers/agendamentos/al
 import { VerAgendamentosAvaliacoesAlunoController } from "../controllers/agendamentos/aluno/verAgendamentosAvaliacoesAlunoController";
 import { VerAgendamentosDesafiosAlunoController } from "../controllers/agendamentos/aluno/verAgendamentosDesafiosAlunoController";
 import { VerAvaliacoesController } from "../controllers/avaliacoes/verAvaliacaoController";
-import { VerDesafiosController } from "../controllers/desafios/verDesafiosController";
+
 import { EditarPlanoTreinoRealizadoController } from "../controllers/plano/editarPlanoTreinoRealizadoController";
 import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanalController";
 import { RemoverPlanoTreinoRealizadoController } from "../controllers/plano/removerPlanoTreinoRealizadoController";
@@ -25,7 +25,7 @@ import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 const criarTreinosController = new CriarTreinosController();
 const removerTreinosController = new RemoverTreinosController();
 const verAvaliacoesController = new VerAvaliacoesController();
-const verDesafiosController = new VerDesafiosController();
+
 const verTreinosAlunosController = new VerTreinosAlunosController();
 const editarTreinosController = new EditarTreinosController();
 const obterPlanoTreinoSemanalController = new ObterPlanoTreinoSemanalController();
@@ -56,9 +56,7 @@ alunoRouter.get("/planoTreino/:startDate/:endDate", verificarAutenticacao, verif
 alunoRouter.delete("/plano/:plano_id/realizado", verificarAutenticacao, verificarAluno, removerPlanoTreinoRealizadoController.handle);
 //#endregion
 
-//#region desafio
-alunoRouter.get("/:id/desafios", verificarAutenticacao ,verificarAluno, verDesafiosController.handle);
-//#end region
+
 
 //#region agendamentos
 alunoRouter.post("/agenda/desafios/:id/", verificarAutenticacao, verificarAluno, agendarDesafiosController.handle);

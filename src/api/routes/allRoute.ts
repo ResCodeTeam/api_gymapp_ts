@@ -25,6 +25,7 @@ import { RemoverComentarioController } from "../controllers/posts/comments/remov
 import { VerTodasAtividadesController } from "../controllers/atividades/verTodasAtividadesController";
 import { VerNotificacoesController } from "../controllers/notificacoes/verNotificacoesController";
 import { VerDesafiosSubmissoesController } from "../controllers/desafios/verDesafiosSubmissoesController";
+import { VerDesafioController } from "../controllers/desafios/verDesafioController";
 
 
 const allRouter = express.Router();
@@ -55,6 +56,7 @@ const removerComentarioController = new RemoverComentarioController();
 const verTodasAtividadesController = new VerTodasAtividadesController();
 const verNotificacoesController = new VerNotificacoesController();
 const verDesafiosSubmissoesController = new VerDesafiosSubmissoesController();
+const verDesafioController = new VerDesafioController();
 
 //#region Publicacoes
 allRouter.post("/posts", verificarAutenticacao, criarPostsController.handle);
@@ -94,6 +96,7 @@ allRouter.get("/ginasio/:id/desafios/disponiveis",verificarAutenticacao, verDesa
 //#endregion
 
 
-allRouter.get("/desafios/:desafioId",verificarAutenticacao, verDesafiosSubmissoesController.handle);
+allRouter.get("/desafios/:desafioId/submissoes",verificarAutenticacao, verDesafiosSubmissoesController.handle);
+allRouter.get("/desafios/:id", verificarAutenticacao , verDesafioController.handle);
 
 export { allRouter };

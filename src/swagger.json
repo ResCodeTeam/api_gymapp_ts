@@ -1694,15 +1694,20 @@
             }
         },
         
-        "/aluno/{id}/desafios/":{
-            "get":{
-                "summary": "Ver desafios",
-                "description": "Esta rota vai apresentar todos os desafios",
-                "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "Id do desafio",
+        "/desafios/{desafioId}/submissoes":{
+            "get": {
+                "summary": "Obter submissões de um Desafio",
+                "description": "Este pedido serve para obter as submissões de um desafio pelo seu ID",
+                "tags":["Desafios"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters":[{
+                    "name": "desafioId",
+                    "in":"path",
+                    "description":"Id do desafio",
                     "required": true,
                     "schema":{
                         "properties": {
@@ -1711,39 +1716,46 @@
                             }
                         }
                     }
-                }
-                ],
-                "security": [
-                    {
-                        "basicAuth":[]
-                    }
-                ],
-                "tags": ["Desafios"],
+                }],
                 "responses": {
-                    "500":{
-                        "description": "ERROR"  
+                    "500": {
+                        "description": "ERROR"
+    
                     },
-                    "200":{
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
                         "description": "OK",
                         "content": {
-                            "application/json":{
-                                "schema":{
-                                    "properties": {
-                                        "msg":{
-                                            "type": "string"
-                                        }
-                                    }
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Desafio"
                                 },
                                 "examples": {
-                                    "ver desafios":{
-                                        "value":{
-                                            "msg":"operação realizada com sucesso"
-                                        }
+                                    "Desafios":{
+                                        "value":[
+                                            {
+                                              "desafio_id": "19738118-f243-4937-a138-89ff2daa19c1",
+                                              "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                                              "nome": "Caminharrrrr",
+                                              "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                              "data_inicio": "2022-03-23T15:51:45.663Z",
+                                              "data_fim": null,
+                                              "recompensa": 100,
+                                              "isEncerrado": true,
+                                              "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                              "descricao": "2",
+                                              "isDeleted": false,
+                                              "submissoes_desafios": []
+                                            }
+                                          ]
                                     }
                                 }
                             }
                         }
-                    }          
+                    }
                 }
             }
         },
@@ -3317,19 +3329,14 @@
             }            
         },
         "/desafios/{desafioId}":{
-            "get": {
-                "summary": "Obter submissões de um Desafio",
-                "description": "Este pedido serve para obter as submissões de um desafio pelo seu ID",
-                "tags":["Desafios"],
-                "security": [
-                    {
-                        "basicAuth":[]
-                    }
-                ],
-                "parameters":[{
+            "get":{
+                "summary": "Ver desafios",
+                "description": "Esta rota vai apresentar todos os desafios",
+                "parameters": [
+                {
                     "name": "desafioId",
-                    "in":"path",
-                    "description":"Id do desafio",
+                    "in": "path",
+                    "description": "Id do desafio",
                     "required": true,
                     "schema":{
                         "properties": {
@@ -3338,48 +3345,112 @@
                             }
                         }
                     }
-                }],
+                }
+                ],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "tags": ["Desafios"],
                 "responses": {
-                    "500": {
-                        "description": "ERROR"
-    
+                    "500":{
+                        "description": "ERROR"  
                     },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "200": {
+                    "200":{
                         "description": "OK",
                         "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Desafio"
+                            "application/json":{
+                                "schema":{
+                                    "properties": {
+                                        "msg":{
+                                            "type": "string"
+                                        }
+                                    }
                                 },
                                 "examples": {
-                                    "Desafios":{
-                                        "value":[
-                                            {
-                                              "desafio_id": "19738118-f243-4937-a138-89ff2daa19c1",
-                                              "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
-                                              "nome": "Caminharrrrr",
-                                              "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
-                                              "data_inicio": "2022-03-23T15:51:45.663Z",
-                                              "data_fim": null,
-                                              "recompensa": 100,
-                                              "isEncerrado": true,
-                                              "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
-                                              "descricao": "2",
-                                              "isDeleted": false,
-                                              "submissoes_desafios": []
-                                            }
-                                          ]
+                                    "ver desafios":{
+                                        "value":{
+                                            "desafio_id": "55036574-d7a8-43ec-87b5-2e72f25fbccf",
+                                            "nome": "Crossfit2",
+                                            "data_inicio": "2022-03-23T15:51:45.663Z",
+                                            "data_fim": "2022-03-24T20:00:00.000Z",
+                                            "recompensa": 100,
+                                            "isEncerrado": false,
+                                            "descricao": "2",
+                                            "users": {
+                                              "nome": "treinador",
+                                              "email": "treinador@treinador.com",
+                                              "imagem_url": null
+                                            },
+                                            "modalidades_ginasio": {
+                                              "nome": "Crossfit"
+                                            },
+                                            "regras_desafio": [
+                                              {
+                                                "descricao": "1"
+                                              }
+                                            ],
+                                            "exercicios_desafio": [
+                                              {
+                                                "n_ordem_exercicio": 1,
+                                                "genero": 1,
+                                                "exercicios": {
+                                                  "nome": "Teste1",
+                                                  "descricao": "Teste2",
+                                                  "is_tempo": true,
+                                                  "imagens": [
+                                                    {
+                                                      "url": "url1"
+                                                    },
+                                                    {
+                                                      "url": "url2"
+                                                    },
+                                                    {
+                                                      "url": "url3"
+                                                    },
+                                                    {
+                                                      "url": "url4"
+                                                    }
+                                                  ],
+                                                  "musculos": [
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Bicep",
+                                                        "img_url": "http://imagem/bicep"
+                                                      }
+                                                    },
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Tricep",
+                                                        "img_url": "http://imagem/tricep"
+                                                      }
+                                                    },
+                                                    {
+                                                      "musculos": {
+                                                        "nome": "Costas",
+                                                        "img_url": "http://imagem/costas"
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "series_desafio": [
+                                                  {
+                                                    "n_ordem_serie": 1,
+                                                    "valor": "500"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
                                     }
                                 }
                             }
                         }
-                    }
+                    }          
                 }
             }
+            
         },
         "/adminTreinador/desafio/{desafioId}":{
            
