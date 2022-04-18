@@ -3790,7 +3790,7 @@
                 }
             }
         },
-        "/aluno/user/treinos":{
+        "/aluno/treinos":{
             "post":{
                 "summary": "Criar treino",
                 "description": "Esta rota vai criar na base de dados os treinos",

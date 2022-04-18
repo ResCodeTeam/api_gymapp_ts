@@ -40,7 +40,7 @@ const removerPlanoTreinoRealizadoController = new RemoverPlanoTreinoRealizadoCon
 
 
 //#region Treinos
-alunoRouter.post("/user/treinos", verificarAutenticacao,verificarAluno, criarTreinosController.handle);
+alunoRouter.post("/treinos", verificarAutenticacao,verificarAluno, criarTreinosController.handle);
 alunoRouter.delete("/treino/:treino_id", verificarAutenticacao, verificarAluno, removerTreinosController.handle);
 alunoRouter.get("/treinos/", verificarAutenticacao, verificarAluno, verTreinosAlunosController.handle);
 alunoRouter.put("/treinos/:treino_id", verificarAutenticacao, verificarAluno, editarTreinosController.handle);
