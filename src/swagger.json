@@ -1076,7 +1076,12 @@
                                 "examples": {
                                     "Editar Exercicio":{
                                         "value":{
-                                            "msg":"Exercicio editado com sucesso"
+                                            "exercicio_id": "05bb0690-db08-4b46-97dc-3853eba58d51",
+                                            "nome": "Teste1",
+                                            "descricao": "Teste2",
+                                            "autor_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                                            "is_tempo": true,
+                                            "isDeleted": false
                                         }
                                     }
                                 }
