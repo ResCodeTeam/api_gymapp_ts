@@ -3930,7 +3930,10 @@
                                 "examples": {
                                     "Criar Atividades":{
                                         "value":{
-                                            "msg":"Atividade criada com sucesso"
+                                            "atividade_id": "66780189-0415-4639-8bd2-60f6bf5277e1",
+                                            "descricao": "Teste5",
+                                            "icon": "Teste1",
+                                            "isDeleted": false
                                         }
                                     }
                                 }                
@@ -4119,7 +4122,10 @@
                                 "examples": {
                                     "Remover Modalidade":{
                                         "value":{
-                                            "msg":"Atividade editada com sucesso"
+                                            "atividade_id": "4b584fcf-f8ab-43aa-abba-0c32f48f0e1b",
+                                            "descricao": "Teste123",
+                                            "icon": "Teste456",
+                                            "isDeleted": false
                                         }
                                     }
                                 }
@@ -4156,6 +4162,24 @@
                                             "type": "string"
                                         }
                                     
+                                    }
+                                },
+                                "examples": {
+                                    "Obter atividades":{
+                                        "value":[
+                                            {
+                                              "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
+                                              "descricao": "Teste",
+                                              "icon": "Teste1",
+                                              "isDeleted": false
+                                            },
+                                            {
+                                              "atividade_id": "66780189-0415-4639-8bd2-60f6bf5277e1",
+                                              "descricao": "Teste5",
+                                              "icon": "Teste1",
+                                              "isDeleted": false
+                                            }
+                                        ]
                                     }
                                 }
                         
