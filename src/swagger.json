@@ -2802,10 +2802,9 @@
                                 "examples": {
                                     "Criar Gosto":{
                                         "value":{
-                                            "Gostos": {
-                                                "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
-                                                "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                                            }
+                                            "gosto_id": "b64209a5-9add-42d7-b65e-0995dede51d7",
+                                            "publicacao_id": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
+                                            
                                         }
                                     }
                                 }
