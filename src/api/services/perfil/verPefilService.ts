@@ -32,7 +32,7 @@ export class VerPerfilService{
             }
         });
         
-        if (!perfil[0].definicoes_user.is_privado) {
+        if (perfil[0].definicoes_user.is_privado) {
             return perfil;
         }
 
