@@ -7,10 +7,11 @@ export class VerPerfilController{
  
     async handle(request:Request,response:Response){
         const uId = request.params.id;
+        const auId = response.locals.uid;
 
         const verPerfilService = new VerPerfilService();
 
-        const resp = await verPerfilService.execute(uId);
+        const resp = await verPerfilService.execute(uId, auId);
         response.json(resp)
     }
 }

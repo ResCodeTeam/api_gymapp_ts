@@ -7,7 +7,7 @@ import { VerTodosPostsUserService } from "../posts/obter/verTodosPostsUserServic
 import { VerTreinosAlunosService } from "../treinos/verTreinosAlunosService";
 
 export class VerPerfilService{
-    async execute(uId:string){
+    async execute(uId:string, auId:string){
 
         const exists_perfil= await checkUserIdExists(uId)
         if(!exists_perfil){
@@ -32,7 +32,25 @@ export class VerPerfilService{
             }
         });
         
+        const funcao = await client.users.findFirst({
+            where: {
+                uid: auId
+            },
+            select: {
+                funcoes : {
+                    select: {
+                        descricao : true
+                    }
+                }
+            }
+        });
+
         if (perfil[0].definicoes_user.is_privado) {
+            if (funcao.funcoes.descricao == "Administrador" || funcao.funcoes.descricao == "Treinador") {
+                const verTodosTreinosUserService = new VerTreinosAlunosService();
+                const treinos = await verTodosTreinosUserService.execute(uId);
+                return {perfil, treinos};
+            }
             return perfil;
         }
 
@@ -42,7 +60,7 @@ export class VerPerfilService{
         const verTodosTreinosUserService = new VerTreinosAlunosService();
         const treinos = await verTodosTreinosUserService.execute(uId);
         
-        return {perfil, posts, treinos}
+        return {perfil, posts, treinos};
     }
 }
 
