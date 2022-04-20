@@ -26,6 +26,7 @@ import { VerTodasAtividadesController } from "../controllers/atividades/verTodas
 import { VerNotificacoesController } from "../controllers/notificacoes/verNotificacoesController";
 import { VerDesafiosSubmissoesController } from "../controllers/desafios/verDesafiosSubmissoesController";
 import { VerDesafioController } from "../controllers/desafios/verDesafioController";
+import { ObterAlunosGinasioController } from "../controllers/alunos/obterAlunosGinasioController";
 
 
 const allRouter = express.Router();
@@ -57,6 +58,7 @@ const verTodasAtividadesController = new VerTodasAtividadesController();
 const verNotificacoesController = new VerNotificacoesController();
 const verDesafiosSubmissoesController = new VerDesafiosSubmissoesController();
 const verDesafioController = new VerDesafioController();
+const obterAlunosGinasioController = new ObterAlunosGinasioController();
 
 //#region Publicacoes
 allRouter.post("/posts", verificarAutenticacao, criarPostsController.handle);
@@ -73,6 +75,11 @@ allRouter.delete("/posts/:publicacaoId/comentario/:comentarioId/gosto", verifica
 //#endregion
 
 allRouter.get("/atividades/",verificarAutenticacao, verTodasAtividadesController.handle);
+
+
+//#region 
+allRouter.get("/alunos/ginasio/:id", obterAlunosGinasioController.handle);
+//#endregion
 
 //#region Perfil
 allRouter.put("/perfil", verificarAutenticacao, editarPerfilController.handle);
