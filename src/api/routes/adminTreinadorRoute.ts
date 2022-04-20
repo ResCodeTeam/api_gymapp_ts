@@ -6,7 +6,6 @@ import { EditarDesafioController } from "../controllers/desafios/EditarDesafioCo
 import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
 import { EncerrarDesafiosController } from "../controllers/desafios/encerrarDesafiosController";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
-import { ObterAlunosGinasioController } from "../controllers/alunos/obterAlunosGinasioController";
 import { verificarAdminTreinador } from "../middlewares/verificarAdminTreinador";
 import { VerTodosMusculosController } from "../controllers/musculos/verTodosMusculosController";
 
@@ -14,7 +13,6 @@ const editarDesafio = new EditarDesafioController()
 const removerDesafio = new RemoverDesafioController()
 const criarDesafio = new CriarDesafiosController()
 const encerrarDesafiosController = new EncerrarDesafiosController();
-const obterAlunosGinasioController = new ObterAlunosGinasioController();
 const verTodosMusculosController = new VerTodosMusculosController();
 
 //#region Desafios
@@ -24,9 +22,7 @@ adminTreinadorRouter.post("/ginasio/:id/desafio/", verificarAutenticacao, verifi
 adminTreinadorRouter.put("/desafio/:id",verificarAutenticacao,verificarAdminTreinador,  encerrarDesafiosController.handle);
 //#endregion
 
-//#region 
-adminTreinadorRouter.get("/alunos/ginasio/:id", obterAlunosGinasioController.handle);
-//#endregion
+
 
 //#region Músculos
 adminTreinadorRouter.get("/musculos/", verificarAutenticacao, verificarAdminTreinador,verTodosMusculosController.handle);

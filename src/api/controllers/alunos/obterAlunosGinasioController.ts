@@ -4,7 +4,7 @@ import { ObterAlunosGinasioService } from "../../services/alunos/obterAlunosGina
 export class ObterAlunosGinasioController{
     async handle(request : Request, response :Response){
         const ginasioId = request.params.id;
-        const {userId} = request.body;
+        const {userId} = response.locals.uid;
         if(userId === undefined){
             throw new Error("Pedido inválido")
         }

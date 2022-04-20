@@ -16,11 +16,11 @@ export class ObterAlunosGinasioService {
             throw new Error(`Ginásio não existe`);
         }
 
-        const checkPermissao = await checkDonoOuTreinadorGinasio(ginasioId, userId);
-        console.log(checkPermissao);
-        if (!checkPermissao) {
-            throw new Error(`Não pode aceder a esse ginásio`);
-        }
+        // const checkPermissao = await checkDonoOuTreinadorGinasio(ginasioId, userId);
+        // console.log(checkPermissao);
+        // if (!checkPermissao) {
+        //     throw new Error(`Não pode aceder a esse ginásio`);
+        // }
         
         let users = [];
         const alunos = await client.aluno_ginasio.findMany({
