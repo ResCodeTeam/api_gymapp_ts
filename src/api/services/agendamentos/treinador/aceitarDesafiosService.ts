@@ -1,5 +1,6 @@
 import { client } from "../../../prisma/client";
 import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists } from "../../../helpers/dbHelpers";
+import { changeTimeZone } from "../../../helpers/dateHelpers";
 
 class AceitarDesafiosService {
   async execute(agendamentoId: string, treinadorId) {
@@ -14,32 +15,35 @@ class AceitarDesafiosService {
     }
 
     const agendamentos = await client.agendamentos_desafios.update({
-     where: {
-       agendamento_id: agendamentoId
+      where: {
+        agendamento_id: agendamentoId
       },
-     data:{
-       isAceite: true
-     }
+      data: {
+        isAceite: true
+      }
     })
+
+    let data = new Date();
+    changeTimeZone(data)
 
     //#region Cria Notificação
     const notificacao = await client.notificacoes.create({
       data: {
         origem_uid: treinadorId,
         conteudo: "O seu desafio foi agendado",
-        data : new Date(),
+        data: data,
         tipo: 1,
       }
     });
 
     //#region Cria Destinos da Notificação
-      await client.destinos_notificacao.create({
-        data : {
-          noti_id : notificacao.noti_id, // id da notificacao
-          dest_uid: agendamentos.uid, // treinador que aceitou o pedido - id de quem vai receber a notificacao
-        }
-      });
-    
+    await client.destinos_notificacao.create({
+      data: {
+        noti_id: notificacao.noti_id, // id da notificacao
+        dest_uid: agendamentos.uid, // treinador que aceitou o pedido - id de quem vai receber a notificacao
+      }
+    });
+
     //#endregion
 
     return agendamentos;
