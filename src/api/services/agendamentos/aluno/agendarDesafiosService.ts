@@ -36,6 +36,13 @@ export class AgendarDesafiosService {
       throw new Error("O desafio já foi encerrado");
     }
 
+    const dataAtual = new Date();
+    console.log(dataAtual)
+    console.log(dataAgendamento)
+    if(dataAgendamento <= dataAtual){
+      throw new Error("A data do agendamento não pode ser menor que a data atual");
+    }
+    
     const agendamento = await client.agendamentos_desafios.create({
       data: {        
         ginasio_id: ginasioId,

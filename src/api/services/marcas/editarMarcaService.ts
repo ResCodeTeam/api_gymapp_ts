@@ -1,4 +1,4 @@
-import { checkAutorMarca, checkMarcaExists } from "../../helpers/dbHelpers";
+import { checkAutorMarca, checkMarcaExists, checkNomeMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 interface IEditarMarca{
@@ -23,6 +23,11 @@ export class EditarMarcaService {
     const isAutor = await checkAutorMarca(adminId,marcaId)
     if(!isAutor){
         throw new Error("não possui autorização para fazer esta alteração")
+    }
+
+    const exist_nome = await checkNomeMarca(nome);
+    if (exist_nome) {
+      throw new Error("A marca já existe");
     }
         
       const editarMarca = await client.marcas.update({

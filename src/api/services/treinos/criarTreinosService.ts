@@ -49,6 +49,13 @@ class CriarTreinosService {
       }
     }
 
+    const dataAtual = new Date();
+    console.log(dataAtual)
+    console.log(data)
+    if(data <= dataAtual){
+      throw new Error("A data do agendamento não pode ser menor que a data atual");
+    }
+
     const treino = await client.treinos.create({
       data: {
         uid,

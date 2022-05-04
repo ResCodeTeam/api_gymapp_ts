@@ -180,13 +180,17 @@
                                 "properties": {
                                     "ginasioId":{
                                         "type": "string"
+                                    },
+                                    "dataAgendamento":{
+                                        "type": "string"
                                     }
                                 }
                             },
                             "examples": {
                                 "Inserir Agendamento de Avaliacoes":{
                                     "value": {
-                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48"
+                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                        "dataAgendamento":"2022-05-03T13:24:10.574Z"
                                     }
                                 }
                             }
@@ -251,13 +255,17 @@
                                 "properties": {
                                     "ginasioId":{
                                         "type": "string"
+                                    },
+                                    "dataAgendamento":{
+                                        "type": "string"
                                     }
                                 }
                             },
                             "examples": {
                                 "Inserir Agendamento de Desafios":{
                                     "value": {
-                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48"
+                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                        "dataAgendamento":"2022-05-03T13:24:10.574Z"
                                     }
                                 }
                             }

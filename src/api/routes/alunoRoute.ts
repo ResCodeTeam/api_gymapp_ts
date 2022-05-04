@@ -10,10 +10,6 @@ import { VerAvaliacoesController } from "../controllers/avaliacoes/verAvaliacaoC
 import { EditarPlanoTreinoRealizadoController } from "../controllers/plano/editarPlanoTreinoRealizadoController";
 import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanalController";
 import { RemoverPlanoTreinoRealizadoController } from "../controllers/plano/removerPlanoTreinoRealizadoController";
-
-
-const alunoRouter = express.Router();
-
 import { CriarTreinosController  } from "../controllers/treinos/criarTreinosController";
 import { EditarTreinosController } from "../controllers/treinos/editarTreinosController";
 import { RemoverTreinosController } from "../controllers/treinos/removerTreinosController";
@@ -21,6 +17,7 @@ import { VerTreinosAlunosController } from "../controllers/treinos/verTreinosAlu
 import { verificarAluno } from "../middlewares/verificarAluno";
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 
+const alunoRouter = express.Router();
 
 const criarTreinosController = new CriarTreinosController();
 const removerTreinosController = new RemoverTreinosController();

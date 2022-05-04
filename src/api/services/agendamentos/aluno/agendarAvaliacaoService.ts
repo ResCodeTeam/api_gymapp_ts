@@ -24,6 +24,13 @@ export class AgendarAvaliacaoService {
       throw new Error("O ginásio não existe");
     }
 
+    const dataAtual = new Date();
+    console.log(dataAtual)
+    console.log(dataAgendamento)
+    if(dataAgendamento <= dataAtual){
+      throw new Error("A data do agendamento não pode ser menor que a data atual");
+    }
+
     const agendamento = await client.agendamentos_avaliacoes.create({
       data: {        
         ginasio_id: ginasioId,
