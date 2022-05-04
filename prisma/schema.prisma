@@ -154,7 +154,7 @@ model exercicios {
   autor_id           String
   is_tempo           Boolean
   isDeleted          Boolean               @default(false)
-  users              users                 @relation(fields: [autor_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios806183")
+  users              users                 @relation(fields: [autor_id], references: [uid], onDelete: Cascade, onUpdate: NoAction, map: "fkexercicios806183")
   exercicio_blocos   exercicios_bloco[]
   exercicio_desafios exercicios_desafio[]
   imagens            exercicios_imagens[]

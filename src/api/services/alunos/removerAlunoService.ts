@@ -6,7 +6,7 @@ export class RemoverAlunoService {
   async execute(uId: string) {
     const exists_user = await checkUserIdExists(uId);
     if (!exists_user) {
-      throw new Error("O user não existe do desafio não existe");
+      throw new Error("O user não existe");
     }
 
     const removerAluno= await client.users.update({
