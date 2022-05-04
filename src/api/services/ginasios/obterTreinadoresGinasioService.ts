@@ -8,7 +8,7 @@ export class VerTreinadorGinasioService{
 
         const existsMarca= await checkMarcaExists(marcaId)
         if(!existsMarca){
-            throw new Error("O ginasio não existe")
+            throw new Error("A marca não existe")
         }
 
         const treinadorMarca = await client.treinadores_marca.findMany({

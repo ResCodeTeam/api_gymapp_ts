@@ -77,8 +77,6 @@ adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdm
 //#endregion
 
 //#region Alunos
-
-
 adminRouter.post("/marca/alunos/", verificarAutenticacao ,verificarAdmin,registarAlunosController.handle);
 adminRouter.put("/aluno/remover/:uId",verificarAutenticacao,verificarAdmin, removerAlunoController.handle);
 //#endregion
