@@ -7366,8 +7366,8 @@
                                 "value": {
                                     "nome": "Caminhar",
                                     "modalidade": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
-                                    "dataInicio": "2022-03-23 15:51:45.663",
-                                    "dataFim": "2022-03-30 15:51:45.663",
+                                    "dataInicio": "2022-03-23T15:51:45.663Z",
+                                    "dataFim": "2022-03-30T15:51:45.663Z",
                                     "recompensa": 100,
                                     "descricao": "2"
                                 }
