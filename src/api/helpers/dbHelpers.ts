@@ -389,10 +389,11 @@ let checkDonoMarca= async(marcaID : string, userId : string) => {
     return true;
 }
 // função que permite verificar se já existe alguma modalidade registada no ginásio com aquele nome
-let checkModalidadeNome = async (nome: string) => {
+let checkModalidadeNome = async (nome: string, ginasioId:string) => {
     const search = await client.modalidades_ginasio.findMany({
       where: {
         nome,
+        ginasio_id: ginasioId,
       },
     });
     return search.length != 0;
