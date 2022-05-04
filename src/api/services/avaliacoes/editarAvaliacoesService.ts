@@ -2,30 +2,71 @@ import { checkAvaliacoesExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 interface IAvaliacao {
-    data: Date,
     peso: number,
     unidade_peso: string,
     musculo: number,
     gordura_corporal: number,
     gordura_visceral: number,
-    agua : number,
-    proteina : number,
+    agua: number,
+    proteina: number,
     massa_ossea: number,
-    metabolismo_basal:number,
+    metabolismo_basal: number,
+    medidas: Array<{
+        medida: string,
+        unidadeMedida: string,
+        localMedidaId: string,
+    }>
+    imagens: Array<{
+        imagemUrl: string
+    }>
 }
 
-export class EditarAvaliacaoService{
-    async execute(dados:IAvaliacao, avaliacao_id : string){
-        
+export class EditarAvaliacaoService {
+    async execute(dados: IAvaliacao, avaliacao_id: string) {
+
         const existsAvaliacao = await checkAvaliacoesExists(avaliacao_id)
-        if(!existsAvaliacao){
+        if (!existsAvaliacao) {
             throw new Error("Avaliação não existe")
         }
 
+        await client.avaliacao_imagens.deleteMany({
+            where: {
+                avaliacao_id: avaliacao_id
+            }
+        })
+
+        await client.medidas_avaliacao.deleteMany({
+            where: {
+                avaliacao_id: avaliacao_id
+            }
+        })
+
+        for (let medida of dados.medidas) {
+            await client.medidas_avaliacao.create({
+                data: {
+                    avaliacao_id: avaliacao_id,
+                    medida: medida.medida,
+                    unidade_medida: medida.unidadeMedida,
+                    local_medida_id: medida.localMedidaId
+                }
+            })
+        }
+
+        for (let imagem of dados.imagens) {
+            console.log(imagem)
+            await client.avaliacao_imagens.create({
+                data: {
+                    avaliacao_id: avaliacao_id,
+                    url: imagem.imagemUrl,
+                }
+            })
+        }
+
+
+
         const atualizarAvaliacao = await client.avaliacoes.update({
-            where: {avaliacao_id:avaliacao_id},
-            data:{
-                data: dados.data,
+            where: { avaliacao_id: avaliacao_id },
+            data: {
                 peso: dados.peso,
                 unidade_peso: dados.unidade_peso,
                 musculo: dados.musculo,
@@ -34,40 +75,40 @@ export class EditarAvaliacaoService{
                 agua: dados.agua,
                 proteina: dados.proteina,
                 massa_ossea: dados.massa_ossea,
-                metabolismo_basal:dados.metabolismo_basal,
+                metabolismo_basal: dados.metabolismo_basal,
             },
-            select:{
-                avaliacao_id:true,
-                data:true,
-                peso:true,
-                musculo:true,
-                gordura_corporal:true,
-                gordura_visceral:true,
-                agua:true,
-                proteina:true,
-                massa_ossea:true,
-                metabolismo_basal:true,
-                avaliacao_imagens:{
-                    select:{
-                        url:true
+            select: {
+                avaliacao_id: true,
+                data: true,
+                peso: true,
+                musculo: true,
+                gordura_corporal: true,
+                gordura_visceral: true,
+                agua: true,
+                proteina: true,
+                massa_ossea: true,
+                metabolismo_basal: true,
+                avaliacao_imagens: {
+                    select: {
+                        url: true
                     }
                 },
-                medidas_avaliacao:{
-                    select:{
-                        medida:true,
-                        unidade_medida:true,
-                        locais_medidas:{
-                            select:{
-                                descricao:true,
-                                unilado:true
+                medidas_avaliacao: {
+                    select: {
+                        medida: true,
+                        unidade_medida: true,
+                        locais_medidas: {
+                            select: {
+                                descricao: true,
+                                unilado: true
                             }
                         },
                     }
                 },
-                users_avaliacoes_treinador_idTousers:{
-                    select:{
-                        nome:true,
-                        imagem_url:true
+                users_avaliacoes_treinador_idTousers: {
+                    select: {
+                        nome: true,
+                        imagem_url: true
                     }
                 }
             }
