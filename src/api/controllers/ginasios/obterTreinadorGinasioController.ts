@@ -1,11 +1,6 @@
 import { Request, Response } from "express";
 import { VerTreinadorGinasioService } from "../../services/ginasios/obterTreinadoresGinasioService";
 
-
-
-
-
-
 export class VerTreinadorGinasioController{
  
     async handle(request:Request,response:Response){

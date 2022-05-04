@@ -8220,6 +8220,60 @@
                 }          
             }
         }
+    },
+    "/admin/ginasio/treinador/ver/{marcaId}":{
+        "get":{
+            "summary": "Ver todos os treinadores de um ginásio",
+            "description": "Esta rota vai obter todos os treinadores de um ginásio",
+            "tags": ["Marca"],
+            "security": [
+                {
+                    "basicAuth":[]
+                }
+            ],
+            "parameters":[
+                {
+                    "name": "marcaId",
+                    "in": "path",
+                    "description": "Id da marca",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "marcaId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "500":{
+                    "description": "ERROR"  
+
+                },
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "properties": {
+                                    "msg":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Ver Treinadores de um Ginásio":{
+                                    "value":{
+                                        "msg":"Ver treinadores de um ginásio obtido com sucesso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     }, 
     "components": {
