@@ -1610,77 +1610,42 @@
                             "examples": {
                                 "Desafio": {
                                     "value": {
-                                        "desafio_id": "55036574-d7a8-43ec-87b5-2e72f25fbccf",
                                         "nome": "Crossfit2",
-                                        "data_inicio": "2022-03-23T15:51:45.663Z",
-                                        "data_fim": "2022-03-24T20:00:00.000Z",
+                                        "modalidadeId": "047ea26d-bc43-4463-a3d1-8ea726a27b9f",
+                                        "dataInicio": "2022-03-23T15:51:45.663Z",
+                                        "dataFim": "2022-03-24T20:00:00.000Z",
                                         "recompensa": 100,
-                                        "isEncerrado": false,
                                         "descricao": "2",
-                                        "users": {
-                                          "nome": "treinador",
-                                          "email": "treinador@treinador.com",
-                                          "imagem_url": null
-                                        },
-                                        "modalidades_ginasio": {
-                                          "nome": "Crossfit"
-                                        },
-                                        "regras_desafio": [
+                                        "regras": [
                                           {
                                             "descricao": "1"
                                           }
                                         ],
-                                        "exercicios_desafio": [
-                                          {
-                                            "n_ordem_exercicio": 1,
-                                            "genero": 1,
-                                            "exercicios": {
-                                              "nome": "Teste1",
-                                              "descricao": "Teste2",
-                                              "is_tempo": true,
-                                              "imagens": [
+                                        "exercicios": [
+                                            {
+                                              "exercicioId": "05bb0690-db08-4b46-97dc-3853eba58d51",
+                                              "nOrdem": 0,
+                                              "genero":0,
+                                              "series": [
                                                 {
-                                                  "url": "url1"
+                                                  "nOrdem": 0,
+                                                  "valor": "12"
                                                 },
                                                 {
-                                                  "url": "url2"
+                                                  "nOrdem": 1,
+                                                  "valor": "12"
                                                 },
                                                 {
-                                                  "url": "url3"
+                                                  "nOrdem": 2,
+                                                  "valor": "12"
                                                 },
                                                 {
-                                                  "url": "url4"
-                                                }
-                                              ],
-                                              "musculos": [
-                                                {
-                                                  "musculos": {
-                                                    "nome": "Bicep",
-                                                    "img_url": "http://imagem/bicep"
-                                                  }
-                                                },
-                                                {
-                                                  "musculos": {
-                                                    "nome": "Tricep",
-                                                    "img_url": "http://imagem/tricep"
-                                                  }
-                                                },
-                                                {
-                                                  "musculos": {
-                                                    "nome": "Costas",
-                                                    "img_url": "http://imagem/costas"
-                                                  }
+                                                  "nOrdem": 3,
+                                                  "valor": "12"
                                                 }
                                               ]
-                                            },
-                                            "series_desafio": [
-                                              {
-                                                "n_ordem_serie": 1,
-                                                "valor": "500"
-                                              }
-                                            ]
-                                          }
-                                        ]
+                                            }
+                                          ]
                                       }
                                 }
                             }
