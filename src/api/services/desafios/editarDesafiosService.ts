@@ -33,7 +33,7 @@ export class EditarDesafioService {
         if (data.data_inicio !== undefined || data.data_fim !== undefined) {
             let hoje = new Date();
             changeTimeZone(hoje);
-            console.log('hoje: ', hoje)
+
             //já iniciado?
             if (desafio.data_inicio < hoje && desafio.data_fim < hoje) {
                 throw new Error("Desafio já finalizado")
