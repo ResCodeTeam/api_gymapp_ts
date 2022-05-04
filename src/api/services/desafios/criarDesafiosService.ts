@@ -19,7 +19,7 @@ interface ICriarDesafiosService {
 }
 
 class CriarDesafiosService {
-    async execute({criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, ginasioId, descricao, exercicios, regras}: ICriarDesafiosService) {
+    async execute({ criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, ginasioId, descricao, exercicios, regras }: ICriarDesafiosService) {
         const exists_criador = await checkUserIdExists(criadorId);
         if (!exists_criador) {
             throw new Error("O user não existe");
@@ -36,7 +36,7 @@ class CriarDesafiosService {
         }
 
         const desafio = await client.desafios.create({
-            data:{
+            data: {
                 ginasio_id: ginasioId,
                 criador_id: criadorId,
                 nome,
@@ -45,15 +45,16 @@ class CriarDesafiosService {
                 data_fim: dataFim,
                 recompensa,
                 descricao,
-            }, 
+            },
         });
 
         // para preencher a tabela regras com as suas informações
-        for (let i = 0; i < regras.length; i++){
+        for (let i = 0; i < regras.length; i++) {
             await client.regras_desafio.create({
-                data:{ //desafio_id: desafio["dataValues"]["desafio_id"],
-                desafio_id: desafio.desafio_id,
-                descricao: regras[i]["descricao"],}, 
+                data: { //desafio_id: desafio["dataValues"]["desafio_id"],
+                    desafio_id: desafio.desafio_id,
+                    descricao: regras[i]["descricao"],
+                },
             });
         }
 
@@ -64,86 +65,86 @@ class CriarDesafiosService {
                 throw new Error("O exercicio não existe");
             }
             const exercicio = await client.exercicios_desafio.create({
-                data:{//desafio_id: desafio["dataValues"]["desafio_id"],
-                desafio_id:desafio.desafio_id,
-                n_ordem_exercicio: exercicios[i].nOrdem,
-                //exercicio_id: exercicios[i]["exercicio_id"], ex
-                exercicio_id : exercicios[i].exercicioId,
-                genero: exercicios[i].genero,
-                //series: exercicios[i][]
-                }    
+                data: {
+                    desafio_id: desafio.desafio_id,
+                    n_ordem_exercicio: exercicios[i].nOrdem,
+                    exercicio_id: exercicios[i].exercicioId,
+                    genero: exercicios[i].genero,
+
+                }
             });
             const series = exercicios[i].series
             // console.log(exercicio);
-            for(let j = 0; j<series.length; j++) {
-                await client.series_desafio.create({data:{
-                    exercicio_desafio_id: exercicio.exercicio_desafio_id,
-                    n_ordem_serie: series[j].nOrdem,
-                    valor:series[j].valor,
-                },
+            for (let j = 0; j < series.length; j++) {
+                await client.series_desafio.create({
+                    data: {
+                        exercicio_desafio_id: exercicio.exercicio_desafio_id,
+                        n_ordem_serie: series[j].nOrdem,
+                        valor: series[j].valor,
+                    },
                 });
             }
         }
 
         const desaf = await client.desafios.findFirst({
-            where:{
-                desafio_id:desafio.desafio_id
+            where: {
+                desafio_id: desafio.desafio_id
             },
-            select:{
-                desafio_id:true,
-                nome:true,
-                data_inicio:true,
-                data_fim:true,
-                recompensa:true,
-                isEncerrado:true,
-                descricao:true,
-                users:{
-                    select:{
-                        nome:true,
-                        email:true,
-                        imagem_url:true
+            select: {
+                desafio_id: true,
+                nome: true,
+                data_inicio: true,
+                data_fim: true,
+                recompensa: true,
+                isEncerrado: true,
+                descricao: true,
+                users: {
+                    select: {
+                        nome: true,
+                        email: true,
+                        imagem_url: true
                     }
                 },
-                modalidades_ginasio:{
-                    select:{
-                        nome:true
+                modalidades_ginasio: {
+                    select: {
+                        nome: true
                     }
                 },
-                regras_desafio:{
-                    select:{
-                        descricao:true
+                regras_desafio: {
+                    select: {
+                        descricao: true
                     }
                 },
-                exercicios_desafio:{
-                    select:{
-                        n_ordem_exercicio:true,
-                        genero:true,
-                        exercicios:{
-                            select:{
-                                nome:true,
-                                descricao:true,
-                                is_tempo:true,
-                                imagens:{
-                                    select:{
-                                        url:true
+                exercicios_desafio: {
+                    select: {
+                        n_ordem_exercicio: true,
+                        genero: true,
+                        exercicios: {
+                            select: {
+                                nome: true,
+                                descricao: true,
+                                is_tempo: true,
+                                imagens: {
+                                    select: {
+                                        url: true
                                     }
                                 },
-                                musculos:{
-                                    select:{ 
-                                        musculos:{
-                                            select:{
-                                                nome:true,
-                                                img_url:true
+                                musculos: {
+                                    select: {
+                                        musculos: {
+                                            select: {
+                                                nome: true,
+                                                img_url: true
                                             }
                                         }
                                     }
                                 }
                             }
                         },
-                        series_desafio:{
-                            select:{
-                                n_ordem_serie:true,
-                                valor:true,
+                        series_desafio: {
+                            select: {
+                                n_ordem_serie: true,
+                                valor: true,
                             }
                         }
                     }
