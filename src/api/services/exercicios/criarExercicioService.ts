@@ -44,22 +44,31 @@ export class CriarExercicioService {
       })
       throw err
     }
-    for (let i = 0; i < musculos.length; i++) {
-      console.log(musculos[i])
-      await client.exercicios_musculos.create({
-        data: {
-          musculos: {
-            connect: {
-              musculo_id: musculos[i]
-            }
-          },
-          exercicios: {
-            connect: {
-              exercicio_id: exercicio.exercicio_id
+    try {
+      for (let i = 0; i < musculos.length; i++) {
+        console.log(musculos[i])
+        await client.exercicios_musculos.create({
+          data: {
+            musculos: {
+              connect: {
+                musculo_id: musculos[i]
+              }
+            },
+            exercicios: {
+              connect: {
+                exercicio_id: exercicio.exercicio_id
+              }
             }
           }
+        })
+      }
+    } catch (err) {
+      await client.exercicios.delete({
+        where: {
+          exercicio_id: exercicio.exercicio_id
         }
       })
+      throw err
     }
 
     const resp = await client.exercicios.findUnique({
