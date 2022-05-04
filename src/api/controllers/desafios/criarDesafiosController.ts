@@ -14,6 +14,8 @@ class CriarDesafiosController {
         dataInicio = new Date(dataInicio);
         dataFim = new Date(dataFim);
 
+        console.log(dataInicio);
+
         if (dataInicio < hoje) {
             throw new Error("Data de início deve ser posterior ou igual a data atual")
         }
