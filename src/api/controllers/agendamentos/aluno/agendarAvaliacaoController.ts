@@ -10,7 +10,7 @@ export class AgendarAvaliacaoController {
       throw new Error("Pedido inválido")
     }
     
-    
+    dataAgendamento = new Date(dataAgendamento)
     const agendarAvaliacaoService = new AgendarAvaliacaoService();
     const resp = await agendarAvaliacaoService.execute({uid, dataAgendamento, ginasioId});
     response.json(resp);
