@@ -186,13 +186,13 @@ model exercicios_imagens {
   imagem_id    String     @id @default(uuid())
   exercicio_id String
   url          String     @db.VarChar(255)
-  exercicios   exercicios @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios255336")
+  exercicios   exercicios @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: Cascade, onUpdate: NoAction, map: "fkexercicios255336")
 }
 
 model exercicios_musculos {
   exercicio_id String
   musculo_id   String
-  exercicios   exercicios @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios823659")
+  exercicios   exercicios @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: Cascade, onUpdate: NoAction, map: "fkexercicios823659")
   musculos     musculos   @relation(fields: [musculo_id], references: [musculo_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios621819")
 
   @@id([exercicio_id, musculo_id])
