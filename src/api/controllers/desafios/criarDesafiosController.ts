@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { changeTimeZone } from "../../helpers/dateHelpers";
 import { CriarDesafiosService } from "../../services/desafios/criarDesafiosService";
 
 class CriarDesafiosController {
@@ -15,7 +16,9 @@ class CriarDesafiosController {
         dataFim = new Date(dataFim);
 
         console.log(dataInicio);
-
+        console.log(dataFim);
+        console.log(hoje);
+        changeTimeZone(hoje)
         if (dataInicio < hoje) {
             throw new Error("Data de início deve ser posterior ou igual a data atual")
         }
