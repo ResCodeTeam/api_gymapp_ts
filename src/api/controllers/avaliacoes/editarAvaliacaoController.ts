@@ -9,7 +9,6 @@ export class EditarAvaliacaoController {
 
         //Pedir request.body (Request)
         const data = {
-            data: new Date(request.body.data),
             peso: request.body.peso,
             unidade_peso: request.body.unidade_peso,
             musculo: request.body.musculo,
@@ -19,16 +18,28 @@ export class EditarAvaliacaoController {
             proteina: request.body.proteina,
             massa_ossea: request.body.massa_ossea,
             metabolismo_basal: request.body.metabolismo_basal,
+            medidas: request.body.medidas,
+            imagens: request.body.imagens,
         }
-        if(data.data === undefined || data.peso === undefined || data.unidade_peso === undefined || data.musculo === undefined || data.gordura_corporal === undefined || data.gordura_visceral === undefined || data.agua === undefined || data.proteina === undefined || data.massa_ossea === undefined || data.metabolismo_basal === undefined){
+        if (data.peso === undefined ||
+            data.unidade_peso === undefined ||
+            data.musculo === undefined ||
+            data.gordura_corporal === undefined ||
+            data.gordura_visceral === undefined ||
+            data.agua === undefined ||
+            data.proteina === undefined ||
+            data.massa_ossea === undefined ||
+            data.metabolismo_basal === undefined ||
+            data.medidas === undefined ||
+            data.imagens === undefined) {
             throw new Error("Pedido inválido")
-          }
+        }
 
         //Avaliação ID por parametro
         const avaliacao_id = request.params.id;
 
         //Utilizar Serviço criado
-        const resp = await editarAvaliacaoService.execute(data,avaliacao_id)
+        const resp = await editarAvaliacaoService.execute(data, avaliacao_id)
 
         response.json(resp)
 
