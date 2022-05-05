@@ -1,139 +1,293 @@
-import { checkMobilidadeMarcaUser, checkUserIdExists, getFuncaoId, getUserFuncao } from "../../../helpers/dbHelpers";
+import { checkMobilidadeMarcaUser, checkUserIdExists, getFuncaoId, getGinasioAluno, getMarcaGym, getUserFuncao } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
-class VerTodosPostsService{
-    async execute(userId:string){
-        
-        
+class VerTodosPostsService {
+    async execute(userId: string) {
+
+
         const existsUser = await checkUserIdExists(userId)
-        if(!existsUser){
+        if (!existsUser) {
             throw new Error("Utilizador invalido")
         }
-        
-        const {mobilidade,id} = await checkMobilidadeMarcaUser(userId);
-        
+
+        const { mobilidade, id } = await checkMobilidadeMarcaUser(userId);
+
         const funcTreinador = await getFuncaoId('Treinador')
+        const funcAdm = await getFuncaoId('Administrador')
         const userFuncao = await getUserFuncao(userId)
-        
-        if(userFuncao!= funcTreinador){
-            if(mobilidade){
-                const publicacoes = await client.publicacoes.findMany({
-                    where:{
-                        isDeleted:false,
-                        users:{
-                            alunos_marca:{
-                                every:{
-                                    marca_id:id['marca_id']
-                                }
-                            }
-                        },
-                    },
-                    select:{
-                        publicacao_id:true,    
-                        criador_id:true,
-                        ginasio_id:true,
-                        data:true,
-                        descricao:true,
-                        tipo:true,
-                        imagens_publicacao:{
-                            select:{
-                                url:true
-                            }
-                        },
-                        _count:{
-                            select:{
-                                gostos_publicacao:true
-                            }
-                        }
-                    },
-                    
-                })
-                    
-                return publicacoes
-                
-            }else{
-                const publicacoes = await client.publicacoes.findMany({
-                    where:{
-                        isDeleted:false,
-                        users:{
-                            aluno_ginasio:{
-                                every:{
-                                    ginasio_id:id['ginasio_id']
-                                }
-                            },
-                            definicoes_user:{
-                                is_privado:false
-                            }
-                        }
-                    },
-                    select:{
-                        publicacao_id:true,    
-                        criador_id:true,
-                        ginasio_id:true,
-                        data:true,
-                        descricao:true,
-                        tipo:true,
-                        imagens_publicacao:{
-                            select:{
-                                url:true
-                            }
-                        },
-                        _count:{
-                            select:{
-                                gostos_publicacao:true
-                            }
-                        }
 
-                    },
-                    
-                })
-                    
-                return publicacoes
-                
+        if (userFuncao != funcTreinador && userFuncao != funcAdm) {
+            if (mobilidade) {
+
+                return getPublicacoesMarca(id['marca_id'])
+
+            } else {
+
+                const marcaId = (await getMarcaGym(id['ginasio_id'])).marca_id
+
+                return getPublicacoesGym(id['ginasio_id'], marcaId)
             }
-        }else{
-            const marca = await client.treinadores_marca.findFirst({
-                where:{
-                    treinador_uid:userId
-                }
-            })
+        } else if (userFuncao == funcTreinador) {
 
-            const publicacoes = await client.publicacoes.findMany({
-                where:{
-                    isDeleted:false,
-                    users:{
-                        alunos_marca:{
-                            every:{
-                                marca_id:marca.marca_id
-                            }
-                        }
-                    },
-                },
-                select:{
-                    publicacao_id:true,    
-                    criador_id:true,
-                    ginasio_id:true,
-                    data:true,
-                    descricao:true,
-                    tipo:true,
-                    imagens_publicacao:{
-                        select:{
-                            url:true
-                        }
-                    },
-                    _count:{
-                        select:{
-                            gostos_publicacao:true
-                        }
-                    }
-                },
-                
-            })
-                
-            return publicacoes
+            const marcaId = (await client.treinadores_marca.findFirst({
+                where: {
+                    treinador_uid: userId
+                }
+            })).marca_id
+
+            if (mobilidade) {
+                return getPublicacoesMarca(marcaId)
+            } else {
+                console.log(marcaId)
+                return getPublicacoesGymTreinador(marcaId)
+            }
+        } else {
+            const marcas = await client.marcas.findMany({ where: { dono_id: userId } });
+            let posts = [];
+            for (let marca of marcas) {
+                if (marca.mobilidade) {
+                    posts.push(...(await getPublicacoesMarca(marca.marca_id)))
+                } else {
+                    posts.push(...(await getPublicacoesGymTreinador(marca.marca_id)))
+                }
+            }
+            return posts;
+
         }
     }
-    
+
 }
+
+
+async function getPublicacoesMarca(marcaId: string) {
+    const publicacoes = await client.publicacoes.findMany({
+        where: {
+            OR: [
+                {
+                    users: {
+                        definicoes_user: {
+                            is_privado: false
+                        },
+                        OR: [
+                            //ir buscar posts de alunos da marca
+                            {
+                                alunos_marca: {
+                                    some: {
+                                        marca_id: marcaId
+                                    }
+                                }
+                            },
+                            //ir buscar posts de treinadores da marca
+                            {
+                                treinadores_marca: {
+                                    some: {
+                                        marca_id: marcaId
+                                    }
+                                }
+                            },
+                            //ir buscar posts do dono da marca
+                            {
+                                marcas: {
+                                    some: {
+                                        marca_id: marcaId
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                //posts dos ginasios da marca
+                {
+                    ginasio: {
+                        marca_id: marcaId
+                    }
+                }
+            ]
+        },
+        select: {
+            publicacao_id: true,
+            criador_id: true,
+            ginasio_id: true,
+            data: true,
+            descricao: true,
+            tipo: true,
+            imagens_publicacao: {
+                select: {
+                    url: true
+                }
+            },
+            _count: {
+                select: {
+                    gostos_publicacao: true
+                }
+            }
+
+
+
+        },
+
+    })
+
+    return publicacoes
+}
+
+
+async function getPublicacoesGym(ginasioId: string, marcaId: string) {
+    //publicações dos alunos,treinadores e ginasios
+    const publicacoes = await client.publicacoes.findMany({
+        where: {
+            isDeleted: false,
+            OR: [
+                {
+                    users: {
+                        definicoes_user: {
+                            is_privado: false
+                        },
+                        OR: [
+                            {
+                                //ir buscar posts de alunos do ginasio
+                                aluno_ginasio: {
+                                    some: {
+                                        ginasio_id: ginasioId
+                                    }
+                                }
+
+                            },
+                            {
+                                //ir buscar posts de treinadores da marca
+                                treinadores_marca: {
+                                    some: {
+                                        marca_id: marcaId
+                                    }
+                                }
+                            },
+                            //ir buscar posts do dono da marca
+                            {
+                                marcas: {
+                                    some: {
+                                        marca_id: marcaId
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                //posts do ginasio
+                {
+                    ginasio: {
+                        ginasio_id: ginasioId
+                    }
+                }
+            ]
+        },
+        select: {
+            publicacao_id: true,
+            criador_id: true,
+            ginasio_id: true,
+            data: true,
+            descricao: true,
+            tipo: true,
+            imagens_publicacao: {
+                select: {
+                    url: true
+                }
+            },
+            _count: {
+                select: {
+                    gostos_publicacao: true
+                }
+            }
+
+        },
+
+    })
+
+
+
+    return publicacoes
+
+}
+
+async function getPublicacoesGymTreinador(marcaId: string) {
+    //publicações dos alunos,treinadores e ginasios da marca
+    const publicacoes = await client.publicacoes.findMany({
+        where: {
+            isDeleted: false,
+            OR: [{
+                users: {
+                    definicoes_user: {
+                        is_privado: false
+                    },
+                    OR: [
+
+                        {
+                            //ir buscar posts de alunos do ginasio
+                            aluno_ginasio: {
+                                some: {
+                                    ginasio: {
+                                        marca_id: marcaId
+                                    }
+                                }
+                            }
+
+                        },
+                        {
+                            //ir buscar posts de treinadores da marca
+                            treinadores_marca: {
+                                some: {
+                                    marca_id: marcaId
+                                }
+                            }
+                        },
+                        //ir buscar posts do dono da marca
+                        {
+                            marcas: {
+                                some: {
+                                    marca_id: marcaId
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            //posts do ginasio
+            {
+                ginasio: {
+                    marcas: {
+                        marca_id: marcaId
+                    }
+                }
+            }
+            ]
+        },
+        select: {
+            publicacao_id: true,
+            criador_id: true,
+            ginasio_id: true,
+            data: true,
+            descricao: true,
+            tipo: true,
+            imagens_publicacao: {
+                select: {
+                    url: true
+                }
+            },
+            _count: {
+                select: {
+                    gostos_publicacao: true
+                }
+            }
+
+        },
+
+    })
+
+
+
+    return publicacoes
+
+}
+
+
 
 export { VerTodosPostsService };
 
