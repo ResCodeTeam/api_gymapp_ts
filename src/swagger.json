@@ -180,13 +180,17 @@
                                 "properties": {
                                     "ginasioId":{
                                         "type": "string"
+                                    },
+                                    "dataAgendamento":{
+                                        "type": "string"
                                     }
                                 }
                             },
                             "examples": {
                                 "Inserir Agendamento de Avaliacoes":{
                                     "value": {
-                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48"
+                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                        "dataAgendamento":"2022-05-03T13:24:10.574Z"
                                     }
                                 }
                             }
@@ -251,13 +255,17 @@
                                 "properties": {
                                     "ginasioId":{
                                         "type": "string"
+                                    },
+                                    "dataAgendamento":{
+                                        "type": "string"
                                     }
                                 }
                             },
                             "examples": {
                                 "Inserir Agendamento de Desafios":{
                                     "value": {
-                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48"
+                                        "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
+                                        "dataAgendamento":"2022-05-03T13:24:10.574Z"
                                     }
                                 }
                             }
@@ -3887,16 +3895,17 @@
                                 },
                                 "distancia":{
                                     "type": "number"
+                                },
+                                "data":{
+                                    "type": "string"
                                 }
                             }
                         },
                         "examples": {
                             "Criar Treino":{
                                 "value":{
-                                    "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
-                                    "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                    "atividade_id": null,
-                                    "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                                    "atividadeId": null,
+                                    "modalidadeId": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                     "duracao": "10",
                                     "calorias": 100,
                                     "distancia": 500,
@@ -3924,19 +3933,11 @@
                                             "type": "string"
                                         }
                                     }
-                                }, 
+                                },
                                 "examples": {
                                     "Criar treino":{
                                         "value":{
-                                            "treino_id": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
-                                            "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                            "atividade_id": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
-                                            "modalidade_id": null,
-                                            "duracao": "50",
-                                            "calorias": 20,
-                                            "distancia": 30,
-                                            "data": "2022-04-18T17:53:33.437Z",
-                                            "isDeleted": false
+                                            "message":"Treino criado com sucesso"
                                         }
                                     }
                                 }                                       
@@ -5605,6 +5606,9 @@
                                 },
                                 "distancia":{
                                     "type": "number"
+                                },
+                                "data":{
+                                    "type": "number"
                                 }
                             }
                         },
@@ -5615,7 +5619,8 @@
                                     "modalidadeId":null,
                                     "duracao":"50",
                                     "calorias": 20,
-                                    "distancia": 30
+                                    "distancia": 30,
+                                    "data": "2022-05-3T17:53:33.437Z"
                                 }
                             }
                         }

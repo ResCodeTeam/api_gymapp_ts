@@ -22,8 +22,6 @@ adminTreinadorRouter.post("/ginasio/:id/desafio/", verificarAutenticacao, verifi
 adminTreinadorRouter.put("/desafio/:id",verificarAutenticacao,verificarAdminTreinador,  encerrarDesafiosController.handle);
 //#endregion
 
-
-
 //#region Músculos
 adminTreinadorRouter.get("/musculos/", verificarAutenticacao, verificarAdminTreinador,verTodosMusculosController.handle);
 //endregion

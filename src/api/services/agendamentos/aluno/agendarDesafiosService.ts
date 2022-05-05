@@ -1,5 +1,6 @@
 import { client } from "../../../prisma/client";
 import { checkUserIdExists, checkGinasioExists, checkDesafioIdExists, checkTreinador, checkDesafioDisponivel } from "../../../helpers/dbHelpers";
+import { changeTimeZone } from "../../../helpers/dateHelpers";
 
 interface IAgendarDesafiosService {
   uid: string;
@@ -36,6 +37,12 @@ export class AgendarDesafiosService {
       throw new Error("O desafio já foi encerrado");
     }
 
+    const dataAtual = new Date();
+    changeTimeZone(dataAtual)
+    if(dataAgendamento <= dataAtual){
+      throw new Error("A data do agendamento não pode ser menor que a data atual");
+    }
+    
     const agendamento = await client.agendamentos_desafios.create({
       data: {        
         ginasio_id: ginasioId,

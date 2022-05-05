@@ -6,12 +6,12 @@ export class EditarTreinosController{
         const uId = response.locals.uid;
         const treinoId = request.params.treino_id;
         
-        let { atividadeId, modalidadeId, duracao, calorias, distancia } = request.body;
+        let { atividadeId, modalidadeId, duracao, calorias, distancia, data } = request.body;
         if(atividadeId === undefined || modalidadeId === undefined || duracao === undefined || calorias === undefined || distancia === undefined){
             throw new Error("Pedido inválido")
         }
 
-        const data = new Date(Date.now());
+        data = new Date(data)
         const editarTreinosService = new EditarTreinosService();
 
         const resp = await editarTreinosService.execute({
