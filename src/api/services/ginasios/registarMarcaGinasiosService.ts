@@ -1,5 +1,5 @@
 import { client } from "../../prisma/client";
-import { checkUserIdExists } from "../../helpers/dbHelpers";
+import { checkDonoMarca, checkMarcaExists } from "../../helpers/dbHelpers";
 import { getGymTag } from "../../helpers/tagHelpers";
 
 interface IRegistarMarcaGinasiosService {
@@ -11,6 +11,7 @@ interface IRegistarMarcaGinasiosService {
   imagemUrl: string;
   lat: string;
   long: string;
+  uId: string;
 }
 
 export class RegistarMarcaGinasiosService {
@@ -23,17 +24,17 @@ export class RegistarMarcaGinasiosService {
     imagemUrl,
     lat,
     long,
-
+    uId
   }: IRegistarMarcaGinasiosService) {
     // Obter a tag do ginásio automaticamente
     let tag = await getGymTag(nome);
     
-    const exists_marca = await checkUserIdExists(marcaId);
-    if (exists_marca) {
+    const exists_marca = await checkMarcaExists(marcaId);
+    if (!exists_marca) {
       throw new Error("A marca não existe");
     }
-    console.log("teste");
 
+    await checkDonoMarca(marcaId, uId)
 
     const localidade = await client.localidades.findFirst({
       where:{

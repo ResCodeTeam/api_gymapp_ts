@@ -3,12 +3,12 @@ import { Request, Response } from "express";
 
 
 export class RemoverAlunoController{
-    async handle(request : Request, response : Response){
-        const uId = response.locals.uid;
+  async handle(request : Request, response : Response){
+    const uId = request.params.id;
 
-        const removerAlunoService = new RemoverAlunoService();
-        const resp = await removerAlunoService.execute(uId);
-        response.json(resp);
-      };
+    const removerAlunoService = new RemoverAlunoService();
+    const resp = await removerAlunoService.execute(uId);
+    response.json(resp);
+  };
 }
 

@@ -577,6 +577,16 @@ let getTreinadorMarca = async (treinadorId: string) => {
     return searchTreinador.marca_id;
 }
 
+let getGinasioMarca = async (ginasioId: string) => {
+    const searchGinasio = await client.ginasio.findFirst({
+        where:{
+            ginasio_id: ginasioId
+        }
+    })
+
+    return searchGinasio.marca_id;
+}
+
 let checkMusculoExists = async (musculoId: string) => {
     const musculos = await client.musculos.findMany({
         where: {
@@ -751,6 +761,20 @@ let getGinasioAluno = async (alunoId: string) => {
     return ginasio.ginasio_id
 }
 
+let getMarcaAluno = async (alunoId: string) => {
+    const marca = await client.marcas.findFirst({
+        where: {
+            alunos_marca: {
+                every: {
+                    uid: alunoId
+                }
+            }
+        }
+    })
+
+    return marca.marca_id
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -816,5 +840,7 @@ export {
     checkSubmissaoExists,
     checkIsSubmissaoDesafio,
     getGinasioAluno,
+    getGinasioMarca,
+    getMarcaAluno
 }
 
