@@ -101,8 +101,6 @@ adminRouter.post("/notificacao/marca/:marcaId", verificarAutenticacao, verificar
 adminRouter.post("/notificacao/ginasio/:ginasioId", verificarAutenticacao ,verificarAdmin, criarNotificacaoGinasioController.handle);
 //#endregion
 
-
-
 //#region Treinadores
 adminRouter.delete("/treinador/:id", verificarAutenticacao ,verificarAdmin, eliminarTreinadorController.handle);
 adminRouter.post("/marca/:id/treinadores", verificarAutenticacao, verificarAdmin, registarTreinadorController.handle);

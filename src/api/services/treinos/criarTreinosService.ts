@@ -1,5 +1,6 @@
 import { client } from "../../prisma/client";
 import { checkUserIdExists, checkModalidadeExists, checkAtividadeExists } from "../../helpers/dbHelpers";
+import { changeTimeZone } from "../../helpers/dateHelpers";
 
 interface ICriarTreinosService {
   uid: string;
@@ -50,8 +51,7 @@ class CriarTreinosService {
     }
 
     const dataAtual = new Date();
-    console.log(dataAtual)
-    console.log(data)
+    changeTimeZone(dataAtual)
     if(data <= dataAtual){
       throw new Error("A data do agendamento não pode ser menor que a data atual");
     }

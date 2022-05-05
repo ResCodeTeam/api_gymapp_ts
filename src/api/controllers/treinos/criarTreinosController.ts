@@ -9,6 +9,7 @@ class CriarTreinosController {
       throw new Error("Pedido inválido")
     }
 
+    data = new Date(data)
     const criarTreinosService = new CriarTreinosService();
     const resp = await criarTreinosService.execute({
       uid,

@@ -10,6 +10,7 @@ export class AgendarDesafiosController {
         throw new Error("Pedido inválido")
       }
       
+      dataAgendamento = new Date(dataAgendamento)
       const agendarDesafiosService = new AgendarDesafiosService();
       const resp = await agendarDesafiosService.execute({uid, dataAgendamento, desafioId, ginasioId});
       response.json(resp);
