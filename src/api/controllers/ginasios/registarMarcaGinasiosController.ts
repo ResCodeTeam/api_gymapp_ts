@@ -4,6 +4,7 @@ import { RegistarMarcaGinasiosService } from "../../services/ginasios/registarMa
 class RegistarMarcaGinasiosController {
   async handle(request: Request, response: Response) {
     const marcaId = request.params.id;
+    const uId = response.locals.uid;
     const { nome, rua, cp,cpExt, imagemUrl, lat, long } =
       request.body;
       if(nome === undefined || rua === undefined || cp === undefined || cpExt === undefined || imagemUrl === undefined || lat === undefined || long === undefined){
@@ -20,7 +21,7 @@ class RegistarMarcaGinasiosController {
       imagemUrl,
       lat,
       long,
-      
+      uId
     });
     response.json(resp);
   }

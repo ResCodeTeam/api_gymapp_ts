@@ -52,8 +52,8 @@ class CriarTreinosService {
 
     const dataAtual = new Date();
     changeTimeZone(dataAtual)
-    if(data <= dataAtual){
-      throw new Error("A data do agendamento não pode ser menor que a data atual");
+    if(data >= dataAtual){
+      throw new Error("A data do agendamento não pode ser maior que a data atual");
     }
 
     const treino = await client.treinos.create({
