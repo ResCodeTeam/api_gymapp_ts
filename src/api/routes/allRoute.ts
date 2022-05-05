@@ -78,7 +78,7 @@ allRouter.get("/atividades/",verificarAutenticacao, verTodasAtividadesController
 
 
 //#region 
-allRouter.get("/alunos/ginasio/:id", obterAlunosGinasioController.handle);
+allRouter.get("/alunos/ginasio/:id",verificarAutenticacao, obterAlunosGinasioController.handle);
 //#endregion
 
 //#region Perfil
