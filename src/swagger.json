@@ -410,7 +410,7 @@
         "put":{
             "summary": "Editar ginasio",
             "description": "Esta rota vai editar um ginasio criado",
-            "tags": ["Ginasio"],
+            "tags": ["Marca"],
             "security": [
                 {
                     "basicAuth":[]
@@ -1784,6 +1784,45 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        },
+
+        "/alunos/ginasio/{ginasioId}":{
+            "get": {
+                "summary": "Obter alunos de um ginásio",
+                "description": "Este pedido serve para obter os alunos de uma marca",
+                "tags":["Marca"],
+                "security": [
+                    {
+                        "basicAuth":[]
+                    }
+                ],
+                "parameters":[{
+                    "name": "ginasioId",
+                    "in":"path",
+                    "description":"Id do ginasio",
+                    "required": true,
+                    "schema":{
+                        "properties": {
+                            "ginasioId":{
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "500": {
+                        "description": "ERROR"
+    
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK"
+                     
                     }
                 }
             }
