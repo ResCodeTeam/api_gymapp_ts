@@ -6,6 +6,7 @@ import {
   getFuncaoId,
   checkGinasioExists,
   getMarcaGym,
+  checkDonoGinasio,
 } from "../../helpers/dbHelpers";
 
 interface IRegistarAlunoService {
@@ -16,6 +17,7 @@ interface IRegistarAlunoService {
   dataEntrada: Date;
   genero: number;
   ginasioId: string;
+  donoId: string;
 }
 
 
@@ -28,16 +30,10 @@ export class RegistarAlunoService {
     dataEntrada,
     genero,
     ginasioId,
+    donoId
   }: IRegistarAlunoService) {
     // verificar se o aluno já está registado
     const existsEmail = await checkEmail(email);
-    console.log(email,
-      nome,
-      password,
-      dataNasc,
-      dataEntrada,
-      genero,
-      ginasioId,)
     if (existsEmail) {
       throw new Error("Email já registado!");
     }
@@ -62,12 +58,12 @@ export class RegistarAlunoService {
 
     // obter o id da função
     const funcaoId = await getFuncaoId("Aluno");
-    console.log(ginasioId)
     let existsGym = await checkGinasioExists(ginasioId);
-    
     if (!existsGym) {
       throw new Error("Ginásio não existe");
     }
+
+    await checkDonoGinasio(ginasioId, donoId)
     
     if(nome.split(" ").length<2){
       throw new Error("Nome inválido")
