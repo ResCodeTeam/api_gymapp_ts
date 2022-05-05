@@ -2,8 +2,8 @@ import { client } from "../../prisma/client";
 import { checkAutorTreino, checkTreinoExists, checkUserIdExists, checkAtividadeExists, checkModalidadeExists } from "../../helpers/dbHelpers";
 import { changeTimeZone } from "../../helpers/dateHelpers";
 
-interface ITreino{
-    treinoId:string,
+interface ITreino {
+    treinoId: string,
     uId: string,
     atividadeId: string,
     modalidadeId: string,
@@ -14,14 +14,14 @@ interface ITreino{
 }
 
 export class EditarTreinosService {
-    async execute({uId, treinoId, atividadeId, modalidadeId, duracao, calorias, distancia, data} : ITreino){
+    async execute({ uId, treinoId, atividadeId, modalidadeId, duracao, calorias, distancia, data }: ITreino) {
 
-        if(atividadeId == null && modalidadeId == null){
+        if (atividadeId == null && modalidadeId == null) {
             throw new Error("ERRO!!! A atividade e a modalidade não podem ser ambos nulos, pelo menos uma deve ser diferente de null.");
         }
-      
-        if(atividadeId != null && modalidadeId != null){
-           throw new Error("ERRO!!! A atividade e a modalidade não podem ser ambas diferentes de null, pelo menos uma deve ser null.");
+
+        if (atividadeId != null && modalidadeId != null) {
+            throw new Error("ERRO!!! A atividade e a modalidade não podem ser ambas diferentes de null, pelo menos uma deve ser null.");
         }
 
         const exist_nome = await checkUserIdExists(uId);
@@ -34,40 +34,57 @@ export class EditarTreinosService {
             throw new Error("O treino não existe");
         }
 
-        const treino = await client.treinos.findUnique({
-            where:{
-                treino_id: treinoId
-            }
-        })
-        const isAutor = await checkAutorTreino(uId,treinoId);
-        if(!isAutor){
+
+        const isAutor = await checkAutorTreino(uId, treinoId);
+        if (!isAutor) {
             throw new Error("O treino não lhe pertence");
         }
 
-        if(atividadeId != null){
+        if (atividadeId != null) {
             const exists_atividades = await checkAtividadeExists(atividadeId);
             if (!exists_atividades) {
                 throw new Error("A atividade não existe");
             }
         }
-        
-        if(modalidadeId != null){
+
+        if (modalidadeId != null) {
             const exists_modalidades = await checkModalidadeExists(modalidadeId);
             if (!exists_modalidades) {
                 throw new Error("A modalidade não existe");
             }
         }
+
+        const treino = await client.treinos.findUnique({
+            where: {
+                treino_id: treinoId
+            }
+        })
         //verificar se a data é diferente da original
-        if (data !== undefined) {
+        if (data !== treino.data) {
             const dataAtual = new Date();
             changeTimeZone(dataAtual)
-            if(data <= dataAtual){
-                throw new Error("A data do agendamento não pode ser menor que a data atual");
+            if (data > dataAtual) {
+                throw new Error("A data do treino não pode ser maior que a data atual");
             }
         }
-        
+
+
+
+        if (treino.atividade_id == null && atividadeId != null) {
+            throw new Error("O treino não tem atividade");
+        }
+
+        if (treino.modalidade_id == null && modalidadeId != null) {
+            throw new Error("O treino não tem modalidade");
+        }
+
+        if (modalidadeId != null && atividadeId != null) {
+            throw new Error("O treino não pode ter atividade e modalidade");
+        }
+
+
         const editarTreinos = await client.treinos.update({
-            where:{
+            where: {
                 treino_id: treinoId
             },
             data: {
@@ -79,7 +96,10 @@ export class EditarTreinosService {
                 data
             }
         })
-        
+
+
+
+
         return editarTreinos;
     }
 }

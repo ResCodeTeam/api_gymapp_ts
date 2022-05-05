@@ -22,7 +22,7 @@ export class EditarMarcaService {
     console.log(marcaId,adminId)
     const isAutor = await checkAutorMarca(adminId,marcaId)
     if(!isAutor){
-        throw new Error("não possui autorização para fazer esta alteração")
+        throw new Error("Não possui autorização para fazer esta alteração")
     }
 
     const exist_nome = await checkNomeMarca(nome);
