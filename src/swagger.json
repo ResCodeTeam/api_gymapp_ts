@@ -6092,7 +6092,7 @@
                                 "value":{
                                     "descricao":"teste",
                                     "tipo":1,
-                                    "ginasio_id": "a97e6887-31dc-4186-ad27-09e0fb7d645e",
+                                    "ginasioId": "a97e6887-31dc-4186-ad27-09e0fb7d645e",
                                     "identificacao": ["02de0f10-df8b-4d1e-955f-22d3211b66da","0a169c30-208d-4931-9400-15d44ba57690"]
                                 }
                             }
