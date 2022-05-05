@@ -5,20 +5,13 @@ const treinadorRouter = express.Router();
 import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
 import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
 import { VerTodosTreinosDosAlunosController } from "../controllers/treinos/verTodosTreinosDosAlunosController";
-
-
 import { VerTodosOsExerciciosTreinadoresController } from "../controllers/Exercicios/VerTodosOsExerciciosTreinadoresController";
-
 import { RemoverAvaliacaoController } from "../controllers/avaliacoes/removerAvaliacaoController";
 import { EditarAvaliacaoController } from "../controllers/avaliacoes/editarAvaliacaoController";
-
-
 import { RemoverExercicioController } from "../controllers/Exercicios/removerExercicioController"
 import { CriarExercicioController } from "../controllers/Exercicios/criarExercicioController";
 import { CriarAvaliacaoController } from "../controllers/avaliacoes/criarAvaliacaoController";
-
 import { AdicionarExerciciosImagensController } from "../controllers/Exercicios/editar/adicionarExerciciosImagensController";
-
 import { EditarExercicioController } from "../controllers/Exercicios/editarExercicioController";
 import { RemoverExercicioImagemController } from "../controllers/Exercicios/editar/removerExercicioImagemController";
 import { AdicionarExercicioMusculoController } from "../controllers/Exercicios/musculos/adicionarExercicioMusculoController";
@@ -120,7 +113,7 @@ treinadorRouter.get("/agenda/avaliacoes/",verificarAutenticacao, verificarTreina
 //#region PlanoTreino
 treinadorRouter.delete("/plano/:plano_id/", verificarAutenticacao, verificarTreinador, removerPlanoTreinoController.handle);
 treinadorRouter.get("/plano/:uid/:startDate/:endDate", verificarAutenticacao, verificarTreinador, obterPlanoTreinoAlunoController.handle);
-treinadorRouter.post("/planoTreino", verificarAutenticacao, verificarTreinador, criarPlanoTreinoController.handle);
+treinadorRouter.post("/planoTreino", verificarAutenticacao, verificarTreinador, criarPlanoTreinoController.handle); 
 treinadorRouter.put("/plano/:id/",verificarAutenticacao,verificarTreinador, editarPlanoTreinoController.handle);
 //#endregion
 

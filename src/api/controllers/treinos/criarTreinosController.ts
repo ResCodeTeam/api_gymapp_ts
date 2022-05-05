@@ -4,12 +4,12 @@ import { CriarTreinosService } from "../../services/treinos/criarTreinosService"
 class CriarTreinosController {
   async handle(request: Request, response: Response) {
     const uid = response.locals.uid;
-    let { atividadeId, modalidadeId, duracao, calorias, distancia } = request.body;
-    if(atividadeId === undefined || modalidadeId === undefined || duracao === undefined || calorias === undefined || distancia === undefined){
+    let { atividadeId, modalidadeId, duracao, calorias, distancia, data } = request.body;
+    if(atividadeId === undefined || modalidadeId === undefined || duracao === undefined || calorias === undefined || distancia === undefined || data === undefined){
       throw new Error("Pedido inválido")
     }
 
-    const data = new Date(Date.now());
+    data = new Date(data)
     const criarTreinosService = new CriarTreinosService();
     const resp = await criarTreinosService.execute({
       uid,

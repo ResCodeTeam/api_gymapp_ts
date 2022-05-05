@@ -1,5 +1,6 @@
 import { client } from "../../../prisma/client";
 import { checkUserIdExists, checkGinasioExists, checkTreinador } from "../../../helpers/dbHelpers";
+import { changeTimeZone } from "../../../helpers/dateHelpers";
 
 interface IAgendarAvaliacaoService {
   uid: string;
@@ -22,6 +23,12 @@ export class AgendarAvaliacaoService {
     const exist_gym = await checkGinasioExists(ginasioId);
     if (!exist_gym){
       throw new Error("O ginásio não existe");
+    }
+
+    const dataAtual = new Date();
+    changeTimeZone(dataAtual)
+    if(dataAgendamento <= dataAtual){
+      throw new Error("A data do agendamento não pode ser menor que a data atual");
     }
 
     const agendamento = await client.agendamentos_avaliacoes.create({

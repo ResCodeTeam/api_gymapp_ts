@@ -1,5 +1,6 @@
 import { client } from "../../prisma/client";
 import { checkAutorTreino, checkTreinoExists, checkUserIdExists, checkAtividadeExists, checkModalidadeExists } from "../../helpers/dbHelpers";
+import { changeTimeZone } from "../../helpers/dateHelpers";
 
 interface ITreino{
     treinoId:string,
@@ -54,6 +55,14 @@ export class EditarTreinosService {
             const exists_modalidades = await checkModalidadeExists(modalidadeId);
             if (!exists_modalidades) {
                 throw new Error("A modalidade não existe");
+            }
+        }
+        //verificar se a data é diferente da original
+        if (data !== undefined) {
+            const dataAtual = new Date();
+            changeTimeZone(dataAtual)
+            if(data <= dataAtual){
+                throw new Error("A data do agendamento não pode ser menor que a data atual");
             }
         }
         

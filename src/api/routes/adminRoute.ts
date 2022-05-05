@@ -4,21 +4,14 @@ const adminRouter = express.Router();
 //middlewares
 //import verificarAutenticacao from "../middlewares/verificarAutenticacao";
 
-import { CriarPostsController } from "../controllers/posts/criarPostsController";
-
 //import { CriarNotificacaoUserController } from "../controllers/admin/notificacoes/criarNotificacaoUserController";
 import { RegistarUserMarcasController } from "../controllers/marcas/registarUserMarcasController";
 import { RegistarMarcaGinasiosController } from "../controllers/ginasios/registarMarcaGinasiosController";
 import { CriarGinasioModalidadesController } from "../controllers/modalidades/criarGinasioModalidadesController";
-import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
-import { VerTodosPostsController } from "../controllers/posts/obter/verTodosPostsController";
-import { RemoverPostController } from "../controllers/posts/removerPostController";
 import { RemoverModalidadesController } from "../controllers/modalidades/removerModalidadesController";
 import { EliminarTreinadorController } from "../controllers/treinadores/eliminarTreinadorController";
-//import { CriarGostoController } from "../controllers/admin/gostosPosts/criarGostoController";
 
 import { verificarAdmin } from "../middlewares/verificarAdmin";
-//import { EncerrarDesafiosController } from "../controllers/admin/desafios/encerrarDesafiosController";
 import { CriarNotificacaoMarcaController } from "../controllers/notificacoes/criarNotificacaoMarcaController";
 import { CriarNotificacaoGinasioController } from "../controllers/notificacoes/criarNotificacaoGinasioController";
 import { RegistarAlunoController } from "../controllers/alunos/registarAlunoController";
@@ -37,7 +30,6 @@ import { VerTodasMarcasController } from "../controllers/marcas/verTodasMarcasCo
 import { VerTodasModalidadesController } from "../controllers/modalidades/verTodasModalidadesController";
 import { EditarGinasioController } from "../controllers/ginasios/editarGinasioController";
 import { RemoverAlunoController } from "../controllers/alunos/removerAlunoController";
-import { VerTreinadorGinasioService } from "../services/ginasios/obterTreinadoresGinasioService";
 import { VerTreinadorGinasioController } from "../controllers/ginasios/obterTreinadorGinasioController";
 import { CriarLocalMedidaController } from "../controllers/localMedida/criarLocalMedidaController";
 import { RemoverLocalMedidaController } from "../controllers/localMedida/removerLocalMedidaController";
@@ -48,17 +40,12 @@ const registarAlunosController = new RegistarAlunoController();
 const registarUserMarcasController = new RegistarUserMarcasController();
 const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
 const criarGinasioModalidadesController = new CriarGinasioModalidadesController();
-
-
 const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
-// const criarGostoController  = new CriarGostoController();
 const registarAdminController = new RegistarAdminController();
 const  editarModalidadesController = new EditarModalidadesController();
 const editarMarcaController=new EditarMarcaController();
-
 const removerMarcaController = new RemoverMarcaController();
-
 const registarTreinadorController = new RegistarTreinadorController();
 const removerGinasioController = new RemoverGinasioController();
 const verUmGinasioController = new VerUmGinasioController();
@@ -71,6 +58,9 @@ const removerAlunoController= new RemoverAlunoController();
 const verTreinadorGinasioController= new VerTreinadorGinasioController();
 const criarLocalMedidaController = new CriarLocalMedidaController();
 const removerLocalMedidaController = new RemoverLocalMedidaController();
+const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
+const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController();
+const criarNotificacaoUserController = new CriarNotificacaoUserController();
 
 //#region Admin
 adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdminController.handle);
@@ -106,15 +96,10 @@ adminRouter.get("/ginasio/:id/modalidades/", verificarAutenticacao, verificarAdm
 //#endregion
 
 //#region Notificacoes
-const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
-const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController();
-const criarNotificacaoUserController = new CriarNotificacaoUserController();
 adminRouter.post("/notificacao/user/:id", verificarAutenticacao , verificarAdmin,criarNotificacaoUserController.handle);
 adminRouter.post("/notificacao/marca/:marcaId", verificarAutenticacao, verificarAdmin, criarNotificacaoMarcaController.handle);
 adminRouter.post("/notificacao/ginasio/:ginasioId", verificarAutenticacao ,verificarAdmin, criarNotificacaoGinasioController.handle);
 //#endregion
-
-
 
 //#region Treinadores
 adminRouter.delete("/treinador/:id", verificarAutenticacao ,verificarAdmin, eliminarTreinadorController.handle);

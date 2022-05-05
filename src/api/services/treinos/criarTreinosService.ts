@@ -1,5 +1,6 @@
 import { client } from "../../prisma/client";
 import { checkUserIdExists, checkModalidadeExists, checkAtividadeExists } from "../../helpers/dbHelpers";
+import { changeTimeZone } from "../../helpers/dateHelpers";
 
 interface ICriarTreinosService {
   uid: string;
@@ -47,6 +48,12 @@ class CriarTreinosService {
       if (!exist_atividades) {
         throw new Error("A atividade não existe");
       }
+    }
+
+    const dataAtual = new Date();
+    changeTimeZone(dataAtual)
+    if(data <= dataAtual){
+      throw new Error("A data do agendamento não pode ser menor que a data atual");
     }
 
     const treino = await client.treinos.create({
