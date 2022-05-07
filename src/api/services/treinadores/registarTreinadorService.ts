@@ -1,5 +1,6 @@
 import { hash } from "bcrypt";
-import { checkEmail, checkMarcaExists, getFuncaoId } from "../../helpers/dbHelpers";
+import { use } from "chai";
+import { checkDonoMarca, checkEmail, checkMarcaExists, getFuncaoId } from "../../helpers/dbHelpers";
 import { getTag } from "../../helpers/tagHelpers";
 import { client } from "../../prisma/client";
 
@@ -11,21 +12,22 @@ interface IRegistarTreinadorService{
   dataNasc:Date,
   dataEntrada:Date,
   genero:number,
+  userId: string,
 }
 
 export class RegistarTreinadorService{
-  async execute({marcaId,email,nome,password,dataNasc,dataEntrada,genero}:IRegistarTreinadorService){
-    // verificar se o aluno já está registado
+  async execute({marcaId,email,nome,password,dataNasc,dataEntrada,genero, userId}:IRegistarTreinadorService){
+    let existsMarca = await checkMarcaExists(marcaId);
+    if(!existsMarca){
+      throw new Error("Marca não existe")
+    }
+    
+    // verificar se o treinador já está registado
     let existsEmail = await checkEmail(email);
     if(existsEmail){
         throw Error("Email já registado!")
     }
     
-    let existsMarca = await checkMarcaExists(marcaId);
-    if(!existsMarca){
-      throw new Error("Marca não existe")
-    }
-
     // Obter tag do aluno
     let hashtag = await getTag(nome);
 
@@ -34,6 +36,8 @@ export class RegistarTreinadorService{
     
     // obter o id da função
     let funcaoId = await getFuncaoId("Treinador")
+
+    await checkDonoMarca(marcaId, userId)
 
     const treinador = await client.users.create({
       data:{
