@@ -12,7 +12,7 @@ export class RemoverExercicioService{
                 exercicio_id:exercicioId
             }
         })
-        console.log(autorId);
+
         const isAutor = await checkAutorExercicio(autorId,exercicioId);
         if(!isAutor){
             throw new Error("O exercicio não lhe pertence");
