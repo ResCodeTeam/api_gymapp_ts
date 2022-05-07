@@ -637,6 +637,17 @@ let getMusculoExercicio = async(musculoId: string) => {
     return searchImagem.exercicio_id;
 } 
 
+let checkDestinoNotificacao = async(uId: string, notiId: string) => {
+    const searchDestino = await client.destinos_notificacao.findMany({
+        where:{
+            noti_id: notiId,
+            dest_uid: uId,
+        }
+    })
+
+    return searchDestino.length != 0;
+} 
+
 let checkMusculoExists = async (musculoId: string) => {
     const musculos = await client.musculos.findMany({
         where: {
@@ -907,6 +918,7 @@ export {
     checkImagemExercicioExists,
     getImagemExercicio,
     getMusculoExercicio,
-    getLocalMedidaMarca
+    getLocalMedidaMarca,
+    checkDestinoNotificacao
 }
 

@@ -4,11 +4,6 @@ import { VerTodosPostsUserService } from "../posts/obter/verTodosPostsUserServic
 
 export class VerMeuPerfilService{
   async execute(uid:string){
-    const existsUser=await checkUserIdExists(uid);
-    if(!existsUser){
-      throw new Error("User inexistente")
-    }
-
     const perfil = await client.users.findUnique({
       where:{
         uid

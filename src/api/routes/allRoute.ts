@@ -93,7 +93,7 @@ allRouter.get("/user/:id", verificarAutenticacao, verPerfilController.handle);
 
 
 //#region Notificacoes
-allRouter.put("/destinosNotificacao", verificarAutenticacao,alterarVistoController.handle);
+allRouter.put("/destinosNotificacao/notificacao/:id", verificarAutenticacao,alterarVistoController.handle);
 allRouter.get("/notificacoes", verificarAutenticacao, verNotificacoesController.handle);
 //#endregion
 

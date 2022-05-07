@@ -3,11 +3,7 @@ import { client } from "../../prisma/client";
 
 export class ObterDefinicoesService{
   async execute(uid:string){
-    const existsUser= await checkUserIdExists(uid);
-    if(!existsUser){
-      throw new Error("User não existe")
-    }
-
+    
     const def = await client.users.findFirst({
       where:{
         isDeleted:false,

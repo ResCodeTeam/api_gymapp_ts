@@ -4872,8 +4872,7 @@
             }
         }
     },
-    
-    "/destinosNotificacao":{
+    "/destinosNotificacao/notificacao/{notiId}":{
         "put":{
             "summary": "Alterar visto",
             "description": "Esta rota vai alterar o visto",
@@ -4883,33 +4882,22 @@
                 }
             ],
             "tags": ["Notificações"],
-            "requestBody":{
-                "content":{
-                    "application/json":{
-                        "schema":{
-                            "properties": {
-                                "notiId":{
-                                    "type": "string"
-                                },
-                                "destUid":{
-                                    "type": "string"
-                                },"visto":{
-                                    "type": "boolean"
-                                }
-                                
-                            }
-                        },
-                        "examples": {
-                            "Editar visto": {
-                                "value": {
-                                    "notiId": "1d4da8a7-aabd-4ede-b5ab-f74c3e5405a2",
-                                    "destUid": "00b27390-ad57-47de-ac18-4c2a490caa97"
-                                }
-                            }
-                        }
+            "parameters": [{
+                "name": "notiId",
+                "in": "path",
+                "description": "Id da notificação",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "Notificacao Id":{
+                        "value":"75bd8e37-7fbd-46c7-b053-acc6a0964789"
                     }
-                }
-            },
+                },
+                "style": "simple"
+
+            }],
             "responses": {
                 "500":{
                     "description": "ERROR"
