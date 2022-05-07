@@ -371,10 +371,10 @@ let checkDonoOuTreinadorGinasio = async (ginasioId: string, userId: string) => {
 
     return false;
 }
-let checkDonoMarca = async (marcaID: string, userId: string) => {
+let checkDonoMarca = async (marcaId: string, userId: string) => {
     const search = await client.marcas.findFirst({
         where: {
-            marca_id: marcaID,
+            marca_id: marcaId,
             dono_id: userId
         },
         select: {
@@ -587,6 +587,16 @@ let getGinasioMarca = async (ginasioId: string) => {
     return searchGinasio.marca_id;
 }
 
+let getModalidadeGinasio = async(modalidadeId: string) => {
+    const searchModalidade = await client.modalidades_ginasio.findFirst({
+        where:{
+            modalidade_id: modalidadeId
+        }
+    })
+
+    return searchModalidade.ginasio_id;
+}
+
 let checkMusculoExists = async (musculoId: string) => {
     const musculos = await client.musculos.findMany({
         where: {
@@ -775,6 +785,16 @@ let getMarcaAluno = async (alunoId: string) => {
     return marca.marca_id
 }
 
+let getAlunoMarca = async (alunoId: string) => {
+    const searchAluno = await client.alunos_marca.findFirst({
+        where: {
+            uid: alunoId
+        }
+    })
+
+    return searchAluno.marca_id;
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -841,6 +861,8 @@ export {
     checkIsSubmissaoDesafio,
     getGinasioAluno,
     getGinasioMarca,
-    getMarcaAluno
+    getMarcaAluno,
+    getAlunoMarca,
+    getModalidadeGinasio
 }
 

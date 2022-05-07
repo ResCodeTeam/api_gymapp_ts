@@ -68,7 +68,7 @@ adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdm
 
 //#region Alunos
 adminRouter.post("/marca/alunos/", verificarAutenticacao ,verificarAdmin,registarAlunosController.handle);
-adminRouter.put("/aluno/remover/:uId",verificarAutenticacao,verificarAdmin, removerAlunoController.handle);
+adminRouter.delete("/aluno/remover/:uId",verificarAutenticacao,verificarAdmin, removerAlunoController.handle);
 //#endregion
 
 //#region Ginasios
@@ -90,7 +90,7 @@ adminRouter.put("/marca/:marcaId",verificarAutenticacao,verificarAdmin,editarMar
 
 //#region Modalidades
 adminRouter.post("/ginasio/:id/modalidades", verificarAutenticacao , verificarAdmin,criarGinasioModalidadesController.handle);
-adminRouter.delete("/ginasio/:id/modalidades/:id", verificarAutenticacao , verificarAdmin, removerModalidadesController.handle);
+adminRouter.delete("/ginasio/:ginasioId/modalidades/:id", verificarAutenticacao , verificarAdmin, removerModalidadesController.handle);
 adminRouter.put("/ginasio/:id/modalidades/:id",verificarAutenticacao, verificarAdmin, editarModalidadesController.handle);
 adminRouter.get("/ginasio/:id/modalidades/", verificarAutenticacao, verificarAdmin, verTodasModalidadesController.handle);
 //#endregion
