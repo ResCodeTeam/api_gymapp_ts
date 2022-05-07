@@ -617,6 +617,16 @@ let getImagemExercicio = async(imagemId: string) => {
     return searchImagem.exercicio_id;
 }
 
+let getLocalMedidaMarca = async(localId: string) => {
+    const searchLocal = await client.local_medidas_marca.findFirst({
+        where:{
+            local_medida_id: localId
+        }
+    })
+
+    return searchLocal.marca_id;
+}
+
 let getMusculoExercicio = async(musculoId: string) => {
     const searchImagem = await client.exercicios_musculos.findFirst({
         where:{
@@ -896,6 +906,7 @@ export {
     getModalidadeGinasio,
     checkImagemExercicioExists,
     getImagemExercicio,
-    getMusculoExercicio
+    getMusculoExercicio,
+    getLocalMedidaMarca
 }
 
