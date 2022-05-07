@@ -9,7 +9,7 @@ interface IGinasios{
 
 export class VerTodasModalidadesService{
     async execute({ginasioId, userId}: IGinasios){
-        
+
         const exists_ginasio = checkGinasioExists(ginasioId)
         if(!exists_ginasio)
         {

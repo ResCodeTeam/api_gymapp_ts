@@ -1,11 +1,11 @@
 import { client } from "../../prisma/client";
-import { checkModalidadeNome, checkGinasioExists } from "../../helpers/dbHelpers";
+import { checkModalidadeNome, checkGinasioExists, checkDonoGinasio } from "../../helpers/dbHelpers";
 
 interface ICriarGinasioModalidadesService {
   ginasioId: string;
   nome: string;
   imagemUrl: string;
-  
+  adminId: string;
 }
 
 class CriarGinasioModalidadesService {
@@ -13,7 +13,7 @@ class CriarGinasioModalidadesService {
     ginasioId,
     nome,
     imagemUrl,
-    
+    adminId
   }: ICriarGinasioModalidadesService) {
     
     const exist_ginasio = await checkGinasioExists(ginasioId);
@@ -21,7 +21,9 @@ class CriarGinasioModalidadesService {
       throw new Error("O ginásio não existe");
     }
 
-    //verificar se a modalidade já existe
+    await checkDonoGinasio(ginasioId, adminId);
+
+
     const exist_nome = await checkModalidadeNome(nome, ginasioId);
     if (exist_nome) {
       throw new Error("A modalidade já existe");
