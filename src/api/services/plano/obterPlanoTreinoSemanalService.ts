@@ -1,4 +1,4 @@
-import { checkUserIdExists } from "../../helpers/dbHelpers";
+import { checkUserIdExists, getAlunoMarca, getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class ObterPlanoTreinoSemanalService{
@@ -11,7 +11,7 @@ export class ObterPlanoTreinoSemanalService{
     if(startDate.getTime()===endDate.getTime() || startDate.getTime() > endDate.getTime()){
       throw new Error("Intervalo de tempo invalido")
     }
-
+    
     const planos = await client.planos_treino.findMany({
       where:{
         aluno_id:uid,
