@@ -617,6 +617,16 @@ let getImagemExercicio = async(imagemId: string) => {
     return searchImagem.exercicio_id;
 }
 
+let getMusculoExercicio = async(musculoId: string) => {
+    const searchImagem = await client.exercicios_musculos.findFirst({
+        where:{
+            musculo_id: musculoId
+        }
+    })
+
+    return searchImagem.exercicio_id;
+} 
+
 let checkMusculoExists = async (musculoId: string) => {
     const musculos = await client.musculos.findMany({
         where: {
@@ -885,6 +895,7 @@ export {
     getAlunoMarca,
     getModalidadeGinasio,
     checkImagemExercicioExists,
-    getImagemExercicio
+    getImagemExercicio,
+    getMusculoExercicio
 }
 
