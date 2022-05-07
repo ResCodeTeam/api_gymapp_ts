@@ -500,6 +500,7 @@ let checkAutorExercicio = async (treinadorId, exercicioId) => {
 
     return exercicio.length != 0
 }
+
 let checkAutorTreino = async (uId, treinoId) => {
     const treino = await client.treinos.findMany({
         where: {
@@ -514,6 +515,16 @@ let checkAutorPlanoTreino = async (alunoId, planoId) => {
     const treino = await client.planos_treino.findMany({
         where: {
             aluno_id: alunoId,
+            plano_treino_id: planoId
+        }
+    })
+
+    return treino.length != 0
+}
+let checkTreinadorPlanoTreino = async (treinadorId, planoId) => {
+    const treino = await client.planos_treino.findMany({
+        where: {
+            treinador_id: treinadorId,
             plano_treino_id: planoId
         }
     })
@@ -919,6 +930,7 @@ export {
     getImagemExercicio,
     getMusculoExercicio,
     getLocalMedidaMarca,
-    checkDestinoNotificacao
+    checkDestinoNotificacao,
+    checkTreinadorPlanoTreino
 }
 
