@@ -291,6 +291,16 @@ let checkExercicioExists = async (exercicioId: string) => {
     })
     return search.length != 0;
 }
+
+let checkImagemExercicioExists = async (imagemId: string) => {
+    const search = await client.exercicios_imagens.findMany({
+        where: {
+            imagem_id: imagemId,
+        }
+    })
+    return search.length != 0;
+}
+
 let checkExercicioBlocoExists = async (exercicioBlocoId: string) => {
     const search = await client.exercicios_bloco.findMany({
         where: {
@@ -597,6 +607,16 @@ let getModalidadeGinasio = async(modalidadeId: string) => {
     return searchModalidade.ginasio_id;
 }
 
+let getImagemExercicio = async(imagemId: string) => {
+    const searchImagem = await client.exercicios_imagens.findFirst({
+        where:{
+            imagem_id: imagemId
+        }
+    })
+
+    return searchImagem.exercicio_id;
+}
+
 let checkMusculoExists = async (musculoId: string) => {
     const musculos = await client.musculos.findMany({
         where: {
@@ -863,6 +883,8 @@ export {
     getGinasioMarca,
     getMarcaAluno,
     getAlunoMarca,
-    getModalidadeGinasio
+    getModalidadeGinasio,
+    checkImagemExercicioExists,
+    getImagemExercicio
 }
 

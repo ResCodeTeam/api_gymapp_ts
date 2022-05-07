@@ -19,6 +19,7 @@ export class AdicionarExerciciosImagensService{
       throw new Error("Treinador não existe")
     }
 
+    
     const isAutor = await checkAutorExercicio(treinadorId,exercicioId);
     if(!isAutor){
       throw new Error("Não possui permissões")
