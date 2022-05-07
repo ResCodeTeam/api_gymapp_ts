@@ -6,7 +6,7 @@ export class RemoverLocalMedidaController{
     const uid = response.locals.uid;
     const localId = request.params.id;
     const marcaId = request.params.marcaId;
-
+    
     const removerLocalMedidaService = new RemoverLocalMedidaService();
     const resp = await removerLocalMedidaService.execute(uid,marcaId,localId)
 

@@ -1,4 +1,4 @@
-import { checkAutorMarca, checkMarcaExists } from "../../helpers/dbHelpers";
+import { checkAutorMarca, checkMarcaExists, getLocalMedidaMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class RemoverLocalMedidaService{
@@ -14,21 +14,27 @@ export class RemoverLocalMedidaService{
       throw new Error("Não possui autorização para realizar esta operação")
     }
 
-    await client.local_medidas_marca.delete({
-        where:{
-            local_medida_id_marca_id: {
-                marca_id: marcaId,
-                local_medida_id: localId
-            }
-        },
+    let marca = await getLocalMedidaMarca(localId);
+    if(marca == marcaId){
+        await client.local_medidas_marca.delete({
+          where:{
+              local_medida_id_marca_id: {
+                  marca_id: marcaId,
+                  local_medida_id: localId
+              }
+          },
+        })
+
+      const localMedida = await client.locais_medidas.delete({
+          where:{
+              local_medida_id: localId
+          }
       })
-
-    const localMedida = await client.locais_medidas.delete({
-        where:{
-            local_medida_id: localId
-        }
-    })
-
+    }
+    else{
+      throw new Error("O local de medida não pertence à marca")
+    }
+    
     return {"msg":"Local removido com sucesso"}
 
   }
