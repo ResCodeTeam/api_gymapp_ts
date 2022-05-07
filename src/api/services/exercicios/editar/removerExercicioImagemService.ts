@@ -19,8 +19,6 @@ export class RemoverExercicioImagemService{
     }
 
     let exercicio = await getImagemExercicio(imagemId);
-    console.log(exercicio);
-    
     if(exercicio == exercicioId){
       await client.exercicios_imagens.delete({
         where:{
