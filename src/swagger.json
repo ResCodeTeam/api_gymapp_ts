@@ -436,9 +436,6 @@
                     "application/json":{
                         "schema":{
                             "properties":{
-                                "adminId":{
-                                    "type":"string"
-                                },
                                 "nome":{
                                     "type": "string"
                                 },
@@ -446,9 +443,6 @@
                                     "type": "string"
                                 },
                                 "descricao":{
-                                    "type": "string"
-                                },
-                                "ginasioId":{
                                     "type": "string"
                                 },
                                 "imagemUrl":{
@@ -466,10 +460,8 @@
                         "examples": {
                             "Editar ginasio":{
                                 "value":{
-                                    "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
                                     "nome":"Ginásio 4",
                                     "rua":"Rua das Castanhas",
-                                    "adminId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
                                     "descricao":"null",
                                     "imagemUrl":"teste",
                                     "lat":"0",
@@ -810,10 +802,10 @@
         
         },
          "/admin/aluno/remover/{uId}":{
-            "put":{
+            "delete":{
                 "summary": "Remover aluno",
                 "description": "Esta rota vai remover um aluno",
-                "tags": ["Aluno"],
+                "tags": ["Marca"],
                 "security": [
                     {
                         "basicAuth":[]
@@ -997,9 +989,9 @@
                                     }
                                 },
                                 "examples": {
-                                    "Remover Modalidade":{
+                                    "Editar Modalidade":{
                                         "value":{
-                                            "msg":"Modalidada removida com sucesso"
+                                            "msg":"Modalidada editada com sucesso"
                                         }
                                     }
                                 }
