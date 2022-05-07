@@ -20,7 +20,6 @@ class RemoverModalidadesService {
     }
 
     let ginasio = await getModalidadeGinasio(modalidadeId);
-
     if(ginasio == ginasioId){
       await client.modalidades_ginasio.update({
         where: {

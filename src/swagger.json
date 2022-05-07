@@ -962,10 +962,8 @@
                             "examples": {
                                 "Editar Exercicio":{
                                     "value":{
-                                        "modalidade_id": "b7e38157-b226-479e-84cf-0b793b575495",
-                                        "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
                                         "nome": "Crossfit",
-                                        "imagem_url": "https://crossfit.imagem",
+                                        "imagemUrl": "https://crossfit.imagem",
                                         "isDeleted": false
                                     }
                                 }
