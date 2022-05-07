@@ -1,5 +1,5 @@
 
-import { checkUserIdExists } from "../../helpers/dbHelpers";
+import { checkPerfilPrivado, checkUserIdExists } from "../../helpers/dbHelpers";
 import { verificarAdminTreinador } from "../../middlewares/verificarAdminTreinador";
 import { client } from "../../prisma/client";
 import { VerTodasAtividadesService } from "../atividades/verTodasAtividadesService";
@@ -12,6 +12,11 @@ export class VerPerfilService{
         const exists_perfil= await checkUserIdExists(uId)
         if(!exists_perfil){
             throw new Error("Utilizador não existe")
+        }
+
+        const perfil_privado = await checkPerfilPrivado(uId)
+        if(perfil_privado){
+            throw new Error("O perfil é privado")
         }
 
         const perfil = await client.users.findMany({

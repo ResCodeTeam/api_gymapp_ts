@@ -19,6 +19,7 @@ class RemoverModalidadesService {
       throw new Error("Não possui autorização")
     }
 
+    /*
     let ginasio = await getModalidadeGinasio(modalidadeId);
     if(ginasio == ginasioId){
       await client.modalidades_ginasio.update({
@@ -33,6 +34,7 @@ class RemoverModalidadesService {
     else{
       throw new Error("A modalidade não pertence ao ginásio")
     }
+    */
 
     return {
       msg: "Modalidade removida com sucesso",
@@ -41,3 +43,4 @@ class RemoverModalidadesService {
 }
 
 export { RemoverModalidadesService };
+

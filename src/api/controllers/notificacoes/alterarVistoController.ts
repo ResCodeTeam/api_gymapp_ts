@@ -4,7 +4,8 @@ import { AlterarVistoService } from "../../services/notificacoes/alterarVistoSer
 
 export class AlterarVistoController{
     async handle(request:Request,response:Response){
-        const {notiId,destUid}=request.body;
+        const destUid = response.locals.uid;
+        const notiId = request.params.id;
         if(notiId === undefined || destUid === undefined){
             throw new Error("Pedido inválido")
         }
