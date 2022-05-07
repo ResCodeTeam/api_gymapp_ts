@@ -23,7 +23,6 @@ class CriarGinasioModalidadesService {
 
     await checkDonoGinasio(ginasioId, adminId);
 
-
     const exist_nome = await checkModalidadeNome(nome, ginasioId);
     if (exist_nome) {
       throw new Error("A modalidade já existe");

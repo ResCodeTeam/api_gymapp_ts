@@ -91,7 +91,7 @@ adminRouter.put("/marca/:marcaId",verificarAutenticacao,verificarAdmin,editarMar
 //#region Modalidades
 adminRouter.post("/ginasio/:id/modalidades", verificarAutenticacao , verificarAdmin,criarGinasioModalidadesController.handle);
 adminRouter.delete("/ginasio/:ginasioId/modalidades/:id", verificarAutenticacao , verificarAdmin, removerModalidadesController.handle);
-adminRouter.put("/ginasio/:id/modalidades/:id",verificarAutenticacao, verificarAdmin, editarModalidadesController.handle);
+adminRouter.put("/ginasio/:ginasioId/modalidades/:id",verificarAutenticacao, verificarAdmin, editarModalidadesController.handle);
 adminRouter.get("/ginasio/:id/modalidades/", verificarAutenticacao, verificarAdmin, verTodasModalidadesController.handle);
 //#endregion
 
