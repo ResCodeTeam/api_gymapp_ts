@@ -3349,17 +3349,17 @@
                 }
             }
         },
-        "/admin/notificacao/user/{destino_id}":{
+        "/admin/notificacao/user/{destinoId}":{
             "post":{
                 "summary": "Notificação para user",
-                "description": "Esta rota permite efetuar o registo de um administrador",
+                "description": "Esta rota permite enviar uma notificação para um user",
                 "security": [
                     {
                         "basicAuth":[]
                     }
                 ],
                 "parameters": [{
-                    "name": "destino_id",
+                    "name": "destinoId",
                     "in": "path",
                     "description": "id do utilizador de destino",
                     "required": true,
