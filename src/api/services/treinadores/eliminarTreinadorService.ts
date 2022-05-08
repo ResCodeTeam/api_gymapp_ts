@@ -20,9 +20,6 @@ export class EliminarTreinadorService{
         const marcaId=await getTreinadorMarca(treinador_id);
         
         const isDono = await checkDonoMarca(marcaId,userId);
-        if(!exists_id){
-            throw new Error("o user não é um treinador");
-        }
         
         const users = await client.users.update({
         data:{

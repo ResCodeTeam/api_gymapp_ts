@@ -5,6 +5,7 @@ import { RegistarTreinadorService } from "../../services/treinadores/registarTre
 export class RegistarTreinadorController{
   async handle(request:Request, response:Response){
     const marcaId = request.params.id;
+    const userId = response.locals.uid;
     let { email,nome,password,dataNasc,dataEntrada,genero } = request.body;
     if(email === undefined || nome === undefined || password === undefined || dataNasc === undefined || dataEntrada === undefined || genero === undefined){
       throw new Error("Pedido inválido")
@@ -14,7 +15,7 @@ export class RegistarTreinadorController{
     dataEntrada = new Date(dataEntrada)
 
     const registarTreinadorService = new RegistarTreinadorService();
-    const resp = await registarTreinadorService.execute( { marcaId,email,nome,password,dataNasc,dataEntrada,genero } )
+    const resp = await registarTreinadorService.execute( { marcaId,email,nome,password,dataNasc,dataEntrada,genero, userId } )
     
     response.json(resp)
   }

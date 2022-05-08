@@ -1,5 +1,5 @@
 
-import { checkGinasioExists } from "../../helpers/dbHelpers";
+import { checkDonoGinasio, checkGinasioExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class VerUmGinasioService{
@@ -9,6 +9,8 @@ export class VerUmGinasioService{
         if(!exists_ginasio){
             throw new Error("O ginásio não existe")
         }
+
+        await checkDonoGinasio(ginasioId, donoId);
 
         const ginasio = await client.ginasio.findFirst({
             where:{

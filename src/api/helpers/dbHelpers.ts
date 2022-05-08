@@ -78,6 +78,17 @@ let checkAutorPublicacoes = async (uId, publicacaoId) => {
     })
     return publicacao.length != 0;
 }
+
+let checkAutorGosto = async (uId: string, gostoId: string) => {
+    const gosto = await client.gostos_publicacao.findMany({
+        where: {
+            criador_id: uId,
+            gosto_id: gostoId
+        }
+    })
+    return gosto.length != 0;
+}
+
 let checkAutorMarca = async (uId, marcaId) => {
     const marca = await client.marcas.findMany({
         where: {
@@ -90,24 +101,34 @@ let checkAutorMarca = async (uId, marcaId) => {
 }
 
 let checkAutorSubmissaoDesafio = async (uId, submissao_id) => {
-    const marca = await client.submissoes_desafios.findMany({
+    const subDesafio = await client.submissoes_desafios.findMany({
         where: {
             treinador_id: uId,
             submissao_id: submissao_id
         }
     })
 
-    return marca.length != 0
+    return subDesafio.length != 0
 }
 
 let checkSubmissaoExists = async (submissao_id) => {
-    const marca = await client.submissoes_desafios.findMany({
+    const submissao = await client.submissoes_desafios.findMany({
         where: {
             submissao_id: submissao_id
         }
     })
 
-    return marca.length != 0
+    return submissao.length != 0
+}
+
+let checkPublicacaoExists = async (publicacaoId) => {
+    const publicacao = await client.publicacoes.findMany({
+        where: {
+            publicacao_id: publicacaoId
+        }
+    })
+
+    return publicacao.length != 0
 }
 
 let checkPlanoTreinoExists = async (planoId: string) => {
@@ -174,6 +195,34 @@ async function getUserFuncao(uid: string) {
 
     return search.funcao_id;
 }
+
+let getGinasioDesafio = async (desafioId: string) => {
+    const search = await client.desafios.findUnique({
+        where: {
+            desafio_id: desafioId
+        },
+        select: {
+            ginasio_id: true
+        }
+    });
+
+    return search.ginasio_id;
+}
+
+let getDonoMarca = async (marcaId: string) => {
+
+    const search = await client.marcas.findUnique({
+        where: {
+            marca_id: marcaId
+        },
+        select: {
+            dono_id: true
+        }
+    });
+
+    return search.dono_id;
+}
+
 let checkPostExists = async (postId: string) => {
     const search = await client.publicacoes.findMany({
         where: {
@@ -291,6 +340,16 @@ let checkExercicioExists = async (exercicioId: string) => {
     })
     return search.length != 0;
 }
+
+let checkImagemExercicioExists = async (imagemId: string) => {
+    const search = await client.exercicios_imagens.findMany({
+        where: {
+            imagem_id: imagemId,
+        }
+    })
+    return search.length != 0;
+}
+
 let checkExercicioBlocoExists = async (exercicioBlocoId: string) => {
     const search = await client.exercicios_bloco.findMany({
         where: {
@@ -371,10 +430,10 @@ let checkDonoOuTreinadorGinasio = async (ginasioId: string, userId: string) => {
 
     return false;
 }
-let checkDonoMarca = async (marcaID: string, userId: string) => {
+let checkDonoMarca = async (marcaId: string, userId: string) => {
     const search = await client.marcas.findFirst({
         where: {
-            marca_id: marcaID,
+            marca_id: marcaId,
             dono_id: userId
         },
         select: {
@@ -490,6 +549,7 @@ let checkAutorExercicio = async (treinadorId, exercicioId) => {
 
     return exercicio.length != 0
 }
+
 let checkAutorTreino = async (uId, treinoId) => {
     const treino = await client.treinos.findMany({
         where: {
@@ -504,6 +564,16 @@ let checkAutorPlanoTreino = async (alunoId, planoId) => {
     const treino = await client.planos_treino.findMany({
         where: {
             aluno_id: alunoId,
+            plano_treino_id: planoId
+        }
+    })
+
+    return treino.length != 0
+}
+let checkTreinadorPlanoTreino = async (treinadorId, planoId) => {
+    const treino = await client.planos_treino.findMany({
+        where: {
+            treinador_id: treinadorId,
             plano_treino_id: planoId
         }
     })
@@ -586,6 +656,57 @@ let getGinasioMarca = async (ginasioId: string) => {
 
     return searchGinasio.marca_id;
 }
+
+let getModalidadeGinasio = async(modalidadeId: string) => {
+    const searchModalidade = await client.modalidades_ginasio.findFirst({
+        where:{
+            modalidade_id: modalidadeId
+        }
+    })
+
+    return searchModalidade.ginasio_id;
+}
+
+let getImagemExercicio = async(imagemId: string) => {
+    const searchImagem = await client.exercicios_imagens.findFirst({
+        where:{
+            imagem_id: imagemId
+        }
+    })
+
+    return searchImagem.exercicio_id;
+}
+
+let getLocalMedidaMarca = async(localId: string) => {
+    const searchLocal = await client.local_medidas_marca.findFirst({
+        where:{
+            local_medida_id: localId
+        }
+    })
+
+    return searchLocal.marca_id;
+}
+
+let getMusculoExercicio = async(musculoId: string) => {
+    const searchImagem = await client.exercicios_musculos.findFirst({
+        where:{
+            musculo_id: musculoId
+        }
+    })
+
+    return searchImagem.exercicio_id;
+} 
+
+let checkDestinoNotificacao = async(uId: string, notiId: string) => {
+    const searchDestino = await client.destinos_notificacao.findMany({
+        where:{
+            noti_id: notiId,
+            dest_uid: uId,
+        }
+    })
+
+    return searchDestino.length != 0;
+} 
 
 let checkMusculoExists = async (musculoId: string) => {
     const musculos = await client.musculos.findMany({
@@ -775,6 +896,16 @@ let getMarcaAluno = async (alunoId: string) => {
     return marca.marca_id
 }
 
+let getAlunoMarca = async (alunoId: string) => {
+    const searchAluno = await client.alunos_marca.findFirst({
+        where: {
+            uid: alunoId
+        }
+    })
+
+    return searchAluno.marca_id;
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -841,6 +972,18 @@ export {
     checkIsSubmissaoDesafio,
     getGinasioAluno,
     getGinasioMarca,
-    getMarcaAluno
+    getMarcaAluno,
+    getAlunoMarca,
+    getModalidadeGinasio,
+    checkImagemExercicioExists,
+    getImagemExercicio,
+    getMusculoExercicio,
+    getLocalMedidaMarca,
+    checkDestinoNotificacao,
+    checkTreinadorPlanoTreino,
+    checkPublicacaoExists,
+    checkAutorGosto,
+    getGinasioDesafio,
+    getDonoMarca
 }
 
