@@ -1,8 +1,6 @@
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-
-
 export class VerAvaliacoesService{
     async execute(alunoId:string){
 
