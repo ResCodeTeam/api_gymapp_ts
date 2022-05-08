@@ -1,4 +1,4 @@
-import { checkDesafioIdExists, checkGinasioExists, checkUserIdExists, getDesafio, getMarcaGym } from "../../../helpers/dbHelpers";
+import { checkDesafioIdExists, checkGinasioExists, checkMobilidadeMarcaUser, checkUserIdExists, getDesafio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
 interface ISubmissaoDesafio{
@@ -33,8 +33,28 @@ export class SubmissaoDesafioService{
 
     const desafio = await getDesafio(desafioId);
     const gymDesafio=desafio.ginasio_id;
-
     const marca = await getMarcaGym(gymDesafio);
+    
+    const marca_treinador = await getTreinadorMarca(treinadorId)
+    if(marca_treinador != marca.marca_id){
+      throw new Error("Não tem autorização");
+    }
+
+    // para o aluno
+    const { mobilidade, id } = await checkMobilidadeMarcaUser(uid);
+    if(mobilidade){
+        if(id['marca_id'] != marca.marca_id)
+        {
+            throw new Error("Não possui permissão")
+        }
+    }
+    else{
+        if(id['ginasio_id'] != desafio.ginasio_id)
+        {
+            throw new Error("Não possui permissão")
+        }
+    }
+    
     if(!marca.mobilidade && gymDesafio != ginasioId){
       throw new Error("Entrada invalida")
     }
