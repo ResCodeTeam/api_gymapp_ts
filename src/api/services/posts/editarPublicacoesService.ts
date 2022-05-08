@@ -1,30 +1,28 @@
+import { checkAutorPublicacoes, checkPublicacaoExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 interface IPublicacao{
+    uId: string,
     publicacaoId: string,
     newData: Date,
     descricao: string
 }
 
 export class EditarPublicacaoService {
-    async execute({publicacaoId, newData, descricao} : IPublicacao){
+    async execute({uId, publicacaoId, newData, descricao} : IPublicacao){
 
-        console.log(publicacaoId)
         if ( publicacaoId == null) {
             throw new Error("Impossível aceder à publicação.");
         }
 
-        const existePublicacao = await client.publicacoes.findMany({
-            where : {
-                publicacao_id : publicacaoId,
-            },
-            select : {
-                publicacao_id : true
-            }
-        });
+        const exists = await checkPublicacaoExists(publicacaoId)
+        if(!exists){
+            throw new Error ("A publicação não existe")
+        }
 
-        if (!existePublicacao) {
-            throw new Error("Impossível encontrar a publicação");
+        const isAutor = await checkAutorPublicacoes(uId, publicacaoId)
+        if(!isAutor){
+            throw new Error ("Não possui autorização")
         }
       
         if (newData == null) {

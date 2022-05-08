@@ -18,8 +18,7 @@ export class CriarNotificacaoUserService {
       throw new Error("User inexistente")
     }
 
-    const marcaId=await getAlunoMarca(destinoId);
-    console.log(marcaId)    
+    const marcaId = await getAlunoMarca(destinoId);  
     const isDono = await checkDonoMarca(marcaId,origemId);
 
     let data = new Date();
