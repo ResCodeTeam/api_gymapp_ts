@@ -3,12 +3,6 @@ import { client } from "../../../prisma/client";
 class VerTodosPostsService {
     async execute(userId: string) {
 
-
-        const existsUser = await checkUserIdExists(userId)
-        if (!existsUser) {
-            throw new Error("Utilizador invalido")
-        }
-
         const { mobilidade, id } = await checkMobilidadeMarcaUser(userId);
 
         const funcTreinador = await getFuncaoId('Treinador')
@@ -120,9 +114,6 @@ async function getPublicacoesMarca(marcaId: string) {
                     gostos_publicacao: true
                 }
             }
-
-
-
         },
 
     })
@@ -200,8 +191,6 @@ async function getPublicacoesGym(ginasioId: string, marcaId: string) {
         },
 
     })
-
-
 
     return publicacoes
 
