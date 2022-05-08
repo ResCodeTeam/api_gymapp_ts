@@ -3262,11 +3262,6 @@
                 "summary": "Registar um Admin",
                 "description": "Esta rota permite efetuar o registo de um administrador",
                 "tags": ["Administradores"],
-                "security": [
-                    {
-                        "basicAuth":[]
-                    }
-                ],
                 "requestBody":{
                     "content": {
                         "application/json":{
