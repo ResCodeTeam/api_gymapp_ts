@@ -3257,7 +3257,7 @@
                 }
             }
         },
-        "/admin/registo":{
+        "/backend/registo":{
             "post":{
                 "summary": "Registar um Admin",
                 "description": "Esta rota permite efetuar o registo de um administrador",
@@ -3720,7 +3720,7 @@
                                 }
                             },
                             "examples": {
-                                "Registar Admin":{
+                                "Registar Aluno":{
                                     "value":{
                                         "email":"aluno1@aluno.com",
                                         "nome":"aluno1",
