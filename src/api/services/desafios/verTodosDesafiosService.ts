@@ -36,7 +36,8 @@ export class VerTodosDesafiosService{
                         data_inicio:true,
                         data_fim: true,
                         recompensa: true,
-                        descricao: true
+                        descricao: true,
+                        isEncerrado: true
                     }        
                  })
                 return desafios;
@@ -60,7 +61,8 @@ export class VerTodosDesafiosService{
                         data_inicio:true,
                         data_fim: true,
                         recompensa: true,
-                        descricao: true
+                        descricao: true,
+                        isEncerrado: true
                     }        
                  })
                 return desafios;
@@ -82,7 +84,8 @@ export class VerTodosDesafiosService{
                         data_inicio:true,
                         data_fim: true,
                         recompensa: true,
-                        descricao: true
+                        descricao: true,
+                        isEncerrado: true
                     }        
                  })
                 return desafios;
