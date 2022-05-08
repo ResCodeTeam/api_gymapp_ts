@@ -1,5 +1,5 @@
 import { client } from "../../../prisma/client";
-import { checkUserIdExists, checkGinasioExists, checkDesafioIdExists, checkTreinador, checkDesafioDisponivel } from "../../../helpers/dbHelpers";
+import { checkUserIdExists, checkGinasioExists, checkDesafioIdExists, checkTreinador, checkDesafioDisponivel, getDesafioGinasio, getMarcaGym, checkMobilidadeMarcaUser } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
 interface IAgendarDesafiosService {
@@ -35,6 +35,25 @@ export class AgendarDesafiosService {
     const desafio_disponivel = await checkDesafioDisponivel(desafioId);
     if (!desafio_disponivel) {
       throw new Error("O desafio já foi encerrado");
+    }
+
+    const ginasio_desafio = await getDesafioGinasio(desafioId);
+    const marca_desafio = (await getMarcaGym(ginasio_desafio)).marca_id;
+
+    const marca_ginasio = (await getMarcaGym(ginasioId)).marca_id;
+
+    const { mobilidade, id } = await checkMobilidadeMarcaUser(uid);
+    if(mobilidade){
+        if(id['marca_id'] != marca_ginasio || id['marca_id'] != marca_desafio)
+        {
+            throw new Error("Não possui permissão")
+        }
+    }
+    else{
+        if(id['ginasio_id'] != ginasioId || id['ginasio_id'] != ginasio_desafio)
+        {
+            throw new Error("Não possui permissão")
+        }
     }
 
     const dataAtual = new Date();
