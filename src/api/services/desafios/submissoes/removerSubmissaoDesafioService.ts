@@ -1,4 +1,4 @@
-import { checkSubmissaoExists, checkAutorSubmissaoDesafio, checkDesafioIdExists, checkIsSubmissaoDesafio } from "../../../helpers/dbHelpers";
+import { checkSubmissaoExists, checkAutorSubmissaoDesafio, checkDesafioIdExists, checkIsSubmissaoDesafio, getDesafio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
 export class RemoverSubmissaoDesafioService{
@@ -18,12 +18,16 @@ export class RemoverSubmissaoDesafioService{
     if(!exists_submissao){
       throw new Error("A submissao do desafio não existe")
     }
-    
-    const isAutorSubmissao = await checkAutorSubmissaoDesafio(uid,submissaoId);
-    if(!isAutorSubmissao){
-      throw new Error("Não possui autorização para realizar esta operação")
-    }
 
+    const desafio = await getDesafio(desafioId);
+    const gymDesafio=desafio.ginasio_id;
+    const marca = await getMarcaGym(gymDesafio);
+    
+    const marca_treinador = await getTreinadorMarca(uid)
+    if(marca_treinador != marca.marca_id){
+      throw new Error("Não tem autorização");
+    }
+    
     const submissoes = await client.submissoes_desafios.delete({
         where:{
             submissao_id: submissaoId
