@@ -854,7 +854,7 @@ let getMobilidadeMarca = async (marcaId: string) => {
         }
     })
 
-    return marca.marca_id
+    return marca.mobilidade
 }
 
 let checkIsSubmissaoDesafio = async (desafioId: string, submissaoId: string) => {
@@ -904,6 +904,26 @@ let getAlunoMarca = async (alunoId: string) => {
     })
 
     return searchAluno.marca_id;
+}
+
+let checkAlunoGinasio = async (alunoId: string) => {
+    const searchAluno = await client.aluno_ginasio.findFirst({
+        where: {
+            user_id: alunoId
+        }
+    })
+
+    return searchAluno.ginasio_id;
+}
+
+let getDesafioGinasio = async (desafioId: string) => {
+    const searchGinasio = await client.desafios.findFirst({
+        where: {
+            desafio_id: desafioId
+        }
+    })
+
+    return searchGinasio.ginasio_id;
 }
 
 export {
@@ -984,6 +1004,8 @@ export {
     checkPublicacaoExists,
     checkAutorGosto,
     getGinasioDesafio,
-    getDonoMarca
+    getDonoMarca,
+    checkAlunoGinasio,
+    getDesafioGinasio
 }
 
