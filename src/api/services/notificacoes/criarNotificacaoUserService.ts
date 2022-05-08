@@ -1,5 +1,5 @@
 import { changeTimeZone } from "../../helpers/dateHelpers";
-import { checkUserIdExists } from "../../helpers/dbHelpers"
+import { checkDonoMarca, checkUserIdExists, getAlunoMarca } from "../../helpers/dbHelpers"
 import { client } from "../../prisma/client";
 
 
@@ -12,15 +12,15 @@ interface ICriarNotifcacaoUser {
 
 export class CriarNotificacaoUserService {
   async execute({ destinoId, origemId, conteudo, tipo }: ICriarNotifcacaoUser) {
+
     const existsDestino = await checkUserIdExists(destinoId);
     if (!existsDestino) {
       throw new Error("User inexistente")
     }
 
-    const existsOrigem = await checkUserIdExists(origemId);
-    if (!existsOrigem) {
-      throw new Error("User inexistente")
-    }
+    const marcaId=await getAlunoMarca(destinoId);
+    console.log(marcaId)    
+    const isDono = await checkDonoMarca(marcaId,origemId);
 
     let data = new Date();
     changeTimeZone(data)
