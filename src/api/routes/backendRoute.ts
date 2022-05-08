@@ -9,6 +9,7 @@ import { RemoverAtividadesController } from "../controllers/atividades/removerAt
 import { EditarAtividadesController } from "../controllers/atividades/editarAtividadesController";
 import { EditarMusculoController } from "../controllers/musculos/editarMusculoController";
 import { AddMusculoController } from "../controllers/musculos/addMusculoController";
+import { RegistarAdminController } from "../controllers/admin/registarAdminControllers";
 
 
 const registarFuncoesController = new RegistarFuncoesController();
@@ -16,10 +17,13 @@ const registarCpController = new RegistarCpController();
 const criarAtividadeController = new CriarAtividadeController();
 const removerAtividadesController = new RemoverAtividadesController();
 const editarAtividadesController = new EditarAtividadesController();
-
-
 const editarMusculoController = new EditarMusculoController();
 const addMusculoController = new AddMusculoController();
+const registarAdminController = new RegistarAdminController();
+
+//#region Admin
+backendRouter.post("/registo/", registarAdminController.handle);
+//#endregion
 
 backendRouter.post("/funcoes/", registarFuncoesController.handle);
 backendRouter.post("/cp/", registarCpController.handle);

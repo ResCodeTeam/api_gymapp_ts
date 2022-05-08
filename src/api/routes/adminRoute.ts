@@ -42,7 +42,6 @@ const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
 const criarGinasioModalidadesController = new CriarGinasioModalidadesController();
 const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
-const registarAdminController = new RegistarAdminController();
 const  editarModalidadesController = new EditarModalidadesController();
 const editarMarcaController=new EditarMarcaController();
 const removerMarcaController = new RemoverMarcaController();
@@ -61,10 +60,6 @@ const removerLocalMedidaController = new RemoverLocalMedidaController();
 const criarNotificacaoMarcaController = new CriarNotificacaoMarcaController();
 const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController();
 const criarNotificacaoUserController = new CriarNotificacaoUserController();
-
-//#region Admin
-adminRouter.post("/registo/", verificarAutenticacao, verificarAdmin ,registarAdminController.handle);
-//#endregion
 
 //#region Alunos
 adminRouter.post("/marca/alunos/", verificarAutenticacao ,verificarAdmin,registarAlunosController.handle);

@@ -78,6 +78,17 @@ let checkAutorPublicacoes = async (uId, publicacaoId) => {
     })
     return publicacao.length != 0;
 }
+
+let checkAutorGosto = async (uId: string, gostoId: string) => {
+    const gosto = await client.gostos_publicacao.findMany({
+        where: {
+            criador_id: uId,
+            gosto_id: gostoId
+        }
+    })
+    return gosto.length != 0;
+}
+
 let checkAutorMarca = async (uId, marcaId) => {
     const marca = await client.marcas.findMany({
         where: {
@@ -184,6 +195,34 @@ async function getUserFuncao(uid: string) {
 
     return search.funcao_id;
 }
+
+let getGinasioDesafio = async (desafioId: string) => {
+    const search = await client.desafios.findUnique({
+        where: {
+            desafio_id: desafioId
+        },
+        select: {
+            ginasio_id: true
+        }
+    });
+
+    return search.ginasio_id;
+}
+
+let getDonoMarca = async (marcaId: string) => {
+
+    const search = await client.marcas.findUnique({
+        where: {
+            marca_id: marcaId
+        },
+        select: {
+            dono_id: true
+        }
+    });
+
+    return search.dono_id;
+}
+
 let checkPostExists = async (postId: string) => {
     const search = await client.publicacoes.findMany({
         where: {
@@ -942,6 +981,9 @@ export {
     getLocalMedidaMarca,
     checkDestinoNotificacao,
     checkTreinadorPlanoTreino,
-    checkPublicacaoExists
+    checkPublicacaoExists,
+    checkAutorGosto,
+    getGinasioDesafio,
+    getDonoMarca
 }
 
