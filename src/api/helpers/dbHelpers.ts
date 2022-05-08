@@ -687,6 +687,26 @@ let getLocalMedidaMarca = async(localId: string) => {
     return searchLocal.marca_id;
 }
 
+let getAgendamentoAvaliacoesGinasio = async(agendamentoId: string) => {
+    const ginasio = await client.agendamentos_avaliacoes.findFirst({
+        where:{
+            agendamento_id: agendamentoId
+        }
+    })
+
+    return ginasio.ginasio_id;
+}
+
+let getAgendamentoDesafiosGinasio = async(agendamentoId: string) => {
+    const ginasio = await client.agendamentos_desafios.findFirst({
+        where:{
+            agendamento_id: agendamentoId
+        }
+    })
+
+    return ginasio.ginasio_id;
+}
+
 let getMusculoExercicio = async(musculoId: string) => {
     const searchImagem = await client.exercicios_musculos.findFirst({
         where:{
@@ -1006,6 +1026,8 @@ export {
     getGinasioDesafio,
     getDonoMarca,
     checkAlunoGinasio,
-    getDesafioGinasio
+    getDesafioGinasio,
+    getAgendamentoAvaliacoesGinasio,
+    getAgendamentoDesafiosGinasio
 }
 
