@@ -90,24 +90,34 @@ let checkAutorMarca = async (uId, marcaId) => {
 }
 
 let checkAutorSubmissaoDesafio = async (uId, submissao_id) => {
-    const marca = await client.submissoes_desafios.findMany({
+    const subDesafio = await client.submissoes_desafios.findMany({
         where: {
             treinador_id: uId,
             submissao_id: submissao_id
         }
     })
 
-    return marca.length != 0
+    return subDesafio.length != 0
 }
 
 let checkSubmissaoExists = async (submissao_id) => {
-    const marca = await client.submissoes_desafios.findMany({
+    const submissao = await client.submissoes_desafios.findMany({
         where: {
             submissao_id: submissao_id
         }
     })
 
-    return marca.length != 0
+    return submissao.length != 0
+}
+
+let checkPublicacaoExists = async (publicacaoId) => {
+    const publicacao = await client.publicacoes.findMany({
+        where: {
+            publicacao_id: publicacaoId
+        }
+    })
+
+    return publicacao.length != 0
 }
 
 let checkPlanoTreinoExists = async (planoId: string) => {
@@ -931,6 +941,7 @@ export {
     getMusculoExercicio,
     getLocalMedidaMarca,
     checkDestinoNotificacao,
-    checkTreinadorPlanoTreino
+    checkTreinadorPlanoTreino,
+    checkPublicacaoExists
 }
 
