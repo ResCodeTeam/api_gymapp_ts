@@ -1,12 +1,20 @@
 import { client } from "../../../prisma/client";
-import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists } from "../../../helpers/dbHelpers";
+import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists, getAgendamentoDesafiosGinasio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 
 class RemoverIsAceiteDesafiosService {
-  async execute(agendamentoId: string) {
+  async execute(treinadorId: string, agendamentoId: string) {
 
     const exists_agendamento = await checkAgendamentoDesafiosExists(agendamentoId);
     if (!exists_agendamento) {
       throw new Error("O agendamento do desafio não existe");
+    }
+
+    const ginasio_agendamento = await getAgendamentoDesafiosGinasio(agendamentoId);
+    const marca_ginasio = (await getMarcaGym(ginasio_agendamento)).marca_id;
+    const marca_treinador = await getTreinadorMarca(treinadorId)
+
+    if(marca_ginasio != marca_treinador){
+      throw new Error("Não tem autorização")
     }
 
     const is_aceite = await checkAgendamentoDesafioIsAceiteExists(agendamentoId);
