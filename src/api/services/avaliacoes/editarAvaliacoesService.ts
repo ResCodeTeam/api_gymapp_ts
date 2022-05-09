@@ -33,8 +33,6 @@ export class EditarAvaliacaoService {
             throw new Error("Avaliação não existe")
         }
 
-
-
         if (existstreinadorIdAvaliacao != existsAvaliacao) {
             throw new Error("treinador não pertence a esta avaliação")
         } else {
@@ -128,5 +126,4 @@ export class EditarAvaliacaoService {
             return atualizarAvaliacao;
         }
     }
-
 }

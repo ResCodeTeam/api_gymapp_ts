@@ -41,7 +41,7 @@ class CriarDesafiosService {
         const marca_ginasio = (await getMarcaGym(ginasioId)).marca_id;
         const dono_marca = await getDonoMarca(marca_ginasio);
 
-        const ginasio_modalidade = await getModalidadeGinasio(modalidadeId)
+        const ginasio_modalidade = await getModalidadeGinasio(modalidadeId);
 
         // treinador
         if(funcao == treinador)

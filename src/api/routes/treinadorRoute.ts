@@ -111,7 +111,7 @@ treinadorRouter.get("/agenda/avaliacoes/", verificarAutenticacao, verificarTrein
 
 //#region PlanoTreino
 treinadorRouter.delete("/plano/:plano_id/", verificarAutenticacao, verificarTreinador, removerPlanoTreinoController.handle);
-treinadorRouter.get("/plano/:uid/:startDate/:endDate", verificarAutenticacao, verificarTreinador, obterPlanoTreinoAlunoController.handle);
+treinadorRouter.get("/plano/:id/:startDate/:endDate", verificarAutenticacao, verificarTreinador, obterPlanoTreinoAlunoController.handle);
 treinadorRouter.post("/planoTreino", verificarAutenticacao, verificarTreinador, criarPlanoTreinoController.handle);
 treinadorRouter.put("/plano/:id/", verificarAutenticacao, verificarTreinador, editarPlanoTreinoController.handle);
 //#endregion

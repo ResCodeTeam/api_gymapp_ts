@@ -623,6 +623,16 @@ let checkAutorAgendamentoDesafios = async (agendamentoId, uId) => {
     return agendamento.length != 0
 }
 
+let checkAutorGostoComentario = async (criadorId: string) => {
+    const agendamento = await client.gostos_comentario.findMany({
+        where: {
+            criador_id: criadorId,
+        }
+    })
+
+    return agendamento.length != 0
+}
+
 let checkTreinadorGinasio = async (ginasioId: string, treinadorId: string) => {
     const searchMarca = await client.ginasio.findUnique({
         where: {
@@ -658,6 +668,17 @@ let getTreinadorMarca = async (treinadorId: string) => {
     })
 
     return searchTreinador.marca_id;
+}
+
+let getAdminMarca = async (donoId: string) => {
+
+    const marca = await client.marcas.findFirst({
+        where: {
+            dono_id: donoId
+        }
+    })
+
+    return marca.marca_id;
 }
 
 let getGinasioMarca = async (ginasioId: string) => {
@@ -959,6 +980,16 @@ let getDesafioGinasio = async (desafioId: string) => {
     return searchGinasio.ginasio_id;
 }
 
+let getPublicacaoGinasio = async (publicacaoId: string) => {
+    const searchGinasio = await client.publicacoes.findFirst({
+        where: {
+            publicacao_id: publicacaoId
+        }
+    })
+
+    return searchGinasio.ginasio_id;
+}
+
 let getAutorExercicio = async (exercicioId: string) => {
     const searchGinasio = await client.exercicios.findFirst({
         where: {
@@ -967,6 +998,16 @@ let getAutorExercicio = async (exercicioId: string) => {
     })
 
     return searchGinasio.autor_id;
+}
+
+let getTreinadorPlano = async (planoId: string) => {
+    const searchGinasio = await client.planos_treino.findFirst({
+        where: {
+            plano_treino_id: planoId
+        }
+    })
+
+    return searchGinasio.treinador_id;
 }
 
 export {
@@ -1053,6 +1094,10 @@ export {
     getAgendamentoAvaliacoesGinasio,
     getAgendamentoDesafiosGinasio,
     getAutorExercicio,
-    checkAutorAvaliacao
+    getPublicacaoGinasio,
+    getTreinadorPlano,
+    checkAutorAvaliacao,
+    getAdminMarca,
+    checkAutorGostoComentario
 }
 
