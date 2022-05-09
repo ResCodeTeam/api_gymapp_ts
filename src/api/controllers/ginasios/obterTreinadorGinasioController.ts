@@ -4,10 +4,11 @@ import { VerTreinadorGinasioService } from "../../services/ginasios/obterTreinad
 export class VerTreinadorGinasioController{
  
     async handle(request:Request,response:Response){
+        const uId = response.locals.uid;
         const marcaId = request.params.id;
 
         const verTreinadorGinasioService = new VerTreinadorGinasioService();
-        const resp = await verTreinadorGinasioService.execute(marcaId);
+        const resp = await verTreinadorGinasioService.execute(uId, marcaId);
         response.json(resp)
     }
 }
