@@ -1,4 +1,4 @@
-import { checkAutorAvaliacao, checkAvaliacoesExists, checkTreinador, getAlunoMarca, getMobilidadeMarca, getTreinadorMarca } from "../../helpers/dbHelpers";
+import { checkAutorAvaliacao, checkAvaliacoesExists, getAlunoMarca, getMobilidadeMarca, getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 interface IAvaliacao {
