@@ -6,6 +6,7 @@ import { EditarDesafioService } from "../../services/desafios/editarDesafiosServ
 export class EditarDesafioController {
     async handle(request: Request, response: Response) {
         const editarDesafioService = new EditarDesafioService()
+        const uId = response.locals.uid;
 
         const data = {
             nome: request.body.nome,
@@ -29,7 +30,7 @@ export class EditarDesafioController {
             throw new Error("Data de fim deve ser posterior à data de início")
         }
 
-        const resp = await editarDesafioService.execute(data, desafioId)
+        const resp = await editarDesafioService.execute(uId, data, desafioId)
 
         response.json(resp);
     }

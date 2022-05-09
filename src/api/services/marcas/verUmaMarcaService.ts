@@ -1,5 +1,5 @@
 
-import { checkMarcaExists, checkAutorMarca } from "../../helpers/dbHelpers";
+import { checkMarcaExists, checkAutorMarca, getDonoMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 interface IMarca{
@@ -16,14 +16,12 @@ export class VerUmaMarcaService{
             throw new Error("A marca não existe")
         }
 
-        const autor_marca = await client.marcas.findUnique({
-            where:{
-                marca_id:marcaId
-            }
-          })
-        const isAutor = await checkAutorMarca(donoId,marcaId);
-          if(!isAutor){
-            throw new Error("A marca não lhe pertence");
+        const dono_marca = await getDonoMarca(marcaId);
+
+        console.log(donoId)
+        console.log(dono_marca)
+        if(donoId != dono_marca){
+            throw new Error ("Não possui autorização")
         }
 
         const marca = await client.marcas.findFirst({

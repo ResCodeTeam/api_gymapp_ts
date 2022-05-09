@@ -3,6 +3,7 @@ import { EncerrarDesafiosService } from "../../services/desafios/encerrarDesafio
 
 export class EncerrarDesafiosController{
     async handle(request : Request, response : Response) {
+        const uId = response.locals.uid;
         const desafioId = request.params.id;
         const { isEncerrado } = request.body;
         if(isEncerrado === undefined){
@@ -12,6 +13,7 @@ export class EncerrarDesafiosController{
         const encerrarDesafiosService = new EncerrarDesafiosService();
 
         const resp = await encerrarDesafiosService.execute({
+            uId,
             isEncerrado, 
             desafioId
         });

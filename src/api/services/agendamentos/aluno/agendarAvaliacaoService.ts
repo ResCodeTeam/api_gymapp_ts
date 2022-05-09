@@ -1,5 +1,5 @@
 import { client } from "../../../prisma/client";
-import { checkUserIdExists, checkGinasioExists, checkTreinador } from "../../../helpers/dbHelpers";
+import { checkUserIdExists, checkGinasioExists, checkTreinador, getMarcaGym, checkMobilidadeMarcaUser } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
 interface IAgendarAvaliacaoService {
@@ -14,15 +14,25 @@ export class AgendarAvaliacaoService {
     dataAgendamento,
     ginasioId,
   }: IAgendarAvaliacaoService) {
-    
-    const exists_user = await checkUserIdExists(uid);
-    if (!exists_user) {
-      throw new Error("O utilizador não existe");
-    }
 
     const exist_gym = await checkGinasioExists(ginasioId);
     if (!exist_gym){
       throw new Error("O ginásio não existe");
+    }
+
+    const marca_ginasio = (await getMarcaGym(ginasioId)).marca_id;
+    const { mobilidade, id } = await checkMobilidadeMarcaUser(uid);
+    if(mobilidade){
+        if(id['marca_id'] != marca_ginasio)
+        {
+            throw new Error("Não possui permissão")
+        }
+    }
+    else{
+        if(id['ginasio_id'] != ginasioId)
+        {
+            throw new Error("Não possui permissão")
+        }
     }
 
     const dataAtual = new Date();

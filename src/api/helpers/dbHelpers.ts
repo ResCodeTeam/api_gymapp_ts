@@ -700,6 +700,26 @@ let getLocalMedidaMarca = async (localId: string) => {
     return searchLocal.marca_id;
 }
 
+let getAgendamentoAvaliacoesGinasio = async (agendamentoId: string) => {
+    const ginasio = await client.agendamentos_avaliacoes.findFirst({
+        where: {
+            agendamento_id: agendamentoId
+        }
+    })
+
+    return ginasio.ginasio_id;
+}
+
+let getAgendamentoDesafiosGinasio = async (agendamentoId: string) => {
+    const ginasio = await client.agendamentos_desafios.findFirst({
+        where: {
+            agendamento_id: agendamentoId
+        }
+    })
+
+    return ginasio.ginasio_id;
+}
+
 let getMusculoExercicio = async (musculoId: string) => {
     const searchImagem = await client.exercicios_musculos.findFirst({
         where: {
@@ -867,7 +887,7 @@ let getMobilidadeMarca = async (marcaId: string) => {
         }
     })
 
-    return marca.marca_id
+    return marca.mobilidade
 }
 
 let checkIsSubmissaoDesafio = async (desafioId: string, submissaoId: string) => {
@@ -917,6 +937,36 @@ let getAlunoMarca = async (alunoId: string) => {
     })
 
     return searchAluno.marca_id;
+}
+
+let checkAlunoGinasio = async (alunoId: string) => {
+    const searchAluno = await client.aluno_ginasio.findFirst({
+        where: {
+            user_id: alunoId
+        }
+    })
+
+    return searchAluno.ginasio_id;
+}
+
+let getDesafioGinasio = async (desafioId: string) => {
+    const searchGinasio = await client.desafios.findFirst({
+        where: {
+            desafio_id: desafioId
+        }
+    })
+
+    return searchGinasio.ginasio_id;
+}
+
+let getAutorExercicio = async (exercicioId: string) => {
+    const searchGinasio = await client.exercicios.findFirst({
+        where: {
+            exercicio_id: exercicioId
+        }
+    })
+
+    return searchGinasio.autor_id;
 }
 
 export {
@@ -998,6 +1048,11 @@ export {
     checkAutorGosto,
     getGinasioDesafio,
     getDonoMarca,
-    checkAutorAvaliacao,
+    checkAlunoGinasio,
+    getDesafioGinasio,
+    getAgendamentoAvaliacoesGinasio,
+    getAgendamentoDesafiosGinasio,
+    getAutorExercicio,
+    checkAutorAvaliacao
 }
 

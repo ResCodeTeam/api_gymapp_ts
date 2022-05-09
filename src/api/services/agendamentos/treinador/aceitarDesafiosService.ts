@@ -1,5 +1,5 @@
 import { client } from "../../../prisma/client";
-import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists } from "../../../helpers/dbHelpers";
+import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists, getAgendamentoAvaliacoesGinasio, getMarcaGym, getTreinadorMarca, getAgendamentoDesafiosGinasio } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
 class AceitarDesafiosService {
@@ -12,6 +12,14 @@ class AceitarDesafiosService {
     const is_aceite = await checkAgendamentoDesafioIsAceiteExists(agendamentoId);
     if (!is_aceite) {
       throw new Error("O pedido de agendamento já foi aceite");
+    }
+
+    const ginasio_agendamento = await getAgendamentoDesafiosGinasio(agendamentoId);
+    const marca_ginasio = (await getMarcaGym(ginasio_agendamento)).marca_id;
+    const marca_treinador = await getTreinadorMarca(treinadorId)
+
+    if(marca_ginasio != marca_treinador){
+      throw new Error("Não tem autorização")
     }
 
     const agendamentos = await client.agendamentos_desafios.update({
