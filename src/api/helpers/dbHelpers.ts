@@ -550,6 +550,17 @@ let checkAutorExercicio = async (treinadorId, exercicioId) => {
     return exercicio.length != 0
 }
 
+let checkAutorAvaliacao = async (treinadorId) => {
+    const exercicio = await client.avaliacoes.findMany({
+        where: {
+            treinador_id: treinadorId
+
+        }
+    })
+
+    return exercicio.length != 0
+}
+
 let checkAutorTreino = async (uId, treinoId) => {
     const treino = await client.treinos.findMany({
         where: {
@@ -622,6 +633,8 @@ let checkTreinadorGinasio = async (ginasioId: string, treinadorId: string) => {
         }
     })
 
+
+
     const searchTreinador = await client.treinadores_marca.findMany({
         where: {
             marca_id: searchMarca.marca_id,
@@ -649,7 +662,7 @@ let getTreinadorMarca = async (treinadorId: string) => {
 
 let getGinasioMarca = async (ginasioId: string) => {
     const searchGinasio = await client.ginasio.findFirst({
-        where:{
+        where: {
             ginasio_id: ginasioId
         }
     })
@@ -657,9 +670,9 @@ let getGinasioMarca = async (ginasioId: string) => {
     return searchGinasio.marca_id;
 }
 
-let getModalidadeGinasio = async(modalidadeId: string) => {
+let getModalidadeGinasio = async (modalidadeId: string) => {
     const searchModalidade = await client.modalidades_ginasio.findFirst({
-        where:{
+        where: {
             modalidade_id: modalidadeId
         }
     })
@@ -667,9 +680,9 @@ let getModalidadeGinasio = async(modalidadeId: string) => {
     return searchModalidade.ginasio_id;
 }
 
-let getImagemExercicio = async(imagemId: string) => {
+let getImagemExercicio = async (imagemId: string) => {
     const searchImagem = await client.exercicios_imagens.findFirst({
-        where:{
+        where: {
             imagem_id: imagemId
         }
     })
@@ -677,9 +690,9 @@ let getImagemExercicio = async(imagemId: string) => {
     return searchImagem.exercicio_id;
 }
 
-let getLocalMedidaMarca = async(localId: string) => {
+let getLocalMedidaMarca = async (localId: string) => {
     const searchLocal = await client.local_medidas_marca.findFirst({
-        where:{
+        where: {
             local_medida_id: localId
         }
     })
@@ -687,26 +700,26 @@ let getLocalMedidaMarca = async(localId: string) => {
     return searchLocal.marca_id;
 }
 
-let getMusculoExercicio = async(musculoId: string) => {
+let getMusculoExercicio = async (musculoId: string) => {
     const searchImagem = await client.exercicios_musculos.findFirst({
-        where:{
+        where: {
             musculo_id: musculoId
         }
     })
 
     return searchImagem.exercicio_id;
-} 
+}
 
-let checkDestinoNotificacao = async(uId: string, notiId: string) => {
+let checkDestinoNotificacao = async (uId: string, notiId: string) => {
     const searchDestino = await client.destinos_notificacao.findMany({
-        where:{
+        where: {
             noti_id: notiId,
             dest_uid: uId,
         }
     })
 
     return searchDestino.length != 0;
-} 
+}
 
 let checkMusculoExists = async (musculoId: string) => {
     const musculos = await client.musculos.findMany({
@@ -984,6 +997,7 @@ export {
     checkPublicacaoExists,
     checkAutorGosto,
     getGinasioDesafio,
-    getDonoMarca
+    getDonoMarca,
+    checkAutorAvaliacao,
 }
 
