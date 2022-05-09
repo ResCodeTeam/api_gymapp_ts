@@ -42,7 +42,7 @@ const registarMarcaGinasiosController = new RegistarMarcaGinasiosController();
 const criarGinasioModalidadesController = new CriarGinasioModalidadesController();
 const removerModalidadesController = new RemoverModalidadesController();
 const eliminarTreinadorController = new EliminarTreinadorController();
-const  editarModalidadesController = new EditarModalidadesController();
+const editarModalidadesController = new EditarModalidadesController();
 const editarMarcaController=new EditarMarcaController();
 const removerMarcaController = new RemoverMarcaController();
 const registarTreinadorController = new RegistarTreinadorController();
@@ -72,7 +72,7 @@ adminRouter.delete("/ginasio/:id/", verificarAutenticacao, verificarAdmin, remov
 adminRouter.get("/ginasio/:id/", verificarAutenticacao, verificarAdmin, verUmGinasioController.handle);
 adminRouter.get("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, verTodosGinasiosController.handle);
 adminRouter.put("/ginasio/editar/:ginasioId",verificarAutenticacao,verificarAdmin,editarGinasioController.handle);
-adminRouter.get("/ginasio/treinador/ver/:marcaId", verificarAutenticacao,verificarAdmin,verTreinadorGinasioController.handle);
+adminRouter.get("/ginasio/treinador/ver/:id", verificarAutenticacao,verificarAdmin,verTreinadorGinasioController.handle);
 //#endregion
 
 //#region Marcastreinador
