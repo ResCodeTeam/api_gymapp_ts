@@ -6,6 +6,7 @@ export class EditarAvaliacaoController {
     async handle(request: Request, response: Response) {
         //Declarar Serviço
         const editarAvaliacaoService = new EditarAvaliacaoService()
+        const treinadorId= response.locals.uid;
 
         //Pedir request.body (Request)
         const data = {

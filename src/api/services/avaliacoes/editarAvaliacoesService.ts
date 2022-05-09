@@ -22,17 +22,18 @@ interface IAvaliacao {
 }
 
 export class EditarAvaliacaoService {
-    async execute(dados: IAvaliacao, avaliacao_id: string, treinadorId: string, alunoId: string, uid: string, marcaId: string) {
+    async execute(dados: IAvaliacao, avaliacao_id: string) {
 
-        const existstreinadorIdAvaliacao = await checkAutorAvaliacao(treinadorId);
+        /*const existstreinadorIdAvaliacao = await checkAutorAvaliacao(treinadorId);
         if (!existstreinadorIdAvaliacao) {
             throw new Error("Treinador pertence há avaliação")
-        }
+        }*/
         const existsAvaliacao = await checkAvaliacoesExists(avaliacao_id)
         if (!existsAvaliacao) {
             throw new Error("Avaliação não existe")
         }
 
+        /*
         const mobilidade = await getMobilidadeMarca(marcaId)
         const alunoMarca = await getAlunoMarca(alunoId);
         const treinadorMarca = await getTreinadorMarca(uid);
@@ -128,7 +129,6 @@ export class EditarAvaliacaoService {
             })
 
             return atualizarAvaliacao;
-        }
+        }*/
     }
-
 }
