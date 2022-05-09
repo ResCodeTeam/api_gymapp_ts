@@ -26,7 +26,7 @@ export class EditarPerfilService {
   } : IEditarPerfil){
     const existsUser = await checkUserIdExists(uId);
     if(!existsUser){
-      throw new Error("Utilizaor inexistente")
+      throw new Error("Utilizador inexistente")
     }
 
 

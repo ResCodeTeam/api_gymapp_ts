@@ -623,6 +623,16 @@ let checkAutorAgendamentoDesafios = async (agendamentoId, uId) => {
     return agendamento.length != 0
 }
 
+let checkAutorGostoComentario = async (criadorId: string) => {
+    const agendamento = await client.gostos_comentario.findMany({
+        where: {
+            criador_id: criadorId,
+        }
+    })
+
+    return agendamento.length != 0
+}
+
 let checkTreinadorGinasio = async (ginasioId: string, treinadorId: string) => {
     const searchMarca = await client.ginasio.findUnique({
         where: {
@@ -658,6 +668,17 @@ let getTreinadorMarca = async (treinadorId: string) => {
     })
 
     return searchTreinador.marca_id;
+}
+
+let getAdminMarca = async (donoId: string) => {
+
+    const marca = await client.marcas.findFirst({
+        where: {
+            dono_id: donoId
+        }
+    })
+
+    return marca.marca_id;
 }
 
 let getGinasioMarca = async (ginasioId: string) => {
@@ -1075,6 +1096,8 @@ export {
     getAutorExercicio,
     getPublicacaoGinasio,
     getTreinadorPlano,
-    checkAutorAvaliacao
+    checkAutorAvaliacao,
+    getAdminMarca,
+    checkAutorGostoComentario
 }
 
