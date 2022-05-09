@@ -3,7 +3,7 @@ import { RemoverAvaliacoesService } from "../../services/avaliacoes/removerAvali
 
 export class RemoverAvaliacaoController {
     async handle(request: Request, response: Response) {
-
+        const treinadorId = response.locals.uid
         //Declarar Serviço
         const removerAvaliacaoService = new RemoverAvaliacoesService()
 
@@ -11,10 +11,10 @@ export class RemoverAvaliacaoController {
         const avaliacao_id = request.params.id
 
         //Utilizar Serviço
-        const resp = await removerAvaliacaoService.execute(avaliacao_id)
+        const resp = await removerAvaliacaoService.execute(avaliacao_id, treinadorId)
 
         //Enviar Resposta
-        if(resp == "404"){
+        if (resp == "404") {
             response.status(404).json("Não existe avaliação com o id fornecido")
         }
         response.json(resp)
