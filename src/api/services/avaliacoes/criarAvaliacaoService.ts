@@ -50,7 +50,7 @@ export class CriarAvaliacaoService {
     const treinadorMarca = await getTreinadorMarca(treinadorId);
 
     if (alunoMarca != treinadorMarca) {
-      throw new Error("Entidades de diferentes marcas, não é possivel realizar avaliação")
+      throw new Error("Não é possivel criar avaliação")
     } else {
 
 
