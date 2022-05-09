@@ -31,42 +31,28 @@ export class EncerrarDesafiosService {
         if(funcao == treinador)
         {
             const marca_treinador = await getTreinadorMarca(uId)
-            if(marca_treinador == marca_ginasio){
-                await client.desafios.update({
-                    where : {
-                        desafio_id : desafioId
-                    },
-                    data: {
-                        isEncerrado
-                    }
-                });
-                return {
-                    message: "Desafio encerrado com sucesso."
-                };
-            }
-            else{
+            if(marca_treinador != marca_ginasio){
                 throw new Error("Não tem autorização")
             }  
         }
         // admin
         else{
-            if(uId == dono_marca)
+            if(uId != dono_marca)
             {
-                await client.desafios.update({
-                    where : {
-                        desafio_id : desafioId
-                    },
-                    data: {
-                        isEncerrado
-                    }
-                });
-                return {
-                    message: "Desafio encerrado com sucesso."
-                };
-            }
-            else {
                 throw new Error("Não tem autorização")
             }
         }
+
+        await client.desafios.update({
+            where : {
+                desafio_id : desafioId
+            },
+            data: {
+                isEncerrado
+            }
+        });
+        return {
+            message: "Desafio encerrado com sucesso."
+        };
     }
 }

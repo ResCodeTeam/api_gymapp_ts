@@ -16,7 +16,6 @@ export class EditarModalidadesService {
       throw new Error("A modalidade não existe");
     }
 
-    console.log(ginasioId)
     const existsGinasio = await checkGinasioExists(ginasioId);
     if(!existsGinasio){
       throw new Error("Ginasio não existe")
