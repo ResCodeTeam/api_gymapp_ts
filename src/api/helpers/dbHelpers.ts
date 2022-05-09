@@ -946,6 +946,16 @@ let getDesafioGinasio = async (desafioId: string) => {
     return searchGinasio.ginasio_id;
 }
 
+let getPublicacaoGinasio = async (publicacaoId: string) => {
+    const searchGinasio = await client.publicacoes.findFirst({
+        where: {
+            publicacao_id: publicacaoId
+        }
+    })
+
+    return searchGinasio.ginasio_id;
+}
+
 let getAutorExercicio = async (exercicioId: string) => {
     const searchGinasio = await client.exercicios.findFirst({
         where: {
@@ -954,6 +964,16 @@ let getAutorExercicio = async (exercicioId: string) => {
     })
 
     return searchGinasio.autor_id;
+}
+
+let getTreinadorPlano = async (planoId: string) => {
+    const searchGinasio = await client.planos_treino.findFirst({
+        where: {
+            plano_treino_id: planoId
+        }
+    })
+
+    return searchGinasio.treinador_id;
 }
 
 export {
@@ -1039,6 +1059,8 @@ export {
     getDesafioGinasio,
     getAgendamentoAvaliacoesGinasio,
     getAgendamentoDesafiosGinasio,
-    getAutorExercicio
+    getAutorExercicio,
+    getPublicacaoGinasio,
+    getTreinadorPlano
 }
 

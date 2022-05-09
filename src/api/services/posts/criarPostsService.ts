@@ -31,6 +31,8 @@ class CriarPostsService {
       if(!exists_user){
         throw new Error("O utilizador não existe!");
       }
+
+      
  
       let post : publicacoes;
       if((criadorId != null && ginasioId != null)){

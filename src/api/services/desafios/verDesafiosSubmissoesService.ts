@@ -16,7 +16,7 @@ export class VerDesafiosSubmissoesService {
         const ginasio_desafio = await getDesafioGinasio(desafioId);
         const marca_ginasio = (await getMarcaGym(ginasio_desafio)).marca_id;
         const dono_marca = await getDonoMarca(marca_ginasio);
-
+        
         // treinador
         if(funcao == treinador)
         {

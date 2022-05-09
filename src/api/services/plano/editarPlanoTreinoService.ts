@@ -1,4 +1,4 @@
-import { checkPlanoTreinoExists } from "../../helpers/dbHelpers";
+import { checkModalidadeExists, checkPlanoTreinoExists, getMarcaGym, getModalidadeGinasio, getTreinadorMarca, getTreinadorPlano } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 import { Bloco } from "../../Providers/blocoProvider";
 import { CriarPlanoTreinoService } from "./criarPlanoTreinoService";
@@ -19,6 +19,14 @@ export class EditarPlanoTreinoService{
       throw new Error("Plano de treino não existe")
     }
 
+    const autor = await getTreinadorPlano(planoId);  
+    const marca_treinador_plano = await getTreinadorMarca(autor)
+    const marca_treinador = await getTreinadorMarca(treinadorId)
+    
+    if(marca_treinador_plano != marca_treinador){
+      throw new Error("Não tem autorização");
+    }
+    
     await client.planos_treino.delete({
       where:{
         plano_treino_id:planoId

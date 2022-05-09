@@ -1,5 +1,5 @@
 import { client } from "../../prisma/client";
-import { checkPlanoTreinoExists, checkTreinadorPlanoTreino } from "../../helpers/dbHelpers";
+import { checkPlanoTreinoExists, checkTreinadorPlanoTreino, getTreinadorMarca, getTreinadorPlano } from "../../helpers/dbHelpers";
 
 class RemoverPlanoTreinoService {
   async execute(treinadorId: string, planoId: string) {
@@ -9,16 +9,14 @@ class RemoverPlanoTreinoService {
       throw new Error("O plano de treino não existe");
     }
 
-    const plano = await client.planos_treino.findUnique({
-      where:{
-          plano_treino_id:planoId
-      }
-    })
-    const isAutor = await checkTreinadorPlanoTreino(treinadorId,planoId);
-    if(!isAutor){
-      throw new Error("O plano de treino não lhe pertence");
-    }
+    const autor = await getTreinadorPlano(planoId);  
+    const marca_treinador_plano = await getTreinadorMarca(autor)
+    const marca_treinador = await getTreinadorMarca(treinadorId)
     
+    if(marca_treinador_plano != marca_treinador){
+      throw new Error("Não tem autorização");
+    }
+
     await client.planos_treino.update({
      where: {
        plano_treino_id: planoId

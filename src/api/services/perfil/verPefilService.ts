@@ -1,5 +1,5 @@
 
-import { checkPerfilPrivado, checkUserIdExists } from "../../helpers/dbHelpers";
+import { checkPerfilPrivado, checkUserIdExists, getDesafioGinasio, getDonoMarca, getFuncaoId, getMarcaGym, getUserFuncao } from "../../helpers/dbHelpers";
 import { verificarAdminTreinador } from "../../middlewares/verificarAdminTreinador";
 import { client } from "../../prisma/client";
 import { VerTodasAtividadesService } from "../atividades/verTodasAtividadesService";
@@ -18,6 +18,12 @@ export class VerPerfilService{
         if(perfil_privado){
             throw new Error("O perfil é privado")
         }
+
+        const funcao_user = await getUserFuncao(auId);
+        const treinador = await getFuncaoId("Treinador");
+        const admin = await getFuncaoId("Administrador");
+
+
 
         const perfil = await client.users.findMany({
             where:{
