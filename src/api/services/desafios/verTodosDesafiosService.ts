@@ -25,74 +25,37 @@ export class VerTodosDesafiosService{
         if(funcao == treinador)
         {
             const marca_treinador = await getTreinadorMarca(uId)
-            if(marca_treinador == marca_ginasio){
-                const desafios = await client.desafios.findMany({
-                    where:{
-                        ginasio_id: ginasioId,
-                        isDeleted: false
-        
-                    }, select:{
-                        nome:true,
-                        data_inicio:true,
-                        data_fim: true,
-                        recompensa: true,
-                        descricao: true,
-                        isEncerrado: true
-                    }        
-                 })
-                return desafios;
-            }
-            else{
+            if(marca_treinador != marca_ginasio){
                 throw new Error("Não tem autorização")
             }
         }
         // aluno
         else if(funcao == aluno){
             const aluno_marca = await getAlunoMarca(uId);
-            console.log(aluno_marca)
-            if(aluno_marca == marca_ginasio){
-                const desafios = await client.desafios.findMany({
-                    where:{
-                        ginasio_id: ginasioId,
-                        isDeleted: false
-        
-                    }, select:{
-                        nome:true,
-                        data_inicio:true,
-                        data_fim: true,
-                        recompensa: true,
-                        descricao: true,
-                        isEncerrado: true
-                    }        
-                 })
-                return desafios;
-            }
-            else{
+            if(aluno_marca != marca_ginasio){
                 throw new Error("Não tem autorização")
             }
         }
         else{
-            if(uId == dono_marca)
-            {
-                const desafios = await client.desafios.findMany({
-                    where:{
-                        ginasio_id: ginasioId,
-                        isDeleted: false
-        
-                    }, select:{
-                        nome:true,
-                        data_inicio:true,
-                        data_fim: true,
-                        recompensa: true,
-                        descricao: true,
-                        isEncerrado: true
-                    }        
-                 })
-                return desafios;
-            }
-            else {
+            if(uId != dono_marca){
                 throw new Error("Não tem autorização")
             }
         }
+
+        const desafios = await client.desafios.findMany({
+            where:{
+                ginasio_id: ginasioId,
+                isDeleted: false
+
+            }, select:{
+                nome:true,
+                data_inicio:true,
+                data_fim: true,
+                recompensa: true,
+                descricao: true,
+                isEncerrado: true
+            }        
+         })
+        return desafios;
     }
 }

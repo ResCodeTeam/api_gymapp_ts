@@ -946,6 +946,16 @@ let getDesafioGinasio = async (desafioId: string) => {
     return searchGinasio.ginasio_id;
 }
 
+let getAutorExercicio = async (exercicioId: string) => {
+    const searchGinasio = await client.exercicios.findFirst({
+        where: {
+            exercicio_id: exercicioId
+        }
+    })
+
+    return searchGinasio.autor_id;
+}
+
 export {
     checkEmail,
     checkUserIdExists,
@@ -1028,6 +1038,7 @@ export {
     checkAlunoGinasio,
     getDesafioGinasio,
     getAgendamentoAvaliacoesGinasio,
-    getAgendamentoDesafiosGinasio
+    getAgendamentoDesafiosGinasio,
+    getAutorExercicio
 }
 

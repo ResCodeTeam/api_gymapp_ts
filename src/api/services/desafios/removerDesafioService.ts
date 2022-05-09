@@ -26,36 +26,26 @@ export class RemoverDesafioService {
         if(funcao == treinador)
         {  
             const marca_treinador = await getTreinadorMarca(uId)
-            if(marca_treinador == marca_ginasio){
-                const desafioDeleted = await client.desafios.update({
-                    where:{desafio_id: desafio_id},
-                    data: {
-                        isDeleted : true
-                    }
-                })
-        
-                return {msg :"O desafio foi eliminado com sucesso"};
-            }
-            else{
+            if(marca_treinador != marca_ginasio)
+            {       
                 throw new Error("Não tem autorização")
             }
         }
         // admin
         else{
-            if(uId == dono_marca)
+            if(uId != dono_marca)
             {
-                const desafioDeleted = await client.desafios.update({
-                    where:{desafio_id: desafio_id},
-                    data: {
-                        isDeleted : true
-                    }
-                })
-        
-                return {msg :"O desafio foi eliminado com sucesso"};
-            }
-            else {
                 throw new Error("Não tem autorização")
             }
         }
+
+        const desafioDeleted = await client.desafios.update({
+            where:{desafio_id: desafio_id},
+            data: {
+                isDeleted : true
+            }
+        })
+
+        return {msg :"O desafio foi eliminado com sucesso"};
     }
 }

@@ -27,21 +27,6 @@ export class EditarExercicioService {
             throw new Error("O exercicio não lhe pertence");
         }
 
-        //if(data.autorId == exercicio.autor_id){
-        //    const atualizarExercicio = await client.exercicios.update({
-        //        where:{
-        //            exercicio_id:data.exercicioId
-        //        },
-        //        data:{
-        //            nome: data.nome,
-        //            descricao: data.descricao,
-        //            autor_id: data.autorId,
-        //            is_tempo: data.isTempo
-        //        }
-        //    })
-        //    return atualizarExercicio
-        //}
-        //else throw new Error ("O exercício não lhe pertence")
         const atualizarExercicio = await client.exercicios.update({
             where:{
                 exercicio_id:data.exercicioId
