@@ -13,22 +13,22 @@ export class VerPerfilService{
         if(!exists_perfil){
             throw new Error("Utilizador não existe")
         }
-
+        console.log(456)
         const perfil_privado = await checkPerfilPrivado(uId)
         if(perfil_privado){
             throw new Error("O perfil é privado")
         }
+        console.log(789)
 
         const funcao_user_autenticado = await getUserFuncao(auId);
-        const treinador_autenticado = await getFuncaoId("Treinador");
-        const admin_autenticado = await getFuncaoId("Administrador");
-
-        const funcao_user = await getUserFuncao(uId);
         const treinador = await getFuncaoId("Treinador");
         const admin = await getFuncaoId("Administrador");
 
+        const funcao_user = await getUserFuncao(uId);
+
+
         // Treinador
-        if(funcao_user_autenticado == treinador_autenticado)
+        if(funcao_user_autenticado == treinador)
         {  
             const marca_treinador_autenticado = await getTreinadorMarca(auId);
             const dono_marca_autenticado = await getDonoMarca(marca_treinador_autenticado);
@@ -42,7 +42,7 @@ export class VerPerfilService{
             }
             // treinador a ver o perfil de um admin
             else if(funcao_user == admin){
-
+                console.log(123)
                 if(dono_marca_autenticado != uId){
                     throw new Error("Não possui permissão")
                 }
@@ -66,7 +66,7 @@ export class VerPerfilService{
             }    
         }
         // Admin
-        else if(funcao_user == admin_autenticado)
+        else if(funcao_user_autenticado == admin)
         {
             const { mobilidade, id } = await checkMobilidadeMarcaUser(uId);
             const marca_admin = await getAdminMarca(auId);
@@ -95,6 +95,7 @@ export class VerPerfilService{
                     }
                 }
                 else{
+                    console.log(123)
                     const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
                     const dono_marca_gym = await getDonoMarca(marca_gym);
                     if(auId != dono_marca_gym)
@@ -149,7 +150,8 @@ export class VerPerfilService{
             // aluno a ver perfil de outro aluno
             else{
                 const { mobilidade, id } = await checkMobilidadeMarcaUser(auId);
-                const dono_marca_autenticado = await getDonoMarca(id['marca_id'])
+                const dono_marca_autenticado = await getDonoMarca(id['marca_id']);
+
                 if(mobilidade){
                     const { mobilidade, id } = await checkMobilidadeMarcaUser(uId);
                     const dono_marca = await getDonoMarca(id['marca_id'])
@@ -173,11 +175,12 @@ export class VerPerfilService{
                     const marca_gym_autenticado = (await getMarcaGym(id['ginasio_id'])).marca_id;
                     const dono_marca_autenticado = await getDonoMarca(marca_gym_autenticado);
 
-                                
+                             
                 }
             }
         }
-        
+        console.log("Aqui")
+
         const perfil = await client.users.findMany({
             where:{
                 uid:uId,
