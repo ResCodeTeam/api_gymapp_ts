@@ -8,9 +8,11 @@ const should = chai.should();
 const baseUrl = "/api/v1"
 const server = "localhost:8000"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
+const idAluno = '0e3025e1-1449-4805-921d-95b86830bd30'
 
 let token = ''
-describe("Teste registar aluno num ginásio:", () => {
+
+describe("Teste Remover aluno:", () => {
   beforeEach((done) => {
     chai
       .request(server)
@@ -24,22 +26,13 @@ describe("Teste registar aluno num ginásio:", () => {
         res.should.have.status(200);
         done();
       });
-
   });
+
   describe('- Sem token', () => {
-    it('Deve retornar erro de authToken invalido', () => {
-
-      return chai.request(server).post(baseUrl + '/admin/marca/alunos/')
-        .send({
-          email: "mariaamelia@aluno.com",
-          nome: "Maria Amelia",
-          password: "mariaamelia",
-          dataNasc: "2002-04-09",
-          dataEntrada: "2022-03-24",
-          genero: 0,
-          ginasioId: "a70e117f-4b53-447f-b67d-6b1c93bd501d"
-        })
-
+    it('Deve retornar erro de token invalido', () => {
+      return chai
+        .request(server)
+        .delete(baseUrl + '/admin/aluno/remover/' + idAluno)
         .then(res => {
           res.should.have.status(500)
           chai.expect(res.body).to.have.property("status")
@@ -47,26 +40,34 @@ describe("Teste registar aluno num ginásio:", () => {
         })
     })
   })
-  describe('-Registar aluno corretamente', () => {
-    it('Deve retornar aluno criado', () => {
+
+  describe('- Token expirado', () => {
+    it('Deve retornar erro de token invalido', () => {
       return chai
         .request(server)
-        .post(baseUrl + '/admin/marca/alunos/')
-        .set("Authorization", token)
-
-        .send({
-          email: "mariaamelia3@aluno.com",
-          nome: "Maria Amelia",
-          password: "mariaamelia",
-          dataNasc: "2002-04-09",
-          dataEntrada: "2022-03-24",
-          genero: 0,
-          ginasioId: "a70e117f-4b53-447f-b67d-6b1c93bd501d"
+        .delete(baseUrl + '/admin/aluno/remover/' + idAluno)
+        .set("Authorization", tokenInvalido)
+        .then(res => {
+          res.should.have.status(500)
+          chai.expect(res.body).to.have.property("status")
+          chai.expect(res.body).to.have.property("message")
         })
+    })
+  })
 
+  describe('- Remover aluno corretamente', () => {
+    it('Deve retornar mensagem de remoção', () => {
+      return chai
+        .request(server)
+        .delete(baseUrl + '/admin/aluno/remover/' + idAluno)
+        .set("Authorization", token)
         .then(res => {
           res.should.have.status(200)
-          console.log(res.body)
+
+
+
+
+
           chai.expect(res.body).to.be.an("object")
 
           //verificar se é um objeto
@@ -118,10 +119,7 @@ describe("Teste registar aluno num ginásio:", () => {
           if (res.body['imagem_url'] != null) {
             chai.expect(res.body['imagem_url']).to.be.a("string")
           }
-
         })
-
     })
   })
-
 })

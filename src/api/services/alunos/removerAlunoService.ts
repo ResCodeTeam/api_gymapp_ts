@@ -1,5 +1,5 @@
 import { client } from "../../prisma/client";
-import { checkDonoMarca, checkUserIdExists, getAlunoMarca } from "../../helpers/dbHelpers";
+import { checkDonoMarca, checkEmail, checkPlanoTreinoIsRealizado, checkUserIdExists, getAlunoMarca } from "../../helpers/dbHelpers";
 
 
 export class RemoverAlunoService {
@@ -12,16 +12,17 @@ export class RemoverAlunoService {
     const marcaId = await getAlunoMarca(uId);
     await checkDonoMarca(marcaId, adminId);
 
-    const removerAluno= await client.users.update({
-     where: {
-       uid:uId
+    const removerAluno = await client.users.update({
+      where: {
+        uid: uId,
+
       },
-     data:{
-       isDeleted: true
-     }
+      data: {
+        isDeleted: true
+      }
     })
 
-    return removerAluno 
+    return removerAluno
   }
 }
 
