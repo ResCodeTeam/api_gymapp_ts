@@ -13,7 +13,7 @@ describe('- Editar musculo sem body', () => {
     it('Deve retornar erro de body incompleto', () => {
         return chai
         .request(server)
-        .put(baseUrl+'/backend/musculos/musculo' + idMusculo)
+        .put(baseUrl+'/backend/musculos/' + idMusculo)
         .then(res => {
         res.should.have.status(500)
         chai.expect(res.body).to.have.property("status")
@@ -26,10 +26,10 @@ describe('- Editar musculo corretamente', () => {
     it('Deve retornar musculo editada', () => {
       return chai
       .request(server)
-      .put(baseUrl+'/backend/musculos/musculo' + idMusculo)
+      .put(baseUrl+'/backend/musculos/' + idMusculo)
       .send({
         nome: "teste unitario21",
-        img_url:"img2",
+        imagem:"img2",
       })
       .then(res => {
         
@@ -39,14 +39,12 @@ describe('- Editar musculo corretamente', () => {
         chai.expect(res.body).to.be.an("object")
 
         //verificar se as propriedades todas existem
-        chai.expect(res.body).to.have.property("musculo_id")
         chai.expect(res.body).to.have.property("nome")
-        chai.expect(res.body).to.have.property("img_url")
+        chai.expect(res.body).to.have.property("imagem")
 
         //verificar tipos das propriedades
-        chai.expect(res.body['musculo_id']).to.be.a("string")
         chai.expect(res.body['nome']).to.be.a("string")
-        chai.expect(res.body['img_url']).to.be.a("string")
+        chai.expect(res.body['imagem']).to.be.a("string")
         })
     })
 })

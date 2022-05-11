@@ -18,8 +18,8 @@ describe("Teste Obter as definições do user", () => {
           .request(server)
           .post(baseUrl+"/auth/login")
           .send({
-            email: "biancasilva@gmail.com",
-            password: "passwd",
+            email: "admin7@admin.com",
+            password: "admin",
           })
           .end((err, res) => {
             token = `Bearer ${res.body.token}` ;
@@ -62,19 +62,21 @@ describe("Teste Obter as definições do user", () => {
           .set("Authorization", token)
           .then(res => {
             res.should.have.status(200)
+            console.log(res.body)
+
               //verificar se as propriedades todas existem
-              chai.expect(res.body[0]).to.have.property("def_id")
-              chai.expect(res.body[0]).to.have.property("useruid")
-              chai.expect(res.body[0]).to.have.property("identificacoes")
-              chai.expect(res.body[0]).to.have.property("is_privado")
-              chai.expect(res.body[0]).to.have.property("mencoes")
+              chai.expect(res.body).to.have.property("def_id")
+              chai.expect(res.body).to.have.property("usersuid")
+              chai.expect(res.body).to.have.property("identificacoes")
+              chai.expect(res.body).to.have.property("is_privado")
+              chai.expect(res.body).to.have.property("mencoes")
               
               //verificar tipos das propriedades 
-              chai.expect(res.body[0]['def_id']).to.be.a("string")
-              chai.expect(res.body[0]['useruid']).to.be.a("string")
-              chai.expect(res.body[0]['identificacoes']).to.be.a("boolean")
-              chai.expect(res.body[0]['is_privado']).to.be.a("boolean")
-              chai.expect(res.body[0]['mencoes']).to.be.a("boolean")
+              chai.expect(res.body['def_id']).to.be.a("string")
+              chai.expect(res.body['usersuid']).to.be.a("string")
+              chai.expect(res.body['identificacoes']).to.be.a("boolean")
+              chai.expect(res.body['is_privado']).to.be.a("boolean")
+              chai.expect(res.body['mencoes']).to.be.a("boolean")
             })
         })
     })
