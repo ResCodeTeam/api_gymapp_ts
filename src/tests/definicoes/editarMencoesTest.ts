@@ -30,7 +30,7 @@ describe("Teste impedir menções", () => {
         it('Deve retornar erro de authToken invalido', () => {
           return chai
           .request(server)
-          .get(baseUrl+'/definicoes/mencoes')
+          .put(baseUrl+'/definicoes/mencoes')
             .then(res => {
               res.should.have.status(500)
               chai.expect(res.body).to.have.property("status")
@@ -43,7 +43,7 @@ describe("Teste impedir menções", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
             .request(server)
-            .get(baseUrl+'/definicoes/mencoes')
+            .put(baseUrl+'/definicoes/mencoes')
             .set("Authorization", tokenInvalido)
             .then(res => {
                 res.should.have.status(500)
@@ -58,6 +58,7 @@ describe("Teste impedir menções", () => {
             return chai
             .request(server)
             .put(baseUrl+'/definicoes/mencoes')
+            .set("Authorization", token)
             .then(res => {
             res.should.have.status(500)
             chai.expect(res.body).to.have.property("status")
@@ -71,8 +72,9 @@ describe("Teste impedir menções", () => {
           return chai
           .request(server)
           .put(baseUrl+'/definicoes/mencoes')
+          .set("Authorization", token)
           .send({
-            mencoes: true
+            mencoes: false
           })
           .then(res => {
             

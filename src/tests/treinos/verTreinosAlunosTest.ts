@@ -11,14 +11,14 @@ const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2N
 
 let token=''
 
-describe("Teste Obter toda a informação dos musculos", () => {
+describe("Teste Obter todos os treinos de um aluno", () => {
     beforeEach((done) => {
         chai
           .request(server)
           .post(baseUrl+"/auth/login")
           .send({
-            email: "treinador@treinador.com",
-            password: "treinador",
+            email: "biancasilva@gmail.com",
+            password: "passwd",
           })
           .end((err, res) => {
             token = `Bearer ${res.body.token}` ;
@@ -30,7 +30,7 @@ describe("Teste Obter toda a informação dos musculos", () => {
         it('Deve retornar erro de authToken invalido', () => {
           return chai
           .request(server)
-          .get(baseUrl+'/adminTreinador/musculos/')
+          .get(baseUrl+'/aluno/treinos/')
             .then(res => {
               res.should.have.status(500)
               chai.expect(res.body).to.have.property("status")
@@ -43,7 +43,7 @@ describe("Teste Obter toda a informação dos musculos", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
             .request(server)
-            .get(baseUrl+'/adminTreinador/musculos/')
+            .get(baseUrl+'/aluno/treinos/')
             .set("Authorization", tokenInvalido)
             .then(res => {
                 res.should.have.status(500)
@@ -53,11 +53,11 @@ describe("Teste Obter toda a informação dos musculos", () => {
         })
     })
 
-    describe('- Obter todos os musculos corretamente', () => {
-        it('Deve retornar musculos', () => {
+    describe('- Obter todos os treinos de um aluno corretamente', () => {
+        it('Deve retornar treinos', () => {
           return chai
           .request(server)
-          .get(baseUrl+'/adminTreinador/musculos/')
+          .get(baseUrl+'/aluno/treinos/')
           .set("Authorization", token)
           .then(res => {
             res.should.have.status(200)
@@ -65,12 +65,32 @@ describe("Teste Obter toda a informação dos musculos", () => {
             chai.expect(res.body).to.be.an("array")
               if(res.body.length>0){
                 //verificar se as propriedades todas existem
-                chai.expect(res.body[0]).to.have.property("nome")
-                chai.expect(res.body[0]).to.have.property("img_url")
+                chai.expect(res.body[0]).to.have.property("treino_id")
+                chai.expect(res.body[0]).to.have.property("uid")
+                chai.expect(res.body[0]).to.have.property("atividade_id")
+                chai.expect(res.body[0]).to.have.property("modalidade_id")
+                chai.expect(res.body[0]).to.have.property("duracao")
+                chai.expect(res.body[0]).to.have.property("calorias")
+                chai.expect(res.body[0]).to.have.property("distancia")
+                chai.expect(res.body[0]).to.have.property("data")
+                chai.expect(res.body[0]).to.have.property("isDeleted")
                 
                 //verificar tipos das propriedades 
-                chai.expect(res.body[0]['nome']).to.be.a("string")
-                chai.expect(res.body[0]['img_url']).to.be.a("string")
+                chai.expect(res.body[0]['treino_id']).to.be.a("string")
+                chai.expect(res.body[0]['uid']).to.be.a("string")
+                if(res.body[0]['atividade_id'] != null)
+                {
+                  chai.expect(res.body[0]['modalidade_id']).to.be.a("null")
+                }
+                if(res.body[0]['modalidade_id'] != null)
+                {
+                  chai.expect(res.body[0]['atividade_id']).to.be.a("null")
+                }
+                chai.expect(res.body[0]['duracao']).to.be.a("string")
+                chai.expect(res.body[0]['calorias']).to.be.a("number")
+                chai.expect(res.body[0]['distancia']).to.be.a("number")
+                chai.expect(res.body[0]['data']).to.be.a("string")
+                chai.expect(res.body[0]['isDeleted']).to.be.a("boolean")
               }
             })
         })

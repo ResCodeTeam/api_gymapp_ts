@@ -3,13 +3,14 @@ import { client } from "../../prisma/client";
 export class VerNotificacoesService{
     async execute(origemId: string){
 
-        const notificacoes = await client.destinos_notificacao.findMany({
+        const notificacoes = await client.notificacoes.findMany({
             where:{
-                dest_uid: origemId
+                destinos_notificacao: {
+                    some:{
+                        dest_uid: origemId
+                    }
+                }
             },
-            select:{
-                notificacoes: true,
-            }
         })
         return notificacoes;
     }
