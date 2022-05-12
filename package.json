@@ -19,7 +19,8 @@
     "test_perfil": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/perfil/*.ts'",
     "test_marcas": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/marcas/*.ts'",
     "test_alunos": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/alunos/*.ts'",
-    "test_loc": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/localMedida/*.ts'"
+    "test_loc": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/localMedida/*.ts'",
+    "test_treinadores": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/treinadores/*.ts'"
   },
   "author": "ResCode",
   "license": "ISC",
