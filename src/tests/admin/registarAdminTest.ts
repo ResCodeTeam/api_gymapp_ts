@@ -27,7 +27,7 @@ describe('- Criar admin corretamente', () => {
       .request(server)
       .post(baseUrl+'/backend/registo')
       .send({
-        email: "admin11@admin.com",
+        email: "admin23@admin.com",
         nome: "António",
         password: "admin",
         dataNasc: "2002-10-17",
@@ -45,16 +45,16 @@ describe('- Criar admin corretamente', () => {
         chai.expect(res.body).to.have.property("email")
         chai.expect(res.body).to.have.property("nome")
         chai.expect(res.body).to.have.property("password")
-        chai.expect(res.body).to.have.property("dataNasc")
-        chai.expect(res.body).to.have.property("dataEntrada")
+        chai.expect(res.body).to.have.property("data_nasc")
+        chai.expect(res.body).to.have.property("data_entrada")
         chai.expect(res.body).to.have.property("genero")
 
         //verificar tipos das propriedades
         chai.expect(res.body['email']).to.be.a("string")
         chai.expect(res.body['nome']).to.be.a("string")
         chai.expect(res.body['password']).to.be.a("string")
-        chai.expect(res.body['dataNasc']).to.be.a("string")
-        chai.expect(res.body['dataEntrada']).to.be.a("string")
+        chai.expect(res.body['data_nasc']).to.be.a("string")
+        chai.expect(res.body['data_entrada']).to.be.a("string")
         chai.expect(res.body['genero']).to.be.a("number")
         })
     })
