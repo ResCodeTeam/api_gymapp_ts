@@ -54,16 +54,20 @@ describe("Teste remover pedido de agendamento avaliação:", () => {
         })
     })
   })
-  describe('- Remover post corretamente', () => {
+  describe('- Remover agendamento de avaliação corretamente', () => {
     it('Deve retornar mensagem de remoção', () => {
       return chai
         .request(server)
         .delete(baseUrl + '/aluno/agenda/avaliacao/' + idAgendamento + '/agendamento/')
         .set("Authorization", token)
         .then(res => {
-          res.should.have.status(500)
-          chai.expect(res.body).to.have.property("status")
-          chai.expect(res.body).to.have.property("message")
+
+
+          res.should.have.status(200)
+          chai.expect(res.body).to.have.property("msg")
+
+          //verificar tipos das propriedades 
+          chai.expect(res.body['msg']).to.be.a("string")
         })
     })
   })
