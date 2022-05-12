@@ -8,7 +8,7 @@ const should = chai.should();
 const baseUrl = "/api/v1"
 const server = "localhost:8000"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
-
+const idDesafio = "4cd6d254-30e8-491e-b4dd-698356c3fe1d"
 let token = ''
 describe("Teste agendar avaliação de aluno:", () => {
   beforeEach((done) => {
@@ -29,7 +29,7 @@ describe("Teste agendar avaliação de aluno:", () => {
     it('Deve retornar erro de token invalido', () => {
       return chai
         .request(server)
-        .post(baseUrl + '/aluno/agenda/avaliacao/')
+        .post(baseUrl + '/aluno/agenda/desafios/' + idDesafio)
         .then(res => {
           res.should.have.status(500)
 
@@ -41,7 +41,7 @@ describe("Teste agendar avaliação de aluno:", () => {
     it('Deve retornar erro de authToken invalido', () => {
       return chai
         .request(server)
-        .post(baseUrl + '/aluno/agenda/avaliacao/')
+        .post(baseUrl + '/aluno/agenda/desafios/' + idDesafio)
         .set("Authorization", tokenInvalido)
         .then(res => {
           res.should.have.status(500)
@@ -55,11 +55,11 @@ describe("Teste agendar avaliação de aluno:", () => {
     it('Deve retornar agendamento criado', () => {
       return chai
         .request(server)
-        .post(baseUrl + '/aluno/agenda/avaliacao/')
+        .post(baseUrl + '/aluno/agenda/desafios/' + idDesafio)
         .set("Authorization", token)
         .send({
           ginasioId: "a70e117f-4b53-447f-b67d-6b1c93bd501d",
-          dataAgendamento: "2022-07-03T13:24:10.574Z"
+          dataAgendamento: "2022-08-03T13:24:10.574Z"
         })
         .then(res => {
 

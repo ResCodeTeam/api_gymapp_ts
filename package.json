@@ -9,6 +9,7 @@
     "postinstall": "npm run build",
     "dev": "nodemon --ignore ./src/tests ./src/app.ts",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/**/*.ts'",
+    "test_agendamentos": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/agendamentos/aluno/*.ts'",
     "test_noti": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/notificacoes/*.ts'",
     "test_def": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/definicoes/*.ts'",
     "test_treinos": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/treinos/*.ts'",
@@ -18,7 +19,8 @@
     "test_perfil": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/perfil/*.ts'",
     "test_marcas": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/marcas/*.ts'",
     "test_alunos": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/alunos/*.ts'",
-    "test_loc": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/localMedida/*.ts'"
+    "test_loc": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/localMedida/*.ts'",
+    "test_treinadores": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/treinadores/*.ts'"
   },
   "author": "ResCode",
   "license": "ISC",
