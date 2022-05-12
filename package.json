@@ -9,7 +9,7 @@
     "postinstall": "npm run build",
     "dev": "nodemon --ignore ./src/tests ./src/app.ts",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/**/*.ts'",
-    "testalunos": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/alunos/*.ts'"
+    "testagendamentos": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/agendamentos/aluno/*.ts'"
   },
   "author": "ResCode",
   "license": "ISC",
