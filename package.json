@@ -9,6 +9,7 @@
     "postinstall": "npm run build",
     "dev": "nodemon --ignore ./src/tests ./src/app.ts",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/**/*.ts'",
+    "test_agendamentos": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/agendamentos/aluno/*.ts'",
     "test_noti": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/notificacoes/*.ts'",
     "test_def": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/definicoes/*.ts'",
     "test_treinos": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/treinos/*.ts'",
