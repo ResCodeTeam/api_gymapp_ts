@@ -17,8 +17,8 @@ describe("Teste Obter toda a informação dos musculos", () => {
           .request(server)
           .post(baseUrl+"/auth/login")
           .send({
-            email: "treinador@treinador.com",
-            password: "treinador",
+            email: "admin@admin.com",
+            password: "admin",
           })
           .end((err, res) => {
             token = `Bearer ${res.body.token}` ;
@@ -30,7 +30,7 @@ describe("Teste Obter toda a informação dos musculos", () => {
         it('Deve retornar erro de authToken invalido', () => {
           return chai
           .request(server)
-          .get(baseUrl+'/adminTreinador/musculos/')
+          .get(baseUrl+'/admin/marca/')
             .then(res => {
               res.should.have.status(500)
               chai.expect(res.body).to.have.property("status")
@@ -43,7 +43,7 @@ describe("Teste Obter toda a informação dos musculos", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
             .request(server)
-            .get(baseUrl+'/adminTreinador/musculos/')
+            .get(baseUrl+'/admin/marca/')
             .set("Authorization", tokenInvalido)
             .then(res => {
                 res.should.have.status(500)
@@ -57,7 +57,7 @@ describe("Teste Obter toda a informação dos musculos", () => {
         it('Deve retornar musculos', () => {
           return chai
           .request(server)
-          .get(baseUrl+'/adminTreinador/musculos/')
+          .get(baseUrl+'/admin/marca/')
           .set("Authorization", token)
           .then(res => {
             res.should.have.status(200)
@@ -66,11 +66,11 @@ describe("Teste Obter toda a informação dos musculos", () => {
               if(res.body.length>0){
                 //verificar se as propriedades todas existem
                 chai.expect(res.body[0]).to.have.property("nome")
-                chai.expect(res.body[0]).to.have.property("img_url")
+                chai.expect(res.body[0]).to.have.property("logotipo")
                 
                 //verificar tipos das propriedades 
                 chai.expect(res.body[0]['nome']).to.be.a("string")
-                chai.expect(res.body[0]['img_url']).to.be.a("string")
+                chai.expect(res.body[0]['logotipo']).to.be.a("string")
               }
             })
         })

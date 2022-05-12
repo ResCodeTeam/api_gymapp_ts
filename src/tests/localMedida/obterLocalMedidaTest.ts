@@ -30,7 +30,7 @@ describe("Teste Obter toda a informação dos musculos", () => {
         it('Deve retornar erro de authToken invalido', () => {
           return chai
           .request(server)
-          .get(baseUrl+'/adminTreinador/musculos/')
+          .get(baseUrl+'/treinador/locaisMedida/')
             .then(res => {
               res.should.have.status(500)
               chai.expect(res.body).to.have.property("status")
@@ -43,7 +43,7 @@ describe("Teste Obter toda a informação dos musculos", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
             .request(server)
-            .get(baseUrl+'/adminTreinador/musculos/')
+            .get(baseUrl+'/treinador/locaisMedida/')
             .set("Authorization", tokenInvalido)
             .then(res => {
                 res.should.have.status(500)
@@ -53,24 +53,26 @@ describe("Teste Obter toda a informação dos musculos", () => {
         })
     })
 
-    describe('- Obter todos os musculos corretamente', () => {
-        it('Deve retornar musculos', () => {
+    describe('- Obter todos os locais de medida corretamente', () => {
+        it('Deve retornar locais de medida', () => {
           return chai
           .request(server)
-          .get(baseUrl+'/adminTreinador/musculos/')
+          .get(baseUrl+'/treinador/locaisMedida/')
           .set("Authorization", token)
           .then(res => {
             res.should.have.status(200)
-
+            console.log(res.body)
             chai.expect(res.body).to.be.an("array")
               if(res.body.length>0){
                 //verificar se as propriedades todas existem
-                chai.expect(res.body[0]).to.have.property("nome")
-                chai.expect(res.body[0]).to.have.property("img_url")
+                chai.expect(res.body[0]).to.have.property("local_medida_id")
+                chai.expect(res.body[0]).to.have.property("descricao")
+                chai.expect(res.body[0]).to.have.property("unilado")
                 
                 //verificar tipos das propriedades 
-                chai.expect(res.body[0]['nome']).to.be.a("string")
-                chai.expect(res.body[0]['img_url']).to.be.a("string")
+                chai.expect(res.body[0]['local_medida_id']).to.be.a("string")
+                chai.expect(res.body[0]['descricao']).to.be.a("string")
+                chai.expect(res.body[0]['unilado']).to.be.a("boolean")
               }
             })
         })
