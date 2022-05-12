@@ -54,7 +54,7 @@ export class RegistarAdminService{
             }
         })
          
-        return {admin}
+        return admin
         
     }
     

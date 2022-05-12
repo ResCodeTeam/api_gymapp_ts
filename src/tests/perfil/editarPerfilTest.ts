@@ -17,7 +17,7 @@ describe("Teste editar perfil", () => {
           .request(server)
           .post(baseUrl+"/auth/login")
           .send({
-            email: "admin6@admin.com",
+            email: "admin23@admin.com",
             password: "admin",
           })
           .end((err, res) => {
@@ -74,12 +74,12 @@ describe("Teste editar perfil", () => {
           .put(baseUrl+'/perfil')
           .set("Authorization", token)
           .send({
-            email: "admin13@admin.com",
+            email: "admin24@admin.com",
             nome: "Joao",
-            password: "$2b$08$IQIEAEIjQUqjDujZo60L5.diDHpsqZoKH/uK.AfZuwY1twPoe.EqW",
+            password: "admin",
             genero: 0,
-            descricao: null,
-            imagemUrl: null
+            descricao: "teste",
+            imagemUrl: "teste"
           })
           .then(res => {
             
@@ -94,7 +94,7 @@ describe("Teste editar perfil", () => {
             chai.expect(res.body).to.have.property("password")
             chai.expect(res.body).to.have.property("genero")
             chai.expect(res.body).to.have.property("descricao")
-            chai.expect(res.body).to.have.property("imagemUrl")
+            chai.expect(res.body).to.have.property("imagem_url")
     
             //verificar tipos das propriedades
             chai.expect(res.body['email']).to.be.a("string")
@@ -105,9 +105,9 @@ describe("Teste editar perfil", () => {
             {
                 chai.expect(res.body['descricao']).to.be.a("string")
             }
-            if(res.body['imagemUrl'] != null)
+            if(res.body['imagem_url'] != null)
             {
-                chai.expect(res.body['imagemUrl']).to.be.a("string")
+                chai.expect(res.body['imagem_url']).to.be.a("string")
             }
             })
         })

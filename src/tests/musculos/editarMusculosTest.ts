@@ -28,8 +28,8 @@ describe('- Editar musculo corretamente', () => {
       .request(server)
       .put(baseUrl+'/backend/musculos/' + idMusculo)
       .send({
-        nome: "teste unitario21",
-        imagem:"img2",
+        nome: "teste unitario41",
+        imagem:"img3",
       })
       .then(res => {
         
@@ -40,11 +40,11 @@ describe('- Editar musculo corretamente', () => {
 
         //verificar se as propriedades todas existem
         chai.expect(res.body).to.have.property("nome")
-        chai.expect(res.body).to.have.property("imagem")
+        chai.expect(res.body).to.have.property("img_url")
 
         //verificar tipos das propriedades
         chai.expect(res.body['nome']).to.be.a("string")
-        chai.expect(res.body['imagem']).to.be.a("string")
+        chai.expect(res.body['img_url']).to.be.a("string")
         })
     })
 })
