@@ -3,7 +3,7 @@ import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExist
 
 class RemoverIsAceiteAvaliacoesService {
   async execute(treinadorId: string, agendamentoId: string) {
-    
+
     const exists_agendamento = await checkAgendamentoAvaliacaoExists(agendamentoId);
     if (!exists_agendamento) {
       throw new Error("O agendamento da avaliação não existe");
@@ -12,8 +12,10 @@ class RemoverIsAceiteAvaliacoesService {
     const ginasio_agendamento = await getAgendamentoAvaliacoesGinasio(agendamentoId);
     const marca_ginasio = (await getMarcaGym(ginasio_agendamento)).marca_id;
     const marca_treinador = await getTreinadorMarca(treinadorId)
-    
-    if(marca_ginasio != marca_treinador){
+    console.log(marca_ginasio)
+    console.log(marca_treinador)
+
+    if (marca_ginasio != marca_treinador) {
       throw new Error("Não tem autorização")
     }
 
@@ -21,18 +23,18 @@ class RemoverIsAceiteAvaliacoesService {
     if (is_aceite) {
       throw new Error("O agendamento da avaliação ainda não foi aceite");
     }
-    
+
     const agendamento = await client.agendamentos_avaliacoes.findUnique({
-      where:{
-          agendamento_id: agendamentoId
+      where: {
+        agendamento_id: agendamentoId
       }
     })
 
     await client.agendamentos_avaliacoes.update({
       where: {
         agendamento_id: agendamentoId
-       },
-      data:{
+      },
+      data: {
         isAceite: false
       }
     })
