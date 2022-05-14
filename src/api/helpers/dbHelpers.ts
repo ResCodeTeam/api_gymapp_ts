@@ -307,6 +307,7 @@ let checkAgendamentoAvaliacaoIsAceiteExists = async (agendamentoId: string) => {
             isAceite: false
         }
     })
+    console.log(search)
     return search.length != 0;
 }
 
