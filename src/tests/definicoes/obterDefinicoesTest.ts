@@ -63,7 +63,6 @@ describe("Teste Obter as definições do user", () => {
           .then(res => {
             res.should.have.status(200)
             console.log(res.body)
-
               //verificar se as propriedades todas existem
               chai.expect(res.body).to.have.property("def_id")
               chai.expect(res.body).to.have.property("usersuid")

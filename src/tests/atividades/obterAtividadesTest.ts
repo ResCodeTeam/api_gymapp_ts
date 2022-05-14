@@ -61,6 +61,8 @@ describe("Teste Obter toda a informação das atividades", () => {
           .set("Authorization", token)
           .then(res => {
             res.should.have.status(200)
+            chai.expect(res.body).to.be.an("array")
+            if(res.body.length>0){
               //verificar se as propriedades todas existem
               chai.expect(res.body[0]).to.have.property("atividade_id")
               chai.expect(res.body[0]).to.have.property("descricao")
@@ -70,6 +72,7 @@ describe("Teste Obter toda a informação das atividades", () => {
               chai.expect(res.body[0]['atividade_id']).to.be.a("string")
               chai.expect(res.body[0]['descricao']).to.be.a("string")
               chai.expect(res.body[0]['icon']).to.be.a("string")
+            }
             })
         })
     })

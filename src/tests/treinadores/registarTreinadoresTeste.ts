@@ -10,6 +10,7 @@ const server = "localhost:8000"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 const idMarca = "d9017634-c824-423d-96a3-6da7f162917a"
 let token = ''
+
 describe("Teste registar treinadores numa marca:", () => {
   beforeEach((done) => {
     chai
@@ -119,8 +120,6 @@ describe("Teste registar treinadores numa marca:", () => {
           }
 
         })
-
     })
   })
-
 })
