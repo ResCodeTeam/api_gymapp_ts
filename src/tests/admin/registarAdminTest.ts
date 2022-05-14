@@ -27,7 +27,7 @@ describe('- Criar admin corretamente', () => {
       .request(server)
       .post(baseUrl+'/backend/registo')
       .send({
-        email: "admin23@admin.com",
+        email: "admin26@admin.com",
         nome: "António",
         password: "admin",
         dataNasc: "2002-10-17",
