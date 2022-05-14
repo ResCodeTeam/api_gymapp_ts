@@ -18,11 +18,11 @@ class AceitarAvaliacoesService {
     const ginasio_agendamento = await getAgendamentoAvaliacoesGinasio(agendamentoId);
     const marca_ginasio = (await getMarcaGym(ginasio_agendamento)).marca_id;
     const marca_treinador = await getTreinadorMarca(treinadorId)
-    
-    if(marca_ginasio != marca_treinador){
+
+    if (marca_ginasio != marca_treinador) {
       throw new Error("Não tem autorização")
     }
-    
+
     const agendamentos = await client.agendamentos_avaliacoes.update({
       where: {
         agendamento_id: agendamentoId
