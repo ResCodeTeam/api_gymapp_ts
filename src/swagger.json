@@ -3429,8 +3429,8 @@
         },
         "/desafios/{desafioId}":{
             "get":{
-                "summary": "Ver desafios",
-                "description": "Esta rota vai apresentar todos os desafios",
+                "summary": "Ver desafio",
+                "description": "Esta rota vai apresentar os dados de um desafio",
                 "parameters": [
                 {
                     "name": "desafioId",
