@@ -3,7 +3,7 @@ import { AgendarDesafiosService } from "../../../services/agendamentos/aluno/age
 
 export class AgendarDesafiosController {
     async handle(request: Request, response: Response){
-      const uid = response.locals.uid;
+      const uid = request.params.alunoId;
       const desafioId = request.params.id;
       let { ginasioId, dataAgendamento } = request.body;
       if(ginasioId === undefined || dataAgendamento === undefined){

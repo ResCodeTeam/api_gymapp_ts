@@ -3,7 +3,7 @@ import { RemoverPlanoTreinoService } from "../../services/plano/removerPlanoTrei
 
 export class RemoverPlanoTreinoController{   
     async handle (request: Request, response: Response){
-        const treinadorId = response.locals.uid;
+        const treinadorId = request.params.treinadorId;
         const planoId = request.params.plano_id;
         
         const  removerPlanoTreinoService = new RemoverPlanoTreinoService();

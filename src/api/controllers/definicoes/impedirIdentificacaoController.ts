@@ -4,7 +4,7 @@ import { ImpedirIdentificacaoService } from '../../services/definicoes/impedirId
 
 export class ImpedirIdentificacaoController{
   async handle(request:Request, response:Response){
-    const uid = response.locals.uid;
+    const uid = request.params.userId;
     const {identificacoes}=request.body;
     if(identificacoes === undefined){
       throw new Error("Pedido inválido")

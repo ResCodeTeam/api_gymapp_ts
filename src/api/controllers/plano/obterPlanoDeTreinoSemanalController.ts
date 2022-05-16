@@ -3,7 +3,7 @@ import { ObterPlanoTreinoSemanalService } from "../../services/plano/obterPlanoT
 
 export class ObterPlanoTreinoSemanalController{
   async handle(request:Request, response:Response){
-    const uid = response.locals.uid;
+    const uid = request.params.alunoId;
     const startDate = request.params.startDate;
     const endDate = request.params.endDate;
 

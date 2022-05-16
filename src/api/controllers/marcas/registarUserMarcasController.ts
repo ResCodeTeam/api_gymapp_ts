@@ -3,7 +3,7 @@ import { RegistarUserMarcasService } from "../../services/marcas/registarUserMar
 
 class RegistarUserMarcasController {
   async handle(request: Request, response: Response) {
-    const userId = response.locals.uid;
+    const userId = request.params.adminId;
     const { nome, mobilidade, cor, logotipo } = request.body;
     if(nome === undefined || mobilidade === undefined || cor === undefined || logotipo === undefined){
       throw new Error("Pedido inválido")

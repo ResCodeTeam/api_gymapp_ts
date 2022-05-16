@@ -3,7 +3,7 @@ import { RemoverIsAceiteDesafiosService } from "../../../services/agendamentos/t
 
 class RemoverIsAceiteDesafiosController{
     async handle(request: Request, response: Response){
-        const treinadorId = response.locals.uid;
+        const treinadorId = request.params.treinadorId;
         const agendamentoId = request.params.agendamento_id;
 
     const removerIsAceiteDesafiosService = new RemoverIsAceiteDesafiosService();

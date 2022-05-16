@@ -4,7 +4,7 @@ import { CriarNotificacaoUserService } from "../../services/notificacoes/criarNo
 export class CriarNotificacaoUserController{
   async handle(request:Request,response:Response){
     const destinoId = request.params.id;
-    const origemId = response.locals.uid;
+    const origemId = request.params.adminId;
     const {conteudo,tipo}= request.body;
     if(conteudo === undefined || tipo === undefined){
       throw new Error("Pedido inválido")

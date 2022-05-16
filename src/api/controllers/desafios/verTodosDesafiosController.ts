@@ -3,8 +3,8 @@ import { VerTodosDesafiosService } from "../../services/desafios/verTodosDesafio
 
 export class VerTodosDesafiosController{
     async handle(request:Request,response:Response){
-        const uId = response.locals.uid;
-        const ginasioId = request.params.id
+        const uId = request.params.userId;
+        const ginasioId = request.params.id;
 
         const verTodosDesafiosService = new VerTodosDesafiosService();
         const resp = await verTodosDesafiosService.execute({uId, ginasioId});

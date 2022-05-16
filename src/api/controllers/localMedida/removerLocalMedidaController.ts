@@ -3,7 +3,7 @@ import { RemoverLocalMedidaService } from "../../services/localMedida/removerLoc
 
 export class RemoverLocalMedidaController{
   async handle(request:Request, response:Response){
-    const uid = response.locals.uid;
+    const uid = request.params.adminId;
     const localId = request.params.id;
     const marcaId = request.params.marcaId;
     

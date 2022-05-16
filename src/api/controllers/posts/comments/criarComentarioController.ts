@@ -4,7 +4,7 @@ import { CriarComentarioService } from "../../../services/posts/comments/criarCo
 export class CriarComentarioController{
     async handle(request : Request, response : Response) {
         const publicacao_id = request.params.id;
-        const criador_id = response.locals.uid
+        const criador_id = request.params.userId;
         const {comentario,identificacao}=request.body;
         if(comentario === undefined || identificacao === undefined){
             throw new Error("Pedido inválido")

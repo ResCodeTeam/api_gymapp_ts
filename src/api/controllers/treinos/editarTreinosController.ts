@@ -3,7 +3,7 @@ import { EditarTreinosService } from "../../services//treinos/editarTreinosServi
 
 export class EditarTreinosController {
     async handle(request: Request, response: Response) {
-        const uId = response.locals.uid;
+        const uId = request.params.alunoId;
         const treinoId = request.params.treino_id;
 
         let { atividadeId, modalidadeId, duracao, calorias, distancia, data } = request.body;

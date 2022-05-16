@@ -5,7 +5,7 @@ export class VerTodosGinasiosController{
  
     async handle(request:Request,response:Response){
         const marcaId = request.params.id;
-        const userId = response.locals.uid
+        const userId = request.params.adminId;
 
         const verTodosGinasiosService = new VerTodosGinasiosService();
         const resp = await verTodosGinasiosService.execute({marcaId, userId});

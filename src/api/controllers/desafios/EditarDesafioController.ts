@@ -6,7 +6,7 @@ import { EditarDesafioService } from "../../services/desafios/editarDesafiosServ
 export class EditarDesafioController {
     async handle(request: Request, response: Response) {
         const editarDesafioService = new EditarDesafioService()
-        const uId = response.locals.uid;
+        const uId = request.params.userId;
 
         const data = {
             nome: request.body.nome,

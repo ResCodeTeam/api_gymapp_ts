@@ -3,7 +3,7 @@ import { EditarPlanoTreinoService } from "../../services/plano/editarPlanoTreino
 
 export class EditarPlanoTreinoController{
   async handle(request:Request,response:Response){
-    const treinadorId = response.locals.uid;
+    const treinadorId = request.params.treinadorId;
     const planoId = request.params.id;
     const { alunoId, modalidadeId, blocos } = request.body;
     if(alunoId === undefined || modalidadeId === undefined || blocos === undefined){

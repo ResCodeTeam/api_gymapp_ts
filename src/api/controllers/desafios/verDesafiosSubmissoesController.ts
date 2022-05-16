@@ -3,8 +3,9 @@ import { VerDesafiosSubmissoesService } from "../../services/desafios/verDesafio
 
 export class VerDesafiosSubmissoesController{
     async handle(request : Request, response : Response) {
-        const uId = response.locals.uid;
+        const uId = request.params.userId;
         const desafioId = request.params.desafioId;
+        
         const encerrarDesafiosSubmissoesService = new VerDesafiosSubmissoesService();
         await encerrarDesafiosSubmissoesService.execute(uId, desafioId).then(data => {
             response.json(data);

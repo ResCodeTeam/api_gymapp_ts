@@ -16,14 +16,14 @@ const encerrarDesafiosController = new EncerrarDesafiosController();
 const verTodosMusculosController = new VerTodosMusculosController();
 
 //#region Desafios
-adminTreinadorRouter.put("/desafio/:id/editar",verificarAutenticacao,verificarAdminTreinador, editarDesafio.handle);
-adminTreinadorRouter.delete("/desafio/:id",verificarAutenticacao,verificarAdminTreinador,  removerDesafio.handle);
-adminTreinadorRouter.post("/ginasio/:id/desafio/", verificarAutenticacao, verificarAdminTreinador, criarDesafio.handle);
-adminTreinadorRouter.put("/desafio/:id",verificarAutenticacao,verificarAdminTreinador,  encerrarDesafiosController.handle);
+adminTreinadorRouter.put("/:userId/desafio/:id/editar", editarDesafio.handle);
+adminTreinadorRouter.delete("/:userId/desafio/:id", removerDesafio.handle);
+adminTreinadorRouter.post("/:userId/ginasio/:id/desafio/", criarDesafio.handle);
+adminTreinadorRouter.put("/:userId/desafio/:id", encerrarDesafiosController.handle);
 //#endregion
 
 //#region Músculos
-adminTreinadorRouter.get("/musculos/", verificarAutenticacao, verificarAdminTreinador,verTodosMusculosController.handle);
+adminTreinadorRouter.get("/:userId/musculos/", verTodosMusculosController.handle);
 //endregion
 
 export { adminTreinadorRouter };

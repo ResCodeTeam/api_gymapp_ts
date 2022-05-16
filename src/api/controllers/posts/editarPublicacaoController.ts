@@ -4,7 +4,7 @@ import { EditarPublicacaoService } from "../../services/posts/editarPublicacoesS
 
 export class EditarPublicacaoController{
   async handle(request : Request, response : Response) {
-    const uId = response.locals.uid;
+    const uId = request.params.userId;
     const publicacaoId = request.params.id;
 
     const { descricao } = request.body;

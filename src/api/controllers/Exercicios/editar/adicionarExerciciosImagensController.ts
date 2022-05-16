@@ -4,7 +4,7 @@ import { AdicionarExerciciosImagensService } from "../../../services/exercicios/
 export class AdicionarExerciciosImagensController{
   async handle(request:Request, response:Response){
     const exercicioId = request.params.exercicioId;
-    const treinadorId = response.locals.uid;
+    const treinadorId = request.params.treinadorId;
     const {url} = request.body;
     if(url === undefined){
       throw new Error("Pedido inválido")

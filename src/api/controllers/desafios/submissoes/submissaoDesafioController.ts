@@ -4,7 +4,7 @@ import { SubmissaoDesafioService } from "../../../services/desafios/submissoes/s
 export class SubmissaoDesafioController{
   async handle(request:Request, response:Response){
     const desafioId = request.params.desafioId;
-    const treinadorId = response.locals.uid;
+    const treinadorId = request.params.treinadorId;
   
     const {uid,valor,ginasioId}=request.body;
     if(uid === undefined || valor === undefined || treinadorId === undefined || ginasioId === undefined){

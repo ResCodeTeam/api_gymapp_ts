@@ -4,7 +4,7 @@ import { VerLocaisMedidaService } from "../../services/localMedida/verLocaisMedi
 export class VerLocaisMedidaController{
  
     async handle(request:Request,response:Response){
-        const uId = response.locals.uid;
+        const uId = request.params.treinadorId;
 
         const verLocaisMedidaService = new VerLocaisMedidaService();
         const resp = await verLocaisMedidaService.execute({uId});

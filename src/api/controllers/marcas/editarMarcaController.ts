@@ -7,7 +7,7 @@ export class EditarMarcaController{
     
     async handle (request: Request, response: Response){
         const marcaId = request.params.marcaId;
-        const adminId=response.locals.uid;
+        const adminId = request.params.adminId;
         
         const {
             nome,

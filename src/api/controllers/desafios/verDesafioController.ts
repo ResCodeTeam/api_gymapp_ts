@@ -5,7 +5,7 @@ import { VerDesafioService } from "../../services/desafios/verDesafioService";
 export class VerDesafioController{
  
     async handle(request:Request,response:Response){
-        const uId = response.locals.uid;
+        const uId = request.params.userId;
         const desafioId = request.params.id;
 
         const verDesafioService = new VerDesafioService();

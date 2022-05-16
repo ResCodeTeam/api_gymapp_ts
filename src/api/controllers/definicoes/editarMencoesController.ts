@@ -3,7 +3,7 @@ import { EditarMencoesService } from '../../services/definicoes/editarMencoesSer
 
 export class EditarMencoesController{
   async handle(request:Request, response:Response){
-    const uid = response.locals.uid;
+    const uid = request.params.userId;
     const {mencoes}=request.body;
     if(mencoes === undefined){
       throw new Error("Pedido inválido")

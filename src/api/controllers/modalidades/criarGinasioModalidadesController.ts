@@ -4,7 +4,7 @@ import { CriarGinasioModalidadesService } from "../../services/modalidades/criar
 class CriarGinasioModalidadesController {
   async handle(request: Request, response: Response) {
     const ginasioId = request.params.id;
-    const adminId = response.locals.uid;
+    const adminId = request.params.adminId;
 
     const { nome, imagemUrl } = request.body;
     if(nome === undefined || imagemUrl === undefined){

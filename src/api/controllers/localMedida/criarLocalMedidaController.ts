@@ -3,7 +3,7 @@ import { CriarLocalMedidaService } from "../../services/localMedida/criarLocalMe
 
 export class CriarLocalMedidaController{
   async handle(request:Request, response:Response){
-    const uid = response.locals.uid;
+    const uid = request.params.adminId;
     const marcaId = request.params.marcaId;
     const{descricao,unilado}=request.body;
     if(descricao===undefined||unilado===undefined){

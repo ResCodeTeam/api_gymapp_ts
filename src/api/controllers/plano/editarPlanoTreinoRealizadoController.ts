@@ -4,7 +4,7 @@ import { EditarPlanoTreinoRealizadoService } from "../../services/plano/editarPl
 
 export class EditarPlanoTreinoRealizadoController{   
     async handle (request: Request, response: Response){
-        const alunoId = response.locals.uid;
+        const alunoId = request.params.alunoId;
         const planoId = request.params.plano_id;
         
         const  editarPlanoTreinoRealizadoService = new EditarPlanoTreinoRealizadoService();

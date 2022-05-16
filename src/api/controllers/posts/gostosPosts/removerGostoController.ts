@@ -4,7 +4,7 @@ import { RemoverGostoPublicacaoService } from "../../../services/posts/gostosPos
 export class RemoverGostoPublicacaoController{
   async handle(request:Request,response:Response){
     const publicacaoId = request.params.id;
-    const userId = response.locals.uid;
+    const userId = request.params.userId;
 
     const removerGostoService = new RemoverGostoPublicacaoService();
     const resp = await removerGostoService.execute(publicacaoId,userId)
