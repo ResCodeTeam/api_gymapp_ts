@@ -1,5 +1,5 @@
 import { Interface } from "readline";
-import { checkDonoOuTreinadorGinasio, checkGinasioExists } from "../../helpers/dbHelpers";
+import { checkDonoOuTreinadorGinasio, checkGinasioExists, checkMobilidadeMarcaUser, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 
 import { client } from '../../prisma/client';
 
@@ -15,12 +15,45 @@ export class ObterAlunosGinasioService {
         if(!existsGinasio){
             throw new Error(`Ginásio não existe`);
         }
-
-        const checkPermissao = await checkDonoOuTreinadorGinasio(ginasioId, userId);
-        if (!checkPermissao) {
-            throw new Error(`Não pode aceder a esse ginásio`);
-        }
         
+        const marca_ginasio = (await getMarcaGym(ginasioId)).marca_id;
+        const dono_marca = await getDonoMarca(marca_ginasio);
+        
+        const funcao = await getUserFuncao(userId);
+        const treinador = await getFuncaoId("Treinador");
+        const admin = await getFuncaoId("Administrador");
+
+        if(funcao == treinador)
+        {
+            const marca_treinador = await getTreinadorMarca(userId)
+            if(marca_treinador != marca_ginasio){
+                throw new Error("Não tem autorização");
+            }
+        }
+        // admin
+        else if(funcao == admin)
+        {
+            if(userId != dono_marca){
+                throw new Error("Não tem autorização");
+            }
+        }
+        // aluno
+        else{
+            const { mobilidade, id } = await checkMobilidadeMarcaUser(userId);
+            if(mobilidade){
+                if(id['marca_id'] != marca_ginasio)
+                {
+                    throw new Error("Não possui permissão")
+                }
+            }
+            else{
+                if(id['ginasio_id'] != ginasioId)
+                {
+                    throw new Error("Não possui permissão")
+                }
+            }
+        }
+
         let users = [];
         const alunos = await client.aluno_ginasio.findMany({
             where : {

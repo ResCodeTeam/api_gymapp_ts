@@ -1,10 +1,10 @@
 import { client } from "../../../prisma/client";
-import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExists } from "../../../helpers/dbHelpers";
+import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExists, getAgendamentoAvaliacoesGinasio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
 class AceitarAvaliacoesService {
   async execute(agendamentoId: string, treinadorId: string) {
-    console.log(agendamentoId)
+
     const exists_agendamento = await checkAgendamentoAvaliacaoExists(agendamentoId);
     if (!exists_agendamento) {
       throw new Error("O pedido de agendamento não existe");
@@ -13,6 +13,14 @@ class AceitarAvaliacoesService {
     const is_aceite = await checkAgendamentoAvaliacaoIsAceiteExists(agendamentoId);
     if (!is_aceite) {
       throw new Error("O pedido de agendamento já foi aceite");
+    }
+
+    const ginasio_agendamento = await getAgendamentoAvaliacoesGinasio(agendamentoId);
+    const marca_ginasio = (await getMarcaGym(ginasio_agendamento)).marca_id;
+    const marca_treinador = await getTreinadorMarca(treinadorId)
+
+    if (marca_ginasio != marca_treinador) {
+      throw new Error("Não tem autorização")
     }
 
     const agendamentos = await client.agendamentos_avaliacoes.update({

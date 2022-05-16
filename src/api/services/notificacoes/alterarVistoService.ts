@@ -1,11 +1,11 @@
 
-import { checknotificacaoExists } from "../../helpers/dbHelpers";
+import { checkDestinoNotificacao, checknotificacaoExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 
 interface IVisto{
-    notiId:string
-    destUid:string
+  notiId:string
+  destUid:string
 }
 export class AlterarVistoService{
   async execute({notiId,destUid}:IVisto){
@@ -15,12 +15,16 @@ export class AlterarVistoService{
       throw new Error("notificação não existe")
     }
 
+    const isAutor = await checkDestinoNotificacao(destUid, notiId);
+    if(!isAutor){
+      throw new Error("Não possui autorização")
+    }
+
     const alterarVisto = await client.destinos_notificacao.update({
       where:{
         noti_id_dest_uid:{
             noti_id:notiId,
-            dest_uid:destUid
-            
+            dest_uid:destUid        
         }
       },
       data:{

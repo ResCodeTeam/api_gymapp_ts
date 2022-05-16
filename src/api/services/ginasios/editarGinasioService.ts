@@ -17,12 +17,12 @@ export class EditarGinasioService{
         const existsGinasio= await checkGinasioExists(ginasioId)
         if(!existsGinasio)
         {
-            throw new Error("Ginasio não existe")
+            throw new Error("O ginásio não existe")
         }
         const existsAdmin= await checkDonoGinasio(ginasioId,adminId)
         if(!existsAdmin)
         {
-            throw new Error("Utilizador não existe")
+            throw new Error("Não tem permissão para realizar esta operação")
         }
 
         const EditarGinasio=await client.ginasio.update({

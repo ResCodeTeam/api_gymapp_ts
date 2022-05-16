@@ -1,5 +1,5 @@
 import { changeTimeZone } from "../../helpers/dateHelpers";
-import { checkDesafioIdExists } from "../../helpers/dbHelpers";
+import { checkDesafioIdExists, getDonoMarca, getFuncaoId, getGinasioDesafio, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 interface Idata {
@@ -12,7 +12,7 @@ interface Idata {
 }
 
 export class EditarDesafioService {
-    async execute(data: Idata, desafio_id: string) {
+    async execute(uId: string, data: Idata, desafio_id: string) {
 
         if (data.data_inicio > data.data_fim) {
             throw new Error("A data de final começa antes da inicial")
@@ -77,82 +77,106 @@ export class EditarDesafioService {
             }
         }
 
+        const funcao = await getUserFuncao(uId);
+        const treinador = await getFuncaoId("Treinador");
 
-        const atualizarDesafio = await client.desafios.update({
-            where: {
-                desafio_id: desafio_id
+        const ginasio_desafio = await getGinasioDesafio(desafio_id);
+        const marca_ginasio = (await getMarcaGym(ginasio_desafio)).marca_id;
+        const dono_marca = await getDonoMarca(marca_ginasio);
+
+        // treinador
+        if(funcao == treinador)
+        {
+            const marca_treinador = await getTreinadorMarca(uId)
+            if(marca_treinador != marca_ginasio){
+                throw new Error("Não tem autorização")
+            } 
+        }
+        // admin
+        else{
+            if(uId != dono_marca){
+                throw new Error("Não tem autorização")
+            }
+        }
+
+        return atualizarDesafio(data, desafio_id)
+    }
+}
+
+async function atualizarDesafio(data: Idata, desafio_id: string) {
+    const atualizarDesafio = await client.desafios.update({
+        where: {
+            desafio_id: desafio_id
+        },
+        data: {
+            nome: data.nome,
+            modalidade_id: data.modalidade,
+            data_inicio: data.data_inicio,
+            data_fim: data.data_fim,
+            recompensa: data.recompensa,
+            descricao: data.descricao
+        },
+        select: {
+            desafio_id: true,
+            nome: true,
+            data_inicio: true,
+            data_fim: true,
+            recompensa: true,
+            isEncerrado: true,
+            descricao: true,
+            users: {
+                select: {
+                    nome: true,
+                    email: true,
+                    imagem_url: true
+                }
             },
-            data: {
-                nome: data.nome,
-                modalidade_id: data.modalidade,
-                data_inicio: data.data_inicio,
-                data_fim: data.data_fim,
-                recompensa: data.recompensa,
-                descricao: data.descricao
+            modalidades_ginasio: {
+                select: {
+                    nome: true
+                }
             },
-            select: {
-                desafio_id: true,
-                nome: true,
-                data_inicio: true,
-                data_fim: true,
-                recompensa: true,
-                isEncerrado: true,
-                descricao: true,
-                users: {
-                    select: {
-                        nome: true,
-                        email: true,
-                        imagem_url: true
-                    }
-                },
-                modalidades_ginasio: {
-                    select: {
-                        nome: true
-                    }
-                },
-                regras_desafio: {
-                    select: {
-                        descricao: true
-                    }
-                },
-                exercicios_desafio: {
-                    select: {
-                        n_ordem_exercicio: true,
-                        genero: true,
-                        exercicios: {
-                            select: {
-                                nome: true,
-                                descricao: true,
-                                is_tempo: true,
-                                imagens: {
-                                    select: {
-                                        url: true
-                                    }
-                                },
-                                musculos: {
-                                    select: {
-                                        musculos: {
-                                            select: {
-                                                nome: true,
-                                                img_url: true
-                                            }
+            regras_desafio: {
+                select: {
+                    descricao: true
+                }
+            },
+            exercicios_desafio: {
+                select: {
+                    n_ordem_exercicio: true,
+                    genero: true,
+                    exercicios: {
+                        select: {
+                            nome: true,
+                            descricao: true,
+                            is_tempo: true,
+                            imagens: {
+                                select: {
+                                    url: true
+                                }
+                            },
+                            musculos: {
+                                select: {
+                                    musculos: {
+                                        select: {
+                                            nome: true,
+                                            img_url: true
                                         }
                                     }
                                 }
                             }
-                        },
-                        series_desafio: {
-                            select: {
-                                n_ordem_serie: true,
-                                valor: true,
-                            }
+                        }
+                    },
+                    series_desafio: {
+                        select: {
+                            n_ordem_serie: true,
+                            valor: true,
                         }
                     }
                 }
             }
-        })
+        }
+    })
 
-        return atualizarDesafio
-
-    }
+    return atualizarDesafio
 }

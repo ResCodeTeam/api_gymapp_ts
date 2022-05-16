@@ -1,4 +1,4 @@
-import { checkPostExists } from "../../../helpers/dbHelpers";
+import { checkPostExists, getDonoMarca, getFuncaoId, getMarcaGym, getPublicacaoGinasio, getUserFuncao } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
 export class VerInfoPostService{
@@ -7,7 +7,7 @@ export class VerInfoPostService{
         if(!existsPost){
             throw new Error("Publicação não existe")
         }
-        console.log(postId)
+
         const post = await client.publicacoes.findFirst({
             where:{
                 publicacao_id:postId,

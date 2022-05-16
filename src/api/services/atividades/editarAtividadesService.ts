@@ -14,12 +14,6 @@ export class EditarAtividadesService {
             throw new Error("A atividade não existe");
         }
 
-        //const atividades = await client.atividades.findUnique({
-        //    where:{
-        //        atividade_id: data.atividadeId
-        //    }
-        //})
-
         const atualizarAtividade = await client.atividades.update({
             where:{
                 atividade_id:data.atividadeId

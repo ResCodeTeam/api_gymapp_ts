@@ -3,7 +3,7 @@ import { client } from "../../prisma/client";
 
 export class CriarLocalMedidaService{
   async execute(uid:string,marcaId:string, descricao:string, unilado:boolean){
-    
+
     const existMarca = await checkMarcaExists(marcaId);
     if(!existMarca){
       throw new Error("Marca inexistente")

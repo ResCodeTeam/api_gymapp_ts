@@ -53,10 +53,8 @@ export class RegistarAdminService{
                 usersuid:admin.uid    
             }
         })
-     
-        
-        
-        return {admin}
+         
+        return admin
         
     }
     

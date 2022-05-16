@@ -1,4 +1,4 @@
-import { checkDonoGinasio, checkGinasioExists, checkModalidadeExists } from "../../helpers/dbHelpers";
+import { checkDonoGinasio, checkGinasioExists, checkModalidadeExists, checkModalidadeNome, getModalidadeGinasio } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 interface IEditarModalidades{
     
@@ -26,18 +26,28 @@ export class EditarModalidadesService {
       throw new Error("Não possui autorização")
     }
 
+    const exist_nome = await checkModalidadeNome(nome, ginasioId);
+    if (exist_nome) {
+      throw new Error("A modalidade já existe");
+    }
+    
+    let ginasio = await getModalidadeGinasio(modalidadeId);
+    if(ginasio == ginasioId){
       const editarModalidades = await client.modalidades_ginasio.update({
-          where : {
-              modalidade_id:modalidadeId
-          },
-          data : {
-              modalidade_id:modalidadeId,
-              imagem_url:imagemUrl,
-              nome:nome
-          }
+        where : {
+            modalidade_id:modalidadeId
+        },
+        data : {
+            modalidade_id:modalidadeId,
+            imagem_url:imagemUrl,
+            nome:nome
+        }
       })
 
-  
-      return editarModalidades;    
+      return editarModalidades;
+    }
+    else{
+      throw new Error("A modalidade não pertence ao ginásio")
+    }    
   }
 }

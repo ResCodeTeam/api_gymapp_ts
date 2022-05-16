@@ -436,9 +436,6 @@
                     "application/json":{
                         "schema":{
                             "properties":{
-                                "adminId":{
-                                    "type":"string"
-                                },
                                 "nome":{
                                     "type": "string"
                                 },
@@ -446,9 +443,6 @@
                                     "type": "string"
                                 },
                                 "descricao":{
-                                    "type": "string"
-                                },
-                                "ginasioId":{
                                     "type": "string"
                                 },
                                 "imagemUrl":{
@@ -466,10 +460,8 @@
                         "examples": {
                             "Editar ginasio":{
                                 "value":{
-                                    "ginasioId":"531316a4-b454-42ec-bc01-7358a8c3bc48",
                                     "nome":"Ginásio 4",
                                     "rua":"Rua das Castanhas",
-                                    "adminId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
                                     "descricao":"null",
                                     "imagemUrl":"teste",
                                     "lat":"0",
@@ -810,10 +802,10 @@
         
         },
          "/admin/aluno/remover/{uId}":{
-            "put":{
+            "delete":{
                 "summary": "Remover aluno",
                 "description": "Esta rota vai remover um aluno",
-                "tags": ["Aluno"],
+                "tags": ["Marca"],
                 "security": [
                     {
                         "basicAuth":[]
@@ -970,10 +962,8 @@
                             "examples": {
                                 "Editar Exercicio":{
                                     "value":{
-                                        "modalidade_id": "b7e38157-b226-479e-84cf-0b793b575495",
-                                        "ginasio_id": "531316a4-b454-42ec-bc01-7358a8c3bc48",
                                         "nome": "Crossfit",
-                                        "imagem_url": "https://crossfit.imagem",
+                                        "imagemUrl": "https://crossfit.imagem",
                                         "isDeleted": false
                                     }
                                 }
@@ -997,9 +987,9 @@
                                     }
                                 },
                                 "examples": {
-                                    "Remover Modalidade":{
+                                    "Editar Modalidade":{
                                         "value":{
-                                            "msg":"Modalidada removida com sucesso"
+                                            "msg":"Modalidada editada com sucesso"
                                         }
                                     }
                                 }
@@ -3267,16 +3257,11 @@
                 }
             }
         },
-        "/admin/registo":{
+        "/backend/registo":{
             "post":{
                 "summary": "Registar um Admin",
                 "description": "Esta rota permite efetuar o registo de um administrador",
                 "tags": ["Administradores"],
-                "security": [
-                    {
-                        "basicAuth":[]
-                    }
-                ],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -3359,17 +3344,17 @@
                 }
             }
         },
-        "/admin/notificacao/user/{destino_id}":{
+        "/admin/notificacao/user/{destinoId}":{
             "post":{
                 "summary": "Notificação para user",
-                "description": "Esta rota permite efetuar o registo de um administrador",
+                "description": "Esta rota permite enviar uma notificação para um user",
                 "security": [
                     {
                         "basicAuth":[]
                     }
                 ],
                 "parameters": [{
-                    "name": "destino_id",
+                    "name": "destinoId",
                     "in": "path",
                     "description": "id do utilizador de destino",
                     "required": true,
@@ -3444,8 +3429,8 @@
         },
         "/desafios/{desafioId}":{
             "get":{
-                "summary": "Ver desafios",
-                "description": "Esta rota vai apresentar todos os desafios",
+                "summary": "Ver desafio",
+                "description": "Esta rota vai apresentar os dados de um desafio",
                 "parameters": [
                 {
                     "name": "desafioId",
@@ -3730,7 +3715,7 @@
                                 }
                             },
                             "examples": {
-                                "Registar Admin":{
+                                "Registar Aluno":{
                                     "value":{
                                         "email":"aluno1@aluno.com",
                                         "nome":"aluno1",
@@ -4882,8 +4867,7 @@
             }
         }
     },
-    
-    "/destinosNotificacao":{
+    "/destinosNotificacao/notificacao/{notiId}":{
         "put":{
             "summary": "Alterar visto",
             "description": "Esta rota vai alterar o visto",
@@ -4893,33 +4877,22 @@
                 }
             ],
             "tags": ["Notificações"],
-            "requestBody":{
-                "content":{
-                    "application/json":{
-                        "schema":{
-                            "properties": {
-                                "notiId":{
-                                    "type": "string"
-                                },
-                                "destUid":{
-                                    "type": "string"
-                                },"visto":{
-                                    "type": "boolean"
-                                }
-                                
-                            }
-                        },
-                        "examples": {
-                            "Editar visto": {
-                                "value": {
-                                    "notiId": "1d4da8a7-aabd-4ede-b5ab-f74c3e5405a2",
-                                    "destUid": "00b27390-ad57-47de-ac18-4c2a490caa97"
-                                }
-                            }
-                        }
+            "parameters": [{
+                "name": "notiId",
+                "in": "path",
+                "description": "Id da notificação",
+                "required": true,
+                "schema":{
+                    "type": "string"
+                },
+                "examples": {
+                    "Notificacao Id":{
+                        "value":"75bd8e37-7fbd-46c7-b053-acc6a0964789"
                     }
-                }
-            },
+                },
+                "style": "simple"
+
+            }],
             "responses": {
                 "500":{
                     "description": "ERROR"
@@ -6544,7 +6517,6 @@
                             "Editar Treino":{
                                 "value":{
                                     "alunoId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                    "treinadorId":"6d112678-f40c-43bc-a80a-866f12fa26f2",
                                     "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                     "blocos":[
                                         {
@@ -6904,7 +6876,6 @@
                                 "value":{
                                     
                                     "alunoId":"000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                                    "treinadorId":"6d112678-f40c-43bc-a80a-866f12fa26f2",
                                     "modalidadeId":"4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                                     "blocos":[
                                         {

@@ -1,4 +1,4 @@
-import { checkUserIdExists } from "../../helpers/dbHelpers";
+import { checkEmail, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 
@@ -26,9 +26,14 @@ export class EditarPerfilService {
   } : IEditarPerfil){
     const existsUser = await checkUserIdExists(uId);
     if(!existsUser){
-      throw new Error("Utilizaor inexistente")
+      throw new Error("Utilizador inexistente")
     }
 
+    // verificar se o aluno já está registado
+    let existsEmail = await checkEmail(email);
+    if(existsEmail){
+        throw Error("Email já registado!")
+    }
 
     const user = await client.users.update({
         where : {

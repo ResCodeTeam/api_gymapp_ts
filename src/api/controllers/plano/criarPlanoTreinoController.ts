@@ -4,7 +4,9 @@ import { CriarPlanoTreinoService } from "../../services/plano/criarPlanoTreinoSe
 
 export class CriarPlanoTreinoController{
     async handle(request : Request, response : Response) {
-        const { alunoId, treinadorId, modalidadeId, blocos } = request.body;
+        const treinadorId = response.locals.uid;
+        
+        const { alunoId, modalidadeId, blocos } = request.body;
         if(alunoId === undefined || treinadorId === undefined || modalidadeId === undefined || blocos === undefined){
             throw new Error("Pedido inválido")
         }

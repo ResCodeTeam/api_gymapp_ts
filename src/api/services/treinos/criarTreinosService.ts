@@ -1,5 +1,5 @@
 import { client } from "../../prisma/client";
-import { checkUserIdExists, checkModalidadeExists, checkAtividadeExists } from "../../helpers/dbHelpers";
+import { checkUserIdExists, checkModalidadeExists, checkAtividadeExists, getModalidadeGinasio, getMarcaGym, checkMobilidadeMarcaUser } from "../../helpers/dbHelpers";
 import { changeTimeZone } from "../../helpers/dateHelpers";
 
 interface ICriarTreinosService {
@@ -48,6 +48,24 @@ class CriarTreinosService {
       if (!exist_atividades) {
         throw new Error("A atividade não existe");
       }
+    }
+
+    const ginasio_modalidade = await getModalidadeGinasio(modalidadeId);
+    const marca_modalidade = (await getMarcaGym(ginasio_modalidade)).marca_id;
+
+    const { mobilidade, id } = await checkMobilidadeMarcaUser(uid);
+    if(mobilidade){
+        if(id['marca_id'] != marca_modalidade)
+        {
+        throw new Error("Não possui permissão")
+        }
+    }
+    else{
+        const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
+        if(marca_gym != marca_modalidade)
+        {
+            throw new Error("Não possui permissão")
+        }
     }
 
     const dataAtual = new Date();

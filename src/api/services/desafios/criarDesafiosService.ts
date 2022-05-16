@@ -1,5 +1,5 @@
 import { client } from "../../prisma/client";
-import { checkUserIdExists, checkGinasioExists, checkModalidadeExists, checkExercicioExists } from "../../helpers/dbHelpers";
+import { checkUserIdExists, checkGinasioExists, checkModalidadeExists, checkExercicioExists, getUserFuncao, getFuncaoId, getMarcaGym, getDonoMarca, getTreinadorMarca, getModalidadeGinasio, getAutorExercicio } from "../../helpers/dbHelpers";
 import { Exercicio } from "../../Providers/exercicioProvider";
 
 
@@ -35,6 +35,30 @@ class CriarDesafiosService {
             throw new Error("A modalidade não existe");
         }
 
+        const funcao = await getUserFuncao(criadorId);
+        const treinador = await getFuncaoId("Treinador");
+
+        const marca_ginasio = (await getMarcaGym(ginasioId)).marca_id;
+        const dono_marca = await getDonoMarca(marca_ginasio);
+
+        const ginasio_modalidade = await getModalidadeGinasio(modalidadeId);
+
+        // treinador
+        if(funcao == treinador)
+        {
+            const marca_treinador = await getTreinadorMarca(criadorId)
+            if(marca_treinador != marca_ginasio || ginasioId != ginasio_modalidade){
+                throw new Error("Não tem autorização");
+            }
+        }
+        // admin
+        else
+        {
+            if(criadorId != dono_marca || ginasioId != ginasio_modalidade){
+                throw new Error("Não tem autorização");
+            }
+        }
+
         const desafio = await client.desafios.create({
             data: {
                 ginasio_id: ginasioId,
@@ -64,6 +88,27 @@ class CriarDesafiosService {
             if (!exists_exercicio) {
                 throw new Error("O exercicio não existe");
             }
+
+            const autor_exercicio = await getAutorExercicio(exercicios[i].exercicioId);
+            const marca_autor = await getTreinadorMarca(autor_exercicio);
+            const dono_marca_autor = await getDonoMarca(marca_autor);
+            
+            // treinador
+            if(funcao == treinador)
+            {
+                const marca_treinador = await getTreinadorMarca(criadorId)
+                if(marca_treinador != marca_autor){
+                    throw new Error("Não tem autorização");
+                }
+            }
+            // admin
+            else
+            {
+                if(dono_marca != dono_marca_autor){
+                    throw new Error("Não tem autorização");
+                }
+            }
+            
             const exercicio = await client.exercicios_desafio.create({
                 data: {
                     desafio_id: desafio.desafio_id,
@@ -74,7 +119,6 @@ class CriarDesafiosService {
                 }
             });
             const series = exercicios[i].series
-            // console.log(exercicio);
             for (let j = 0; j < series.length; j++) {
                 await client.series_desafio.create({
                     data: {

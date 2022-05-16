@@ -1,12 +1,22 @@
 import { client } from "../../../prisma/client";
-import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExists } from "../../../helpers/dbHelpers";
+import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExists, getAgendamentoAvaliacoesGinasio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 
 class RemoverIsAceiteAvaliacoesService {
-  async execute(agendamentoId: string) {
-    
+  async execute(treinadorId: string, agendamentoId: string) {
+
     const exists_agendamento = await checkAgendamentoAvaliacaoExists(agendamentoId);
     if (!exists_agendamento) {
       throw new Error("O agendamento da avaliação não existe");
+    }
+
+    const ginasio_agendamento = await getAgendamentoAvaliacoesGinasio(agendamentoId);
+    const marca_ginasio = (await getMarcaGym(ginasio_agendamento)).marca_id;
+    const marca_treinador = await getTreinadorMarca(treinadorId)
+    console.log(marca_ginasio)
+    console.log(marca_treinador)
+
+    if (marca_ginasio != marca_treinador) {
+      throw new Error("Não tem autorização")
     }
 
     const is_aceite = await checkAgendamentoAvaliacaoIsAceiteExists(agendamentoId);
@@ -15,16 +25,16 @@ class RemoverIsAceiteAvaliacoesService {
     }
 
     const agendamento = await client.agendamentos_avaliacoes.findUnique({
-      where:{
-          agendamento_id: agendamentoId
+      where: {
+        agendamento_id: agendamentoId
       }
     })
 
     await client.agendamentos_avaliacoes.update({
       where: {
         agendamento_id: agendamentoId
-       },
-      data:{
+      },
+      data: {
         isAceite: false
       }
     })

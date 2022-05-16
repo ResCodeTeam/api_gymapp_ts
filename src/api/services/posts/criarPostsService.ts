@@ -1,5 +1,5 @@
 import { publicacoes } from "@prisma/client";
-import { checkUserIdExists } from "../../helpers/dbHelpers";
+import { checkUserIdExists, getMarcaGym } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 import { VerInfoPostService } from "./obter/verInfoPostService";
 
@@ -32,6 +32,8 @@ class CriarPostsService {
         throw new Error("O utilizador não existe!");
       }
 
+      
+ 
       let post : publicacoes;
       if((criadorId != null && ginasioId != null)){
         post = await client.publicacoes.create({
