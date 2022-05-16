@@ -1,3 +1,4 @@
+import { doesNotReject } from 'assert';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import 'mocha';
@@ -7,24 +8,23 @@ const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
 const server = "localhost:8000"
-const desafioId = 'fefa26e4-90ea-4a5e-8878-c051faffeb29'
+const ginasioaId = 'dc8acc46-89eb-4d0f-a14a-2388b21c90a0'
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
 let token = ''
-
-describe("Teste editar desafio", () => {
+describe("Teste criar desafio ginasio", () => {
     beforeEach((done) => {
         chai
             .request(server)
             .post(baseUrl + "/auth/login")
             .send({
-                email: "admin2@admin.com",
+                email: "admin@admin.com",
                 password: "admin"
             })
             .end((err, res) => {
                 token = `Bearer ${res.body.token}`;
                 res.should.have.status(200);
-                done();
+                done()
             });
     });
 
@@ -33,7 +33,7 @@ describe("Teste editar desafio", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .put(baseUrl + '/adminTreinador/desafio/' + desafioId + '/editar')
+                .post(baseUrl + '/adminTreinador/ginasio/' + ginasioaId +'/desafio/')
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -46,7 +46,7 @@ describe("Teste editar desafio", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .put(baseUrl + '/adminTreinador/desafio/' + desafioId + '/editar')
+                .post(baseUrl + '/adminTreinador/ginasio/' + ginasioaId +'/desafio/')
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -56,11 +56,11 @@ describe("Teste editar desafio", () => {
         })
     })
 
-    describe('- Editar desafio sem body', () => {
+    describe('- Criar desafio', () => {
         it('Deve retornar erro de body incompleto', () => {
             return chai
                 .request(server)
-                .put(baseUrl + '/adminTreinador/desafio/' + desafioId + '/editar')
+                .post(baseUrl + '/adminTreinador/ginasio/' + ginasioaId +'/desafio/')
                 .set("Authorization", token)
                 .then(res => {
                     res.should.have.status(500)
@@ -69,21 +69,51 @@ describe("Teste editar desafio", () => {
                 })
         })
     })
-
-    describe('- Editar desafio corretamente', () => {
-        it('Deve retornar desafio editado com sucesso', () => {
+ 
+    describe('- Criar desafio', () => {
+        it('Deve retornar criar desafio com sucesso', () => {
             return chai
                 .request(server)
-                .put(baseUrl + '/adminTreinador/desafio/' + desafioId + '/editar')
+                .post(baseUrl + '/adminTreinador/ginasio/' + ginasioaId +'/desafio/')
                 .set("Authorization", token)
                 .send({
-
-                    nome: "Caminhar",
-                    modalidade: "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                    nome: "Crossfit2",
+                    modalidadeId: "047ea26d-bc43-4463-a3d1-8ea726a27b9f",
+                    dataInicio: "2022-06-23T15:51:45.663Z",
+                    dataFim: "2022-06-24T20:00:00.000Z",
                     recompensa: 100,
-                    descricao: "teste"
-
-                })
+                    descricao: "2",
+                    regras: [
+                      {
+                        descricao: "1"
+                      }
+                    ],
+                    exercicios: [
+                      {
+                        exercicioId: "373c7b63-9cbd-47d9-88ee-7d7d24370031",
+                        nOrdem: 0,
+                        genero: 0,
+                        series: [
+                          {
+                            nOrdem: 0,
+                            valor: "12"
+                          },
+                          {
+                            nOrdem: 1,
+                            valor: "12"
+                          },
+                          {
+                            nOrdem: 2,
+                            valor: "12"
+                          },
+                          {
+                            nOrdem: 3,
+                            valor: "12"
+                          }
+                        ]
+                      }
+                    ]
+                  })
                 .then(res => {
                     res.should.have.status(200)
                     chai.expect(res.body).to.be.an("object")
@@ -222,6 +252,8 @@ describe("Teste editar desafio", () => {
                     }
 
                 })
+
+
         })
     })
 })
