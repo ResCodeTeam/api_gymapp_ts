@@ -4,7 +4,7 @@ import { CriarAvaliacaoService } from "../../services/avaliacoes/criarAvaliacaoS
 
 export class CriarAvaliacaoController{
   async handle(request:Request, response:Response){
-    const treinadorId = response.locals.uid;
+    const treinadorId = request.params.treinadorId;
     const alunoId = request.params.id;
     const {
         peso,

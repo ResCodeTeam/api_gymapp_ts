@@ -3,7 +3,7 @@ import { CriarNotificacaoGinasioService } from "../../services/notificacoes/cria
 
 export class CriarNotificacaoGinasioController{
     async handle(request:Request,response:Response){
-        const userId = response.locals.uid;
+        const userId = request.params.adminId;
         const ginasioId = request.params.ginasioId;
         const {conteudo, tipo}=request.body;
         if(conteudo === undefined || tipo === undefined){

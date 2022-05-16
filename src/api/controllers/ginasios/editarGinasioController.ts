@@ -7,7 +7,7 @@ export class EditarGinasioController{
     
     async handle (request: Request, response: Response){
         const ginasioId = request.params.ginasioId;
-        const adminId=response.locals.uid;
+        const adminId = request.params.adminId;
         
         const {
             nome,

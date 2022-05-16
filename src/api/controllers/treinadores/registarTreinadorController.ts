@@ -5,7 +5,7 @@ import { RegistarTreinadorService } from "../../services/treinadores/registarTre
 export class RegistarTreinadorController{
   async handle(request:Request, response:Response){
     const marcaId = request.params.id;
-    const userId = response.locals.uid;
+    const userId = request.params.adminId;
     let { email,nome,password,dataNasc,dataEntrada,genero } = request.body;
     if(email === undefined || nome === undefined || password === undefined || dataNasc === undefined || dataEntrada === undefined || genero === undefined){
       throw new Error("Pedido inválido")

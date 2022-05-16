@@ -3,7 +3,7 @@ import { RemoverExercicioMusculoService } from "../../../services/exercicios/mus
 
 export class RemoverExercicioMusculoController{
   async handle(request:Request,response:Response){
-    const treinadorId = response.locals.uid;
+    const treinadorId = request.params.treinadorId;
     const exercicioId = request.params.exercicioId;
     const musculoId = request.params.musculoId;
 

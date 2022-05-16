@@ -62,48 +62,48 @@ const criarNotificacaoGinasioController = new CriarNotificacaoGinasioController(
 const criarNotificacaoUserController = new CriarNotificacaoUserController();
 
 //#region Alunos
-adminRouter.post("/marca/alunos/", verificarAutenticacao ,verificarAdmin,registarAlunosController.handle);
-adminRouter.delete("/aluno/remover/:uId",verificarAutenticacao,verificarAdmin, removerAlunoController.handle);
+adminRouter.post("/:adminId/marca/alunos/",registarAlunosController.handle);
+adminRouter.delete("/aluno/remover/:uId", removerAlunoController.handle);
 //#endregion
 
 //#region Ginasios
-adminRouter.post("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, registarMarcaGinasiosController.handle);
-adminRouter.delete("/ginasio/:id/", verificarAutenticacao, verificarAdmin, removerGinasioController.handle);
-adminRouter.get("/ginasio/:id/", verificarAutenticacao, verificarAdmin, verUmGinasioController.handle);
-adminRouter.get("/marca/:id/ginasio/", verificarAutenticacao, verificarAdmin, verTodosGinasiosController.handle);
-adminRouter.put("/ginasio/editar/:ginasioId",verificarAutenticacao,verificarAdmin,editarGinasioController.handle);
-adminRouter.get("/ginasio/treinador/ver/:id", verificarAutenticacao,verificarAdmin,verTreinadorGinasioController.handle);
+adminRouter.post("/:adminId/marca/:id/ginasio/", registarMarcaGinasiosController.handle);
+adminRouter.delete("/:adminId/ginasio/:id/", removerGinasioController.handle);
+adminRouter.get("/:adminId/ginasio/:id/", verUmGinasioController.handle);
+adminRouter.get("/:adminId/marca/:id/ginasio/", verTodosGinasiosController.handle);
+adminRouter.put("/:adminId/ginasio/editar/:ginasioId",editarGinasioController.handle);
+adminRouter.get("/:adminId/ginasio/treinador/ver/:id",verTreinadorGinasioController.handle);
 //#endregion
 
 //#region Marcastreinador
-adminRouter.post("/marca/", verificarAutenticacao, verificarAdmin, registarUserMarcasController.handle);
-adminRouter.delete("/marca/:id", verificarAutenticacao, verificarAdmin, removerMarcaController.handle);
-adminRouter.get("/marca/:id/", verificarAutenticacao, verificarAdmin,verUmaMarcaController.handle);
-adminRouter.get("/marca/", verificarAutenticacao, verificarAdmin, verTodasMarcasController.handle);
-adminRouter.put("/marca/:marcaId",verificarAutenticacao,verificarAdmin,editarMarcaController.handle);
+adminRouter.post("/:adminId/marca/", registarUserMarcasController.handle);
+adminRouter.delete("/:adminId/marca/:id", removerMarcaController.handle);
+adminRouter.get("/:adminId/marca/:id/",verUmaMarcaController.handle);
+adminRouter.get("/:adminId/marca/", verTodasMarcasController.handle);
+adminRouter.put("/:adminId/marca/:marcaId",editarMarcaController.handle);
 //#endregion
 
 //#region Modalidades
-adminRouter.post("/ginasio/:id/modalidades", verificarAutenticacao , verificarAdmin,criarGinasioModalidadesController.handle);
-adminRouter.delete("/ginasio/:ginasioId/modalidades/:id", verificarAutenticacao , verificarAdmin, removerModalidadesController.handle);
-adminRouter.put("/ginasio/:ginasioId/modalidades/:id",verificarAutenticacao, verificarAdmin, editarModalidadesController.handle);
-adminRouter.get("/ginasio/:id/modalidades/", verificarAutenticacao, verificarAdmin, verTodasModalidadesController.handle);
+adminRouter.post("/:adminId/ginasio/:id/modalidades",criarGinasioModalidadesController.handle);
+adminRouter.delete("/:adminId/ginasio/:ginasioId/modalidades/:id", removerModalidadesController.handle);
+adminRouter.put("/:adminId/ginasio/:ginasioId/modalidades/:id", editarModalidadesController.handle);
+adminRouter.get("/:adminId/ginasio/:id/modalidades/", verTodasModalidadesController.handle);
 //#endregion
 
 //#region Notificacoes
-adminRouter.post("/notificacao/user/:id", verificarAutenticacao , verificarAdmin,criarNotificacaoUserController.handle);
-adminRouter.post("/notificacao/marca/:marcaId", verificarAutenticacao, verificarAdmin, criarNotificacaoMarcaController.handle);
-adminRouter.post("/notificacao/ginasio/:ginasioId", verificarAutenticacao ,verificarAdmin, criarNotificacaoGinasioController.handle);
+adminRouter.post("/:adminId/notificacao/user/:id",criarNotificacaoUserController.handle);
+adminRouter.post("/:adminId/notificacao/marca/:marcaId", criarNotificacaoMarcaController.handle);
+adminRouter.post("/:adminId/notificacao/ginasio/:ginasioId", criarNotificacaoGinasioController.handle);
 //#endregion
 
 //#region Treinadores
-adminRouter.delete("/treinador/:id", verificarAutenticacao ,verificarAdmin, eliminarTreinadorController.handle);
-adminRouter.post("/marca/:id/treinadores", verificarAutenticacao, verificarAdmin, registarTreinadorController.handle);
+adminRouter.delete("/:adminId/treinador/:id", eliminarTreinadorController.handle);
+adminRouter.post("/:adminId/marca/:id/treinadores", registarTreinadorController.handle);
 //#endregion
 
 //#region Locais de Medida
-adminRouter.post("/marca/:marcaId/localMedida", verificarAutenticacao, verificarAdmin, criarLocalMedidaController.handle);
-adminRouter.delete("/marca/:marcaId/localMedida/:id", verificarAutenticacao, verificarAdmin, removerLocalMedidaController.handle);
+adminRouter.post("/:adminId/marca/:marcaId/localMedida", criarLocalMedidaController.handle);
+adminRouter.delete("/:adminId/marca/:marcaId/localMedida/:id", removerLocalMedidaController.handle);
 //#endregion
 
 export { adminRouter };

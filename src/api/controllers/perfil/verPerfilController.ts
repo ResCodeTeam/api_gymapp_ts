@@ -7,7 +7,7 @@ export class VerPerfilController{
  
     async handle(request:Request,response:Response){
         const uId = request.params.id;
-        const auId = response.locals.uid;
+        const auId = request.params.userId;
 
         const verPerfilService = new VerPerfilService();
 

@@ -5,7 +5,7 @@ import { EditarPerfilService } from "../../services/perfil/editarPerfilService";
 export class EditarPerfilController{
     
     async handle (request: Request, response: Response){
-        const uId = response.locals.uid;
+        const uId = request.params.userId;
         
         let { 
             email,

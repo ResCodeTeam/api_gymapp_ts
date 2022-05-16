@@ -3,7 +3,7 @@ import { VerTreinosAlunosService } from "../../services/treinos/verTreinosAlunos
 
 export class VerTreinosAlunosController{
     async handle(request:Request,response:Response){
-        const uId = response.locals.uid;
+        const uId = request.params.alunoId;
 
         const verTreinosAlunosService = new VerTreinosAlunosService();
         const resp = await verTreinosAlunosService.execute(uId);

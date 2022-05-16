@@ -3,7 +3,7 @@ import { VerMeuPerfilService } from "../../services/perfil/verMeuPerfilService";
 
 export class VerMeuPerfilController{
   async handle(request:Request ,response:Response){
-    const uid=response.locals.uid;
+    const uid = request.params.userId;
 
     const verMeuPerfilService = new VerMeuPerfilService();
     const resp = await verMeuPerfilService.execute(uid);

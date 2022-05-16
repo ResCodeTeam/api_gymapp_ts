@@ -3,7 +3,7 @@ import { CriarNotificacaoMarcaService } from "../../services/notificacoes/criarN
 
 export class CriarNotificacaoMarcaController{
     async handle(request:Request,response:Response){
-        const userId = response.locals.uid;
+        const userId = request.params.adminId;
         const marcaId = request.params.marcaId;
         let {conteudo, tipo}=request.body;
         if(marcaId === undefined || conteudo === undefined || tipo === undefined){

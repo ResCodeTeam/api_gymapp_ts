@@ -3,7 +3,7 @@ import { RegistarAlunoService } from "../../services/alunos/registarAlunoService
 
 export class RegistarAlunoController {
     async handle(request: Request, response: Response){
-      let donoId = response.locals.uid;
+      let donoId = request.params.adminId;
       let { email, nome, password, dataNasc, dataEntrada, genero, ginasioId } = request.body;
       if(email === undefined || nome === undefined || password === undefined || dataNasc === undefined || dataEntrada === undefined || genero === undefined || ginasioId === undefined){
         throw new Error("Pedido inválido")

@@ -3,7 +3,7 @@ import { RemoverAvaliacoesService } from "../../services/avaliacoes/removerAvali
 
 export class RemoverAvaliacaoController {
     async handle(request: Request, response: Response) {
-        const treinadorId = response.locals.uid
+        const treinadorId = request.params.treinadorId;
         //Declarar Serviço
         const removerAvaliacaoService = new RemoverAvaliacoesService()
 

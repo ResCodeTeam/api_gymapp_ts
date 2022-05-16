@@ -3,7 +3,7 @@ import { CriarTreinosService } from "../../services/treinos/criarTreinosService"
 
 class CriarTreinosController {
   async handle(request: Request, response: Response) {
-    const uid = response.locals.uid;
+    const uid = request.params.alunoId;
     let { atividadeId, modalidadeId, duracao, calorias, distancia, data } = request.body;
     if(atividadeId === undefined || modalidadeId === undefined || duracao === undefined || calorias === undefined || distancia === undefined || data === undefined){
       throw new Error("Pedido inválido")

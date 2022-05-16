@@ -3,7 +3,7 @@ import { RemoverComentarioService } from "../../../services/posts/comments/remov
 
 export class RemoverComentarioController{
   async handle(request:Request, response:Response){
-    const criadorId = response.locals.uid;
+    const criadorId = request.params.userId;
     const comentarioId = request.params.comentarioId;
     const publicacaoId = request.params.publicacaoId;
 

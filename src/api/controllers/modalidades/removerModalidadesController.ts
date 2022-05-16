@@ -3,7 +3,7 @@ import { RemoverModalidadesService } from "../../services/modalidades/removerMod
 
 class RemoverModalidadesController{
     async handle(request: Request, response: Response){
-        const uid = response.locals.uid;
+        const uid = request.params.adminId;
         const modalidadeId = request.params.id;
         const ginasioId = request.params.ginasioId;
         const removerModalidadesService = new RemoverModalidadesService();

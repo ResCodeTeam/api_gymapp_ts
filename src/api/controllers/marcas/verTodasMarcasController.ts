@@ -4,7 +4,7 @@ import { VerTodasMarcasService } from "../../services/marcas/verTodasMarcasServi
 export class VerTodasMarcasController{
  
     async handle(request:Request,response:Response){
-        const donoId = response.locals.uid;
+        const donoId = request.params.adminId;
 
         const verTodasMarcasService = new VerTodasMarcasService();
         const resp = await verTodasMarcasService.execute({donoId});

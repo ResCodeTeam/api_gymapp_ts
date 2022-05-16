@@ -3,9 +3,9 @@ import { RemoverGostoCommentService } from "../../../services/posts/gostosCommen
 
 export class RemoverGostoCommentController{
   async handle(request:Request, response:Response){
-    const comentarioId=request.params.comentarioId;
-    const publicacaoId=request.params.publicacaoId;
-    const criadorId=response.locals.uid;
+    const comentarioId = request.params.comentarioId;
+    const publicacaoId = request.params.publicacaoId;
+    const criadorId = request.params.userId;
 
     const removerGostoCommentService = new RemoverGostoCommentService();
     const resp = await removerGostoCommentService.execute(publicacaoId,criadorId,comentarioId)

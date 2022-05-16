@@ -4,7 +4,7 @@ import { EliminarTreinadorService } from "../../services/treinadores/eliminarTre
 class EliminarTreinadorController{
     async handle(request : Request, response : Response){
         const treinador_id = request.params.id;
-        const userId=response.locals.uid;
+        const userId = request.params.adminId;
 
         const eliminarTreinadorService = new EliminarTreinadorService();
         const resp = await eliminarTreinadorService.execute({treinador_id,userId});

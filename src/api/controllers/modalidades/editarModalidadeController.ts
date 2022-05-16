@@ -5,7 +5,7 @@ import { EditarModalidadesService } from "../../services/modalidades/editarModal
 export class EditarModalidadesController{
     
     async handle (request: Request, response: Response){
-        const uid = response.locals.uid;
+        const uid = request.params.adminId;
         const modalidadeId = request.params.id;
         const ginasioId = request.params.ginasioId;
         

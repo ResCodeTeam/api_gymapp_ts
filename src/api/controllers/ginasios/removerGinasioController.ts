@@ -3,7 +3,7 @@ import { RemoverGinasioService } from "../../services/ginasios/removerGinasioSer
 
 class RemoverGinasioController{
     async handle(request: Request, response: Response){
-        const uId = response.locals.uid;
+        const uId = request.params.adminId;
         const ginasioId = request.params.id;
         
     const removerGinasioService = new RemoverGinasioService();

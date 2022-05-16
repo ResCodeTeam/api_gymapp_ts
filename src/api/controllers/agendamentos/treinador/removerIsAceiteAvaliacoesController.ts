@@ -3,7 +3,7 @@ import { RemoverIsAceiteAvaliacoesService } from "../../../services/agendamentos
 
 class RemoverIsAceiteAvaliacoesController{
     async handle(request: Request, response: Response){
-        const treinadorId = response.locals.uid;
+        const treinadorId = request.params.treinadorId;
         const agendamentoId = request.params.agendamento_id;
 
     const removerIsAceiteAvaliacoesService = new RemoverIsAceiteAvaliacoesService();

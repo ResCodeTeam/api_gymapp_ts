@@ -3,7 +3,7 @@ import { RemoverSubmissaoDesafioService } from "../../../services/desafios/submi
 
 export class RemoverSubmissaoDesafioController{
   async handle(request:Request, response:Response){
-    const uid = response.locals.uid;
+    const uid = request.params.treinadorId;
     const submissaoId = request.params.id;
     const desafioId=request.params.desafioId;
 

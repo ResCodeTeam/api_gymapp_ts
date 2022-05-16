@@ -5,7 +5,7 @@ import { EditarPerfilPrivadoService } from "../../services/definicoes/editarPerf
 export class EditarPerfilPrivadoController{
     
     async handle (request: Request, response: Response){
-        const uId = response.locals.uid;  
+        const uId = request.params.userId;  
         const { is_privado }=request.body;
         if(is_privado === undefined){
             throw new Error("Pedido inválido")

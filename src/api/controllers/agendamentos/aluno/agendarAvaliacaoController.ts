@@ -4,7 +4,7 @@ import { AgendarAvaliacaoService } from "../../../services/agendamentos/aluno/ag
 
 export class AgendarAvaliacaoController {
   async handle(request: Request, response: Response){
-    const uid = response.locals.uid;
+    const uid = request.params.alunoId;
     let {ginasioId, dataAgendamento} = request.body;
     if(ginasioId === undefined || dataAgendamento === undefined){
       throw new Error("Pedido inválido")
