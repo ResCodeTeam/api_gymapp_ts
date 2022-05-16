@@ -3,7 +3,6 @@ import { checkUserIdExists, getFuncaoId, getUserFuncao } from "../helpers/dbHelp
 
 export async function verificarAdmin(request: Request, response: Response, next: NextFunction) {
     const uid = response.locals.uid;
-    //change
     const user = checkUserIdExists(uid)
 
     if (!user) {
