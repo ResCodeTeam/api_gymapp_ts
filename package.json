@@ -26,7 +26,13 @@
     "test_desafios": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/desafios/*.ts'",
     "test_avaliacao": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/avaliacao/*.ts'",
     "test_plano": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/plano/*.ts'",
-    "test_exercicios": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/exercicios/*.ts'"
+    "test_exercicios": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/exercicios/*.ts'",
+    "test_exercicios_editar": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/exercicios/editar/*.ts'",
+    "test_auth": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/auth/*.ts'",
+    "test_backend": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/backend/*.ts'"
+
+
+
   },
   "author": "ResCode",
   "license": "ISC",
