@@ -9,7 +9,7 @@ import { CriarGostoController } from "../controllers/posts/gostosPosts/criarGost
 import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
 import { EditarPerfilPrivadoController } from "../controllers/definicoes/editarPerfilPrivadoController";
 import { ObterDefinicoesController } from "../controllers/definicoes/obterDefinicoesController";
-import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
+
 import { VerMeuPerfilController } from "../controllers/perfil/verMeuPerfilController";
 import { EditarMencoesController } from "../controllers/definicoes/editarMencoesController";
 import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
@@ -36,17 +36,17 @@ const criarPostsController = new CriarPostsController();
 const verTodosPostsController = new VerTodosPostsController();
 const removerPostsController = new RemoverPostController();
 const verInfoPostInfoController = new VerInfoPostController();
-const editarPublicacaoController  = new EditarPublicacaoController();
+const editarPublicacaoController = new EditarPublicacaoController();
 
-const criarGostoController=new CriarGostoController();
-const  editarPerfilController = new EditarPerfilController();
+const criarGostoController = new CriarGostoController();
+const editarPerfilController = new EditarPerfilController();
 const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
 const obterDefinicoesController = new ObterDefinicoesController();
 const verMeuPerfilController = new VerMeuPerfilController();
 const editarMencoesController = new EditarMencoesController();
 const criarComentarioController = new CriarComentarioController();
-const impedirIdentificacaoController= new ImpedirIdentificacaoController();
-const alterarVistoController= new AlterarVistoController();
+const impedirIdentificacaoController = new ImpedirIdentificacaoController();
+const alterarVistoController = new AlterarVistoController();
 const verPerfilController = new VerPerfilController();
 const verTodosDesafiosController = new VerTodosDesafiosController();
 const verDesafiosDisponiveisController = new VerDesafiosDisponiveisController();
@@ -85,7 +85,7 @@ allRouter.get("/:userId/alunos/ginasio/:id", obterAlunosGinasioController.handle
 allRouter.put("/:userId/perfil", editarPerfilController.handle);
 allRouter.put("/:userId/definicoes/mencoes", editarMencoesController.handle);
 allRouter.put("/:userId/definicoes/identificacao", impedirIdentificacaoController.handle);
-allRouter.put("/:userId/definicoes/perfil/privado",editarPerfilPrivadoController.handle);
+allRouter.put("/:userId/definicoes/perfil/privado", editarPerfilPrivadoController.handle);
 allRouter.get("/:userId/definicoes", obterDefinicoesController.handle);
 allRouter.get("/:userId/perfil", verMeuPerfilController.handle);
 allRouter.get("/:userId/user/:id", verPerfilController.handle);
@@ -93,7 +93,7 @@ allRouter.get("/:userId/user/:id", verPerfilController.handle);
 
 
 //#region Notificacoes
-allRouter.put("/:userId/destinosNotificacao/notificacao/:id",alterarVistoController.handle);
+allRouter.put("/:userId/destinosNotificacao/notificacao/:id", alterarVistoController.handle);
 allRouter.get("/:userId/notificacoes", verNotificacoesController.handle);
 //#endregion
 

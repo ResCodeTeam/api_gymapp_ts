@@ -2,7 +2,7 @@ import express from "express";
 const treinadorRouter = express.Router();
 
 //Imports
-import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
+
 import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
 import { VerTodosTreinosDosAlunosController } from "../controllers/treinos/verTodosTreinosDosAlunosController";
 import { VerTodosOsExerciciosTreinadoresController } from "../controllers/Exercicios/VerTodosOsExerciciosTreinadoresController";
@@ -28,7 +28,6 @@ import { VerMeusExerciciosController } from "../controllers/Exercicios/verMeusEx
 import { ObterPlanoTreinoAlunoController } from "../controllers/plano/obterPlanoTreinoAlunoController";
 import { SubmissaoDesafioController } from "../controllers/desafios/submissoes/submissaoDesafioController";
 import { EditarPlanoTreinoController } from "../controllers/plano/editarPlanoTreinoController";
-import { verificarTreinador } from "../middlewares/verificarTreinador";
 import { VerAvaliacaoAlunoController } from "../controllers/avaliacoes/verAvaliacaoAlunoController";
 import { VerLocaisMedidaController } from "../controllers/localMedida/verLocaisMedidaController";
 import { RemoverSubmissaoDesafioController } from "../controllers/desafios/submissoes/removersubmissaoDesafioController";

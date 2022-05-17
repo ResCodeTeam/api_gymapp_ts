@@ -5,8 +5,7 @@ import { RemoverDesafioController } from "../controllers/desafios/removerDesafio
 import { EditarDesafioController } from "../controllers/desafios/EditarDesafioController";
 import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosController";
 import { EncerrarDesafiosController } from "../controllers/desafios/encerrarDesafiosController";
-import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
-import { verificarAdminTreinador } from "../middlewares/verificarAdminTreinador";
+
 import { VerTodosMusculosController } from "../controllers/musculos/verTodosMusculosController";
 
 const editarDesafio = new EditarDesafioController()
