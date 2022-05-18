@@ -12,21 +12,21 @@ export class EditarPublicacaoService {
     async execute({ uId, publicacaoId, newData, descricao }: IPublicacao) {
 
         if (publicacaoId == null) {
-            return { date: "Impossível aceder à publicação.", status: 500 }
+            return { data: "Impossível aceder à publicação.", status: 500 }
         }
 
         const exists = await checkPublicacaoExists(publicacaoId)
         if (!exists) {
-            return { date: "A publicação não existe", status: 500 }
+            return { data: "A publicação não existe", status: 500 }
         }
 
         const isAutor = await checkAutorPublicacoes(uId, publicacaoId)
         if (!isAutor) {
-            return { date: "Não possui autorização", status: 500 }
+            return { data: "Não possui autorização", status: 500 }
         }
 
         if (newData == null) {
-            return { date: "Campo data não preenchido", status: 500 }
+            return { data: "Campo data não preenchido", status: 500 }
         }
 
         const verificaData = await client.publicacoes.findUnique({
@@ -40,11 +40,11 @@ export class EditarPublicacaoService {
 
 
         if (verificaData.data > newData) {
-            return { date: "Não é possivel alterar! Data inválida", status: 500 }
+            return { data: "Não é possivel alterar! Data inválida", status: 500 }
         }
 
         if (descricao == null) {
-            return { date: "Campo descrição não preenchido", status: 500 }
+            return { data: "Campo descrição não preenchido", status: 500 }
         }
 
         const verificaDescricao = await client.publicacoes.findUnique({
@@ -57,7 +57,7 @@ export class EditarPublicacaoService {
         });
 
         if (verificaDescricao.descricao == descricao) {
-            return { date: "Não é possivel alterar! Descrição é igual", status: 500 }
+            return { data: "Não é possivel alterar! Descrição é igual", status: 500 }
         }
 
         const publicação = await client.publicacoes.update({
@@ -121,6 +121,6 @@ export class EditarPublicacaoService {
                 }
             },
         })
-        return {data: publicação, status: 200};
+        return { data: publicação, status: 200 };
     }
 }

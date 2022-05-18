@@ -5,7 +5,7 @@ class RemoverAtividadesService {
   async execute(atividadeId: string) {
     const exists_atividade = await checkAtividadeExists(atividadeId);
     if (!exists_atividade) {
-      return { date: "A modalidade não existe", status: 500 }
+      return { data: "A modalidade não existe", status: 500 }
     }
 
 

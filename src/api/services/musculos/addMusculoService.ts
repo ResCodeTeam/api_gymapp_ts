@@ -5,7 +5,7 @@ export class AddMusculoService {
   async execute(nome: string, image: string) {
     const existsMusculeName = await checkMusculoNomeExists(nome);
     if (existsMusculeName) {
-      return { date: "Musculo já existente", status: 500 }
+      return { data: "Musculo já existente", status: 500 }
     }
 
     const musculo = await client.musculos.create({
@@ -15,6 +15,6 @@ export class AddMusculoService {
       }
     })
 
-    return {data: musculo, status: 200};
+    return { data: musculo, status: 200 };
   }
 }

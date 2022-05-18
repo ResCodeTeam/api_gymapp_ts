@@ -6,7 +6,7 @@ export class VerDesafioService {
 
         const exists_desafio = await checkDesafioIdExists(desafioId)
         if (!exists_desafio) {
-            return { date: "O desafio não existe", status: 500 }
+            return { data: "O desafio não existe", status: 500 }
         }
 
         const funcao = await getUserFuncao(uId);
@@ -21,13 +21,13 @@ export class VerDesafioService {
         if (funcao == treinador) {
             const marca_treinador = await getTreinadorMarca(uId)
             if (marca_treinador != marca_ginasio) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         // admin
         else if (funcao == admin) {
             if (uId != dono_marca) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         // aluno
@@ -35,12 +35,12 @@ export class VerDesafioService {
             const { mobilidade, id } = await checkMobilidadeMarcaUser(uId);
             if (mobilidade) {
                 if (id['marca_id'] != marca_ginasio) {
-                    return { date: "Não possui permissão", status: 500 }
+                    return { data: "Não possui permissão", status: 500 }
                 }
             }
             else {
                 if (id['ginasio_id'] != ginasio_desafio) {
-                    return { date: "Não possui permissão", status: 500 }
+                    return { data: "Não possui permissão", status: 500 }
                 }
             }
         }
@@ -113,6 +113,6 @@ export class VerDesafioService {
                 }
             }
         })
-        return {data: desafio, status: 200};
+        return { data: desafio, status: 200 };
     }
 }

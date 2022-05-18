@@ -5,7 +5,7 @@ export class EditarPerfilPrivadoService {
   async execute(uId: string, is_privado: boolean) {
     const existsUser = await checkUserIdExists(uId);
     if (!existsUser) {
-      return { date: "Utilizador inexistente", status: 500 }
+      return { data: "Utilizador inexistente", status: 500 }
     }
 
     const defId = await findUserDefinicoes(uId);
@@ -18,7 +18,7 @@ export class EditarPerfilPrivadoService {
         is_privado
       }
     })
-    return {data: perfilEdited, status: 200};
+    return { data: perfilEdited, status: 200 };
   }
 }
 

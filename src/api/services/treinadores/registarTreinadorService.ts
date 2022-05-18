@@ -19,13 +19,13 @@ export class RegistarTreinadorService {
   async execute({ marcaId, email, nome, password, dataNasc, dataEntrada, genero, userId }: IRegistarTreinadorService) {
     let existsMarca = await checkMarcaExists(marcaId);
     if (!existsMarca) {
-      return { date: "Marca não existe", status: 500 }
+      return { data: "Marca não existe", status: 500 }
     }
 
     // verificar se o treinador já está registado
     let existsEmail = await checkEmail(email);
     if (existsEmail) {
-      return { date: "Email já registado!", status: 500 }
+      return { data: "Email já registado!", status: 500 }
     }
 
     // Obter tag do aluno
@@ -69,6 +69,6 @@ export class RegistarTreinadorService {
         usersuid: treinador.uid
       }
     })
-    return {data: treinador, status: 200};
+    return { data: treinador, status: 200 };
   }
 }

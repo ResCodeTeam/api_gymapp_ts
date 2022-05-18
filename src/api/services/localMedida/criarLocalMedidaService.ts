@@ -6,13 +6,13 @@ export class CriarLocalMedidaService {
 
     const existMarca = await checkMarcaExists(marcaId);
     if (!existMarca) {
-      return { date: "Marca inexistente", status: 500 }
+      return { data: "Marca inexistente", status: 500 }
     }
 
 
     const isAutorMarca = await checkAutorMarca(uid, marcaId);
     if (!isAutorMarca) {
-      return { date: "Não possui autorização para realizar esta operação", status: 500 }
+      return { data: "Não possui autorização para realizar esta operação", status: 500 }
     }
 
     const localMedida = await client.locais_medidas.create({
@@ -36,7 +36,7 @@ export class CriarLocalMedidaService {
       })
     }
 
-    return {data: localMedida, status: 200};
+    return { data: localMedida, status: 200 };
 
   }
 }

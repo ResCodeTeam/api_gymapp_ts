@@ -31,7 +31,7 @@ export class RegistarMarcaGinasiosService {
 
     const exists_marca = await checkMarcaExists(marcaId);
     if (!exists_marca) {
-      return { date: "A marca não existe", status: 500 }
+      return { data: "A marca não existe", status: 500 }
     }
 
     await checkDonoMarca(marcaId, uId)
@@ -64,7 +64,7 @@ export class RegistarMarcaGinasiosService {
         }
       },
     });
-    return {data: ginasio, status: 200};
+    return { data: ginasio, status: 200 };
   }
 }
 

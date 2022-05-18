@@ -15,7 +15,7 @@ export class CriarNotificacaoUserService {
 
     const existsDestino = await checkUserIdExists(destinoId);
     if (!existsDestino) {
-      return { date: "User inexistente", status: 500 }
+      return { data: "User inexistente", status: 500 }
     }
 
     const marcaId = await getAlunoMarca(destinoId);
@@ -41,6 +41,6 @@ export class CriarNotificacaoUserService {
       }
     })
 
-    return {data: notificacao, status: 200};
+    return { data: notificacao, status: 200 };
   }
 }

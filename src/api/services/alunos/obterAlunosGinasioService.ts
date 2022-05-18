@@ -13,7 +13,7 @@ export class ObterAlunosGinasioService {
 
         const existsGinasio = await checkGinasioExists(ginasioId);
         if (!existsGinasio) {
-            return { date: "Ginásio não existe", status: 500 }
+            return { data: "Ginásio não existe", status: 500 }
         }
 
         const marca_ginasio = (await getMarcaGym(ginasioId)).marca_id;
@@ -26,13 +26,13 @@ export class ObterAlunosGinasioService {
         if (funcao == treinador) {
             const marca_treinador = await getTreinadorMarca(userId)
             if (marca_treinador != marca_ginasio) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         // admin
         else if (funcao == admin) {
             if (userId != dono_marca) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         // aluno
@@ -40,12 +40,12 @@ export class ObterAlunosGinasioService {
             const { mobilidade, id } = await checkMobilidadeMarcaUser(userId);
             if (mobilidade) {
                 if (id['marca_id'] != marca_ginasio) {
-                    return { date: "Não possui permissão", status: 500 }
+                    return { data: "Não possui permissão", status: 500 }
                 }
             }
             else {
                 if (id['ginasio_id'] != ginasioId) {
-                    return { date: "Não possui permissão", status: 500 }
+                    return { data: "Não possui permissão", status: 500 }
                 }
             }
         }
@@ -68,13 +68,13 @@ export class ObterAlunosGinasioService {
         });
 
         if (alunos.length == 0) {
-            return { date: "Não foi encontrado nenhum aluno", status: 500 }
+            return { data: "Não foi encontrado nenhum aluno", status: 500 }
         }
 
         alunos.forEach(aluno => {
             users.push(aluno.users);
         });
 
-        return {data: users, status: 200};
+        return { data: users, status: 200 };
     }
 }

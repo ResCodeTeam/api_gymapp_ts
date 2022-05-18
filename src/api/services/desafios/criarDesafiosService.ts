@@ -22,17 +22,17 @@ class CriarDesafiosService {
     async execute({ criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, ginasioId, descricao, exercicios, regras }: ICriarDesafiosService) {
         const exists_criador = await checkUserIdExists(criadorId);
         if (!exists_criador) {
-            return { date: "O user não existe", status: 500 }
+            return { data: "O user não existe", status: 500 }
         }
 
         const exists_ginasio = await checkGinasioExists(ginasioId);
         if (!exists_ginasio) {
-            return { date: "Ginásio não existe", status: 500 }
+            return { data: "Ginásio não existe", status: 500 }
         }
 
         const exists_modalidade = await checkModalidadeExists(modalidadeId);
         if (!exists_modalidade) {
-            return { date: "A modalidade não existe", status: 500 }
+            return { data: "A modalidade não existe", status: 500 }
         }
 
         const funcao = await getUserFuncao(criadorId);
@@ -47,13 +47,13 @@ class CriarDesafiosService {
         if (funcao == treinador) {
             const marca_treinador = await getTreinadorMarca(criadorId)
             if (marca_treinador != marca_ginasio || ginasioId != ginasio_modalidade) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         // admin
         else {
             if (criadorId != dono_marca || ginasioId != ginasio_modalidade) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
 
@@ -84,7 +84,7 @@ class CriarDesafiosService {
         for (let i = 0; i < exercicios.length; i++) {
             const exists_exercicio = await checkExercicioExists(exercicios[i].exercicioId);
             if (!exists_exercicio) {
-                return { date: "O exercicio não existe", status: 500 }
+                return { data: "O exercicio não existe", status: 500 }
             }
 
             const autor_exercicio = await getAutorExercicio(exercicios[i].exercicioId);
@@ -95,13 +95,13 @@ class CriarDesafiosService {
             if (funcao == treinador) {
                 const marca_treinador = await getTreinadorMarca(criadorId)
                 if (marca_treinador != marca_autor) {
-                    return { date: "Não tem autorização", status: 500 }
+                    return { data: "Não tem autorização", status: 500 }
                 }
             }
             // admin
             else {
                 if (dono_marca != dono_marca_autor) {
-                    return { date: "Não tem autorização", status: 500 }
+                    return { data: "Não tem autorização", status: 500 }
                 }
             }
 
@@ -191,7 +191,7 @@ class CriarDesafiosService {
                 }
             }
         })
-        return {data: desaf, status: 200};
+        return { data: desaf, status: 200 };
     }
 }
 

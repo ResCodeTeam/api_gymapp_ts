@@ -6,7 +6,7 @@ export class VerTreinosAlunosService {
 
         const exists_user = await checkUserIdExists(uId);
         if (!exists_user) {
-            return { date: "O utilizador não existe", status: 500 }
+            return { data: "O utilizador não existe", status: 500 }
         }
 
         const treinos = await client.treinos.findMany({
@@ -16,6 +16,6 @@ export class VerTreinosAlunosService {
             },
         })
 
-        return {data: treinos, status: 200};
+        return { data: treinos, status: 200 };
     }
 }

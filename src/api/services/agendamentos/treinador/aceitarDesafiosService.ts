@@ -6,12 +6,12 @@ class AceitarDesafiosService {
   async execute(agendamentoId: string, treinadorId) {
     const exists_agendamento = await checkAgendamentoDesafiosExists(agendamentoId);
     if (!exists_agendamento) {
-      return { date: "O pedido de agendamento não existe", status: 500 }
+      return { data: "O pedido de agendamento não existe", status: 500 }
     }
 
     const is_aceite = await checkAgendamentoDesafioIsAceiteExists(agendamentoId);
     if (!is_aceite) {
-      return { date: "O pedido de agendamento já foi aceite", status: 500 }
+      return { data: "O pedido de agendamento já foi aceite", status: 500 }
     }
 
     const ginasio_agendamento = await getAgendamentoDesafiosGinasio(agendamentoId);
@@ -19,7 +19,7 @@ class AceitarDesafiosService {
     const marca_treinador = await getTreinadorMarca(treinadorId)
 
     if (marca_ginasio != marca_treinador) {
-      return { date: "Não tem autorização", status: 500 }
+      return { data: "Não tem autorização", status: 500 }
     }
 
     const agendamentos = await client.agendamentos_desafios.update({
@@ -54,7 +54,7 @@ class AceitarDesafiosService {
 
     //#endregion
 
-    return {data: agendamentos, status: 200};
+    return { data: agendamentos, status: 200 };
   }
 }
 

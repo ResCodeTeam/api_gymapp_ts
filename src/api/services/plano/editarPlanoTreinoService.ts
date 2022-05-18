@@ -16,7 +16,7 @@ export class EditarPlanoTreinoService {
   async execute({ planoId, alunoId, treinadorId, data, modalidadeId, blocos }: IEditarPlano) {
     const existsPlano = await checkPlanoTreinoExists(planoId);
     if (!existsPlano) {
-      return { date: "Plano de treino não existe", status: 500 }
+      return { data: "Plano de treino não existe", status: 500 }
     }
 
     const autor = await getTreinadorPlano(planoId);
@@ -24,7 +24,7 @@ export class EditarPlanoTreinoService {
     const marca_treinador = await getTreinadorMarca(treinadorId)
 
     if (marca_treinador_plano != marca_treinador) {
-      return { date: "Não tem autorização", status: 500 }
+      return { data: "Não tem autorização", status: 500 }
     }
 
     await client.planos_treino.delete({
@@ -37,7 +37,7 @@ export class EditarPlanoTreinoService {
     const resp = await criarPlanoTreinoService.execute({ alunoId, treinadorId, data, modalidadeId, blocos })
 
 
-    return {data: resp, status: 200};
+    return { data: resp, status: 200 };
 
   }
 }

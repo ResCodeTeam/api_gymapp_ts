@@ -6,7 +6,7 @@ class RemoverIsAceiteDesafiosService {
 
     const exists_agendamento = await checkAgendamentoDesafiosExists(agendamentoId);
     if (!exists_agendamento) {
-      return { date: "O agendamento do desafio não existe", status: 500 }
+      return { data: "O agendamento do desafio não existe", status: 500 }
     }
 
     const ginasio_agendamento = await getAgendamentoDesafiosGinasio(agendamentoId);
@@ -14,12 +14,12 @@ class RemoverIsAceiteDesafiosService {
     const marca_treinador = await getTreinadorMarca(treinadorId)
 
     if (marca_ginasio != marca_treinador) {
-      return { date: "Não tem autorização", status: 500 }
+      return { data: "Não tem autorização", status: 500 }
     }
 
     const is_aceite = await checkAgendamentoDesafioIsAceiteExists(agendamentoId);
     if (is_aceite) {
-      return { date: "O agendamento do desafio ainda não foi aceite", status: 500 }
+      return { data: "O agendamento do desafio ainda não foi aceite", status: 500 }
     }
 
     const agendamento = await client.agendamentos_desafios.findUnique({

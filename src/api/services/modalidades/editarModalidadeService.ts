@@ -13,22 +13,22 @@ export class EditarModalidadesService {
   async execute({ imagemUrl, nome, modalidadeId, ginasioId, uid }: IEditarModalidades) {
     const exists_dst = await checkModalidadeExists(modalidadeId);
     if (!exists_dst) {
-      return { date: "A modalidade não existe", status: 500 }
+      return { data: "A modalidade não existe", status: 500 }
     }
 
     const existsGinasio = await checkGinasioExists(ginasioId);
     if (!existsGinasio) {
-      return { date: "Ginasio não existe", status: 500 }
+      return { data: "Ginasio não existe", status: 500 }
     }
 
     const isAutor = await checkDonoGinasio(ginasioId, uid);
     if (!isAutor) {
-      return { date: "Não possui autorização", status: 500 }
+      return { data: "Não possui autorização", status: 500 }
     }
 
     const exist_nome = await checkModalidadeNome(nome, ginasioId);
     if (exist_nome) {
-      return { date: "A modalidade já existe", status: 500 }
+      return { data: "A modalidade já existe", status: 500 }
     }
 
     let ginasio = await getModalidadeGinasio(modalidadeId);
@@ -44,10 +44,10 @@ export class EditarModalidadesService {
         }
       })
 
-      return {data: editarModalidades, status: 200};
+      return { data: editarModalidades, status: 200 };
     }
     else {
-      return { date: "A modalidade não pertence ao ginásio", status: 500 }
+      return { data: "A modalidade não pertence ao ginásio", status: 500 }
     }
   }
 }

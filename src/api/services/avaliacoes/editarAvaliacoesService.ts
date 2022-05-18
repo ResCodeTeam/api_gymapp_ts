@@ -26,15 +26,15 @@ export class EditarAvaliacaoService {
 
         const existstreinadorIdAvaliacao = await checkAutorAvaliacao(treinadorId);
         if (!existstreinadorIdAvaliacao) {
-            return { date: "Treinador pertence há avaliação", status: 500 }
+            return { data: "Treinador pertence há avaliação", status: 500 }
         }
         const existsAvaliacao = await checkAvaliacoesExists(avaliacao_id)
         if (!existsAvaliacao) {
-            return { date: "Avaliação não existe", status: 500 }
+            return { data: "Avaliação não existe", status: 500 }
         }
 
         if (existstreinadorIdAvaliacao != existsAvaliacao) {
-            return { date: "treinador não pertence a esta avaliação", status: 500 }
+            return { data: "treinador não pertence a esta avaliação", status: 500 }
         } else {
 
 
@@ -123,7 +123,7 @@ export class EditarAvaliacaoService {
                 }
             })
 
-            return {data: atualizarAvaliacao, status: 200};
+            return { data: atualizarAvaliacao, status: 200 };
         }
     }
 }

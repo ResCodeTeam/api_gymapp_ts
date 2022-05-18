@@ -6,7 +6,7 @@ export class RemoverAvaliacoesService {
 
         const existstreinadorIdAvaliacao = await checkAutorAvaliacao(treinadorId);
         if (!existstreinadorIdAvaliacao) {
-            return { date: "Treinador pertence há avaliação", status: 500 }
+            return { data: "Treinador pertence há avaliação", status: 500 }
         }
 
         var atualizarAvaliacao = await client.avaliacoes.findUnique({

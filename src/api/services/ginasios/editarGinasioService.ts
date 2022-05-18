@@ -16,11 +16,11 @@ export class EditarGinasioService {
     async execute({ ginasioId, adminId, nome, rua, descricao, imagemUrl, lat, long }: IEditarGinasio) {
         const existsGinasio = await checkGinasioExists(ginasioId)
         if (!existsGinasio) {
-            return { date: "O ginásio não existe", status: 500 }
+            return { data: "O ginásio não existe", status: 500 }
         }
         const existsAdmin = await checkDonoGinasio(ginasioId, adminId)
         if (!existsAdmin) {
-            return { date: "Não tem permissão para realizar esta operação", status: 500 }
+            return { data: "Não tem permissão para realizar esta operação", status: 500 }
         }
 
         const EditarGinasio = await client.ginasio.update({
@@ -37,7 +37,7 @@ export class EditarGinasioService {
 
             }
         })
-        return {data: EditarGinasio, status: 200};
+        return { data: EditarGinasio, status: 200 };
     }
 
 }

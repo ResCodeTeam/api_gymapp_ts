@@ -16,17 +16,17 @@ export class CriarPlanoTreinoService {
   async execute({ alunoId, treinadorId, data, modalidadeId, blocos }: IPlano) {
     const exists_aluno = await checkUserIdExists(alunoId);
     if (!exists_aluno) {
-      return { date: "O aluno não existe", status: 500 }
+      return { data: "O aluno não existe", status: 500 }
     }
 
     const exists_treinador = await checkUserIdExists(treinadorId);
     if (!exists_treinador) {
-      return { date: "Ginásio não existe", status: 500 }
+      return { data: "Ginásio não existe", status: 500 }
     }
 
     const exists_modalidade = await checkModalidadeExists(modalidadeId);
     if (!exists_modalidade) {
-      return { date: "A modalidade não existe", status: 500 }
+      return { data: "A modalidade não existe", status: 500 }
     }
 
     const ginasio_modalidade = await getModalidadeGinasio(modalidadeId);
@@ -36,7 +36,7 @@ export class CriarPlanoTreinoService {
     const aluno = await getAlunoMarca(alunoId);
 
     if (marcaId != aluno || marcaId != marca_modalidade) {
-      return { date: "Não possui autorização", status: 500 }
+      return { data: "Não possui autorização", status: 500 }
     }
 
     const plano = await client.planos_treino.create({
@@ -63,7 +63,7 @@ export class CriarPlanoTreinoService {
       for (let j = 0; j < exercicios.length; j++) {
         const exists_exercicio = await checkExercicioExists(exercicios[i].exercicioId);
         if (!exists_exercicio) {
-          return { date: "O exercicio não existe", status: 500 }
+          return { data: "O exercicio não existe", status: 500 }
         }
 
         const autor_exercicio = await getAutorExercicio(exercicios[i].exercicioId);
@@ -71,7 +71,7 @@ export class CriarPlanoTreinoService {
 
         const marca_treinador = await getTreinadorMarca(treinadorId)
         if (marca_treinador != marca_autor) {
-          return { date: "Não tem autorização", status: 500 }
+          return { data: "Não tem autorização", status: 500 }
         }
 
         const exr = await client.exercicios_bloco.create({
@@ -154,6 +154,6 @@ export class CriarPlanoTreinoService {
         },
       }
     })
-    return {data: planoTreino, status: 200};
+    return { data: planoTreino, status: 200 };
   }
 }

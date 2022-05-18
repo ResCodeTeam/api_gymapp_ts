@@ -14,12 +14,12 @@ class RegistarUserMarcasService {
   }: IRegistarUserMarcasSerice) {
     const exists_user = await checkUserIdExists(userId);
     if (!exists_user) {
-      return { date: "O user não existe!", status: 500 }
+      return { data: "O user não existe!", status: 500 }
     }
 
     const exist_nome = await checkNomeMarca(nome);
     if (exist_nome) {
-      return { date: "A marca já existe", status: 500 }
+      return { data: "A marca já existe", status: 500 }
     }
 
     const marca = await client.marcas.create({
@@ -31,7 +31,7 @@ class RegistarUserMarcasService {
         logotipo,
       },
     });
-    return {data: marca, status: 200};
+    return { data: marca, status: 200 };
   }
 }
 

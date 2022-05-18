@@ -26,13 +26,13 @@ export class EditarPerfilService {
   }: IEditarPerfil) {
     const existsUser = await checkUserIdExists(uId);
     if (!existsUser) {
-      return { date: "Utilizador inexistente", status: 500 }
+      return { data: "Utilizador inexistente", status: 500 }
     }
 
     // verificar se o aluno já está registado
     let existsEmail = await checkEmail(email);
     if (existsEmail) {
-      return { date: "Email já registado!", status: 500 }
+      return { data: "Email já registado!", status: 500 }
     }
 
     const user = await client.users.update({
@@ -49,7 +49,7 @@ export class EditarPerfilService {
         imagem_url: imagemUrl
       }
     })
-    return {data: user, status: 200};
+    return { data: user, status: 200 };
   }
 }
 

@@ -6,7 +6,7 @@ class RemoverPlanoTreinoService {
 
     const exists_plano = await checkPlanoTreinoExists(planoId);
     if (!exists_plano) {
-      return { date: "O plano de treino não existe", status: 500 }
+      return { data: "O plano de treino não existe", status: 500 }
     }
 
     const autor = await getTreinadorPlano(planoId);
@@ -14,7 +14,7 @@ class RemoverPlanoTreinoService {
     const marca_treinador = await getTreinadorMarca(treinadorId)
 
     if (marca_treinador_plano != marca_treinador) {
-      return { date: "Não tem autorização", status: 500 }
+      return { data: "Não tem autorização", status: 500 }
     }
 
     await client.planos_treino.update({

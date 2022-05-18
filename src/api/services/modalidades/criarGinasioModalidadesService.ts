@@ -18,14 +18,14 @@ class CriarGinasioModalidadesService {
 
     const exist_ginasio = await checkGinasioExists(ginasioId);
     if (!exist_ginasio) {
-      return { date: "O ginásio não existe", status: 500 }
+      return { data: "O ginásio não existe", status: 500 }
     }
 
     await checkDonoGinasio(ginasioId, adminId);
 
     const exist_nome = await checkModalidadeNome(nome, ginasioId);
     if (exist_nome) {
-      return { date: "A modalidade já existe", status: 500 }
+      return { data: "A modalidade já existe", status: 500 }
     }
 
     const modalidade = await client.modalidades_ginasio.create({
@@ -35,7 +35,7 @@ class CriarGinasioModalidadesService {
         imagem_url: imagemUrl,
       },
     });
-    return {data: modalidade, status: 200};
+    return { data: modalidade, status: 200 };
   }
 }
 export { CriarGinasioModalidadesService };

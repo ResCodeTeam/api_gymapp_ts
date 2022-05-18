@@ -7,7 +7,7 @@ export class VerUmGinasioService {
         console.log(ginasioId)
         const exists_ginasio = await checkGinasioExists(ginasioId)
         if (!exists_ginasio) {
-            return { date: "O ginásio não existe", status: 500 }
+            return { data: "O ginásio não existe", status: 500 }
         }
 
         await checkDonoGinasio(ginasioId, donoId);
@@ -21,6 +21,6 @@ export class VerUmGinasioService {
                 }
             }
         })
-        return {data: ginasio, status: 200};
+        return { data: ginasio, status: 200 };
     }
 }

@@ -5,12 +5,12 @@ export class CriarGostoService {
   async execute(postId: string, criadorId: string) {
     const existsPost = await checkPostExists(postId);
     if (!existsPost) {
-      return { date: "Post inexistente", status: 500 }
+      return { data: "Post inexistente", status: 500 }
     }
 
     const existsCriador = await checkUserIdExists(criadorId);
     if (!existsCriador) {
-      return { date: "User inexistente", status: 500 }
+      return { data: "User inexistente", status: 500 }
     }
 
     const gosto = await client.gostos_publicacao.create({
@@ -20,6 +20,6 @@ export class CriarGostoService {
       }
     })
 
-    return {data: gosto, status: 200};
+    return { data: gosto, status: 200 };
   }
 }

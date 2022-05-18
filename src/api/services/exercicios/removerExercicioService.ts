@@ -5,7 +5,7 @@ export class RemoverExercicioService {
     async execute(exercicioId: string, autorId: string) {
         const exists_dst = await checkExercicioExists(exercicioId);
         if (!exists_dst) {
-            return { date: "O exercicio não existe", status: 500 }
+            return { data: "O exercicio não existe", status: 500 }
         }
         const exercicio = await client.exercicios.findUnique({
             where: {
@@ -15,7 +15,7 @@ export class RemoverExercicioService {
 
         const isAutor = await checkAutorExercicio(autorId, exercicioId);
         if (!isAutor) {
-            return { date: "O exercicio não lhe pertence", status: 500 }
+            return { data: "O exercicio não lhe pertence", status: 500 }
         }
 
         await client.exercicios.update({

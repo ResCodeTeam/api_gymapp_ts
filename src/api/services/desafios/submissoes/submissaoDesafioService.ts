@@ -13,22 +13,22 @@ export class SubmissaoDesafioService {
   async execute({ desafioId, uid, valor, treinadorId, ginasioId }: ISubmissaoDesafio) {
     const existsDesafio = await checkDesafioIdExists(desafioId);
     if (!existsDesafio) {
-      return { date: "Desafio Inexistente", status: 500 }
+      return { data: "Desafio Inexistente", status: 500 }
     }
 
     const existsAluno = await checkUserIdExists(uid);
     if (!existsAluno) {
-      return { date: "Aluno inexistente", status: 500 }
+      return { data: "Aluno inexistente", status: 500 }
     }
 
     const existsTreinador = await checkUserIdExists(treinadorId);
     if (!existsTreinador) {
-      return { date: "Treinador inexistente", status: 500 }
+      return { data: "Treinador inexistente", status: 500 }
     }
 
     const existsGinasio = await checkGinasioExists(ginasioId);
     if (!existsGinasio) {
-      return { date: "Ginasio inexistente", status: 500 }
+      return { data: "Ginasio inexistente", status: 500 }
     }
 
     const desafio = await getDesafio(desafioId);
@@ -37,24 +37,24 @@ export class SubmissaoDesafioService {
 
     const marca_treinador = await getTreinadorMarca(treinadorId)
     if (marca_treinador != marca.marca_id) {
-      return { date: "Não tem autorização", status: 500 }
+      return { data: "Não tem autorização", status: 500 }
     }
 
     // para o aluno
     const { mobilidade, id } = await checkMobilidadeMarcaUser(uid);
     if (mobilidade) {
       if (id['marca_id'] != marca.marca_id) {
-        return { date: "Não possui permissão", status: 500 }
+        return { data: "Não possui permissão", status: 500 }
       }
     }
     else {
       if (id['ginasio_id'] != desafio.ginasio_id) {
-        return { date: "Não possui permissão", status: 500 }
+        return { data: "Não possui permissão", status: 500 }
       }
     }
 
     if (!marca.mobilidade && gymDesafio != ginasioId) {
-      return { date: "Entrada invalida", status: 500 }
+      return { data: "Entrada invalida", status: 500 }
     }
 
     const submissao = await client.submissoes_desafios.create({
@@ -67,6 +67,6 @@ export class SubmissaoDesafioService {
       }
     })
 
-    return {data: submissao, status: 200};
+    return { data: submissao, status: 200 };
   }
 }

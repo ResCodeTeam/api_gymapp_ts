@@ -6,22 +6,22 @@ export class AdicionarExercicioMusculoService {
 
     const existsExercicio = await checkExercicioExists(exercicioId);
     if (!existsExercicio) {
-      return { date: "Exercicio inexistente", status: 500 }
+      return { data: "Exercicio inexistente", status: 500 }
     }
 
     const existsMusculo = await checkMusculoExists(musculoId);
     if (!existsMusculo) {
-      return { date: "Musculo inexistente", status: 500 }
+      return { data: "Musculo inexistente", status: 500 }
     }
 
     const isAutor = await checkAutorExercicio(treinadorId, exercicioId);
     if (!isAutor) {
-      return { date: "Não possui autorização", status: 500 }
+      return { data: "Não possui autorização", status: 500 }
     }
 
     const containsMusculo = await checkExercicioMusculoExists(musculoId, exercicioId);
     if (containsMusculo) {
-      return { date: "Musculo já adicionado", status: 500 }
+      return { data: "Musculo já adicionado", status: 500 }
     }
 
     const musculo = await client.exercicios_musculos.create({
@@ -32,6 +32,6 @@ export class AdicionarExercicioMusculoService {
     })
 
 
-    return {data: musculo, status: 200};
+    return { data: musculo, status: 200 };
   }
 }

@@ -39,17 +39,17 @@ export class CriarAvaliacaoService {
 
     const existsalunoId = await checkUserIdExists(alunoId);
     if (!existsalunoId) {
-      return { date: "Aluno não existe", status: 500 }
+      return { data: "Aluno não existe", status: 500 }
     }
     const existstreinadorId = await checkUserIdExists(treinadorId);
     if (!existstreinadorId) {
-      return { date: "Treinador não existe", status: 500 }
+      return { data: "Treinador não existe", status: 500 }
     }
     const alunoMarca = await getAlunoMarca(alunoId);
     const treinadorMarca = await getTreinadorMarca(treinadorId);
 
     if (alunoMarca != treinadorMarca) {
-      return { date: "Não é possivel criar avaliação", status: 500 }
+      return { data: "Não é possivel criar avaliação", status: 500 }
     } else {
 
 
@@ -93,7 +93,7 @@ export class CriarAvaliacaoService {
 
 
         }
-        return {data: avaliacao, status: 200};
+        return { data: avaliacao, status: 200 };
       }
     }
   }

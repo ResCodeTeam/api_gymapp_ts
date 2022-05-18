@@ -11,7 +11,7 @@ export class ObterPlanoTreinoSemanalService {
     if (funcao == treinador) {
       const existsUser = await checkUserIdExists(uid);
       if (!existsUser) {
-        return { date: "User não existe", status: 500 }
+        return { data: "User não existe", status: 500 }
       }
 
       const marca_treinador = await getTreinadorMarca(askerID)
@@ -19,19 +19,19 @@ export class ObterPlanoTreinoSemanalService {
       const { mobilidade, id } = await checkMobilidadeMarcaUser(uid);
       if (mobilidade) {
         if (id['marca_id'] != marca_treinador) {
-          return { date: "Não possui permissão", status: 500 }
+          return { data: "Não possui permissão", status: 500 }
         }
       }
       else {
         const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
         if (marca_gym != marca_treinador) {
-          return { date: "Não possui permissão", status: 500 }
+          return { data: "Não possui permissão", status: 500 }
         }
       }
     }
 
     if (startDate.getTime() === endDate.getTime() || startDate.getTime() > endDate.getTime()) {
-      return { date: "Intervalo de tempo invalido", status: 500 }
+      return { data: "Intervalo de tempo invalido", status: 500 }
     }
 
     const planos = await client.planos_treino.findMany({
@@ -98,6 +98,6 @@ export class ObterPlanoTreinoSemanalService {
         },
       }
     })
-    return {data: planos, status: 200};
+    return { data: planos, status: 200 };
   }
 }

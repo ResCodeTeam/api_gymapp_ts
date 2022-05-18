@@ -8,12 +8,12 @@ export class VerTreinadorGinasioService {
 
         const existsMarca = await checkMarcaExists(marcaId)
         if (!existsMarca) {
-            return { date: "A marca não existe", status: 500 }
+            return { data: "A marca não existe", status: 500 }
         }
 
         const dono_marca = await getDonoMarca(marcaId);
         if (uId != dono_marca) {
-            return { date: "Não possui autorização", status: 500 }
+            return { data: "Não possui autorização", status: 500 }
         }
 
         const treinadorMarca = await client.treinadores_marca.findMany({
@@ -23,6 +23,6 @@ export class VerTreinadorGinasioService {
                 treinador_uid: true
             }
         })
-        return {data: treinadorMarca, status: 200};
+        return { data: treinadorMarca, status: 200 };
     }
 }

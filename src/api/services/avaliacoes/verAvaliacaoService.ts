@@ -6,7 +6,7 @@ export class VerAvaliacoesService {
 
         const exists_aluno = await checkUserIdExists(alunoId)
         if (!exists_aluno) {
-            return { date: "O utilizador não existe", status: 500 }
+            return { data: "O utilizador não existe", status: 500 }
         }
 
         const avaliacao = await client.avaliacoes.findMany({
@@ -51,6 +51,6 @@ export class VerAvaliacoesService {
                 }
             }
         })
-        return {data: avaliacao, status: 200};
+        return { data: avaliacao, status: 200 };
     }
 }

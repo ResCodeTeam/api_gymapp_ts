@@ -5,7 +5,7 @@ class RemoverAgendarDesafiosService {
   async execute(agendamentoId: string, uId: string) {
     const exists_agendamento = await checkAgendamentoDesafiosExists(agendamentoId);
     if (!exists_agendamento) {
-      return { date: "O agendamento do desafio não existe", status: 500 }
+      return { data: "O agendamento do desafio não existe", status: 500 }
     }
 
     const agendamento = await client.agendamentos_avaliacoes.findUnique({
@@ -15,7 +15,7 @@ class RemoverAgendarDesafiosService {
     })
     const isAutor = await checkAutorAgendamentoDesafios(agendamentoId, uId);
     if (!isAutor) {
-      return { date: "O agendamento não lhe pertence", status: 500 }
+      return { data: "O agendamento não lhe pertence", status: 500 }
     }
 
     await client.agendamentos_desafios.update({
