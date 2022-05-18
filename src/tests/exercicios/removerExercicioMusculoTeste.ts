@@ -65,7 +65,7 @@ describe("Teste remover exercicio musculo:", () => {
 
         .then(res => {
 
-          console.log(res.body)
+
 
 
           res.should.have.status(200)
