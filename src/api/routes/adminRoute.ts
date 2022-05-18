@@ -63,7 +63,7 @@ const criarNotificacaoUserController = new CriarNotificacaoUserController();
 
 //#region Alunos
 adminRouter.post("/:adminId/marca/alunos/", registarAlunosController.handle);
-adminRouter.delete("/aluno/remover/:uId", removerAlunoController.handle);
+adminRouter.delete("/:adminId/aluno/remover/:uId", removerAlunoController.handle);
 //#endregion
 
 //#region Ginasios
