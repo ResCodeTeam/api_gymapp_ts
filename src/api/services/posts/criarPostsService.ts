@@ -23,56 +23,57 @@ class CriarPostsService {
   }: ICriarPostsService) {
     if (criadorId == null && ginasioId == null) {
       // enviar erro - ou é de um ou é de outro
-      throw new Error("Impossível criar post!");
+      return { data: "Impossível criar post!", status: 500 }
     } else {
-      
-      
+
+
       const exists_user = await checkUserIdExists(criadorId)
-      if(!exists_user){
-        throw new Error("O utilizador não existe!");
+      if (!exists_user) {
+        return { data: "O utilizador não existe!", status: 500 }
       }
 
-      
- 
-      let post : publicacoes;
-      if((criadorId != null && ginasioId != null)){
+
+
+      let post: publicacoes;
+      if ((criadorId != null && ginasioId != null)) {
         post = await client.publicacoes.create({
           data: {
             criador_id: undefined,
             data,
             descricao,
-            tipo:0,
+            tipo: 0,
             ginasio_id: ginasioId,
-         }
+          }
         })
       }
-      else if(criadorId != null && ginasioId == null){
+      else if (criadorId != null && ginasioId == null) {
         post = await client.publicacoes.create({
           data: {
             criador_id: criadorId,
             data,
             descricao,
-            tipo:1,
+            tipo: 1,
             ginasio_id: undefined,
-         }
+          }
         })
       }
-      
-      if(identificacao!=null && identificacao.length>0){
-        for(let i = 0; i < identificacao.length; i++){
-          await client.identificacoes_publicacoes.create({
-              data:{
 
-              publicacao_id:post.publicacao_id,
-              usersuid:identificacao[i]
-          }})
+      if (identificacao != null && identificacao.length > 0) {
+        for (let i = 0; i < identificacao.length; i++) {
+          await client.identificacoes_publicacoes.create({
+            data: {
+
+              publicacao_id: post.publicacao_id,
+              usersuid: identificacao[i]
+            }
+          })
         }
       }
 
       const verInfoPostService = new VerInfoPostService();
       const resp = await verInfoPostService.execute(post.publicacao_id)
-      return {data: resp, status: 200};
-    } 
+      return { data: resp, status: 200 };
+    }
   }
 }
 

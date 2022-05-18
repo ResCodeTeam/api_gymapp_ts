@@ -7,13 +7,13 @@ export class EditarExercicioController {
         //Declarar Serviço
         const exercicioId = request.params.exercicios_id
         const autorId = request.params.treinadorId;
-        const {nome, descricao, isTempo}= request.body;
-        if(nome === undefined || descricao === undefined || isTempo === undefined){
+        const { nome, descricao, isTempo } = request.body;
+        if (nome === undefined || descricao === undefined || isTempo === undefined) {
             throw new Error("Pedido inválido")
         }
-        
+
         const editarExercicioService = new EditarExercicioService()
-        const resp = await editarExercicioService.execute({exercicioId, autorId, nome, descricao, isTempo});
+        const resp = await editarExercicioService.execute({ exercicioId, autorId, nome, descricao, isTempo });
         response.json(resp.data).status(resp.status);
     }
 }

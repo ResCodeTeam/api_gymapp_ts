@@ -3,9 +3,9 @@ import { VerPerfilService } from "../../services/perfil/verPefilService";
 
 
 
-export class VerPerfilController{
- 
-    async handle(request:Request,response:Response){
+export class VerPerfilController {
+
+    async handle(request: Request, response: Response) {
         const uId = request.params.id;
         const auId = request.params.userId;
 

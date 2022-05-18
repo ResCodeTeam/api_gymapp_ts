@@ -5,26 +5,26 @@ class RemoverAgendarDesafiosService {
   async execute(agendamentoId: string, uId: string) {
     const exists_agendamento = await checkAgendamentoDesafiosExists(agendamentoId);
     if (!exists_agendamento) {
-      throw new Error("O agendamento do desafio não existe");
+      return { data: "O agendamento do desafio não existe", status: 500 }
     }
 
     const agendamento = await client.agendamentos_avaliacoes.findUnique({
-      where:{
-          agendamento_id: agendamentoId
+      where: {
+        agendamento_id: agendamentoId
       }
     })
     const isAutor = await checkAutorAgendamentoDesafios(agendamentoId, uId);
-    if(!isAutor){
-      throw new Error("O agendamento não lhe pertence");
+    if (!isAutor) {
+      return { data: "O agendamento não lhe pertence", status: 500 }
     }
 
     await client.agendamentos_desafios.update({
-     where: {
-       agendamento_id: agendamentoId
+      where: {
+        agendamento_id: agendamentoId
       },
-     data:{
-       isDeleted: true
-     }
+      data: {
+        isDeleted: true
+      }
     })
 
     return {

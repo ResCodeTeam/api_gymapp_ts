@@ -15,12 +15,12 @@ export class EditarDesafioService {
     async execute(uId: string, data: Idata, desafio_id: string) {
 
         if (data.data_inicio > data.data_fim) {
-            throw new Error("A data de final começa antes da inicial")
+            return { data: "A data de final começa antes da inicial", status: 500 }
         }
 
         const existsDesafio = await checkDesafioIdExists(desafio_id);
         if (!existsDesafio) {
-            throw new Error("Desafio não existe")
+            return { data: "Desafio não existe", status: 500 }
         }
 
         const desafio = await client.desafios.findFirst({
@@ -36,14 +36,14 @@ export class EditarDesafioService {
 
             //já iniciado?
             if (desafio.data_inicio < hoje && desafio.data_fim < hoje) {
-                throw new Error("Desafio já finalizado")
+                return { data: "Desafio já finalizado", status: 500 }
             }
             //sim
             if (desafio.data_inicio < hoje) {
                 //verificar se se pretende alterar a data de inicio
                 console.log(data.data_inicio, desafio.data_inicio)
                 if (data.data_inicio !== undefined) {
-                    throw new Error("A data de início não pode ser alterada")
+                    return { data: "A data de início não pode ser alterada", status: 500 }
                 }
                 //verificar se se pretende alterar a data de fim
                 if (data.data_fim !== undefined) {
@@ -51,7 +51,7 @@ export class EditarDesafioService {
                     //verificar se a data de fim é anterior a data atual
                     // verificar se o desafio ainda não terminou
                     if (data.data_fim <= hoje || data.data_fim <= data.data_inicio || desafio.data_fim <= hoje) {
-                        throw new Error("A data de fim não pode ser alterada")
+                        return { data: "A data de fim não pode ser alterada", status: 500 }
                     }
 
                 }
@@ -64,12 +64,12 @@ export class EditarDesafioService {
                     //se a data de fim é posterior à data de inicio
 
                     if (data.data_fim <= hoje || data.data_fim <= desafio.data_inicio) {
-                        throw new Error("A data de fim não pode ser alterada")
+                        return { data: "A data de fim não pode ser alterada", status: 500 }
                     }
                 }
                 if (data.data_inicio !== undefined) {
                     if (data.data_inicio < hoje) {
-                        throw new Error("A data de início não pode ser alterada")
+                        return { data: "A data de início não pode ser alterada", status: 500 }
                     }
 
                 }
@@ -85,17 +85,16 @@ export class EditarDesafioService {
         const dono_marca = await getDonoMarca(marca_ginasio);
 
         // treinador
-        if(funcao == treinador)
-        {
+        if (funcao == treinador) {
             const marca_treinador = await getTreinadorMarca(uId)
-            if(marca_treinador != marca_ginasio){
-                throw new Error("Não tem autorização")
-            } 
+            if (marca_treinador != marca_ginasio) {
+                return { data: "Não tem autorização", status: 500 }
+            }
         }
         // admin
-        else{
-            if(uId != dono_marca){
-                throw new Error("Não tem autorização")
+        else {
+            if (uId != dono_marca) {
+                return { data: "Não tem autorização", status: 500 }
             }
         }
 
@@ -178,5 +177,5 @@ async function atualizarDesafio(data: Idata, desafio_id: string) {
         }
     })
 
-    return {data: atualizarDesafio, status: 200};
+    return { data: atualizarDesafio, status: 200 };
 }

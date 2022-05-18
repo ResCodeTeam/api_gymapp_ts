@@ -1,15 +1,15 @@
 
 import { client } from "../../prisma/client";
 
-export class VerTodosMusculosService{
-    async execute(){
+export class VerTodosMusculosService {
+    async execute() {
 
         const musculos = await client.musculos.findMany({
-            select:{
-                nome:true,
-                img_url:true,
-            }        
+            select: {
+                nome: true,
+                img_url: true,
+            }
         })
-        return {data: musculos, status: 200};
+        return { data: musculos, status: 200 };
     }
 }

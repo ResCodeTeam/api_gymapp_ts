@@ -1,34 +1,34 @@
 import { checkComentarioExists, checkGostoComentarioExists, checkIsComentarioPublicacaoExists, checkPostExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
-export class RemoverGostoCommentService{
-  async execute(publicacaoId:string, criadorId:string, comentarioId:string){
+export class RemoverGostoCommentService {
+  async execute(publicacaoId: string, criadorId: string, comentarioId: string) {
     const existsPublicacao = await checkPostExists(publicacaoId);
-    if(!existsPublicacao){
-      throw new Error("Publicação não existe")
+    if (!existsPublicacao) {
+      return { data: "Publicação não existe", status: 500 }
     }
 
     const existsComentario = await checkComentarioExists(comentarioId);
-    if(!existsComentario){
-      throw new Error("Comentario inexistente")
+    if (!existsComentario) {
+      return { data: "Comentario inexistente", status: 500 }
     }
 
-    const isComentarioPublicacao = await checkIsComentarioPublicacaoExists(comentarioId,publicacaoId)
-    if(!isComentarioPublicacao){
-      throw new Error("Não é comentario da publicação")
+    const isComentarioPublicacao = await checkIsComentarioPublicacaoExists(comentarioId, publicacaoId)
+    if (!isComentarioPublicacao) {
+      return { data: "Não é comentario da publicação", status: 500 }
     }
 
-    const gosto = await checkGostoComentarioExists(comentarioId,criadorId)
-    if(gosto == null){
-      throw new Error("Gosto inexistente")
+    const gosto = await checkGostoComentarioExists(comentarioId, criadorId)
+    if (gosto == null) {
+      return { data: "Gosto inexistente", status: 500 }
     }
 
     await client.gostos_comentario.delete({
-      where:{
-        gosto_id:gosto.gosto_id
+      where: {
+        gosto_id: gosto.gosto_id
       }
     })
 
-    return {data:'gosto removido com sucesso', status: 200}
+    return { data: 'gosto removido com sucesso', status: 200 }
   }
 }

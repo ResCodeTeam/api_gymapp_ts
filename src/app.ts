@@ -11,7 +11,7 @@ const app = express();
 //Rotas
 import { adminRouter } from "./api/routes/adminRoute";
 import { treinadorRouter } from "./api/routes/treinadorRoute";
-import {authRouter} from "./api/routes/authRoute";
+import { authRouter } from "./api/routes/authRoute";
 
 import { backendRouter } from "./api/routes/backendRoute";
 import { allRouter } from "./api/routes/allRoute";
@@ -33,17 +33,17 @@ app.use("/api/v1/backend", backendRouter);
 app.use("/api/v1/aluno", alunoRouter);
 app.use("/api/v1/adminTreinador", adminTreinadorRouter);
 
-app.use((error:Error,request:Request,response:Response,next:NextFunction)=>{
+app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
     console.log(error)
     return response.status(500).json({
-        status:"Error",
-        message:error.message
+        status: "Error",
+        message: error.message
     })
 })
 
 
-const PORT =process.env.PORT||5000;
-app.listen(PORT, ()=>{
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
     console.log(`Running! on port: ${PORT}`)
 });
 

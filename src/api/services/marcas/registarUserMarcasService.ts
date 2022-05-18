@@ -10,16 +10,16 @@ interface IRegistarUserMarcasSerice {
 }
 
 class RegistarUserMarcasService {
-  async execute({userId, nome, mobilidade, cor, logotipo,
+  async execute({ userId, nome, mobilidade, cor, logotipo,
   }: IRegistarUserMarcasSerice) {
     const exists_user = await checkUserIdExists(userId);
     if (!exists_user) {
-      throw new Error("O user não existe!");
+      return { data: "O user não existe!", status: 500 }
     }
 
     const exist_nome = await checkNomeMarca(nome);
     if (exist_nome) {
-      throw new Error("A marca já existe");
+      return { data: "A marca já existe", status: 500 }
     }
 
     const marca = await client.marcas.create({
@@ -31,7 +31,7 @@ class RegistarUserMarcasService {
         logotipo,
       },
     });
-    return {data: marca, status: 200};
+    return { data: marca, status: 200 };
   }
 }
 

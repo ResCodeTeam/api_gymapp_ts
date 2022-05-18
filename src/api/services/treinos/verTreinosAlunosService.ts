@@ -1,21 +1,21 @@
 import { client } from "../../prisma/client";
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 
-export class VerTreinosAlunosService{
-    async execute(uId: string){
+export class VerTreinosAlunosService {
+    async execute(uId: string) {
 
         const exists_user = await checkUserIdExists(uId);
         if (!exists_user) {
-            throw new Error("O utilizador não existe");
+            return { data: "O utilizador não existe", status: 500 }
         }
 
         const treinos = await client.treinos.findMany({
-            where:{
+            where: {
                 uid: uId,
-                isDeleted:false
+                isDeleted: false
             },
         })
 
-        return {data: treinos, status: 200};
+        return { data: treinos, status: 200 };
     }
 }

@@ -1,32 +1,31 @@
-import { checkPostExists, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class VerTodosOsExerciciosTreinadoresService {
-    async execute(){
+    async execute() {
         const exer = await client.funcoes.findMany({
-            where:{
-                descricao : "Treinador"
+            where: {
+                descricao: "Treinador"
             },
-            select:{
+            select: {
                 users: {
                     select: {
-                        exercicios:{
-                            select:{
-                                exercicio_id:true,
-                                nome:true,
-                                descricao:true,
-                                is_tempo:true,
-                                imagens:{
-                                    select:{
-                                        url:true
+                        exercicios: {
+                            select: {
+                                exercicio_id: true,
+                                nome: true,
+                                descricao: true,
+                                is_tempo: true,
+                                imagens: {
+                                    select: {
+                                        url: true
                                     }
                                 },
-                                musculos:{
-                                    select:{
-                                        musculos:{
-                                            select:{
-                                                nome:true,
-                                                img_url:true
+                                musculos: {
+                                    select: {
+                                        musculos: {
+                                            select: {
+                                                nome: true,
+                                                img_url: true
                                             }
                                         }
                                     }
@@ -36,20 +35,20 @@ export class VerTodosOsExerciciosTreinadoresService {
                     }
                 }
             },
-            
+
         })
 
         var exerci = []
 
         for (let i = 0; i < exer.length; i++) {
             for (let j = 0; j < exer[i].users.length; j++) {
-               for (let k = 0; k < exer[i].users[j].exercicios.length; k++) {
-                   exerci.push(exer[i].users[j].exercicios[k])
-               }
+                for (let k = 0; k < exer[i].users[j].exercicios.length; k++) {
+                    exerci.push(exer[i].users[j].exercicios[k])
+                }
             }
         }
-        
-        return {data: exerci, status: 200};
+
+        return { data: exerci, status: 200 };
 
     }
 }

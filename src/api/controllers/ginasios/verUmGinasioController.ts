@@ -3,9 +3,9 @@ import { VerUmGinasioService } from "../../services/ginasios/verUmGinasioService
 
 
 
-export class VerUmGinasioController{
- 
-    async handle(request:Request,response:Response){
+export class VerUmGinasioController {
+
+    async handle(request: Request, response: Response) {
         const donoId = request.params.adminId;
         const ginasioId = request.params.id;
 

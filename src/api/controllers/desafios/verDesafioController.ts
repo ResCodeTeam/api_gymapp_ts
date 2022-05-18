@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 import { VerDesafioService } from "../../services/desafios/verDesafioService";
 
 
-export class VerDesafioController{
- 
-    async handle(request:Request,response:Response){
+export class VerDesafioController {
+
+    async handle(request: Request, response: Response) {
         const uId = request.params.userId;
         const desafioId = request.params.id;
 

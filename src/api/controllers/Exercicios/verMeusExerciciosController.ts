@@ -3,9 +3,9 @@ import { VerMeusExerciciosService } from "../../services/exercicios/verMeusExerc
 
 
 
-export class VerMeusExerciciosController{
- 
-    async handle(request:Request,response:Response){
+export class VerMeusExerciciosController {
+
+    async handle(request: Request, response: Response) {
         const autorId = request.params.treinadorId;
 
         const verMeusExerciciosService = new VerMeusExerciciosService();

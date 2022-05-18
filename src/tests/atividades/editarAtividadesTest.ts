@@ -12,41 +12,41 @@ const idAtividade2 = '28895b6d-bd0c-422b-ad0b-d7ca6f89a18f'
 
 describe('- Editar atividade que não existe', () => {
   it('Deve retornar erro de atividade não existe', () => {
-      return chai
+    return chai
       .request(server)
-      .put(baseUrl+'/backend/atividades/' + idAtividade1)
+      .put(baseUrl + '/backend/atividades/' + idAtividade1)
       .then(res => {
-      res.should.have.status(500)
-      chai.expect(res.body).to.have.property("status")
-      chai.expect(res.body).to.have.property("message")
+        res.should.have.status(500)
+        chai.expect(res.body).to.have.property("status")
+        chai.expect(res.body).to.have.property("message")
       })
   })
 })
 
 describe('- Editar atividade sem body', () => {
-    it('Deve retornar erro de body incompleto', () => {
-        return chai
-        .request(server)
-        .put(baseUrl+'/backend/atividades/' + idAtividade2)
-        .then(res => {
+  it('Deve retornar erro de body incompleto', () => {
+    return chai
+      .request(server)
+      .put(baseUrl + '/backend/atividades/' + idAtividade2)
+      .then(res => {
         res.should.have.status(500)
         chai.expect(res.body).to.have.property("status")
         chai.expect(res.body).to.have.property("message")
-        })
-    })
+      })
+  })
 })
 
 describe('- Editar atividade corretamente', () => {
-    it('Deve retornar atividade editada', () => {
-      return chai
+  it('Deve retornar atividade editada', () => {
+    return chai
       .request(server)
-      .put(baseUrl+'/backend/atividades/' + idAtividade2)
+      .put(baseUrl + '/backend/atividades/' + idAtividade2)
       .send({
         descricao: "teste unitario21",
-        icon:"img2",
+        icon: "img2",
       })
       .then(res => {
-        
+
         res.should.have.status(200)
         console.log(res.body)
         // verificar se é um object
@@ -59,6 +59,6 @@ describe('- Editar atividade corretamente', () => {
         //verificar tipos das propriedades
         chai.expect(res.body['descricao']).to.be.a("string")
         chai.expect(res.body['icon']).to.be.a("string")
-        })
-    })
+      })
+  })
 })

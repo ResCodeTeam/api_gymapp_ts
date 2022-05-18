@@ -1,23 +1,23 @@
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-export class ImpedirIdentificacaoService{
-  async execute(uid:string, identificacoes:boolean){
-    
+export class ImpedirIdentificacaoService {
+  async execute(uid: string, identificacoes: boolean) {
+
     const existsUser = await checkUserIdExists(uid);
-    if(!existsUser){
-      throw new Error("User inexistente")
+    if (!existsUser) {
+      return { data: "User inexistente", status: 500 }
     }
 
     const identificacaoEditada = await client.definicoes_user.update({
-      where:{
-        usersuid:uid
+      where: {
+        usersuid: uid
       },
-      data:{
+      data: {
         identificacoes
       }
     })
 
-    return {data: identificacaoEditada, status: 200};    
+    return { data: identificacaoEditada, status: 200 };
   }
 }
