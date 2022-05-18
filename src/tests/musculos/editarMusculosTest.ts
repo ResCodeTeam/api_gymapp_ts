@@ -10,29 +10,29 @@ const server = "localhost:8000"
 const idMusculo = '35e61af1-2ae4-4b19-a89d-90943eaa9d73'
 
 describe('- Editar musculo sem body', () => {
-    it('Deve retornar erro de body incompleto', () => {
-        return chai
-        .request(server)
-        .put(baseUrl+'/backend/musculos/' + idMusculo)
-        .then(res => {
+  it('Deve retornar erro de body incompleto', () => {
+    return chai
+      .request(server)
+      .put(baseUrl + '/backend/musculos/' + idMusculo)
+      .then(res => {
         res.should.have.status(500)
         chai.expect(res.body).to.have.property("status")
         chai.expect(res.body).to.have.property("message")
-        })
-    })
+      })
+  })
 })
 
 describe('- Editar musculo corretamente', () => {
-    it('Deve retornar musculo editada', () => {
-      return chai
+  it('Deve retornar musculo editada', () => {
+    return chai
       .request(server)
-      .put(baseUrl+'/backend/musculos/' + idMusculo)
+      .put(baseUrl + '/backend/musculos/' + idMusculo)
       .send({
         nome: "teste unitario41",
-        imagem:"img3",
+        imagem: "img3",
       })
       .then(res => {
-        
+
         res.should.have.status(200)
         console.log(res.body)
         // verificar se é um object
@@ -45,6 +45,6 @@ describe('- Editar musculo corretamente', () => {
         //verificar tipos das propriedades
         chai.expect(res.body['nome']).to.be.a("string")
         chai.expect(res.body['img_url']).to.be.a("string")
-        })
-    })
+      })
+  })
 })

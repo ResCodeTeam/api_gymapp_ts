@@ -1,15 +1,14 @@
 import { changeTimeZone } from "../../../helpers/dateHelpers";
-import { checkPostExists, checkUserIdExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
 export class CriarComentarioService {
     async execute(publicacao_id: string, comentario: string, criador_id: string, identificacao: Array<string>) {
 
         if (publicacao_id == null) {
-            throw new Error("Identificador da publicação não inserido.")
+            return { data: "Identificador da publicação não inserido.", status: 500 }
         }
         if (comentario == "") {
-            throw new Error("É necessario preencher o campo comentario.")
+            return { data: "É necessario preencher o campo comentario.", status: 500 }
         }
 
         const publicacao = await client.publicacoes.findUnique({
@@ -18,7 +17,7 @@ export class CriarComentarioService {
             }
         })
         if (publicacao == null) {
-            throw new Error("Não existe publicação com o identificador: " + publicacao_id)
+            return { data: "Não existe publicação com o identificador: ", status: 500 }
         }
 
         let data = new Date();
@@ -43,6 +42,6 @@ export class CriarComentarioService {
             }
         }
 
-        return {data: novoComentario, status: 200};
+        return { data: novoComentario, status: 200 };
     }
 }

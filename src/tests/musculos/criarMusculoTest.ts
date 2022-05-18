@@ -9,30 +9,30 @@ const baseUrl = "/api/v1"
 const server = "localhost:8000"
 
 describe('- Criar musculo sem body', () => {
-    it('Deve retornar erro de body incompleto', () => {
-        return chai
-        .request(server)
-        .post(baseUrl+'/backend/musculos/')
-        .then(res => {
+  it('Deve retornar erro de body incompleto', () => {
+    return chai
+      .request(server)
+      .post(baseUrl + '/backend/musculos/')
+      .then(res => {
         // não mando nenhum send - tem que retornar mensagem 500 - erro
         res.should.have.status(500)
         chai.expect(res.body).to.have.property("status")
         chai.expect(res.body).to.have.property("message")
-        })
-    })
+      })
+  })
 })
 
 describe('- Criar musculo corretamente', () => {
-    it('Deve retornar musculo criada', () => {
-      return chai
+  it('Deve retornar musculo criada', () => {
+    return chai
       .request(server)
-      .post(baseUrl+'/backend/musculos/')
+      .post(baseUrl + '/backend/musculos/')
       .send({
         nome: "Teste3",
-        image:"http://imagem/teste3",
+        image: "http://imagem/teste3",
       })
       .then(res => {
-        
+
         res.should.have.status(200)
         console.log(res.body)
         // verificar se é um objeto
@@ -45,6 +45,6 @@ describe('- Criar musculo corretamente', () => {
         //verificar tipos das propriedades
         chai.expect(res.body['nome']).to.be.a("string")
         chai.expect(res.body['img_url']).to.be.a("string")
-        })
-    })
+      })
+  })
 })

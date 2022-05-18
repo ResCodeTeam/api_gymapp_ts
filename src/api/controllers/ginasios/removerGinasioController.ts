@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { RemoverGinasioService } from "../../services/ginasios/removerGinasioService";
 
-class RemoverGinasioController{
-    async handle(request: Request, response: Response){
+class RemoverGinasioController {
+    async handle(request: Request, response: Response) {
         const uId = request.params.adminId;
         const ginasioId = request.params.id;
         
@@ -12,4 +12,4 @@ class RemoverGinasioController{
     }
 }
 
-export{ RemoverGinasioController }
+export { RemoverGinasioController }

@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { RegistarFuncoesService } from "../../services/backend/registarFuncoesService";
 
-export class RegistarFuncoesController{
+export class RegistarFuncoesController {
 
-    async handle(request:Request, response:Response){
-        let {nome} = request.body;
-        if(nome === undefined){
+    async handle(request: Request, response: Response) {
+        let { nome } = request.body;
+        if (nome === undefined) {
             throw new Error("Pedido inválido")
         }
 

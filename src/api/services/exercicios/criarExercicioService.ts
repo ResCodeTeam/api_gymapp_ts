@@ -15,7 +15,7 @@ export class CriarExercicioService {
   async execute({ nome, descricao, autor, isTempo, imagens, musculos }: ICriarExercicio) {
     const existsTreinador = await checkUserIdExists(autor);
     if (!existsTreinador) {
-      throw new Error("Treinador não existe")
+      return { data: "Treinador não existe", status: 500 }
     }
 
     const exercicio = await client.exercicios.create({
@@ -95,6 +95,6 @@ export class CriarExercicioService {
         },
       }
     })
-    return {data: resp, status: 200};
+    return { data: resp, status: 200 };
   }
 }

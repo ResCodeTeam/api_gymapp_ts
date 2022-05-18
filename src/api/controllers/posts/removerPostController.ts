@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import {RemoverPostService} from "../../services/posts/removerPostService";
+import { RemoverPostService } from "../../services/posts/removerPostService";
 
-class RemoverPostController{
-    async handle(request:Request, response:Response){
+class RemoverPostController {
+    async handle(request: Request, response: Response) {
         const uId = request.params.userId;
         const post_id = request.params.id;
 
@@ -11,5 +11,5 @@ class RemoverPostController{
     response.json(resp.data).status(resp.status);
     }
 }
-export{ RemoverPostController }
+export { RemoverPostController }
 

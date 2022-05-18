@@ -9,29 +9,29 @@ const baseUrl = "/api/v1"
 const server = "localhost:8000"
 
 describe('- Criar atividade sem body', () => {
-    it('Deve retornar erro de body incompleto', () => {
-        return chai
-        .request(server)
-        .post(baseUrl+'/backend/atividades')
-        .then(res => {
+  it('Deve retornar erro de body incompleto', () => {
+    return chai
+      .request(server)
+      .post(baseUrl + '/backend/atividades')
+      .then(res => {
         res.should.have.status(500)
         chai.expect(res.body).to.have.property("status")
         chai.expect(res.body).to.have.property("message")
-        })
-    })
+      })
+  })
 })
 
 describe('- Criar atividade corretamente', () => {
-    it('Deve retornar atividade criada', () => {
-      return chai
+  it('Deve retornar atividade criada', () => {
+    return chai
       .request(server)
-      .post(baseUrl+'/backend/atividades')
+      .post(baseUrl + '/backend/atividades')
       .send({
         descricao: "teste unitario2",
-        icon:"img",
+        icon: "img",
       })
       .then(res => {
-        
+
         res.should.have.status(200)
         console.log(res.body)
         // verificar se é um object
@@ -46,6 +46,6 @@ describe('- Criar atividade corretamente', () => {
         chai.expect(res.body['atividade_id']).to.be.a("string")
         chai.expect(res.body['descricao']).to.be.a("string")
         chai.expect(res.body['icon']).to.be.a("string")
-        })
-    })
+      })
+  })
 })

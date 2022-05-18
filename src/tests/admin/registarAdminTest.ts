@@ -9,23 +9,23 @@ const baseUrl = "/api/v1"
 const server = "localhost:8000"
 
 describe('- Criar admin sem body', () => {
-    it('Deve retornar erro de body incompleto', () => {
-        return chai
-        .request(server)
-        .post(baseUrl+'/backend/registo')
-        .then(res => {
+  it('Deve retornar erro de body incompleto', () => {
+    return chai
+      .request(server)
+      .post(baseUrl + '/backend/registo')
+      .then(res => {
         res.should.have.status(500)
         chai.expect(res.body).to.have.property("status")
         chai.expect(res.body).to.have.property("message")
-        })
-    })
+      })
+  })
 })
 
 describe('- Criar admin corretamente', () => {
-    it('Deve retornar admin criado', () => {
-      return chai
+  it('Deve retornar admin criado', () => {
+    return chai
       .request(server)
-      .post(baseUrl+'/backend/registo')
+      .post(baseUrl + '/backend/registo')
       .send({
         email: "admin26@admin.com",
         nome: "António",
@@ -35,7 +35,7 @@ describe('- Criar admin corretamente', () => {
         genero: 1
       })
       .then(res => {
-        
+
         res.should.have.status(200)
         console.log(res.body)
         // verificar se é um object
@@ -56,6 +56,6 @@ describe('- Criar admin corretamente', () => {
         chai.expect(res.body['data_nasc']).to.be.a("string")
         chai.expect(res.body['data_entrada']).to.be.a("string")
         chai.expect(res.body['genero']).to.be.a("number")
-        })
-    })
+      })
+  })
 })

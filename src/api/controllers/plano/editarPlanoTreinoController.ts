@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { EditarPlanoTreinoService } from "../../services/plano/editarPlanoTreinoService";
 
-export class EditarPlanoTreinoController{
-  async handle(request:Request,response:Response){
+export class EditarPlanoTreinoController {
+  async handle(request: Request, response: Response) {
     const treinadorId = request.params.treinadorId;
     const planoId = request.params.id;
     const { alunoId, modalidadeId, blocos } = request.body;
-    if(alunoId === undefined || modalidadeId === undefined || blocos === undefined){
+    if (alunoId === undefined || modalidadeId === undefined || blocos === undefined) {
       throw new Error("Pedido inválido")
     }
 

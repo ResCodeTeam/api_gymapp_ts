@@ -14,7 +14,7 @@ class CriarAtividadeService {
     const atividade = await client.atividades.create({
       data: {
         descricao,
-        icon,    
+        icon,
       },
     });
     return {data: atividade, status: 200};

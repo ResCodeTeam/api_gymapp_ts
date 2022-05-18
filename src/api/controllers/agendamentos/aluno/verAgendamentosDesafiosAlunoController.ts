@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { VerAgendamentosDesafiosAlunoService } from "../../../services/agendamentos/aluno/verAgendamentosDesafiosAlunoService";
 
-export class VerAgendamentosDesafiosAlunoController{
-    async handle(request:Request,response:Response){
+export class VerAgendamentosDesafiosAlunoController {
+    async handle(request: Request, response: Response) {
         const uId = request.params.alunoId;
 
         const verAgendamentosDesafiosAlunoService = new VerAgendamentosDesafiosAlunoService();

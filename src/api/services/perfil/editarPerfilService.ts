@@ -2,56 +2,56 @@ import { checkEmail, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 
-interface IEditarPerfil{
-    uId:string,
-    email: string,
-    nome:  string,
-    password: string,
-    genero: number,
-    descricao: string,
-    imagemUrl: string  
+interface IEditarPerfil {
+  uId: string,
+  email: string,
+  nome: string,
+  password: string,
+  genero: number,
+  descricao: string,
+  imagemUrl: string
 }
 
 
 export class EditarPerfilService {
-  async execute({  
+  async execute({
     uId,
     email,
     nome,
     password,
     genero,
     descricao,
-    imagemUrl 
+    imagemUrl
 
-  } : IEditarPerfil){
+  }: IEditarPerfil) {
     const existsUser = await checkUserIdExists(uId);
-    if(!existsUser){
-      throw new Error("Utilizador inexistente")
+    if (!existsUser) {
+      return { data: "Utilizador inexistente", status: 500 }
     }
 
     // verificar se o aluno já está registado
     let existsEmail = await checkEmail(email);
-    if(existsEmail){
-        throw Error("Email já registado!")
+    if (existsEmail) {
+      return { data: "Email já registado!", status: 500 }
     }
 
     const user = await client.users.update({
-        where : {
-          uid:uId
-              
-        },
-        data : {
-          email:email,
-          nome:nome,
-          password:password,
-          genero:genero,
-          descricao:descricao,
-          imagem_url:imagemUrl
-        }
+      where: {
+        uid: uId
+
+      },
+      data: {
+        email: email,
+        nome: nome,
+        password: password,
+        genero: genero,
+        descricao: descricao,
+        imagem_url: imagemUrl
+      }
     })
-    return {data: user, status: 200};
+    return { data: user, status: 200 };
   }
 }
-  
+
 
 

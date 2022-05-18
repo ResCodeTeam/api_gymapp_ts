@@ -6,24 +6,24 @@ class RemoverPlanoTreinoService {
 
     const exists_plano = await checkPlanoTreinoExists(planoId);
     if (!exists_plano) {
-      throw new Error("O plano de treino não existe");
+      return { data: "O plano de treino não existe", status: 500 }
     }
 
-    const autor = await getTreinadorPlano(planoId);  
+    const autor = await getTreinadorPlano(planoId);
     const marca_treinador_plano = await getTreinadorMarca(autor)
     const marca_treinador = await getTreinadorMarca(treinadorId)
-    
-    if(marca_treinador_plano != marca_treinador){
-      throw new Error("Não tem autorização");
+
+    if (marca_treinador_plano != marca_treinador) {
+      return { data: "Não tem autorização", status: 500 }
     }
 
     await client.planos_treino.update({
-     where: {
-       plano_treino_id: planoId
+      where: {
+        plano_treino_id: planoId
       },
-     data:{
-       isDeleted: true
-     }
+      data: {
+        isDeleted: true
+      }
     })
 
     return {

@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { ObterAlunosGinasioService } from "../../services/alunos/obterAlunosGinasioService";
 
-export class ObterAlunosGinasioController{
-    async handle(request : Request, response :Response){
+export class ObterAlunosGinasioController {
+    async handle(request: Request, response: Response) {
         const ginasioId = request.params.id;
         const userId = request.params.userId;
-        if(userId === undefined){
+        if (userId === undefined) {
             throw new Error("Pedido inválido")
         }
 

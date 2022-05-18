@@ -1,37 +1,37 @@
 import { checkAutorExercicio, checkExercicioExists, checkUserIdExists } from "../../../helpers/dbHelpers"
 import { client } from "../../../prisma/client";
 
-interface IEditarImagensExercicio{
-  exercicioId:string,
-  treinadorId:string,
-  url:string,
+interface IEditarImagensExercicio {
+  exercicioId: string,
+  treinadorId: string,
+  url: string,
 }
 
-export class AdicionarExerciciosImagensService{
-  async execute({exercicioId,treinadorId, url}:IEditarImagensExercicio){
-    const existsExercicio= await checkExercicioExists(exercicioId);
-    if(!existsExercicio){
-      throw new Error("Exercicio não existe")
+export class AdicionarExerciciosImagensService {
+  async execute({ exercicioId, treinadorId, url }: IEditarImagensExercicio) {
+    const existsExercicio = await checkExercicioExists(exercicioId);
+    if (!existsExercicio) {
+      return { data: "Exercicio não existe", status: 500 }
     }
 
     const existsUser = await checkUserIdExists(treinadorId);
-    if(!existsUser){
-      throw new Error("Treinador não existe")
+    if (!existsUser) {
+      return { data: "Treinador não existe", status: 500 }
     }
 
-    
-    const isAutor = await checkAutorExercicio(treinadorId,exercicioId);
-    if(!isAutor){
-      throw new Error("Não possui permissões")
+
+    const isAutor = await checkAutorExercicio(treinadorId, exercicioId);
+    if (!isAutor) {
+      return { data: "Não possui permissões", status: 500 }
     }
 
     const imagem = await client.exercicios_imagens.create({
-      data:{
+      data: {
         url,
-        exercicio_id:exercicioId
+        exercicio_id: exercicioId
       }
     })
 
-    return {data: imagem, status: 200};
+    return { data: imagem, status: 200 };
   }
 }

@@ -6,38 +6,38 @@ interface IEditarExercicio {
     nome: string,
     descricao: string,
     autorId: string,
-    isTempo:boolean
+    isTempo: boolean
 }
 
 export class EditarExercicioService {
-    async execute(data:IEditarExercicio) {
+    async execute(data: IEditarExercicio) {
         const exists_dst = await checkExercicioExists(data.exercicioId);
         if (!exists_dst) {
-            throw new Error("O exercicio não existe");
+            return { data: "O exercicio não existe", status: 500 }
         }
 
         const exercicio = await client.exercicios.findUnique({
-            where:{
+            where: {
                 exercicio_id: data.exercicioId
             }
         })
 
-        const isAutor = await checkAutorExercicio(data.autorId,data.exercicioId);
-        if(!isAutor){
-            throw new Error("O exercicio não lhe pertence");
+        const isAutor = await checkAutorExercicio(data.autorId, data.exercicioId);
+        if (!isAutor) {
+            return { data: "O exercicio não lhe pertence", status: 500 }
         }
 
         const atualizarExercicio = await client.exercicios.update({
-            where:{
-                exercicio_id:data.exercicioId
+            where: {
+                exercicio_id: data.exercicioId
             },
-            data:{
+            data: {
                 nome: data.nome,
                 descricao: data.descricao,
                 autor_id: data.autorId,
                 is_tempo: data.isTempo
             }
         })
-        return {data: atualizarExercicio, status: 200};       
+        return { data: atualizarExercicio, status: 200 };
     }
 }

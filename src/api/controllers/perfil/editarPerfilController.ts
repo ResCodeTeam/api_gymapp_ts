@@ -2,22 +2,22 @@ import { Request, Response } from "express";
 import { EditarPerfilService } from "../../services/perfil/editarPerfilService";
 
 
-export class EditarPerfilController{
-    
-    async handle (request: Request, response: Response){
+export class EditarPerfilController {
+
+    async handle(request: Request, response: Response) {
         const uId = request.params.userId;
-        
-        let { 
+
+        let {
             email,
             nome,
             password,
             genero,
             descricao,
-            imagemUrl }=request.body;
-        
-            if(email === undefined || nome === undefined || password === undefined || genero === undefined || descricao === undefined || imagemUrl === undefined){
-                throw new Error("Pedido inválido")
-            }
+            imagemUrl } = request.body;
+
+        if (email === undefined || nome === undefined || password === undefined || genero === undefined || descricao === undefined || imagemUrl === undefined) {
+            throw new Error("Pedido inválido")
+        }
 
         const editarPerfilController = new EditarPerfilService();
         const resp = await editarPerfilController.execute({
@@ -27,7 +27,8 @@ export class EditarPerfilController{
             password,
             genero,
             descricao,
-            imagemUrl });
-            response.json(resp.data).status(resp.status);
+            imagemUrl
+        });
+        response.json(resp.data).status(resp.status);
     }
 }

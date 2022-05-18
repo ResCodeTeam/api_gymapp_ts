@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { RemoverAtividadesService } from "../../services/atividades/removerAtividadesService";
 
-class RemoverAtividadesController{
-    async handle(request: Request, response: Response){
+class RemoverAtividadesController {
+    async handle(request: Request, response: Response) {
         const atividadeId = request.params.id;
 
     const removerAtividadesService = new RemoverAtividadesService();
@@ -11,4 +11,4 @@ class RemoverAtividadesController{
     }
 }
 
-export{ RemoverAtividadesController }
+export { RemoverAtividadesController }
