@@ -7,7 +7,7 @@ export class VerTodosOsExerciciosTreinadoresController {
 
         const resp = await verTodosOsExerciciosTreinadoresService.execute()
 
-        response.json(resp);
+        response.json(resp.data).status(resp.status);
 
     }
 }

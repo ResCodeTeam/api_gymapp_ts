@@ -5,11 +5,11 @@ export class LogoutService {
     async execute(userId: string, token: string) {
         const user = await getUserByID(userId)
         if (!user) {
-            return { date: "User inexistente", status: 500 }
+            return { data: "User inexistente", status: 500 }
         }
 
         if (!user.refresh_token) {
-            return { date: "Sessão invalida", status: 500 }
+            return { data: "Sessão invalida", status: 500 }
         }
 
         await client.users.update({
@@ -27,6 +27,6 @@ export class LogoutService {
                 uid: userId,
             }
         })
-        return { "msg": "Logout com sucesso" }
+        return { data: "Logout com sucesso", status: 200 }
     }
 }

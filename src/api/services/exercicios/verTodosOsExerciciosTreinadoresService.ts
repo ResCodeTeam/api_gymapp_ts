@@ -1,4 +1,3 @@
-import { checkPostExists, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class VerTodosOsExerciciosTreinadoresService {
@@ -49,7 +48,7 @@ export class VerTodosOsExerciciosTreinadoresService {
             }
         }
 
-        return exerci;
+        return { data: exerci, status: 200 };
 
     }
 }

@@ -6,22 +6,22 @@ export class RemoverExercicioMusculoService {
 
     const existsExercicio = await checkExercicioExists(exercicioId);
     if (!existsExercicio) {
-      return { date: "Exercicio inexistente", status: 500 }
+      return { data: "Exercicio inexistente", status: 500 }
     }
 
     const isAutor = await checkAutorExercicio(treinadorId, exercicioId);
     if (!isAutor) {
-      return { date: "Não possui autorização", status: 500 }
+      return { data: "Não possui autorização", status: 500 }
     }
 
     const existsMusculo = await checkMusculoExists(musculoId);
     if (!existsMusculo) {
-      return { date: "Musculo inexistente", status: 500 }
+      return { data: "Musculo inexistente", status: 500 }
     }
 
     const containsMusculo = await checkExercicioMusculoExists(musculoId, exercicioId);
     if (!containsMusculo) {
-      return { date: "Musculo não adicionado", status: 500 }
+      return { data: "Musculo não adicionado", status: 500 }
     }
 
     await client.exercicios_musculos.delete({
@@ -33,7 +33,7 @@ export class RemoverExercicioMusculoService {
       }
     })
 
-    return { "msg": "Musculo removido com sucesso" }
+    return { data: "Musculo removido com sucesso", status: 200 }
 
   }
 }

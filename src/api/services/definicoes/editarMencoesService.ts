@@ -6,7 +6,7 @@ export class EditarMencoesService {
 
     const existsUser = await checkUserIdExists(uid);
     if (!existsUser) {
-      return { date: "User inexistente", status: 500 }
+      return { data: "User inexistente", status: 500 }
     }
 
     const mencoesEdited = await client.definicoes_user.update({
@@ -18,6 +18,6 @@ export class EditarMencoesService {
       }
     })
 
-    return mencoesEdited;
+    return { data: mencoesEdited, status: 200 };
   }
 }

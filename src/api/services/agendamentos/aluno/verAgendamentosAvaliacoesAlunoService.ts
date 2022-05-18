@@ -6,7 +6,7 @@ export class VerAgendamentosAvaliacoesAlunoService {
 
         const exists_user = await checkUserIdExists(uId);
         if (!exists_user) {
-            return { date: "O utilizador não existe", status: 500 }
+            return { data: "O utilizador não existe", status: 500 }
         }
 
         const agendamentos = await client.agendamentos_avaliacoes.findMany({
@@ -16,6 +16,6 @@ export class VerAgendamentosAvaliacoesAlunoService {
             },
         })
 
-        return agendamentos;
+        return { data: agendamentos, status: 200 };
     }
 }

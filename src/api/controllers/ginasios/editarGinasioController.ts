@@ -33,6 +33,6 @@ export class EditarGinasioController {
             lat,
             long
         });
-        response.json(resp);
+        response.json(resp.data).status(resp.status);
     }
 }

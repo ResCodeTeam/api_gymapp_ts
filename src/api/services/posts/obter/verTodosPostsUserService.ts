@@ -4,12 +4,12 @@ import { client } from "../../../prisma/client"
 export class VerTodosPostsUserService {
     async execute(userId: string) {
         if (!userId) {
-            return { date: "Utilizador não existe", status: 500 }
+            return { data: "Utilizador não existe", status: 500 }
         }
 
         const existsUser = await getUserByID(userId)
         if (!existsUser) {
-            return { date: "Utilizador não existe", status: 500 }
+            return { data: "Utilizador não existe", status: 500 }
         }
 
         const posts = await client.publicacoes.findMany({
@@ -52,6 +52,6 @@ export class VerTodosPostsUserService {
                 },
             },
         })
-        return posts
+        return { data: posts, status: 200 };
     }
 }

@@ -32,6 +32,6 @@ export class AdicionarExerciciosImagensService {
       }
     })
 
-    return imagem;
+    return {data: imagem, status: 200};
   }
 }

@@ -17,6 +17,6 @@ export class EncerrarDesafiosController {
             isEncerrado,
             desafioId
         });
-        response.json(resp);
+        response.json(resp.data).status(resp.status);
     }
 }

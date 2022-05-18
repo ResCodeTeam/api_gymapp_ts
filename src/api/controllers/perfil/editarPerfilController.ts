@@ -29,6 +29,6 @@ export class EditarPerfilController {
             descricao,
             imagemUrl
         });
-        response.json(resp);
+        response.json(resp.data).status(resp.status);
     }
 }

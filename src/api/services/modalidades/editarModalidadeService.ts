@@ -44,7 +44,7 @@ export class EditarModalidadesService {
         }
       })
 
-      return editarModalidades;
+      return {data: editarModalidades, status: 200};
     }
     else {
       return { date: "A modalidade não pertence ao ginásio", status: 500 }

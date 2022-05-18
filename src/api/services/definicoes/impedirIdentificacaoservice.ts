@@ -6,7 +6,7 @@ export class ImpedirIdentificacaoService {
 
     const existsUser = await checkUserIdExists(uid);
     if (!existsUser) {
-      return { date: "User inexistente", status: 500 }
+      return { data: "User inexistente", status: 500 }
     }
 
     const identificacaoEditada = await client.definicoes_user.update({
@@ -18,6 +18,6 @@ export class ImpedirIdentificacaoService {
       }
     })
 
-    return identificacaoEditada;
+    return { data: identificacaoEditada, status: 200 };
   }
 }

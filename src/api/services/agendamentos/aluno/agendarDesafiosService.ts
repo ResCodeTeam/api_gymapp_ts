@@ -69,7 +69,7 @@ export class AgendarDesafiosService {
       }
     });
 
-    return agendamento;
+    return {data: agendamento, status: 200};
   }
 }
 

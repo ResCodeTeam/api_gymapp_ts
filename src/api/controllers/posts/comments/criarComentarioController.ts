@@ -13,7 +13,7 @@ export class CriarComentarioController {
         const criarComentarioService = new CriarComentarioService();
         const resp = await criarComentarioService.execute(publicacao_id, comentario, criador_id, identificacao)
 
-        response.json(resp);
+        response.json(resp.data).status(resp.status);
 
     }
 }

@@ -28,7 +28,8 @@ class RemoverAgendarDesafiosService {
     })
 
     return {
-      msg: "Agendamento do desafio removido com sucesso",
+      data: "Agendamento do desafio removido com sucesso",
+      status: 200
     };
   }
 }

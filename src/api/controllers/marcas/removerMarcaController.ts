@@ -8,7 +8,7 @@ export class RemoverMarcaController {
 
     const removerMarcaService = new RemoverMarcaService();
     const resp = await removerMarcaService.execute(uId, marcaId);
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
   };
 }
 

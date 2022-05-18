@@ -6,6 +6,6 @@ export class VerAgendamentoAvaliacoesController {
 
         const verAgendamentoAvaliacoesService = new VerAgendamentoAvaliacoesService();
         const resp = await verAgendamentoAvaliacoesService.execute();
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

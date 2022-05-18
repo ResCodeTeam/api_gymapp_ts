@@ -12,12 +12,12 @@ export class AlterarVistoService {
 
     const existsVisto = await checknotificacaoExists(notiId);
     if (!existsVisto) {
-      return { date: "notificação não existe", status: 500 }
+      return { data: "notificação não existe", status: 500 }
     }
 
     const isAutor = await checkDestinoNotificacao(destUid, notiId);
     if (!isAutor) {
-      return { date: "Não possui autorização", status: 500 }
+      return { data: "Não possui autorização", status: 500 }
     }
 
     const alterarVisto = await client.destinos_notificacao.update({
@@ -33,6 +33,6 @@ export class AlterarVistoService {
       }
     })
 
-    return alterarVisto;
+    return { data: alterarVisto, status: 200 };
   }
 }

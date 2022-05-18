@@ -13,7 +13,7 @@ export class EditarExercicioService {
     async execute(data: IEditarExercicio) {
         const exists_dst = await checkExercicioExists(data.exercicioId);
         if (!exists_dst) {
-            return { date: "O exercicio não existe", status: 500 }
+            return { data: "O exercicio não existe", status: 500 }
         }
 
         const exercicio = await client.exercicios.findUnique({
@@ -24,7 +24,7 @@ export class EditarExercicioService {
 
         const isAutor = await checkAutorExercicio(data.autorId, data.exercicioId);
         if (!isAutor) {
-            return { date: "O exercicio não lhe pertence", status: 500 }
+            return { data: "O exercicio não lhe pertence", status: 500 }
         }
 
         const atualizarExercicio = await client.exercicios.update({
@@ -38,6 +38,6 @@ export class EditarExercicioService {
                 is_tempo: data.isTempo
             }
         })
-        return atualizarExercicio
+        return { data: atualizarExercicio, status: 200 };
     }
 }

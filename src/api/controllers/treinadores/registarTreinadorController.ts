@@ -17,6 +17,6 @@ export class RegistarTreinadorController {
     const registarTreinadorService = new RegistarTreinadorService();
     const resp = await registarTreinadorService.execute({ marcaId, email, nome, password, dataNasc, dataEntrada, genero, userId })
 
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
   }
 }

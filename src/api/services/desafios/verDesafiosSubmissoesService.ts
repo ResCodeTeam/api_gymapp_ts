@@ -1,14 +1,16 @@
+
 import { checkDesafioIdExists, checkMobilidadeMarcaUser, getDesafioGinasio, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class VerDesafiosSubmissoesService {
     async execute(uId: string, desafioId: string) {
+
         const exists_desafio = await checkDesafioIdExists(desafioId)
         console.log(exists_desafio)
         if (!exists_desafio) {
             console.log('atum')
             return { data: "Desafio não existe", status: 500 }
-            return { date: "O desafio não existe", status: 500 }
+            return { data: "O desafio não existe", status: 500 }
         }
         console.log('aqui')
 
@@ -25,13 +27,13 @@ export class VerDesafiosSubmissoesService {
         if (funcao == treinador) {
             const marca_treinador = await getTreinadorMarca(uId)
             if (marca_treinador != marca_ginasio) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         // admin
         else if (funcao == admin) {
             if (uId != dono_marca) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         // aluno
@@ -39,12 +41,12 @@ export class VerDesafiosSubmissoesService {
             const { mobilidade, id } = await checkMobilidadeMarcaUser(uId);
             if (mobilidade) {
                 if (id['marca_id'] != marca_ginasio) {
-                    return { date: "Não possui permissão", status: 500 }
+                    return { data: "Não possui permissão", status: 500 }
                 }
             }
             else {
                 if (id['ginasio_id'] != ginasio_desafio) {
-                    return { date: "Não possui permissão", status: 500 }
+                    return { data: "Não possui permissão", status: 500 }
                 }
             }
         }
@@ -58,7 +60,6 @@ export class VerDesafiosSubmissoesService {
                 }
             },
         })
-
 
         return { data: desafios, status: 200 };
     }

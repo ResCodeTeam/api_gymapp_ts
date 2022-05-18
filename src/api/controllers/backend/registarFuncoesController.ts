@@ -12,6 +12,6 @@ export class RegistarFuncoesController {
         const registarFuncoesService = new RegistarFuncoesService();
         const resp = await registarFuncoesService.execute(nome);
 
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

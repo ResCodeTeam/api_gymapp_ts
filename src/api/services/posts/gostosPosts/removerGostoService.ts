@@ -6,17 +6,17 @@ export class RemoverGostoPublicacaoService {
 
     const publicacao = await checkPublicacaoExists(publicacaoId)
     if (!publicacao) {
-      return { date: "Publicação inexistente", status: 500 }
+      return { data: "Publicação inexistente", status: 500 }
     }
 
     const autor = await checkAutorPublicacoes(userId, publicacaoId)
     if (!autor) {
-      return { date: "Não possui autorização", status: 500 }
+      return { data: "Não possui autorização", status: 500 }
     }
 
     const gosto = await checkGostoPublicacaoExists(publicacaoId, userId)
     if (gosto == null) {
-      return { date: "Gosto inexistente", status: 500 }
+      return { data: "Gosto inexistente", status: 500 }
     }
 
     await client.gostos_publicacao.delete({
@@ -25,7 +25,7 @@ export class RemoverGostoPublicacaoService {
       }
     })
 
-    return { "msg": "gosto removido com sucesso" }
+    return { data: "gosto removido com sucesso", status: 200 }
 
   }
 }

@@ -8,6 +8,6 @@ export class VerAvaliacoesController {
 
         const verAvaliacoesService = new VerAvaliacoesService();
         const resp = await verAvaliacoesService.execute(alunoId);
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

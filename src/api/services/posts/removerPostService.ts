@@ -7,7 +7,7 @@ class RemoverPostService {
     async execute(uId: string, postId: string) {
         const existsPost = await checkPostExists(postId);
         if (!existsPost) {
-            return { date: "A publicação não existe", status: 500 }
+            return { data: "A publicação não existe", status: 500 }
         }
 
         const publicacao = await client.publicacoes.findUnique({
@@ -17,7 +17,7 @@ class RemoverPostService {
         })
         const isAutor = await checkAutorPublicacoes(uId, postId);
         if (!isAutor) {
-            return { date: "A publicação não lhe pertence", status: 500 }
+            return { data: "A publicação não lhe pertence", status: 500 }
         }
 
         await client.publicacoes.update({
@@ -30,7 +30,8 @@ class RemoverPostService {
         })
 
         return {
-            msg: "Publicação removida com sucesso"
+            data: "Publicação removida com sucesso",
+            status: 200
         }
     }
 }

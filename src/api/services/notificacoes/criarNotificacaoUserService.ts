@@ -41,6 +41,6 @@ export class CriarNotificacaoUserService {
       }
     })
 
-    return notificacao;
+    return {data: notificacao, status: 200};
   }
 }

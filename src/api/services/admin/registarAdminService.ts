@@ -19,7 +19,7 @@ export class RegistarAdminService {
         // verificar se o aluno já está registado
         let existsEmail = await checkEmail(email);
         if (existsEmail) {
-            return { date: "Email já registado!", status: 500 }
+            return { data: "Email já registado!", status: 500 }
         }
 
         // Obter tag do aluno
@@ -53,8 +53,6 @@ export class RegistarAdminService {
             }
         })
 
-        return admin
-
+        return { data: admin, status: 200 };
     }
-
 }

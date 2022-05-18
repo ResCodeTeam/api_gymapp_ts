@@ -7,22 +7,22 @@ export class RemoverComentarioService {
     console.log(criadorId, comentarioId, publicacaoId)
     const existsPublicacao = await checkPostExists(publicacaoId);
     if (!existsPublicacao) {
-      return { date: "Publicação inexistente", status: 500 }
+      return { data: "Publicação inexistente", status: 500 }
     }
 
     const isComentarioPublicacao = await checkIsComentarioPublicacaoExists(comentarioId, publicacaoId);
     if (!isComentarioPublicacao) {
-      return { date: "Comentario inexistente", status: 500 }
+      return { data: "Comentario inexistente", status: 500 }
     }
 
     const existsComentario = await checkComentarioExists(comentarioId);
     if (!existsComentario) {
-      return { date: "Comentario inexistente", status: 500 }
+      return { data: "Comentario inexistente", status: 500 }
     }
 
     const isAutor = await checkAutorComentario(comentarioId, criadorId);
     if (!isAutor) {
-      return { date: "Não possui autorização para tal", status: 500 }
+      return { data: "Não possui autorização para tal", status: 500 }
     }
 
     const gostos: gostos_comentario[] = await getGostosComentario(comentarioId);
@@ -48,6 +48,6 @@ export class RemoverComentarioService {
       }
     })
 
-    return { "msg": "Comentário removido com sucesso" }
+    return { data: "Comentário removido com sucesso", status: 200 }
   }
 }

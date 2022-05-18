@@ -11,7 +11,7 @@ export class VerTodosDesafiosService {
     async execute({ uId, ginasioId }: IGinasios) {
         const exists_dst = await checkGinasioExists(ginasioId);
         if (!exists_dst) {
-            return { date: "O ginasio não existe", status: 500 }
+            return { data: "O ginasio não existe", status: 500 }
         }
 
         const funcao = await getUserFuncao(uId);
@@ -25,19 +25,19 @@ export class VerTodosDesafiosService {
         if (funcao == treinador) {
             const marca_treinador = await getTreinadorMarca(uId)
             if (marca_treinador != marca_ginasio) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         // aluno
         else if (funcao == aluno) {
             const aluno_marca = await getAlunoMarca(uId);
             if (aluno_marca != marca_ginasio) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         else {
             if (uId != dono_marca) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
 
@@ -55,6 +55,6 @@ export class VerTodosDesafiosService {
                 isEncerrado: true
             }
         })
-        return desafios;
+        return { data: desafios, status: 200 };
     }
 }

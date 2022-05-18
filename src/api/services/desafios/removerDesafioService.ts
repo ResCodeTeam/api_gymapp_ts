@@ -1,4 +1,3 @@
-import e from "express";
 import { checkDesafioDisponivel, checkDesafioIdExists, getDonoMarca, getFuncaoId, getGinasioDesafio, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
@@ -7,7 +6,7 @@ export class RemoverDesafioService {
 
         const search_desafio = await checkDesafioIdExists(desafio_id);
         if (!search_desafio) {
-            return { date: "Não existe o desafio", status: 500 }
+            return { data: "Não existe o desafio", status: 500 }
         }
 
         const funcao = await getUserFuncao(uId);
@@ -19,20 +18,20 @@ export class RemoverDesafioService {
 
         const desafio_disponivel = await checkDesafioDisponivel(desafio_id);
         if (!desafio_disponivel) {
-            return { date: "O desafio já não está disponível", status: 500 }
+            return { data: "O desafio já não está disponível", status: 500 }
         }
 
         // treinador
         if (funcao == treinador) {
             const marca_treinador = await getTreinadorMarca(uId)
             if (marca_treinador != marca_ginasio) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         // admin
         else {
             if (uId != dono_marca) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
 
@@ -43,6 +42,6 @@ export class RemoverDesafioService {
             }
         })
 
-        return { msg: "O desafio foi eliminado com sucesso" };
+        return { data: "O desafio foi eliminado com sucesso", status: 200 };
     }
 }

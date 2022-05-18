@@ -8,6 +8,6 @@ export class LogoutController {
 
         const logoutService = new LogoutService();
         const resp = await logoutService.execute(userId, token);
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

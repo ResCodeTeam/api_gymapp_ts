@@ -5,22 +5,22 @@ export class RemoverGostoCommentService {
   async execute(publicacaoId: string, criadorId: string, comentarioId: string) {
     const existsPublicacao = await checkPostExists(publicacaoId);
     if (!existsPublicacao) {
-      return { date: "Publicação não existe", status: 500 }
+      return { data: "Publicação não existe", status: 500 }
     }
 
     const existsComentario = await checkComentarioExists(comentarioId);
     if (!existsComentario) {
-      return { date: "Comentario inexistente", status: 500 }
+      return { data: "Comentario inexistente", status: 500 }
     }
 
     const isComentarioPublicacao = await checkIsComentarioPublicacaoExists(comentarioId, publicacaoId)
     if (!isComentarioPublicacao) {
-      return { date: "Não é comentario da publicação", status: 500 }
+      return { data: "Não é comentario da publicação", status: 500 }
     }
 
     const gosto = await checkGostoComentarioExists(comentarioId, criadorId)
     if (gosto == null) {
-      return { date: "Gosto inexistente", status: 500 }
+      return { data: "Gosto inexistente", status: 500 }
     }
 
     await client.gostos_comentario.delete({
@@ -29,6 +29,6 @@ export class RemoverGostoCommentService {
       }
     })
 
-    return { 'msg': 'gosto removido com sucesso' }
+    return { data: 'gosto removido com sucesso', status: 200 }
   }
 }

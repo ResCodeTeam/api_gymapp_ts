@@ -13,6 +13,6 @@ export class EditarPerfilPrivadoController {
 
         const editarPerfilPrivadoController = new EditarPerfilPrivadoService();
         const resp = await editarPerfilPrivadoController.execute(uId, is_privado);
-        response.json(resp);
+        response.json(resp.data).status(resp.status);
     }
 }

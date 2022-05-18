@@ -5,7 +5,7 @@ export class VerInfoPostService {
     async execute(postId: string) {
         const existsPost = await checkPostExists(postId);
         if (!existsPost) {
-            return { date: "Publicação não existe", status: 500 }
+            return { data: "Publicação não existe", status: 500 }
         }
 
         const post = await client.publicacoes.findFirst({
@@ -70,6 +70,6 @@ export class VerInfoPostService {
                 }
             },
         })
-        return post == null ? {} : post
+        return { data: post == null ? {} : post, status: 200 }
     }
 }

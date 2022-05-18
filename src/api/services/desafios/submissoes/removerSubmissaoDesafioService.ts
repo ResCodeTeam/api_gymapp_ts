@@ -6,17 +6,17 @@ export class RemoverSubmissaoDesafioService {
 
     const existsDesafio = await checkDesafioIdExists(desafioId);
     if (!existsDesafio) {
-      return { date: "Desafio inexistente", status: 500 }
+      return { data: "Desafio inexistente", status: 500 }
     }
 
     const isSubmissaoDesafio = await checkIsSubmissaoDesafio(desafioId, submissaoId);
     if (!isSubmissaoDesafio) {
-      return { date: "Não é submissao do desafio", status: 500 }
+      return { data: "Não é submissao do desafio", status: 500 }
     }
 
     const exists_submissao = await checkSubmissaoExists(submissaoId);
     if (!exists_submissao) {
-      return { date: "A submissao do desafio não existe", status: 500 }
+      return { data: "A submissao do desafio não existe", status: 500 }
     }
 
     const desafio = await getDesafio(desafioId);
@@ -25,7 +25,7 @@ export class RemoverSubmissaoDesafioService {
 
     const marca_treinador = await getTreinadorMarca(uid)
     if (marca_treinador != marca.marca_id) {
-      return { date: "Não tem autorização", status: 500 }
+      return { data: "Não tem autorização", status: 500 }
     }
 
     const submissoes = await client.submissoes_desafios.delete({
@@ -34,7 +34,7 @@ export class RemoverSubmissaoDesafioService {
       },
     })
 
-    return { "msg": "submissao removida com sucesso" }
+    return { data: "submissao removida com sucesso", status: 200 }
 
   }
 }

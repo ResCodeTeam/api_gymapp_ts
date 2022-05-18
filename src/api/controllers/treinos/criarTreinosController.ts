@@ -20,7 +20,7 @@ class CriarTreinosController {
       distancia,
       data
     });
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
   }
 }
 export { CriarTreinosController };

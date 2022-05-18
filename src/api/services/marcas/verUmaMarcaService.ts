@@ -13,7 +13,7 @@ export class VerUmaMarcaService {
 
         const exists_marca = await checkMarcaExists(marcaId)
         if (!exists_marca) {
-            return { date: "A marca não existe", status: 500 }
+            return { data: "A marca não existe", status: 500 }
         }
 
         const dono_marca = await getDonoMarca(marcaId);
@@ -21,7 +21,7 @@ export class VerUmaMarcaService {
         console.log(donoId)
         console.log(dono_marca)
         if (donoId != dono_marca) {
-            return { date: "Não possui autorização", status: 500 }
+            return { data: "Não possui autorização", status: 500 }
         }
 
         const marca = await client.marcas.findFirst({
@@ -31,6 +31,6 @@ export class VerUmaMarcaService {
                 isDeleted: false
             }
         })
-        return marca;
+        return { data: marca, status: 200 };
     }
 }

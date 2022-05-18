@@ -6,12 +6,12 @@ export class RemoverLocalMedidaService {
 
     const isMarca = await checkMarcaExists(marcaId);
     if (!isMarca) {
-      return { date: "A marca não existe", status: 500 }
+      return { data: "A marca não existe", status: 500 }
     }
 
     const isAutorMarca = await checkAutorMarca(uid, marcaId);
     if (!isAutorMarca) {
-      return { date: "Não possui autorização para realizar esta operação", status: 500 }
+      return { data: "Não possui autorização para realizar esta operação", status: 500 }
     }
 
     let marca = await getLocalMedidaMarca(localId);
@@ -32,10 +32,10 @@ export class RemoverLocalMedidaService {
       })
     }
     else {
-      return { date: "O local de medida não pertence à marca", status: 500 }
+      return { data: "O local de medida não pertence à marca", status: 500 }
     }
 
-    return { "msg": "Local removido com sucesso" }
+    return { data: "Local removido com sucesso", status: 200 }
 
   }
 }

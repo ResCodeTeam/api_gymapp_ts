@@ -3,11 +3,11 @@ import { VerLocaisMedidaService } from "../../services/localMedida/verLocaisMedi
 
 export class VerLocaisMedidaController {
 
-    async handle(request: Request, response: Response) {
-        const uId = request.params.treinadorId;
+        async handle(request: Request, response: Response) {
+                const uId = request.params.treinadorId;
 
-        const verLocaisMedidaService = new VerLocaisMedidaService();
-        const resp = await verLocaisMedidaService.execute({ uId });
-        response.json(resp)
-    }
+                const verLocaisMedidaService = new VerLocaisMedidaService();
+                const resp = await verLocaisMedidaService.execute({ uId });
+                response.json(resp.data).status(resp.status);
+        }
 }

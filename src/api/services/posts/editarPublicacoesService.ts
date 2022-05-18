@@ -56,9 +56,6 @@ export class EditarPublicacaoService {
             }
         });
 
-
-        console.log("Descrição - " + verificaDescricao);
-
         if (verificaDescricao.descricao == descricao) {
             return { date: "Não é possivel alterar! Descrição é igual", status: 500 }
         }
@@ -124,6 +121,6 @@ export class EditarPublicacaoService {
                 }
             },
         })
-        return publicação;
+        return {data: publicação, status: 200};
     }
 }

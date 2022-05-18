@@ -13,7 +13,7 @@ class CriarAtividadeController {
       descricao,
       icon,
     });
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
   }
 }
 export { CriarAtividadeController };

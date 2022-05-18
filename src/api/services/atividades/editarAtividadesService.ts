@@ -11,7 +11,7 @@ export class EditarAtividadesService {
     async execute(data: IEditarAtividades) {
         const exists_dst = await checkAtividadeExists(data.atividadeId);
         if (!exists_dst) {
-            return { date: "A atividade não existe", status: 500 }
+            return { data: "A atividade não existe", status: 500 }
         }
 
         const atualizarAtividade = await client.atividades.update({
@@ -23,6 +23,6 @@ export class EditarAtividadesService {
                 icon: data.icon
             }
         })
-        return atualizarAtividade
+        return { data: atualizarAtividade, status: 200 };
     }
 }

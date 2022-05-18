@@ -35,19 +35,19 @@ export class RegistarAlunoService {
     // verificar se o aluno já está registado
     const existsEmail = await checkEmail(email);
     if (existsEmail) {
-      return { date: "Email já registado!", status: 500 }
+      return { data: "Email já registado!", status: 500 }
     }
 
     if (password.length < 5) {
-      return { date: "Nome inválido", status: 500 }
+      return { data: "Nome inválido", status: 500 }
     }
 
     if (!email.includes("@")) {
-      return { date: "Email inválido", status: 500 }
+      return { data: "Email inválido", status: 500 }
     }
 
     if (genero != 0 && genero != 1) {
-      return { date: "Email inválido", status: 500 }
+      return { data: "Email inválido", status: 500 }
     }
 
     // Obter tag do aluno
@@ -60,13 +60,13 @@ export class RegistarAlunoService {
     const funcaoId = await getFuncaoId("Aluno");
     let existsGym = await checkGinasioExists(ginasioId);
     if (!existsGym) {
-      return { date: "Ginásio não existe", status: 500 }
+      return { data: "Ginásio não existe", status: 500 }
     }
 
     await checkDonoGinasio(ginasioId, donoId)
 
     if (nome.split(" ").length < 2) {
-      return { date: "Nome inválido", status: 500 }
+      return { data: "Nome inválido", status: 500 }
     }
 
     const aluno = await client.users.create({
@@ -131,7 +131,7 @@ export class RegistarAlunoService {
           usersuid: aluno.uid
         }
       })
-      return aluno;
+      return { data: aluno, status: 200 };
     } catch (e) {
       client.users.delete({
         where: {

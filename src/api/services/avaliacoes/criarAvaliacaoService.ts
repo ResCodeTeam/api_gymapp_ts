@@ -93,9 +93,8 @@ export class CriarAvaliacaoService {
 
 
         }
-        return avaliacao;
+        return {data: avaliacao, status: 200};
       }
-
     }
   }
 }

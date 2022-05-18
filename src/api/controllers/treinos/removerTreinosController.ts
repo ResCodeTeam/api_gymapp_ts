@@ -8,7 +8,7 @@ class RemoverTreinosController {
 
         const removerTreinosService = new RemoverTreinosService();
         const resp = await removerTreinosService.execute(uId, treinoId);
-        response.json(resp);
+        response.json(resp.data).status(resp.status);
     }
 }
 

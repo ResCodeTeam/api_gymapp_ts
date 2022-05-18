@@ -32,6 +32,6 @@ export class AdicionarExercicioMusculoService {
     })
 
 
-    return musculo;
+    return {data: musculo, status: 200};
   }
 }

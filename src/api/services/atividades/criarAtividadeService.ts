@@ -17,7 +17,7 @@ class CriarAtividadeService {
         icon,
       },
     });
-    return atividade;
+    return {data: atividade, status: 200};
   }
 }
 export { CriarAtividadeService };

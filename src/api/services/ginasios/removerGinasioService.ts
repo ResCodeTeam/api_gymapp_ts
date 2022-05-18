@@ -25,7 +25,8 @@ class RemoverGinasioService {
     })
 
     return {
-      msg: "Ginásio removido com sucesso",
+      data: "Ginásio removido com sucesso",
+      status: 200
     };
   }
 }

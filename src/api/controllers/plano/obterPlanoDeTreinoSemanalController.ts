@@ -12,7 +12,7 @@ export class ObterPlanoTreinoSemanalController {
 
     const obterPlanoTreinoSemanalService = new ObterPlanoTreinoSemanalService();
     const resp = await obterPlanoTreinoSemanalService.execute(uid, startDateParsed, endDateParsed, uid)
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
 
   }
 }

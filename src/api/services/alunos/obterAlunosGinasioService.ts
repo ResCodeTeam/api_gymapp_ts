@@ -75,6 +75,6 @@ export class ObterAlunosGinasioService {
             users.push(aluno.users);
         });
 
-        return users;
+        return {data: users, status: 200};
     }
 }

@@ -28,7 +28,8 @@ class RemoverTreinosService {
     })
 
     return {
-      msg: "Treino removido com sucesso",
+      data: "Treino removido com sucesso",
+      status: 200
     };
   }
 }

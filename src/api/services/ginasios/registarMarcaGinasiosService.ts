@@ -64,7 +64,7 @@ export class RegistarMarcaGinasiosService {
         }
       },
     });
-    return ginasio;
+    return {data: ginasio, status: 200};
   }
 }
 

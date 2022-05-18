@@ -18,6 +18,6 @@ export class EditarMusculoService {
       }
     })
 
-    return musculo;
+    return {data: musculo, status: 200};
   }
 }

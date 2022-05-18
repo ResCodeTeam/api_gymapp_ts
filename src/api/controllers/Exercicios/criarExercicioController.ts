@@ -12,6 +12,6 @@ export class CriarExercicioController {
     const criarExercicioService = new CriarExercicioService();
     const resp = await criarExercicioService.execute({ nome, descricao, autor, isTempo, imagens, musculos });
 
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
   }
 }

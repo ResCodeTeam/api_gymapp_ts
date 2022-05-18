@@ -9,6 +9,6 @@ export class RemoverGostoPublicacaoController {
     const removerGostoService = new RemoverGostoPublicacaoService();
     const resp = await removerGostoService.execute(publicacaoId, userId)
 
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
   }
 }

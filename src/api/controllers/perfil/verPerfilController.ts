@@ -12,6 +12,6 @@ export class VerPerfilController {
         const verPerfilService = new VerPerfilService();
 
         const resp = await verPerfilService.execute(uId, auId);
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

@@ -10,6 +10,6 @@ export class RemoverExercicioImagemController {
     const removerExercicioImagemService = new RemoverExercicioImagemService();
 
     const resp = await removerExercicioImagemService.execute(imagemId, treinadorId, exercicioId);
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
   }
 }

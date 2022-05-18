@@ -11,18 +11,17 @@ interface INotificacaoGinasio {
 
 export class CriarNotificacaoGinasioService {
   async execute({ userId, ginasioId, conteudo, tipo }: INotificacaoGinasio) {
-    console.log(userId, ginasioId)
     //#region Verifica se o admin existe
     const existsUser = await checkUserIdExists(userId);
     if (!existsUser) {
-      return { date: "User não existe", status: 500 }
+      return { data: "User não existe", status: 500 }
     }
     //#endregion
 
     //#region  Verifica se a marca existe
     const existsGinasio = await checkGinasioExists(ginasioId);
     if (!existsGinasio) {
-      return { date: "Ginásio não existe", status: 500 }
+      return { data: "Ginásio não existe", status: 500 }
     }
     //#endregion
 
@@ -30,7 +29,7 @@ export class CriarNotificacaoGinasioService {
     const checkGinasioAdmin = await checkDonoGinasio(ginasioId, userId);
     //await models.marcas.findAll({ where: {marca_id: marcaId, dono_id: user_id}});
     if (!checkGinasioAdmin) {
-      return { date: "Não tem permições nesta marca", status: 500 }
+      return { data: "Não tem permições nesta marca", status: 500 }
     }
     //#endregion
 
@@ -57,7 +56,7 @@ export class CriarNotificacaoGinasioService {
 
     ///Verificar se existe ginásios
     if (!ginasios) {
-      return { date: "Não existe alunos", status: 500 }
+      return { data: "Não existe alunos", status: 500 }
     }
 
     let data = new Date();
@@ -90,13 +89,16 @@ export class CriarNotificacaoGinasioService {
     }
 
     if (!dstNoti) {
-      return { date: "Não contém alunos", status: 500 }
+      return { data: "Não contém alunos", status: 500 }
     }
     //#endregion
 
     return {
-      message: "Notificação enviada com sucesso",
-      ginasios
+      data: {
+        message: "Notificação enviada com sucesso",
+        ginasios
+      },
+      status: 200
     };
   }
 }

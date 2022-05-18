@@ -23,6 +23,6 @@ export class VerTreinadorGinasioService {
                 treinador_uid: true
             }
         })
-        return treinadorMarca;
+        return {data: treinadorMarca, status: 200};
     }
 }

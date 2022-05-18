@@ -35,7 +35,7 @@ class CriarGinasioModalidadesService {
         imagem_url: imagemUrl,
       },
     });
-    return modalidade;
+    return {data: modalidade, status: 200};
   }
 }
 export { CriarGinasioModalidadesService };

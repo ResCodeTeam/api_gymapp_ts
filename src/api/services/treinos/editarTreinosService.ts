@@ -17,40 +17,40 @@ export class EditarTreinosService {
   async execute({ uId, treinoId, atividadeId, modalidadeId, duracao, calorias, distancia, data }: ITreino) {
 
     if (atividadeId == null && modalidadeId == null) {
-      return { date: "ERRO!!! A atividade e a modalidade não podem ser ambos nulos, pelo menos uma deve ser diferente de null.", status: 500 }
+      return { data: "ERRO!!! A atividade e a modalidade não podem ser ambos nulos, pelo menos uma deve ser diferente de null.", status: 500 }
     }
 
     if (atividadeId != null && modalidadeId != null) {
-      return { date: "ERRO!!! A atividade e a modalidade não podem ser ambas diferentes de null, pelo menos uma deve ser null.", status: 500 }
+      return { data: "ERRO!!! A atividade e a modalidade não podem ser ambas diferentes de null, pelo menos uma deve ser null.", status: 500 }
     }
 
     const exist_nome = await checkUserIdExists(uId);
     if (!exist_nome) {
-      return { date: "O utilizador não existe", status: 500 }
+      return { data: "O utilizador não existe", status: 500 }
     }
 
     const exists_treino = await checkTreinoExists(treinoId);
     if (!exists_treino) {
-      return { date: "O treino não existe", status: 500 }
+      return { data: "O treino não existe", status: 500 }
     }
 
 
     const isAutor = await checkAutorTreino(uId, treinoId);
     if (!isAutor) {
-      return { date: "O treino não lhe pertence", status: 500 }
+      return { data: "O treino não lhe pertence", status: 500 }
     }
 
     if (atividadeId != null) {
       const exists_atividades = await checkAtividadeExists(atividadeId);
       if (!exists_atividades) {
-        return { date: "A atividade não existe", status: 500 }
+        return { data: "A atividade não existe", status: 500 }
       }
     }
 
     if (modalidadeId != null) {
       const exists_modalidades = await checkModalidadeExists(modalidadeId);
       if (!exists_modalidades) {
-        return { date: "A modalidade não existe", status: 500 }
+        return { data: "A modalidade não existe", status: 500 }
       }
     }
 
@@ -64,7 +64,7 @@ export class EditarTreinosService {
       const dataAtual = new Date();
       changeTimeZone(dataAtual)
       if (data > dataAtual) {
-        return { date: "A data do treino não pode ser maior que a data atual", status: 500 }
+        return { data: "A data do treino não pode ser maior que a data atual", status: 500 }
       }
     }
 
@@ -74,26 +74,26 @@ export class EditarTreinosService {
     const { mobilidade, id } = await checkMobilidadeMarcaUser(uId);
     if (mobilidade) {
       if (id['marca_id'] != marca_modalidade) {
-        return { date: "Não possui permissão", status: 500 }
+        return { data: "Não possui permissão", status: 500 }
       }
     }
     else {
       const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
       if (marca_gym != marca_modalidade) {
-        return { date: "Não possui permissão", status: 500 }
+        return { data: "Não possui permissão", status: 500 }
       }
     }
 
     if (treino.atividade_id == null && atividadeId != null) {
-      return { date: "O treino não tem atividade", status: 500 }
+      return { data: "O treino não tem atividade", status: 500 }
     }
 
     if (treino.modalidade_id == null && modalidadeId != null) {
-      return { date: "O treino não tem modalidade", status: 500 }
+      return { data: "O treino não tem modalidade", status: 500 }
     }
 
     if (modalidadeId != null && atividadeId != null) {
-      return { date: "O treino não pode ter atividade e modalidade", status: 500 }
+      return { data: "O treino não pode ter atividade e modalidade", status: 500 }
     }
 
 
@@ -114,6 +114,6 @@ export class EditarTreinosService {
 
 
 
-    return editarTreinos;
+    return { data: editarTreinos, status: 200 };
   }
 }

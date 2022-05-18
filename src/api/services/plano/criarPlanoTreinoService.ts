@@ -154,6 +154,6 @@ export class CriarPlanoTreinoService {
         },
       }
     })
-    return planoTreino;
+    return {data: planoTreino, status: 200};
   }
 }

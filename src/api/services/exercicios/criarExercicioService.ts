@@ -95,6 +95,6 @@ export class CriarExercicioService {
         },
       }
     })
-    return resp;
+    return {data: resp, status: 200};
   }
 }

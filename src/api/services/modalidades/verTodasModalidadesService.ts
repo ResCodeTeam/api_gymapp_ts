@@ -12,7 +12,7 @@ export class VerTodasModalidadesService {
 
         const exists_ginasio = checkGinasioExists(ginasioId)
         if (!exists_ginasio) {
-            return { date: "O ginásio não existe", status: 500 }
+            return { data: "O ginásio não existe", status: 500 }
         }
 
         await checkDonoGinasio(ginasioId, userId);
@@ -27,6 +27,6 @@ export class VerTodasModalidadesService {
                 imagem_url: true,
             }
         })
-        return marcas;
+        return { data: marcas, status: 200 };
     }
 }

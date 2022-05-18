@@ -12,7 +12,7 @@ export class AdicionarExerciciosImagensController {
 
     const adicionarExerciciosImagensService = new AdicionarExerciciosImagensService
     const resp = await adicionarExerciciosImagensService.execute({ exercicioId, treinadorId, url })
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
 
   }
 }

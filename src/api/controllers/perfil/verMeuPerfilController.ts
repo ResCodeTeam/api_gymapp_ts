@@ -8,7 +8,7 @@ export class VerMeuPerfilController {
     const verMeuPerfilService = new VerMeuPerfilService();
     const resp = await verMeuPerfilService.execute(uid);
 
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
 
   }
 }

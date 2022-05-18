@@ -83,7 +83,7 @@ class CriarTreinosService {
         data,
       },
     });
-    return treino;
+    return {data: treino, status: 200};
   }
 }
 export { CriarTreinosService };

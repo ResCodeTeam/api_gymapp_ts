@@ -16,17 +16,17 @@ export class EditarMarcaService {
 
     const existsMarca = await checkMarcaExists(marcaId)
     if (!existsMarca) {
-      return { date: "Marca não existe", status: 500 }
+      return { data: "Marca não existe", status: 500 }
     }
-    console.log(marcaId, adminId)
+
     const isAutor = await checkAutorMarca(adminId, marcaId)
     if (!isAutor) {
-      return { date: "Não possui autorização para fazer esta alteração", status: 500 }
+      return { data: "Não possui autorização para fazer esta alteração", status: 500 }
     }
 
     const exist_nome = await checkNomeMarca(nome);
     if (exist_nome) {
-      return { date: "A marca já existe", status: 500 }
+      return { data: "A marca já existe", status: 500 }
     }
 
     const editarMarca = await client.marcas.update({
@@ -43,10 +43,6 @@ export class EditarMarcaService {
       }
     })
 
-
-    return editarMarca
-
-
-
+    return { data: editarMarca, status: 200 };
   }
 }

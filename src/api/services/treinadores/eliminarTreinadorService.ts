@@ -10,12 +10,12 @@ export class EliminarTreinadorService {
     async execute({ treinador_id, userId }: Itreinador) {
         const exists_id = await checkUserIdExists(treinador_id);
         if (!exists_id) {
-            return { date: "User não existe", status: 500 }
+            return { data: "User não existe", status: 500 }
         }
 
         const exists_treinador = await checkTreinador(treinador_id);
         if (!exists_treinador) {
-            return { date: "O user não é um treinador", status: 500 }
+            return { data: "O user não é um treinador", status: 500 }
         }
         const marcaId = await getTreinadorMarca(treinador_id);
 
@@ -31,7 +31,8 @@ export class EliminarTreinadorService {
         })
 
         return {
-            msg: "Treinador cessado das funções!"
+            data: "Treinador cessado das funções!",
+            status: 200
         };
     }
 }

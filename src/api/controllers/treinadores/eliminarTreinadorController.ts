@@ -8,7 +8,7 @@ class EliminarTreinadorController {
 
     const eliminarTreinadorService = new EliminarTreinadorService();
     const resp = await eliminarTreinadorService.execute({ treinador_id, userId });
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
   };
 }
 

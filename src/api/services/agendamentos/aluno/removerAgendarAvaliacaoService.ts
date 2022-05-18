@@ -28,7 +28,8 @@ class RemoverAgendarAvaliacaoService {
     })
 
     return {
-      msg: "Agendamento de uma avaliação removido com sucesso",
+      data: "Agendamento de uma avaliação removido com sucesso",
+      status: 200
     };
   }
 }

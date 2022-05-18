@@ -47,7 +47,7 @@ export class AgendarAvaliacaoService {
       }
     });
 
-    return agendamento;
+    return {data: agendamento, status: 200};
   }
 }
 

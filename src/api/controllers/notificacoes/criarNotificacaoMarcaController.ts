@@ -17,6 +17,6 @@ export class CriarNotificacaoMarcaController {
             conteudo,
             tipo
         });
-        response.json(resp);
+        response.json(resp.data).status(resp.status);
     }
 }

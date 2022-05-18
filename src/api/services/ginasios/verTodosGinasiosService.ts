@@ -11,7 +11,7 @@ export class VerTodosGinasiosService {
     async execute({ marcaId, userId }: IGinasios) {
         const exists_ginasios = await checkMarcaExists(marcaId)
         if (!exists_ginasios) {
-            return { date: "A marca não existe", status: 500 }
+            return { data: "A marca não existe", status: 500 }
         }
 
         await checkDonoMarca(marcaId, userId);
@@ -25,6 +25,6 @@ export class VerTodosGinasiosService {
                 imagem_url: true,
             }
         })
-        return ginasios;
+        return { data: ginasios, status: 200 };
     }
 }

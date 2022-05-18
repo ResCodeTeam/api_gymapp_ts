@@ -7,7 +7,7 @@ export class VerDesafiosDisponiveisController {
         const ginasioId = request.params.id;
 
         const verDesafiosDisponiveisService = new VerDesafiosDisponiveisService();
-        const resp = await verDesafiosDisponiveisService.execute({ uId, ginasioId });
-        response.json(resp)
+        const resp = await verDesafiosDisponiveisService.execute({uId, ginasioId});
+        response.json(resp.data).status(resp.status);
     }
 }

@@ -9,7 +9,7 @@ export class VerMeusExerciciosController {
         const autorId = request.params.treinadorId;
 
         const verMeusExerciciosService = new VerMeusExerciciosService();
-        const resp = await verMeusExerciciosService.execute({ autorId });
-        response.json(resp)
+        const resp = await verMeusExerciciosService.execute({autorId});
+        response.json(resp.data).status(resp.status);
     }
 }

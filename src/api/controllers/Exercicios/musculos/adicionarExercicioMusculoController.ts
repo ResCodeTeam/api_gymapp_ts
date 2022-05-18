@@ -10,6 +10,6 @@ export class AdicionarExercicioMusculoController {
     const adicionarExercicioMusculoService = new AdicionarExercicioMusculoService();
     const resp = await adicionarExercicioMusculoService.execute(treinadorId, exercicioId, musculoId);
 
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
   }
 }

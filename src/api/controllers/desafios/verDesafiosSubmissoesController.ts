@@ -7,9 +7,7 @@ export class VerDesafiosSubmissoesController {
         const desafioId = request.params.desafioId;
 
         const encerrarDesafiosSubmissoesService = new VerDesafiosSubmissoesService();
-        const resp = await encerrarDesafiosSubmissoesService.execute(uId, desafioId)
-        return response.status(resp.status).json(resp.data);
-
-
+        const resp = await encerrarDesafiosSubmissoesService.execute(uId, desafioId);
+        response.json(resp.data).status(resp.status);
     }
 }

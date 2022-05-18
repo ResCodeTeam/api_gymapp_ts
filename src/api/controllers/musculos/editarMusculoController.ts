@@ -12,6 +12,6 @@ export class EditarMusculoController {
     const editarMusculosService = new EditarMusculoService();
     const resp = await editarMusculosService.execute(musculoId, nome, imagem);
 
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
   }
 }

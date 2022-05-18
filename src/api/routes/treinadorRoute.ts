@@ -32,8 +32,6 @@ import { VerAvaliacaoAlunoController } from "../controllers/avaliacoes/verAvalia
 import { VerLocaisMedidaController } from "../controllers/localMedida/verLocaisMedidaController";
 import { RemoverSubmissaoDesafioController } from "../controllers/desafios/submissoes/removersubmissaoDesafioController";
 
-
-//
 const criarComentarioController = new CriarComentarioController();
 const verTodosOsExerciciosTreinadoresController = new VerTodosOsExerciciosTreinadoresController();
 const verTodosTreinosDosAlunosController = new VerTodosTreinosDosAlunosController();

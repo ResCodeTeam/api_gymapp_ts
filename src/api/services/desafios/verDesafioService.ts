@@ -113,6 +113,6 @@ export class VerDesafioService {
                 }
             }
         })
-        return desafio;
+        return {data: desafio, status: 200};
     }
 }

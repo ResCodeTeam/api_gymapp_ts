@@ -27,7 +27,8 @@ class RemoverPlanoTreinoService {
     })
 
     return {
-      msg: "Remover plano de treino com sucesso",
+      data: "Remover plano de treino com sucesso",
+      status: 200
     };
   }
 }

@@ -12,7 +12,7 @@ export class EncerrarDesafiosService {
 
         const search_desafio = await checkDesafioIdExists(desafioId);
         if (!search_desafio) {
-            return { date: "Não existe o desafio", status: 500 }
+            return { data: "Não existe o desafio", status: 500 }
         }
 
         const funcao = await getUserFuncao(uId);
@@ -24,20 +24,20 @@ export class EncerrarDesafiosService {
 
         const desafio_disponivel = await checkDesafioDisponivel(desafioId);
         if (!desafio_disponivel) {
-            return { date: "O desafio já não está disponível", status: 500 }
+            return { data: "O desafio já não está disponível", status: 500 }
         }
 
         // treinador
         if (funcao == treinador) {
             const marca_treinador = await getTreinadorMarca(uId)
             if (marca_treinador != marca_ginasio) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
         // admin
         else {
             if (uId != dono_marca) {
-                return { date: "Não tem autorização", status: 500 }
+                return { data: "Não tem autorização", status: 500 }
             }
         }
 
@@ -50,7 +50,8 @@ export class EncerrarDesafiosService {
             }
         });
         return {
-            message: "Desafio encerrado com sucesso."
+            data: "Desafio encerrado com sucesso.",
+            status: 200
         };
     }
 }

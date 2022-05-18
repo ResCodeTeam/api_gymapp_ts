@@ -31,7 +31,7 @@ class RegistarUserMarcasService {
         logotipo,
       },
     });
-    return marca;
+    return {data: marca, status: 200};
   }
 }
 

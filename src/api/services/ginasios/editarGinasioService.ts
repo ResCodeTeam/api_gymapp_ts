@@ -37,7 +37,7 @@ export class EditarGinasioService {
 
             }
         })
-        return EditarGinasio
+        return {data: EditarGinasio, status: 200};
     }
 
 }

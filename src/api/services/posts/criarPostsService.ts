@@ -23,13 +23,13 @@ class CriarPostsService {
   }: ICriarPostsService) {
     if (criadorId == null && ginasioId == null) {
       // enviar erro - ou é de um ou é de outro
-      return { date: "Impossível criar post!", status: 500 }
+      return { data: "Impossível criar post!", status: 500 }
     } else {
 
 
       const exists_user = await checkUserIdExists(criadorId)
       if (!exists_user) {
-        return { date: "O utilizador não existe!", status: 500 }
+        return { data: "O utilizador não existe!", status: 500 }
       }
 
 
@@ -72,7 +72,7 @@ class CriarPostsService {
 
       const verInfoPostService = new VerInfoPostService();
       const resp = await verInfoPostService.execute(post.publicacao_id)
-      return resp;
+      return { data: resp, status: 200 };
     }
   }
 }

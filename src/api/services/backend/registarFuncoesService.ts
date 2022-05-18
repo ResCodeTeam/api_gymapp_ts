@@ -7,6 +7,6 @@ export class RegistarFuncoesService {
                 descricao: nome
             }
         })
-        return funcao;
+        return {data: funcao, status: 200};
     }
 }

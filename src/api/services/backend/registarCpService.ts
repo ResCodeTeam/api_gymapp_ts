@@ -18,6 +18,6 @@ export class RegistarCpService {
                 localidade
             }
         })
-        return { "msg": "Codigo postal registado com sucesso" }
+        return { data: "Codigo postal registado com sucesso", status: 200 }
     }
 }
