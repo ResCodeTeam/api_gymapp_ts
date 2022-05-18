@@ -53,7 +53,7 @@ export class VerPerfilService{
                 if(mobilidade){
                     if(id['marca_id'] != marca_treinador_autenticado)
                     {
-                    throw new Error("Não possui permissão")
+                        throw new Error("Não possui permissão")
                     }
                 }
                 else{
@@ -128,7 +128,7 @@ export class VerPerfilService{
                 }
             }
             // aluno a ver perfil de admin
-            if(funcao_user == admin){
+            else if(funcao_user == admin){
                 const { mobilidade, id } = await checkMobilidadeMarcaUser(auId);
                 if(mobilidade){
                     const dono_marca = await getDonoMarca(id['marca_id'])
@@ -136,7 +136,6 @@ export class VerPerfilService{
                     {
                         throw new Error("Não possui permissão")
                     }
-                    
                 }
                 else{
                     const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
