@@ -13,10 +13,6 @@ export class RemoverAvaliacaoController {
         //Utilizar Serviço
         const resp = await removerAvaliacaoService.execute(avaliacao_id, treinadorId)
 
-        //Enviar Resposta
-        if (resp == "404") {
-            response.status(404).json("Não existe avaliação com o id fornecido")
-        }
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

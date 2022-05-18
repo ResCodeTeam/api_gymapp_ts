@@ -35,9 +35,10 @@ export class AuthService{
         const token = await generateSessionToken(userId)
     
         return {
-            message: "Login concluido com sucesso",
+            data:{message: "Login concluido com sucesso",
             token,
-            refreshToken
+            refreshToken},
+            status: 200
         }
     }
 }

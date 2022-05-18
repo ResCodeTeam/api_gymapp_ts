@@ -8,7 +8,7 @@ class VerTodosPostsController{
         const userId = request.params.userId;
         const verPostService = new VerTodosPostsService();
         const resp = await verPostService.execute(userId);
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }
 

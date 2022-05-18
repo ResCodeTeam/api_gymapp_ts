@@ -33,7 +33,7 @@ export class RemoverExercicioMusculoService{
       }
     })
 
-    return{"msg":"Musculo removido com sucesso"}
+    return{data:"Musculo removido com sucesso", status: 200}
 
   }
 }

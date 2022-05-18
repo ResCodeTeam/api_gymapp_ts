@@ -19,7 +19,8 @@ class RemoverAtividadesService {
     })
 
     return {
-      msg: "Atividade removida com sucesso",
+      data: "Atividade removida com sucesso",
+      status: 200
     };
   }
 }

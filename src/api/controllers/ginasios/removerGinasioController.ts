@@ -8,7 +8,7 @@ class RemoverGinasioController{
         
     const removerGinasioService = new RemoverGinasioService();
     const resp = await removerGinasioService.execute(uId, ginasioId);
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
     }
 }
 

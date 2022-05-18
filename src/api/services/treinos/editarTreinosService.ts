@@ -112,10 +112,6 @@ export class EditarTreinosService {
                 data
             }
         })
-
-
-
-
-        return editarTreinos;
+        return {data: editarTreinos, status: 200};
     }
 }

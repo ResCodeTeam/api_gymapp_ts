@@ -25,6 +25,6 @@ export class CriarGostoCommentService{
       }
     })
 
-    return gosto
+    return {data: gosto, status: 200};
   }
 }

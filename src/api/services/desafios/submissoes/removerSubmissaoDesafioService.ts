@@ -34,7 +34,7 @@ export class RemoverSubmissaoDesafioService{
         },
       })
 
-    return {"msg": "submissao removida com sucesso"}
+    return {data: "submissao removida com sucesso", status: 200}
 
   }
 }

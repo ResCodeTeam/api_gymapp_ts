@@ -30,7 +30,8 @@ class RemoverPostService{
         })
 
         return {
-            msg:"Publicação removida com sucesso"
+            data:"Publicação removida com sucesso",
+            status: 200
         }
     }
 }

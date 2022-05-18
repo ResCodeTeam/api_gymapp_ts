@@ -9,6 +9,6 @@ export class VerTodasModalidadesController{
 
         const verTodasModalidadesService = new VerTodasModalidadesService();
         const resp = await verTodasModalidadesService.execute({ginasioId, userId});
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

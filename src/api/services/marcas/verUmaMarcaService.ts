@@ -18,8 +18,6 @@ export class VerUmaMarcaService{
 
         const dono_marca = await getDonoMarca(marcaId);
 
-        console.log(donoId)
-        console.log(dono_marca)
         if(donoId != dono_marca){
             throw new Error ("Não possui autorização")
         }
@@ -31,6 +29,6 @@ export class VerUmaMarcaService{
                 isDeleted: false
             }
         })
-        return marca;
+        return {data: marca, status: 200};
     }
 }

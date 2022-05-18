@@ -28,7 +28,8 @@ export class RemoverExercicioService{
         })
 
         return {
-            msg: "O exercício foi removido com sucesso",
+            data: "O exercício foi removido com sucesso",
+            status: 200
         };
     }
 }

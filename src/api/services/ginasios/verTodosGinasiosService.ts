@@ -25,6 +25,6 @@ export class VerTodosGinasiosService{
                 imagem_url:true,
             }        
          })
-        return ginasios;
+        return {data: ginasios, status: 200};
     }
 }

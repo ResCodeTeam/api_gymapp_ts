@@ -123,7 +123,7 @@ export class EditarAvaliacaoService {
                 }
             })
 
-            return atualizarAvaliacao;
+            return {data: atualizarAvaliacao, status: 200};
         }
     }
 }

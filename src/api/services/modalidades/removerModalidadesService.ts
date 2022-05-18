@@ -35,7 +35,8 @@ class RemoverModalidadesService {
     }
 
     return {
-      msg: "Modalidade removida com sucesso",
+      data: "Modalidade removida com sucesso",
+      status: 200
     };
   }
 }

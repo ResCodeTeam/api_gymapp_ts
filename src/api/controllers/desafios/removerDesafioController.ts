@@ -16,7 +16,7 @@ export class RemoverDesafioController{
         const resp = await removerDesafioService.execute(desafioId, uId);
 
         //Responder
-        response.json(resp);
+        response.json(resp.data).status(resp.status);
 
     }
 }

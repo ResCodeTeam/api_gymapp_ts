@@ -8,6 +8,6 @@ export class VerTodasMarcasController{
 
         const verTodasMarcasService = new VerTodasMarcasService();
         const resp = await verTodasMarcasService.execute({donoId});
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

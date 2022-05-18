@@ -15,6 +15,6 @@ export class ObterAlunosGinasioController{
             userId
         });
 
-        response.json(message);
+        response.json(message.data).status(message.status);
     }
 }

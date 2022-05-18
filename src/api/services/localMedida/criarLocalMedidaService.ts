@@ -36,7 +36,7 @@ export class CriarLocalMedidaService{
       })
     }
 
-    return localMedida
+    return {data: localMedida, status: 200};
 
   }
 }

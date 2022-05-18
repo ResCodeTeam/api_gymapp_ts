@@ -25,7 +25,7 @@ export class RemoverGostoPublicacaoService{
       }
     })
 
-    return {"msg":"gosto removido com sucesso"}
+    return {data:"gosto removido com sucesso", status: 200}
 
   }
 }

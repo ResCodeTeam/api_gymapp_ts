@@ -22,7 +22,7 @@ export class RemoverAlunoService {
       }
     })
 
-    return removerAluno
+    return {data: removerAluno, status: 200};
   }
 }
 

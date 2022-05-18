@@ -20,6 +20,6 @@ export class CriarGostoService{
       }
     })
 
-    return gosto;
+    return {data: gosto, status: 200};
   }
 }

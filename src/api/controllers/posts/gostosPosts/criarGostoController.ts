@@ -8,6 +8,6 @@ export class CriarGostoController{
 
     const criarGostoController = new CriarGostoService();
     const resp = await criarGostoController.execute(postId,criadorId);
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
   }
 }

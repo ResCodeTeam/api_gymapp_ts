@@ -51,6 +51,6 @@ export class VerAvaliacoesService{
                 }
             }
         })
-        return avaliacao;
+        return {data: avaliacao, status: 200};
     }
 }

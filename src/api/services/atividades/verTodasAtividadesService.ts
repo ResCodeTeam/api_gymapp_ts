@@ -8,6 +8,6 @@ export class VerTodasAtividadesService{
             },
         })
 
-        return atividades;
+        return {data: atividades, status: 200};
     }
 }

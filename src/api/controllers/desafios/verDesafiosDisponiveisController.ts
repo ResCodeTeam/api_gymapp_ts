@@ -8,6 +8,6 @@ export class VerDesafiosDisponiveisController{
 
         const verDesafiosDisponiveisService = new VerDesafiosDisponiveisService();
         const resp = await verDesafiosDisponiveisService.execute({uId, ginasioId});
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

@@ -49,7 +49,7 @@ export class VerTodosOsExerciciosTreinadoresService {
             }
         }
         
-        return exerci;
+        return {data: exerci, status: 200};
 
     }
 }

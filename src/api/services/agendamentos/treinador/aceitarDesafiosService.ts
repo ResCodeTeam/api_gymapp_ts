@@ -54,7 +54,7 @@ class AceitarDesafiosService {
 
     //#endregion
 
-    return agendamentos;
+    return {data: agendamentos, status: 200};
   }
 }
 

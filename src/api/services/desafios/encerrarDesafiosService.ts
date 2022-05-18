@@ -52,7 +52,8 @@ export class EncerrarDesafiosService {
             }
         });
         return {
-            message: "Desafio encerrado com sucesso."
+            data: "Desafio encerrado com sucesso.",
+            status: 200
         };
     }
 }

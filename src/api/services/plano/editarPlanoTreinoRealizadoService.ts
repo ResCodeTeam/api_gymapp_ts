@@ -32,7 +32,7 @@ class EditarPlanoTreinoRealizadoService {
      }
     })
 
-    return update;
+    return {data: update, status: 200};
   }
 }
 

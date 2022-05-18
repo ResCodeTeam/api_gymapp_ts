@@ -195,7 +195,7 @@ class CriarDesafiosService {
                 }
             }
         })
-        return desaf;
+        return {data: desaf, status: 200};
     }
 }
 

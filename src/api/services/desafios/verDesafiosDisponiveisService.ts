@@ -66,6 +66,6 @@ export class VerDesafiosDisponiveisService{
                 descricao: true
             }        
          })
-        return desafios;
+        return {data: desafios, status: 200};
     }
 }

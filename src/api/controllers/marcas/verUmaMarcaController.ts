@@ -9,6 +9,6 @@ export class VerUmaMarcaController{
 
         const verUmaMarcaService = new VerUmaMarcaService();
         const resp = await verUmaMarcaService.execute({donoId, marcaId});
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

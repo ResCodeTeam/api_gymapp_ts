@@ -16,6 +16,6 @@ export class VerTreinosAlunosService{
             },
         })
 
-        return treinos;
+        return {data: treinos, status: 200};
     }
 }

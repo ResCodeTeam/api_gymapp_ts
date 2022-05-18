@@ -28,7 +28,8 @@ class RemoverMarcaService {
     });
 
     return {
-      msg: "Marca removida com sucesso",
+      data: "Marca removida com sucesso",
+      status: 200
     };
   }
 }

@@ -33,6 +33,6 @@ export class AlterarVistoService{
       }
     })
 
-    return alterarVisto; 
+    return {data: alterarVisto, status: 200}; 
   }
 }

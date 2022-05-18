@@ -10,6 +10,6 @@ export class AddMusculoController{
     
     const addMusculoService = new AddMusculoService();
     const resp = await addMusculoService.execute(nome,image);
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
   }
 }

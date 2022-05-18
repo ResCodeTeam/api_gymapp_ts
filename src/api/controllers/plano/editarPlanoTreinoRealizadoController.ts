@@ -9,6 +9,6 @@ export class EditarPlanoTreinoRealizadoController{
         
         const  editarPlanoTreinoRealizadoService = new EditarPlanoTreinoRealizadoService();
         const resp = await editarPlanoTreinoRealizadoService.execute(alunoId, planoId);
-        response.json(resp);
+        response.json(resp.data).status(resp.status);
     }
 }

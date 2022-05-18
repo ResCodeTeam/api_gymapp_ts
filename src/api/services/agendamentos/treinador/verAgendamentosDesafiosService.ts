@@ -9,6 +9,6 @@ export class VerAgendamentosDesafiosService{
             },
         })
 
-        return agendamentos
+        return {data: agendamentos, status: 200};
     }
 }

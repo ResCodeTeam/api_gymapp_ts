@@ -28,6 +28,6 @@ export class EditarPerfilController{
             genero,
             descricao,
             imagemUrl });
-        response.json(resp);
+            response.json(resp.data).status(resp.status);
     }
 }

@@ -41,6 +41,6 @@ export class CriarAvaliacaoController{
         imagens,
         medidas});
 
-    response.json(resp)
+        response.json(resp.data).status(resp.status);
   }
 }

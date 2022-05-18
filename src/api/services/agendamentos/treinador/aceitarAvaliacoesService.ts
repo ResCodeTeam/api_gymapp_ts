@@ -54,7 +54,7 @@ class AceitarAvaliacoesService {
     });
     //#endregion
 
-    return agendamentos;
+    return {data: agendamentos, status: 200};
   }
 }
 

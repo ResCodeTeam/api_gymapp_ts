@@ -12,6 +12,6 @@ export class EditarAtividadesController {
         
         const editarAtividadesService = new EditarAtividadesService()
         const resp = await editarAtividadesService.execute({atividadeId, descricao, icon});
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

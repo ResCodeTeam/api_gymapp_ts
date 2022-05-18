@@ -8,6 +8,6 @@ export class VerLocaisMedidaController{
 
         const verLocaisMedidaService = new VerLocaisMedidaService();
         const resp = await verLocaisMedidaService.execute({uId});
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

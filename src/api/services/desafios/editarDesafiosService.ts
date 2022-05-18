@@ -178,5 +178,5 @@ async function atualizarDesafio(data: Idata, desafio_id: string) {
         }
     })
 
-    return atualizarDesafio
+    return {data: atualizarDesafio, status: 200};
 }

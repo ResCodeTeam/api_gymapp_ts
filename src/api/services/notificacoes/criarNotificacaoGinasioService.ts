@@ -74,10 +74,6 @@ export class CriarNotificacaoGinasioService {
     });
     //#endregion
 
-    console.log(`ID Notificação : ${notificacao.noti_id}`);
-    console.log(`Data : ${(await formatDateHour(notificacao.data))}`);
-    console.log(ginasios.aluno_ginasio);
-
     //#region Cria Destinos da Notificação
     let dstNoti;
     for (let i = 0; i < ginasios.aluno_ginasio.length; i++) {
@@ -95,8 +91,9 @@ export class CriarNotificacaoGinasioService {
     //#endregion
 
     return {
-      message: "Notificação enviada com sucesso",
-      ginasios
+      data: {message: "Notificação enviada com sucesso",
+      ginasios},
+      status: 200
     };
   }
 }

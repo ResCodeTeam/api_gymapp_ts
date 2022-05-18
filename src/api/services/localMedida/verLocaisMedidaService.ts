@@ -24,6 +24,6 @@ export class VerLocaisMedidaService{
                 unilado:true
             }        
          })
-        return localMedida;
+        return {data: localMedida, status: 200};
     }
 }

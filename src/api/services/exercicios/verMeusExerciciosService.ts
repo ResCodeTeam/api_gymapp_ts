@@ -40,6 +40,6 @@ export class VerMeusExerciciosService{
             }
         
         })
-        return exercicio;
+        return {data: exercicio, status: 200};
     }
 }
