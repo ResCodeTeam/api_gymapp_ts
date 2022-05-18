@@ -42,7 +42,7 @@ alunoRouter.put("/:alunoId/treinos/:treino_id", editarTreinosController.handle);
 //#endregion
 
 //#region avaliacao
-alunoRouter.get("/:alunoId/avaliacoes", verAvaliacoesController.handle);
+alunoRouter.get("/:alunoId/avaliacoes/", verAvaliacoesController.handle);
 //#endregion
 
 //#region Plano de Treino

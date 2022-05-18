@@ -1810,74 +1810,7 @@
         }
       }
     },
-    "/{userId}/posts/{id}": {
-      "get": {
-        "summary": "Ver toda a informação de um post",
-        "description": "Esta rota vai apresentar todas as informações de um post",
-        "tags": ["Posts"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Id do post que se deseja ver",
-            "required": true,
-            "schema": { "properties": { "ginasioId": { "type": "string" } } }
-          },
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "Id do user",
-            "required": true,
-            "schema": { "properties": { "userId": { "type": "string" } } }
-          }
-        ],
-        "responses": {
-          "500": { "description": "ERROR" },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "$ref": "#/components/schemas/Posts"
-                },
-                "examples": {
-                  "Ver Posts": {
-                    "value": {
-                      "publicacao_id": "333f741a-a13d-4cd0-9528-5ae4c085d516",
-                      "criador_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
-                      "ginasio_id": null,
-                      "data": "2022-04-18T17:03:45.401Z",
-                      "descricao": "Proteína da PROZIS #PROZIS #VACACIONES #VIDA",
-                      "tipo": 1,
-                      "imagens_publicacao": [],
-                      "gostos_publicacao": [],
-                      "identificacoes_publicacoes": [
-                        {
-                          "users": {
-                            "nome": "Luiz Fernando Gonçalves",
-                            "uid": "02de0f10-df8b-4d1e-955f-22d3211b66da",
-                            "imagem_url": null
-                          }
-                        },
-                        {
-                          "users": {
-                            "nome": "Bárbara Oliveira",
-                            "uid": "0a169c30-208d-4931-9400-15d44ba57690",
-                            "imagem_url": null
-                          }
-                        }
-                      ],
-                      "comentarios_publicacao": [],
-                      "_count": { "gostos_publicacao": 0 }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
+    "/{userId}/posts/{id}/":{
       "delete": {
         "summary": "Remover publicação",
         "description": "Esta rota vai permitir remover uma publicação",
@@ -1966,6 +1899,68 @@
                 },
                 "examples": {
                   "Editar Exercicio": {
+                    "value": {
+                      "publicacao_id": "333f741a-a13d-4cd0-9528-5ae4c085d516",
+                      "criador_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
+                      "ginasio_id": null,
+                      "data": "2022-04-18T17:03:45.401Z",
+                      "descricao": "Proteína da PROZIS #PROZIS #VACACIONES #VIDA",
+                      "tipo": 1,
+                      "imagens_publicacao": [],
+                      "gostos_publicacao": [],
+                      "identificacoes_publicacoes": [
+                        {
+                          "users": {
+                            "nome": "Luiz Fernando Gonçalves",
+                            "uid": "02de0f10-df8b-4d1e-955f-22d3211b66da",
+                            "imagem_url": null
+                          }
+                        },
+                        {
+                          "users": {
+                            "nome": "Bárbara Oliveira",
+                            "uid": "0a169c30-208d-4931-9400-15d44ba57690",
+                            "imagem_url": null
+                          }
+                        }
+                      ],
+                      "comentarios_publicacao": [],
+                      "_count": { "gostos_publicacao": 0 }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "get": {
+        "summary": "Ver toda a informação de um post",
+        "description": "Esta rota vai apresentar todas as informações de um post",
+        "tags": ["Posts"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do post que se deseja ver",
+            "required": true,
+            "schema": { "properties": { "ginasioId": { "type": "string" } } }
+          }
+        ],
+        "responses": {
+          "500": { "description": "ERROR" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Posts"
+                },
+                "examples": {
+                  "Ver Posts": {
                     "value": {
                       "publicacao_id": "333f741a-a13d-4cd0-9528-5ae4c085d516",
                       "criador_id": "6d112678-f40c-43bc-a80a-866f12fa26f2",
@@ -2358,101 +2353,7 @@
         }
       }
     },
-    "/treinador/{treinadorId}/exercicios/": {
-      "post": {
-        "summary": "Criar um exercicio",
-        "description": "Esta rota permite adicionar um exercicio à base de dados",
-        "tags": ["Exercicios"],
-        "parameters": [
-          {
-            "name": "treinadorId",
-            "in": "path",
-            "description": "Id do treinador",
-            "required": true,
-            "schema": { "properties": { "treinadorId": { "type": "string" } } }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "nome": { "type": "string" },
-                  "descricao": { "type": "string" },
-                  "autor": { "type": "string" },
-                  "isTempo": { "type": "boolean" },
-                  "imagens": { "type": "array", "items": { "type": "string" } },
-                  "musculos": { "type": "array", "items": { "type": "string" } }
-                }
-              },
-              "examples": {
-                "Criar Exercicio": {
-                  "value": {
-                    "nome": "Bicicleta",
-                    "descricao": "Andar de bicicleta",
-                    "isTempo": true,
-                    "imagens": ["url1", "url2", "url3", "url4"],
-                    "musculos": [
-                      "13d6659f-b559-4545-b74d-8a7ba4896a3e",
-                      "2a7fe3e5-368e-4e0c-88b5-b84270e93af2",
-                      "7c21ea99-d663-408a-bb5e-7e7e9d4c2a9e"
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "500": { "description": "ERROR" },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "$ref": "#/components/schemas/Exercicio"
-                },
-                "examples": {
-                  "Criar Exercicio": {
-                    "value": {
-                      "Exercicio": {
-                        "nome": "Push-Ups",
-                        "descricao": "Deitar no chao e empurrar executando uma flexão",
-                        "is_tempo": false,
-                        "exercicios_imagens": [
-                          {
-                            "imagem_id": "d4ccdf68-0c49-4a76-8fb3-abe97288bb36",
-                            "url": "url1"
-                          },
-                          {
-                            "imagem_id": "40d02c22-ca90-4839-942e-ce46376d753d",
-                            "url": "url2"
-                          },
-                          {
-                            "imagem_id": "4700386c-3f9c-4985-8dae-f7007058a1a1",
-                            "url": "url3"
-                          },
-                          {
-                            "imagem_id": "82ca9be8-04b4-44a1-ae62-93a1cc7ba203",
-                            "url": "url4"
-                          }
-                        ],
-                        "users": {
-                          "uid": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
-                          "nome": "treinador",
-                          "email": "treinador1@admin.com",
-                          "imagem_url": null
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
+    "/treinador/exercicios/":{
       "get": {
         "summary": "Ver todos os exercicios criados por treinadores",
         "description": "Esta rota permite ver todos os exercicios criados por treinadores",
@@ -2619,6 +2520,102 @@
                         ]
                       }
                     ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/treinador/{treinadorId}/exercicios/": {
+      "post": {
+        "summary": "Criar um exercicio",
+        "description": "Esta rota permite adicionar um exercicio à base de dados",
+        "tags": ["Exercicios"],
+        "parameters": [
+          {
+            "name": "treinadorId",
+            "in": "path",
+            "description": "Id do treinador",
+            "required": true,
+            "schema": { "properties": { "treinadorId": { "type": "string" } } }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "nome": { "type": "string" },
+                  "descricao": { "type": "string" },
+                  "autor": { "type": "string" },
+                  "isTempo": { "type": "boolean" },
+                  "imagens": { "type": "array", "items": { "type": "string" } },
+                  "musculos": { "type": "array", "items": { "type": "string" } }
+                }
+              },
+              "examples": {
+                "Criar Exercicio": {
+                  "value": {
+                    "nome": "Bicicleta",
+                    "descricao": "Andar de bicicleta",
+                    "isTempo": true,
+                    "imagens": ["url1", "url2", "url3", "url4"],
+                    "musculos": [
+                      "13d6659f-b559-4545-b74d-8a7ba4896a3e",
+                      "2a7fe3e5-368e-4e0c-88b5-b84270e93af2",
+                      "7c21ea99-d663-408a-bb5e-7e7e9d4c2a9e"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "500": { "description": "ERROR" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Exercicio"
+                },
+                "examples": {
+                  "Criar Exercicio": {
+                    "value": {
+                      "Exercicio": {
+                        "nome": "Push-Ups",
+                        "descricao": "Deitar no chao e empurrar executando uma flexão",
+                        "is_tempo": false,
+                        "exercicios_imagens": [
+                          {
+                            "imagem_id": "d4ccdf68-0c49-4a76-8fb3-abe97288bb36",
+                            "url": "url1"
+                          },
+                          {
+                            "imagem_id": "40d02c22-ca90-4839-942e-ce46376d753d",
+                            "url": "url2"
+                          },
+                          {
+                            "imagem_id": "4700386c-3f9c-4985-8dae-f7007058a1a1",
+                            "url": "url3"
+                          },
+                          {
+                            "imagem_id": "82ca9be8-04b4-44a1-ae62-93a1cc7ba203",
+                            "url": "url4"
+                          }
+                        ],
+                        "users": {
+                          "uid": "919dc8c8-9853-4b13-b0e7-9b88fe587137",
+                          "nome": "treinador",
+                          "email": "treinador1@admin.com",
+                          "imagem_url": null
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -3325,20 +3322,11 @@
         }
       }
     },
-    "/{userId}/atividades/": {
+    "/atividades/": {
       "get": {
         "summary": "Ver toda a informação das atividades",
         "description": "Esta rota vai apresentar todas as atividades existentes",
         "tags": ["Atividades"],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "Id do user",
-            "required": true,
-            "schema": { "properties": { "userId": { "type": "string" } } }
-          }
-        ],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3706,20 +3694,11 @@
         }
       }
     },
-    "/treinador/{treinadorId}/agenda/desafios/": {
+    "/treinador/agenda/desafios/": {
       "get": {
         "summary": "Ver todos os agendamentos de desafios",
         "description": "Esta rota vai obter todos os agendamentos de todos os desafios",
         "tags": ["Agenda"],
-        "parameters": [
-          {
-            "name": "treinadorId",
-            "in": "path",
-            "description": "Id do treinador",
-            "required": true,
-            "schema": { "properties": { "treinadorId": { "type": "string" } } }
-          }
-        ],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3740,20 +3719,11 @@
         }
       }
     },
-    "/treinador/{treinadorId}/agenda/avaliacoes/": {
+    "/treinador/agenda/avaliacoes/": {
       "get": {
         "summary": "Ver todos os agendamentos de avaliacoes",
         "description": "Esta rota vai obter todos os agendamentos de avaliações",
         "tags": ["Agenda"],
-        "parameters": [
-          {
-            "name": "treinadorId",
-            "in": "path",
-            "description": "Id do treinador",
-            "required": true,
-            "schema": { "properties": { "treinadorId": { "type": "string" } } }
-          }
-        ],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -5991,20 +5961,11 @@
         }
       }
     },
-    "/treinador/{treinadorId}/treinos/": {
+    "/treinador/treinos/": {
       "get": {
         "summary": "Ver treinos",
         "description": "Esta rota vai apresentar todos os treinos",
         "tags": ["Treinos"],
-        "parameters": [
-          {
-            "name": "treinadorId",
-            "in": "path",
-            "description": "Id do treinador",
-            "required": true,
-            "schema": { "properties": { "treinadorId": { "type": "string" } } }
-          }
-        ],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
