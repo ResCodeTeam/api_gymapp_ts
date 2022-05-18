@@ -2,11 +2,11 @@ import { Request, Response } from "express";
 import { AlterarVistoService } from "../../services/notificacoes/alterarVistoService";
 
 
-export class AlterarVistoController{
-    async handle(request:Request,response:Response){
+export class AlterarVistoController {
+    async handle(request: Request, response: Response) {
         const destUid = request.params.userId;
         const notiId = request.params.id;
-        if(notiId === undefined || destUid === undefined){
+        if (notiId === undefined || destUid === undefined) {
             throw new Error("Pedido inválido")
         }
 

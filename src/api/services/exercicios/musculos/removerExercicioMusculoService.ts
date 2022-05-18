@@ -1,39 +1,39 @@
 import { checkAutorExercicio, checkExercicioExists, checkExercicioMusculoExists, checkMusculoExists, checkUserIdExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
-export class RemoverExercicioMusculoService{
-  async execute(treinadorId:string, exercicioId:string,musculoId:string){
+export class RemoverExercicioMusculoService {
+  async execute(treinadorId: string, exercicioId: string, musculoId: string) {
 
     const existsExercicio = await checkExercicioExists(exercicioId);
-    if(!existsExercicio){
-      throw new Error("Exercicio inexistente")
+    if (!existsExercicio) {
+      return { date: "Exercicio inexistente", status: 500 }
     }
 
-    const isAutor = await checkAutorExercicio(treinadorId,exercicioId);
-    if(!isAutor){
-      throw new Error("Não possui autorização")
+    const isAutor = await checkAutorExercicio(treinadorId, exercicioId);
+    if (!isAutor) {
+      return { date: "Não possui autorização", status: 500 }
     }
 
     const existsMusculo = await checkMusculoExists(musculoId);
-    if(!existsMusculo){
-      throw new Error("Musculo inexistente")
+    if (!existsMusculo) {
+      return { date: "Musculo inexistente", status: 500 }
     }
-    
-    const containsMusculo = await checkExercicioMusculoExists(musculoId,exercicioId);
-    if(!containsMusculo){
-      throw new Error("Musculo não adicionado")
+
+    const containsMusculo = await checkExercicioMusculoExists(musculoId, exercicioId);
+    if (!containsMusculo) {
+      return { date: "Musculo não adicionado", status: 500 }
     }
 
     await client.exercicios_musculos.delete({
-      where:{
-        exercicio_id_musculo_id:{
-          exercicio_id:exercicioId,
-          musculo_id:musculoId
+      where: {
+        exercicio_id_musculo_id: {
+          exercicio_id: exercicioId,
+          musculo_id: musculoId
         }
       }
     })
 
-    return{"msg":"Musculo removido com sucesso"}
+    return { "msg": "Musculo removido com sucesso" }
 
   }
 }

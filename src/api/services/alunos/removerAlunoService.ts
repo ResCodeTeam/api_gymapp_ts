@@ -6,7 +6,7 @@ export class RemoverAlunoService {
   async execute(uId: string, adminId: string) {
     const exists_user = await checkUserIdExists(uId);
     if (!exists_user) {
-      throw new Error("O user não existe");
+      return { date: "O user não existe", status: 500 }
     }
 
     const marcaId = await getAlunoMarca(uId);

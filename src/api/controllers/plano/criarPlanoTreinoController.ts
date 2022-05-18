@@ -1,13 +1,13 @@
- import { Request, Response} from "express";
+import { Request, Response } from "express";
 import { CriarPlanoTreinoService } from "../../services/plano/criarPlanoTreinoService";
 
 
-export class CriarPlanoTreinoController{
-    async handle(request : Request, response : Response) {
+export class CriarPlanoTreinoController {
+    async handle(request: Request, response: Response) {
         const treinadorId = request.params.treinadorId;
-        
+
         const { alunoId, modalidadeId, blocos } = request.body;
-        if(alunoId === undefined || treinadorId === undefined || modalidadeId === undefined || blocos === undefined){
+        if (alunoId === undefined || treinadorId === undefined || modalidadeId === undefined || blocos === undefined) {
             throw new Error("Pedido inválido")
         }
 

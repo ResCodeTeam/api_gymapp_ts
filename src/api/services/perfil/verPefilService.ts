@@ -11,12 +11,12 @@ export class VerPerfilService {
 
         const exists_perfil = await checkUserIdExists(uId)
         if (!exists_perfil) {
-            throw new Error("Utilizador não existe")
+            return { date: "Utilizador não existe", status: 500 }
         }
         console.log(456)
         const perfil_privado = await checkPerfilPrivado(uId)
         if (perfil_privado) {
-            throw new Error("O perfil é privado")
+            return { date: "O perfil é privado", status: 500 }
         }
         console.log(789)
 
@@ -35,14 +35,14 @@ export class VerPerfilService {
             if (funcao_user == treinador) {
                 const marca_treinador = await getTreinadorMarca(uId);
                 if (marca_treinador_autenticado != marca_treinador) {
-                    throw new Error("Não possui permissão")
+                    return { date: "Não possui permissão", status: 500 }
                 }
             }
             // treinador a ver o perfil de um admin
             else if (funcao_user == admin) {
                 console.log(123)
                 if (dono_marca_autenticado != uId) {
-                    throw new Error("Não possui permissão")
+                    return { date: "Não possui permissão", status: 500 }
                 }
             }
             // treinador a ver o perfil de um aluno
@@ -50,13 +50,13 @@ export class VerPerfilService {
                 const { mobilidade, id } = await checkMobilidadeMarcaUser(uId);
                 if (mobilidade) {
                     if (id['marca_id'] != marca_treinador_autenticado) {
-                        throw new Error("Não possui permissão")
+                        return { date: "Não possui permissão", status: 500 }
                     }
                 }
                 else {
                     const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
                     if (marca_gym != marca_treinador_autenticado) {
-                        throw new Error("Não possui permissão")
+                        return { date: "Não possui permissão", status: 500 }
                     }
                 }
             }
@@ -72,19 +72,19 @@ export class VerPerfilService {
                 const dono_marca = await getDonoMarca(marca_treinador);
 
                 if (auId != dono_marca) {
-                    throw new Error("Não possui permissão")
+                    return { date: "Não possui permissão", status: 500 }
                 }
             }
             // admin a ver o peril de um admin
             else if (funcao_user == admin) {
-                throw new Error("Erro! Não pode ver outro admin")
+                return { date: "Erro! Não pode ver outro admin", status: 500 }
             }
             // admin a ver o peril de um aluno
             else {
                 const dono_marca = await getDonoMarca(id['marca_id']);
                 if (mobilidade) {
                     if (auId != dono_marca) {
-                        throw new Error("Não possui permissão")
+                        return { date: "Não possui permissão", status: 500 }
                     }
                 }
                 else {
@@ -92,7 +92,7 @@ export class VerPerfilService {
                     const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
                     const dono_marca_gym = await getDonoMarca(marca_gym);
                     if (auId != dono_marca_gym) {
-                        throw new Error("Não possui permissão")
+                        return { date: "Não possui permissão", status: 500 }
                     }
                 }
             }
@@ -106,14 +106,14 @@ export class VerPerfilService {
 
                 if (mobilidade) {
                     if (id['marca_id'] != marca_treinador) {
-                        throw new Error("Não possui permissão")
+                        return { date: "Não possui permissão", status: 500 }
                     }
                 }
                 else {
                     const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
 
                     if (marca_gym != marca_treinador) {
-                        throw new Error("Não possui permissão")
+                        return { date: "Não possui permissão", status: 500 }
                     }
                 }
             }
@@ -123,7 +123,7 @@ export class VerPerfilService {
                 if (mobilidade) {
                     const dono_marca = await getDonoMarca(id['marca_id'])
                     if (dono_marca != uId) {
-                        throw new Error("Não possui permissão")
+                        return { date: "Não possui permissão", status: 500 }
                     }
 
                 }
@@ -131,7 +131,7 @@ export class VerPerfilService {
                     const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
                     const dono_marca = await getDonoMarca(marca_gym)
                     if (dono_marca != uId) {
-                        throw new Error("Não possui permissão")
+                        return { date: "Não possui permissão", status: 500 }
                     }
                 }
             }
@@ -145,7 +145,7 @@ export class VerPerfilService {
                     const dono_marca = await getDonoMarca(id['marca_id'])
                     if (mobilidade) {
                         if (dono_marca_autenticado != dono_marca) {
-                            throw new Error("Não possui permissão")
+                            return { date: "Não possui permissão", status: 500 }
                         }
                     }
                     else {
@@ -153,7 +153,7 @@ export class VerPerfilService {
                         const dono_marca = await getDonoMarca(marca_gym);
 
                         if (dono_marca_autenticado != dono_marca) {
-                            throw new Error("Não possui permissão")
+                            return { date: "Não possui permissão", status: 500 }
                         }
                     }
                 }

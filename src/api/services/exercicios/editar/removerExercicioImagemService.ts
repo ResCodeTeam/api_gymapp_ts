@@ -1,36 +1,36 @@
 import { checkAutorExercicio, checkExercicioExists, checkImagemExercicioExists, getImagemExercicio } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
-export class RemoverExercicioImagemService{
-  async execute(imagemId:string,treinadorId:string,exercicioId:string){
+export class RemoverExercicioImagemService {
+  async execute(imagemId: string, treinadorId: string, exercicioId: string) {
     const exists_exercicio = await checkExercicioExists(exercicioId)
-    if(!exists_exercicio){
-      throw new Error("O exercício não existe")
+    if (!exists_exercicio) {
+      return { date: "O exercício não existe", status: 500 }
     }
     console.log(exercicioId);
     const exists_image = await checkImagemExercicioExists(imagemId)
-    if(!exists_image){
-      throw new Error("A imagem não existe")
+    if (!exists_image) {
+      return { date: "A imagem não existe", status: 500 }
     }
 
-    const isAutor = await checkAutorExercicio(treinadorId,exercicioId);
-    if(!isAutor){
-      throw new Error("Não possui autorização")
+    const isAutor = await checkAutorExercicio(treinadorId, exercicioId);
+    if (!isAutor) {
+      return { date: "Não possui autorização", status: 500 }
     }
 
     let exercicio = await getImagemExercicio(imagemId);
-    if(exercicio == exercicioId){
+    if (exercicio == exercicioId) {
       await client.exercicios_imagens.delete({
-        where:{
-          imagem_id:imagemId,
+        where: {
+          imagem_id: imagemId,
         }
       })
     }
-    else{
-      throw new Error("A imagem não pertence ao exercicio")
+    else {
+      return { date: "A imagem não pertence ao exercicio", status: 500 }
     }
-    
 
-    return{"msg":"imagem removida com sucesso"}
+
+    return { "msg": "imagem removida com sucesso" }
   }
 }

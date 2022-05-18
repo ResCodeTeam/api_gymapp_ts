@@ -2,36 +2,36 @@ import { client } from "../../prisma/client";
 import { checkDonoGinasio, checkGinasioExists, checkModalidadeExists, getModalidadeGinasio } from "../../helpers/dbHelpers";
 
 class RemoverModalidadesService {
-  async execute(modalidadeId: string, ginasioId:string, uid:string) {
+  async execute(modalidadeId: string, ginasioId: string, uid: string) {
 
     const exists_dst = await checkModalidadeExists(modalidadeId);
     if (!exists_dst) {
-      throw new Error("A modalidade não existe");
+      return { date: "A modalidade não existe", status: 500 }
     }
-    
+
     const existsGinasio = await checkGinasioExists(ginasioId);
-    if(!existsGinasio){
-      throw new Error("Ginasio não existe")
+    if (!existsGinasio) {
+      return { date: "Ginasio não existe", status: 500 }
     }
 
     const isAutor = await checkDonoGinasio(ginasioId, uid);
-    if(!isAutor){
-      throw new Error("Não possui autorização")
+    if (!isAutor) {
+      return { date: "Não possui autorização", status: 500 }
     }
 
     let ginasio = await getModalidadeGinasio(modalidadeId);
-    if(ginasio == ginasioId){
+    if (ginasio == ginasioId) {
       await client.modalidades_ginasio.update({
         where: {
-          modalidade_id:modalidadeId
-         },
-        data:{
+          modalidade_id: modalidadeId
+        },
+        data: {
           isDeleted: true
         }
       })
     }
-    else{
-      throw new Error("A modalidade não pertence ao ginásio")
+    else {
+      return { date: "A modalidade não pertence ao ginásio", status: 500 }
     }
 
     return {

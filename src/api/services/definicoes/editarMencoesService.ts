@@ -1,23 +1,23 @@
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-export class EditarMencoesService{
-  async execute(uid:string, mencoes:boolean){
-    
+export class EditarMencoesService {
+  async execute(uid: string, mencoes: boolean) {
+
     const existsUser = await checkUserIdExists(uid);
-    if(!existsUser){
-      throw new Error("User inexistente")
+    if (!existsUser) {
+      return { date: "User inexistente", status: 500 }
     }
 
     const mencoesEdited = await client.definicoes_user.update({
-      where:{
-        usersuid:uid
+      where: {
+        usersuid: uid
       },
-      data:{
+      data: {
         mencoes
       }
     })
 
-    return mencoesEdited; 
+    return mencoesEdited;
   }
 }

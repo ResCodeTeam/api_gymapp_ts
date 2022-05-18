@@ -7,7 +7,7 @@ class CriarGinasioModalidadesController {
     const adminId = request.params.adminId;
 
     const { nome, imagemUrl } = request.body;
-    if(nome === undefined || imagemUrl === undefined){
+    if (nome === undefined || imagemUrl === undefined) {
       throw new Error("Pedido inválido")
     }
 

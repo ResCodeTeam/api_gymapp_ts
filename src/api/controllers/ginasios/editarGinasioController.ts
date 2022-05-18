@@ -3,12 +3,12 @@ import { EditarGinasioService } from "../../services/ginasios/editarGinasioServi
 
 
 
-export class EditarGinasioController{
-    
-    async handle (request: Request, response: Response){
+export class EditarGinasioController {
+
+    async handle(request: Request, response: Response) {
         const ginasioId = request.params.ginasioId;
         const adminId = request.params.adminId;
-        
+
         const {
             nome,
             rua,
@@ -16,23 +16,23 @@ export class EditarGinasioController{
             imagemUrl,
             lat,
             long
-        }=request.body;
-        if(nome === undefined || rua === undefined || descricao === undefined || imagemUrl === undefined || lat === undefined || long === undefined){
+        } = request.body;
+        if (nome === undefined || rua === undefined || descricao === undefined || imagemUrl === undefined || lat === undefined || long === undefined) {
             throw new Error("Pedido inválido")
         }
 
-        const  editarGinasioService = new EditarGinasioService();
-     
-    const resp = await editarGinasioService.execute({
-        adminId,
-        ginasioId,
-        nome,
-        rua,
-        descricao,
-        imagemUrl,
-        lat,
-        long
+        const editarGinasioService = new EditarGinasioService();
+
+        const resp = await editarGinasioService.execute({
+            adminId,
+            ginasioId,
+            nome,
+            rua,
+            descricao,
+            imagemUrl,
+            lat,
+            long
         });
-    response.json(resp);
+        response.json(resp);
     }
 }

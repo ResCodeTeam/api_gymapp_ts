@@ -15,14 +15,14 @@ export class CriarNotificacaoGinasioService {
     //#region Verifica se o admin existe
     const existsUser = await checkUserIdExists(userId);
     if (!existsUser) {
-      throw new Error("User não existe");
+      return { date: "User não existe", status: 500 }
     }
     //#endregion
 
     //#region  Verifica se a marca existe
     const existsGinasio = await checkGinasioExists(ginasioId);
     if (!existsGinasio) {
-      throw new Error("Ginásio não existe");
+      return { date: "Ginásio não existe", status: 500 }
     }
     //#endregion
 
@@ -30,7 +30,7 @@ export class CriarNotificacaoGinasioService {
     const checkGinasioAdmin = await checkDonoGinasio(ginasioId, userId);
     //await models.marcas.findAll({ where: {marca_id: marcaId, dono_id: user_id}});
     if (!checkGinasioAdmin) {
-      throw new Error("Não tem permições nesta marca");
+      return { date: "Não tem permições nesta marca", status: 500 }
     }
     //#endregion
 
@@ -57,7 +57,7 @@ export class CriarNotificacaoGinasioService {
 
     ///Verificar se existe ginásios
     if (!ginasios) {
-      throw new Error(`Não existe alunos`);
+      return { date: "Não existe alunos", status: 500 }
     }
 
     let data = new Date();
@@ -90,7 +90,7 @@ export class CriarNotificacaoGinasioService {
     }
 
     if (!dstNoti) {
-      throw new Error(`Não contém alunos`)
+      return { date: "Não contém alunos", status: 500 }
     }
     //#endregion
 

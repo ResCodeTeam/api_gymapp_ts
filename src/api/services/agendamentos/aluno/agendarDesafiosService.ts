@@ -16,25 +16,25 @@ export class AgendarDesafiosService {
     desafioId,
     ginasioId,
   }: IAgendarDesafiosService) {
-    
+
     const exists_user = await checkUserIdExists(uid);
     if (!exists_user) {
-      throw new Error("O utilizador não existe");
+      return { date: "O utilizador não existe", status: 500 }
     }
 
     const exist_gym = await checkGinasioExists(ginasioId);
-    if (!exist_gym){
-      throw new Error("O ginásio não existe");
+    if (!exist_gym) {
+      return { date: "O ginásio não existe", status: 500 }
     }
 
     const exists_desafio = await checkDesafioIdExists(desafioId);
     if (!exists_desafio) {
-      throw new Error("O desafio não existe");
+      return { date: "O desafio não existe", status: 500 }
     }
 
     const desafio_disponivel = await checkDesafioDisponivel(desafioId);
     if (!desafio_disponivel) {
-      throw new Error("O desafio já foi encerrado");
+      return { date: "O desafio já foi encerrado", status: 500 }
     }
 
     const ginasio_desafio = await getDesafioGinasio(desafioId);
@@ -43,27 +43,25 @@ export class AgendarDesafiosService {
     const marca_ginasio = (await getMarcaGym(ginasioId)).marca_id;
 
     const { mobilidade, id } = await checkMobilidadeMarcaUser(uid);
-    if(mobilidade){
-        if(id['marca_id'] != marca_ginasio || id['marca_id'] != marca_desafio)
-        {
-            throw new Error("Não possui permissão")
-        }
+    if (mobilidade) {
+      if (id['marca_id'] != marca_ginasio || id['marca_id'] != marca_desafio) {
+        return { date: "Não possui permissão", status: 500 }
+      }
     }
-    else{
-        if(id['ginasio_id'] != ginasioId || id['ginasio_id'] != ginasio_desafio)
-        {
-            throw new Error("Não possui permissão")
-        }
+    else {
+      if (id['ginasio_id'] != ginasioId || id['ginasio_id'] != ginasio_desafio) {
+        return { date: "Não possui permissão", status: 500 }
+      }
     }
 
     const dataAtual = new Date();
     changeTimeZone(dataAtual)
-    if(dataAgendamento <= dataAtual){
-      throw new Error("A data do agendamento não pode ser menor que a data atual");
+    if (dataAgendamento <= dataAtual) {
+      return { date: "A data do agendamento não pode ser menor que a data atual", status: 500 }
     }
-    
+
     const agendamento = await client.agendamentos_desafios.create({
-      data: {        
+      data: {
         ginasio_id: ginasioId,
         desafio_id: desafioId,
         uid,

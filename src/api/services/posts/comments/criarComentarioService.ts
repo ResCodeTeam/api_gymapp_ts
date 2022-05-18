@@ -6,10 +6,10 @@ export class CriarComentarioService {
     async execute(publicacao_id: string, comentario: string, criador_id: string, identificacao: Array<string>) {
 
         if (publicacao_id == null) {
-            throw new Error("Identificador da publicação não inserido.")
+            return { date: "Identificador da publicação não inserido.", status: 500 }
         }
         if (comentario == "") {
-            throw new Error("É necessario preencher o campo comentario.")
+            return { date: "É necessario preencher o campo comentario.", status: 500 }
         }
 
         const publicacao = await client.publicacoes.findUnique({
@@ -18,7 +18,7 @@ export class CriarComentarioService {
             }
         })
         if (publicacao == null) {
-            throw new Error("Não existe publicação com o identificador: " + publicacao_id)
+            return { date: "Não existe publicação com o identificador: ", status: 500 }
         }
 
         let data = new Date();

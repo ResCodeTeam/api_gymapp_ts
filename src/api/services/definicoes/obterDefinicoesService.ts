@@ -1,19 +1,19 @@
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-export class ObterDefinicoesService{
-  async execute(uid:string){
-    
+export class ObterDefinicoesService {
+  async execute(uid: string) {
+
     const def = await client.users.findFirst({
-      where:{
-        isDeleted:false,
+      where: {
+        isDeleted: false,
       },
-      select:{
-        definicoes_user:true
+      select: {
+        definicoes_user: true
       }
     })
 
-    
+
     const definicoes = def.definicoes_user
     return definicoes;
   }

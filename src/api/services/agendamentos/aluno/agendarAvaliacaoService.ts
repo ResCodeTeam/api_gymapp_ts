@@ -16,33 +16,31 @@ export class AgendarAvaliacaoService {
   }: IAgendarAvaliacaoService) {
 
     const exist_gym = await checkGinasioExists(ginasioId);
-    if (!exist_gym){
-      throw new Error("O ginásio não existe");
+    if (!exist_gym) {
+      return { date: "O ginásio não existe", status: 500 }
     }
 
     const marca_ginasio = (await getMarcaGym(ginasioId)).marca_id;
     const { mobilidade, id } = await checkMobilidadeMarcaUser(uid);
-    if(mobilidade){
-        if(id['marca_id'] != marca_ginasio)
-        {
-            throw new Error("Não possui permissão")
-        }
+    if (mobilidade) {
+      if (id['marca_id'] != marca_ginasio) {
+        return { date: "Não possui permissão", status: 500 }
+      }
     }
-    else{
-        if(id['ginasio_id'] != ginasioId)
-        {
-            throw new Error("Não possui permissão")
-        }
+    else {
+      if (id['ginasio_id'] != ginasioId) {
+        return { date: "Não possui permissão", status: 500 }
+      }
     }
 
     const dataAtual = new Date();
     changeTimeZone(dataAtual)
-    if(dataAgendamento <= dataAtual){
-      throw new Error("A data do agendamento não pode ser menor que a data atual");
+    if (dataAgendamento <= dataAtual) {
+      return { date: "A data do agendamento não pode ser menor que a data atual", status: 500 }
     }
 
     const agendamento = await client.agendamentos_avaliacoes.create({
-      data: {        
+      data: {
         ginasio_id: ginasioId,
         uid,
         data_agendamento: dataAgendamento,

@@ -3,38 +3,38 @@ import { client } from "../../prisma/client";
 import { Bloco } from "../../Providers/blocoProvider";
 import { CriarPlanoTreinoService } from "./criarPlanoTreinoService";
 
-interface IEditarPlano{
-  planoId:string;
-  alunoId : string;
-  treinadorId : string;
-  data : Date;
-  modalidadeId : string;
+interface IEditarPlano {
+  planoId: string;
+  alunoId: string;
+  treinadorId: string;
+  data: Date;
+  modalidadeId: string;
   blocos: Array<Bloco>;
 }
 
-export class EditarPlanoTreinoService{
-  async execute({planoId,alunoId, treinadorId, data, modalidadeId, blocos}: IEditarPlano){
+export class EditarPlanoTreinoService {
+  async execute({ planoId, alunoId, treinadorId, data, modalidadeId, blocos }: IEditarPlano) {
     const existsPlano = await checkPlanoTreinoExists(planoId);
-    if(!existsPlano){
-      throw new Error("Plano de treino não existe")
+    if (!existsPlano) {
+      return { date: "Plano de treino não existe", status: 500 }
     }
 
-    const autor = await getTreinadorPlano(planoId);  
+    const autor = await getTreinadorPlano(planoId);
     const marca_treinador_plano = await getTreinadorMarca(autor)
     const marca_treinador = await getTreinadorMarca(treinadorId)
-    
-    if(marca_treinador_plano != marca_treinador){
-      throw new Error("Não tem autorização");
+
+    if (marca_treinador_plano != marca_treinador) {
+      return { date: "Não tem autorização", status: 500 }
     }
-    
+
     await client.planos_treino.delete({
-      where:{
-        plano_treino_id:planoId
+      where: {
+        plano_treino_id: planoId
       }
     })
 
-    const criarPlanoTreinoService=new CriarPlanoTreinoService();
-    const resp = await criarPlanoTreinoService.execute({alunoId, treinadorId, data, modalidadeId, blocos})
+    const criarPlanoTreinoService = new CriarPlanoTreinoService();
+    const resp = await criarPlanoTreinoService.execute({ alunoId, treinadorId, data, modalidadeId, blocos })
 
 
     return resp

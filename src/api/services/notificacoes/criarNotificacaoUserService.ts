@@ -15,11 +15,11 @@ export class CriarNotificacaoUserService {
 
     const existsDestino = await checkUserIdExists(destinoId);
     if (!existsDestino) {
-      throw new Error("User inexistente")
+      return { date: "User inexistente", status: 500 }
     }
 
-    const marcaId = await getAlunoMarca(destinoId);  
-    const isDono = await checkDonoMarca(marcaId,origemId);
+    const marcaId = await getAlunoMarca(destinoId);
+    const isDono = await checkDonoMarca(marcaId, origemId);
 
     let data = new Date();
     changeTimeZone(data)

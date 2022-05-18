@@ -1,23 +1,23 @@
 import { client } from "../../prisma/client";
 
-interface IRegistarCpRequest{
-    cp:number;
-    cpExt:number;
-    rua:string;
-    localidade:string;
+interface IRegistarCpRequest {
+    cp: number;
+    cpExt: number;
+    rua: string;
+    localidade: string;
 }
 
 
-export class RegistarCpService{
-    async execute({cp,cpExt,rua,localidade}:IRegistarCpRequest){
+export class RegistarCpService {
+    async execute({ cp, cpExt, rua, localidade }: IRegistarCpRequest) {
         await client.localidades.create({
-            data:{
+            data: {
                 cp,
-                cp_ext:cpExt,
-                rua:rua.length>0?rua:null,
+                cp_ext: cpExt,
+                rua: rua.length > 0 ? rua : null,
                 localidade
             }
         })
-        return {"msg":"Codigo postal registado com sucesso"}
+        return { "msg": "Codigo postal registado com sucesso" }
     }
 }

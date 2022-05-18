@@ -5,26 +5,26 @@ class RemoverAgendarAvaliacaoService {
   async execute(agendamentoId: string, uId: string) {
     const exists_agendamento = await checkAgendamentoAvaliacaoExists(agendamentoId);
     if (!exists_agendamento) {
-      throw new Error("O agendamento da avaliação não existe");
+      return { date: "O agendamento da avaliação não existe", status: 500 }
     }
 
     const agendamento = await client.agendamentos_avaliacoes.findUnique({
-      where:{
-          agendamento_id: agendamentoId
+      where: {
+        agendamento_id: agendamentoId
       }
     })
     const isAutor = await checkAutorAgendamentoAvaliacoes(agendamentoId, uId);
-    if(!isAutor){
-      throw new Error("O agendamento não lhe pertence");
+    if (!isAutor) {
+      return { date: "O agendamento não lhe pertence", status: 500 }
     }
 
     await client.agendamentos_avaliacoes.update({
-     where: {
-       agendamento_id: agendamentoId
+      where: {
+        agendamento_id: agendamentoId
       },
-     data:{
-       isDeleted: true
-     }
+      data: {
+        isDeleted: true
+      }
     })
 
     return {
