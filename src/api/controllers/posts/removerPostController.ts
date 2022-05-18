@@ -8,7 +8,7 @@ class RemoverPostController{
 
     const removerPostService = new RemoverPostService();
     const resp = await removerPostService.execute(uId, post_id);
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
     }
 }
 export{ RemoverPostController }

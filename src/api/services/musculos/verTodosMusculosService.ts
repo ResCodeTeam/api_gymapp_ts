@@ -9,7 +9,7 @@ export class VerTodosMusculosService{
                 nome:true,
                 img_url:true,
             }        
-         })
-        return musculos;
+        })
+        return {data: musculos, status: 200};
     }
 }

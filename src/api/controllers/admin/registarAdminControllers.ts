@@ -15,7 +15,6 @@ export class RegistarAdminController {
 
     const resp = await registarAdminService.execute({ email, nome, password, dataNasc, dataEntrada, genero });
 
-    response.status(200).json(resp);
-
+    response.json(resp.data).status(resp.status);
   }
 }

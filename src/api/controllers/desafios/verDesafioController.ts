@@ -10,6 +10,6 @@ export class VerDesafioController{
 
         const verDesafioService = new VerDesafioService();
         const resp = await verDesafioService.execute(uId, desafioId);
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

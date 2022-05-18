@@ -21,7 +21,6 @@ export class EditarPublicacaoController{
       descricao
     });
 
-    console.log(resp);
-    response.status(200).json(resp);
+    response.json(resp.data).status(resp.status);
   }
 }

@@ -14,7 +14,7 @@ export class RemoverAvaliacoesService {
         })
 
         if (atualizarAvaliacao == null) {
-            return "404";
+            return { data: "Não existe avaliação com o id fornecido", status: 500 };
         }
 
         const removerAvaliacao = await client.avaliacoes.update({
@@ -23,6 +23,6 @@ export class RemoverAvaliacoesService {
                 isDeleted: true
             }
         })
-        return { msg: "A avaliação foi removida com sucesso" };
+        return { data: "A avaliação foi removida com sucesso", status: 200 };
     }
 }

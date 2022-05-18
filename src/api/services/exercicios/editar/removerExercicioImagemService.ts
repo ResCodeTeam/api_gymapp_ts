@@ -31,6 +31,6 @@ export class RemoverExercicioImagemService{
     }
     
 
-    return{"msg":"imagem removida com sucesso"}
+    return{data:"imagem removida com sucesso", status: 200}
   }
 }

@@ -69,6 +69,6 @@ export class SubmissaoDesafioService{
       }
     })
 
-    return submissao;
+    return {data: submissao, status: 200};
   }
 }

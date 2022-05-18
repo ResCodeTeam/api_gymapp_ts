@@ -12,7 +12,7 @@ export class EditarMencoesController{
     const editarMencoesService = new EditarMencoesService();
     const resp = await editarMencoesService.execute(uid,mencoes);
 
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
 
   }
 }

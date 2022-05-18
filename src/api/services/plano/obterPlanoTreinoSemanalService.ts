@@ -101,6 +101,6 @@ export class ObterPlanoTreinoSemanalService{
         },
       }
     })
-    return planos;
+    return {data: planos, status: 200};
   }
 }

@@ -52,6 +52,6 @@ export class VerTodosPostsUserService{
                 },
             },
         })
-        return posts       
+        return {data: posts, status: 200};      
     }
 }

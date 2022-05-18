@@ -59,6 +59,6 @@ export class VerDesafiosSubmissoesService {
             },
         })
         
-        return desafios;
+        return {data: desafios, status: 200};
     }
 }

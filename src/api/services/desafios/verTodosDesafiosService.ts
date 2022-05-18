@@ -56,6 +56,6 @@ export class VerTodosDesafiosService{
                 isEncerrado: true
             }        
          })
-        return desafios;
+         return {data: desafios, status: 200};
     }
 }

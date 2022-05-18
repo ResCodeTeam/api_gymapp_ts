@@ -6,6 +6,6 @@ export class VerAgendamentosDesafiosController{
 
         const verAgendamentosDesafiosService = new VerAgendamentosDesafiosService();
         const resp = await verAgendamentosDesafiosService.execute();
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

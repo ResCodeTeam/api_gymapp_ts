@@ -12,6 +12,6 @@ export class VerNotificacoesService{
                 }
             },
         })
-        return notificacoes;
+        return {data: notificacoes, status: 200};
     }
 }

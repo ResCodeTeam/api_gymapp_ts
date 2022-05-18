@@ -21,6 +21,6 @@ export class VerUmGinasioService{
                 }
             }
         })
-        return ginasio;
+        return {data: ginasio, status: 200};
     }
 }

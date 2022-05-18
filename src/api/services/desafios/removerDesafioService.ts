@@ -46,6 +46,6 @@ export class RemoverDesafioService {
             }
         })
 
-        return {msg :"O desafio foi eliminado com sucesso"};
+        return {data :"O desafio foi eliminado com sucesso", status: 200};
     }
 }

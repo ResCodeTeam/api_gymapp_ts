@@ -18,6 +18,6 @@ export class ImpedirIdentificacaoService{
       }
     })
 
-    return identificacaoEditada;    
+    return {data: identificacaoEditada, status: 200};    
   }
 }

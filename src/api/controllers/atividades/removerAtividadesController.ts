@@ -7,7 +7,7 @@ class RemoverAtividadesController{
 
     const removerAtividadesService = new RemoverAtividadesService();
     const resp = await removerAtividadesService.execute(atividadeId);
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
     }
 }
 

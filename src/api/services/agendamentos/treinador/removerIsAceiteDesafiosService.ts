@@ -38,7 +38,8 @@ class RemoverIsAceiteDesafiosService {
     })
 
     return {
-      msg: "Aceitação do agendamento do desafio removida com sucesso",
+      data: "Aceitação do agendamento do desafio removida com sucesso",
+      status: 200
     };
   }
 }

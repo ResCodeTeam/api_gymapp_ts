@@ -19,7 +19,7 @@ export class EditarMarcaService {
     {
         throw new Error("Marca não existe")
     }
-    console.log(marcaId,adminId)
+
     const isAutor = await checkAutorMarca(adminId,marcaId)
     if(!isAutor){
         throw new Error("Não possui autorização para fazer esta alteração")
@@ -42,12 +42,7 @@ export class EditarMarcaService {
               mobilidade:mobilidade
 
           }
-      })
-
-  
-      return editarMarca
-          
-        
-      
+      }) 
+    return {data: editarMarca, status: 200};
   }
 }

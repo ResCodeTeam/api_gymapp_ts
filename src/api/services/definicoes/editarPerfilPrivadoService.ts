@@ -18,7 +18,7 @@ export class EditarPerfilPrivadoService {
           is_privado
         }
     })
-    return perfilEdited;
+    return {data: perfilEdited, status: 200};
   }
 }
   

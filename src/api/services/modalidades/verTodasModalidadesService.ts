@@ -28,6 +28,6 @@ export class VerTodasModalidadesService{
                 imagem_url:true,
             }        
          })
-        return marcas;
+         return {data: marcas, status: 200};
     }
 }

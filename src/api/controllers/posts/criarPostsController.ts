@@ -21,7 +21,7 @@ class CriarPostsController {
       ginasioId,
       identificacao
     });
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
   }
 }
 

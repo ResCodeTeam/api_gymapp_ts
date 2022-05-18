@@ -41,7 +41,7 @@ export class EditarAvaliacaoController {
         //Utilizar Serviço criado
         const resp = await editarAvaliacaoService.execute(data, avaliacao_id, treinadorId)
 
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
 
 
     }

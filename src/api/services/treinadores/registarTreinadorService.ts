@@ -69,6 +69,6 @@ export class RegistarTreinadorService{
           usersuid:treinador.uid    
       }
     })
-    return treinador;
+    return {data: treinador, status: 200};
   }
 }

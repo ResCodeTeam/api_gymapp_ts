@@ -16,6 +16,6 @@ export class EditarModalidadesController{
 
         const  editarModalidadesController = new EditarModalidadesService();
     const resp = await editarModalidadesController.execute({imagemUrl,nome,modalidadeId, ginasioId, uid});
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
     }
 }

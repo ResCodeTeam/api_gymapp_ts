@@ -23,6 +23,6 @@ export class EditarAtividadesService {
                 icon: data.icon         
             }
         })
-        return atualizarAtividade       
+        return {data: atualizarAtividade, status: 200};      
     }
 }

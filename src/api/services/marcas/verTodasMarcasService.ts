@@ -18,6 +18,6 @@ export class VerTodasMarcasService{
                 logotipo:true,
             }        
          })
-        return marcas;
+         return {data: marcas, status: 200};
     }
 }

@@ -13,7 +13,7 @@ export class ImpedirIdentificacaoController{
     const impedirIdentificacaoService = new ImpedirIdentificacaoService();
     const resp = await impedirIdentificacaoService.execute(uid,identificacoes);
 
-    response.json(resp)
+    response.json(resp.data).status(resp.status);
 
   }
 }

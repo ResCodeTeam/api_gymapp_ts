@@ -35,7 +35,7 @@ export class RemoverLocalMedidaService{
       throw new Error("O local de medida não pertence à marca")
     }
     
-    return {"msg":"Local removido com sucesso"}
+    return {data:"Local removido com sucesso", status: 200}
 
   }
 }

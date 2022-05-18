@@ -16,6 +16,6 @@ export class VerAgendamentosAvaliacoesAlunoService{
             },
         })
 
-        return agendamentos;     
+        return {data: agendamentos, status: 200};    
     }
 }

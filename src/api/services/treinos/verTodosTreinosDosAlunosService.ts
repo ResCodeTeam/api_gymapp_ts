@@ -29,6 +29,6 @@ export class VerTodosTreinosDosAlunosService {
             }
             
         }
-        return arrayTreinos;
+        return {data: arrayTreinos, status: 200};
     }
 }

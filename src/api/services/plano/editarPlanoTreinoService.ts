@@ -37,7 +37,7 @@ export class EditarPlanoTreinoService{
     const resp = await criarPlanoTreinoService.execute({alunoId, treinadorId, data, modalidadeId, blocos})
 
 
-    return resp
+    return {data: resp, status: 200};
 
   }
 }

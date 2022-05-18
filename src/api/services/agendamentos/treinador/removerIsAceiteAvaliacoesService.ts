@@ -40,7 +40,8 @@ class RemoverIsAceiteAvaliacoesService {
     })
 
     return {
-      msg: "Aceitação do agendamento da avaliação removida com sucesso",
+      data: "Aceitação do agendamento da avaliação removida com sucesso",
+      status: 200
     };
   }
 }

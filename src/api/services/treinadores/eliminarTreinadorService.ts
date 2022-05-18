@@ -31,7 +31,8 @@ export class EliminarTreinadorService{
         })
 
         return {
-        msg: "Treinador cessado das funções!"
+            data: "Treinador cessado das funções!",
+            status: 200
         };
     }
 }

@@ -70,6 +70,6 @@ export class VerInfoPostService{
                 }
             },
         })    
-        return post == null? {} : post
+        return {data: post == null? {} : post, status: 200}
     }
 }

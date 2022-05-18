@@ -18,6 +18,6 @@ export class EditarMencoesService{
       }
     })
 
-    return mencoesEdited; 
+    return {data: mencoesEdited, status: 200}; 
   }
 }

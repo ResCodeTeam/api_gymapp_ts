@@ -48,6 +48,6 @@ export class RemoverComentarioService{
       }
     })
 
-    return {"msg":"Comentário removido com sucesso"}
+    return {data:"Comentário removido com sucesso", status: 200}
   }
 }

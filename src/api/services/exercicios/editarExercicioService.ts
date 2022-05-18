@@ -38,6 +38,6 @@ export class EditarExercicioService {
                 is_tempo: data.isTempo
             }
         })
-        return atualizarExercicio       
+        return {data: atualizarExercicio, status: 200};       
     }
 }

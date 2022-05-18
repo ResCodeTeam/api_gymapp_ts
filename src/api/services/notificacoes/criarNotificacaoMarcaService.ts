@@ -94,8 +94,9 @@ export class CriarNotificacaoMarcaService {
     //#endregion
 
     return {
-      message: "Notificação enviada com sucesso",
-      ginasios
+      data: {message: "Notificação enviada com sucesso",
+      ginasios},
+      status: 200
     };
   }
 }

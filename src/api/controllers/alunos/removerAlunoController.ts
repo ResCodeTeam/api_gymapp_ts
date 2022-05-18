@@ -9,7 +9,7 @@ export class RemoverAlunoController {
 
     const removerAlunoService = new RemoverAlunoService();
     const resp = await removerAlunoService.execute(uId, adminId);
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
   };
 }
 

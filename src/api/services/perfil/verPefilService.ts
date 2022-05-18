@@ -13,19 +13,17 @@ export class VerPerfilService {
         if (!exists_perfil) {
             throw new Error("Utilizador não existe")
         }
-        console.log(456)
+
         const perfil_privado = await checkPerfilPrivado(uId)
         if (perfil_privado) {
             throw new Error("O perfil é privado")
         }
-        console.log(789)
 
         const funcao_user_autenticado = await getUserFuncao(auId);
         const treinador = await getFuncaoId("Treinador");
         const admin = await getFuncaoId("Administrador");
 
         const funcao_user = await getUserFuncao(uId);
-
 
         // Treinador
         if (funcao_user_autenticado == treinador) {
@@ -40,7 +38,6 @@ export class VerPerfilService {
             }
             // treinador a ver o perfil de um admin
             else if (funcao_user == admin) {
-                console.log(123)
                 if (dono_marca_autenticado != uId) {
                     throw new Error("Não possui permissão")
                 }
@@ -88,7 +85,6 @@ export class VerPerfilService {
                     }
                 }
                 else {
-                    console.log(123)
                     const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
                     const dono_marca_gym = await getDonoMarca(marca_gym);
                     if (auId != dono_marca_gym) {
@@ -165,7 +161,6 @@ export class VerPerfilService {
                 }
             }
         }
-        console.log("Aqui")
 
         const perfil = await client.users.findMany({
             where: {
@@ -202,9 +197,9 @@ export class VerPerfilService {
             if (funcao.funcoes.descricao == "Administrador" || funcao.funcoes.descricao == "Treinador") {
                 const verTodosTreinosUserService = new VerTreinosAlunosService();
                 const treinos = await verTodosTreinosUserService.execute(uId);
-                return { perfil, treinos };
+                return { data:{perfil, treinos}, status: 200 };
             }
-            return perfil;
+            return {data: perfil, status: 200};
         }
 
         const verTodosPostsUserService = new VerTodosPostsUserService();
@@ -213,7 +208,7 @@ export class VerPerfilService {
         const verTodosTreinosUserService = new VerTreinosAlunosService();
         const treinos = await verTodosTreinosUserService.execute(uId);
 
-        return { perfil, posts, treinos };
+        return { data: {perfil, posts, treinos}, status: 200 };
     }
 }
 

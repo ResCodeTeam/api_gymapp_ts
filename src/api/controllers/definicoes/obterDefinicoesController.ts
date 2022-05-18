@@ -8,7 +8,7 @@ export class ObterDefinicoesController{
     const obterDefinicoesService = new ObterDefinicoesService();
 
     const resp = await obterDefinicoesService.execute(uid);
-    response.json(resp);
+    response.json(resp.data).status(resp.status);
     
   }
 }

@@ -9,6 +9,6 @@ export class AceitarAvaliacoesController {
                 
         const aceitarAvaliacoesService = new AceitarAvaliacoesService()
         const resp = await aceitarAvaliacoesService.execute(agendamentoId, treinadorId);
-        response.json(resp)
+        response.json(resp.data).status(resp.status);
     }
 }

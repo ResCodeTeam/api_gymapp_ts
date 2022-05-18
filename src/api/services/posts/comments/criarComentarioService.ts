@@ -43,6 +43,6 @@ export class CriarComentarioService {
             }
         }
 
-        return novoComentario;
+        return {data: novoComentario, status: 200};
     }
 }
