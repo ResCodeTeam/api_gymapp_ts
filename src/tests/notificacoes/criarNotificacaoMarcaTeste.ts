@@ -27,7 +27,7 @@ describe("Teste criar notificação marca", () => {
             });
     });
 
-    
+
     describe('- Sem token', () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
@@ -78,7 +78,7 @@ describe("Teste criar notificação marca", () => {
                 .send({
                     conteudo: "Teste de notificação",
                     tipo: 0
-                  })
+                })
                 .then(res => {
                     res.should.have.status(200)
 
@@ -86,15 +86,34 @@ describe("Teste criar notificação marca", () => {
                     chai.expect(res.body).to.be.an("object")
 
                     //verificar se as propriedades todas existem
-                    chai.expect(res.body).to.have.property("conteudo")
-                    chai.expect(res.body).to.have.property("data")
-                    chai.expect(res.body).to.have.property("tipo")
+                    chai.expect(res.body).to.have.property("message")
+                    chai.expect(res.body).to.have.property("ginasios")
 
-                    //verificar tipos das propriedades
-                    chai.expect(res.body['conteudo']).to.be.a("string")
-                    chai.expect(res.body['data']).to.be.a("date")
-                    chai.expect(res.body['tipo']).to.be.a("number")
+                    chai.expect(res.body['message']).to.be.a("string")
+                    chai.expect(res.body['ginasios']).to.be.a("array")
 
+                    if (res.body['ginasios'].length > 0) {
+
+                        chai.expect(res.body['ginasios'][0]).to.be.an("object")
+
+                        chai.expect(res.body['ginasios'][0]).to.have.property("marca_id")
+                        chai.expect(res.body['ginasios'][0]).to.have.property("ginasio_id")
+                        chai.expect(res.body['ginasios'][0]).to.have.property("aluno_ginasio")
+
+                        chai.expect(res.body['ginasios'][0]['marca_id']).to.be.a("string")
+                        chai.expect(res.body['ginasios'][0]['ginasio_id']).to.be.a("string")
+                        chai.expect(res.body['ginasios'][0]['aluno_ginasio']).to.be.a("array")
+                    }
+
+                   /*  if (res.body['ginasios']['aluno_ginasio'].length > 0) {
+                        chai.expect(res.body['ginasios']['aluno_ginasio']).to.have.property("user_id")
+                        chai.expect(res.body['ginasios']['aluno_ginasio']).to.have.property("users")
+                        chai.expect(res.body['ginasios']['aluno_ginasio']['user_id']).to.be.a("string")
+                        chai.expect(res.body['ginasios']['aluno_ginasio']['users']).to.be.a("object")
+
+                        chai.expect(res.body['ginasios']['aluno_ginasio']['users']).to.have.property("nome")
+                        chai.expect(res.body['ginasios']['aluno_ginasio']['users']['nome']).to.be.a("string")
+                    } */
                 })
         })
     })

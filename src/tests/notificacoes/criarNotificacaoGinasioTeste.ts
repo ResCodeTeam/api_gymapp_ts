@@ -14,6 +14,7 @@ const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2N
 let token = ''
 describe("Teste criar notificação ginasio", () => {
     beforeEach((done) => {
+        
         chai
             .request(server)
             .post(baseUrl + "/auth/login")
@@ -24,6 +25,7 @@ describe("Teste criar notificação ginasio", () => {
             .end((err, res) => {
                 token = `Bearer ${res.body.token}`;
                 res.should.have.status(200);
+               
                 done()
             });
     });
@@ -87,11 +89,31 @@ describe("Teste criar notificação ginasio", () => {
                     chai.expect(res.body).to.be.an("object")
 
                     //verificar se as propriedades todas existem
-                    chai.expect(res.body).to.have.property("user_id")
-                    chai.expect(res.body).to.have.property("users")
+                    chai.expect(res.body).to.have.property("message")
+                    chai.expect(res.body).to.have.property("ginasios")
 
-                 
+                    chai.expect(res.body['message']).to.be.a("string")
+                    chai.expect(res.body['ginasios']).to.be.a("object")
 
+                    chai.expect(res.body['ginasios']).to.have.property("ginasio_id")
+                    chai.expect(res.body['ginasios']).to.have.property("aluno_ginasio")
+
+                    chai.expect(res.body['ginasios']['ginasio_id']).to.be.a("string")
+                    chai.expect(res.body['ginasios']['aluno_ginasio']).to.be.a("array")
+
+                      //Array Bloco Treino
+                      if (res.body['ginasios']['aluno_ginasio'].length > 0) {
+                        chai.expect(res.body['ginasios']['aluno_ginasio'][0]).to.be.an("object")
+
+                        chai.expect(res.body['ginasios']['aluno_ginasio'][0]).to.have.property("user_id")
+                        chai.expect(res.body['ginasios']['aluno_ginasio'][0]).to.have.property("users")
+
+                        chai.expect(res.body['ginasios']['aluno_ginasio'][0]['user_id']).to.be.a("string")
+                        chai.expect(res.body['ginasios']['aluno_ginasio'][0]['users']).to.be.a("object")
+
+                        chai.expect(res.body['ginasios']['aluno_ginasio'][0]['users']).to.have.property("nome")
+                        chai.expect(res.body['ginasios']['aluno_ginasio'][0]['users']['nome']).to.be.a("string")
+                      }
 
                 })
         })

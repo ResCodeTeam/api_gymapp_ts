@@ -7,18 +7,19 @@ const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
 const server = "localhost:8000"
-const destinoId = '000d1e14-617e-423e-8a1a-f63d4fa5af6a'
+const planoTreinoId = "07fe955a-9332-4f71-a944-05b7b096f02f"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
 let token = ''
-describe("Teste criar notificação users", () => {
+
+describe("Teste editar plano de treino realizado aluno", () => {
     beforeEach((done) => {
         chai
             .request(server)
             .post(baseUrl + "/auth/login")
             .send({
-                email: "admin@admin.com",
-                password: "admin"
+                email: "biancasilva@gmail.com",
+                password: "passwd",
             })
             .end((err, res) => {
                 token = `Bearer ${res.body.token}`;
@@ -26,13 +27,9 @@ describe("Teste criar notificação users", () => {
                 done();
             });
     });
-
-
     describe('- Sem token', () => {
         it('Deve retornar erro de authToken invalido', () => {
-            return chai
-                .request(server)
-                .post(baseUrl + '/admin/notificacao/user/' + destinoId)
+            return chai.request(server).put(baseUrl + '/aluno/plano/' + planoTreinoId + '/realizado/')
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -45,7 +42,7 @@ describe("Teste criar notificação users", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/admin/notificacao/user/' + destinoId)
+                .put(baseUrl + '/aluno/plano/' + planoTreinoId + '/realizado/')
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -55,50 +52,32 @@ describe("Teste criar notificação users", () => {
         })
     })
 
-    describe('- Criar notificação users', () => {
-        it('Deve retornar erro de body incompleto', () => {
+    describe('- Editar plano de treino realizado aluno corretamente', () => {
+        it('Deve editar plano de treino realizado aluno', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/admin/notificacao/user/' + destinoId)
+                .put(baseUrl + '/aluno/plano/' + planoTreinoId + '/realizado/')
                 .set("Authorization", token)
-                .then(res => {
-                    res.should.have.status(500)
-                    chai.expect(res.body).to.have.property("status")
-                    chai.expect(res.body).to.have.property("message")
-                })
-        })
-    })
-
-    describe('- Criar notificação users', () => {
-        it('Deve retornar criar notificação users com sucesso', () => {
-            return chai
-                .request(server)
-                .post(baseUrl + '/admin/notificacao/user/' + destinoId)
-                .set("Authorization", token)
-                .send({
-                    conteudo: "O seu agendamento foi aceite",
-                    tipo: 1
-                  })
                 .then(res => {
                     res.should.have.status(200)
-
-                    // verificar se é um object
                     chai.expect(res.body).to.be.an("object")
 
-                    //verificar se as propriedades todas existem
-                    chai.expect(res.body).to.have.property("noti_id")
-                    chai.expect(res.body).to.have.property("origem_uid")
-                    chai.expect(res.body).to.have.property("conteudo")
+                    chai.expect(res.body).to.have.property("plano_treino_id")
+                    chai.expect(res.body).to.have.property("aluno_id")
+                    chai.expect(res.body).to.have.property("treinador_id")
                     chai.expect(res.body).to.have.property("data")
-                    chai.expect(res.body).to.have.property("tipo")
+                    chai.expect(res.body).to.have.property("isRealizado")
+                    chai.expect(res.body).to.have.property("modalidade_id")
+                    chai.expect(res.body).to.have.property("isDeleted")
 
-                    //verificar tipos das propriedades
-                    chai.expect(res.body['noti_id']).to.be.a("string")
-                    chai.expect(res.body['origem_uid']).to.be.a("string")
-                    chai.expect(res.body['conteudo']).to.be.a("string")
+                    chai.expect(res.body['plano_treino_id']).to.be.a("string")
+                    chai.expect(res.body['aluno_id']).to.be.a("string")
+                    chai.expect(res.body['treinador_id']).to.be.a("string")
                     chai.expect(res.body['data']).to.be.a("string")
-                    chai.expect(res.body['tipo']).to.be.a("number")
-
+                    chai.expect(res.body['isRealizado']).to.be.a("boolean")
+                    chai.expect(res.body['modalidade_id']).to.be.a("string")
+                    chai.expect(res.body['isDeleted']).to.be.a("boolean")
+                   
                 })
         })
     })
