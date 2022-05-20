@@ -1,5 +1,5 @@
 import { client } from "../../prisma/client";
-import { checkUserIdExists, checkNomeMarca } from "../../helpers/dbHelpers";
+import { checkUserIdExists, checkNomeMarca, getDonoMarca } from "../../helpers/dbHelpers";
 
 interface IRegistarUserMarcasSerice {
   userId: string;
@@ -21,6 +21,8 @@ class RegistarUserMarcasService {
     if (exist_nome) {
       return { data: "A marca já existe", status: 500 }
     }
+
+
 
     const marca = await client.marcas.create({
       data: {
