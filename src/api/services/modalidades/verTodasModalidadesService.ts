@@ -10,7 +10,7 @@ interface IGinasios {
 export class VerTodasModalidadesService {
     async execute({ ginasioId, userId }: IGinasios) {
 
-        const exists_ginasio = checkGinasioExists(ginasioId)
+        const exists_ginasio = await checkGinasioExists(ginasioId)
         if (!exists_ginasio) {
             return { data: "O ginásio não existe", status: 500 }
         }
