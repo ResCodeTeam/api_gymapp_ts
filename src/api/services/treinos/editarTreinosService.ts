@@ -48,10 +48,28 @@ export class EditarTreinosService {
         }
 
         if (modalidadeId != null) {
-            const exists_modalidades = await checkModalidadeExists(modalidadeId);
-            if (!exists_modalidades) {
-              return { data: "A modalidade não existe", status: 500 }
-            }
+          const exists_modalidades = await checkModalidadeExists(modalidadeId);
+          if (!exists_modalidades) {
+            return { data: "A modalidade não existe", status: 500 }
+          }
+
+          const ginasio_modalidade = await getModalidadeGinasio(modalidadeId);
+          const marca_modalidade = (await getMarcaGym(ginasio_modalidade)).marca_id;
+
+          const { mobilidade, id } = await checkMobilidadeMarcaUser(uId);
+          if(mobilidade){
+              if(id['marca_id'] != marca_modalidade)
+              {
+                return { data: "Não possui permissão", status: 500 }
+              }
+          }
+          else{
+              const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
+              if(marca_gym != marca_modalidade)
+              {
+                return { data: "Não possui permissão", status: 500 }
+              }
+          }
         }
 
         const treino = await client.treinos.findUnique({
@@ -68,24 +86,6 @@ export class EditarTreinosService {
             }
         }
 
-        const ginasio_modalidade = await getModalidadeGinasio(modalidadeId);
-        const marca_modalidade = (await getMarcaGym(ginasio_modalidade)).marca_id;
-
-        const { mobilidade, id } = await checkMobilidadeMarcaUser(uId);
-        if(mobilidade){
-            if(id['marca_id'] != marca_modalidade)
-            {
-              return { data: "Não possui permissão", status: 500 }
-            }
-        }
-        else{
-            const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
-            if(marca_gym != marca_modalidade)
-            {
-              return { data: "Não possui permissão", status: 500 }
-            }
-        }
-
         if (treino.atividade_id == null && atividadeId != null) {
           return { data: "O treino não tem atividade", status: 500 }
         }
@@ -98,14 +98,13 @@ export class EditarTreinosService {
           return { data: "O treino não pode ter atividade e modalidade", status: 500 }
         }
 
-
         const editarTreinos = await client.treinos.update({
             where: {
                 treino_id: treinoId
             },
             data: {
-                atividade_id: atividadeId,
-                modalidade_id: modalidadeId,
+                atividade_id: atividadeId == null ? undefined : atividadeId,
+                modalidade_id: modalidadeId == null ? undefined  : modalidadeId,
                 duracao,
                 calorias,
                 distancia,
