@@ -40,6 +40,11 @@ export class RegistarAlunoService {
       return { data: "Utilizador inexistente", status: 500 }
     }
 
+    let existsGym = await checkGinasioExists(ginasioId);
+    if (!existsGym) {
+      return { data: "Ginásio não existe", status: 500 }
+    }
+
     const marcaAdmin = await checkDonoGinasio(donoId, ginasioId);
     if (!marcaAdmin) {
       return { data: "Não tem permissão para registar alunos neste ginásio", status: 500 }
@@ -71,10 +76,7 @@ export class RegistarAlunoService {
 
     // obter o id da função
     const funcaoId = await getFuncaoId("Aluno");
-    let existsGym = await checkGinasioExists(ginasioId);
-    if (!existsGym) {
-      return { data: "Ginásio não existe", status: 500 }
-    }
+
 
     await checkDonoGinasio(ginasioId, donoId)
 
@@ -151,7 +153,7 @@ export class RegistarAlunoService {
           uid,
         },
       });
-      throw e;
+      return { data: "Erro ao registar aluno", status: 500 };
     }
   }
 }

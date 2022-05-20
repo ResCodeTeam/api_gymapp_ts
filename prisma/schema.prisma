@@ -35,7 +35,7 @@ model aluno_ginasio {
   user_id    String  @default(uuid())
   ginasio_id String
   ginasio    ginasio @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkaluno_gina747871")
-  users      users   @relation(fields: [user_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkaluno_gina239330")
+  users      users   @relation(fields: [user_id], references: [uid], onDelete: Cascade, onUpdate: NoAction, map: "fkaluno_gina239330")
 
   @@id([user_id, ginasio_id])
 }
@@ -44,7 +44,7 @@ model alunos_marca {
   uid      String
   marca_id String
   marcas   marcas @relation(fields: [marca_id], references: [marca_id], onDelete: NoAction, onUpdate: NoAction, map: "fkalunos_mar273324")
-  users    users  @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkalunos_mar464475")
+  users    users  @relation(fields: [uid], references: [uid], onDelete: Cascade, onUpdate: NoAction, map: "fkalunos_mar464475")
 
   @@id([uid, marca_id])
 }
@@ -113,7 +113,7 @@ model definicoes_user {
   is_privado     Boolean @default(false)
   identificacoes Boolean @default(false)
   mencoes        Boolean @default(false)
-  users          users   @relation(fields: [usersuid], references: [uid])
+  users          users   @relation(fields: [usersuid], references: [uid], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model desafios {
