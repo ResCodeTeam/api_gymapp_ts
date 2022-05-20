@@ -6,6 +6,7 @@ export class ObterDefinicoesService {
 
     const def = await client.users.findFirst({
       where: {
+        uid,
         isDeleted: false,
       },
       select: {
@@ -15,6 +16,6 @@ export class ObterDefinicoesService {
 
 
     const definicoes = def.definicoes_user
-    return {data: definicoes, status: 200};
+    return { data: definicoes, status: 200 };
   }
 }

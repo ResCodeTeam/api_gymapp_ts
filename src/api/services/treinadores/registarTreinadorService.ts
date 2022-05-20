@@ -41,7 +41,6 @@ export class RegistarTreinadorService {
 
     const treinador = await client.users.create({
       data: {
-
         email,
         nome,
         password: passwd,
