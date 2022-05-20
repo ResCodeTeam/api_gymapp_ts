@@ -6,7 +6,7 @@ export class RegistarAlunoController {
     let donoId = request.params.adminId;
     let { email, nome, password, dataNasc, dataEntrada, genero, ginasioId } = request.body;
     if (email === undefined || nome === undefined || password === undefined || dataNasc === undefined || dataEntrada === undefined || genero === undefined || ginasioId === undefined) {
-      throw new Error("Pedido inválido")
+      response.json("Pedido inválido").status(500);
     }
 
     dataNasc = new Date(dataNasc);

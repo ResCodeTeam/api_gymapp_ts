@@ -328,7 +328,6 @@ let checkAgendamentoAvaliacaoIsAceiteExists = async (agendamentoId: string) => {
             isAceite: false
         }
     })
-    console.log(search)
     return search.length != 0;
 }
 
@@ -570,8 +569,6 @@ let getDayWeek = async (data: Date) => {
 let formatFullDate = async (data: Date) => {
     let newData: string;
     let s: IDayWeek = (await getDayWeek(data));
-    console.log(s.abbreviation);
-    console.log(s.name);
 
     return s;
 
@@ -698,7 +695,6 @@ let checkTreinadorGinasio = async (ginasioId: string, treinadorId: string) => {
 }
 
 let getTreinadorMarca = async (treinadorId: string) => {
-    console.log(treinadorId)
     const searchTreinador = await client.treinadores_marca.findFirst({
         where: {
             treinador_uid: treinadorId,
@@ -710,7 +706,6 @@ let getTreinadorMarca = async (treinadorId: string) => {
 
         }
     })
-    console.log('Treinador', searchTreinador)
 
     return searchTreinador.marca_id;
 }

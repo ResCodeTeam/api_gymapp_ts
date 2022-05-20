@@ -61,7 +61,6 @@ describe("Teste Obter um ginasio", () => {
         .set("Authorization", token)
         .then(res => {
           res.should.have.status(200)
-          console.log(res.body)
 
           //verificar se as propriedades todas existem
           chai.expect(res.body).to.have.property("ginasio_id")

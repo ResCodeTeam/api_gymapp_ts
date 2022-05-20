@@ -12,6 +12,10 @@ export class RemoverDesafioController {
         const desafioId = request.params.id;
         const uId = request.params.userId;
 
+        if (uId === undefined|| desafioId === undefined) {
+            response.json("Pedido inválido").status(500);
+        }
+
         //Invocar Função
         const resp = await removerDesafioService.execute(desafioId, uId);
 

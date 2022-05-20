@@ -46,7 +46,6 @@ export class CriarExercicioService {
     }
     try {
       for (let i = 0; i < musculos.length; i++) {
-        console.log(musculos[i])
         await client.exercicios_musculos.create({
           data: {
             musculos: {

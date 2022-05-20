@@ -4,7 +4,6 @@ import { client } from "../../prisma/client";
 
 export class VerUmGinasioService {
     async execute(donoId: string, ginasioId: string) {
-        console.log(ginasioId)
         const exists_ginasio = await checkGinasioExists(ginasioId)
         if (!exists_ginasio) {
             return { data: "O ginásio não existe", status: 500 }

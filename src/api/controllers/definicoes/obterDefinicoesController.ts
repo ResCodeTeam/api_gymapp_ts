@@ -4,6 +4,9 @@ import { ObterDefinicoesService } from "../../services/definicoes/obterDefinicoe
 export class ObterDefinicoesController {
   async handle(request: Request, response: Response) {
     const uid = request.params.userId;
+    if (uid === undefined) {
+      response.json("Pedido inválido").status(500);
+    }
 
     const obterDefinicoesService = new ObterDefinicoesService();
 

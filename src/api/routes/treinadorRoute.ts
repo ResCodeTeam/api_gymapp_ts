@@ -93,7 +93,7 @@ treinadorRouter.delete("/:treinadorId/desafio/:desafioId/submissoes/:id", remove
 treinadorRouter.put("/:treinadorId/avaliacoes/:id", editarAvaliacao.handle);
 treinadorRouter.delete("/:treinadorId/avaliacoes/:id", removerAvaliacao.handle);
 treinadorRouter.post("/:treinadorId/avaliacoes/:id", criarAvaliacaoController.handle);
-treinadorRouter.get("/avaliacoes/:id", verAvaliacaoAlunoController.handle);
+treinadorRouter.get("/:treinadorId/avaliacoes/:id", verAvaliacaoAlunoController.handle);
 //#endregion
 
 

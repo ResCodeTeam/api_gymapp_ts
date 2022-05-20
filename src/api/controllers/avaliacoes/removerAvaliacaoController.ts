@@ -10,6 +10,10 @@ export class RemoverAvaliacaoController {
         //Pedir Id por parametro
         const avaliacao_id = request.params.id
 
+        if (treinadorId === undefined || avaliacao_id === undefined) {
+            response.json("Pedido inválido").status(500);
+        }
+
         //Utilizar Serviço
         const resp = await removerAvaliacaoService.execute(avaliacao_id, treinadorId)
 

@@ -4,6 +4,9 @@ import { RemoverAtividadesService } from "../../services/atividades/removerAtivi
 class RemoverAtividadesController {
     async handle(request: Request, response: Response) {
         const atividadeId = request.params.id;
+        if (atividadeId === undefined) {
+            response.json("Pedido inválido").status(500);
+        }
 
     const removerAtividadesService = new RemoverAtividadesService();
     const resp = await removerAtividadesService.execute(atividadeId);

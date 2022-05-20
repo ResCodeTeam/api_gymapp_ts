@@ -5,6 +5,9 @@ class RemoverTreinosController {
     async handle(request: Request, response: Response) {
         const uId = request.params.alunoId;
         const treinoId = request.params.treino_id;
+        if (uId === undefined || treinoId === undefined) {
+            response.json("Pedido inválido").status(500);
+        }
 
         const removerTreinosService = new RemoverTreinosService();
         const resp = await removerTreinosService.execute(uId, treinoId);
