@@ -86,7 +86,8 @@ class CriarDesafiosService {
             for (let i = 0; i < exercicios.length; i++) {
                 const exists_exercicio = await checkExercicioExists(exercicios[i].exercicioId);
                 if (!exists_exercicio) {
-                    return { data: "O exercicio não existe", status: 500 }
+                    throw new Error("O exercicio não existe")
+
                 }
 
                 const autor_exercicio = await getAutorExercicio(exercicios[i].exercicioId);
@@ -97,13 +98,15 @@ class CriarDesafiosService {
                 if (funcao == treinador) {
                     const marca_treinador = await getTreinadorMarca(criadorId)
                     if (marca_treinador != marca_autor) {
-                        return { data: "Não tem autorização", status: 500 }
+                        throw new Error("Não tem autorização")
+
                     }
                 }
                 // admin
                 else {
                     if (dono_marca != dono_marca_autor) {
-                        return { data: "Não tem autorização", status: 500 }
+                        throw new Error("Não tem autorização")
+
                     }
                 }
 
@@ -200,7 +203,7 @@ class CriarDesafiosService {
                     desafio_id: desafio.desafio_id
                 }
             })
-            return { data: error, status: 500 };
+            return { data: "Ocorreu um erro a criar o desafio", status: 500 };
         }
     }
 }
