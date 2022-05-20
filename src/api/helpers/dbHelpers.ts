@@ -21,6 +21,11 @@ let findUserDefinicoes = async (uId: string) => {
     const search = await client.definicoes_user.findFirst({
         where: {
             usersuid: uId,
+            AND: {
+                users: {
+                    isDeleted: false
+                }
+            }
         }
     })
     return search.def_id;
@@ -38,6 +43,7 @@ let checkTreinador = async (uId: string) => {
         where: {
             uid: uId,
             funcao_id: await getTreinadorFuncaoId(),
+            isDeleted: false
         }
     })
     return search.length != 0;
@@ -153,7 +159,8 @@ let checkPlanoTreinoIsRealizado = async (planoId: string) => {
 let checkUserIdExists = async (userId: string) => {
     const search = await client.users.findMany({
         where: {
-            uid: userId
+            uid: userId,
+            isDeleted: false
         }
     })
     return search.length != 0;
@@ -161,9 +168,10 @@ let checkUserIdExists = async (userId: string) => {
 
 let getUserByID = async (userId: string) => {
 
-    const user = await client.users.findUnique({
+    const user = await client.users.findFirst({
         where: {
-            uid: userId
+            uid: userId,
+            isDeleted: false
         }
     })
     return user;
@@ -184,9 +192,10 @@ let getFuncaoId = async (nome: string) => {
 }
 async function getUserFuncao(uid: string) {
 
-    const search = await client.users.findUnique({
+    const search = await client.users.findFirst({
         where: {
-            uid
+            uid,
+            isDeleted: false
         },
         select: {
             funcao_id: true
@@ -402,13 +411,14 @@ let checkDonoGinasio = async (ginasioId: string, donoId: string) => {
 let checkDonoOuTreinadorGinasio = async (ginasioId: string, userId: string) => {
     const search = await client.ginasio.findFirst({
         where: {
-            ginasio_id: ginasioId
+            ginasio_id: ginasioId,
         },
         select: {
             marca_id: true,
             marcas: {
                 select: {
                     dono_id: true,
+
                 }
             }
         }
@@ -421,7 +431,12 @@ let checkDonoOuTreinadorGinasio = async (ginasioId: string, userId: string) => {
         const searchTreinador = await client.treinadores_marca.findMany({
             where: {
                 marca_id: search.marca_id,
-                treinador_uid: userId
+                treinador_uid: userId,
+                AND: {
+                    users: {
+                        isDeleted: false
+                    }
+                }
             }
         })
         if (searchTreinador.length != 0) {
@@ -435,7 +450,12 @@ let checkDonoMarca = async (marcaId: string, userId: string) => {
     const search = await client.marcas.findFirst({
         where: {
             marca_id: marcaId,
-            dono_id: userId
+            dono_id: userId,
+            AND: {
+                users: {
+                    isDeleted: false
+                }
+            }
         },
         select: {
             marca_id: true
@@ -479,7 +499,12 @@ let checkMobilidadeMarcaUser = async (userId: string) => {
     if (userMarca === null) {
         const userGinasio = await client.aluno_ginasio.findFirst({
             where: {
-                user_id: userId
+                user_id: userId,
+                AND: {
+                    users: {
+                        isDeleted: false
+                    }
+                }
             }
         })
 
@@ -661,12 +686,19 @@ let checkTreinadorGinasio = async (ginasioId: string, treinadorId: string) => {
 }
 
 let getTreinadorMarca = async (treinadorId: string) => {
-
+    console.log(treinadorId)
     const searchTreinador = await client.treinadores_marca.findFirst({
         where: {
-            treinador_uid: treinadorId
+            treinador_uid: treinadorId,
+            AND: {
+                users: {
+                    isDeleted: false
+                }
+            }
+
         }
     })
+    console.log('Treinador', searchTreinador)
 
     return searchTreinador.marca_id;
 }
@@ -928,7 +960,12 @@ let getGinasioAluno = async (alunoId: string) => {
         where: {
             aluno_ginasio: {
                 every: {
-                    user_id: alunoId
+                    user_id: alunoId,
+                    AND: {
+                        users: {
+                            isDeleted: false
+                        }
+                    }
                 }
             }
         }
@@ -964,7 +1001,12 @@ let getAlunoMarca = async (alunoId: string) => {
 let checkAlunoGinasio = async (alunoId: string) => {
     const searchAluno = await client.aluno_ginasio.findFirst({
         where: {
-            user_id: alunoId
+            user_id: alunoId,
+            AND: {
+                users: {
+                    isDeleted: false
+                }
+            }
         }
     })
 

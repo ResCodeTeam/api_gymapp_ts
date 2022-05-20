@@ -182,7 +182,8 @@ export class VerPerfilService {
 
         const funcao = await client.users.findFirst({
             where: {
-                uid: auId
+                uid: auId,
+                isDeleted: false
             },
             select: {
                 funcoes: {
