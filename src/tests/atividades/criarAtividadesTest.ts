@@ -33,7 +33,6 @@ describe('- Criar atividade corretamente', () => {
       .then(res => {
 
         res.should.have.status(200)
-        console.log(res.body)
         // verificar se é um object
         chai.expect(res.body).to.be.an("object")
 
