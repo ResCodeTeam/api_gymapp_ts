@@ -12,8 +12,6 @@ class RemoverIsAceiteAvaliacoesService {
     const ginasio_agendamento = await getAgendamentoAvaliacoesGinasio(agendamentoId);
     const marca_ginasio = (await getMarcaGym(ginasio_agendamento)).marca_id;
     const marca_treinador = await getTreinadorMarca(treinadorId)
-    console.log(marca_ginasio)
-    console.log(marca_treinador)
 
     if (marca_ginasio != marca_treinador) {
       return { data: "Não tem autorização", status: 500 }
@@ -23,12 +21,6 @@ class RemoverIsAceiteAvaliacoesService {
     if (is_aceite) {
       return { data: "O agendamento da avaliação ainda não foi aceite", status: 500 }
     }
-
-    const agendamento = await client.agendamentos_avaliacoes.findUnique({
-      where: {
-        agendamento_id: agendamentoId
-      }
-    })
 
     await client.agendamentos_avaliacoes.update({
       where: {

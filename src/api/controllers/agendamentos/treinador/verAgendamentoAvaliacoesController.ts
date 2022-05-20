@@ -3,9 +3,9 @@ import { VerAgendamentoAvaliacoesService } from "../../../services/agendamentos/
 
 export class VerAgendamentoAvaliacoesController {
     async handle(request: Request, response: Response) {
-
+        const uid = request.params.treinadorId
         const verAgendamentoAvaliacoesService = new VerAgendamentoAvaliacoesService();
-        const resp = await verAgendamentoAvaliacoesService.execute();
+        const resp = await verAgendamentoAvaliacoesService.execute(uid);
         response.json(resp.data).status(resp.status);
     }
 }

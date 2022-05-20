@@ -102,8 +102,8 @@ treinadorRouter.put("/:treinadorId/agenda/desafios/:id/", aceitarDesafiosControl
 treinadorRouter.put("/:treinadorId/agenda/avaliacao/:id/", aceitarAvaliacoesController.handle);
 treinadorRouter.delete("/:treinadorId/agenda/desafios/:agendamento_id/", removerIsAceiteDesafiosController.handle);
 treinadorRouter.delete("/:treinadorId/agenda/avaliacao/:agendamento_id/", removerIsAceiteAvaliacoesController.handle);
-treinadorRouter.get("/agenda/desafios/", verAgendamentosDesafiosController.handle);
-treinadorRouter.get("/agenda/avaliacoes/", verAgendamentoAvaliacoesController.handle);
+treinadorRouter.get("/:treinadorId/agenda/desafios/", verAgendamentosDesafiosController.handle);
+treinadorRouter.get("/:treinadorId/agenda/avaliacoes/", verAgendamentoAvaliacoesController.handle);
 //#endregion
 
 //#region PlanoTreino

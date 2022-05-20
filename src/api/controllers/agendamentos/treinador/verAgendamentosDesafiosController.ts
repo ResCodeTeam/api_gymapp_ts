@@ -3,9 +3,9 @@ import { VerAgendamentosDesafiosService } from "../../../services/agendamentos/t
 
 export class VerAgendamentosDesafiosController {
     async handle(request: Request, response: Response) {
-
+        const uid = request.params.treinadorId
         const verAgendamentosDesafiosService = new VerAgendamentosDesafiosService();
-        const resp = await verAgendamentosDesafiosService.execute();
+        const resp = await verAgendamentosDesafiosService.execute(uid);
         response.json(resp.data).status(resp.status);
     }
 }
