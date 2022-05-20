@@ -5,6 +5,9 @@ export class VerTodasMarcasController {
 
         async handle(request: Request, response: Response) {
                 const donoId = request.params.adminId;
+                if (donoId === undefined) {
+                        response.json("Pedido inválido").status(500);
+                }
 
                 const verTodasMarcasService = new VerTodasMarcasService();
                 const resp = await verTodasMarcasService.execute({ donoId });

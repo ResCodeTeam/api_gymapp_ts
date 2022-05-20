@@ -15,12 +15,12 @@ export class EditarMarcaController {
             logotipo,
             mobilidade,
         } = request.body;
-        if (nome === undefined || cor === undefined || logotipo === undefined || mobilidade === undefined) {
-            throw new Error("Pedido inválido")
+        if (marcaId === undefined || adminId === undefined || nome === undefined || cor === undefined || logotipo === undefined || mobilidade === undefined) {
+            response.json("Pedido inválido").status(500);
         }
 
         const editarMarcaService = new EditarMarcaService();
-        console.log(marcaId);
+
         const resp = await editarMarcaService.execute({
             adminId,
             marcaId,

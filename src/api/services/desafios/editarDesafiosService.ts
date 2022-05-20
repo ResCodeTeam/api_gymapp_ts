@@ -41,7 +41,6 @@ export class EditarDesafioService {
             //sim
             if (desafio.data_inicio < hoje) {
                 //verificar se se pretende alterar a data de inicio
-                console.log(data.data_inicio, desafio.data_inicio)
                 if (data.data_inicio !== undefined) {
                     return { data: "A data de início não pode ser alterada", status: 500 }
                 }

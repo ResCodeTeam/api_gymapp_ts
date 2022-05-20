@@ -64,7 +64,6 @@ describe("Teste Obter Info de um desafio", () => {
           res.should.have.status(200)
           // verificar se é um object
           chai.expect(res.body).to.be.an("object")
-          console.log(res.body)
 
           //verificar se as propriedades todas existem
           chai.expect(res.body).to.have.property("desafio_id")

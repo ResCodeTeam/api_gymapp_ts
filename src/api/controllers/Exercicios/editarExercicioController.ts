@@ -8,8 +8,8 @@ export class EditarExercicioController {
         const exercicioId = request.params.exercicios_id
         const autorId = request.params.treinadorId;
         const { nome, descricao, isTempo } = request.body;
-        if (nome === undefined || descricao === undefined || isTempo === undefined) {
-            throw new Error("Pedido inválido")
+        if (exercicioId === undefined || autorId === undefined || nome === undefined || descricao === undefined || isTempo === undefined) {
+            response.json("Pedido inválido").status(500);
         }
 
         const editarExercicioService = new EditarExercicioService()

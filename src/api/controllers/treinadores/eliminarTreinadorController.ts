@@ -5,6 +5,9 @@ class EliminarTreinadorController {
   async handle(request: Request, response: Response) {
     const treinador_id = request.params.id;
     const userId = request.params.adminId;
+    if (treinador_id === undefined || userId === undefined) {
+      response.json("Pedido inválido").status(500);
+    }
 
     const eliminarTreinadorService = new EliminarTreinadorService();
     const resp = await eliminarTreinadorService.execute({ treinador_id, userId });

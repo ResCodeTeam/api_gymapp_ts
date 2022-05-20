@@ -6,7 +6,10 @@ export class RemoverExercicioImagemController {
     const imagemId = request.params.imagemId;
     const treinadorId = request.params.treinadorId;
     const exercicioId = request.params.exercicioId;
-
+    if (imagemId === undefined || treinadorId === undefined || exercicioId === undefined) {
+      response.json("Pedido inválido").status(500);
+    }
+    
     const removerExercicioImagemService = new RemoverExercicioImagemService();
 
     const resp = await removerExercicioImagemService.execute(imagemId, treinadorId, exercicioId);

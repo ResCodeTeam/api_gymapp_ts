@@ -6,8 +6,8 @@ export class EditarAtividadesController {
     async handle(request: Request, response: Response) {
         const atividadeId = request.params.id
         const { descricao, icon } = request.body;
-        if (descricao === undefined || icon === undefined) {
-            throw new Error("Pedido inválido")
+        if (atividadeId === undefined || descricao === undefined || icon === undefined) {
+            response.json("Pedido inválido").status(500);
         }
 
         const editarAtividadesService = new EditarAtividadesService()

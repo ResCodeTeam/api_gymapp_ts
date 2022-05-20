@@ -6,6 +6,9 @@ export class AdicionarExercicioMusculoController {
     const treinadorId = request.params.treinadorId;
     const exercicioId = request.params.exercicioId;
     const musculoId = request.params.musculoId;
+    if (treinadorId === undefined || exercicioId === undefined || musculoId === undefined) {
+      response.json("Pedido inválido").status(500);
+    }
 
     const adicionarExercicioMusculoService = new AdicionarExercicioMusculoService();
     const resp = await adicionarExercicioMusculoService.execute(treinadorId, exercicioId, musculoId);

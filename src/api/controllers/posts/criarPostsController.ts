@@ -7,8 +7,8 @@ class CriarPostsController {
     const criadorId = request.params.userId;
 
     let { descricao, tipo, ginasioId, identificacao } = request.body;
-    if (descricao === undefined || tipo === undefined || identificacao === undefined) {
-      throw new Error("Pedido inválido")
+    if (criadorId === undefined || descricao === undefined || tipo === undefined || identificacao === undefined) {
+      response.json("Pedido inválido").status(500);
     }
     const data = new Date(Date.now())
 

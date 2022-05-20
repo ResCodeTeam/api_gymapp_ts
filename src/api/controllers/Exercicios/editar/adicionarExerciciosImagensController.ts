@@ -6,8 +6,8 @@ export class AdicionarExerciciosImagensController {
     const exercicioId = request.params.exercicioId;
     const treinadorId = request.params.treinadorId;
     const { url } = request.body;
-    if (url === undefined) {
-      throw new Error("Pedido inválido")
+    if (exercicioId === undefined || treinadorId === undefined ||url === undefined) {
+      response.json("Pedido inválido").status(500);
     }
 
     const adicionarExerciciosImagensService = new AdicionarExerciciosImagensService
