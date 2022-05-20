@@ -9,6 +9,18 @@ export interface IDayWeek {
 }
 
 
+let checkChangeEmail = async (email: string, uid: string) => {
+    const search = await client.users.findMany({
+        where: {
+            email,
+            uid: {
+                not: uid
+            }
+        }
+    })
+    return search.length != 0;
+}
+
 let checkEmail = async (email: string) => {
     const search = await client.users.findMany({
         where: {
@@ -1141,6 +1153,7 @@ export {
     getTreinadorPlano,
     checkAutorAvaliacao,
     getAdminMarca,
-    checkAutorGostoComentario
+    checkAutorGostoComentario,
+    checkChangeEmail
 }
 

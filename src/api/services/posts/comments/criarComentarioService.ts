@@ -20,6 +20,8 @@ export class CriarComentarioService {
             return { data: "Não existe publicação com o identificador: ", status: 500 }
         }
 
+
+
         let data = new Date();
         changeTimeZone(data)
 

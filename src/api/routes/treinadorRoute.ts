@@ -81,7 +81,7 @@ treinadorRouter.get("/:treinadorId/exercicios/treinador", verMeusExerciciosContr
 //#endregion
 
 //#region Treinos
-treinadorRouter.get("/treinos/", verTodosTreinosDosAlunosController.handle);
+treinadorRouter.get("/:treinadorId/treinos/", verTodosTreinosDosAlunosController.handle);
 //#endregion
 
 //#region Desafios
