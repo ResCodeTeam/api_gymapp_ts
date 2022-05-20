@@ -1,4 +1,3 @@
-
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import 'mocha';
@@ -8,33 +7,36 @@ const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
 const server = "localhost:8000"
-
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
-const idAgendamento = "1ceb7964-3817-4e7a-ab35-bc8e69e47379"
-
-// buscar o token de quem está logado - neste caso a Bianca - linha 25
+const idMarca = '2c4fc500-7373-44ed-a665-270f19da455c'
 let token = ''
-
-describe("Teste remover avaliação", () => {
+describe("Teste criar local de medida:", () => {
   beforeEach((done) => {
     chai
       .request(server)
       .post(baseUrl + "/auth/login")
       .send({
-        email: "treinador@treinador.com",
-        password: "treinador",
+        email: "admin@admin.com",
+        password: "admin",
       })
       .end((err, res) => {
         token = `Bearer ${res.body.token}`;
         res.should.have.status(200);
         done();
       });
+
   });
   describe('- Sem token', () => {
     it('Deve retornar erro de authToken invalido', () => {
-      return chai
-        .request(server)
-        .delete(baseUrl + '/treinador/agenda/avaliacao/' + idAgendamento)
+
+      return chai.request(server)
+        .post(baseUrl + '/admin/marca/' + idMarca + '/localMedida')
+        .send({
+          descricao: "dorsal",
+          unilado: false,
+
+        })
+
         .then(res => {
           res.should.have.status(500)
           chai.expect(res.body).to.have.property("status")
@@ -42,39 +44,48 @@ describe("Teste remover avaliação", () => {
         })
     })
   })
-
-  describe('- Token invalido', () => {
-    it('Deve retornar erro de authToken invalido', () => {
+  describe('-Registar aluno corretamente', () => {
+    it('Deve retornar aluno criado', () => {
       return chai
         .request(server)
-        .delete(baseUrl + '/treinador/agenda/avaliacao/' + idAgendamento)
-        .set("Authorization", tokenInvalido)
-        .then(res => {
-          res.should.have.status(500)
-          chai.expect(res.body).to.have.property("status")
-          chai.expect(res.body).to.have.property("message")
-        })
-    })
-  })
-
-  describe('-remover avaliação corretamente', () => {
-    it('Deve retornar mensagem de remoção', () => {
-      return chai
-        .request(server)
-        .delete(baseUrl + '/treinador/agenda/avaliacao/' + idAgendamento)
+        .post(baseUrl + '/admin/marca/' + idMarca + '/localMedida')
         .set("Authorization", token)
+
+
+        .send({
+          descricao: "dorsal",
+          unilado: false,
+
+        })
+
+
         .then(res => {
 
           res.should.have.status(200)
+          console.log(res.body)
+          chai.expect(res.body).to.be.an("object")
 
+          //verificar se é um objeto
           //verificar se as propriedades todas existem
-          chai.expect(res.body).to.have.property("msg")
 
-          //verificar tipos das propriedades 
-          chai.expect(res.body['msg']).to.be.a("string")
+          chai.expect(res.body).to.have.property("descricao")
+          chai.expect(res.body).to.have.property("unilado")
+          chai.expect(res.body).to.have.property("local_medida_id")
+
+
+
+
+          chai.expect(res.body['descricao']).to.be.a("string")
+          chai.expect(res.body['unilado']).to.be.a("boolean")
+          chai.expect(res.body['local_medida_id']).to.be.a("string")
+
+
+
+
+
         })
+
     })
   })
+
 })
-
-

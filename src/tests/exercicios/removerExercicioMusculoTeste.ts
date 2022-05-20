@@ -1,4 +1,3 @@
-
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import 'mocha';
@@ -8,14 +7,12 @@ const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
 const server = "localhost:8000"
-
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
-const idAgendamento = "1ceb7964-3817-4e7a-ab35-bc8e69e47379"
-
-// buscar o token de quem está logado - neste caso a Bianca - linha 25
+const idExercicio = '05bb0690-db08-4b46-97dc-3853eba58d51'
+const idMusculo = '13d6659f-b559-4545-b74d-8a7ba4896a3e'
 let token = ''
 
-describe("Teste remover avaliação", () => {
+describe("Teste remover exercicio musculo:", () => {
   beforeEach((done) => {
     chai
       .request(server)
@@ -30,11 +27,13 @@ describe("Teste remover avaliação", () => {
         done();
       });
   });
+
+
   describe('- Sem token', () => {
-    it('Deve retornar erro de authToken invalido', () => {
+    it('Deve retornar erro de token invalido', () => {
       return chai
         .request(server)
-        .delete(baseUrl + '/treinador/agenda/avaliacao/' + idAgendamento)
+        .delete(baseUrl + '/treinador/exercicios/' + idExercicio + '/musculos/' + idMusculo)
         .then(res => {
           res.should.have.status(500)
           chai.expect(res.body).to.have.property("status")
@@ -43,12 +42,13 @@ describe("Teste remover avaliação", () => {
     })
   })
 
-  describe('- Token invalido', () => {
-    it('Deve retornar erro de authToken invalido', () => {
+  describe('- Token expirado', () => {
+    it('Deve retornar erro de token invalido', () => {
       return chai
         .request(server)
-        .delete(baseUrl + '/treinador/agenda/avaliacao/' + idAgendamento)
+        .delete(baseUrl + '/treinador/exercicios/' + idExercicio + '/musculos/' + idMusculo)
         .set("Authorization", tokenInvalido)
+
         .then(res => {
           res.should.have.status(500)
           chai.expect(res.body).to.have.property("status")
@@ -56,18 +56,19 @@ describe("Teste remover avaliação", () => {
         })
     })
   })
-
-  describe('-remover avaliação corretamente', () => {
+  describe('- Remover exercicio musculo corretamente', () => {
     it('Deve retornar mensagem de remoção', () => {
       return chai
         .request(server)
-        .delete(baseUrl + '/treinador/agenda/avaliacao/' + idAgendamento)
+        .delete(baseUrl + '/treinador/exercicios/' + idExercicio + '/musculos/' + idMusculo)
         .set("Authorization", token)
+
         .then(res => {
 
-          res.should.have.status(200)
 
-          //verificar se as propriedades todas existem
+
+
+          res.should.have.status(200)
           chai.expect(res.body).to.have.property("msg")
 
           //verificar tipos das propriedades 
@@ -76,5 +77,3 @@ describe("Teste remover avaliação", () => {
     })
   })
 })
-
-
