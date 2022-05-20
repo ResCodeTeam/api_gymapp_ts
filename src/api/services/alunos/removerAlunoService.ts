@@ -10,7 +10,11 @@ export class RemoverAlunoService {
     }
 
     const marcaId = await getAlunoMarca(uId);
-    await checkDonoMarca(marcaId, adminId);
+    const dono = await checkDonoMarca(marcaId, adminId);
+    if(!dono)
+    {
+      return { data: "Não possui autorização", status: 500 }
+    }
 
     const removerAluno = await client.users.update({
       where: {
