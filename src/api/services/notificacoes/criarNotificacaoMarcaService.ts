@@ -88,6 +88,7 @@ export class CriarNotificacaoMarcaService {
       }
     }
 
+    console.log(ginasios)
     if (!dstNoti) {
       throw new Error(`Não contém alunos`)
     }
