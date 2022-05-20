@@ -20,7 +20,7 @@ export class EditarMarcaController {
         }
 
         const editarMarcaService = new EditarMarcaService();
-        console.log(marcaId);
+
         const resp = await editarMarcaService.execute({
             adminId,
             marcaId,

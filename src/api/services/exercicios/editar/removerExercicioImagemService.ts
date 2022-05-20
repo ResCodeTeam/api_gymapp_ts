@@ -7,7 +7,6 @@ export class RemoverExercicioImagemService {
     if (!exists_exercicio) {
       return { data: "O exercício não existe", status: 500 }
     }
-    console.log(exercicioId);
     const exists_image = await checkImagemExercicioExists(imagemId)
     if (!exists_image) {
       return { data: "A imagem não existe", status: 500 }

@@ -61,7 +61,6 @@ describe("Teste Obter todos os ginasios de uma marca", () => {
         .set("Authorization", token)
         .then(res => {
           res.should.have.status(200)
-          console.log(res.body)
 
           chai.expect(res.body).to.be.an("array")
           if (res.body.length > 0) {

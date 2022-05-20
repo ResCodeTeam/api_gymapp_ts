@@ -62,7 +62,6 @@ describe("Teste remover exercicio:", () => {
         .set("Authorization", token)
         .then(res => {
 
-          console.log(res.body)
           res.should.have.status(200)
           chai.expect(res.body).to.have.property("msg")
 

@@ -64,7 +64,6 @@ describe("Teste Obter as definições do user", () => {
                     res.should.have.status(200)
                     chai.expect(res.body).to.be.an("array")
                     if (res.body.length > 0) {
-                        console.log(res.body)
                         chai.expect(res.body[0]).to.be.an("object")
 
                         //verificar se as propriedades todas existem

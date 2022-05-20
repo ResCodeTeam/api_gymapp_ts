@@ -4,7 +4,6 @@ import { client } from "../../../prisma/client";
 
 export class RemoverComentarioService {
   async execute(criadorId: string, comentarioId: string, publicacaoId: string) {
-    console.log(criadorId, comentarioId, publicacaoId)
     const existsPublicacao = await checkPostExists(publicacaoId);
     if (!existsPublicacao) {
       return { data: "Publicação inexistente", status: 500 }

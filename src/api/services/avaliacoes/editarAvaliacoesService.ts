@@ -62,7 +62,6 @@ export class EditarAvaliacaoService {
             }
 
             for (let imagem of dados.imagens) {
-                console.log(imagem)
                 await client.avaliacao_imagens.create({
                     data: {
                         avaliacao_id: avaliacao_id,
