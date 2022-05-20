@@ -61,7 +61,7 @@ model avaliacao_imagens {
   imagem_id    String     @id @default(uuid())
   avaliacao_id String
   url          String     @db.VarChar(255)
-  avaliacoes   avaliacoes @relation(fields: [avaliacao_id], references: [avaliacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkavaliacao_266291")
+  avaliacoes   avaliacoes @relation(fields: [avaliacao_id], references: [avaliacao_id], onDelete: Cascade, onUpdate: NoAction, map: "fkavaliacao_266291")
 }
 
 model avaliacoes {
@@ -314,7 +314,7 @@ model medidas_avaliacao {
   medida          String         @db.VarChar(255)
   unidade_medida  String         @db.VarChar(255)
   local_medida_id String
-  avaliacoes      avaliacoes     @relation(fields: [avaliacao_id], references: [avaliacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkmedidas_av747581")
+  avaliacoes      avaliacoes     @relation(fields: [avaliacao_id], references: [avaliacao_id], onDelete: Cascade, onUpdate: NoAction, map: "fkmedidas_av747581")
   locais_medidas  locais_medidas @relation(fields: [local_medida_id], references: [local_medida_id], onDelete: NoAction, onUpdate: NoAction, map: "fkmedidas_av481994")
 }
 
