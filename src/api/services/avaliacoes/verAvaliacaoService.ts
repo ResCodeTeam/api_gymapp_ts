@@ -9,6 +9,8 @@ export class VerAvaliacoesService {
             return { data: "O utilizador não existe", status: 500 }
         }
 
+        //TODO: Verificar se o treinador pode ver a avaliação
+
         const avaliacao = await client.avaliacoes.findMany({
             where: {
                 aluno_id: alunoId,
