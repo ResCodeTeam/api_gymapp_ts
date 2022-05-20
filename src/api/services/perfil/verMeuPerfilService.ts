@@ -4,9 +4,10 @@ import { VerTodosPostsUserService } from "../posts/obter/verTodosPostsUserServic
 
 export class VerMeuPerfilService {
   async execute(uid: string) {
-    const perfil = await client.users.findUnique({
+    const perfil = await client.users.findFirst({
       where: {
-        uid
+        uid,
+        isDeleted: false,
       }
     })
 

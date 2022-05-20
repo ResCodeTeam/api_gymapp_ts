@@ -72,7 +72,7 @@ class CriarPostsService {
 
       const verInfoPostService = new VerInfoPostService();
       const resp = await verInfoPostService.execute(post.publicacao_id)
-      return { data: resp, status: 200 };
+      return resp;
     }
   }
 }

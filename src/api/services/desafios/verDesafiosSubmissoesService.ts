@@ -10,22 +10,23 @@ export class VerDesafiosSubmissoesService {
         if (!exists_desafio) {
             console.log('atum')
             return { data: "Desafio não existe", status: 500 }
-            return { data: "O desafio não existe", status: 500 }
         }
-        console.log('aqui')
 
         const funcao = await getUserFuncao(uId);
-        console.log('aqui1')
         const treinador = await getFuncaoId("Treinador");
         const admin = await getFuncaoId("Administrador");
 
         const ginasio_desafio = await getDesafioGinasio(desafioId);
+        console.log('aqui1')
         const marca_ginasio = (await getMarcaGym(ginasio_desafio)).marca_id;
         const dono_marca = await getDonoMarca(marca_ginasio);
+        console.log('aqui')
 
         // treinador
         if (funcao == treinador) {
+            console.log(uId)
             const marca_treinador = await getTreinadorMarca(uId)
+            console.log(marca_treinador, marca_ginasio)
             if (marca_treinador != marca_ginasio) {
                 return { data: "Não tem autorização", status: 500 }
             }

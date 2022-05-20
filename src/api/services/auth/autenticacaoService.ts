@@ -6,7 +6,8 @@ export class AuthService {
     async execute(email: string, password: string) {
         const user = await client.users.findFirst({
             where: {
-                email
+                email,
+                isDeleted: false
             }
         })
 
@@ -28,16 +29,18 @@ export class AuthService {
                 refresh_token: refreshToken
             },
             where: {
-                uid: userId
+                uid: userId,
             }
         })
 
         const token = await generateSessionToken(userId)
 
         return {
-            data:{message: "Login concluido com sucesso",
-            token,
-            refreshToken},
+            data: {
+                message: "Login concluido com sucesso",
+                token,
+                refreshToken
+            },
             status: 200
         }
     }
