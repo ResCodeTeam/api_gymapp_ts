@@ -5,6 +5,9 @@ class RemoverAgendarDesafiosController {
     async handle(request: Request, response: Response) {
         const agendamentoId = request.params.agendamento_id;
         const uId = request.params.alunoId;
+        if (agendamentoId === undefined || uId === undefined) {
+            response.json("Pedido inválido").status(500);
+        }
 
         const removerAgendarDesafiosService = new RemoverAgendarDesafiosService();
         const resp = await removerAgendarDesafiosService.execute(agendamentoId, uId);

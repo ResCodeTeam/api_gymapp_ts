@@ -10,8 +10,8 @@ export class EditarModalidadesController {
         const ginasioId = request.params.ginasioId;
 
         let { imagemUrl, nome } = request.body;
-        if (imagemUrl === undefined || nome === undefined) {
-            throw new Error("Pedido inválido")
+        if (uid === undefined || modalidadeId === undefined || ginasioId === undefined || imagemUrl === undefined || nome === undefined) {
+            response.json("Pedido inválido").status(500);
         }
 
 

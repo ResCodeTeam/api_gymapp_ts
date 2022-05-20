@@ -21,7 +21,7 @@ export class EditarAvaliacaoController {
             medidas: request.body.medidas,
             imagens: request.body.imagens,
         }
-        if (data.peso === undefined ||
+        if (treinadorId === undefined || data.peso === undefined ||
             data.unidade_peso === undefined ||
             data.musculo === undefined ||
             data.gordura_corporal === undefined ||
@@ -32,7 +32,7 @@ export class EditarAvaliacaoController {
             data.metabolismo_basal === undefined ||
             data.medidas === undefined ||
             data.imagens === undefined) {
-            throw new Error("Pedido inválido")
+                response.json("Pedido inválido").status(500);
         }
 
         //Avaliação ID por parametro

@@ -6,6 +6,9 @@ export class ObterPlanoTreinoSemanalController {
     const uid = request.params.alunoId;
     const startDate = request.params.startDate;
     const endDate = request.params.endDate;
+    if (uid === undefined || startDate === undefined || endDate === undefined) {
+      response.json("Pedido inválido").status(500);
+    }
 
     const startDateParsed = new Date(startDate)
     const endDateParsed = new Date(endDate)

@@ -6,8 +6,8 @@ export class CriarNotificacaoGinasioController {
         const userId = request.params.adminId;
         const ginasioId = request.params.ginasioId;
         const { conteudo, tipo } = request.body;
-        if (conteudo === undefined || tipo === undefined) {
-            throw new Error("Pedido inválido")
+        if (userId === undefined || ginasioId === undefined || conteudo === undefined || tipo === undefined) {
+            response.json("Pedido inválido").status(500);
         }
 
         const criarNotificacaoMarcarController = new CriarNotificacaoGinasioService();

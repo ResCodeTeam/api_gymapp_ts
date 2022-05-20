@@ -5,6 +5,9 @@ export class RemoverGostoPublicacaoController {
   async handle(request: Request, response: Response) {
     const publicacaoId = request.params.id;
     const userId = request.params.userId;
+    if (publicacaoId === undefined || userId === undefined) {
+      response.json("Pedido inválido").status(500);
+    }
 
     const removerGostoService = new RemoverGostoPublicacaoService();
     const resp = await removerGostoService.execute(publicacaoId, userId)

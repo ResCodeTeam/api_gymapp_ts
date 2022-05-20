@@ -6,6 +6,9 @@ export class CriarGostoCommentController {
     const comentarioId = request.params.comentarioId;
     const publicacaoId = request.params.id;
     const criadorId = request.params.userId;
+    if (comentarioId === undefined || publicacaoId === undefined || criadorId === undefined) {
+      response.json("Pedido inválido").status(500);
+    }
 
     const criarGostoCommentService = new CriarGostoCommentService();
     const resp = await criarGostoCommentService.execute(comentarioId, publicacaoId, criadorId)
