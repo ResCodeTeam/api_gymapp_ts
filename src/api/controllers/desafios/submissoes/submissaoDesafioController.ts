@@ -7,11 +7,10 @@ export class SubmissaoDesafioController {
     const treinadorId = request.params.treinadorId;
 
     const { uid, valor, ginasioId } = request.body;
-    if (uid === undefined || valor === undefined || treinadorId === undefined || ginasioId === undefined) {
-      throw new Error("Pedido inválido")
+    if (desafioId === undefined || uid === undefined || valor === undefined || treinadorId === undefined || ginasioId === undefined) {
+      response.json("Pedido inválido").status(500);
     }
 
-    console.log(desafioId);
     const submissaoDesafioService = new SubmissaoDesafioService();
     const resp = await submissaoDesafioService.execute({ desafioId, uid, valor, treinadorId, ginasioId })
     response.json(resp.data).status(resp.status);

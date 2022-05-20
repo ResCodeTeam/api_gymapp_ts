@@ -5209,8 +5209,7 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "atividadeId": { "type": "string", "nullable": true },
-                  "modalidadeId": { "type": "string", "nullable": true },
+                  "modalidadeId": { "type": "string" },
                   "duracao": { "type": "string" },
                   "calorias": { "type": "number" },
                   "distancia": { "type": "number" },
@@ -5477,8 +5476,7 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "atividadeId": { "type": "string", "nullable": true },
-                  "modalidadeId": { "type": "string", "nullable": true },
+                  "modalidadeId": { "type": "string" },
                   "duracao": { "type": "string" },
                   "calorias": { "type": "number" },
                   "distancia": { "type": "number" },

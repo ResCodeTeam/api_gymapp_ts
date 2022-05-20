@@ -7,8 +7,8 @@ class CriarDesafiosController {
         const criadorId = request.params.userId;
         const ginasioId = request.params.id;
         let { nome, modalidadeId, dataInicio, dataFim, recompensa, descricao, exercicios, regras } = request.body;
-        if (nome === undefined || modalidadeId === undefined || dataInicio === undefined || dataFim === undefined || recompensa === undefined || descricao === undefined || exercicios === undefined || regras === undefined) {
-            throw new Error("Pedido inválido")
+        if (criadorId === undefined || ginasioId === undefined || nome === undefined || modalidadeId === undefined || dataInicio === undefined || dataFim === undefined || recompensa === undefined || descricao === undefined || exercicios === undefined || regras === undefined) {
+            response.json("Pedido inválido").status(500);
         }
 
         let hoje = new Date();
@@ -18,18 +18,18 @@ class CriarDesafiosController {
 
         changeTimeZone(hoje)
         if (dataInicio < hoje) {
-            throw new Error("Data de início deve ser posterior ou igual a data atual")
+            response.json("Data de início deve ser posterior ou igual a data atual").status(500);
         }
         if (dataFim < hoje) {
-            throw new Error("Data de fim deve ser posterior a data atual")
+            response.json("Data de fim deve ser posterior a data atual").status(500);
         }
 
         if (dataInicio >= dataFim) {
-            throw new Error("Data de início deve ser anterior à data de fim")
+            response.json("Data de início deve ser anterior à data de fim").status(500);
         }
 
         if (dataFim <= dataInicio) {
-            throw new Error("Data de fim deve ser posterior à data de início")
+            response.json("Data de fim deve ser posterior à data de início").status(500);
         }
 
         const criarDesafiosService = new CriarDesafiosService();

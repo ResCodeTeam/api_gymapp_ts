@@ -7,8 +7,8 @@ export class RegistarTreinadorController {
     const marcaId = request.params.id;
     const userId = request.params.adminId;
     let { email, nome, password, dataNasc, dataEntrada, genero } = request.body;
-    if (email === undefined || nome === undefined || password === undefined || dataNasc === undefined || dataEntrada === undefined || genero === undefined) {
-      throw new Error("Pedido inválido")
+    if (marcaId === undefined || userId === undefined || email === undefined || nome === undefined || password === undefined || dataNasc === undefined || dataEntrada === undefined || genero === undefined) {
+      response.json("Pedido inválido").status(500);
     }
 
     dataNasc = new Date(dataNasc);

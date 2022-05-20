@@ -8,8 +8,8 @@ export class EditarPublicacaoController {
     const publicacaoId = request.params.id;
 
     const { descricao } = request.body;
-    if (publicacaoId === undefined || descricao === undefined) {
-      throw new Error("Pedido inválido")
+    if (uId === undefined || publicacaoId === undefined || descricao === undefined) {
+      response.json("Pedido inválido").status(500);
     }
     let newData = new Date(Date.now());
     const editarPublicacaoService = new EditarPublicacaoService();

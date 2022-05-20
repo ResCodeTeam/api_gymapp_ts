@@ -6,6 +6,9 @@ export class RemoverExercicioMusculoController {
     const treinadorId = request.params.treinadorId;
     const exercicioId = request.params.exercicioId;
     const musculoId = request.params.musculoId;
+    if (treinadorId === undefined || exercicioId === undefined || musculoId === undefined) {
+      response.json("Pedido inválido").status(500);
+    }
 
     const removerMusculoExercicioService = new RemoverExercicioMusculoService();
     const resp = await removerMusculoExercicioService.execute(treinadorId, exercicioId, musculoId);

@@ -7,8 +7,8 @@ export class EditarPerfilPrivadoController {
     async handle(request: Request, response: Response) {
         const uId = request.params.userId;
         const { is_privado } = request.body;
-        if (is_privado === undefined) {
-            throw new Error("Pedido inválido")
+        if (uId === undefined || is_privado === undefined) {
+            response.json("Pedido inválido").status(500);
         }
 
         const editarPerfilPrivadoController = new EditarPerfilPrivadoService();

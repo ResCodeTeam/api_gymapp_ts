@@ -6,8 +6,8 @@ export class AgendarAvaliacaoController {
   async handle(request: Request, response: Response) {
     const uid = request.params.alunoId;
     let { ginasioId, dataAgendamento } = request.body;
-    if (ginasioId === undefined || dataAgendamento === undefined) {
-      throw new Error("Pedido inválido")
+    if (uid === undefined || ginasioId === undefined || dataAgendamento === undefined) {
+      response.json("Pedido inválido").status(500);
     }
 
     dataAgendamento = new Date(dataAgendamento)

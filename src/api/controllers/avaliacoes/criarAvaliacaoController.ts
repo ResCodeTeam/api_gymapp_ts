@@ -19,8 +19,8 @@ export class CriarAvaliacaoController {
       imagens,
       medidas
     } = request.body;
-    if (peso === undefined || unidadePeso === undefined || treinadorId === undefined || musculo === undefined || gorduraCorporal === undefined || gorduraVisceral === undefined || agua === undefined || proteina === undefined || massaOssea === undefined || metabolismoBasal === undefined || imagens === undefined || medidas === undefined) {
-      throw new Error("Pedido inválido")
+    if (treinadorId === undefined || alunoId === undefined || peso === undefined || unidadePeso === undefined || treinadorId === undefined || musculo === undefined || gorduraCorporal === undefined || gorduraVisceral === undefined || agua === undefined || proteina === undefined || massaOssea === undefined || metabolismoBasal === undefined || imagens === undefined || medidas === undefined) {
+      response.json("Pedido inválido").status(500);
     }
 
     const data = new Date(Date.now());
@@ -42,6 +42,6 @@ export class CriarAvaliacaoController {
       medidas
     });
 
-        response.json(resp.data).status(resp.status);
+      response.json(resp.data).status(resp.status);
   }
 }

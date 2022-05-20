@@ -4,6 +4,9 @@ import { VerAgendamentosAvaliacoesAlunoService } from "../../../services/agendam
 export class VerAgendamentosAvaliacoesAlunoController {
     async handle(request: Request, response: Response) {
         const uId = request.params.alunoId;
+        if (uId === undefined) {
+            response.json("Pedido inválido").status(500);
+        }
 
         const verAgendamentosAvaliacoesAlunoService = new VerAgendamentosAvaliacoesAlunoService();
         const resp = await verAgendamentosAvaliacoesAlunoService.execute(uId);

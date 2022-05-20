@@ -5,7 +5,7 @@ export class RegistarAdminController {
   async handle(request: Request, response: Response) {
     let { email, nome, password, dataNasc, dataEntrada, genero } = request.body;
     if (email === undefined || nome === undefined || password === undefined || dataNasc === undefined || dataEntrada === undefined || genero === undefined) {
-      throw new Error("Pedido inválido")
+      response.json("Pedido inválido").status(500);
     }
 
 

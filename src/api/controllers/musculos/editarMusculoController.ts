@@ -5,8 +5,8 @@ export class EditarMusculoController {
   async handle(request: Request, response: Response) {
     const musculoId = request.params.musculoId;
     const { nome, imagem } = request.body;
-    if (nome === undefined || imagem === undefined) {
-      throw new Error("Pedido inválido")
+    if (musculoId === undefined || nome === undefined || imagem === undefined) {
+      response.json("Pedido inválido").status(500);
     }
 
     const editarMusculosService = new EditarMusculoService();
