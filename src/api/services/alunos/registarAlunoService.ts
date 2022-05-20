@@ -7,6 +7,9 @@ import {
   checkGinasioExists,
   getMarcaGym,
   checkDonoGinasio,
+  checkUserIdExists,
+  getDonoMarca,
+  checkDonoMarca,
 } from "../../helpers/dbHelpers";
 
 interface IRegistarAlunoService {
@@ -32,6 +35,21 @@ export class RegistarAlunoService {
     ginasioId,
     donoId
   }: IRegistarAlunoService) {
+    const existsAdmin = await checkUserIdExists(donoId);
+    if (!existsAdmin) {
+      return { data: "Utilizador inexistente", status: 500 }
+    }
+
+    let existsGym = await checkGinasioExists(ginasioId);
+    if (!existsGym) {
+      return { data: "Ginásio não existe", status: 500 }
+    }
+
+    const marcaAdmin = await checkDonoGinasio(donoId, ginasioId);
+    if (!marcaAdmin) {
+      return { data: "Não tem permissão para registar alunos neste ginásio", status: 500 }
+    }
+
     // verificar se o aluno já está registado
     const existsEmail = await checkEmail(email);
     if (existsEmail) {
@@ -58,10 +76,7 @@ export class RegistarAlunoService {
 
     // obter o id da função
     const funcaoId = await getFuncaoId("Aluno");
-    let existsGym = await checkGinasioExists(ginasioId);
-    if (!existsGym) {
-      return { data: "Ginásio não existe", status: 500 }
-    }
+
 
     await checkDonoGinasio(ginasioId, donoId)
 
@@ -138,7 +153,7 @@ export class RegistarAlunoService {
           uid,
         },
       });
-      throw e;
+      return { data: "Erro ao registar aluno", status: 500 };
     }
   }
 }

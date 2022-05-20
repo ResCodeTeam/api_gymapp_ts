@@ -1,4 +1,5 @@
-import { checkEmail, checkUserIdExists } from "../../helpers/dbHelpers";
+import { hash } from "bcrypt";
+import { checkChangeEmail, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 
@@ -30,20 +31,20 @@ export class EditarPerfilService {
     }
 
     // verificar se o aluno já está registado
-    let existsEmail = await checkEmail(email);
+    let existsEmail = await checkChangeEmail(email, uId);
     if (existsEmail) {
       return { data: "Email já registado!", status: 500 }
     }
+    let passwd = await hash(password, 8);
 
     const user = await client.users.update({
       where: {
         uid: uId
-
       },
       data: {
         email: email,
         nome: nome,
-        password: password,
+        password: passwd,
         genero: genero,
         descricao: descricao,
         imagem_url: imagemUrl

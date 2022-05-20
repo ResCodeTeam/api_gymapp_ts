@@ -69,32 +69,40 @@ export class CriarAvaliacaoService {
           metabolismo_basal: metabolismoBasal
         }
       })
+      try {
+        for (let i = 0; i < imagens.length; i++) {
+          await client.avaliacao_imagens.create({
+            data: {
 
-      for (let i = 0; i < imagens.length; i++) {
-        await client.avaliacao_imagens.create({
-          data: {
+              avaliacao_id: avaliacao.avaliacao_id,
+              url: imagens[i]
 
-            avaliacao_id: avaliacao.avaliacao_id,
-            url: imagens[i]
-
-          }
-        })
+            }
+          })
+        }
 
         for (let i = 0; i < medidas.length; i++) {
           await client.medidas_avaliacao.create({
             data: {
-
               avaliacao_id: avaliacao.avaliacao_id,
               medida: medidas[i].medida,
               unidade_medida: medidas[i].unidadeMedida,
               local_medida_id: medidas[i].localMedidaId
             }
           })
-
-
         }
+
+
         return { data: avaliacao, status: 200 };
+      } catch (err) {
+        await client.avaliacoes.delete({
+          where: {
+            avaliacao_id: avaliacao.avaliacao_id
+          }
+        })
+        return { data: "Erro ao criar avaliação", status: 500 }
       }
+
     }
   }
 }

@@ -1,5 +1,5 @@
 import { client } from "../../../prisma/client";
-import { checkUserIdExists, checkGinasioExists, checkDesafioIdExists, checkTreinador, checkDesafioDisponivel, getDesafioGinasio, getMarcaGym, checkMobilidadeMarcaUser } from "../../../helpers/dbHelpers";
+import { checkUserIdExists, checkGinasioExists, checkDesafioIdExists, checkTreinador, checkDesafioDisponivel, getDesafioGinasio, getMarcaGym, checkMobilidadeMarcaUser, getMarcaAluno, getGinasioAluno } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
 interface IAgendarDesafiosService {
@@ -44,12 +44,14 @@ export class AgendarDesafiosService {
 
     const { mobilidade, id } = await checkMobilidadeMarcaUser(uid);
     if (mobilidade) {
-      if (id['marca_id'] != marca_ginasio || id['marca_id'] != marca_desafio) {
+      const userMarca = await getMarcaAluno(uid);
+      if (id['marca_id'] != marca_ginasio || id['marca_id'] != marca_desafio || userMarca != marca_ginasio) {
         return { data: "Não possui permissão", status: 500 }
       }
     }
     else {
-      if (id['ginasio_id'] != ginasioId || id['ginasio_id'] != ginasio_desafio) {
+      const userGym = await getGinasioAluno(uid)
+      if (id['ginasio_id'] != ginasioId || id['ginasio_id'] != ginasio_desafio || userGym != ginasioId) {
         return { data: "Não possui permissão", status: 500 }
       }
     }
