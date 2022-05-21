@@ -6,7 +6,7 @@ import { RemoverAgendarAvaliacaoController } from "../controllers/agendamentos/a
 import { RemoverAgendarDesafiosController } from "../controllers/agendamentos/aluno/removerAgendarDesafiosController";
 import { VerAgendamentosAvaliacoesAlunoController } from "../controllers/agendamentos/aluno/verAgendamentosAvaliacoesAlunoController";
 import { VerAgendamentosDesafiosAlunoController } from "../controllers/agendamentos/aluno/verAgendamentosDesafiosAlunoController";
-import { VerAvaliacoesController } from "../controllers/avaliacoes/verAvaliacaoController";
+import { VerAvaliacaoAlunoController } from "../controllers/avaliacoes/verAvaliacaoAlunoController";
 import { EditarPlanoTreinoRealizadoController } from "../controllers/plano/editarPlanoTreinoRealizadoController";
 import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanalController";
 import { RemoverPlanoTreinoRealizadoController } from "../controllers/plano/removerPlanoTreinoRealizadoController";
@@ -21,7 +21,7 @@ const alunoRouter = express.Router();
 
 const criarTreinosController = new CriarTreinosController();
 const removerTreinosController = new RemoverTreinosController();
-const verAvaliacoesController = new VerAvaliacoesController();
+const verAvaliacoesController = new VerAvaliacaoAlunoController();
 const verTreinosAlunosController = new VerTreinosAlunosController();
 const editarTreinosController = new EditarTreinosController();
 const obterPlanoTreinoSemanalController = new ObterPlanoTreinoSemanalController();
@@ -42,7 +42,7 @@ alunoRouter.put("/:alunoId/treinos/:treino_id", editarTreinosController.handle);
 //#endregion
 
 //#region avaliacao
-alunoRouter.get("/:alunoId/avaliacoes/", verAvaliacoesController.handle);
+alunoRouter.get("/:userId/avaliacoes/:alunoId", verAvaliacoesController.handle);
 //#endregion
 
 //#region Plano de Treino

@@ -1,15 +1,37 @@
-import { checkUserIdExists } from "../../helpers/dbHelpers";
+import { checkUserIdExists, getFuncaoId, getGinasioAluno, getMarcaAluno, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class VerAvaliacoesService {
-    async execute(alunoId: string) {
+    async execute(userId: string, alunoId: string) {
 
         const exists_aluno = await checkUserIdExists(alunoId)
         if (!exists_aluno) {
             return { data: "O utilizador não existe", status: 500 }
         }
 
-        //TODO: Verificar se o treinador pode ver a avaliação
+
+
+        const existsID = await checkUserIdExists(userId)
+        if (!existsID) {
+            return { data: "O utilizador não existe", status: 500 }
+        }
+
+
+        const funcao = await getUserFuncao(userId);
+        const funcTreinadorId = await getFuncaoId('Treinador')
+        const funcAlunoId = await getFuncaoId('Aluno')
+        if (funcao == funcTreinadorId) {
+            const marcaAluno = await getMarcaAluno(alunoId);
+            const marcaTreinador = await getTreinadorMarca(userId);
+            console.log(marcaAluno, marcaTreinador)
+            if (marcaAluno != marcaTreinador) {
+                return { data: "Não possui permissões", status: 500 }
+            }
+        } else if (funcao == funcAlunoId) {
+            if (alunoId != userId) {
+                return { data: "Não possui permissões", status: 500 }
+            }
+        }
 
         const avaliacao = await client.avaliacoes.findMany({
             where: {

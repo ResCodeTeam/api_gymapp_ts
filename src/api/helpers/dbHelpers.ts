@@ -985,14 +985,27 @@ let getMarcaAluno = async (alunoId: string) => {
     const marca = await client.marcas.findFirst({
         where: {
             alunos_marca: {
-                every: {
+                some: {
                     uid: alunoId
                 }
             }
         }
     })
+    let id = marca.marca_id
+    if (!id) {
+        const ginasio = await client.ginasio.findFirst({
+            where: {
+                aluno_ginasio: {
+                    some: {
+                        user_id: alunoId
+                    }
+                }
+            }
+        })
+        id = ginasio.marca_id
+    }
 
-    return marca.marca_id
+    return id
 }
 
 let getAlunoMarca = async (alunoId: string) => {
