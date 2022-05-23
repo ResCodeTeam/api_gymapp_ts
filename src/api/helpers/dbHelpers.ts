@@ -159,6 +159,16 @@ let checkUserIdExists = async (userId: string) => {
     return search.length != 0;
 }
 
+let checkUserIdIsDeleted = async (userId: string) => {
+    const search = await client.users.findMany({
+        where: {
+            uid: userId,
+            isDeleted: false
+        }
+    })
+    return search.length == 0;
+}
+
 let getUserByID = async (userId: string) => {
 
     const user = await client.users.findUnique({
@@ -1014,6 +1024,7 @@ let getTreinadorPlano = async (planoId: string) => {
 export {
     checkEmail,
     checkUserIdExists,
+    checkUserIdIsDeleted,
     getFuncaoId,
     getUserFuncao,
     checkPostExists,
