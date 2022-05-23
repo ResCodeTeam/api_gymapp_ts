@@ -1,8 +1,6 @@
 
-import { checkMobilidadeMarcaUser, checkPerfilPrivado, checkUserIdExists, getAdminMarca, getDesafioGinasio, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
-import { verificarAdminTreinador } from "../../middlewares/verificarAdminTreinador";
+import { checkMobilidadeMarcaUser, checkPerfilPrivado, checkUserIdExists, checkUserIdIsDeleted, getAdminMarca, getDesafioGinasio, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
-import { VerTodasAtividadesService } from "../atividades/verTodasAtividadesService";
 import { VerTodosPostsUserService } from "../posts/obter/verTodosPostsUserService";
 import { VerTreinosAlunosService } from "../treinos/verTreinosAlunosService";
 
@@ -14,6 +12,12 @@ export class VerPerfilService{
             throw new Error("Utilizador não existe");
         }
         console.log(456);
+        const is_deleted_perfil= await checkUserIdIsDeleted(uId);
+        console.log(is_deleted_perfil)
+        if(is_deleted_perfil){
+            throw new Error("Utilizador não existe");
+        }
+        console.log(789);
 
         const funcao_user_autenticado = await getUserFuncao(auId);
         const treinador = await getFuncaoId("Treinador");
@@ -25,6 +29,7 @@ export class VerPerfilService{
         // Treinador
         if(funcao_user_autenticado == treinador)
         {  
+            console.log('Autenticação: Treinador');
             const marca_treinador_autenticado = await getTreinadorMarca(auId);
             const dono_marca_autenticado = await getDonoMarca(marca_treinador_autenticado);
             // treinador a ver o peril de um treinador
@@ -81,8 +86,9 @@ export class VerPerfilService{
             }
             // admin a ver o peril de um aluno
             else{
-                const dono_marca = await getDonoMarca(id['marca_id']);
-                if(mobilidade){
+                if (mobilidade) {
+                    const dono_marca = await getDonoMarca(id['marca_id']);
+
                     if(auId != dono_marca)
                     {
                         throw new Error("Não possui permissão");
@@ -90,9 +96,8 @@ export class VerPerfilService{
                 }
                 else{
                     console.log(123);
-                    const marca_gym = (await getMarcaGym(id['ginasio_id'])).marca_id;
-                    const dono_marca_gym = await getDonoMarca(marca_gym);
-                    if(auId != dono_marca_gym)
+                    const marca_gym = await getMarcaGym(id['ginasio_id']);
+                    if(auId != marca_gym.dono_id)
                     {
                         throw new Error("Não possui permissão");
                     }
@@ -192,7 +197,7 @@ export class VerPerfilService{
                 }
             }
         });
-        
+        console.log(perfil)
         const funcao = await client.users.findFirst({
             where: {
                 uid: auId
