@@ -12,6 +12,5 @@ export class ObterDefinicoesController {
 
     const resp = await obterDefinicoesService.execute(uid);
     response.status(resp.status).json(resp.data);
-
   }
 }

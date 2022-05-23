@@ -1,5 +1,5 @@
-import { Request, Response } from 'express'
-import { EditarMencoesService } from '../../services/definicoes/editarMencoesService';
+import { Request, Response } from "express";
+import { EditarMencoesService } from "../../services/definicoes/editarMencoesService";
 
 export class EditarMencoesController {
   async handle(request: Request, response: Response) {
@@ -13,6 +13,5 @@ export class EditarMencoesController {
     const resp = await editarMencoesService.execute(uid, mencoes);
 
     response.status(resp.status).json(resp.data);
-
   }
 }

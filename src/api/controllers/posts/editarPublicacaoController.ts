@@ -1,14 +1,17 @@
 import { Request, Response } from "express";
 import { EditarPublicacaoService } from "../../services/posts/editarPublicacoesService";
 
-
 export class EditarPublicacaoController {
   async handle(request: Request, response: Response) {
     const uId = request.params.userId;
     const publicacaoId = request.params.id;
 
     const { descricao } = request.body;
-    if (uId === undefined || publicacaoId === undefined || descricao === undefined) {
+    if (
+      uId === undefined ||
+      publicacaoId === undefined ||
+      descricao === undefined
+    ) {
       response.status(500).json("Pedido inválido");
     }
     let newData = new Date(Date.now());
@@ -18,7 +21,7 @@ export class EditarPublicacaoController {
       uId,
       publicacaoId,
       newData,
-      descricao
+      descricao,
     });
 
     response.status(resp.status).json(resp.data);

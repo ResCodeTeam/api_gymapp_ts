@@ -1,6 +1,5 @@
-import { Request, Response } from 'express'
-import { ImpedirIdentificacaoService } from '../../services/definicoes/impedirIdentificacaoservice';
-
+import { Request, Response } from "express";
+import { ImpedirIdentificacaoService } from "../../services/definicoes/impedirIdentificacaoservice";
 
 export class ImpedirIdentificacaoController {
   async handle(request: Request, response: Response) {
@@ -14,6 +13,5 @@ export class ImpedirIdentificacaoController {
     const resp = await impedirIdentificacaoService.execute(uid, identificacoes);
 
     response.status(resp.status).json(resp.data);
-
   }
 }

@@ -10,12 +10,16 @@ export class ObterPlanoTreinoSemanalController {
       response.status(500).json("Pedido inválido");
     }
 
-    const startDateParsed = new Date(startDate)
-    const endDateParsed = new Date(endDate)
+    const startDateParsed = new Date(startDate);
+    const endDateParsed = new Date(endDate);
 
     const obterPlanoTreinoSemanalService = new ObterPlanoTreinoSemanalService();
-    const resp = await obterPlanoTreinoSemanalService.execute(uid, startDateParsed, endDateParsed, uid)
+    const resp = await obterPlanoTreinoSemanalService.execute(
+      uid,
+      startDateParsed,
+      endDateParsed,
+      uid
+    );
     response.status(resp.status).json(resp.data);
-
   }
 }

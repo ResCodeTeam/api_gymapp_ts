@@ -12,6 +12,5 @@ export class RemoverMarcaController {
     const removerMarcaService = new RemoverMarcaService();
     const resp = await removerMarcaService.execute(uId, marcaId);
     response.status(resp.status).json(resp.data);
-  };
+  }
 }
-

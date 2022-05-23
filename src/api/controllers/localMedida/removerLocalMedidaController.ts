@@ -11,7 +11,7 @@ export class RemoverLocalMedidaController {
     }
 
     const removerLocalMedidaService = new RemoverLocalMedidaService();
-    const resp = await removerLocalMedidaService.execute(uid, marcaId, localId)
+    const resp = await removerLocalMedidaService.execute(uid, marcaId, localId);
 
     response.status(resp.status).json(resp.data);
   }
