@@ -5,7 +5,7 @@ class CriarAtividadeController {
   async handle(request: Request, response: Response) {
     const { descricao, icon } = request.body;
     if (descricao === undefined || icon === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const criarAtividadeService = new CriarAtividadeService();

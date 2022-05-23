@@ -6,12 +6,11 @@ export class RemoverMarcaController {
     const uId = request.params.adminId;
     const marcaId = request.params.id;
     if (uId === undefined || marcaId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const removerMarcaService = new RemoverMarcaService();
     const resp = await removerMarcaService.execute(uId, marcaId);
     response.status(resp.status).json(resp.data);
-  };
+  }
 }
-
