@@ -13,6 +13,6 @@ export class RemoverGostoCommentController {
     const removerGostoCommentService = new RemoverGostoCommentService();
     const resp = await removerGostoCommentService.execute(publicacaoId, criadorId, comentarioId)
 
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

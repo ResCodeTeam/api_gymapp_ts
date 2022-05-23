@@ -6,7 +6,7 @@ export class EncerrarDesafiosController {
         const uId = request.params.userId;
         const desafioId = request.params.id;
         const { isEncerrado } = request.body;
-        if (uId === undefined|| desafioId === undefined || isEncerrado === undefined) {
+        if (uId === undefined || desafioId === undefined || isEncerrado === undefined) {
             response.json("Pedido inválido").status(500);
         }
 
@@ -17,6 +17,6 @@ export class EncerrarDesafiosController {
             isEncerrado,
             desafioId
         });
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

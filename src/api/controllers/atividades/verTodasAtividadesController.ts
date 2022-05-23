@@ -6,6 +6,6 @@ export class VerTodasAtividadesController {
 
         const verTodasAtividadesService = new VerTodasAtividadesService();
         const resp = await verTodasAtividadesService.execute();
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

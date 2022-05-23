@@ -13,6 +13,6 @@ export class RemoverSubmissaoDesafioController {
     const removerSubmissaoDesafioService = new RemoverSubmissaoDesafioService();
     const resp = await removerSubmissaoDesafioService.execute(uid, submissaoId, desafioId)
 
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

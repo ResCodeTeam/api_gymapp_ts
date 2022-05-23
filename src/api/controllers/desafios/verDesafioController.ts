@@ -8,12 +8,12 @@ export class VerDesafioController {
         const uId = request.params.userId;
         const desafioId = request.params.id;
 
-        if (uId === undefined|| desafioId === undefined) {
+        if (uId === undefined || desafioId === undefined) {
             response.json("Pedido inválido").status(500);
         }
 
         const verDesafioService = new VerDesafioService();
         const resp = await verDesafioService.execute(uId, desafioId);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

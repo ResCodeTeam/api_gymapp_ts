@@ -11,6 +11,6 @@ export class VerAvaliacaoAlunoController {
 
     const verAvaliacaoService = new VerAvaliacoesService();
     const resp = await verAvaliacaoService.execute(userId, alunoId);
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

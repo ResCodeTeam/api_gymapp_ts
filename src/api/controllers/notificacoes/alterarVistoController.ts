@@ -15,6 +15,6 @@ export class AlterarVistoController {
             notiId,
             destUid
         });
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

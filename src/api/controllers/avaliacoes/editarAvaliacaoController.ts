@@ -32,7 +32,7 @@ export class EditarAvaliacaoController {
             data.metabolismo_basal === undefined ||
             data.medidas === undefined ||
             data.imagens === undefined) {
-                response.json("Pedido inválido").status(500);
+            response.json("Pedido inválido").status(500);
         }
 
         //Avaliação ID por parametro
@@ -41,7 +41,7 @@ export class EditarAvaliacaoController {
         //Utilizar Serviço criado
         const resp = await editarAvaliacaoService.execute(data, avaliacao_id, treinadorId)
 
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
 
 
     }

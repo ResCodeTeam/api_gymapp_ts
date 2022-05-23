@@ -18,7 +18,7 @@ class CriarGinasioModalidadesController {
       imagemUrl,
       adminId
     });
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }
 export { CriarGinasioModalidadesController };

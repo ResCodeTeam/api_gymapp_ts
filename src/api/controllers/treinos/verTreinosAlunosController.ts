@@ -10,6 +10,6 @@ export class VerTreinosAlunosController {
 
         const verTreinosAlunosService = new VerTreinosAlunosService();
         const resp = await verTreinosAlunosService.execute(uId);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

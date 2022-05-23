@@ -10,6 +10,6 @@ export class VerAgendamentosAvaliacoesAlunoController {
 
         const verAgendamentosAvaliacoesAlunoService = new VerAgendamentosAvaliacoesAlunoService();
         const resp = await verAgendamentosAvaliacoesAlunoService.execute(uId);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

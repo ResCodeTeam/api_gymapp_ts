@@ -9,8 +9,8 @@ export class AuthController {
         }
 
         const authService = new AuthService();
-        const resp = await authService.execute(email,password)
-        
-        response.json(resp.data).status(resp.status);
+        const resp = await authService.execute(email, password)
+
+        response.status(resp.status).json(resp.data);
     }
 }

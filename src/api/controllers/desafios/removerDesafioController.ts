@@ -12,7 +12,7 @@ export class RemoverDesafioController {
         const desafioId = request.params.id;
         const uId = request.params.userId;
 
-        if (uId === undefined|| desafioId === undefined) {
+        if (uId === undefined || desafioId === undefined) {
             response.json("Pedido inválido").status(500);
         }
 
@@ -20,7 +20,7 @@ export class RemoverDesafioController {
         const resp = await removerDesafioService.execute(desafioId, uId);
 
         //Responder
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
 
     }
 }

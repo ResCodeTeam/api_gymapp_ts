@@ -13,6 +13,6 @@ export class VerTreinadorGinasioController {
 
         const verTreinadorGinasioService = new VerTreinadorGinasioService();
         const resp = await verTreinadorGinasioService.execute(uId, marcaId);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

@@ -32,6 +32,6 @@ export class EditarDesafioController {
 
         const resp = await editarDesafioService.execute(uId, data, desafioId)
 
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

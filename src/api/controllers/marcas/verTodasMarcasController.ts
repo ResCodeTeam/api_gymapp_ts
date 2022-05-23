@@ -11,6 +11,6 @@ export class VerTodasMarcasController {
 
                 const verTodasMarcasService = new VerTodasMarcasService();
                 const resp = await verTodasMarcasService.execute({ donoId });
-                response.json(resp.data).status(resp.status);
+                response.status(resp.status).json(resp.data);
         }
 }

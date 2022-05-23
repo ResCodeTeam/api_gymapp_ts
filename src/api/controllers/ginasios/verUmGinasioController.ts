@@ -14,6 +14,6 @@ export class VerUmGinasioController {
 
         const verUmGinasioService = new VerUmGinasioService();
         const resp = await verUmGinasioService.execute(donoId, ginasioId);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

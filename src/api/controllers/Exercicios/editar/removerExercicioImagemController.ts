@@ -9,10 +9,10 @@ export class RemoverExercicioImagemController {
     if (imagemId === undefined || treinadorId === undefined || exercicioId === undefined) {
       response.json("Pedido inválido").status(500);
     }
-    
+
     const removerExercicioImagemService = new RemoverExercicioImagemService();
 
     const resp = await removerExercicioImagemService.execute(imagemId, treinadorId, exercicioId);
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

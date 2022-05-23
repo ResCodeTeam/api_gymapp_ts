@@ -17,6 +17,6 @@ export class CriarNotificacaoGinasioController {
             conteudo,
             tipo
         });
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

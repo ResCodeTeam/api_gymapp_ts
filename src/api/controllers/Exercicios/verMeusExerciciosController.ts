@@ -12,7 +12,7 @@ export class VerMeusExerciciosController {
         }
 
         const verMeusExerciciosService = new VerMeusExerciciosService();
-        const resp = await verMeusExerciciosService.execute({autorId});
-        response.json(resp.data).status(resp.status);
+        const resp = await verMeusExerciciosService.execute({ autorId });
+        response.status(resp.status).json(resp.data);
     }
 }

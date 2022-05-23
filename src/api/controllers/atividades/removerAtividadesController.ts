@@ -8,9 +8,9 @@ class RemoverAtividadesController {
             response.json("Pedido inválido").status(500);
         }
 
-    const removerAtividadesService = new RemoverAtividadesService();
-    const resp = await removerAtividadesService.execute(atividadeId);
-    response.json(resp.data).status(resp.status);
+        const removerAtividadesService = new RemoverAtividadesService();
+        const resp = await removerAtividadesService.execute(atividadeId);
+        response.status(resp.status).json(resp.data);
     }
 }
 

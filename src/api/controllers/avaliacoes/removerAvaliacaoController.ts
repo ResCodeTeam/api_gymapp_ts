@@ -17,6 +17,6 @@ export class RemoverAvaliacaoController {
         //Utilizar Serviço
         const resp = await removerAvaliacaoService.execute(avaliacao_id, treinadorId)
 
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

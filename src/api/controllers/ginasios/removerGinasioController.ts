@@ -8,10 +8,10 @@ class RemoverGinasioController {
         if (uId === undefined || ginasioId === undefined) {
             response.json("Pedido inválido").status(500);
         }
-        
-    const removerGinasioService = new RemoverGinasioService();
-    const resp = await removerGinasioService.execute(uId, ginasioId);
-    response.json(resp.data).status(resp.status);
+
+        const removerGinasioService = new RemoverGinasioService();
+        const resp = await removerGinasioService.execute(uId, ginasioId);
+        response.status(resp.status).json(resp.data);
     }
 }
 

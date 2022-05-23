@@ -7,7 +7,7 @@ export class VerTodosTreinosDosAlunosController {
         const uid = request.params.treinadorId;
         const resp = await verTodosTreinosDosAlunosService.execute(uid)
 
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
 
     }
 }
