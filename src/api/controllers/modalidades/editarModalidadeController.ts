@@ -8,24 +8,29 @@ export class EditarModalidadesController {
     const ginasioId = request.params.ginasioId;
 
     let { imagemUrl, nome } = request.body;
-    if (
-      uid === undefined ||
-      modalidadeId === undefined ||
-      ginasioId === undefined ||
-      imagemUrl === undefined ||
-      nome === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const editarModalidadesController = new EditarModalidadesService();
-    const resp = await editarModalidadesController.execute({
-      imagemUrl,
-      nome,
-      modalidadeId,
-      ginasioId,
-      uid,
-    });
-    response.status(resp.status).json(resp.data);
+    try{
+      if (
+        uid === undefined ||
+        modalidadeId === undefined ||
+        ginasioId === undefined ||
+        imagemUrl === undefined ||
+        nome === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const editarModalidadesController = new EditarModalidadesService();
+      const resp = await editarModalidadesController.execute({
+        imagemUrl,
+        nome,
+        modalidadeId,
+        ginasioId,
+        uid,
+      });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }

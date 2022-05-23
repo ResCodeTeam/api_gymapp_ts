@@ -5,12 +5,17 @@ export class RemoverPlanoTreinoController {
   async handle(request: Request, response: Response) {
     const treinadorId = request.params.treinadorId;
     const planoId = request.params.plano_id;
-    if (treinadorId === undefined || planoId === undefined) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const removerPlanoTreinoService = new RemoverPlanoTreinoService();
-    const resp = await removerPlanoTreinoService.execute(treinadorId, planoId);
-    response.status(resp.status).json(resp.data);
+    try{
+      if (treinadorId === undefined || planoId === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const removerPlanoTreinoService = new RemoverPlanoTreinoService();
+      const resp = await removerPlanoTreinoService.execute(treinadorId, planoId);
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }

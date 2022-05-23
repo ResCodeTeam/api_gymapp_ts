@@ -5,12 +5,17 @@ export class VerUmGinasioController {
   async handle(request: Request, response: Response) {
     const donoId = request.params.adminId;
     const ginasioId = request.params.id;
-    if (donoId === undefined || ginasioId === undefined) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const verUmGinasioService = new VerUmGinasioService();
-    const resp = await verUmGinasioService.execute(donoId, ginasioId);
-    response.status(resp.status).json(resp.data);
+    try{
+      if (donoId === undefined || ginasioId === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const verUmGinasioService = new VerUmGinasioService();
+      const resp = await verUmGinasioService.execute(donoId, ginasioId);
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }

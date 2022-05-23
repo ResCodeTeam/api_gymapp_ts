@@ -4,12 +4,17 @@ import { VerMeusExerciciosService } from "../../services/exercicios/verMeusExerc
 export class VerMeusExerciciosController {
   async handle(request: Request, response: Response) {
     const autorId = request.params.treinadorId;
-    if (autorId === undefined) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const verMeusExerciciosService = new VerMeusExerciciosService();
-    const resp = await verMeusExerciciosService.execute({ autorId });
-    response.status(resp.status).json(resp.data);
+    try{
+      if (autorId === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const verMeusExerciciosService = new VerMeusExerciciosService();
+      const resp = await verMeusExerciciosService.execute({ autorId });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }

@@ -5,13 +5,18 @@ export class EditarMencoesController {
   async handle(request: Request, response: Response) {
     const uid = request.params.userId;
     const { mencoes } = request.body;
-    if (uid === undefined || mencoes === undefined) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (uid === undefined || mencoes === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const editarMencoesService = new EditarMencoesService();
+      const resp = await editarMencoesService.execute(uid, mencoes);
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const editarMencoesService = new EditarMencoesService();
-    const resp = await editarMencoesService.execute(uid, mencoes);
-
-    response.status(resp.status).json(resp.data);
   }
 }

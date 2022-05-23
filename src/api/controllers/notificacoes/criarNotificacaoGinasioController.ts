@@ -6,23 +6,28 @@ export class CriarNotificacaoGinasioController {
     const userId = request.params.adminId;
     const ginasioId = request.params.ginasioId;
     const { conteudo, tipo } = request.body;
-    if (
-      userId === undefined ||
-      ginasioId === undefined ||
-      conteudo === undefined ||
-      tipo === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const criarNotificacaoMarcarController =
-      new CriarNotificacaoGinasioService();
-    const resp = await criarNotificacaoMarcarController.execute({
-      userId,
-      ginasioId,
-      conteudo,
-      tipo,
-    });
-    response.status(resp.status).json(resp.data);
+    try{
+      if (
+        userId === undefined ||
+        ginasioId === undefined ||
+        conteudo === undefined ||
+        tipo === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const criarNotificacaoMarcarController =
+        new CriarNotificacaoGinasioService();
+      const resp = await criarNotificacaoMarcarController.execute({
+        userId,
+        ginasioId,
+        conteudo,
+        tipo,
+      });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }

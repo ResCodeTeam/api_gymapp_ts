@@ -4,22 +4,25 @@ import { RemoverAvaliacoesService } from "../../services/avaliacoes/removerAvali
 export class RemoverAvaliacaoController {
   async handle(request: Request, response: Response) {
     const treinadorId = request.params.treinadorId;
-    //Declarar Serviço
-    const removerAvaliacaoService = new RemoverAvaliacoesService();
-
     //Pedir Id por parametro
     const avaliacao_id = request.params.id;
-
-    if (treinadorId === undefined || avaliacao_id === undefined) {
-      response.status(500).json("Pedido inválido");
+    
+    try{
+      if (treinadorId === undefined || avaliacao_id === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      //Declarar Serviço
+      const removerAvaliacaoService = new RemoverAvaliacoesService();
+      //Utilizar Serviço
+      const resp = await removerAvaliacaoService.execute(
+        avaliacao_id,
+        treinadorId
+      );
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    //Utilizar Serviço
-    const resp = await removerAvaliacaoService.execute(
-      avaliacao_id,
-      treinadorId
-    );
-
-    response.status(resp.status).json(resp.data);
   }
 }

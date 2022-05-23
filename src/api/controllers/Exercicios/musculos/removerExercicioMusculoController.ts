@@ -6,20 +6,25 @@ export class RemoverExercicioMusculoController {
     const treinadorId = request.params.treinadorId;
     const exercicioId = request.params.exercicioId;
     const musculoId = request.params.musculoId;
-    if (
-      treinadorId === undefined ||
-      exercicioId === undefined ||
-      musculoId === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const removerMusculoExercicioService = new RemoverExercicioMusculoService();
-    const resp = await removerMusculoExercicioService.execute(
-      treinadorId,
-      exercicioId,
-      musculoId
-    );
-    response.status(resp.status).json(resp.data);
+    try{
+      if (
+        treinadorId === undefined ||
+        exercicioId === undefined ||
+        musculoId === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const removerMusculoExercicioService = new RemoverExercicioMusculoService();
+      const resp = await removerMusculoExercicioService.execute(
+        treinadorId,
+        exercicioId,
+        musculoId
+      );
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }

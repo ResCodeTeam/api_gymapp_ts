@@ -6,21 +6,26 @@ export class EncerrarDesafiosController {
     const uId = request.params.userId;
     const desafioId = request.params.id;
     const { isEncerrado } = request.body;
-    if (
-      uId === undefined ||
-      desafioId === undefined ||
-      isEncerrado === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (
+        uId === undefined ||
+        desafioId === undefined ||
+        isEncerrado === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const encerrarDesafiosService = new EncerrarDesafiosService();
+  
+      const resp = await encerrarDesafiosService.execute({
+        uId,
+        isEncerrado,
+        desafioId,
+      });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const encerrarDesafiosService = new EncerrarDesafiosService();
-
-    const resp = await encerrarDesafiosService.execute({
-      uId,
-      isEncerrado,
-      desafioId,
-    });
-    response.status(resp.status).json(resp.data);
   }
 }

@@ -4,13 +4,18 @@ import { ObterDefinicoesService } from "../../services/definicoes/obterDefinicoe
 export class ObterDefinicoesController {
   async handle(request: Request, response: Response) {
     const uid = request.params.userId;
-    if (uid === undefined) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (uid === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const obterDefinicoesService = new ObterDefinicoesService();
+  
+      const resp = await obterDefinicoesService.execute(uid);
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const obterDefinicoesService = new ObterDefinicoesService();
-
-    const resp = await obterDefinicoesService.execute(uid);
-    response.status(resp.status).json(resp.data);
   }
 }

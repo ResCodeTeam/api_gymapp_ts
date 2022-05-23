@@ -7,23 +7,28 @@ class CriarGinasioModalidadesController {
     const adminId = request.params.adminId;
 
     const { nome, imagemUrl } = request.body;
-    if (
-      ginasioId === undefined ||
-      adminId === undefined ||
-      nome === undefined ||
-      imagemUrl === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const criarGinasioModalidadesService = new CriarGinasioModalidadesService();
-    const resp = await criarGinasioModalidadesService.execute({
-      ginasioId,
-      nome,
-      imagemUrl,
-      adminId,
-    });
-    response.status(resp.status).json(resp.data);
+    try{
+      if (
+        ginasioId === undefined ||
+        adminId === undefined ||
+        nome === undefined ||
+        imagemUrl === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const criarGinasioModalidadesService = new CriarGinasioModalidadesService();
+      const resp = await criarGinasioModalidadesService.execute({
+        ginasioId,
+        nome,
+        imagemUrl,
+        adminId,
+      });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }
 export { CriarGinasioModalidadesController };

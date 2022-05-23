@@ -7,23 +7,28 @@ export class EditarPublicacaoController {
     const publicacaoId = request.params.id;
 
     const { descricao } = request.body;
-    if (
-      uId === undefined ||
-      publicacaoId === undefined ||
-      descricao === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (
+        uId === undefined ||
+        publicacaoId === undefined ||
+        descricao === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+      let newData = new Date(Date.now());
+      const editarPublicacaoService = new EditarPublicacaoService();
+  
+      const resp = await editarPublicacaoService.execute({
+        uId,
+        publicacaoId,
+        newData,
+        descricao,
+      });
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-    let newData = new Date(Date.now());
-    const editarPublicacaoService = new EditarPublicacaoService();
-
-    const resp = await editarPublicacaoService.execute({
-      uId,
-      publicacaoId,
-      newData,
-      descricao,
-    });
-
-    response.status(resp.status).json(resp.data);
   }
 }

@@ -4,13 +4,18 @@ import { RemoverAtividadesService } from "../../services/atividades/removerAtivi
 class RemoverAtividadesController {
   async handle(request: Request, response: Response) {
     const atividadeId = request.params.id;
-    if (atividadeId === undefined) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const removerAtividadesService = new RemoverAtividadesService();
-    const resp = await removerAtividadesService.execute(atividadeId);
-    response.status(resp.status).json(resp.data);
+    try{
+      if (atividadeId === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const removerAtividadesService = new RemoverAtividadesService();
+      const resp = await removerAtividadesService.execute(atividadeId);
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }
 

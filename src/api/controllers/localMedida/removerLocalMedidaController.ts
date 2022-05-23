@@ -6,13 +6,18 @@ export class RemoverLocalMedidaController {
     const uid = request.params.adminId;
     const localId = request.params.id;
     const marcaId = request.params.marcaId;
-    if (uid === undefined || localId === undefined || marcaId === undefined) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (uid === undefined || localId === undefined || marcaId === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const removerLocalMedidaService = new RemoverLocalMedidaService();
+      const resp = await removerLocalMedidaService.execute(uid, marcaId, localId);
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const removerLocalMedidaService = new RemoverLocalMedidaService();
-    const resp = await removerLocalMedidaService.execute(uid, marcaId, localId);
-
-    response.status(resp.status).json(resp.data);
   }
 }

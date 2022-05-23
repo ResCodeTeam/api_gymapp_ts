@@ -6,20 +6,25 @@ export class CriarGostoCommentController {
     const comentarioId = request.params.comentarioId;
     const publicacaoId = request.params.id;
     const criadorId = request.params.userId;
-    if (
-      comentarioId === undefined ||
-      publicacaoId === undefined ||
-      criadorId === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const criarGostoCommentService = new CriarGostoCommentService();
-    const resp = await criarGostoCommentService.execute(
-      comentarioId,
-      publicacaoId,
-      criadorId
-    );
-    response.status(resp.status).json(resp.data);
+    try{
+      if (
+        comentarioId === undefined ||
+        publicacaoId === undefined ||
+        criadorId === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const criarGostoCommentService = new CriarGostoCommentService();
+      const resp = await criarGostoCommentService.execute(
+        comentarioId,
+        publicacaoId,
+        criadorId
+      );
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }

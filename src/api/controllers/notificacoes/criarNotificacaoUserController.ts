@@ -6,23 +6,28 @@ export class CriarNotificacaoUserController {
     const destinoId = request.params.id;
     const origemId = request.params.adminId;
     const { conteudo, tipo } = request.body;
-    if (
-      destinoId === undefined ||
-      origemId === undefined ||
-      conteudo === undefined ||
-      tipo === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (
+        destinoId === undefined ||
+        origemId === undefined ||
+        conteudo === undefined ||
+        tipo === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const criarNotificacaoUserService = new CriarNotificacaoUserService();
+      const resp = await criarNotificacaoUserService.execute({
+        destinoId,
+        origemId,
+        conteudo,
+        tipo,
+      });
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const criarNotificacaoUserService = new CriarNotificacaoUserService();
-    const resp = await criarNotificacaoUserService.execute({
-      destinoId,
-      origemId,
-      conteudo,
-      tipo,
-    });
-
-    response.status(resp.status).json(resp.data);
   }
 }
