@@ -6,20 +6,25 @@ export class ObterPlanoTreinoSemanalController {
     const uid = request.params.alunoId;
     const startDate = request.params.startDate;
     const endDate = request.params.endDate;
-    if (uid === undefined || startDate === undefined || endDate === undefined) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (uid === undefined || startDate === undefined || endDate === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const startDateParsed = new Date(startDate);
+      const endDateParsed = new Date(endDate);
+  
+      const obterPlanoTreinoSemanalService = new ObterPlanoTreinoSemanalService();
+      const resp = await obterPlanoTreinoSemanalService.execute(
+        uid,
+        startDateParsed,
+        endDateParsed,
+        uid
+      );
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const startDateParsed = new Date(startDate);
-    const endDateParsed = new Date(endDate);
-
-    const obterPlanoTreinoSemanalService = new ObterPlanoTreinoSemanalService();
-    const resp = await obterPlanoTreinoSemanalService.execute(
-      uid,
-      startDateParsed,
-      endDateParsed,
-      uid
-    );
-    response.status(resp.status).json(resp.data);
   }
 }

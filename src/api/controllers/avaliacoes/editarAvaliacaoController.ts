@@ -20,33 +20,38 @@ export class EditarAvaliacaoController {
       medidas: request.body.medidas,
       imagens: request.body.imagens,
     };
-    if (
-      treinadorId === undefined ||
-      data.peso === undefined ||
-      data.unidade_peso === undefined ||
-      data.musculo === undefined ||
-      data.gordura_corporal === undefined ||
-      data.gordura_visceral === undefined ||
-      data.agua === undefined ||
-      data.proteina === undefined ||
-      data.massa_ossea === undefined ||
-      data.metabolismo_basal === undefined ||
-      data.medidas === undefined ||
-      data.imagens === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (
+        treinadorId === undefined ||
+        data.peso === undefined ||
+        data.unidade_peso === undefined ||
+        data.musculo === undefined ||
+        data.gordura_corporal === undefined ||
+        data.gordura_visceral === undefined ||
+        data.agua === undefined ||
+        data.proteina === undefined ||
+        data.massa_ossea === undefined ||
+        data.metabolismo_basal === undefined ||
+        data.medidas === undefined ||
+        data.imagens === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      //Avaliação ID por parametro
+      const avaliacao_id = request.params.id;
+  
+      //Utilizar Serviço criado
+      const resp = await editarAvaliacaoService.execute(
+        data,
+        avaliacao_id,
+        treinadorId
+      );
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    //Avaliação ID por parametro
-    const avaliacao_id = request.params.id;
-
-    //Utilizar Serviço criado
-    const resp = await editarAvaliacaoService.execute(
-      data,
-      avaliacao_id,
-      treinadorId
-    );
-
-    response.status(resp.status).json(resp.data);
   }
 }

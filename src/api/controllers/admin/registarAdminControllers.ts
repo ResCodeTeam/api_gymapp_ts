@@ -31,7 +31,6 @@ export class RegistarAdminController {
 
       response.status(resp.status).json(resp.data);
     } catch (e) {
-      console.log('Aqui')
       response.status(500).json(e.message)
     }
   }

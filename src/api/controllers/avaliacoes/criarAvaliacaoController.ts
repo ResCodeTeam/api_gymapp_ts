@@ -18,44 +18,49 @@ export class CriarAvaliacaoController {
       imagens,
       medidas,
     } = request.body;
-    if (
-      treinadorId === undefined ||
-      alunoId === undefined ||
-      peso === undefined ||
-      unidadePeso === undefined ||
-      treinadorId === undefined ||
-      musculo === undefined ||
-      gorduraCorporal === undefined ||
-      gorduraVisceral === undefined ||
-      agua === undefined ||
-      proteina === undefined ||
-      massaOssea === undefined ||
-      metabolismoBasal === undefined ||
-      imagens === undefined ||
-      medidas === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const data = new Date(Date.now());
-    const criarAvaliacaoService = new CriarAvaliacaoService();
-    const resp = await criarAvaliacaoService.execute({
-      alunoId,
-      data,
-      peso,
-      unidadePeso,
-      treinadorId,
-      musculo,
-      gorduraCorporal,
-      gorduraVisceral,
-      agua,
-      proteina,
-      massaOssea,
-      metabolismoBasal,
-      imagens,
-      medidas,
-    });
-
-    response.status(resp.status).json(resp.data);
+    try{
+      if (
+        treinadorId === undefined ||
+        alunoId === undefined ||
+        peso === undefined ||
+        unidadePeso === undefined ||
+        treinadorId === undefined ||
+        musculo === undefined ||
+        gorduraCorporal === undefined ||
+        gorduraVisceral === undefined ||
+        agua === undefined ||
+        proteina === undefined ||
+        massaOssea === undefined ||
+        metabolismoBasal === undefined ||
+        imagens === undefined ||
+        medidas === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const data = new Date(Date.now());
+      const criarAvaliacaoService = new CriarAvaliacaoService();
+      const resp = await criarAvaliacaoService.execute({
+        alunoId,
+        data,
+        peso,
+        unidadePeso,
+        treinadorId,
+        musculo,
+        gorduraCorporal,
+        gorduraVisceral,
+        agua,
+        proteina,
+        massaOssea,
+        metabolismoBasal,
+        imagens,
+        medidas,
+      });
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }    
   }
 }

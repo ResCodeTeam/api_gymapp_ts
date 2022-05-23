@@ -6,12 +6,16 @@ export class VerTodosDesafiosController {
     const uId = request.params.userId;
     const ginasioId = request.params.id;
 
-    if (uId === undefined || ginasioId === undefined) {
-      response.status(500).json("Pedido inválido");
+    try{
+      if (uId === undefined || ginasioId === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const verTodosDesafiosService = new VerTodosDesafiosService();
+      const resp = await verTodosDesafiosService.execute({ uId, ginasioId });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const verTodosDesafiosService = new VerTodosDesafiosService();
-    const resp = await verTodosDesafiosService.execute({ uId, ginasioId });
-    response.status(resp.status).json(resp.data);
   }
 }

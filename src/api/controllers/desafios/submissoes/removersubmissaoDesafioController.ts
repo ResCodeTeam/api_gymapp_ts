@@ -6,21 +6,26 @@ export class RemoverSubmissaoDesafioController {
     const uid = request.params.treinadorId;
     const submissaoId = request.params.id;
     const desafioId = request.params.desafioId;
-    if (
-      uid === undefined ||
-      submissaoId === undefined ||
-      desafioId === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (
+        uid === undefined ||
+        submissaoId === undefined ||
+        desafioId === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const removerSubmissaoDesafioService = new RemoverSubmissaoDesafioService();
+      const resp = await removerSubmissaoDesafioService.execute(
+        uid,
+        submissaoId,
+        desafioId
+      );
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const removerSubmissaoDesafioService = new RemoverSubmissaoDesafioService();
-    const resp = await removerSubmissaoDesafioService.execute(
-      uid,
-      submissaoId,
-      desafioId
-    );
-
-    response.status(resp.status).json(resp.data);
   }
 }

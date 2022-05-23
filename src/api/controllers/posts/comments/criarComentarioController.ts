@@ -6,23 +6,28 @@ export class CriarComentarioController {
     const publicacao_id = request.params.id;
     const criador_id = request.params.userId;
     const { comentario, identificacao } = request.body;
-    if (
-      publicacao_id === undefined ||
-      criador_id === undefined ||
-      comentario === undefined ||
-      identificacao === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (
+        publicacao_id === undefined ||
+        criador_id === undefined ||
+        comentario === undefined ||
+        identificacao === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const criarComentarioService = new CriarComentarioService();
+      const resp = await criarComentarioService.execute(
+        publicacao_id,
+        comentario,
+        criador_id,
+        identificacao
+      );
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const criarComentarioService = new CriarComentarioService();
-    const resp = await criarComentarioService.execute(
-      publicacao_id,
-      comentario,
-      criador_id,
-      identificacao
-    );
-
-    response.status(resp.status).json(resp.data);
   }
 }

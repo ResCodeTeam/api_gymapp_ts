@@ -6,30 +6,35 @@ class CriarTreinosController {
     const uid = request.params.alunoId;
     let { atividadeId, modalidadeId, duracao, calorias, distancia, data } =
       request.body;
-    if (
-      uid === undefined ||
-      atividadeId === undefined ||
-      modalidadeId === undefined ||
-      duracao === undefined ||
-      calorias === undefined ||
-      distancia === undefined ||
-      data === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    data = new Date(data);
-    const criarTreinosService = new CriarTreinosService();
-    const resp = await criarTreinosService.execute({
-      uid,
-      atividadeId,
-      modalidadeId,
-      duracao,
-      calorias,
-      distancia,
-      data,
-    });
-    response.status(resp.status).json(resp.data);
+    try{
+      if (
+        uid === undefined ||
+        atividadeId === undefined ||
+        modalidadeId === undefined ||
+        duracao === undefined ||
+        calorias === undefined ||
+        distancia === undefined ||
+        data === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      data = new Date(data);
+      const criarTreinosService = new CriarTreinosService();
+      const resp = await criarTreinosService.execute({
+        uid,
+        atividadeId,
+        modalidadeId,
+        duracao,
+        calorias,
+        distancia,
+        data,
+      });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }
 export { CriarTreinosController };

@@ -4,12 +4,17 @@ import { VerLocaisMedidaService } from "../../services/localMedida/verLocaisMedi
 export class VerLocaisMedidaController {
   async handle(request: Request, response: Response) {
     const uId = request.params.treinadorId;
-    if (uId === undefined) {
-      response.status(500).json("Pedido inválido");
-    }
 
-    const verLocaisMedidaService = new VerLocaisMedidaService();
-    const resp = await verLocaisMedidaService.execute({ uId });
-    response.status(resp.status).json(resp.data);
+    try{
+      if (uId === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const verLocaisMedidaService = new VerLocaisMedidaService();
+      const resp = await verLocaisMedidaService.execute({ uId });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    } 
   }
 }

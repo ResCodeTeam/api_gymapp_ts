@@ -6,23 +6,27 @@ export class AgendarDesafiosController {
     const uid = request.params.alunoId;
     const desafioId = request.params.id;
     let { ginasioId, dataAgendamento } = request.body;
-    if (
-      uid === undefined ||
-      desafioId === undefined ||
-      ginasioId === undefined ||
-      dataAgendamento === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
+    try{
+      if (
+        uid === undefined ||
+        desafioId === undefined ||
+        ginasioId === undefined ||
+        dataAgendamento === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      dataAgendamento = new Date(dataAgendamento);
+      const agendarDesafiosService = new AgendarDesafiosService();
+      const resp = await agendarDesafiosService.execute({
+        uid,
+        dataAgendamento,
+        desafioId,
+        ginasioId,
+      });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    dataAgendamento = new Date(dataAgendamento);
-    const agendarDesafiosService = new AgendarDesafiosService();
-    const resp = await agendarDesafiosService.execute({
-      uid,
-      dataAgendamento,
-      desafioId,
-      ginasioId,
-    });
-    response.status(resp.status).json(resp.data);
   }
 }

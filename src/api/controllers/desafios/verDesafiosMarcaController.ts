@@ -5,14 +5,17 @@ export class VerDesafiosMarcaController {
   async handle(request: Request, response: Response) {
     const uid = request.params.treinadorId;
 
-    if (uid === undefined) {
-      response.status(500).json("Pedido inválido");
+    try{
+      if (uid === undefined) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const verDesafiosMarcaService = new VerDesafiosMarcaService();
+      const resp = await verDesafiosMarcaService.execute(uid);
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const verDesafiosMarcaService = new VerDesafiosMarcaService();
-    const resp = await verDesafiosMarcaService.execute(uid);
-
-    response.status(resp.status).json(resp.data);
-
   }
 }

@@ -7,31 +7,36 @@ export class EditarGinasioController {
     const adminId = request.params.adminId;
 
     const { nome, rua, descricao, imagemUrl, lat, long } = request.body;
-    if (
-      ginasioId === undefined ||
-      adminId === undefined ||
-      nome === undefined ||
-      rua === undefined ||
-      descricao === undefined ||
-      imagemUrl === undefined ||
-      lat === undefined ||
-      long === undefined
-    ) {
-      response.status(500).json("Pedido inválido");
+
+    try{
+      if (
+        ginasioId === undefined ||
+        adminId === undefined ||
+        nome === undefined ||
+        rua === undefined ||
+        descricao === undefined ||
+        imagemUrl === undefined ||
+        lat === undefined ||
+        long === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const editarGinasioService = new EditarGinasioService();
+  
+      const resp = await editarGinasioService.execute({
+        adminId,
+        ginasioId,
+        nome,
+        rua,
+        descricao,
+        imagemUrl,
+        lat,
+        long,
+      });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
-
-    const editarGinasioService = new EditarGinasioService();
-
-    const resp = await editarGinasioService.execute({
-      adminId,
-      ginasioId,
-      nome,
-      rua,
-      descricao,
-      imagemUrl,
-      lat,
-      long,
-    });
-    response.status(resp.status).json(resp.data);
   }
 }
