@@ -32,6 +32,10 @@ import { VerAvaliacaoAlunoController } from "../controllers/avaliacoes/verAvalia
 import { VerLocaisMedidaController } from "../controllers/localMedida/verLocaisMedidaController";
 import { RemoverSubmissaoDesafioController } from "../controllers/desafios/submissoes/removersubmissaoDesafioController";
 import { VerAvaliacaoTreinadorController } from "../controllers/avaliacoes/verAvalicaoTreinadorController";
+import { ObterPlanosTreinoAlunos } from "../controllers/plano/obterPlanosTreinoAlunos";
+import { VerDesafiosMarcaController } from "../controllers/desafios/verDesafiosMarcaController";
+import { GetTop10Controller } from "../controllers/marcas/getTop10";
+import { ObterPlanosTreinoSemanaAlunos } from "../controllers/plano/obterPlanosTreinoSemanaAlunos";
 
 const criarComentarioController = new CriarComentarioController();
 const verTodosOsExerciciosTreinadoresController = new VerTodosOsExerciciosTreinadoresController();
@@ -68,7 +72,10 @@ const verAvaliacaoTreinadorController = new VerAvaliacaoTreinadorController();
 const verLocaisMedidaController = new VerLocaisMedidaController();
 const removerSubmissaoDesafioController = new RemoverSubmissaoDesafioController();
 
-
+const obterPlanosTreinoAlunosController = new ObterPlanosTreinoAlunos();
+const obterPlanosTreinoSemanaController = new ObterPlanosTreinoSemanaAlunos();
+const obterDesafiosMarca = new VerDesafiosMarcaController();
+const verTop10 = new GetTop10Controller()
 //#region Exercicios
 treinadorRouter.get("/exercicios/", verTodosOsExerciciosTreinadoresController.handle);
 treinadorRouter.delete("/:treinadorId/exercicios/:exercicios_id/", removerExercicioController.handle);
@@ -85,9 +92,12 @@ treinadorRouter.get("/:treinadorId/exercicios/treinador", verMeusExerciciosContr
 treinadorRouter.get("/:treinadorId/treinos/", verTodosTreinosDosAlunosController.handle);
 //#endregion
 
+treinadorRouter.get("/:treinadorId/top10/", verTop10.handle);
+
 //#region Desafios
 treinadorRouter.post("/:treinadorId/desafio/:desafioId/submissoes", submissaoDesafioController.handle);
 treinadorRouter.delete("/:treinadorId/desafio/:desafioId/submissoes/:id", removerSubmissaoDesafioController.handle);
+treinadorRouter.get("/:treinadorId/desafiosMarca", obterDesafiosMarca.handle);
 //#endregion
 
 //#region Avaliacoes
@@ -108,11 +118,15 @@ treinadorRouter.get("/:treinadorId/agenda/avaliacoes/", verAgendamentoAvaliacoes
 //#endregion
 
 //#region PlanoTreino
+treinadorRouter.get("/:treinadorId/planosTreinoAlunos", obterPlanosTreinoAlunosController.handle);
+treinadorRouter.get("/:treinadorId/planosTreinoAlunos/:startDate/:endDate", obterPlanosTreinoSemanaController.handle);
 treinadorRouter.delete("/:treinadorId/plano/:plano_id/", removerPlanoTreinoController.handle);
 treinadorRouter.get("/:treinadorId/plano/:id/:startDate/:endDate", obterPlanoTreinoAlunoController.handle);
 treinadorRouter.post("/:treinadorId/planoTreino", criarPlanoTreinoController.handle);
 treinadorRouter.put("/:treinadorId/plano/:id/", editarPlanoTreinoController.handle);
 //#endregion
+
+treinadorRouter.get("/:treinadorId/plano/:startDate/:endDate", obterPlanoTreinoAlunoController.handle);
 
 //#region Locais Medida
 treinadorRouter.get("/:treinadorId/locaisMedida/", verLocaisMedidaController.handle);

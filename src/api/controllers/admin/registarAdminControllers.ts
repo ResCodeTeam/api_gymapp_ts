@@ -13,7 +13,7 @@ export class RegistarAdminController {
         dataEntrada === undefined ||
         genero === undefined
       ) {
-        throw new Error ("Pedido inválido");
+        throw new Error("Pedido inválido");
       }
 
       const registarAdminService = new RegistarAdminService();
