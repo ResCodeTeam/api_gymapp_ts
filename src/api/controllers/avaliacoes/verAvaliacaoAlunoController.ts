@@ -3,10 +3,10 @@ import { VerAvaliacoesService } from "../../services/avaliacoes/verAvaliacaoServ
 
 export class VerAvaliacaoAlunoController {
   async handle(request: Request, response: Response) {
-    const userId = request.params.userId
+    const userId = request.params.userId;
     const alunoId = request.params.alunoId;
     if (alunoId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const verAvaliacaoService = new VerAvaliacoesService();

@@ -7,8 +7,13 @@ class CriarGinasioModalidadesController {
     const adminId = request.params.adminId;
 
     const { nome, imagemUrl } = request.body;
-    if (ginasioId === undefined || adminId === undefined || nome === undefined || imagemUrl === undefined) {
-      response.json("Pedido inválido").status(500);
+    if (
+      ginasioId === undefined ||
+      adminId === undefined ||
+      nome === undefined ||
+      imagemUrl === undefined
+    ) {
+      response.status(500).json("Pedido inválido");
     }
 
     const criarGinasioModalidadesService = new CriarGinasioModalidadesService();
@@ -16,7 +21,7 @@ class CriarGinasioModalidadesController {
       ginasioId,
       nome,
       imagemUrl,
-      adminId
+      adminId,
     });
     response.status(resp.status).json(resp.data);
   }

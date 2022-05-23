@@ -6,14 +6,16 @@ class EliminarTreinadorController {
     const treinador_id = request.params.id;
     const userId = request.params.adminId;
     if (treinador_id === undefined || userId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const eliminarTreinadorService = new EliminarTreinadorService();
-    const resp = await eliminarTreinadorService.execute({ treinador_id, userId });
+    const resp = await eliminarTreinadorService.execute({
+      treinador_id,
+      userId,
+    });
     response.status(resp.status).json(resp.data);
-  };
+  }
 }
 
-export { EliminarTreinadorController }
-
+export { EliminarTreinadorController };

@@ -5,10 +5,19 @@ class RegistarMarcaGinasiosController {
   async handle(request: Request, response: Response) {
     const marcaId = request.params.id;
     const uId = request.params.adminId;
-    const { nome, rua, cp, cpExt, imagemUrl, lat, long } =
-      request.body;
-    if (marcaId === undefined || uId === undefined || nome === undefined || rua === undefined || cp === undefined || cpExt === undefined || imagemUrl === undefined || lat === undefined || long === undefined) {
-      response.json("Pedido inválido").status(500);
+    const { nome, rua, cp, cpExt, imagemUrl, lat, long } = request.body;
+    if (
+      marcaId === undefined ||
+      uId === undefined ||
+      nome === undefined ||
+      rua === undefined ||
+      cp === undefined ||
+      cpExt === undefined ||
+      imagemUrl === undefined ||
+      lat === undefined ||
+      long === undefined
+    ) {
+      response.status(500).json("Pedido inválido");
     }
 
     const registarMarcaGinasiosController = new RegistarMarcaGinasiosService();
@@ -21,7 +30,7 @@ class RegistarMarcaGinasiosController {
       imagemUrl,
       lat,
       long,
-      uId
+      uId,
     });
     response.status(resp.status).json(resp.data);
   }

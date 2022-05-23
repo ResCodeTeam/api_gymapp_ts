@@ -5,7 +5,7 @@ export class AddMusculoController {
   async handle(request: Request, response: Response) {
     const { nome, image } = request.body;
     if (nome === undefined || image === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const addMusculoService = new AddMusculoService();

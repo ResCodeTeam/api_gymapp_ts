@@ -6,13 +6,21 @@ export class AdicionarExerciciosImagensController {
     const exercicioId = request.params.exercicioId;
     const treinadorId = request.params.treinadorId;
     const { url } = request.body;
-    if (exercicioId === undefined || treinadorId === undefined || url === undefined) {
-      response.json("Pedido inválido").status(500);
+    if (
+      exercicioId === undefined ||
+      treinadorId === undefined ||
+      url === undefined
+    ) {
+      response.status(500).json("Pedido inválido");
     }
 
-    const adicionarExerciciosImagensService = new AdicionarExerciciosImagensService
-    const resp = await adicionarExerciciosImagensService.execute({ exercicioId, treinadorId, url })
+    const adicionarExerciciosImagensService =
+      new AdicionarExerciciosImagensService();
+    const resp = await adicionarExerciciosImagensService.execute({
+      exercicioId,
+      treinadorId,
+      url,
+    });
     response.status(resp.status).json(resp.data);
-
   }
 }

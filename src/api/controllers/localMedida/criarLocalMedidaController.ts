@@ -6,12 +6,22 @@ export class CriarLocalMedidaController {
     const uid = request.params.adminId;
     const marcaId = request.params.marcaId;
     const { descricao, unilado } = request.body;
-    if (uid === undefined || marcaId === undefined || descricao === undefined || unilado === undefined) {
-      response.json("Pedido inválido").status(500);
+    if (
+      uid === undefined ||
+      marcaId === undefined ||
+      descricao === undefined ||
+      unilado === undefined
+    ) {
+      response.status(500).json("Pedido inválido");
     }
 
     const criarLocalMedidaService = new CriarLocalMedidaService();
-    const resp = await criarLocalMedidaService.execute(uid, marcaId, descricao, unilado)
+    const resp = await criarLocalMedidaService.execute(
+      uid,
+      marcaId,
+      descricao,
+      unilado
+    );
 
     response.status(resp.status).json(resp.data);
   }
