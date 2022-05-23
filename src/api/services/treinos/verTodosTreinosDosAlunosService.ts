@@ -40,7 +40,6 @@ export class VerTodosTreinosDosAlunosService {
 
 
         })
-        console.log(treinosAlunos)
         const arrayTreinos = [];
 
         for (let info of treinosAlunos) {
@@ -49,18 +48,6 @@ export class VerTodosTreinosDosAlunosService {
             }
         }
 
-        // for (let i = 0; i < treinosAlunos.length; i++) {
-        //     for (let j = 0; j < treinosAlunos[i].users.length; j++) {
-        //         for (let k = 0; k < treinosAlunos[i].users[j].treinos.length; k++) {
-        //             const objTreinos = {
-        //                 nome: treinosAlunos[i].users[j].nome,
-        //                 treinos: treinosAlunos[i].users[j].treinos[k]
-        //             }
-        //             arrayTreinos.push(objTreinos)
-        //         }
-        //     }
-
-        // }
         return { data: arrayTreinos, status: 200 };
     }
 }

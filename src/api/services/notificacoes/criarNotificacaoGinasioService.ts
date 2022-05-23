@@ -73,9 +73,6 @@ export class CriarNotificacaoGinasioService {
     });
     //#endregion
 
-    console.log(`ID Notificação : ${notificacao.noti_id}`);
-    console.log(`Data : ${(await formatDateHour(notificacao.data))}`);
-    console.log(ginasios.aluno_ginasio);
 
     //#region Cria Destinos da Notificação
     let dstNoti;

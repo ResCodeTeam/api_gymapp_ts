@@ -13,7 +13,7 @@ const gerarTokenController = new GerarTokenController();
 const logoutController = new LogoutController();
 
 authRouter.post("/login", autenticacaoController.handle)
-authRouter.post("/:userId/token", gerarTokenController.handle)
+authRouter.post("/token", gerarTokenController.handle)
 authRouter.delete("/:userId/logout", logoutController.handle)
 
 export { authRouter };
