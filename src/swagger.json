@@ -4274,31 +4274,29 @@
         }
       }
     },
-    "/auth/{userId}/{id}/token": {
+    "/auth/token": {
       "post": {
         "summary": "Gerar novo token de sessão",
         "description": "Esta rota permite gerar um nove token de sessão para um utilizador",
         "tags": ["Autenticação"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "id do user",
-            "required": true,
-            "schema": { "type": "string" },
-            "examples": {
-              "User Id": { "value": "0108ab5b-dc52-40ac-b077-91c68fe4629c" }
-            },
-            "style": "simple"
-          },
-          {
-            "name": "alunoId",
-            "in": "path",
-            "description": "Id do aluno",
-            "required": true,
-            "schema": { "properties": { "alunoId": { "type": "string" } } }
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "refresh_token": { "type": "string" }
+                }
+              },
+              "examples": {
+                "RefreshToken": {
+                  "value": {
+                    "refresh_token": "token"
+                  }
+                }
+              }
+            }
           }
-        ],
+        },
         "responses": {
           "500": { "description": "ERROR" },
           "200": {

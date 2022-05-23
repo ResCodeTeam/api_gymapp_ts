@@ -53,7 +53,6 @@ class CriarDesafiosService {
         // admin
         else {
             if (criadorId != dono_marca || ginasioId != ginasio_modalidade) {
-                console.log('My dick on your face')
                 return { data: "Não tem autorização", status: 500 }
             }
         }

@@ -23,7 +23,7 @@ export class VerAvaliacoesService {
         if (funcao == funcTreinadorId) {
             const marcaAluno = await getMarcaAluno(alunoId);
             const marcaTreinador = await getTreinadorMarca(userId);
-            console.log(marcaAluno, marcaTreinador)
+
             if (marcaAluno != marcaTreinador) {
                 return { data: "Não possui permissões", status: 500 }
             }
