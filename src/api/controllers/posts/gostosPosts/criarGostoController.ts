@@ -11,6 +11,6 @@ export class CriarGostoController {
 
     const criarGostoController = new CriarGostoService();
     const resp = await criarGostoController.execute(postId, criadorId);
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

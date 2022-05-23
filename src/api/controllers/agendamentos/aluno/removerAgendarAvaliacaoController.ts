@@ -11,7 +11,7 @@ class RemoverAgendarAvaliacaoController {
 
         const removerAgendarAvaliacaoService = new RemoverAgendarAvaliacaoService();
         const resp = await removerAgendarAvaliacaoService.execute(agendamentoId, uId);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }
 

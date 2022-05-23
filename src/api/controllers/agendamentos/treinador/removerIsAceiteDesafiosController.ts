@@ -11,7 +11,7 @@ class RemoverIsAceiteDesafiosController {
 
         const removerIsAceiteDesafiosService = new RemoverIsAceiteDesafiosService();
         const resp = await removerIsAceiteDesafiosService.execute(treinadorId, agendamentoId);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }
 

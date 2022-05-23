@@ -1,3 +1,4 @@
+import { verify } from "jsonwebtoken";
 import { generateSessionToken } from "../../helpers/jwtHelpers"
 import { client } from "../../prisma/client"
 
@@ -12,6 +13,12 @@ export class RefreshTokenService {
 
     if (!userId) {
       return { data: 'Token invalido', status: 401 }
+    }
+
+    try {
+      verify(refreshToken, process.env.SECRET_KEY_REFRESH_TOKEN);
+    } catch (e) {
+      return { data: { 'msg': 'Sessão invalida' }, status: 401 }
     }
 
     const token = await generateSessionToken(userId)

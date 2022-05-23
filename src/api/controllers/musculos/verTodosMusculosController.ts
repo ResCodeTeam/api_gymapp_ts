@@ -6,6 +6,6 @@ export class VerTodosMusculosController {
 
         const verTodosMusculosService = new VerTodosMusculosService();
         const resp = await verTodosMusculosService.execute();
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

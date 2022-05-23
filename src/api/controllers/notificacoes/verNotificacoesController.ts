@@ -10,6 +10,6 @@ export class VerNotificacoesController {
 
         const verNotificacoesService = new VerNotificacoesService();
         const resp = await verNotificacoesService.execute(origemId);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

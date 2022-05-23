@@ -13,6 +13,6 @@ export class RemoverComentarioController {
     const removerComentarioService = new RemoverComentarioService();
     const resp = await removerComentarioService.execute(criadorId, comentarioId, publicacaoId)
 
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

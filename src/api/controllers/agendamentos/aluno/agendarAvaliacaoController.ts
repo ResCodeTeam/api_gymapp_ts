@@ -14,6 +14,6 @@ export class AgendarAvaliacaoController {
     const agendarAvaliacaoService = new AgendarAvaliacaoService();
     const resp = await agendarAvaliacaoService.execute({ uid, dataAgendamento, ginasioId });
 
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

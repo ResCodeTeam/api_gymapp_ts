@@ -11,6 +11,6 @@ export class RemoverPlanoTreinoController {
 
                 const removerPlanoTreinoService = new RemoverPlanoTreinoService();
                 const resp = await removerPlanoTreinoService.execute(treinadorId, planoId);
-                response.json(resp.data).status(resp.status);
+                response.status(resp.status).json(resp.data);
         }
 }

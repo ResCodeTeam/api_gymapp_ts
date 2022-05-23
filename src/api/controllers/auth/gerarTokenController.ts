@@ -8,14 +8,13 @@ export class GerarTokenController {
         const refreshToken = request.body.refresh_token;
 
         if (refreshToken === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
 
         const refreshTokenService = new RefreshTokenService();
         const resp = await refreshTokenService.execute(refreshToken);
-
-        response.json({ "token": resp.data }).status(resp.status);
+        response.status(resp.status).json({ "token": resp.data });
 
 
     }

@@ -6,6 +6,6 @@ export class VerAgendamentosDesafiosController {
         const uid = request.params.treinadorId
         const verAgendamentosDesafiosService = new VerAgendamentosDesafiosService();
         const resp = await verAgendamentosDesafiosService.execute(uid);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

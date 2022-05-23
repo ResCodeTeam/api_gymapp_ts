@@ -7,7 +7,7 @@ export class VerInfoPostController {
 
         const verInfoPostService = new VerInfoPostService();
         const resp = await verInfoPostService.execute(postId)
-        
-        response.json(resp.data).status(resp.status);
+
+        response.status(resp.status).json(resp.data);
     }
 }

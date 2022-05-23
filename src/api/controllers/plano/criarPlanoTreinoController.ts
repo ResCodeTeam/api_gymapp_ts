@@ -14,6 +14,6 @@ export class CriarPlanoTreinoController {
         const data = new Date(Date.now())
         const criarPlanoTreinoService = new CriarPlanoTreinoService();
         const resp = await criarPlanoTreinoService.execute({ alunoId, treinadorId, data, modalidadeId, blocos });
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

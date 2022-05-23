@@ -15,7 +15,7 @@ export class ObterPlanoTreinoSemanalController {
 
     const obterPlanoTreinoSemanalService = new ObterPlanoTreinoSemanalService();
     const resp = await obterPlanoTreinoSemanalService.execute(uid, startDateParsed, endDateParsed, uid)
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
 
   }
 }

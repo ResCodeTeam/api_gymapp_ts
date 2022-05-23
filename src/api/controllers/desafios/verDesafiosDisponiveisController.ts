@@ -6,12 +6,12 @@ export class VerDesafiosDisponiveisController {
         const uId = request.params.userId;
         const ginasioId = request.params.id;
 
-        if (uId === undefined|| ginasioId === undefined) {
+        if (uId === undefined || ginasioId === undefined) {
             response.json("Pedido inválido").status(500);
         }
 
         const verDesafiosDisponiveisService = new VerDesafiosDisponiveisService();
-        const resp = await verDesafiosDisponiveisService.execute({uId, ginasioId});
-        response.json(resp.data).status(resp.status);
+        const resp = await verDesafiosDisponiveisService.execute({ uId, ginasioId });
+        response.status(resp.status).json(resp.data);
     }
 }

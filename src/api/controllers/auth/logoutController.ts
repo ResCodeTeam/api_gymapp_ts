@@ -11,6 +11,6 @@ export class LogoutController {
 
         const logoutService = new LogoutService();
         const resp = await logoutService.execute(userId, token);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }

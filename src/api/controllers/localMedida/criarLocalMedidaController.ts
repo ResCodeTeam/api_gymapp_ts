@@ -13,6 +13,6 @@ export class CriarLocalMedidaController {
     const criarLocalMedidaService = new CriarLocalMedidaService();
     const resp = await criarLocalMedidaService.execute(uid, marcaId, descricao, unilado)
 
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

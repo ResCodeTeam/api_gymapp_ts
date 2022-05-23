@@ -9,7 +9,7 @@ export class RegistarCpController {
         }
 
         const registarCpService = new RegistarCpService()
-        const resp = await registarCpService.execute({cp,cpExt,rua,localidade})
-        response.json(resp.data).status(resp.status);
+        const resp = await registarCpService.execute({ cp, cpExt, rua, localidade })
+        response.status(resp.status).json(resp.data);
     }
 }

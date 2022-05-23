@@ -23,7 +23,7 @@ class RegistarMarcaGinasiosController {
       long,
       uId
     });
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }
 export { RegistarMarcaGinasiosController };

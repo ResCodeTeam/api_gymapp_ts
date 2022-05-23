@@ -13,6 +13,6 @@ export class AgendarDesafiosController {
     dataAgendamento = new Date(dataAgendamento)
     const agendarDesafiosService = new AgendarDesafiosService();
     const resp = await agendarDesafiosService.execute({ uid, dataAgendamento, desafioId, ginasioId });
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

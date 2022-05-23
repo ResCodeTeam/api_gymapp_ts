@@ -12,6 +12,6 @@ export class RemoverExercicioMusculoController {
 
     const removerMusculoExercicioService = new RemoverExercicioMusculoService();
     const resp = await removerMusculoExercicioService.execute(treinadorId, exercicioId, musculoId);
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

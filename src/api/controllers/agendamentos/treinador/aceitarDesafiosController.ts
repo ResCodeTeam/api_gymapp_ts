@@ -12,6 +12,6 @@ export class AceitarDesafiosController {
 
                 const aceitarDesafiosService = new AceitarDesafiosService()
                 const resp = await aceitarDesafiosService.execute(agendamentoId, treinadorId);
-                response.json(resp.data).status(resp.status);
+                response.status(resp.status).json(resp.data);
         }
 }

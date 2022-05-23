@@ -11,7 +11,7 @@ export class RemoverExercicioController {
 
         const removerExercicioService = new RemoverExercicioService()
         const resp = await removerExercicioService.execute(exercicioId, autorId);
-        response.json(resp.data).status(resp.status);
+        response.status(resp.status).json(resp.data);
     }
 }
 

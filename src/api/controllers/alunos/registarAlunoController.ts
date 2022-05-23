@@ -13,6 +13,6 @@ export class RegistarAlunoController {
     dataEntrada = new Date(dataEntrada);
     const registarAlunoService = new RegistarAlunoService();
     const resp = await registarAlunoService.execute({ email, nome, password, dataNasc, dataEntrada, genero, ginasioId, donoId });
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }

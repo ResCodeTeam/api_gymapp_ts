@@ -12,7 +12,7 @@ export class CriarGostoCommentController {
 
     const criarGostoCommentService = new CriarGostoCommentService();
     const resp = await criarGostoCommentService.execute(comentarioId, publicacaoId, criadorId)
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
 
   }
 }

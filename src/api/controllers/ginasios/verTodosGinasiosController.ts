@@ -12,6 +12,6 @@ export class VerTodosGinasiosController {
 
                 const verTodosGinasiosService = new VerTodosGinasiosService();
                 const resp = await verTodosGinasiosService.execute({ marcaId, userId });
-                response.json(resp.data).status(resp.status);
+                response.status(resp.status).json(resp.data);
         }
 }

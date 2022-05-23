@@ -13,6 +13,6 @@ export class SubmissaoDesafioController {
 
     const submissaoDesafioService = new SubmissaoDesafioService();
     const resp = await submissaoDesafioService.execute({ desafioId, uid, valor, treinadorId, ginasioId })
-    response.json(resp.data).status(resp.status);
+    response.status(resp.status).json(resp.data);
   }
 }
