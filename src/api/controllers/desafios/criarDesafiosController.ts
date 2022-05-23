@@ -8,7 +8,7 @@ class CriarDesafiosController {
         const ginasioId = request.params.id;
         let { nome, modalidadeId, dataInicio, dataFim, recompensa, descricao, exercicios, regras } = request.body;
         if (criadorId === undefined || ginasioId === undefined || nome === undefined || modalidadeId === undefined || dataInicio === undefined || dataFim === undefined || recompensa === undefined || descricao === undefined || exercicios === undefined || regras === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         let hoje = new Date();

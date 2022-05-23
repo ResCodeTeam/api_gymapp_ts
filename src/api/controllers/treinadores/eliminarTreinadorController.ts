@@ -6,7 +6,7 @@ class EliminarTreinadorController {
     const treinador_id = request.params.id;
     const userId = request.params.adminId;
     if (treinador_id === undefined || userId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const eliminarTreinadorService = new EliminarTreinadorService();

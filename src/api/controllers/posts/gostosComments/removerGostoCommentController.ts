@@ -7,7 +7,7 @@ export class RemoverGostoCommentController {
     const publicacaoId = request.params.publicacaoId;
     const criadorId = request.params.userId;
     if (comentarioId === undefined || publicacaoId === undefined || criadorId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const removerGostoCommentService = new RemoverGostoCommentService();

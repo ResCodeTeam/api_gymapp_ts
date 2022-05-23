@@ -17,7 +17,7 @@ export class EditarDesafioController {
             data_fim: request.body.dataFim !== undefined ? new Date(request.body.dataFim) : undefined,
         }
         if (uId === undefined || data.nome === undefined || data.recompensa === undefined || data.descricao === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
         const desafioId = request.params.id;
 

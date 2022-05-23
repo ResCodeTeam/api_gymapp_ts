@@ -13,7 +13,7 @@ export class RemoverDesafioController {
         const uId = request.params.userId;
 
         if (uId === undefined || desafioId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         //Invocar Função

@@ -7,7 +7,7 @@ export class AgendarAvaliacaoController {
     const uid = request.params.alunoId;
     let { ginasioId, dataAgendamento } = request.body;
     if (uid === undefined || ginasioId === undefined || dataAgendamento === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     dataAgendamento = new Date(dataAgendamento)

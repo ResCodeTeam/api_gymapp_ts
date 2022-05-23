@@ -5,7 +5,7 @@ export class VerAgendamentosAvaliacoesAlunoController {
     async handle(request: Request, response: Response) {
         const uId = request.params.alunoId;
         if (uId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const verAgendamentosAvaliacoesAlunoService = new VerAgendamentosAvaliacoesAlunoService();

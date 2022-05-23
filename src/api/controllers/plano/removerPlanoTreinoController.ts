@@ -6,7 +6,7 @@ export class RemoverPlanoTreinoController {
                 const treinadorId = request.params.treinadorId;
                 const planoId = request.params.plano_id;
                 if (treinadorId === undefined || planoId === undefined) {
-                        response.json("Pedido inválido").status(500);
+                        response.status(500).json("Pedido inválido");
                 }
 
                 const removerPlanoTreinoService = new RemoverPlanoTreinoService();

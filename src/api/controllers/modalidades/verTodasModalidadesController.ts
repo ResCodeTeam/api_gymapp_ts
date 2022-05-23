@@ -7,7 +7,7 @@ export class VerTodasModalidadesController {
                 const ginasioId = request.params.id;
                 const userId = request.params.adminId;
                 if (ginasioId === undefined || userId === undefined) {
-                        response.json("Pedido inválido").status(500);
+                        response.status(500).json("Pedido inválido");
                 }
 
                 const verTodasModalidadesService = new VerTodasModalidadesService();

@@ -7,7 +7,7 @@ export class CriarNotificacaoUserController {
     const origemId = request.params.adminId;
     const { conteudo, tipo } = request.body;
     if (destinoId === undefined || origemId === undefined || conteudo === undefined || tipo === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const criarNotificacaoUserService = new CriarNotificacaoUserService();

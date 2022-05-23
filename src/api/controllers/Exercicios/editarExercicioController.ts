@@ -9,7 +9,7 @@ export class EditarExercicioController {
         const autorId = request.params.treinadorId;
         const { nome, descricao, isTempo } = request.body;
         if (exercicioId === undefined || autorId === undefined || nome === undefined || descricao === undefined || isTempo === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const editarExercicioService = new EditarExercicioService()

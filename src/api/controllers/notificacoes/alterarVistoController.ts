@@ -7,7 +7,7 @@ export class AlterarVistoController {
         const destUid = request.params.userId;
         const notiId = request.params.id;
         if (notiId === undefined || destUid === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const alterarVistoController = new AlterarVistoService();

@@ -8,7 +8,7 @@ export class EditarTreinosController {
 
         let { atividadeId, modalidadeId, duracao, calorias, distancia, data } = request.body;
         if (uId === undefined || treinoId === undefined || (atividadeId === undefined && modalidadeId === undefined) || duracao === undefined || calorias === undefined || distancia === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         data = new Date(data);

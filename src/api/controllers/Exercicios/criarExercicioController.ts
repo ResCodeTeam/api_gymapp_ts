@@ -6,7 +6,7 @@ export class CriarExercicioController {
     const autor = request.params.treinadorId;
     const { nome, descricao, isTempo, imagens, musculos } = request.body;
     if (autor === undefined || nome === undefined || descricao === undefined || isTempo === undefined || imagens === undefined || musculos === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const criarExercicioService = new CriarExercicioService();

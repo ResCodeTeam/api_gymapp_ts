@@ -8,7 +8,7 @@ export class CriarPlanoTreinoController {
 
         const { alunoId, modalidadeId, blocos } = request.body;
         if (alunoId === undefined || modalidadeId === undefined || treinadorId === undefined || blocos === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const data = new Date(Date.now())

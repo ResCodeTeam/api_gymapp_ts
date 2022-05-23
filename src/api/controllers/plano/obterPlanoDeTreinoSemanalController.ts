@@ -7,7 +7,7 @@ export class ObterPlanoTreinoSemanalController {
     const startDate = request.params.startDate;
     const endDate = request.params.endDate;
     if (uid === undefined || startDate === undefined || endDate === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const startDateParsed = new Date(startDate)

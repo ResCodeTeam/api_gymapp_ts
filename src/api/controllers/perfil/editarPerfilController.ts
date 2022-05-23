@@ -16,7 +16,7 @@ export class EditarPerfilController {
             imagemUrl } = request.body;
 
         if (uId === undefined || email === undefined || nome === undefined || password === undefined || genero === undefined || descricao === undefined || imagemUrl === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const editarPerfilController = new EditarPerfilService();

@@ -20,7 +20,7 @@ export class CriarAvaliacaoController {
       medidas
     } = request.body;
     if (treinadorId === undefined || alunoId === undefined || peso === undefined || unidadePeso === undefined || treinadorId === undefined || musculo === undefined || gorduraCorporal === undefined || gorduraVisceral === undefined || agua === undefined || proteina === undefined || massaOssea === undefined || metabolismoBasal === undefined || imagens === undefined || medidas === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const data = new Date(Date.now());

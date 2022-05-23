@@ -7,7 +7,7 @@ export class VerUmaMarcaController {
                 const donoId = request.params.adminId;
                 const marcaId = request.params.id;
                 if (donoId === undefined || marcaId === undefined) {
-                        response.json("Pedido inválido").status(500);
+                        response.status(500).json("Pedido inválido");
                 }
 
                 const verUmaMarcaService = new VerUmaMarcaService();

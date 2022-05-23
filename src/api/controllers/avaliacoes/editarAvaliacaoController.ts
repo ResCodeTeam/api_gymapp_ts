@@ -32,7 +32,7 @@ export class EditarAvaliacaoController {
             data.metabolismo_basal === undefined ||
             data.medidas === undefined ||
             data.imagens === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         //Avaliação ID por parametro

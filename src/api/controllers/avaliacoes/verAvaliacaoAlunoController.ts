@@ -6,7 +6,7 @@ export class VerAvaliacaoAlunoController {
     const userId = request.params.userId
     const alunoId = request.params.alunoId;
     if (alunoId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const verAvaliacaoService = new VerAvaliacoesService();

@@ -7,7 +7,7 @@ export class EditarPlanoTreinoController {
     const planoId = request.params.id;
     const { alunoId, modalidadeId, blocos } = request.body;
     if (treinadorId === undefined || planoId === undefined || alunoId === undefined || modalidadeId === undefined || blocos === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const data = new Date(Date.now())

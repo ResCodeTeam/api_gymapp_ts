@@ -6,7 +6,7 @@ export class RemoverExercicioController {
         const exercicioId = request.params.exercicios_id
         const autorId = request.params.treinadorId;
         if (exercicioId === undefined || autorId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const removerExercicioService = new RemoverExercicioService()

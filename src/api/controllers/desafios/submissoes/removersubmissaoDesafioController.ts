@@ -7,7 +7,7 @@ export class RemoverSubmissaoDesafioController {
     const submissaoId = request.params.id;
     const desafioId = request.params.desafioId;
     if (uid === undefined || submissaoId === undefined || desafioId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const removerSubmissaoDesafioService = new RemoverSubmissaoDesafioService();

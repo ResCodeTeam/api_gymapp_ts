@@ -11,7 +11,7 @@ export class EditarModalidadesController {
 
         let { imagemUrl, nome } = request.body;
         if (uid === undefined || modalidadeId === undefined || ginasioId === undefined || imagemUrl === undefined || nome === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
 

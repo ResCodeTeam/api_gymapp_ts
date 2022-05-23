@@ -6,7 +6,7 @@ export class EditarMusculoController {
     const musculoId = request.params.musculoId;
     const { nome, imagem } = request.body;
     if (musculoId === undefined || nome === undefined || imagem === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const editarMusculosService = new EditarMusculoService();

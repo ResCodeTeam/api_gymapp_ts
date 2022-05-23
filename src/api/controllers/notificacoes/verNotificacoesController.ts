@@ -5,7 +5,7 @@ export class VerNotificacoesController {
     async handle(request: Request, response: Response) {
         const origemId = request.params.userId;
         if (origemId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const verNotificacoesService = new VerNotificacoesService();

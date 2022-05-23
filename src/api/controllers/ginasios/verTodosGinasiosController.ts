@@ -7,7 +7,7 @@ export class VerTodosGinasiosController {
                 const marcaId = request.params.id;
                 const userId = request.params.adminId;
                 if (userId === undefined || marcaId === undefined) {
-                        response.json("Pedido inválido").status(500);
+                        response.status(500).json("Pedido inválido");
                 }
 
                 const verTodosGinasiosService = new VerTodosGinasiosService();

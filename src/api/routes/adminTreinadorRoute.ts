@@ -8,11 +8,13 @@ import { EncerrarDesafiosController } from "../controllers/desafios/encerrarDesa
 
 import { VerTodosMusculosController } from "../controllers/musculos/verTodosMusculosController";
 
+
 const editarDesafio = new EditarDesafioController()
 const removerDesafio = new RemoverDesafioController()
 const criarDesafio = new CriarDesafiosController()
 const encerrarDesafiosController = new EncerrarDesafiosController();
 const verTodosMusculosController = new VerTodosMusculosController();
+
 
 //#region Desafios
 adminTreinadorRouter.put("/:userId/desafio/:id/editar", editarDesafio.handle);
@@ -24,5 +26,8 @@ adminTreinadorRouter.put("/:userId/desafio/:id", encerrarDesafiosController.hand
 //#region Músculos
 adminTreinadorRouter.get("/:userId/musculos/", verTodosMusculosController.handle);
 //endregion
+
+
+
 
 export { adminTreinadorRouter };

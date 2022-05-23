@@ -7,7 +7,7 @@ export class RemoverAlunoController {
     const uId = request.params.uId;
     const adminId = request.params.adminId;
     if (uId === undefined || adminId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const removerAlunoService = new RemoverAlunoService();

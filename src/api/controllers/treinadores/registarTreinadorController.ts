@@ -8,7 +8,7 @@ export class RegistarTreinadorController {
     const userId = request.params.adminId;
     let { email, nome, password, dataNasc, dataEntrada, genero } = request.body;
     if (marcaId === undefined || userId === undefined || email === undefined || nome === undefined || password === undefined || dataNasc === undefined || dataEntrada === undefined || genero === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     dataNasc = new Date(dataNasc);

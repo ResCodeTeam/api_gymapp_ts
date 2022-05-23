@@ -8,7 +8,7 @@ export class VerMeusExerciciosController {
     async handle(request: Request, response: Response) {
         const autorId = request.params.treinadorId;
         if (autorId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const verMeusExerciciosService = new VerMeusExerciciosService();

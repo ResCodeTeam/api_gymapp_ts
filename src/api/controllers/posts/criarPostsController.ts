@@ -8,7 +8,7 @@ class CriarPostsController {
 
     let { descricao, tipo, ginasioId, identificacao } = request.body;
     if (criadorId === undefined || descricao === undefined || tipo === undefined || identificacao === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
     const data = new Date(Date.now())
 

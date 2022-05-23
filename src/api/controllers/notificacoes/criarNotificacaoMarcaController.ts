@@ -7,7 +7,7 @@ export class CriarNotificacaoMarcaController {
         const marcaId = request.params.marcaId;
         let { conteudo, tipo } = request.body;
         if (userId === undefined || marcaId === undefined || conteudo === undefined || tipo === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const criarNotificacaoMarcaService = new CriarNotificacaoMarcaService();

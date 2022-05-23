@@ -16,7 +16,7 @@ export class EditarMarcaController {
             mobilidade,
         } = request.body;
         if (marcaId === undefined || adminId === undefined || nome === undefined || cor === undefined || logotipo === undefined || mobilidade === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const editarMarcaService = new EditarMarcaService();

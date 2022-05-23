@@ -9,7 +9,7 @@ export class VerDesafioController {
         const desafioId = request.params.id;
 
         if (uId === undefined || desafioId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const verDesafioService = new VerDesafioService();

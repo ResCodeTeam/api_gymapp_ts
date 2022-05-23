@@ -9,7 +9,7 @@ export class VerUmGinasioController {
         const donoId = request.params.adminId;
         const ginasioId = request.params.id;
         if (donoId === undefined || ginasioId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const verUmGinasioService = new VerUmGinasioService();

@@ -9,7 +9,7 @@ export class VerPerfilController {
         const uId = request.params.id;
         const auId = request.params.userId;
         if (uId === undefined || auId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const verPerfilService = new VerPerfilService();

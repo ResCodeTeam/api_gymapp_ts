@@ -6,7 +6,7 @@ class RemoverGinasioController {
         const uId = request.params.adminId;
         const ginasioId = request.params.id;
         if (uId === undefined || ginasioId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const removerGinasioService = new RemoverGinasioService();

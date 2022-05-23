@@ -6,7 +6,7 @@ class RemoverAgendarDesafiosController {
         const agendamentoId = request.params.agendamento_id;
         const uId = request.params.alunoId;
         if (agendamentoId === undefined || uId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const removerAgendarDesafiosService = new RemoverAgendarDesafiosService();

@@ -7,7 +7,7 @@ export class CriarComentarioController {
         const criador_id = request.params.userId;
         const { comentario, identificacao } = request.body;
         if (publicacao_id === undefined || criador_id === undefined || comentario === undefined || identificacao === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const criarComentarioService = new CriarComentarioService();

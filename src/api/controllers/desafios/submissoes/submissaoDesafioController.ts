@@ -8,7 +8,7 @@ export class SubmissaoDesafioController {
 
     const { uid, valor, ginasioId } = request.body;
     if (desafioId === undefined || uid === undefined || valor === undefined || treinadorId === undefined || ginasioId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const submissaoDesafioService = new SubmissaoDesafioService();

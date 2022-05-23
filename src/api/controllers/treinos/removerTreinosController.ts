@@ -6,7 +6,7 @@ class RemoverTreinosController {
         const uId = request.params.alunoId;
         const treinoId = request.params.treino_id;
         if (uId === undefined || treinoId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const removerTreinosService = new RemoverTreinosService();

@@ -18,7 +18,7 @@ export class EditarGinasioController {
             long
         } = request.body;
         if (ginasioId === undefined || adminId === undefined || nome === undefined || rua === undefined || descricao === undefined || imagemUrl === undefined || lat === undefined || long === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const editarGinasioService = new EditarGinasioService();

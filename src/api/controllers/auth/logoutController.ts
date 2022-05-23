@@ -6,7 +6,7 @@ export class LogoutController {
         const userId = request.params.userId;
         const token = request.headers.authorization.split(' ')[1];
         if (userId === undefined || token === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const logoutService = new LogoutService();

@@ -8,7 +8,7 @@ class RegistarMarcaGinasiosController {
     const { nome, rua, cp, cpExt, imagemUrl, lat, long } =
       request.body;
     if (marcaId === undefined || uId === undefined || nome === undefined || rua === undefined || cp === undefined || cpExt === undefined || imagemUrl === undefined || lat === undefined || long === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const registarMarcaGinasiosController = new RegistarMarcaGinasiosService();

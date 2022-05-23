@@ -6,7 +6,7 @@ export class CriarGostoController {
     const postId = request.params.id;
     const criadorId = request.params.userId;
     if (postId === undefined || criadorId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const criarGostoController = new CriarGostoService();

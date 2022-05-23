@@ -6,7 +6,7 @@ class RemoverIsAceiteAvaliacoesController {
         const treinadorId = request.params.treinadorId;
         const agendamentoId = request.params.agendamento_id;
         if (treinadorId === undefined || agendamentoId === undefined) {
-            response.json("Pedido inválido").status(500);
+            response.status(500).json("Pedido inválido");
         }
 
         const removerIsAceiteAvaliacoesService = new RemoverIsAceiteAvaliacoesService();

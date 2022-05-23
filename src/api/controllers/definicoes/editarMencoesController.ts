@@ -6,7 +6,7 @@ export class EditarMencoesController {
     const uid = request.params.userId;
     const { mencoes } = request.body;
     if (uid === undefined || mencoes === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const editarMencoesService = new EditarMencoesService();

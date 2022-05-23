@@ -7,7 +7,7 @@ export class RemoverExercicioImagemController {
     const treinadorId = request.params.treinadorId;
     const exercicioId = request.params.exercicioId;
     if (imagemId === undefined || treinadorId === undefined || exercicioId === undefined) {
-      response.json("Pedido inválido").status(500);
+      response.status(500).json("Pedido inválido");
     }
 
     const removerExercicioImagemService = new RemoverExercicioImagemService();
