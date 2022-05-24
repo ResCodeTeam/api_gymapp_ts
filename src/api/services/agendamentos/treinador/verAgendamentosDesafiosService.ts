@@ -19,6 +19,22 @@ export class VerAgendamentosDesafiosService {
                     marca_id: marcaTreinador
                 }
             },
+            include: {
+                desafios: {
+                    include: {
+                        modalidades_ginasio: {
+                            select: {
+                                nome: true
+                            }
+                        }
+                    }
+                },
+                users: {
+                    select: {
+                        nome: true,
+                    }
+                },
+            }
         })
 
         return { data: agendamentos, status: 200 };
