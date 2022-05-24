@@ -61,7 +61,10 @@ describe("Teste Obter toda a informação dos musculos", () => {
         .set("Authorization", token)
         .then(res => {
           res.should.have.status(200)
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
           chai.expect(res.body).to.be.an("array")
           if (res.body.length > 0) {
             //verificar se as propriedades todas existem

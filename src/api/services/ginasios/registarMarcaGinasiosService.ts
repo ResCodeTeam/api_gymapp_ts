@@ -28,18 +28,18 @@ export class RegistarMarcaGinasiosService {
   }: IRegistarMarcaGinasiosService) {
     // Obter a tag do ginásio automaticamente
     let tag = await getGymTag(nome);
-    
+
     const exists_marca = await checkMarcaExists(marcaId);
     if (!exists_marca) {
-      throw new Error("A marca não existe");
+      return { data: "A marca não existe", status: 500 }
     }
 
     await checkDonoMarca(marcaId, uId)
 
     const localidade = await client.localidades.findFirst({
-      where:{
+      where: {
         cp,
-        cp_ext:cpExt
+        cp_ext: cpExt
       }
     })
 
@@ -51,20 +51,20 @@ export class RegistarMarcaGinasiosService {
         imagem_url: "teste",
         lat,
         long,
-        localidades:{
-          connect:{
-            cp_id:localidade.cp_id
+        localidades: {
+          connect: {
+            cp_id: localidade.cp_id
 
           }
         },
-        marcas:{
-          connect:{
-            marca_id:marcaId
+        marcas: {
+          connect: {
+            marca_id: marcaId
           }
         }
       },
     });
-    return ginasio;
+    return { data: ginasio, status: 200 };
   }
 }
 

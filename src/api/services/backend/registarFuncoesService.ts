@@ -1,12 +1,12 @@
 import { client } from "../../prisma/client";
 
-export class RegistarFuncoesService{
-    async execute(nome:string){
+export class RegistarFuncoesService {
+    async execute(nome: string) {
         const funcao = await client.funcoes.create({
-            data:{
-                descricao:nome
+            data: {
+                descricao: nome
             }
         })
-        return funcao;
+        return {data: funcao, status: 200};
     }
 }

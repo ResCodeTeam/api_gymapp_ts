@@ -26,15 +26,15 @@ export class EditarAvaliacaoService {
 
         const existstreinadorIdAvaliacao = await checkAutorAvaliacao(treinadorId);
         if (!existstreinadorIdAvaliacao) {
-            throw new Error("Treinador pertence há avaliação")
+            return { data: "Treinador pertence há avaliação", status: 500 }
         }
         const existsAvaliacao = await checkAvaliacoesExists(avaliacao_id)
         if (!existsAvaliacao) {
-            throw new Error("Avaliação não existe")
+            return { data: "Avaliação não existe", status: 500 }
         }
 
         if (existstreinadorIdAvaliacao != existsAvaliacao) {
-            throw new Error("treinador não pertence a esta avaliação")
+            return { data: "treinador não pertence a esta avaliação", status: 500 }
         } else {
 
 
@@ -62,7 +62,6 @@ export class EditarAvaliacaoService {
             }
 
             for (let imagem of dados.imagens) {
-                console.log(imagem)
                 await client.avaliacao_imagens.create({
                     data: {
                         avaliacao_id: avaliacao_id,
@@ -123,7 +122,7 @@ export class EditarAvaliacaoService {
                 }
             })
 
-            return atualizarAvaliacao;
+            return { data: atualizarAvaliacao, status: 200 };
         }
     }
 }

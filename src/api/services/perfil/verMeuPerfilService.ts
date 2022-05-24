@@ -3,11 +3,12 @@ import { client } from "../../prisma/client";
 import { VerTodosPostsUserService } from "../posts/obter/verTodosPostsUserService";
 import { VerTreinosAlunosService } from "../treinos/verTreinosAlunosService";
 
-export class VerMeuPerfilService{
-  async execute(uid:string){
-    const perfil = await client.users.findUnique({
-      where:{
-        uid
+export class VerMeuPerfilService {
+  async execute(uid: string) {
+    const perfil = await client.users.findFirst({
+      where: {
+        uid,
+        isDeleted: false,
       }
     })
 
@@ -16,6 +17,6 @@ export class VerMeuPerfilService{
     const verTreinosAlunosService = new VerTreinosAlunosService()
     const treinos = await verTreinosAlunosService.execute(uid);
 
-    return{perfil, posts, treinos}
+    return { perfil, posts, treinos }
   }
 }

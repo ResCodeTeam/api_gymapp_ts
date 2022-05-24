@@ -14,10 +14,10 @@ class CriarAtividadeService {
     const atividade = await client.atividades.create({
       data: {
         descricao,
-        icon,    
+        icon,
       },
     });
-    return atividade;
+    return {data: atividade, status: 200};
   }
 }
 export { CriarAtividadeService };

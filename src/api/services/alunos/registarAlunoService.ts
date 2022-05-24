@@ -7,6 +7,9 @@ import {
   checkGinasioExists,
   getMarcaGym,
   checkDonoGinasio,
+  checkUserIdExists,
+  getDonoMarca,
+  checkDonoMarca,
 } from "../../helpers/dbHelpers";
 
 interface IRegistarAlunoService {
@@ -32,22 +35,37 @@ export class RegistarAlunoService {
     ginasioId,
     donoId
   }: IRegistarAlunoService) {
+    const existsAdmin = await checkUserIdExists(donoId);
+    if (!existsAdmin) {
+      return { data: "Utilizador inexistente", status: 500 }
+    }
+
+    let existsGym = await checkGinasioExists(ginasioId);
+    if (!existsGym) {
+      return { data: "Ginásio não existe", status: 500 }
+    }
+
+    const marcaAdmin = await checkDonoGinasio(donoId, ginasioId);
+    if (!marcaAdmin) {
+      return { data: "Não tem permissão para registar alunos neste ginásio", status: 500 }
+    }
+
     // verificar se o aluno já está registado
     const existsEmail = await checkEmail(email);
     if (existsEmail) {
-      throw new Error("Email já registado!");
+      return { data: "Email já registado!", status: 500 }
     }
 
-    if(password.length<5){
-      throw new Error("Nome inválido");
+    if (password.length < 5) {
+      return { data: "Nome inválido", status: 500 }
     }
 
-    if(!email.includes("@")){
-      throw new Error("Email inválido")
+    if (!email.includes("@")) {
+      return { data: "Email inválido", status: 500 }
     }
 
-    if(genero != 0 && genero != 1 ){
-      throw new Error("Email inválido")
+    if (genero != 0 && genero != 1) {
+      return { data: "Email inválido", status: 500 }
     }
 
     // Obter tag do aluno
@@ -58,15 +76,12 @@ export class RegistarAlunoService {
 
     // obter o id da função
     const funcaoId = await getFuncaoId("Aluno");
-    let existsGym = await checkGinasioExists(ginasioId);
-    if (!existsGym) {
-      throw new Error("Ginásio não existe");
-    }
+
 
     await checkDonoGinasio(ginasioId, donoId)
-    
-    if(nome.split(" ").length<2){
-      throw new Error("Nome inválido")
+
+    if (nome.split(" ").length < 2) {
+      return { data: "Nome inválido", status: 500 }
     }
 
     const aluno = await client.users.create({
@@ -78,9 +93,9 @@ export class RegistarAlunoService {
         hashtag,
         data_entrada: dataEntrada,
         genero,
-        funcoes:{
-          connect:{
-            funcao_id:funcaoId
+        funcoes: {
+          connect: {
+            funcao_id: funcaoId
           }
         }
       },
@@ -95,13 +110,13 @@ export class RegistarAlunoService {
       if (marcaMobilidade) {
         await client.alunos_marca.create({
           data: {
-            marcas:{
-              connect:{
-                marca_id:marcaId
+            marcas: {
+              connect: {
+                marca_id: marcaId
               }
             },
-            users:{
-              connect:{
+            users: {
+              connect: {
                 uid
               }
             }
@@ -110,13 +125,13 @@ export class RegistarAlunoService {
       } else {
         await client.aluno_ginasio.create({
           data: {
-            ginasio:{
-              connect:{
-                ginasio_id:ginasioId
+            ginasio: {
+              connect: {
+                ginasio_id: ginasioId
               }
             },
-            users:{
-              connect:{
+            users: {
+              connect: {
                 uid
               }
             }
@@ -124,21 +139,21 @@ export class RegistarAlunoService {
         });
       }
       await client.definicoes_user.create({
-        data:{
-            identificacoes:true,
-            is_privado:false,
-            mencoes:true,
-            usersuid:aluno.uid    
+        data: {
+          identificacoes: true,
+          is_privado: false,
+          mencoes: true,
+          usersuid: aluno.uid
         }
-    })
-      return aluno;
+      })
+      return { data: aluno, status: 200 };
     } catch (e) {
       client.users.delete({
         where: {
           uid,
         },
       });
-      throw e;
+      return { data: "Erro ao registar aluno", status: 500 };
     }
   }
 }

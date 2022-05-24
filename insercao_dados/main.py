@@ -1,10 +1,10 @@
 import requests as req
 from localidades import inserir_localidades
-from alunos import populate_man,populate_woman
+from alunos import populate_man, populate_woman
 import json
 
-#registar localidades
-#inserir_localidades()
+# registar localidades
+# inserir_localidades()
 '''req.request(
     "POST", 
     "http://localhost:8000/api/v1/backend/funcoes",
@@ -44,8 +44,8 @@ admin_resp = req.request(
 print(admin_resp)
 admin_resp=json.loads(admin_resp)
 admin_uid = admin_resp['admin']['uid']'''
-admin_uid="332b256d-d646-4877-8a4f-f5538472e0d4"
-#registar marcas
+admin_uid = "332b256d-d646-4877-8a4f-f5538472e0d4"
+# registar marcas
 # marca com mobilidade
 '''body={"nome": "VO1","mobilidade": True,"cor": "Vermelho","logotipo": "teste"}
 
@@ -100,7 +100,7 @@ for i in range(1,5):
     
     gym_uid.append(gym_resp['ginasio']['ginasio_id'])
 '''
-#registar treinador
+# registar treinador
 marca1_uid = 'd9017634-c824-423d-96a3-6da7f162917a'
 marca2_uid = 'f34fdd41-8670-4b50-9311-ebdb0ad993c4'
 '''treinador_resp = req.request(
@@ -130,8 +130,6 @@ treinador_resp = req.request(
 )
 '''
 
-#registar alunos
+# registar alunos
 '''populate_man(ginasios=gym_uid)
 populate_woman(ginasios=gym_uid)'''
-
-

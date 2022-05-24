@@ -1,28 +1,28 @@
-import {  checkMarcaExists, getDonoMarca } from "../../helpers/dbHelpers";
+import { checkMarcaExists, getDonoMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 
 
-export class VerTreinadorGinasioService{
-    async execute(uId: string, marcaId:string){
-        
-        const existsMarca= await checkMarcaExists(marcaId)
-        if(!existsMarca){
-            throw new Error("A marca não existe")
+export class VerTreinadorGinasioService {
+    async execute(uId: string, marcaId: string) {
+
+        const existsMarca = await checkMarcaExists(marcaId)
+        if (!existsMarca) {
+            return { data: "A marca não existe", status: 500 }
         }
 
         const dono_marca = await getDonoMarca(marcaId);
-        if(uId != dono_marca){
-            throw new Error ("Não possui autorização")
+        if (uId != dono_marca) {
+            return { data: "Não possui autorização", status: 500 }
         }
-        
+
         const treinadorMarca = await client.treinadores_marca.findMany({
-            where:{
-                marca_id:marcaId 
-            },select:{
-                treinador_uid:true
+            where: {
+                marca_id: marcaId
+            }, select: {
+                treinador_uid: true
             }
         })
-        return treinadorMarca;
+        return { data: treinadorMarca, status: 200 };
     }
 }

@@ -15,27 +15,27 @@ class CriarGinasioModalidadesService {
     imagemUrl,
     adminId
   }: ICriarGinasioModalidadesService) {
-    
+
     const exist_ginasio = await checkGinasioExists(ginasioId);
     if (!exist_ginasio) {
-      throw new Error("O ginásio não existe");
+      return { data: "O ginásio não existe", status: 500 }
     }
 
     await checkDonoGinasio(ginasioId, adminId);
 
     const exist_nome = await checkModalidadeNome(nome, ginasioId);
     if (exist_nome) {
-      throw new Error("A modalidade já existe");
+      return { data: "A modalidade já existe", status: 500 }
     }
 
     const modalidade = await client.modalidades_ginasio.create({
       data: {
         ginasio_id: ginasioId,
         nome,
-        imagem_url: imagemUrl,    
+        imagem_url: imagemUrl,
       },
     });
-    return modalidade;
+    return { data: modalidade, status: 200 };
   }
 }
 export { CriarGinasioModalidadesService };

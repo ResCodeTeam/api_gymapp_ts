@@ -9,7 +9,7 @@ import { CriarGostoController } from "../controllers/posts/gostosPosts/criarGost
 import { EditarPerfilController } from "../controllers/perfil/editarPerfilController";
 import { EditarPerfilPrivadoController } from "../controllers/definicoes/editarPerfilPrivadoController";
 import { ObterDefinicoesController } from "../controllers/definicoes/obterDefinicoesController";
-import { verificarAutenticacao } from "../middlewares/verificarAutenticacao";
+
 import { VerMeuPerfilController } from "../controllers/perfil/verMeuPerfilController";
 import { EditarMencoesController } from "../controllers/definicoes/editarMencoesController";
 import { CriarComentarioController } from "../controllers/posts/comments/criarComentarioController";
@@ -36,17 +36,17 @@ const criarPostsController = new CriarPostsController();
 const verTodosPostsController = new VerTodosPostsController();
 const removerPostsController = new RemoverPostController();
 const verInfoPostInfoController = new VerInfoPostController();
-const editarPublicacaoController  = new EditarPublicacaoController();
+const editarPublicacaoController = new EditarPublicacaoController();
 
-const criarGostoController=new CriarGostoController();
-const  editarPerfilController = new EditarPerfilController();
+const criarGostoController = new CriarGostoController();
+const editarPerfilController = new EditarPerfilController();
 const editarPerfilPrivadoController = new EditarPerfilPrivadoController();
 const obterDefinicoesController = new ObterDefinicoesController();
 const verMeuPerfilController = new VerMeuPerfilController();
 const editarMencoesController = new EditarMencoesController();
 const criarComentarioController = new CriarComentarioController();
-const impedirIdentificacaoController= new ImpedirIdentificacaoController();
-const alterarVistoController= new AlterarVistoController();
+const impedirIdentificacaoController = new ImpedirIdentificacaoController();
+const alterarVistoController = new AlterarVistoController();
 const verPerfilController = new VerPerfilController();
 const verTodosDesafiosController = new VerTodosDesafiosController();
 const verDesafiosDisponiveisController = new VerDesafiosDisponiveisController();
@@ -61,49 +61,49 @@ const verDesafioController = new VerDesafioController();
 const obterAlunosGinasioController = new ObterAlunosGinasioController();
 
 //#region Publicacoes
-allRouter.post("/posts", verificarAutenticacao, criarPostsController.handle);
-allRouter.get("/posts", verificarAutenticacao, verTodosPostsController.handle);
-allRouter.put("/posts/:id", verificarAutenticacao, editarPublicacaoController.handle);
-allRouter.get("/posts/:id", verificarAutenticacao, verInfoPostInfoController.handle)
-allRouter.delete("/posts/:id", verificarAutenticacao, removerPostsController.handle);
-allRouter.post("/posts/:id/gostos", verificarAutenticacao, criarGostoController.handle)
-allRouter.delete("/posts/:id/gostos", verificarAutenticacao, removerGostoPublicacaoController.handle)
-allRouter.post("/posts/:id/comentarios/", verificarAutenticacao, criarComentarioController.handle);
-allRouter.delete("/posts/:publicacaoId/comentario/:comentarioId", verificarAutenticacao, removerComentarioController.handle);
-allRouter.post("/posts/:publicacaoId/comentario/:comentarioId/gosto", verificarAutenticacao, criarGostoCommentController.handle);
-allRouter.delete("/posts/:publicacaoId/comentario/:comentarioId/gosto", verificarAutenticacao, removerGostoCommentController.handle);
+allRouter.post("/:userId/posts", criarPostsController.handle);
+allRouter.get("/:userId/posts", verTodosPostsController.handle);
+allRouter.put("/:userId/posts/:id", editarPublicacaoController.handle);
+allRouter.get("/posts/:id", verInfoPostInfoController.handle)
+allRouter.delete("/:userId/posts/:id", removerPostsController.handle);
+allRouter.post("/:userId/posts/:id/gostos", criarGostoController.handle)
+allRouter.delete("/:userId/posts/:id/gostos", removerGostoPublicacaoController.handle)
+allRouter.post("/:userId/posts/:id/comentarios/", criarComentarioController.handle);
+allRouter.delete("/:userId/posts/:publicacaoId/comentario/:comentarioId", removerComentarioController.handle);
+allRouter.post("/:userId/posts/:publicacaoId/comentario/:comentarioId/gosto", criarGostoCommentController.handle);
+allRouter.delete("/:userId/posts/:publicacaoId/comentario/:comentarioId/gosto", removerGostoCommentController.handle);
 //#endregion
 
-allRouter.get("/atividades/",verificarAutenticacao, verTodasAtividadesController.handle);
+allRouter.get("/atividades/", verTodasAtividadesController.handle);
 
 
 //#region 
-allRouter.get("/alunos/ginasio/:id",verificarAutenticacao, obterAlunosGinasioController.handle);
+allRouter.get("/:userId/alunos/ginasio/:id", obterAlunosGinasioController.handle);
 //#endregion
 
 //#region Perfil
-allRouter.put("/perfil", verificarAutenticacao, editarPerfilController.handle);
-allRouter.put("/definicoes/mencoes",verificarAutenticacao, editarMencoesController.handle);
-allRouter.put("/definicoes/identificacao",verificarAutenticacao, impedirIdentificacaoController.handle);
-allRouter.put("/definicoes/perfil/privado", verificarAutenticacao ,editarPerfilPrivadoController.handle);
-allRouter.get("/definicoes", verificarAutenticacao, obterDefinicoesController.handle);
-allRouter.get("/perfil", verificarAutenticacao, verMeuPerfilController.handle);
-allRouter.get("/user/:id", verificarAutenticacao, verPerfilController.handle);
+allRouter.put("/:userId/perfil", editarPerfilController.handle);
+allRouter.put("/:userId/definicoes/mencoes", editarMencoesController.handle);
+allRouter.put("/:userId/definicoes/identificacao", impedirIdentificacaoController.handle);
+allRouter.put("/:userId/definicoes/perfil/privado", editarPerfilPrivadoController.handle);
+allRouter.get("/:userId/definicoes", obterDefinicoesController.handle);
+allRouter.get("/:userId/perfil", verMeuPerfilController.handle);
+allRouter.get("/:userId/user/:id", verPerfilController.handle);
 //#endregion
 
 
 //#region Notificacoes
-allRouter.put("/destinosNotificacao/notificacao/:id", verificarAutenticacao,alterarVistoController.handle);
-allRouter.get("/notificacoes", verificarAutenticacao, verNotificacoesController.handle);
+allRouter.put("/:userId/destinosNotificacao/notificacao/:id", alterarVistoController.handle);
+allRouter.get("/:userId/notificacoes", verNotificacoesController.handle);
 //#endregion
 
 //#region Desafios
-allRouter.get("/ginasio/:id/desafios/", verificarAutenticacao, verTodosDesafiosController.handle);
-allRouter.get("/ginasio/:id/desafios/disponiveis",verificarAutenticacao, verDesafiosDisponiveisController.handle);
+allRouter.get("/:userId/ginasio/:id/desafios/", verTodosDesafiosController.handle);
+allRouter.get("/:userId/ginasio/:id/desafios/disponiveis", verDesafiosDisponiveisController.handle);
 //#endregion
 
 
-allRouter.get("/desafios/:desafioId/submissoes",verificarAutenticacao, verDesafiosSubmissoesController.handle);
-allRouter.get("/desafios/:id", verificarAutenticacao , verDesafioController.handle);
+allRouter.get("/:userId/desafios/:desafioId/submissoes", verDesafiosSubmissoesController.handle);
+allRouter.get("/:userId/desafios/:id", verDesafioController.handle);
 
 export { allRouter };

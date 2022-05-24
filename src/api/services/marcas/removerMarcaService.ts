@@ -5,30 +5,31 @@ class RemoverMarcaService {
   async execute(uId: string, marcaId: string) {
     const exists_dst = await checkMarcaExists(marcaId);
     if (!exists_dst) {
-      throw new Error("A marca não existe");
+      return { data: "A marca não existe", status: 500 }
     }
 
     const autor_marca = await client.marcas.findUnique({
-      where:{
-          marca_id:marcaId
+      where: {
+        marca_id: marcaId
       }
     })
-    const isAutor = await checkAutorMarca(uId,marcaId);
-    if(!isAutor){
-      throw new Error("A marca não lhe pertence");
+    const isAutor = await checkAutorMarca(uId, marcaId);
+    if (!isAutor) {
+      return { data: "A marca não lhe pertence", status: 500 }
     }
 
     const marca = await client.marcas.update({
-        data: {
-          isDeleted: true,
-        },
-        where:{
-          marca_id: marcaId,
-        },
+      data: {
+        isDeleted: true,
+      },
+      where: {
+        marca_id: marcaId,
+      },
     });
 
     return {
-      msg: "Marca removida com sucesso",
+      data: "Marca removida com sucesso",
+      status: 200
     };
   }
 }

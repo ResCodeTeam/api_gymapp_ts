@@ -1,34 +1,35 @@
 import { client } from "../../prisma/client";
 import { checkExercicioExists, checkAutorExercicio } from "../../helpers/dbHelpers";
 
-export class RemoverExercicioService{
-    async execute(exercicioId : string, autorId: string){
+export class RemoverExercicioService {
+    async execute(exercicioId: string, autorId: string) {
         const exists_dst = await checkExercicioExists(exercicioId);
         if (!exists_dst) {
-            throw new Error("O exercicio não existe");
+            return { data: "O exercicio não existe", status: 500 }
         }
         const exercicio = await client.exercicios.findUnique({
-            where:{
-                exercicio_id:exercicioId
+            where: {
+                exercicio_id: exercicioId
             }
         })
 
-        const isAutor = await checkAutorExercicio(autorId,exercicioId);
-        if(!isAutor){
-            throw new Error("O exercicio não lhe pertence");
+        const isAutor = await checkAutorExercicio(autorId, exercicioId);
+        if (!isAutor) {
+            return { data: "O exercicio não lhe pertence", status: 500 }
         }
 
         await client.exercicios.update({
             where: {
-                exercicio_id:exercicioId
+                exercicio_id: exercicioId
             },
-            data:{
+            data: {
                 isDeleted: true
             }
         })
 
         return {
-            msg: "O exercício foi removido com sucesso",
+            data: "O exercício foi removido com sucesso",
+            status: 200
         };
     }
 }

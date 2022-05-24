@@ -1,42 +1,42 @@
 import { checkAutorMarca, checkMarcaExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-export class CriarLocalMedidaService{
-  async execute(uid:string,marcaId:string, descricao:string, unilado:boolean){
+export class CriarLocalMedidaService {
+  async execute(uid: string, marcaId: string, descricao: string, unilado: boolean) {
 
     const existMarca = await checkMarcaExists(marcaId);
-    if(!existMarca){
-      throw new Error("Marca inexistente")
+    if (!existMarca) {
+      return { data: "Marca inexistente", status: 500 }
     }
-    
-    
-    const isAutorMarca = await checkAutorMarca(uid,marcaId);
-    if(!isAutorMarca){
-      throw new Error("Não possui autorização para realizar esta operação")
+
+
+    const isAutorMarca = await checkAutorMarca(uid, marcaId);
+    if (!isAutorMarca) {
+      return { data: "Não possui autorização para realizar esta operação", status: 500 }
     }
 
     const localMedida = await client.locais_medidas.create({
-      data:{
+      data: {
         descricao,
         unilado,
       }
     })
-    try{
+    try {
       await client.local_medidas_marca.create({
-        data:{
-          marca_id:marcaId,
-          local_medida_id:localMedida.local_medida_id
+        data: {
+          marca_id: marcaId,
+          local_medida_id: localMedida.local_medida_id
         }
       })
-    }catch(e){
+    } catch (e) {
       client.locais_medidas.delete({
-        where:{
-          local_medida_id:localMedida.local_medida_id
+        where: {
+          local_medida_id: localMedida.local_medida_id
         }
       })
     }
 
-    return localMedida
+    return { data: localMedida, status: 200 };
 
   }
 }

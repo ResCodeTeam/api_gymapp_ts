@@ -6,11 +6,15 @@ export class RemoverAlunoService {
   async execute(uId: string, adminId: string) {
     const exists_user = await checkUserIdExists(uId);
     if (!exists_user) {
-      throw new Error("O user não existe");
+      return { data: "O user não existe", status: 500 }
     }
 
     const marcaId = await getAlunoMarca(uId);
-    await checkDonoMarca(marcaId, adminId);
+    const dono = await checkDonoMarca(marcaId, adminId);
+    if(!dono)
+    {
+      return { data: "Não possui autorização", status: 500 }
+    }
 
     const removerAluno = await client.users.update({
       where: {
@@ -22,7 +26,7 @@ export class RemoverAlunoService {
       }
     })
 
-    return removerAluno
+    return { data: removerAluno, status: 200 };
   }
 }
 

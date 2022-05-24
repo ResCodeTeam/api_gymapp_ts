@@ -6,29 +6,21 @@ class RemoverIsAceiteAvaliacoesService {
 
     const exists_agendamento = await checkAgendamentoAvaliacaoExists(agendamentoId);
     if (!exists_agendamento) {
-      throw new Error("O agendamento da avaliação não existe");
+      return { data: "O agendamento da avaliação não existe", status: 500 }
     }
 
     const ginasio_agendamento = await getAgendamentoAvaliacoesGinasio(agendamentoId);
     const marca_ginasio = (await getMarcaGym(ginasio_agendamento)).marca_id;
     const marca_treinador = await getTreinadorMarca(treinadorId)
-    console.log(marca_ginasio)
-    console.log(marca_treinador)
 
     if (marca_ginasio != marca_treinador) {
-      throw new Error("Não tem autorização")
+      return { data: "Não tem autorização", status: 500 }
     }
 
     const is_aceite = await checkAgendamentoAvaliacaoIsAceiteExists(agendamentoId);
     if (is_aceite) {
-      throw new Error("O agendamento da avaliação ainda não foi aceite");
+      return { data: "O agendamento da avaliação ainda não foi aceite", status: 500 }
     }
-
-    const agendamento = await client.agendamentos_avaliacoes.findUnique({
-      where: {
-        agendamento_id: agendamentoId
-      }
-    })
 
     await client.agendamentos_avaliacoes.update({
       where: {
@@ -40,7 +32,8 @@ class RemoverIsAceiteAvaliacoesService {
     })
 
     return {
-      msg: "Aceitação do agendamento da avaliação removida com sucesso",
+      data: "Aceitação do agendamento da avaliação removida com sucesso",
+      status: 200
     };
   }
 }
