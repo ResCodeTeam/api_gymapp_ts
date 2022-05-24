@@ -64,7 +64,8 @@ export class CriarPlanoTreinoService {
         for (let j = 0; j < exercicios.length; j++) {
           const exists_exercicio = await checkExercicioExists(exercicios[i].exercicioId);
           if (!exists_exercicio) {
-            throw new Error("Exercicio não existe")
+            return { data: "Exercicio não existe", status: 500 }
+
           }
 
           const autor_exercicio = await getAutorExercicio(exercicios[i].exercicioId);
@@ -72,7 +73,8 @@ export class CriarPlanoTreinoService {
 
           const marca_treinador = await getTreinadorMarca(treinadorId)
           if (marca_treinador != marca_autor) {
-            throw new Error("Exercicio não existe")
+            return { data: "Exercicio não existe", status: 500 }
+
           }
 
           const exr = await client.exercicios_bloco.create({

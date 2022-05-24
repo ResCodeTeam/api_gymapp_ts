@@ -208,7 +208,7 @@ let getFuncaoId = async (nome: string) => {
         }
     });
     if (search == null) {
-        throw new Error("função inexistente")
+        return null;
     }
     return search?.funcao_id;
 }
@@ -424,7 +424,7 @@ let checkDonoGinasio = async (ginasioId: string, donoId: string) => {
     })
 
     if (searchAdmin?.marcas.dono_id != donoId) {
-        throw new Error(`Não tem permissões`)
+        return null
     }
 
     return true;
@@ -698,7 +698,7 @@ let checkTreinadorGinasio = async (ginasioId: string, treinadorId: string) => {
     })
 
     if (!searchTreinador) {
-        throw new Error(`Não tem permissões`)
+        return null
     }
 
     return true;
