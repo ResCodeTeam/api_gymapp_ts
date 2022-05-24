@@ -31,7 +31,11 @@ describe("Teste Obter Info de um Post", () => {
     it('Deve retornar erro de token invalido', () => {
       return chai
         .request(server)
+<<<<<<< HEAD
         .get(baseUrl + '/posts/post/' + idPost)
+=======
+        .get(baseUrl + '/posts/' + idPost)
+>>>>>>> master
         .then(res => {
           res.should.have.status(500)
           chai.expect(res.body).to.have.property("status")
@@ -44,7 +48,11 @@ describe("Teste Obter Info de um Post", () => {
     it('Deve retornar erro de token invalido', () => {
       return chai
         .request(server)
+<<<<<<< HEAD
         .get(baseUrl + '/posts/post/' + idPost)
+=======
+        .get(baseUrl + '/posts/' + idPost)
+>>>>>>> master
         .set("Authorization", tokenInvalido)
         .then(res => {
           res.should.have.status(500)
@@ -58,7 +66,11 @@ describe("Teste Obter Info de um Post", () => {
     it('Deve retornar publicações', () => {
       return chai
         .request(server)
+<<<<<<< HEAD
         .get(baseUrl + '/posts/post/' + idPost)
+=======
+        .get(baseUrl + '/posts/' + idPost)
+>>>>>>> master
         .set("Authorization", token)
         .then(res => {
           res.should.have.status(200)
@@ -151,6 +163,7 @@ describe("Teste Obter Info de um Post", () => {
           //verificar se array das propriedades estão corretos
           if (res.body['comentarios_publicacao'].length > 0) {
             //verificar se objeto do array é um objeto
+<<<<<<< HEAD
             chai.expect(res.body['comentarios_publicacao']).to.be.a("object")
 
             // verificar se existe users do gosto
@@ -170,6 +183,29 @@ describe("Teste Obter Info de um Post", () => {
             chai.expect(res.body['comentarios_publicacao']['users']['nome']).to.be.a("string")
             chai.expect(res.body['comentarios_publicacao']['users']['uid']).to.be.a("string")
             chai.expect(res.body['comentarios_publicacao']['users']['imagem_url']).to.be.a("string")
+=======
+            chai.expect(res.body['comentarios_publicacao'][0]).to.be.a("object")
+
+            // verificar se existe users do gosto
+            chai.expect(res.body['comentarios_publicacao'][0]).to.have.property("users")
+            chai.expect(res.body['comentarios_publicacao'][0]).to.have.property("comentario")
+
+            // verificar se user é um objeto
+            chai.expect(res.body['comentarios_publicacao'][0]['users']).to.be.a("object")
+            chai.expect(res.body['comentarios_publicacao'][0]['comentario']).to.be.a("string")
+
+            //verificar se existe propriedade nome em users
+            chai.expect(res.body['comentarios_publicacao'][0]['users']).to.have.property("nome")
+            chai.expect(res.body['comentarios_publicacao'][0]['users']).to.have.property("uid")
+            chai.expect(res.body['comentarios_publicacao'][0]['users']).to.have.property("imagem_url")
+
+            //verificar se a propriedade nome é uma string
+            chai.expect(res.body['comentarios_publicacao'][0]['users']['nome']).to.be.a("string")
+            chai.expect(res.body['comentarios_publicacao'][0]['users']['uid']).to.be.a("string")
+            if (res.body['comentarios_publicacao'][0]['users']['imagem_url'] != null) {
+              chai.expect(res.body['comentarios_publicacao'][0]['users']['imagem_url']).to.be.a("string")
+            }
+>>>>>>> master
           }
         })
     })

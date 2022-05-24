@@ -4,13 +4,13 @@ import { EliminarTreinadorService } from "../../services/treinadores/eliminarTre
 class EliminarTreinadorController {
   async handle(request: Request, response: Response) {
     const treinador_id = request.params.id;
-    const userId = request.params.adminId;
+    const userId = response.locals.uid;
 
-    try{
+    try {
       if (treinador_id === undefined || userId === undefined) {
         throw new Error("Pedido inválido");
       }
-  
+
       const eliminarTreinadorService = new EliminarTreinadorService();
       const resp = await eliminarTreinadorService.execute({
         treinador_id,

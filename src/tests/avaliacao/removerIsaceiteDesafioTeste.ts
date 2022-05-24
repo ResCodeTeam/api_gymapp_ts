@@ -64,7 +64,9 @@ describe("Teste remover is aceite desafio", () => {
         .delete(baseUrl + '/treinador/agenda/desafios/' + idAgendamento)
         .set("Authorization", token)
         .then(res => {
+
           res.should.have.status(200)
+
           //verificar se as propriedades todas existem
           chai.expect(res.body).to.have.property("msg")
 
