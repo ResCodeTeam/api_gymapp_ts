@@ -17,6 +17,7 @@ export class ObterPlanoTreinoSemanalAlunosService {
 
         },
         isDeleted: false,
+        isRealizado: true,
         data: {
           lte: new Date(endDate),
           gte: new Date(startDate)
