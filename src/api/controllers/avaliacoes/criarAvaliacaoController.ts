@@ -1,31 +1,47 @@
 import { Request, Response } from "express";
 import { CriarAvaliacaoService } from "../../services/avaliacoes/criarAvaliacaoService";
 
-
-export class CriarAvaliacaoController{
-  async handle(request:Request, response:Response){
-    const treinadorId = response.locals.uid;
+export class CriarAvaliacaoController {
+  async handle(request: Request, response: Response) {
+    const treinadorId = request.params.treinadorId;
     const alunoId = request.params.id;
     const {
-        peso,
-        unidadePeso,
-        musculo,
-        gorduraCorporal,
-        gorduraVisceral,
-        agua,
-        proteina,
-        massaOssea,
-        metabolismoBasal,
-        imagens,
-        medidas
-    }= request.body;
-    if(peso === undefined || unidadePeso === undefined || treinadorId === undefined || musculo === undefined || gorduraCorporal === undefined || gorduraVisceral === undefined || agua === undefined || proteina === undefined || massaOssea === undefined || metabolismoBasal === undefined || imagens === undefined || medidas === undefined){
-      throw new Error("Pedido inválido")
-    }
+      peso,
+      unidadePeso,
+      musculo,
+      gorduraCorporal,
+      gorduraVisceral,
+      agua,
+      proteina,
+      massaOssea,
+      metabolismoBasal,
+      imagens,
+      medidas,
+    } = request.body;
 
-    const data = new Date(Date.now());
-    const criarAvaliacaoService = new CriarAvaliacaoService();
-    const resp = await criarAvaliacaoService.execute({ 
+    try{
+      if (
+        treinadorId === undefined ||
+        alunoId === undefined ||
+        peso === undefined ||
+        unidadePeso === undefined ||
+        treinadorId === undefined ||
+        musculo === undefined ||
+        gorduraCorporal === undefined ||
+        gorduraVisceral === undefined ||
+        agua === undefined ||
+        proteina === undefined ||
+        massaOssea === undefined ||
+        metabolismoBasal === undefined ||
+        imagens === undefined ||
+        medidas === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const data = new Date(Date.now());
+      const criarAvaliacaoService = new CriarAvaliacaoService();
+      const resp = await criarAvaliacaoService.execute({
         alunoId,
         data,
         peso,
@@ -39,8 +55,12 @@ export class CriarAvaliacaoController{
         massaOssea,
         metabolismoBasal,
         imagens,
-        medidas});
-
-    response.json(resp)
+        medidas,
+      });
+  
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }    
   }
 }

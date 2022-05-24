@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { VerAgendamentosDesafiosService } from "../../../services/agendamentos/treinador/verAgendamentosDesafiosService";
 
-export class VerAgendamentosDesafiosController{
-    async handle(request:Request,response:Response){
-
+export class VerAgendamentosDesafiosController {
+    async handle(request: Request, response: Response) {
+        const uid = request.params.treinadorId
         const verAgendamentosDesafiosService = new VerAgendamentosDesafiosService();
-        const resp = await verAgendamentosDesafiosService.execute();
-        response.json(resp)
+        const resp = await verAgendamentosDesafiosService.execute(uid);
+        response.status(resp.status).json(resp.data);
     }
 }

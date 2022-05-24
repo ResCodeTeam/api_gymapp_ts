@@ -1,8 +1,8 @@
 import { ExercicioP } from "./exercicioPlanoProvider";
 
-export class Bloco{
+export class Bloco {
     blocoId: string;
-    nome:string;
+    nome: string;
     descricao: string;
     nOrdem: number;
     exercicios: Array<ExercicioP>;

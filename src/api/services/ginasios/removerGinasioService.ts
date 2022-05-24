@@ -5,27 +5,28 @@ class RemoverGinasioService {
   async execute(uId: string, ginasioId: string) {
     const exists_ginasio = await checkGinasioExists(ginasioId);
     if (!exists_ginasio) {
-      throw new Error("O ginasio não existe");
+      return { data: "O ginasio não existe", status: 500 }
     }
 
     const marca = await getMarcaGym(ginasioId);
     marca.dono_id
 
-    if(marca.dono_id != uId){
-      throw new Error ("Não possui autorização");
+    if (marca.dono_id != uId) {
+      return { data: "Não possui autorização", status: 500 }
     }
-    
+
     await client.ginasio.update({
       where: {
         ginasio_id: ginasioId
-       },
-      data:{
+      },
+      data: {
         isDeleted: true
       }
     })
 
     return {
-      msg: "Ginásio removido com sucesso",
+      data: "Ginásio removido com sucesso",
+      status: 200
     };
   }
 }

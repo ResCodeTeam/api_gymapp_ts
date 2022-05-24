@@ -1,19 +1,34 @@
- import { Request, Response} from "express";
+import { Request, Response } from "express";
 import { CriarPlanoTreinoService } from "../../services/plano/criarPlanoTreinoService";
 
+export class CriarPlanoTreinoController {
+  async handle(request: Request, response: Response) {
+    const treinadorId = request.params.treinadorId;
 
-export class CriarPlanoTreinoController{
-    async handle(request : Request, response : Response) {
-        const treinadorId = response.locals.uid;
-        
-        const { alunoId, modalidadeId, blocos } = request.body;
-        if(alunoId === undefined || treinadorId === undefined || modalidadeId === undefined || blocos === undefined){
-            throw new Error("Pedido inválido")
-        }
+    const { alunoId, modalidadeId, blocos } = request.body;
 
-        const data = new Date(Date.now())
-        const criarPlanoTreinoService = new CriarPlanoTreinoService();
-        const resp = await criarPlanoTreinoService.execute({ alunoId, treinadorId, data, modalidadeId, blocos });
-        response.json(resp);
+    try{
+      if (
+        alunoId === undefined ||
+        modalidadeId === undefined ||
+        treinadorId === undefined ||
+        blocos === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const data = new Date(Date.now());
+      const criarPlanoTreinoService = new CriarPlanoTreinoService();
+      const resp = await criarPlanoTreinoService.execute({
+        alunoId,
+        treinadorId,
+        data,
+        modalidadeId,
+        blocos,
+      });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
     }
+  }
 }

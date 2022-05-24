@@ -1,17 +1,17 @@
 import { client } from "../../prisma/client";
 
-export class VerNotificacoesService{
-    async execute(origemId: string){
+export class VerNotificacoesService {
+    async execute(origemId: string) {
 
         const notificacoes = await client.notificacoes.findMany({
-            where:{
+            where: {
                 destinos_notificacao: {
-                    some:{
+                    some: {
                         dest_uid: origemId
                     }
                 }
             },
         })
-        return notificacoes;
+        return {data: notificacoes, status: 200};
     }
 }
