@@ -14,14 +14,16 @@ export class CriarNotificacaoMarcaService {
     //#region Verifica se o admin existe
     const existsUser = await checkUserIdExists(userId);
     if (!existsUser) {
-      throw new Error("User não existe");
+      return { data: "User não existe", status: 500 }
+
     }
     //#endregion
 
     //#region  Verifica se a marca existe
     const existsMarca = await checkMarcaExists(marcaId);
     if (!existsMarca) {
-      throw new Error("Marca não existe");
+      return { data: "Marca não existe", status: 500 }
+
     }
     //#endregion
 
@@ -29,7 +31,8 @@ export class CriarNotificacaoMarcaService {
     const checkMarcaAdmin = await checkDonoMarca(marcaId, userId);
     //await models.marcas.findAll({ where: {marca_id: marcaId, dono_id: user_id}});
     if (!checkMarcaAdmin) {
-      throw new Error("Não tem permições nesta marca");
+      return { data: "Não tem permições nesta marca", status: 500 }
+
     }
     //#endregion
 
@@ -58,7 +61,8 @@ export class CriarNotificacaoMarcaService {
 
     ///Verificar se existe ginásios
     if (!ginasios) {
-      throw new Error(`Não existe alunos`);
+
+      return { data: `Não existe alunos`, status: 500 }
     }
 
     let data = new Date();
@@ -90,13 +94,11 @@ export class CriarNotificacaoMarcaService {
 
     console.log(ginasios)
     if (!dstNoti) {
-      throw new Error(`Não contém alunos`)
+      return { data: `Não contém alunos`, status: 500 }
+
     }
     //#endregion
 
-    return {
-      message: "Notificação enviada com sucesso",
-      ginasios
-    };
+    return { data: "Notificação enviada com sucesso", status: 200 };
   }
 }

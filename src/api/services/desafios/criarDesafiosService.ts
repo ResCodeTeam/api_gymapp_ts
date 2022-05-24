@@ -85,7 +85,8 @@ class CriarDesafiosService {
             for (let i = 0; i < exercicios.length; i++) {
                 const exists_exercicio = await checkExercicioExists(exercicios[i].exercicioId);
                 if (!exists_exercicio) {
-                    throw new Error("O exercicio não existe")
+                    return { data: "O exercicio não existe", status: 500 }
+
 
                 }
 
@@ -97,14 +98,16 @@ class CriarDesafiosService {
                 if (funcao == treinador) {
                     const marca_treinador = await getTreinadorMarca(criadorId)
                     if (marca_treinador != marca_autor) {
-                        throw new Error("Não tem autorização")
+                        return { data: "Não tem autorização", status: 500 }
+
 
                     }
                 }
                 // admin
                 else {
                     if (dono_marca != dono_marca_autor) {
-                        throw new Error("Não tem autorização")
+                        return { data: "Não tem autorização", status: 500 }
+
 
                     }
                 }

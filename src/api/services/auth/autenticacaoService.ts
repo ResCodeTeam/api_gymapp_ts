@@ -12,7 +12,8 @@ export class AuthService {
         })
 
         if (user == null) {
-            throw new Error('Erro na autenticação!: Password ou Email errados')
+            return { data: 'Erro na autenticação!: Password ou Email errados', status: 500 }
+
         }
 
         const userId = user.uid
@@ -20,7 +21,8 @@ export class AuthService {
 
         const comp = await compare(password, passwd);
         if (!comp) {
-            throw new Error('Erro na autenticação!: Password ou Email errados')
+            return { data: 'Erro na autenticação!: Password ou Email errados', status: 500 }
+
         }
 
         const refreshToken = await generateRefreshToken(userId)

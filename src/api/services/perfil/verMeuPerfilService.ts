@@ -17,6 +17,6 @@ export class VerMeuPerfilService {
     const verTreinosAlunosService = new VerTreinosAlunosService()
     const treinos = await verTreinosAlunosService.execute(uid);
 
-    return { perfil, posts, treinos }
+    return { data: { perfil, posts, treinos }, status: 200 }
   }
 }
