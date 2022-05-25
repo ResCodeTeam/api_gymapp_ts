@@ -68,16 +68,17 @@ model avaliacoes {
   avaliacao_id                         String              @id @default(uuid())
   aluno_id                             String
   data                                 DateTime            @db.Timestamp(3)
-  peso                                 Int
+  peso                                 Float
   unidade_peso                         String              @db.VarChar(255)
   treinador_id                         String
-  musculo                              Int
-  gordura_corporal                     Int
+  musculo                              Float
+  gordura_corporal                     Float
   gordura_visceral                     Int
-  agua                                 Int
-  proteina                             Int
-  massa_ossea                          Int
+  agua                                 Float
+  proteina                             Float
+  massa_ossea                          Float
   metabolismo_basal                    Int
+  imc                                  Float
   isDeleted                            Boolean             @default(false)
   users_avaliacoes_aluno_idTousers     users               @relation("avaliacoes_aluno_idTousers", fields: [aluno_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkavaliacoes119892")
   users_avaliacoes_treinador_idTousers users               @relation("avaliacoes_treinador_idTousers", fields: [treinador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkavaliacoes194757")

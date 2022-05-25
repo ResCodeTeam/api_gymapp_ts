@@ -14,6 +14,7 @@ interface ICriarAvaliacaoService {
   agua: number,
   proteina: number,
   massaOssea: number,
+  imc: number,
   metabolismoBasal: number,
   imagens: Array<string>,
   medidas: Array<Medida>
@@ -32,6 +33,7 @@ export class CriarAvaliacaoService {
     agua,
     proteina,
     massaOssea,
+    imc,
     metabolismoBasal,
     imagens,
     medidas }: ICriarAvaliacaoService) {
@@ -64,6 +66,7 @@ export class CriarAvaliacaoService {
           gordura_corporal: gorduraCorporal,
           gordura_visceral: gorduraVisceral,
           agua: agua,
+          imc: imc,
           proteina: proteina,
           massa_ossea: massaOssea,
           metabolismo_basal: metabolismoBasal

@@ -19,9 +19,10 @@ export class EditarAvaliacaoController {
       metabolismo_basal: request.body.metabolismo_basal,
       medidas: request.body.medidas,
       imagens: request.body.imagens,
+      imc: request.body.imc
     };
 
-    try{
+    try {
       if (
         treinadorId === undefined ||
         data.peso === undefined ||
@@ -32,23 +33,24 @@ export class EditarAvaliacaoController {
         data.agua === undefined ||
         data.proteina === undefined ||
         data.massa_ossea === undefined ||
+        data.imc === undefined ||
         data.metabolismo_basal === undefined ||
         data.medidas === undefined ||
         data.imagens === undefined
       ) {
         throw new Error("Pedido inválido");
       }
-  
+
       //Avaliação ID por parametro
       const avaliacao_id = request.params.id;
-  
+
       //Utilizar Serviço criado
       const resp = await editarAvaliacaoService.execute(
         data,
         avaliacao_id,
         treinadorId
       );
-  
+
       response.status(resp.status).json(resp.data);
     } catch (e) {
       response.status(500).json(e.message)

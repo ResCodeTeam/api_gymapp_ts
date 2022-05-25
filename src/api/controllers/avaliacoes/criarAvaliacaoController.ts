@@ -15,11 +15,13 @@ export class CriarAvaliacaoController {
       proteina,
       massaOssea,
       metabolismoBasal,
+      imc,
       imagens,
       medidas,
+
     } = request.body;
 
-    try{
+    try {
       if (
         treinadorId === undefined ||
         alunoId === undefined ||
@@ -33,12 +35,13 @@ export class CriarAvaliacaoController {
         proteina === undefined ||
         massaOssea === undefined ||
         metabolismoBasal === undefined ||
+        imc === undefined ||
         imagens === undefined ||
         medidas === undefined
       ) {
         throw new Error("Pedido inválido");
       }
-  
+
       const data = new Date(Date.now());
       const criarAvaliacaoService = new CriarAvaliacaoService();
       const resp = await criarAvaliacaoService.execute({
@@ -54,13 +57,14 @@ export class CriarAvaliacaoController {
         proteina,
         massaOssea,
         metabolismoBasal,
+        imc,
         imagens,
         medidas,
       });
-  
+
       response.status(resp.status).json(resp.data);
     } catch (e) {
       response.status(500).json(e.message)
-    }    
+    }
   }
 }
