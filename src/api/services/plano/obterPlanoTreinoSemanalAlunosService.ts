@@ -17,7 +17,7 @@ export class ObterPlanoTreinoSemanalAlunosService {
 
         },
         isDeleted: false,
-        isRealizado: true,
+
         data: {
           lte: new Date(endDate),
           gte: new Date(startDate)
@@ -26,6 +26,13 @@ export class ObterPlanoTreinoSemanalAlunosService {
       select: {
         data: true,
         isRealizado: true,
+        aluno: {
+          select: {
+            nome: true,
+            email: true,
+            imagem_url: true,
+          }
+        },
         treinador: {
           select: {
             nome: true,
