@@ -7,6 +7,7 @@ import { RemoverAgendarDesafiosController } from "../controllers/agendamentos/al
 import { VerAgendamentosAvaliacoesAlunoController } from "../controllers/agendamentos/aluno/verAgendamentosAvaliacoesAlunoController";
 import { VerAgendamentosDesafiosAlunoController } from "../controllers/agendamentos/aluno/verAgendamentosDesafiosAlunoController";
 import { VerAvaliacaoAlunoController } from "../controllers/avaliacoes/verAvaliacaoAlunoController";
+import { VerGinasiosUserController } from "../controllers/ginasios/verGinasiosUserController";
 import { EditarPlanoTreinoRealizadoController } from "../controllers/plano/editarPlanoTreinoRealizadoController";
 import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanalController";
 import { RemoverPlanoTreinoRealizadoController } from "../controllers/plano/removerPlanoTreinoRealizadoController";
@@ -33,6 +34,9 @@ const verAgendamentosDesafiosAlunoController = new VerAgendamentosDesafiosAlunoC
 const verAgendamentosAvaliacoesAlunoController = new VerAgendamentosAvaliacoesAlunoController();
 const editarPlanoTreinoRealizadoController = new EditarPlanoTreinoRealizadoController();
 const removerPlanoTreinoRealizadoController = new RemoverPlanoTreinoRealizadoController();
+const verGinasiosUserController = new VerGinasiosUserController();
+
+alunoRouter.get("/:alunoId/ginasios", verGinasiosUserController.handle);
 
 //#region Treinos
 alunoRouter.post("/:alunoId/treinos", criarTreinosController.handle);
