@@ -27,6 +27,11 @@ export class GetTop10Service {
           }
         ]
       },
+      select: {
+        hashtag: true,
+        pontos: true,
+        imagem_url: true
+      },
       orderBy: {
         pontos: "desc"
       },
