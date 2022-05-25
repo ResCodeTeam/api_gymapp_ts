@@ -82,7 +82,8 @@ let checkDesafioDisponivel = async (desafioId: string) => {
 let checkAvaliacoesExists = async (avaliacaoId: string) => {
     const search = await client.avaliacoes.findMany({
         where: {
-            avaliacao_id: avaliacaoId
+            avaliacao_id: avaliacaoId,
+            isDeleted: false
         }
     })
     return search.length != 0;
