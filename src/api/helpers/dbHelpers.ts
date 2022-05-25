@@ -976,7 +976,7 @@ let getGinasioAluno = async (alunoId: string) => {
     const ginasio = await client.ginasio.findFirst({
         where: {
             aluno_ginasio: {
-                every: {
+                some: {
                     user_id: alunoId,
                     AND: {
                         users: {
