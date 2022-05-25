@@ -18,6 +18,16 @@ export class VerAgendamentoAvaliacoesService {
                     marca_id: marcaTreinador
                 }
             },
+            select: {
+                data_agendamento: true,
+                isAceite: true,
+                users: {
+                    select: {
+                        nome: true,
+                    }
+                }
+            },
+
         })
 
         return { data: agendamentos, status: 200 };
