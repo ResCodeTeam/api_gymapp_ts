@@ -3,19 +3,16 @@ import { client } from "../../prisma/client";
 
 export class VerAvaliacoesService {
     async execute(userId: string, alunoId: string) {
-        console.log("123")
+
         const exists_aluno = await checkUserIdExists(alunoId)
         if (!exists_aluno) {
             return { data: "O utilizador não existe", status: 500 }
         }
 
-
-
         const existsID = await checkUserIdExists(userId)
         if (!existsID) {
             return { data: "O utilizador não existe", status: 500 }
         }
-
 
         const funcao = await getUserFuncao(userId);
         const funcTreinadorId = await getFuncaoId('Treinador')
