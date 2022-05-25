@@ -7,6 +7,7 @@ import { CriarDesafiosController } from "../controllers/desafios/criarDesafiosCo
 import { EncerrarDesafiosController } from "../controllers/desafios/encerrarDesafiosController";
 
 import { VerTodosMusculosController } from "../controllers/musculos/verTodosMusculosController";
+import { ObterAlunosMarcaController } from "../controllers/treinadores/obterAlunosMarcaController";
 
 
 const editarDesafio = new EditarDesafioController()
@@ -14,7 +15,7 @@ const removerDesafio = new RemoverDesafioController()
 const criarDesafio = new CriarDesafiosController()
 const encerrarDesafiosController = new EncerrarDesafiosController();
 const verTodosMusculosController = new VerTodosMusculosController();
-
+const obterAlunosMarcaController = new ObterAlunosMarcaController();
 
 //#region Desafios
 adminTreinadorRouter.put("/:userId/desafio/:id/editar", editarDesafio.handle);
@@ -26,7 +27,7 @@ adminTreinadorRouter.put("/:userId/desafio/:id", encerrarDesafiosController.hand
 //#region Músculos
 adminTreinadorRouter.get("/:userId/musculos/", verTodosMusculosController.handle);
 //endregion
-
+adminTreinadorRouter.get("/:userId/marca/:marcaId/alunos", obterAlunosMarcaController.handle);
 
 
 
