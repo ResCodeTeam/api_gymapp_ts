@@ -10,6 +10,7 @@ interface IAvaliacao {
     agua: number,
     proteina: number,
     massa_ossea: number,
+    imc: number,
     metabolismo_basal: number,
     medidas: Array<{
         medida: string,
@@ -81,6 +82,7 @@ export class EditarAvaliacaoService {
                     gordura_corporal: dados.gordura_corporal,
                     gordura_visceral: dados.gordura_visceral,
                     agua: dados.agua,
+                    imc: dados.imc,
                     proteina: dados.proteina,
                     massa_ossea: dados.massa_ossea,
                     metabolismo_basal: dados.metabolismo_basal,

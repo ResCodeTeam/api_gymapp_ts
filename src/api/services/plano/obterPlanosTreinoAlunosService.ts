@@ -5,7 +5,10 @@ export class ObterPlanosTreinoAlunosService {
   async execute(uid: string) {
 
     const marcaId = await getTreinadorMarca(uid);
-
+    const midnight = new Date();
+    const latenight = new Date();
+    midnight.setHours(0, 0, 0, 0);
+    latenight.setHours(23, 59, 59);
 
     const planos = await client.planos_treino.findMany({
       where: {
@@ -30,14 +33,22 @@ export class ObterPlanosTreinoAlunosService {
           ]
         },
         data: {
-          lte: new Date()
+          gte: midnight,
+          lte: latenight,
         },
-        isRealizado: true
+
 
       },
       select: {
         data: true,
         isRealizado: true,
+        aluno: {
+          select: {
+            nome: true,
+            email: true,
+            imagem_url: true,
+          }
+        },
         treinador: {
           select: {
             nome: true,
