@@ -14,6 +14,10 @@ export class VerAgendamentosDesafiosAlunoService {
                 uid: uId,
                 isDeleted: false
             },
+            select: {
+                agendamento_id:true,                
+                desafios: true
+            }
         })
 
         return { data: agendamentos, status: 200 };

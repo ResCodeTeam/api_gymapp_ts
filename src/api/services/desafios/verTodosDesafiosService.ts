@@ -47,6 +47,7 @@ export class VerTodosDesafiosService {
                 isDeleted: false
 
             }, select: {
+                desafio_id: true,
                 nome: true,
                 data_inicio: true,
                 data_fim: true,
