@@ -11,7 +11,16 @@ export class VerNotificacoesService {
                     }
                 }
             },
+            include: {
+                users: {
+                    select: {
+                        nome: true,
+                        hashtag: true,
+                        imagem_url: true,
+                    }
+                }
+            }
         })
-        return {data: notificacoes, status: 200};
+        return { data: notificacoes, status: 200 };
     }
 }
