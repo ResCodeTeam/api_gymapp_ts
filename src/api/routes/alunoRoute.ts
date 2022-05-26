@@ -7,6 +7,7 @@ import { RemoverAgendarDesafiosController } from "../controllers/agendamentos/al
 import { VerAgendamentosAvaliacoesAlunoController } from "../controllers/agendamentos/aluno/verAgendamentosAvaliacoesAlunoController";
 import { VerAgendamentosDesafiosAlunoController } from "../controllers/agendamentos/aluno/verAgendamentosDesafiosAlunoController";
 import { VerAvaliacaoAlunoController } from "../controllers/avaliacoes/verAvaliacaoAlunoController";
+import { VerUmaAvaliacaoController } from "../controllers/avaliacoes/verUmaAvaliacaoController";
 import { VerGinasiosUserController } from "../controllers/ginasios/verGinasiosUserController";
 import { EditarPlanoTreinoRealizadoController } from "../controllers/plano/editarPlanoTreinoRealizadoController";
 import { ObterPlanoTreinoSemanalController } from "../controllers/plano/obterPlanoDeTreinoSemanalController";
@@ -15,7 +16,6 @@ import { CriarTreinosController } from "../controllers/treinos/criarTreinosContr
 import { EditarTreinosController } from "../controllers/treinos/editarTreinosController";
 import { RemoverTreinosController } from "../controllers/treinos/removerTreinosController";
 import { VerTreinosAlunosController } from "../controllers/treinos/verTreinosAlunosController";
-
 
 
 const alunoRouter = express.Router();
@@ -35,6 +35,7 @@ const verAgendamentosAvaliacoesAlunoController = new VerAgendamentosAvaliacoesAl
 const editarPlanoTreinoRealizadoController = new EditarPlanoTreinoRealizadoController();
 const removerPlanoTreinoRealizadoController = new RemoverPlanoTreinoRealizadoController();
 const verGinasiosUserController = new VerGinasiosUserController();
+const verUmaAvaliacaoController = new VerUmaAvaliacaoController;
 
 alunoRouter.get("/:alunoId/ginasios", verGinasiosUserController.handle);
 
@@ -47,6 +48,7 @@ alunoRouter.put("/:alunoId/treinos/:treino_id", editarTreinosController.handle);
 
 //#region avaliacao
 alunoRouter.get("/:userId/avaliacoes/:alunoId", verAvaliacoesController.handle);
+alunoRouter.get("/:alunoId/avaliacao/:avaliacaoId", verUmaAvaliacaoController.handle);
 //#endregion
 
 //#region Plano de Treino

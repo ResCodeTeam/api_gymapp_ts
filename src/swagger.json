@@ -6580,6 +6580,45 @@
           }
         }
       }
+    },
+    "/aluno/{alunoId}/avaliacao/{avaliacaoId}": {
+      "get": {
+        "summary": "Ver toda a informação de uma avaliação",
+        "description": "Esta rota vai apresentar todos os dados de uma avaliação",
+        "tags": ["Avaliações"],
+        "parameters": [
+          {
+            "name": "avaliacaoId",
+            "in": "path",
+            "description": "Id da avaliacao",
+            "required": true,
+            "schema": { "properties": { "avaliacaoId": { "type": "string" } } }
+          },
+          {
+            "name": "alunoId",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "schema": { "properties": { "alunoId": { "type": "string" } } }
+          }
+        ],
+        "responses": {
+          "500": { "description": "ERROR" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "properties": { "msg": { "type": "string" } } },
+                "examples": {
+                  "Ver Dados de uma  Avaliação": {
+                    "value": { "msg": "Operação realizada com sucesso" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
