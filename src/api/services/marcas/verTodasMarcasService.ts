@@ -14,8 +14,11 @@ export class VerTodasMarcasService{
                 isDeleted: false
 
             }, select:{
+                marca_id: true,
                 nome:true,
+                cor:true,
                 logotipo:true,
+                mobilidade: true
             }        
          })
         return marcas;
