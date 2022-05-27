@@ -5,21 +5,22 @@ class RemoverAtividadesService {
   async execute(atividadeId: string) {
     const exists_atividade = await checkAtividadeExists(atividadeId);
     if (!exists_atividade) {
-      throw new Error("A modalidade não existe");
+      return { data: "A modalidade não existe", status: 500 }
     }
 
-   
+
     await client.atividades.update({
-     where: {
-       atividade_id: atividadeId
+      where: {
+        atividade_id: atividadeId
       },
-     data:{
-       isDeleted: true
-     }
+      data: {
+        isDeleted: true
+      }
     })
 
     return {
-      msg: "Atividade removida com sucesso",
+      data: "Atividade removida com sucesso",
+      status: 200
     };
   }
 }

@@ -10,6 +10,7 @@ interface IAvaliacao {
     agua: number,
     proteina: number,
     massa_ossea: number,
+    imc: number,
     metabolismo_basal: number,
     medidas: Array<{
         medida: string,
@@ -26,15 +27,15 @@ export class EditarAvaliacaoService {
 
         const existstreinadorIdAvaliacao = await checkAutorAvaliacao(treinadorId);
         if (!existstreinadorIdAvaliacao) {
-            throw new Error("Treinador pertence há avaliação")
+            return { data: "Treinador pertence há avaliação", status: 500 }
         }
         const existsAvaliacao = await checkAvaliacoesExists(avaliacao_id)
         if (!existsAvaliacao) {
-            throw new Error("Avaliação não existe")
+            return { data: "Avaliação não existe", status: 500 }
         }
 
         if (existstreinadorIdAvaliacao != existsAvaliacao) {
-            throw new Error("treinador não pertence a esta avaliação")
+            return { data: "treinador não pertence a esta avaliação", status: 500 }
         } else {
 
 
@@ -62,7 +63,6 @@ export class EditarAvaliacaoService {
             }
 
             for (let imagem of dados.imagens) {
-                console.log(imagem)
                 await client.avaliacao_imagens.create({
                     data: {
                         avaliacao_id: avaliacao_id,
@@ -82,6 +82,7 @@ export class EditarAvaliacaoService {
                     gordura_corporal: dados.gordura_corporal,
                     gordura_visceral: dados.gordura_visceral,
                     agua: dados.agua,
+                    imc: dados.imc,
                     proteina: dados.proteina,
                     massa_ossea: dados.massa_ossea,
                     metabolismo_basal: dados.metabolismo_basal,
@@ -123,7 +124,7 @@ export class EditarAvaliacaoService {
                 }
             })
 
-            return atualizarAvaliacao;
+            return { data: atualizarAvaliacao, status: 200 };
         }
     }
 }

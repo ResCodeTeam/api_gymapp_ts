@@ -14,6 +14,7 @@ interface ICriarAvaliacaoService {
   agua: number,
   proteina: number,
   massaOssea: number,
+  imc: number,
   metabolismoBasal: number,
   imagens: Array<string>,
   medidas: Array<Medida>
@@ -32,6 +33,7 @@ export class CriarAvaliacaoService {
     agua,
     proteina,
     massaOssea,
+    imc,
     metabolismoBasal,
     imagens,
     medidas }: ICriarAvaliacaoService) {
@@ -39,18 +41,17 @@ export class CriarAvaliacaoService {
 
     const existsalunoId = await checkUserIdExists(alunoId);
     if (!existsalunoId) {
-      throw new Error("Aluno não existe")
-
+      return { data: "Aluno não existe", status: 500 }
     }
     const existstreinadorId = await checkUserIdExists(treinadorId);
     if (!existstreinadorId) {
-      throw new Error("Treinador não existe")
+      return { data: "Treinador não existe", status: 500 }
     }
     const alunoMarca = await getAlunoMarca(alunoId);
     const treinadorMarca = await getTreinadorMarca(treinadorId);
 
     if (alunoMarca != treinadorMarca) {
-      throw new Error("Não é possivel criar avaliação")
+      return { data: "Não é possivel criar avaliação", status: 500 }
     } else {
 
 
@@ -65,36 +66,44 @@ export class CriarAvaliacaoService {
           gordura_corporal: gorduraCorporal,
           gordura_visceral: gorduraVisceral,
           agua: agua,
+          imc: imc,
           proteina: proteina,
           massa_ossea: massaOssea,
           metabolismo_basal: metabolismoBasal
         }
       })
+      try {
+        for (let i = 0; i < imagens.length; i++) {
+          await client.avaliacao_imagens.create({
+            data: {
 
-      for (let i = 0; i < imagens.length; i++) {
-        await client.avaliacao_imagens.create({
-          data: {
+              avaliacao_id: avaliacao.avaliacao_id,
+              url: imagens[i]
 
-            avaliacao_id: avaliacao.avaliacao_id,
-            url: imagens[i]
-
-          }
-        })
+            }
+          })
+        }
 
         for (let i = 0; i < medidas.length; i++) {
           await client.medidas_avaliacao.create({
             data: {
-
               avaliacao_id: avaliacao.avaliacao_id,
               medida: medidas[i].medida,
               unidade_medida: medidas[i].unidadeMedida,
               local_medida_id: medidas[i].localMedidaId
             }
           })
-
-
         }
-        return avaliacao;
+
+
+        return { data: avaliacao, status: 200 };
+      } catch (err) {
+        await client.avaliacoes.delete({
+          where: {
+            avaliacao_id: avaliacao.avaliacao_id
+          }
+        })
+        return { data: "Erro ao criar avaliação", status: 500 }
       }
 
     }

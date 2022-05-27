@@ -3,21 +3,32 @@ import { RegistarUserMarcasService } from "../../services/marcas/registarUserMar
 
 class RegistarUserMarcasController {
   async handle(request: Request, response: Response) {
-    const userId = response.locals.uid;
+    const userId = request.params.adminId;
     const { nome, mobilidade, cor, logotipo } = request.body;
-    if(nome === undefined || mobilidade === undefined || cor === undefined || logotipo === undefined){
-      throw new Error("Pedido inválido")
-    }
 
-    const registarUserMarcasController = new RegistarUserMarcasService();
-    const resp = await registarUserMarcasController.execute({
-      userId,
-      nome,
-      mobilidade,
-      cor,
-      logotipo,
-    });
-    response.json( resp);
+    try{
+      if (
+        userId === undefined ||
+        nome === undefined ||
+        mobilidade === undefined ||
+        cor === undefined ||
+        logotipo === undefined
+      ) {
+        throw new Error("Pedido inválido");
+      }
+  
+      const registarUserMarcasController = new RegistarUserMarcasService();
+      const resp = await registarUserMarcasController.execute({
+        userId,
+        nome,
+        mobilidade,
+        cor,
+        logotipo,
+      });
+      response.status(resp.status).json(resp.data);
+    } catch (e) {
+      response.status(500).json(e.message)
+    }
   }
 }
 

@@ -11,18 +11,17 @@ interface INotificacaoGinasio {
 
 export class CriarNotificacaoGinasioService {
   async execute({ userId, ginasioId, conteudo, tipo }: INotificacaoGinasio) {
-    console.log(userId, ginasioId)
     //#region Verifica se o admin existe
     const existsUser = await checkUserIdExists(userId);
     if (!existsUser) {
-      throw new Error("User não existe");
+      return { data: "User não existe", status: 500 }
     }
     //#endregion
 
     //#region  Verifica se a marca existe
     const existsGinasio = await checkGinasioExists(ginasioId);
     if (!existsGinasio) {
-      throw new Error("Ginásio não existe");
+      return { data: "Ginásio não existe", status: 500 }
     }
     //#endregion
 
@@ -30,7 +29,7 @@ export class CriarNotificacaoGinasioService {
     const checkGinasioAdmin = await checkDonoGinasio(ginasioId, userId);
     //await models.marcas.findAll({ where: {marca_id: marcaId, dono_id: user_id}});
     if (!checkGinasioAdmin) {
-      throw new Error("Não tem permições nesta marca");
+      return { data: "Não tem permições nesta marca", status: 500 }
     }
     //#endregion
 
@@ -57,7 +56,7 @@ export class CriarNotificacaoGinasioService {
 
     ///Verificar se existe ginásios
     if (!ginasios) {
-      throw new Error(`Não existe alunos`);
+      return { data: "Não existe alunos", status: 500 }
     }
 
     let data = new Date();
@@ -74,9 +73,6 @@ export class CriarNotificacaoGinasioService {
     });
     //#endregion
 
-    console.log(`ID Notificação : ${notificacao.noti_id}`);
-    console.log(`Data : ${(await formatDateHour(notificacao.data))}`);
-    console.log(ginasios.aluno_ginasio);
 
     //#region Cria Destinos da Notificação
     let dstNoti;
@@ -90,13 +86,16 @@ export class CriarNotificacaoGinasioService {
     }
 
     if (!dstNoti) {
-      throw new Error(`Não contém alunos`)
+      return { data: "Não contém alunos", status: 500 }
     }
     //#endregion
 
     return {
-      message: "Notificação enviada com sucesso",
-      ginasios
+      data: {
+        message: "Notificação enviada com sucesso",
+        ginasios
+      },
+      status: 200
     };
   }
 }

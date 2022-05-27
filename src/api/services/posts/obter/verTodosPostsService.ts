@@ -31,7 +31,6 @@ class VerTodosPostsService {
             if (mobilidade) {
                 return getPublicacoesMarca(marcaId)
             } else {
-                console.log(marcaId)
                 return getPublicacoesGymTreinador(marcaId)
             }
         } else {
@@ -39,12 +38,12 @@ class VerTodosPostsService {
             let posts = [];
             for (let marca of marcas) {
                 if (marca.mobilidade) {
-                    posts.push(...(await getPublicacoesMarca(marca.marca_id)))
+                    posts.push(...(await getPublicacoesMarca(marca.marca_id)).data)
                 } else {
-                    posts.push(...(await getPublicacoesGymTreinador(marca.marca_id)))
+                    posts.push(...(await getPublicacoesGymTreinador(marca.marca_id)).data)
                 }
             }
-            return posts;
+            return {data: posts, status: 200};
 
         }
     }
@@ -118,7 +117,7 @@ async function getPublicacoesMarca(marcaId: string) {
 
     })
 
-    return publicacoes
+    return {data: publicacoes, status: 200};
 }
 
 
@@ -192,7 +191,7 @@ async function getPublicacoesGym(ginasioId: string, marcaId: string) {
 
     })
 
-    return publicacoes
+    return {data: publicacoes, status: 200};
 
 }
 
@@ -272,7 +271,7 @@ async function getPublicacoesGymTreinador(marcaId: string) {
 
 
 
-    return publicacoes
+    return {data: publicacoes, status: 200};
 
 }
 

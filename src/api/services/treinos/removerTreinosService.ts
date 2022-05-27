@@ -5,30 +5,31 @@ class RemoverTreinosService {
   async execute(uId: string, treinoId: string) {
     const exists_treino = await checkTreinoExists(treinoId);
     if (!exists_treino) {
-      throw new Error("O treino não existe");
+      return { data: "O treino não existe", status: 500 }
     }
 
     const treino = await client.treinos.findUnique({
-      where:{
-          treino_id:treinoId
+      where: {
+        treino_id: treinoId
       }
     })
-    const isAutor = await checkAutorTreino(uId,treinoId);
-    if(!isAutor){
-      throw new Error("O treino não lhe pertence");
+    const isAutor = await checkAutorTreino(uId, treinoId);
+    if (!isAutor) {
+      return { data: "O treino não lhe pertence", status: 500 }
     }
 
     await client.treinos.update({
       where: {
         treino_id: treinoId
-       },
-      data:{
+      },
+      data: {
         isDeleted: true
       }
     })
 
     return {
-      msg: "Treino removido com sucesso",
+      data: "Treino removido com sucesso",
+      status: 200
     };
   }
 }

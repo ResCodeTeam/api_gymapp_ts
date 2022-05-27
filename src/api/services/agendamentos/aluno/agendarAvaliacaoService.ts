@@ -1,5 +1,5 @@
 import { client } from "../../../prisma/client";
-import { checkUserIdExists, checkGinasioExists, checkTreinador, getMarcaGym, checkMobilidadeMarcaUser } from "../../../helpers/dbHelpers";
+import { checkUserIdExists, checkGinasioExists, checkTreinador, getMarcaGym, checkMobilidadeMarcaUser, getMarcaAluno, getGinasioAluno } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
 interface IAgendarAvaliacaoService {
@@ -16,40 +16,41 @@ export class AgendarAvaliacaoService {
   }: IAgendarAvaliacaoService) {
 
     const exist_gym = await checkGinasioExists(ginasioId);
-    if (!exist_gym){
-      throw new Error("O ginásio não existe");
+    if (!exist_gym) {
+      return { data: "O ginásio não existe", status: 500 }
     }
+
 
     const marca_ginasio = (await getMarcaGym(ginasioId)).marca_id;
     const { mobilidade, id } = await checkMobilidadeMarcaUser(uid);
-    if(mobilidade){
-        if(id['marca_id'] != marca_ginasio)
-        {
-            throw new Error("Não possui permissão")
-        }
+    if (mobilidade) {
+      const userMarca = await getMarcaAluno(uid);
+      if (id['marca_id'] != marca_ginasio || userMarca != marca_ginasio) {
+        return { data: "Não possui permissão", status: 500 }
+      }
     }
-    else{
-        if(id['ginasio_id'] != ginasioId)
-        {
-            throw new Error("Não possui permissão")
-        }
+    else {
+      const userGym = await getGinasioAluno(uid)
+      if (id['ginasio_id'] != ginasioId || ginasioId != userGym) {
+        return { data: "Não possui permissão", status: 500 }
+      }
     }
 
     const dataAtual = new Date();
     changeTimeZone(dataAtual)
-    if(dataAgendamento <= dataAtual){
-      throw new Error("A data do agendamento não pode ser menor que a data atual");
+    if (dataAgendamento <= dataAtual) {
+      return { data: "A data do agendamento não pode ser menor que a data atual", status: 500 }
     }
 
     const agendamento = await client.agendamentos_avaliacoes.create({
-      data: {        
+      data: {
         ginasio_id: ginasioId,
         uid,
         data_agendamento: dataAgendamento,
       }
     });
 
-    return agendamento;
+    return { data: agendamento, status: 200 };
   }
 }
 
