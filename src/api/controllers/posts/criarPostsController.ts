@@ -1,9 +1,11 @@
+/**
+ * @module CriarPostsController
+ */
 import { Request, Response } from "express";
 import { CriarPostsService } from "../../services/posts/criarPostsService";
 
 /**
- * @module CriarPostsController
- * Controller de criação de posts
+ * Classe responsável por receber e chamar os métodos do serviço de criação de posts
  */
 class CriarPostsController {
   /**
