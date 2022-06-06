@@ -1,44 +1,28 @@
-import { checkUserIdExists, getFuncaoId, getGinasioAluno, getMarcaAluno, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+import { use } from "chai";
+import { checkAvaliacoesExists, checkUserIdExists, getFuncaoId, getGinasioAluno, getMarcaAluno, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-export class VerAvaliacoesService {
-    async execute(userId: string, alunoId: string) {
+export class VerUmaAvaliacaoService {
+    async execute(userId: string, avaliacaoId: string) {
 
-        const exists_aluno = await checkUserIdExists(alunoId)
-        if (!exists_aluno) {
-            return { data: "O utilizador não existe", status: 500 }
-        }
-
+        console.log(userId)
         const existsID = await checkUserIdExists(userId)
         if (!existsID) {
             return { data: "O utilizador não existe", status: 500 }
         }
 
-        const funcao = await getUserFuncao(userId);
-        const funcTreinadorId = await getFuncaoId('Treinador')
-        const funcAlunoId = await getFuncaoId('Aluno')
-        if (funcao == funcTreinadorId) {
-            const marcaAluno = await getMarcaAluno(alunoId);
-            const marcaTreinador = await getTreinadorMarca(userId);
-
-            if (marcaAluno != marcaTreinador) {
-                return { data: "Não possui permissões", status: 500 }
-            }
-        } else if (funcao == funcAlunoId) {
-            if (alunoId != userId) {
-                return { data: "Não possui permissões", status: 500 }
-            }
+        console.log("123")
+        const exists_avaliacao = await checkAvaliacoesExists(avaliacaoId)
+        if (!exists_avaliacao) {
+            return { data: "A avaliação não existe", status: 500 }
         }
 
-        const avaliacao = await client.avaliacoes.findMany({
+        const avaliacao = await client.avaliacoes.findFirst({
             where: {
-                aluno_id: alunoId,
+                avaliacao_id: avaliacaoId,
                 isDeleted: false
-
             },
             select: {
-                avaliacao_id: true,
-                data: true,
                 peso: true,
                 musculo: true,
                 gordura_corporal: true,

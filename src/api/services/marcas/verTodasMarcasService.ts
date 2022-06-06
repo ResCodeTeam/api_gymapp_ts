@@ -13,11 +13,14 @@ export class VerTodasMarcasService {
                 dono_id: donoId,
                 isDeleted: false
 
-            }, select: {
-                nome: true,
-                logotipo: true,
-            }
-        })
-        return { data: marcas, status: 200 };
+            }, select:{
+                marca_id: true,
+                nome:true,
+                cor:true,
+                logotipo:true,
+                mobilidade: true
+            }        
+         })
+        return {data: marcas, status: 200};
     }
 }
