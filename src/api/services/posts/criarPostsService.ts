@@ -6,6 +6,14 @@ import { checkUserIdExists, getMarcaGym } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 import { VerInfoPostService } from "./obter/verInfoPostService";
 
+/**
+ * @param criadorId id do utilizador que está a criar o post
+ * @param data data de criação do post
+ * @param descricao descrição do post
+ * @param tipo tipo do post
+ * @param ginasioId id do ginasio
+ * @param identificacao identificações do post
+ */
 interface ICriarPostsService {
   criadorId: string;
   data: Date;
@@ -16,6 +24,11 @@ interface ICriarPostsService {
 }
 
 class CriarPostsService {
+  /**
+ * Classe responsável por receber e chamar os métodos do serviço de criação de posts
+ * 
+ * @param ICriarPostsService interface de dados do serviço
+ */
   async execute({
     criadorId,
     data,
