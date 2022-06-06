@@ -1,7 +1,20 @@
+/**
+ * @module CriarNotificacaoGinasioController
+ */
 import { Request, Response } from "express";
 import { CriarNotificacaoGinasioService } from "../../services/notificacoes/criarNotificacaoGinasioService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para criar notificações para o ginásio
+ */
 export class CriarNotificacaoGinasioController {
+  /**
+   * Permite criar uma notificação para um ginásio recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link CriarNotificacaoGinasioService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const userId = request.params.adminId;
     const ginasioId = request.params.ginasioId;

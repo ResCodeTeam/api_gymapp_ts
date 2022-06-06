@@ -1,7 +1,20 @@
+/**
+ * @module CriarNotificacaoMarcaController
+ */
 import { Request, Response } from "express";
 import { CriarNotificacaoMarcaService } from "../../services/notificacoes/criarNotificacaoMarcaService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para criar notificações para a marca
+ */
 export class CriarNotificacaoMarcaController {
+  /**
+   * Permite criar uma notificação para uma marca recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link CriarNotificacaoMarcaService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const userId = request.params.adminId;
     const marcaId = request.params.marcaId;

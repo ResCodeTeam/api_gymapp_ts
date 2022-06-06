@@ -1,7 +1,20 @@
+/**
+ * @module EliminarTreinadorController
+ */
 import { Request, Response } from "express";
 import { EliminarTreinadorService } from "../../services/treinadores/eliminarTreinadorService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para remover um treinador
+ */
 class EliminarTreinadorController {
+  /**
+   * Permite remover um treinador recebendo os dados por parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link EliminarTreinadorService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const treinador_id = request.params.id;
     const userId = response.locals.uid;

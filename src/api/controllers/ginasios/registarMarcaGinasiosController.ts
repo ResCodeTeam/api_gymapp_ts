@@ -1,7 +1,20 @@
+/**
+ * @module registarMarcaGinasiosController
+ */
 import { Request, Response } from "express";
 import { RegistarMarcaGinasiosService } from "../../services/ginasios/registarMarcaGinasiosService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para criar um ginásio
+ */
 class RegistarMarcaGinasiosController {
+  /**
+   * Permite criar um ginásios recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link RegistarMarcaGinasiosService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const marcaId = request.params.id;
     const uId = request.params.adminId;
