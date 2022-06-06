@@ -1,7 +1,21 @@
+/**
+ * @module EditarExercicioController
+ */
 import { Request, Response } from "express";
 import { EditarExercicioService } from "../../services/exercicios/editarExercicioService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para editar exercícios
+ */
+
 export class EditarExercicioController {
+  /**
+   * Permite editar exercícios recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link EditarExercicioService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     //Declarar Serviço
     const exercicioId = request.params.exercicios_id;

@@ -1,7 +1,20 @@
+/**
+ * @module EditarGinasioController
+ */
 import { Request, Response } from "express";
 import { EditarGinasioService } from "../../services/ginasios/editarGinasioService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para editar um ginásio
+ */
 export class EditarGinasioController {
+  /**
+   * Permite editar um ginásio recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link EditarGinasioService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const ginasioId = request.params.ginasioId;
     const adminId = request.params.adminId;

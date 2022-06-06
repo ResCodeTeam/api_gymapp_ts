@@ -1,7 +1,20 @@
+/**
+ * @module CriarAvaliacaoController
+ */
 import { Request, Response } from "express";
 import { CriarAvaliacaoService } from "../../services/avaliacoes/criarAvaliacaoService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para criar avaliações
+ */
 export class CriarAvaliacaoController {
+  /**
+   * Permite criar avaliações recebendo os dados pelo body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link CriarAvaliacaoService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const treinadorId = request.params.treinadorId;
     const alunoId = request.params.id;

@@ -1,7 +1,20 @@
+/**
+ * @module RegistarAlunoController
+ */
 import { Request, Response } from "express";
 import { RegistarAlunoService } from "../../services/alunos/registarAlunoService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para registar alunos
+ */
 export class RegistarAlunoController {
+  /**
+   * Permite registar alunos recebendo os dados pelo body do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link RegistarAlunoService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     let donoId = request.params.adminId;
     let { email, nome, password, dataNasc, dataEntrada, genero, ginasioId } =

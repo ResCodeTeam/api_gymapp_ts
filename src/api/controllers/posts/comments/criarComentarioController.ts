@@ -1,7 +1,20 @@
+/**
+ * @module CriarComentarioController
+ */
 import { Request, Response } from "express";
 import { CriarComentarioService } from "../../../services/posts/comments/criarComentarioService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para criar comentários em publicações
+ */
 export class CriarComentarioController {
+  /**
+   * Permite criar um comentário em uma publicação recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link CriarComentarioService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const publicacao_id = request.params.id;
     const criador_id = request.params.userId;

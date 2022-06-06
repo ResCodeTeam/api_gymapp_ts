@@ -1,7 +1,20 @@
+/**
+ * @module EditarAvaliacaoController
+ */
 import { Request, Response } from "express";
 import { EditarAvaliacaoService } from "../../services/avaliacoes/editarAvaliacoesService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para editar avaliações
+ */
 export class EditarAvaliacaoController {
+  /**
+   * Permite editar avaliações recebendo os dados pelo body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link CriarAvaliacaoService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     //Declarar Serviço
     const editarAvaliacaoService = new EditarAvaliacaoService();

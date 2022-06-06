@@ -1,7 +1,20 @@
+/**
+ * @module EditarPostsController
+ */
 import { Request, Response } from "express";
 import { EditarPublicacaoService } from "../../services/posts/editarPublicacoesService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para editar publicações
+ */
 export class EditarPublicacaoController {
+  /**
+   * Permite editar uma publicação recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link EditarPublicacaoService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const uId = request.params.userId;
     const publicacaoId = request.params.id;

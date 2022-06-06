@@ -1,3 +1,6 @@
+/**
+ * @module LogoutController
+ */
 import { Request, Response } from "express";
 import { LogoutService } from "../../services/auth/logoutService";
 
