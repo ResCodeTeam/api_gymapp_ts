@@ -1,3 +1,6 @@
+/**
+ * @module CriarPostsService
+ */
 import { publicacoes } from "@prisma/client";
 import { checkUserIdExists, getMarcaGym } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
