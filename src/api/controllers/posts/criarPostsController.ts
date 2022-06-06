@@ -9,7 +9,9 @@ import { CriarPostsService } from "../../services/posts/criarPostsService";
  */
 class CriarPostsController {
   /**
-   * Permite criar um post recebendo os dados pelo body do request verificando se este existem e redirecionado de seguida para o serviço associado
+   * Permite criar um post recebendo os dados pelo body do request 
+   * verificando se estes existem e redirecionando de seguida para o serviço associado 
+   * e respondendo ao cliente com a resposta do serviço
    *
    * {@link CriarPostsService}
    * @param request pedido efetuado.
