@@ -1,8 +1,22 @@
+/**
+ * @module EditarDesafioController
+ */
 import { Request, Response } from "express";
 import { changeTimeZone } from "../../helpers/dateHelpers";
 import { EditarDesafioService } from "../../services/desafios/editarDesafiosService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para editar um desafio
+ */
 export class EditarDesafioController {
+  /**
+   * Permite editar um desafio recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   * Verifica se a data fornecida é superior à data atual
+   * 
+   * {@link EditarDesafioService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const editarDesafioService = new EditarDesafioService();
     const uId = request.params.userId;

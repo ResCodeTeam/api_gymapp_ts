@@ -1,3 +1,6 @@
+/**
+ * @module GerarTokenController
+ */
 import { Request, Response } from "express";
 import { generateSessionToken } from "../../helpers/jwtHelpers";
 import { RefreshTokenService } from "../../services/auth/refreshTokenService";

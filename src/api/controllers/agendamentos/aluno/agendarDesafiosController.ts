@@ -1,7 +1,20 @@
+/**
+ * @module AgendarDesafiosController
+ */
 import { Request, Response } from "express";
 import { AgendarDesafiosService } from "../../../services/agendamentos/aluno/agendarDesafiosService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço de criação de um pedido de agendamento de um desafio
+ */
 export class AgendarDesafiosController {
+   /**
+   * Permite criar um pedido de agendamento de desafio recebendo os dados pelo body do request verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link AgendarDesafiosService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const uid = request.params.alunoId;
     const desafioId = request.params.id;
