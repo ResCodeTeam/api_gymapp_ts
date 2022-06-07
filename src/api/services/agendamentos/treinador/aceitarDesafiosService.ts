@@ -1,5 +1,8 @@
+/**
+ * @module AceitarDesafiosService
+ */
 import { client } from "../../../prisma/client";
-import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists, getAgendamentoAvaliacoesGinasio, getMarcaGym, getTreinadorMarca, getAgendamentoDesafiosGinasio } from "../../../helpers/dbHelpers";
+import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists, getMarcaGym, getTreinadorMarca, getAgendamentoDesafiosGinasio } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
 class AceitarDesafiosService {

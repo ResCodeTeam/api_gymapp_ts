@@ -1,4 +1,7 @@
-import { checkAutorAvaliacao, checkAvaliacoesExists, getAlunoMarca, getMobilidadeMarca, getTreinadorMarca } from "../../helpers/dbHelpers";
+/**
+ * @module EditarAvaliacaoService
+ */
+import { checkAutorAvaliacao, checkAvaliacoesExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 interface IAvaliacao {

@@ -1,5 +1,14 @@
+/**
+ * @module RegistarCpService
+ */
 import { client } from "../../prisma/client";
 
+/**
+ * @param cp código postal
+ * @param cpExt
+ * @param rua
+ * @param localidade icon que a atividade irá ter
+ */
 interface IRegistarCpRequest {
     cp: number;
     cpExt: number;

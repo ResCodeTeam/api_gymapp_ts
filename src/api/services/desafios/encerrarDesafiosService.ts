@@ -1,6 +1,14 @@
+/**
+ * @module EncerrarDesafiosService
+ */
 import { checkDesafioDisponivel, checkDesafioIdExists, getDonoMarca, getFuncaoId, getGinasioDesafio, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * @param uId id do utilizador
+ * @param isEncerrado estado do desafio
+ * @param desafioId id do desafio que vai ser encerrado
+ */
 interface IDesafio {
     uId: string,
     isEncerrado: boolean,

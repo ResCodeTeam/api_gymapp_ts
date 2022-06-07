@@ -1,3 +1,6 @@
+/**
+ * @module RemoverAlunoService
+ */
 import { client } from "../../prisma/client";
 import { checkDonoMarca, checkEmail, checkPlanoTreinoIsRealizado, checkUserIdExists, getAlunoMarca } from "../../helpers/dbHelpers";
 

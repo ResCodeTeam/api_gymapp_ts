@@ -1,5 +1,7 @@
-import { use } from "chai";
-import { checkAvaliacoesExists, checkUserIdExists, getFuncaoId, getGinasioAluno, getMarcaAluno, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+/**
+ * @module VerUmaAvaliacaoService
+ */
+import { checkAvaliacoesExists, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class VerUmaAvaliacaoService {

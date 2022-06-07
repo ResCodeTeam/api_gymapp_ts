@@ -1,4 +1,7 @@
-import { checkSubmissaoExists, checkAutorSubmissaoDesafio, checkDesafioIdExists, checkIsSubmissaoDesafio, getDesafio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
+/**
+ * @module RemoverSubmissaoDesafioService
+ */
+import { checkSubmissaoExists, checkDesafioIdExists, checkIsSubmissaoDesafio, getDesafio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
 export class RemoverSubmissaoDesafioService {

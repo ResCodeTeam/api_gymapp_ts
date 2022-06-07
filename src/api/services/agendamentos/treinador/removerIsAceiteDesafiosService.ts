@@ -1,3 +1,6 @@
+/**
+ * @module RemoverIsAceiteDesafiosService
+ */
 import { client } from "../../../prisma/client";
 import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists, getAgendamentoDesafiosGinasio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 

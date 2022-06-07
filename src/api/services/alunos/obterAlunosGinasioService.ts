@@ -1,9 +1,15 @@
-import { Interface } from "readline";
-import { checkDonoOuTreinadorGinasio, checkGinasioExists, checkMobilidadeMarcaUser, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+/**
+ * @module ObterAlunosGinasioService
+ */
+import { checkGinasioExists, checkMobilidadeMarcaUser, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 
 import { client } from '../../prisma/client';
 
-interface IGinasioDono {
+/**
+ * @param ginasioId id do ginasio que se pretende obter os alunos
+ * @param userId id do utilizador
+ */
+export interface IGinasioDono {
     ginasioId: string,
     userId: string
 }

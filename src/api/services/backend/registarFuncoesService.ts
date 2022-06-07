@@ -1,3 +1,6 @@
+/**
+ * @module RegistarFuncoesService
+ */
 import { client } from "../../prisma/client";
 
 export class RegistarFuncoesService {

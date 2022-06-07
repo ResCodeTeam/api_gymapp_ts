@@ -1,4 +1,6 @@
-import { checkUserIdExists } from "../../helpers/dbHelpers";
+/**
+ * @module ObterDefinicoesService
+ */
 import { client } from "../../prisma/client";
 
 export class ObterDefinicoesService {

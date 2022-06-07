@@ -1,8 +1,16 @@
+/**
+ * @module AgendarAvaliacaoService
+ */
 import { client } from "../../../prisma/client";
-import { checkUserIdExists, checkGinasioExists, checkTreinador, getMarcaGym, checkMobilidadeMarcaUser, getMarcaAluno, getGinasioAluno } from "../../../helpers/dbHelpers";
+import { checkGinasioExists, getMarcaGym, checkMobilidadeMarcaUser, getMarcaAluno, getGinasioAluno } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
-interface IAgendarAvaliacaoService {
+/** 
+ * @param uid id do utilizador que está a criar o pedido de agendamento de uma avaliação
+ * @param dataAgendamento data de criação do pedido de agendamento de uma avaliação
+ * @param ginasioId id di ginásio onde o utilizador pretende realizar a avaliação
+ */
+export interface IAgendarAvaliacaoService {
   uid: string;
   dataAgendamento: Date;
   ginasioId: string;

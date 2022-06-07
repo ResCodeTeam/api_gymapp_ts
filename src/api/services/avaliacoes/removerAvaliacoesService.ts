@@ -1,3 +1,6 @@
+/**
+ * @module RemoverAvaliacoesService
+ */
 import { checkAutorAvaliacao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 

@@ -1,3 +1,6 @@
+/**
+ * @module VerAgendamentosDesafiosService
+ */
 import { checkTreinador, getTreinadorMarca } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 

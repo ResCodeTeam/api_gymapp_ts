@@ -1,3 +1,6 @@
+/**
+ * @module RemoverAgendarAvaliacaoService
+ */
 import { client } from "../../../prisma/client";
 import { checkAgendamentoAvaliacaoExists, checkAutorAgendamentoAvaliacoes } from "../../../helpers/dbHelpers";
 

@@ -1,3 +1,6 @@
+/**
+ * @module VerTodasAtividadesService
+ */
 import { client } from "../../prisma/client";
 export class VerTodasAtividadesService {
     async execute() {

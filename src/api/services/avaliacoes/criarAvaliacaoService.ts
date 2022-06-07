@@ -1,3 +1,6 @@
+/**
+ * @module CriarAvaliacaoService
+ */
 import { checkUserIdExists, getAlunoMarca, getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 import { Medida } from "../../Providers/medidaProvider";
