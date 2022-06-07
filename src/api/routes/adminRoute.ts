@@ -80,6 +80,7 @@ adminRouter.post("/:adminId/marca/", registarUserMarcasController.handle);
 adminRouter.delete("/:adminId/marca/:id", removerMarcaController.handle);
 adminRouter.get("/:adminId/marca/:id/", verUmaMarcaController.handle);
 adminRouter.get("/:adminId/marca/", verTodasMarcasController.handle);
+adminRouter.get("/:adminId/marca/filtro/:filtroId", verTodasMarcasController.handle);
 adminRouter.put("/:adminId/marca/:marcaId", editarMarcaController.handle);
 //#endregion
 
