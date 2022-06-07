@@ -2,25 +2,99 @@
 import { client } from "../../prisma/client";
 
 interface IGinasios {
-    donoId: string
+    donoId: string,
+    filtroId: string
 }
 
 export class VerTodasMarcasService {
-    async execute({ donoId }: IGinasios) {
+    async execute({ donoId, filtroId }: IGinasios) {
+        let filtro = filtroId
+        let marcas : any
 
-        const marcas = await client.marcas.findMany({
-            where: {
-                dono_id: donoId,
-                isDeleted: false
+        console.log(filtroId)
+        
+        if (filtro == '1') { // nome ascendente
+            marcas = await client.marcas.findMany({
+                where: {
+                    dono_id: donoId,
+                    isDeleted: false
+    
+                }, 
+                orderBy: {
+                    nome: 'asc'
+                },
+                select:{
+                    marca_id: true,
+                    nome:true,
+                    cor:true,
+                    logotipo:true,
+                    mobilidade: true
+                }        
+             })
+        } else if (filtro == '2') { // nome descendente
+            marcas = await client.marcas.findMany({
+                where: {
+                    dono_id: donoId,
+                    isDeleted: false
+    
+                }, 
+                orderBy: {
+                    nome: 'desc'
+                },
+                select:{
+                    marca_id: true,
+                    nome:true,
+                    cor:true,
+                    logotipo:true,
+                    mobilidade: true
+                }        
+             })
+        } else if (filtro == '3') { // c/ mobilidade
+            marcas = await client.marcas.findMany({
+                where: {
+                    dono_id: donoId,
+                    isDeleted: false,
+                    mobilidade: true
+                },
+                select:{
+                    marca_id: true,
+                    nome:true,
+                    cor:true,
+                    logotipo:true,
+                    mobilidade: true
+                }        
+             })
+        } else if (filtro == '4') { // s/ mobilidade
+            marcas = await client.marcas.findMany({
+                where: {
+                    dono_id: donoId,
+                    isDeleted: false,
+                    mobilidade: false
+                },
+                select:{
+                    marca_id: true,
+                    nome:true,
+                    cor:true,
+                    logotipo:true,
+                    mobilidade: true
+                }        
+             })
+        } else { /* todos */
+            marcas = await client.marcas.findMany({
+                where: {
+                    dono_id: donoId,
+                    isDeleted: false
+    
+                }, select:{
+                    marca_id: true,
+                    nome:true,
+                    cor:true,
+                    logotipo:true,
+                    mobilidade: true
+                }        
+             })
+        }
 
-            }, select:{
-                marca_id: true,
-                nome:true,
-                cor:true,
-                logotipo:true,
-                mobilidade: true
-            }        
-         })
         return {data: marcas, status: 200};
     }
 }
