@@ -31,7 +31,7 @@ export class EditarPlanoTreinoService {
   /**
    * Método que permite editar um plano de treino tendo em conta todas as verificações necessárias
    * @param IEditarPlano dados do plano de treino
-   * @returns 
+  
    */
   async execute({ planoId, alunoId, treinadorId, data, modalidadeId, blocos }: IEditarPlano) {
     const existsPlano = await checkPlanoTreinoExists(planoId);

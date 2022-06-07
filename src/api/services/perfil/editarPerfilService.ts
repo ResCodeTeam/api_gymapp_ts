@@ -32,7 +32,7 @@ export class EditarPerfilService {
   /**
    * Método que permite editar o perfil de um utilizador tendo em conta todas as verificações necessárias
    * @param IEditarPerfil dados do utilizador 
-   * @returns 
+  
    */
   async execute({
     uId,

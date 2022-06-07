@@ -12,7 +12,7 @@ export class GetTop10Service {
   /**
    * Método que permite obter os 10 melhores alunos tendo em conta a sua pontuação
    * @param uid id do utilizador
-   * @returns 
+  
    */
   async execute(uid: string) {
     const marcaId = await getTreinadorMarca(uid);

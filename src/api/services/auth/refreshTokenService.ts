@@ -12,7 +12,7 @@ export class RefreshTokenService {
   /**
    * Método que permite gerar um novo token de sessão para um utilizador tendo em conta o seu refresh token
    * @param refreshToken token de refresh
-   * @returns 
+  
    */
   async execute(refreshToken: string) {
     const userId = (await client.users.findFirst({

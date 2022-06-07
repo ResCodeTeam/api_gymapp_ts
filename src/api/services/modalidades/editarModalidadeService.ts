@@ -27,7 +27,7 @@ export class EditarModalidadesService {
   /**
    * Método que permite editar uma modalidade tendo em conta todas as verificações necessárias
    * @param IEditarModalidades dados da modalidade 
-   * @returns 
+  
    */
   async execute({ imagemUrl, nome, modalidadeId, ginasioId, uid }: IEditarModalidades) {
     const exists_dst = await checkModalidadeExists(modalidadeId);

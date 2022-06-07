@@ -18,7 +18,7 @@ export class VerGinasiosUserService {
     /**
      * Método que permite ver todos os ginasios que um user tem acesso
      * @param IGinasios dados do utilizador
-     * @returns 
+    
      */
     async execute({ userId }: IGinasios) {
 

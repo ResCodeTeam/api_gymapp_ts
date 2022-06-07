@@ -20,7 +20,7 @@ export class VerTodasModalidadesService {
     /**
      * Método que permite obter todas as modalidades de um ginásio tendo em conta todas as verificações necessárias
      * @param IGinasios dados id do ginasio e id do user 
-     * @returns 
+    
      */
     async execute({ ginasioId, userId }: IGinasios) {
 

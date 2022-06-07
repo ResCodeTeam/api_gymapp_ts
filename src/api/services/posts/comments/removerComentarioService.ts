@@ -15,7 +15,7 @@ export class RemoverComentarioService {
    * @param criadorId id do criador
    * @param comentarioId id comentário
    * @param publicacaoId id publicação
-   * @returns 
+  
    */
   async execute(criadorId: string, comentarioId: string, publicacaoId: string) {
     const existsPublicacao = await checkPostExists(publicacaoId);

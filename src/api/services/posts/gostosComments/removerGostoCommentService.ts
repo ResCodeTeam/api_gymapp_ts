@@ -13,7 +13,7 @@ export class RemoverGostoCommentService {
    * @param publicacaoId id da publicação
    * @param criadorId id do criador
    * @param comentarioId id do comentário
-   * @returns 
+  
    */
   async execute(publicacaoId: string, criadorId: string, comentarioId: string) {
     const existsPublicacao = await checkPostExists(publicacaoId);

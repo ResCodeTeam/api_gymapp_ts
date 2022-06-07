@@ -21,7 +21,7 @@ export class EliminarTreinadorService {
     /**
      * Método que permite eliminar um treinador de uma marca tendo em conta todas as verificações necessárias
      * @param Itreinador interface de dados do serviço
-     * @returns 
+    
      */
     async execute({ treinador_id, userId }: Itreinador) {
         const exists_id = await checkUserIdExists(treinador_id);

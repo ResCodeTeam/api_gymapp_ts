@@ -11,7 +11,7 @@ export class VerNotificacoesService {
     /**
      * Método que permite ver todas as notificações de um utilizador autenticado
      * @param origemId id da origem
-     * @returns 
+    
      */
     async execute(origemId: string) {
 

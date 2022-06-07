@@ -20,7 +20,7 @@ export class VerTodosGinasiosService {
     /**
      * Método que permite ver todos as ginasio tendo em conta a marca e o utilizar que realiza o pedido
      * @param IGinasios dados da marca e do utilizador 
-     * @returns 
+    
      */
     async execute({ marcaId, userId }: IGinasios) {
         const exists_ginasios = await checkMarcaExists(marcaId)

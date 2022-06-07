@@ -13,7 +13,7 @@ export class RemoverLocalMedidaService {
    * @param uid id do utilizador
    * @param marcaId id da marca
    * @param localId id do local de medida
-   * @returns 
+  
    */
   async execute(uid: string, marcaId: string, localId: string) {
 

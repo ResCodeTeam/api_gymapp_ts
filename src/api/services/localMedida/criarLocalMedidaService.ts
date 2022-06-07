@@ -15,7 +15,7 @@ export class CriarLocalMedidaService {
    * @param marcaId id da marca
    * @param descricao descrição do local de medida
    * @param unilado unilateral ou não
-   * @returns 
+  
    */
   async execute(uid: string, marcaId: string, descricao: string, unilado: boolean) {
 
