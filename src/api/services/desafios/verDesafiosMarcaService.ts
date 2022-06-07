@@ -8,6 +8,11 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço de obter os desafios de uma marca
  */
 export class VerDesafiosMarcaService {
+  /**
+ * Método que permite obter os desafios de uma marca da base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param uid id do utilizador
+ */
   async execute(uid: string) {
     const marcaId = await getTreinadorMarca(uid);
 

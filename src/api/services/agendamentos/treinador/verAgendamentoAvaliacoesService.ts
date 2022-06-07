@@ -8,6 +8,11 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter agendamentos de avaliações
  */
 export class VerAgendamentoAvaliacoesService {
+    /**
+ * Método que permite obeter os pedidos de agendamento de avaliação da base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param uid id do utilizador
+ */
     async execute(uid: string) {
         const existsUser = await checkTreinador(uid)
         if (!existsUser) {

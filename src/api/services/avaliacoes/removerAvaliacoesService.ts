@@ -8,6 +8,12 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço de remoção de uma avaliação
  */
 export class RemoverAvaliacoesService {
+    /**
+ * Método que permite remover uma avaliação na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param avaliacao_id id da avaliação a remover
+ * @param treinadorId id do treinador
+ */
     async execute(avaliacao_id: string, treinadorId: string) {
 
         const existstreinadorIdAvaliacao = await checkAutorAvaliacao(treinadorId);

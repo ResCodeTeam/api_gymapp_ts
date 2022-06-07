@@ -9,6 +9,12 @@ import { changeTimeZone } from "../../../helpers/dateHelpers";
  * Classe responsavel pelo serviço que serve para editar o estado de um pedido de agendamento de uma avaliação
  */
 class AceitarAvaliacoesService {
+   /**
+ * Método que permite editar o estado de um pedido de agendamento de avaliação na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param agendamentoId id do agendamento
+ * @param treinadorId id do treinador
+ */
   async execute(agendamentoId: string, treinadorId: string) {
 
     const exists_agendamento = await checkAgendamentoAvaliacaoExists(agendamentoId);

@@ -5,9 +5,15 @@ import { checkUserIdExists, getFuncaoId, getMarcaAluno, getTreinadorMarca, getUs
 import { client } from "../../prisma/client";
 
 /**
- * Classe responsavel pelo serviço que serve para obter avaliações
+ * Classe responsavel pelo serviço que serve para obter as avaliações de um aluno
  */
 export class VerAvaliacoesService {
+    /**
+ * Método que permite obter as avaliacoes de um aluno da base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param userId id do utilizador
+ * @param alunoId id do aluno
+ */
     async execute(userId: string, alunoId: string) {
 
         const exists_aluno = await checkUserIdExists(alunoId)

@@ -19,6 +19,11 @@ export interface IDesafio {
  * Classe responsavel pelo serviço de edição do estado de um desafio
  */
 export class EncerrarDesafiosService {
+    /**
+ * Método que permite editar o estado de um desafio na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IDesafio interface de dados do serviço
+ */
     async execute({ uId, isEncerrado, desafioId }: IDesafio) {
 
         const search_desafio = await checkDesafioIdExists(desafioId);

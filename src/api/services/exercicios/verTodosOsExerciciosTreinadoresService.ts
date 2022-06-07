@@ -7,6 +7,10 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter todos os exercícios
  */
 export class VerTodosOsExerciciosTreinadoresService {
+    /**
+ * Método que permite obter todos os exercícios da base de dados tendo em conta todas as verificações necessárias
+ * 
+ */
     async execute() {
         const exer = await client.funcoes.findMany({
             where: {

@@ -20,6 +20,11 @@ export interface IAgendarAvaliacaoService {
  * Classe responsavel pelo serviço de criação de um pedido de agendamento de uma avaliação
  */
 export class AgendarAvaliacaoService {
+  /**
+ * Método que permite inserir um pedido de agendamento de avaliação na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IAgendarAvaliacaoService interface de dados do serviço
+ */
   async execute({
     uid,
     dataAgendamento,

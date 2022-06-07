@@ -9,6 +9,12 @@ import { changeTimeZone } from "../../../helpers/dateHelpers";
  * Classe responsavel pelo serviço que serve para editar o estado de um pedido de agendamento de um desafio
  */
 class AceitarDesafiosService {
+  /**
+ * Método que permite editar o estado de um pedido de agendamento de desafio na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param agendamentoId id do agendamento
+ * @param treinadorId id do treinador
+ */
   async execute(agendamentoId: string, treinadorId) {
     const exists_agendamento = await checkAgendamentoDesafiosExists(agendamentoId);
     if (!exists_agendamento) {

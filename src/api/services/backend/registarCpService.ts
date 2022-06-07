@@ -20,6 +20,11 @@ export interface IRegistarCpRequest {
  * Classe responsavel pelo serviço de criação de códigos postais
  */
 export class RegistarCpService {
+    /**
+ * Método que permite inserir um código postal na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IRegistarCpRequest interface de dados do serviço
+ */
     async execute({ cp, cpExt, rua, localidade }: IRegistarCpRequest) {
         await client.localidades.create({
             data: {
