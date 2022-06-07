@@ -1,3 +1,6 @@
+/**
+ * @module tagHelpers
+ */
 import { client } from "../prisma/client";
 
 let getIniciaisTag = (nome: string) => {
