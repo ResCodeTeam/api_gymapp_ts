@@ -1,10 +1,23 @@
+/**
+ * @module RegistarTreinadorService
+ */
 import { hash } from "bcrypt";
 import { use } from "chai";
 import { checkDonoMarca, checkEmail, checkMarcaExists, getFuncaoId } from "../../helpers/dbHelpers";
 import { getTag } from "../../helpers/tagHelpers";
 import { client } from "../../prisma/client";
 
-interface IRegistarTreinadorService {
+/**
+ * @param marcaId id da marca
+ * @param nome nome do treinador
+ * @param email email do treinador
+ * @param password password do treinador
+ * @param dataNasc data de nascimento do treinador
+ * @param dataEntrada data de entrada do treinador
+ * @param genero genero do treinador
+ * @param userId id do utilizador
+ */
+export interface IRegistarTreinadorService {
   marcaId: string,
   email: string,
   nome: string,

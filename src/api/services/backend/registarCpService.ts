@@ -9,7 +9,7 @@ import { client } from "../../prisma/client";
  * @param rua
  * @param localidade icon que a atividade irá ter
  */
-interface IRegistarCpRequest {
+export interface IRegistarCpRequest {
     cp: number;
     cpExt: number;
     rua: string;

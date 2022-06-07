@@ -1,7 +1,7 @@
 import { checkAutorExercicio, checkExercicioExists, checkUserIdExists } from "../../../helpers/dbHelpers"
 import { client } from "../../../prisma/client";
 
-interface IEditarImagensExercicio {
+export interface IEditarImagensExercicio {
   exercicioId: string,
   treinadorId: string,
   url: string,

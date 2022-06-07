@@ -13,7 +13,7 @@ import { client } from "../../prisma/client";
  * @param recompensa valor da recompensa do desafio
  * @param descricao descrição do desafio
  */
-interface Idata {
+export interface Idata {
     nome: string,
     modalidade: string,
     data_inicio: Date,

@@ -1,8 +1,20 @@
+/**
+ * @module CriarTreinosService
+ */
 import { client } from "../../prisma/client";
 import { checkUserIdExists, checkModalidadeExists, checkAtividadeExists, getModalidadeGinasio, getMarcaGym, checkMobilidadeMarcaUser } from "../../helpers/dbHelpers";
 import { changeTimeZone } from "../../helpers/dateHelpers";
 
-interface ICriarTreinosService {
+/**
+ * @param uid id do utilizador
+ * @param atividadeId id da atividade
+ * @param modalidadeId id da modalidade
+ * @param duracao duracao do treino
+ * @param calorias calorias do treino
+ * @param distancia distancia do treino
+ * @param data data do treino
+ */
+export interface ICriarTreinosService {
   uid: string;
   atividadeId: string;
   modalidadeId: string;

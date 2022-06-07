@@ -1,7 +1,16 @@
+/**
+ * @module EditarPublicacaoService
+ */
 import { checkAutorPublicacoes, checkPublicacaoExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IPublicacao {
+/**
+ * @param uId id do utilizador
+ * @param publicacaoId id da publicacao
+ * @param newData dados da publicacao
+ * @param descricao descricao da publicacao
+ */
+export interface IPublicacao {
     uId: string,
     publicacaoId: string,
     newData: Date,

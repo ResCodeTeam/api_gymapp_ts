@@ -17,7 +17,7 @@ import { Exercicio } from "../../Providers/exercicioProvider";
  * @param exercicios todos os exercícios que irão ser utilizados no desafio
  * @param regras conjunto de regras que o desafio vai possuir
  */
-interface ICriarDesafiosService {
+export interface ICriarDesafiosService {
     criadorId: string;
     nome: string;
     modalidadeId: string;

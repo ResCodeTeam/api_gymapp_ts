@@ -8,7 +8,7 @@ import { client } from "../../prisma/client";
  * @param uId id do utilizador
  * @param ginasioId id do ginásio que se pretende ver os desafios disponíveis
  */
-interface IGinasios {
+export interface IGinasios {
     uId: string,
     ginasioId: string
 }

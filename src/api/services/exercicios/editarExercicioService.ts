@@ -1,7 +1,7 @@
 import { client } from "../../prisma/client";
 import { checkExercicioExists, checkAutorExercicio } from "../../helpers/dbHelpers";
 
-interface IEditarExercicio {
+export interface IEditarExercicio {
     exercicioId: string,
     nome: string,
     descricao: string,

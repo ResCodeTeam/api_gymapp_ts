@@ -1,8 +1,14 @@
-
+/**
+ * @module VerTodosGinasiosService
+ */
 import { checkDonoMarca, checkMarcaExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IGinasios {
+/**
+ * @param marcaId marca id
+ * @param userId id do utilizador
+ */
+export interface IGinasios {
     marcaId: string,
     userId: string
 }

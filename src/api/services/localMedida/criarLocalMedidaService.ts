@@ -1,3 +1,7 @@
+/**
+ * @module CriarLocalMedidaService
+ */
+
 import { checkAutorMarca, checkMarcaExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 

@@ -1,8 +1,18 @@
+/**
+ * @module CriarNotificacaoGinasioService
+ */
+
 import { changeTimeZone } from "../../helpers/dateHelpers";
-import { checkDonoGinasio, checkGinasioExists, checkUserIdExists, formatDate, formatDateHour } from "../../helpers/dbHelpers";
+import { checkDonoGinasio, checkGinasioExists, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from '../../prisma/client';
 
-interface INotificacaoGinasio {
+/**
+ * @param userId id do utilizador
+ * @param ginasioId id do ginasio
+ * @param conteudo conteudo da notificacao
+ * @param tipo tipo da notificacao
+ */
+export interface INotificacaoGinasio {
   userId: string,
   ginasioId: string,
   conteudo: string,

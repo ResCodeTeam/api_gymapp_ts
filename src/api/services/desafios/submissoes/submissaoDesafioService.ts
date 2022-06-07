@@ -11,7 +11,7 @@ import { client } from "../../../prisma/client";
  * @param treinadorId id do treinador 
  * @param ginasioId id do ginasio em que se fez o desafio
  */
-interface ISubmissaoDesafio {
+export interface ISubmissaoDesafio {
   desafioId: string;
   uid: string;
   valor: string;

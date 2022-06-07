@@ -4,7 +4,7 @@
 import { checkAutorAvaliacao, checkAvaliacoesExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IAvaliacao {
+export interface IAvaliacao {
     peso: number,
     unidade_peso: string,
     musculo: number,

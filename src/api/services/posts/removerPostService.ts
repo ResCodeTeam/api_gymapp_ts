@@ -1,3 +1,7 @@
+/**
+ * @module RemoverPostService
+ */
+
 import { client } from "../../prisma/client";
 import { checkPostExists, checkAutorPublicacoes } from "../../helpers/dbHelpers";
 

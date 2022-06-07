@@ -1,5 +1,7 @@
-
-import { checkMobilidadeMarcaUser, checkPerfilPrivado, checkUserIdExists, checkUserIdIsDeleted, getAdminMarca, getDesafioGinasio, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+/**
+ * @module VerPerfilService
+ */
+import { checkMobilidadeMarcaUser, checkUserIdExists, checkUserIdIsDeleted, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 import { VerTodosPostsUserService } from "../posts/obter/verTodosPostsUserService";
 import { VerTreinosAlunosService } from "../treinos/verTreinosAlunosService";

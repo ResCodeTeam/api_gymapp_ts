@@ -9,7 +9,7 @@ import { client } from "../../prisma/client";
  * @param isEncerrado estado do desafio
  * @param desafioId id do desafio que vai ser encerrado
  */
-interface IDesafio {
+export interface IDesafio {
     uId: string,
     isEncerrado: boolean,
     desafioId: string,

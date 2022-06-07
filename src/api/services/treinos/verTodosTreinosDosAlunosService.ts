@@ -1,3 +1,7 @@
+/**
+ * @module VerTodosTreinosDosAlunosService
+ */
+
 import { checkPostExists, checkTreinador, checkUserIdExists, getMobilidadeMarca, getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 

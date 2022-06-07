@@ -1,7 +1,17 @@
+/**
+ * @module CriarGinasioModalidadesService
+ */
+
 import { client } from "../../prisma/client";
 import { checkModalidadeNome, checkGinasioExists, checkDonoGinasio } from "../../helpers/dbHelpers";
 
-interface ICriarGinasioModalidadesService {
+/**
+ * @param ginasioId ginasio id
+ * @param nome nome
+ * @param imagemUrl imagem url
+ * @param adminId id do admin
+ */
+export interface ICriarGinasioModalidadesService {
   ginasioId: string;
   nome: string;
   imagemUrl: string;

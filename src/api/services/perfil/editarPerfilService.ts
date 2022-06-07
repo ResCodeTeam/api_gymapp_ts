@@ -1,9 +1,21 @@
+/**
+ * @module EditarPerfilService
+ */
+
 import { hash } from "bcrypt";
 import { checkChangeEmail, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 
-interface IEditarPerfil {
+/**
+ * @param uId id do utilizador
+ * @param email novo email
+ * @param password nova password
+ * @param genero novo genero
+ * @param descricao nova descricao
+ * @param imagemUrl nova imagem
+ */
+export interface IEditarPerfil {
   uId: string,
   email: string,
   nome: string,

@@ -1,3 +1,7 @@
+/**
+ * @module VerTreinadorGinasioService
+ */
+
 import { checkMarcaExists, getDonoMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
