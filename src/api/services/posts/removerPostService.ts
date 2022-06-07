@@ -9,7 +9,11 @@ import { checkPostExists, checkAutorPublicacoes } from "../../helpers/dbHelpers"
  * Classe responsavel pelo serviço de remoção de posts
  */
 class RemoverPostService {
-
+    /**
+     * Método que permite remover um post realizando todas as as verificações necessárias
+     * @param uId id do utilizador
+     * @param postId id da publicação
+     */
     async execute(uId: string, postId: string) {
         const existsPost = await checkPostExists(postId);
         if (!existsPost) {

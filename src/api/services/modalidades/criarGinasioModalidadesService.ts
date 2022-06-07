@@ -22,6 +22,11 @@ export interface ICriarGinasioModalidadesService {
  * Classe responsavel pelo serviço de criação de modalidades
  */
 class CriarGinasioModalidadesService {
+  /**
+   * Método que permite criar uma modalidade para um ginásio tendo em conta todas as verificações necessárias
+   * @param ICriarGinasioModalidadesService dados da modalidade 
+   * @returns 
+   */
   async execute({
     ginasioId,
     nome,

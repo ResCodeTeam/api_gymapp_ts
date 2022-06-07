@@ -9,6 +9,12 @@ import { checkPlanoTreinoExists, checkAutorPlanoTreino, checkPlanoTreinoIsRealiz
  * Classe responsavel pelo serviço de edição do estado dos planos de treino
  */
 class EditarPlanoTreinoRealizadoService {
+  /**
+   * Método que permite alterar o estado de um plano de treino
+   * @param alunoId id do aluno
+   * @param planoId id do plano de treino
+   * @returns 
+   */
   async execute(alunoId: string, planoId: string) {
     const exists_plano = await checkPlanoTreinoExists(planoId);
     if (!exists_plano) {

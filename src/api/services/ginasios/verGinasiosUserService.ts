@@ -15,8 +15,13 @@ export interface IGinasios {
  * Classe responsavel pelo serviço que serve para obter os alunos dos ginásios
  */
 export class VerGinasiosUserService {
+    /**
+     * Método que permite ver todos os ginasios que um user tem acesso
+     * @param IGinasios dados do utilizador
+     * @returns 
+     */
     async execute({ userId }: IGinasios) {
-        console.log("123")
+
         const { mobilidade, id } = await checkMobilidadeMarcaUser(userId);
         console.log(mobilidade)
         if (mobilidade) {

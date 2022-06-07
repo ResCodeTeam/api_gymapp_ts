@@ -9,6 +9,10 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter todos os posts
  */
 class VerTodosPostsService {
+    /**
+     * Método que permite obter todos os posts que um utilizador pode ver
+     * @param userId id do utilizador
+     */
     async execute(userId: string) {
 
         const { mobilidade, id } = await checkMobilidadeMarcaUser(userId);

@@ -8,6 +8,13 @@ import { checkDonoGinasio, checkGinasioExists, checkModalidadeExists, getModalid
  * Classe responsavel pelo serviço de remoção de modalidades
  */
 class RemoverModalidadesService {
+  /**
+   * Método que permite remover uma modalidade de um ginásio tendo em conta todas as verificações necessárias
+   * @param modalidadeId id da modalidade
+   * @param ginasioId id do ginasioId
+   * @param uid id do utilizador
+   * @returns 
+   */
   async execute(modalidadeId: string, ginasioId: string, uid: string) {
 
     const exists_dst = await checkModalidadeExists(modalidadeId);

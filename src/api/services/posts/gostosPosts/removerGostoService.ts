@@ -9,6 +9,11 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço de remoção de gostos em publicações
  */
 export class RemoverGostoPublicacaoService {
+  /**
+   * Método que permite remover um gosto realizando todas as as verificações necessárias
+   * @param publicacaoId id da publicação
+   * @param userId id do utilizador
+   */
   async execute(publicacaoId: string, userId: string) {
 
     const publicacao = await checkPublicacaoExists(publicacaoId)

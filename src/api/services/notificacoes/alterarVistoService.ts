@@ -17,6 +17,11 @@ export interface IVisto {
  * Classe responsavel pelo serviço de edição do estado da notificação
  */
 export class AlterarVistoService {
+  /**
+   * Método que permite alterar o estado de uma notificação tendo em conta todas as verificações necessárias
+   * @param IVisto dados da notificacao 
+   * @returns 
+   */
   async execute({ notiId, destUid }: IVisto) {
 
     const existsVisto = await checknotificacaoExists(notiId);

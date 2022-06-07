@@ -17,6 +17,11 @@ export interface IMarca {
  * Classe responsavel pelo serviço que serve para obter os dados de uma marca
  */
 export class VerUmaMarcaService {
+    /**
+     * Método que permite ver os dados de uma marca
+     * @param IMarca dados da marca 
+     * @returns 
+     */
     async execute({ donoId, marcaId }: IMarca) {
 
         const exists_marca = await checkMarcaExists(marcaId)

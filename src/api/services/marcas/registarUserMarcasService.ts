@@ -24,6 +24,11 @@ export interface IRegistarUserMarcasSerice {
  * Classe responsavel pelo serviço de criação de marcas
  */
 class RegistarUserMarcasService {
+  /**
+   * Método que permite criar uma marca
+   * @param IRegistarUserMarcasSerice dados da marca 
+   * @returns 
+   */
   async execute({ userId, nome, mobilidade, cor, logotipo,
   }: IRegistarUserMarcasSerice) {
     const exists_user = await checkUserIdExists(userId);

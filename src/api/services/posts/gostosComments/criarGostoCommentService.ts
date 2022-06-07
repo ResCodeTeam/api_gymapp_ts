@@ -8,6 +8,13 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço de criação de gostos em comentários
  */
 export class CriarGostoCommentService {
+  /**
+   * Método que permite criar um gosto em um comentário realizando todas as as verificações necessárias
+   * @param comentarioId id do comentário
+   * @param publicacaoId id da publicação
+   * @param criadorId id do criador
+   * @returns 
+   */
   async execute(comentarioId: string, publicacaoId: string, criadorId: string) {
     const existsComment = await checkComentarioExists(comentarioId)
     if (!existsComment) {

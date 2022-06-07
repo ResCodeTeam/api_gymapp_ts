@@ -9,6 +9,10 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter todos os terinos dos alunos
  */
 export class VerTodosTreinosDosAlunosService {
+    /**
+     * Método que permite obter todos os treinos de todos os alunos
+     * @param uid id do utilizador
+     */
     async execute(uid: string) {
         const existsTreinador = await checkTreinador(uid)
         if (!existsTreinador) {

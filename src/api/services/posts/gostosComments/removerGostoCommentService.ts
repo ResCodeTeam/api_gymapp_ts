@@ -8,6 +8,13 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço de remoção de gostos dos comentários
  */
 export class RemoverGostoCommentService {
+  /**
+   * Método que permite remover um gosto de um cometário realizando todas as as verificações necessárias
+   * @param publicacaoId id da publicação
+   * @param criadorId id do criador
+   * @param comentarioId id do comentário
+   * @returns 
+   */
   async execute(publicacaoId: string, criadorId: string, comentarioId: string) {
     const existsPublicacao = await checkPostExists(publicacaoId);
     if (!existsPublicacao) {

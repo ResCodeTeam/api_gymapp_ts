@@ -29,6 +29,10 @@ export interface ITreino {
  * Classe responsavel pelo serviço de edição de treinos
  */
 export class EditarTreinosService {
+  /**
+   * Esta função permite editar um treino tendo em conta todas as verificações necessárias
+   * @param ITreino interface de dados do serviço
+   */
   async execute({ uId, treinoId, atividadeId, modalidadeId, duracao, calorias, distancia, data }: ITreino) {
 
     if (atividadeId == null && modalidadeId == null) {

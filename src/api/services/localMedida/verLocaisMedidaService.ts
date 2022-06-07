@@ -16,6 +16,11 @@ export interface ILocaisMedida {
  * Classe responsavel pelo serviço que serve para obter os locais de medida
  */
 export class VerLocaisMedidaService {
+    /**
+     * Método que permite obter os locais de medida de uma marca
+     * @param ILocaisMedida dados dos locais de medida 
+     * @returns 
+     */
     async execute({ uId }: ILocaisMedida) {
         const treinadorMarca = await getTreinadorMarca(uId);
 

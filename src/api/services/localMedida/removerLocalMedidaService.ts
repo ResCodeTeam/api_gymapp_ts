@@ -8,6 +8,13 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço de remoção de locais de medida
  */
 export class RemoverLocalMedidaService {
+  /**
+   * Método que permite remover um local de medida de uma marca tendo em conta todas as verificações necessárias
+   * @param uid id do utilizador
+   * @param marcaId id da marca
+   * @param localId id do local de medida
+   * @returns 
+   */
   async execute(uid: string, marcaId: string, localId: string) {
 
     const isMarca = await checkMarcaExists(marcaId);

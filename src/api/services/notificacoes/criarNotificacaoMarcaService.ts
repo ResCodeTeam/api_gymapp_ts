@@ -23,6 +23,11 @@ export interface INotificacaoMarca {
  * Classe responsavel pelo serviço de criação de notificações para as marcas
  */
 export class CriarNotificacaoMarcaService {
+  /**
+   * Método que permite criar uma notificação para uma marca tendo em conta todas as verificações necessárias
+   * @param INotificacaoMarca dados da notificacao 
+   * @returns 
+   */
   async execute({ userId, marcaId, conteudo, tipo }: INotificacaoMarca) {
     //#region Verifica se o admin existe
     const existsUser = await checkUserIdExists(userId);

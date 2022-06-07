@@ -9,6 +9,11 @@ import { VerTreinosAlunosService } from "../treinos/verTreinosAlunosService";
  * Classe responsavel pelo serviço que serve para obter os dados do perfil do utilizador autenticado
  */
 export class VerMeuPerfilService {
+  /**
+   * Método que permite obter os dados do perfil do utilizador autenticado
+   * @param uid id do utilizador
+   * @returns 
+   */
   async execute(uid: string) {
     const perfil = await client.users.findFirst({
       where: {

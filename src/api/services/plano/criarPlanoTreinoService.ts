@@ -26,6 +26,11 @@ export interface IPlano {
  * Classe responsavel pelo serviço de criação de planos de treino
  */
 export class CriarPlanoTreinoService {
+  /**
+   * Método que permite criar um plano de treino tendo em conta todas as verificações necessárias
+   * @param IPlano dados do plano de treino
+   * @returns 
+   */
   async execute({ alunoId, treinadorId, data, modalidadeId, blocos }: IPlano) {
     const exists_aluno = await checkUserIdExists(alunoId);
     if (!exists_aluno) {

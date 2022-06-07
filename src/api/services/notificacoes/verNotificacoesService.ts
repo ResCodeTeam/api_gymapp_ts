@@ -8,6 +8,11 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter notificações
  */
 export class VerNotificacoesService {
+    /**
+     * Método que permite ver todas as notificações de um utilizador autenticado
+     * @param origemId id da origem
+     * @returns 
+     */
     async execute(origemId: string) {
 
         const notificacoes = await client.notificacoes.findMany({
