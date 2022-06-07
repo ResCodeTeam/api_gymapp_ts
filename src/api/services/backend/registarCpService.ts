@@ -5,9 +5,9 @@ import { client } from "../../prisma/client";
 
 /**
  * @param cp código postal
- * @param cpExt
- * @param rua
- * @param localidade icon que a atividade irá ter
+ * @param cpExt extensão do código postal
+ * @param rua rua associada
+ * @param localidade localidade associada
  */
 export interface IRegistarCpRequest {
     cp: number;
