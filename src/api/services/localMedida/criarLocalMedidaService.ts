@@ -1,6 +1,13 @@
+/**
+ * @module CriarLocalMedidaService
+ */
+
 import { checkAutorMarca, checkMarcaExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de criação de locais de medida
+ */
 export class CriarLocalMedidaService {
   async execute(uid: string, marcaId: string, descricao: string, unilado: boolean) {
 

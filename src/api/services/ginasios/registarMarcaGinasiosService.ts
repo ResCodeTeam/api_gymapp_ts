@@ -1,8 +1,23 @@
+/**
+ * @module RegistarMarcaGinasiosService
+ */
+
 import { client } from "../../prisma/client";
 import { checkDonoMarca, checkMarcaExists } from "../../helpers/dbHelpers";
 import { getGymTag } from "../../helpers/tagHelpers";
 
-interface IRegistarMarcaGinasiosService {
+/**
+ * @param nome nome do ginasio
+ * @param rua morada do ginasio
+ * @param cp número de código postal do ginasio
+ * @param cpExt extensão do código postal do ginasio
+ * @param marcaId marca id
+ * @param imagemUrl url da imagem do ginasio
+ * @param lat latitude do ginasio
+ * @param long longitude do ginasio
+ * @param uId id do utilizador
+ */
+export interface IRegistarMarcaGinasiosService {
   nome: string;
   rua: string;
   cp: number;
@@ -14,6 +29,9 @@ interface IRegistarMarcaGinasiosService {
   uId: string;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de marcas
+ */
 export class RegistarMarcaGinasiosService {
   async execute({
     nome,

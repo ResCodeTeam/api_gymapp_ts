@@ -1,13 +1,24 @@
+/**
+ * @module RegistarCpService
+ */
 import { client } from "../../prisma/client";
 
-interface IRegistarCpRequest {
+/**
+ * @param cp código postal
+ * @param cpExt extensão do código postal
+ * @param rua rua associada
+ * @param localidade localidade associada
+ */
+export interface IRegistarCpRequest {
     cp: number;
     cpExt: number;
     rua: string;
     localidade: string;
 }
 
-
+/**
+ * Classe responsavel pelo serviço de criação de códigos postais
+ */
 export class RegistarCpService {
     async execute({ cp, cpExt, rua, localidade }: IRegistarCpRequest) {
         await client.localidades.create({

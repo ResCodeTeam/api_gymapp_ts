@@ -1,7 +1,12 @@
+/**
+ * @module RemoverAlunoService
+ */
 import { client } from "../../prisma/client";
-import { checkDonoMarca, checkEmail, checkPlanoTreinoIsRealizado, checkUserIdExists, getAlunoMarca } from "../../helpers/dbHelpers";
+import { checkDonoMarca, checkUserIdExists, getAlunoMarca } from "../../helpers/dbHelpers";
 
-
+/**
+ * Classe responsavel pelo serviço de remoção de um aluno
+ */
 export class RemoverAlunoService {
   async execute(uId: string, adminId: string) {
     const exists_user = await checkUserIdExists(uId);

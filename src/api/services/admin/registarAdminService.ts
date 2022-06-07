@@ -1,10 +1,20 @@
-import { prisma } from "@prisma/client";
+/**
+ * @module RegistarAdminService
+ */
 import { hash } from "bcrypt";
-import { checkEmail, checkGinasioExists, getFuncaoId } from "../../helpers/dbHelpers";
+import { checkEmail, getFuncaoId } from "../../helpers/dbHelpers";
 import { getTag } from "../../helpers/tagHelpers";
 import { client } from "../../prisma/client";
 
-interface IRegistarAdminService {
+/**
+ * @param email email que o admin deseja ter
+ * @param nome nome do admin
+ * @param password password que o admin deseja ter
+ * @param dataNasc data de nascimento do admin
+ * @param dataEntrada data em que o admin se juntou à aplicação
+ * @param genero genero do admin
+ */
+export interface IRegistarAdminService {
     email: string,
     nome: string,
     password: string,
@@ -13,6 +23,9 @@ interface IRegistarAdminService {
     genero: number,
 }
 
+/**
+ * Classe responsavel pelo serviço de registo de um admin
+ */
 export class RegistarAdminService {
     async execute({ email, nome, password, dataNasc, dataEntrada, genero }: IRegistarAdminService) {
 

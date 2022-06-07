@@ -1,6 +1,12 @@
+/**
+ * @module RemoverAgendarAvaliacaoService
+ */
 import { client } from "../../../prisma/client";
 import { checkAgendamentoAvaliacaoExists, checkAutorAgendamentoAvaliacoes } from "../../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção de um pedido de agendamento de uma avaliação
+ */
 class RemoverAgendarAvaliacaoService {
   async execute(agendamentoId: string, uId: string) {
     const exists_agendamento = await checkAgendamentoAvaliacaoExists(agendamentoId);

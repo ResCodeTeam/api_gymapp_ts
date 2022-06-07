@@ -1,13 +1,18 @@
-
-import { checkExercicioExists } from "../../helpers/dbHelpers";
+/**
+ * @module VerMeusExerciciosService
+ */
 import { client } from "../../prisma/client";
 
-interface IMeusExercicios {
+/**
+ * @param autorId id do autor dos exercícios
+ */
+export interface IMeusExercicios {
     autorId: string
-
 }
 
-
+/**
+ * Classe responsavel pelo serviço que serve para obter os exercícios do utilizador
+ */
 export class VerMeusExerciciosService {
     async execute({ autorId }: IMeusExercicios) {
 
@@ -40,6 +45,6 @@ export class VerMeusExerciciosService {
             }
 
         })
-        return {data: exercicio, status: 200};
+        return { data: exercicio, status: 200 };
     }
 }

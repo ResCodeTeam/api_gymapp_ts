@@ -1,12 +1,23 @@
+/**
+ * @module AdicionarExerciciosImagensService
+ */
 import { checkAutorExercicio, checkExercicioExists, checkUserIdExists } from "../../../helpers/dbHelpers"
 import { client } from "../../../prisma/client";
 
-interface IEditarImagensExercicio {
+/**
+ * @param exercicioId id do exercício
+ * @param treinadorId id do treinador
+ * @param url url da imagem a adicionar ao exercício
+ */
+export interface IEditarImagensExercicio {
   exercicioId: string,
   treinadorId: string,
   url: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de imagens em exercícios
+ */
 export class AdicionarExerciciosImagensService {
   async execute({ exercicioId, treinadorId, url }: IEditarImagensExercicio) {
     const existsExercicio = await checkExercicioExists(exercicioId);

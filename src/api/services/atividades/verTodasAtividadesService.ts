@@ -1,4 +1,11 @@
+/**
+ * @module VerTodasAtividadesService
+ */
 import { client } from "../../prisma/client";
+
+/**
+ * Classe responsavel pelo serviço que serve para obter todas as atividades
+ */
 export class VerTodasAtividadesService {
     async execute() {
 

@@ -1,7 +1,20 @@
+/**
+ * @module CriarGinasioModalidadesService
+ */
 import { Request, Response } from "express";
 import { CriarGinasioModalidadesService } from "../../services/modalidades/criarGinasioModalidadesService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para criar modalidades
+ */
 class CriarGinasioModalidadesController {
+  /**
+   * Permite criar uma modalidade recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link CriarGinasioModalidadesService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const ginasioId = request.params.id;
     const adminId = request.params.adminId;

@@ -11,5 +11,9 @@
     "target": "es2016",
     "resolveJsonModule": true
   },
+  "typedocOptions": {
+    "entryPoints": ["src/app.ts"],
+    "out": "docs"
+  },
   "exclude": ["src/tests", "./node_modules/", "./dist/"]
 }

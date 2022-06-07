@@ -1,7 +1,13 @@
+/**
+ * @module AceitarDesafiosService
+ */
 import { client } from "../../../prisma/client";
-import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists, getAgendamentoAvaliacoesGinasio, getMarcaGym, getTreinadorMarca, getAgendamentoDesafiosGinasio } from "../../../helpers/dbHelpers";
+import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists, getMarcaGym, getTreinadorMarca, getAgendamentoDesafiosGinasio } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
+/**
+ * Classe responsavel pelo serviço que serve para editar o estado de um pedido de agendamento de um desafio
+ */
 class AceitarDesafiosService {
   async execute(agendamentoId: string, treinadorId) {
     const exists_agendamento = await checkAgendamentoDesafiosExists(agendamentoId);

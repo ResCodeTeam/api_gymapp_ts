@@ -1,3 +1,6 @@
+/**
+ * @module RegistarAlunoService
+ */
 import { client } from "../../prisma/client";
 import { hash } from "bcrypt";
 import { getTag } from "../../helpers/tagHelpers";
@@ -8,11 +11,19 @@ import {
   getMarcaGym,
   checkDonoGinasio,
   checkUserIdExists,
-  getDonoMarca,
-  checkDonoMarca,
 } from "../../helpers/dbHelpers";
 
-interface IRegistarAlunoService {
+/**
+ * @param email email que o aluno deseja ter
+ * @param nome nome do aluno
+ * @param password password que o aluno deseja ter
+ * @param dataNasc data de nascimento do aluno do post
+ * @param dataEntrada data em que o aluno se juntou à aplicação
+ * @param genero genero do aluno
+ * @param ginasioId id do ginásio onde o aluno vai ser inserido
+ * @param donoId id do dono do ginásio
+ */
+export interface IRegistarAlunoService {
   email: string;
   nome: string;
   password: string;
@@ -23,7 +34,9 @@ interface IRegistarAlunoService {
   donoId: string;
 }
 
-
+/**
+ * Classe responsavel pelo serviço de criação de um aluno
+ */
 export class RegistarAlunoService {
   async execute({
     email,

@@ -1,5 +1,12 @@
+/**
+ * @module VerNotificacoesService
+ */
+
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter notificações
+ */
 export class VerNotificacoesService {
     async execute(origemId: string) {
 

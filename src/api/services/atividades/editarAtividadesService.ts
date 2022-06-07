@@ -1,12 +1,23 @@
+/**
+ * @module EditarAtividadesService
+ */
 import { client } from "../../prisma/client";
 import { checkAtividadeExists } from "../../helpers/dbHelpers";
 
-interface IEditarAtividades {
+/**
+ * @param atividadeId id da atividade que se pretende editar
+ * @param descricao descricao da atividade
+ * @param icon icon que a atividade irá ter
+ */
+export interface IEditarAtividades {
     atividadeId: string,
     descricao: string,
     icon: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de uma atividade
+ */
 export class EditarAtividadesService {
     async execute(data: IEditarAtividades) {
         const exists_dst = await checkAtividadeExists(data.atividadeId);

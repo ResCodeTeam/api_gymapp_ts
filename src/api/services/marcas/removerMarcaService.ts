@@ -1,6 +1,13 @@
+/**
+ * @module RemoverMarcaService
+ */
+
 import { client } from "../../prisma/client";
 import { checkMarcaExists, checkAutorMarca } from "../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção de marcas
+ */
 class RemoverMarcaService {
   async execute(uId: string, marcaId: string) {
     const exists_dst = await checkMarcaExists(marcaId);

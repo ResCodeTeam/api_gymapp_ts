@@ -1,7 +1,12 @@
-import { use } from "chai";
-import { checkAvaliacoesExists, checkUserIdExists, getFuncaoId, getGinasioAluno, getMarcaAluno, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+/**
+ * @module VerUmaAvaliacaoService
+ */
+import { checkAvaliacoesExists, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter os dados de uma avaliação
+ */
 export class VerUmaAvaliacaoService {
     async execute(userId: string, avaliacaoId: string) {
 

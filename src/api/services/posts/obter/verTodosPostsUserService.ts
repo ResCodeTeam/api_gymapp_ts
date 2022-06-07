@@ -1,6 +1,13 @@
+/**
+ * @module VerTodosPostsUserService
+ */
+
 import { getUserByID } from "../../../helpers/dbHelpers"
 import { client } from "../../../prisma/client"
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todos os posts de um utilizador
+ */
 export class VerTodosPostsUserService {
     async execute(userId: string) {
         if (!userId) {

@@ -1,6 +1,12 @@
+/**
+ * @module RemoverAtividadesService
+ */
 import { client } from "../../prisma/client";
 import { checkAtividadeExists } from "../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção de uma atividade
+ */
 class RemoverAtividadesService {
   async execute(atividadeId: string) {
     const exists_atividade = await checkAtividadeExists(atividadeId);

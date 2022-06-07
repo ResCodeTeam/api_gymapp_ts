@@ -1,3 +1,6 @@
+/**
+ * @module LogoutService
+ */
 import { getUserByID } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 

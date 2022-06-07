@@ -1,8 +1,13 @@
+/**
+ * @module VerTreinadorGinasioService
+ */
+
 import { checkMarcaExists, getDonoMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-
-
+/**
+ * Classe responsavel pelo serviço que serve para obter os treinadores dos ginásios
+ */
 export class VerTreinadorGinasioService {
     async execute(uId: string, marcaId: string) {
 

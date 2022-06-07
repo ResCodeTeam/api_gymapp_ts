@@ -1,7 +1,21 @@
+/**
+ * @module EditarGinasioService
+ */
+
 import { checkDonoGinasio, checkGinasioExists, } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IEditarGinasio {
+/**
+ * @param ginasioId ginasio id
+ * @param nome nome do ginasio
+ * @param rua morada do ginasio
+ * @param descricao descrição do ginasio
+ * @param imagemUrl url da imagem do ginasio
+ * @param lat latitude do ginasio
+ * @param long longitude do ginasio
+ * @param adminId id do utilizador
+ */
+export interface IEditarGinasio {
     ginasioId: string,
     nome: string,
     rua: string,
@@ -12,6 +26,9 @@ interface IEditarGinasio {
     adminId: string
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de ginásios
+ */
 export class EditarGinasioService {
     async execute({ ginasioId, adminId, nome, rua, descricao, imagemUrl, lat, long }: IEditarGinasio) {
         const existsGinasio = await checkGinasioExists(ginasioId)

@@ -1,6 +1,13 @@
+/**
+ * @module CriarGostoService
+ */
+
 import { checkPostExists, checkUserIdExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de criação de gostos em publicações
+ */
 export class CriarGostoService {
   async execute(postId: string, criadorId: string) {
     const existsPost = await checkPostExists(postId);

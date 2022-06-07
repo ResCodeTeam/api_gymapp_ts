@@ -1,6 +1,13 @@
-import { checkPostExists, getDonoMarca, getFuncaoId, getMarcaGym, getPublicacaoGinasio, getUserFuncao } from "../../../helpers/dbHelpers";
+/**
+ * @module VerInfoPostService
+ */
+
+import { checkPostExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter dados dos posts
+ */
 export class VerInfoPostService {
     async execute(postId: string) {
         const existsPost = await checkPostExists(postId);

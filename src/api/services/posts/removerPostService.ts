@@ -1,7 +1,13 @@
+/**
+ * @module RemoverPostService
+ */
+
 import { client } from "../../prisma/client";
 import { checkPostExists, checkAutorPublicacoes } from "../../helpers/dbHelpers";
 
-
+/**
+ * Classe responsavel pelo serviço de remoção de posts
+ */
 class RemoverPostService {
 
     async execute(uId: string, postId: string) {

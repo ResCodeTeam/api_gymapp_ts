@@ -1,6 +1,17 @@
+/**
+ * @module EditarModalidadesService
+ */
+
 import { checkDonoGinasio, checkGinasioExists, checkModalidadeExists, checkModalidadeNome, getModalidadeGinasio } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
-interface IEditarModalidades {
+/**
+ * @param modalidadeId modalidade id
+ * @param imagemUrl imagem url
+ * @param nome nome
+ * @param ginasioId ginasio id
+ * @param uid user id
+ */
+export interface IEditarModalidades {
 
   modalidadeId: string,
   imagemUrl: string,
@@ -9,6 +20,9 @@ interface IEditarModalidades {
   uid: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de modalidades
+ */
 export class EditarModalidadesService {
   async execute({ imagemUrl, nome, modalidadeId, ginasioId, uid }: IEditarModalidades) {
     const exists_dst = await checkModalidadeExists(modalidadeId);

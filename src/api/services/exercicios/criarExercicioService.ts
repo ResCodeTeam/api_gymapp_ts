@@ -1,7 +1,18 @@
+/**
+ * @module CriarExercicioService
+ */
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface ICriarExercicio {
+/**
+ * @param nome nome do exercício a criar
+ * @param descricao descricao do exercício
+ * @param autor autor do exercício
+ * @param isTempo variável que indica se o exercício é por tempo ou não
+ * @param imagens conjunto de imagens do exercício
+ * @param musculos conjunto de músculos do exercício
+ */
+export interface ICriarExercicio {
   nome: string,
   descricao: string,
   autor: string,
@@ -10,7 +21,9 @@ interface ICriarExercicio {
   musculos: Array<string>
 }
 
-
+/**
+ * Classe responsavel pelo serviço de criação de exercícios
+ */
 export class CriarExercicioService {
   async execute({ nome, descricao, autor, isTempo, imagens, musculos }: ICriarExercicio) {
     const existsTreinador = await checkUserIdExists(autor);

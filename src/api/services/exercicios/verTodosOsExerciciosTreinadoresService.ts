@@ -1,5 +1,11 @@
+/**
+ * @module VerTodosOsExerciciosTreinadoresService
+ */
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todos os exercícios
+ */
 export class VerTodosOsExerciciosTreinadoresService {
     async execute() {
         const exer = await client.funcoes.findMany({

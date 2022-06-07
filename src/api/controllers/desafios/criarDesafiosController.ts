@@ -1,8 +1,22 @@
+/**
+ * @module CriarDesafiosController
+ */
 import { Request, Response } from "express";
 import { changeTimeZone } from "../../helpers/dateHelpers";
 import { CriarDesafiosService } from "../../services/desafios/criarDesafiosService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para criar desafios
+ */
 class CriarDesafiosController {
+  /**
+   * Permite criar desafios recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   * Verifica também se as datas foram inseridas corretamente. POr exemplo: não se pode ter uma data de início inferior à data atual
+   * 
+   * {@link CriarDesafiosService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const criadorId = request.params.userId;
     const ginasioId = request.params.id;

@@ -1,7 +1,17 @@
+/**
+ * @module EditarExercicioService
+ */
 import { client } from "../../prisma/client";
 import { checkExercicioExists, checkAutorExercicio } from "../../helpers/dbHelpers";
 
-interface IEditarExercicio {
+/**
+ * @param exercicioId id do exercício a editar
+ * @param nome nome do exercício a criar
+ * @param descricao descricao do exercício
+ * @param autorId id do autor do exercício
+ * @param isTempo indica se o exercício é por tempo ou não
+ */
+export interface IEditarExercicio {
     exercicioId: string,
     nome: string,
     descricao: string,
@@ -9,6 +19,9 @@ interface IEditarExercicio {
     isTempo: boolean
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de exercícios
+ */
 export class EditarExercicioService {
     async execute(data: IEditarExercicio) {
         const exists_dst = await checkExercicioExists(data.exercicioId);

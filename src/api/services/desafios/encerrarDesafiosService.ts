@@ -1,12 +1,23 @@
+/**
+ * @module EncerrarDesafiosService
+ */
 import { checkDesafioDisponivel, checkDesafioIdExists, getDonoMarca, getFuncaoId, getGinasioDesafio, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IDesafio {
+/**
+ * @param uId id do utilizador
+ * @param isEncerrado estado do desafio
+ * @param desafioId id do desafio que vai ser encerrado
+ */
+export interface IDesafio {
     uId: string,
     isEncerrado: boolean,
     desafioId: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de edição do estado de um desafio
+ */
 export class EncerrarDesafiosService {
     async execute({ uId, isEncerrado, desafioId }: IDesafio) {
 

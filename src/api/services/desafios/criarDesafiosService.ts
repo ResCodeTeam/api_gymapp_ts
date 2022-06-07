@@ -1,9 +1,23 @@
+/**
+ * @module CriarDesafiosService
+ */
 import { client } from "../../prisma/client";
 import { checkUserIdExists, checkGinasioExists, checkModalidadeExists, checkExercicioExists, getUserFuncao, getFuncaoId, getMarcaGym, getDonoMarca, getTreinadorMarca, getModalidadeGinasio, getAutorExercicio } from "../../helpers/dbHelpers";
 import { Exercicio } from "../../Providers/exercicioProvider";
 
-
-interface ICriarDesafiosService {
+/**
+ * @param criadorId id do criador do desafio
+ * @param nome nome do desafio
+ * @param modalidadeId modalidade que vai servir para o desafio
+ * @param dataInicio data de início do desafio
+ * @param dataFim data do fim do desafio
+ * @param recompensa valor da recompensa do desafio
+ * @param ginasioId id do ginásio em que o desafio vai ser realizado
+ * @param descricao descrição do desafio
+ * @param exercicios todos os exercícios que irão ser utilizados no desafio
+ * @param regras conjunto de regras que o desafio vai possuir
+ */
+export interface ICriarDesafiosService {
     criadorId: string;
     nome: string;
     modalidadeId: string;
@@ -18,6 +32,9 @@ interface ICriarDesafiosService {
     }>;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de desafios
+ */
 class CriarDesafiosService {
     async execute({ criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, ginasioId, descricao, exercicios, regras }: ICriarDesafiosService) {
         const exists_criador = await checkUserIdExists(criadorId);

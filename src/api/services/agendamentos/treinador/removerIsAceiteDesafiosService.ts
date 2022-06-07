@@ -1,6 +1,12 @@
+/**
+ * @module RemoverIsAceiteDesafiosService
+ */
 import { client } from "../../../prisma/client";
 import { checkAgendamentoDesafiosExists, checkAgendamentoDesafioIsAceiteExists, getAgendamentoDesafiosGinasio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção do estado de um pedido de agendamento de um desafio
+ */
 class RemoverIsAceiteDesafiosService {
   async execute(treinadorId: string, agendamentoId: string) {
 

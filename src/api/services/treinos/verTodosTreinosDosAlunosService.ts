@@ -1,6 +1,13 @@
+/**
+ * @module VerTodosTreinosDosAlunosService
+ */
+
 import { checkPostExists, checkTreinador, checkUserIdExists, getMobilidadeMarca, getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todos os terinos dos alunos
+ */
 export class VerTodosTreinosDosAlunosService {
     async execute(uid: string) {
         const existsTreinador = await checkTreinador(uid)

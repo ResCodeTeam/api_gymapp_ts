@@ -1,17 +1,25 @@
-
+/**
+ * @module VerGinasiosUserService
+ */
 import { checkDonoMarca, checkMarcaExists, checkMobilidadeMarcaUser, getGinasioAluno, getMarcaAluno } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IGinasios {
+/**
+ * @param userId id do utilizador
+ */
+export interface IGinasios {
     userId: string
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter os alunos dos ginásios
+ */
 export class VerGinasiosUserService {
     async execute({ userId }: IGinasios) {
         console.log("123")
         const { mobilidade, id } = await checkMobilidadeMarcaUser(userId);
         console.log(mobilidade)
-        if(mobilidade){
+        if (mobilidade) {
             const userMarca = await getMarcaAluno(userId);
             const ginasios = await client.ginasio.findMany({
                 where: {
@@ -24,7 +32,7 @@ export class VerGinasiosUserService {
             })
             return { data: ginasios, status: 200 };
         }
-        else{
+        else {
             console.log(userId)
             const userGym = await getGinasioAluno(userId)
             console.log(userGym)

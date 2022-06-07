@@ -1,10 +1,20 @@
+/**
+ * @module CriarAtividadeService
+ */
 import { client } from "../../prisma/client";
 
-interface IAtividadeService {
+/**
+ * @param descricao descricao da atividade
+ * @param icon icon que a atividade irá ter
+ */
+export interface IAtividadeService {
   descricao: string,
   icon: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de uma atividade
+ */
 class CriarAtividadeService {
   async execute({
     descricao,
@@ -17,7 +27,7 @@ class CriarAtividadeService {
         icon,
       },
     });
-    return {data: atividade, status: 200};
+    return { data: atividade, status: 200 };
   }
 }
 export { CriarAtividadeService };

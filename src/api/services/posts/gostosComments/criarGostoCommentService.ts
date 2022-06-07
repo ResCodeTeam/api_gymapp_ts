@@ -1,6 +1,12 @@
+/**
+ * @module CriarGostoCommentService
+ */
 import { checkComentarioExists, checkIsComentarioPublicacaoExists, checkPostExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de criação de gostos em comentários
+ */
 export class CriarGostoCommentService {
   async execute(comentarioId: string, publicacaoId: string, criadorId: string) {
     const existsComment = await checkComentarioExists(comentarioId)

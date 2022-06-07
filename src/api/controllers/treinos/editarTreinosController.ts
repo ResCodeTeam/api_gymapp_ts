@@ -1,7 +1,20 @@
+/**
+ * @module EditarTreinosController
+ */
 import { Request, Response } from "express";
 import { EditarTreinosService } from "../../services//treinos/editarTreinosService";
 
+/**
+ * Classe responsável por receber e chamar os métodos do serviço que serve para editar treinos
+ */
 export class EditarTreinosController {
+  /**
+   * Permite editar treinos recebendo os dados por body e parâmetro do request, verificando se este existem e redirecionado de seguida para o serviço associado
+   *
+   * {@link EditarTreinosService}
+   * @param request pedido efetuado.
+   * @param response resposta.
+   */
   async handle(request: Request, response: Response) {
     const uId = request.params.alunoId;
     const treinoId = request.params.treino_id;

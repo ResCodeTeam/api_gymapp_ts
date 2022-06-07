@@ -1,9 +1,21 @@
-import { checkModalidadeExists, checkPlanoTreinoExists, getMarcaGym, getModalidadeGinasio, getTreinadorMarca, getTreinadorPlano } from "../../helpers/dbHelpers";
+/**
+ * @module EditarPlanoTreinoService
+ */
+
+import { checkPlanoTreinoExists, getTreinadorMarca, getTreinadorPlano } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 import { Bloco } from "../../Providers/blocoProvider";
 import { CriarPlanoTreinoService } from "./criarPlanoTreinoService";
 
-interface IEditarPlano {
+/**
+ * @param planoId id do plano de treino
+ * @param alunoId id do aluno
+ * @param treinadorId id do treinador
+ * @param data data do treino
+ * @param modalidadeId id da modalidade
+ * @param blocos blocos do plano de treino
+ */
+export interface IEditarPlano {
   planoId: string;
   alunoId: string;
   treinadorId: string;
@@ -12,6 +24,9 @@ interface IEditarPlano {
   blocos: Array<Bloco>;
 }
 
+/**
+ * Classe responsavel pelo serviço de edição dos planos de treino
+ */
 export class EditarPlanoTreinoService {
   async execute({ planoId, alunoId, treinadorId, data, modalidadeId, blocos }: IEditarPlano) {
     const existsPlano = await checkPlanoTreinoExists(planoId);

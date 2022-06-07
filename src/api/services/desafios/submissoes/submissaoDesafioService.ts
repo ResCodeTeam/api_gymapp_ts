@@ -1,7 +1,17 @@
+/**
+ * @module SubmissaoDesafioService
+ */
 import { checkDesafioIdExists, checkGinasioExists, checkMobilidadeMarcaUser, checkUserIdExists, getDesafio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
-interface ISubmissaoDesafio {
+/**
+ * @param desafio id do desafio do qual se pretende submeter o resultado
+ * @param uid id do utilizador
+ * @param valor valor obtido no desafio
+ * @param treinadorId id do treinador 
+ * @param ginasioId id do ginasio em que se fez o desafio
+ */
+export interface ISubmissaoDesafio {
   desafioId: string;
   uid: string;
   valor: string;
@@ -9,6 +19,9 @@ interface ISubmissaoDesafio {
   ginasioId: string;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de submissões do resultado dos desafios
+ */
 export class SubmissaoDesafioService {
   async execute({ desafioId, uid, valor, treinadorId, ginasioId }: ISubmissaoDesafio) {
     const existsDesafio = await checkDesafioIdExists(desafioId);

@@ -1,8 +1,19 @@
+/**
+ * @module EditarDesafioService
+ */
 import { changeTimeZone } from "../../helpers/dateHelpers";
 import { checkDesafioIdExists, getDonoMarca, getFuncaoId, getGinasioDesafio, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface Idata {
+/**
+ * @param nome nome do desafio
+ * @param modalidade modalidade que vai servir para o desafio
+ * @param data_inicio data de início do desafio
+ * @param data_fim data do fim do desafio
+ * @param recompensa valor da recompensa do desafio
+ * @param descricao descrição do desafio
+ */
+export interface Idata {
     nome: string,
     modalidade: string,
     data_inicio: Date,
@@ -11,6 +22,9 @@ interface Idata {
     descricao: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de desafios
+ */
 export class EditarDesafioService {
     async execute(uId: string, data: Idata, desafio_id: string) {
 

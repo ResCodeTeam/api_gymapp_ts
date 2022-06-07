@@ -1,10 +1,20 @@
+/**
+ * @module CriarPlanoTreinoService
+ */
+
 import { checkExercicioExists, checkModalidadeExists, checkUserIdExists, getAlunoMarca, getAutorExercicio, getMarcaGym, getModalidadeGinasio, getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 import { Bloco } from "../../Providers/blocoProvider";
 
 
-
-interface IPlano {
+/**
+ * @param alunoId id do aluno
+ * @param treinadorId id do treinador
+ * @param data data do treino
+ * @param modalidadeId id da modalidade
+ * @param blocos blocos do plano de treino
+ */
+export interface IPlano {
   alunoId: string;
   treinadorId: string;
   data: Date;
@@ -12,6 +22,9 @@ interface IPlano {
   blocos: Array<Bloco>;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de planos de treino
+ */
 export class CriarPlanoTreinoService {
   async execute({ alunoId, treinadorId, data, modalidadeId, blocos }: IPlano) {
     const exists_aluno = await checkUserIdExists(alunoId);

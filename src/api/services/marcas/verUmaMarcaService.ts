@@ -1,13 +1,21 @@
-
+/**
+ * @module VerUmaMarcaService
+ */
 import { checkMarcaExists, checkAutorMarca, getDonoMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IMarca {
+/**
+ * @param donoId dono id
+ * @param marcaId marca id
+ */
+export interface IMarca {
     donoId: string,
     marcaId: string
 }
 
-
+/**
+ * Classe responsavel pelo serviço que serve para obter os dados de uma marca
+ */
 export class VerUmaMarcaService {
     async execute({ donoId, marcaId }: IMarca) {
 

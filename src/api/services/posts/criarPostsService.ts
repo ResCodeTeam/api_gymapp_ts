@@ -1,9 +1,20 @@
+/**
+ * @module CriarPostsService
+ */
 import { publicacoes } from "@prisma/client";
 import { checkUserIdExists, getMarcaGym } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 import { VerInfoPostService } from "./obter/verInfoPostService";
 
-interface ICriarPostsService {
+/**
+ * @param criadorId id do utilizador que está a criar o post
+ * @param data data de criação do post
+ * @param descricao descrição do post
+ * @param tipo tipo do post
+ * @param ginasioId id do ginasio
+ * @param identificacao identificações do post
+ */
+export interface ICriarPostsService {
   criadorId: string;
   data: Date;
   descricao: string;
@@ -12,7 +23,15 @@ interface ICriarPostsService {
   identificacao: Array<string>;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de posts
+ */
 class CriarPostsService {
+  /**
+ * Método que permite inserir uma publicação na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param ICriarPostsService interface de dados do serviço
+ */
   async execute({
     criadorId,
     data,

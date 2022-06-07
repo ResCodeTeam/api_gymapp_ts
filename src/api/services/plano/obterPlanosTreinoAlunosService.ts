@@ -1,6 +1,13 @@
+/**
+ * @module ObterPlanosTreinoAlunosService
+ */
+
 import { getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter os planos de treino dos alunos
+ */
 export class ObterPlanosTreinoAlunosService {
   async execute(uid: string) {
 

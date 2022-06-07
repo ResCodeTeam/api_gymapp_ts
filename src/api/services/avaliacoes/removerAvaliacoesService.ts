@@ -1,6 +1,12 @@
+/**
+ * @module RemoverAvaliacoesService
+ */
 import { checkAutorAvaliacao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de remoção de uma avaliação
+ */
 export class RemoverAvaliacoesService {
     async execute(avaliacao_id: string, treinadorId: string) {
 

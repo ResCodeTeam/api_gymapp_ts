@@ -1,15 +1,27 @@
+/**
+ * @module CriarNotificacaoUserService
+ */
+
 import { changeTimeZone } from "../../helpers/dateHelpers";
 import { checkDonoMarca, checkUserIdExists, getAlunoMarca } from "../../helpers/dbHelpers"
 import { client } from "../../prisma/client";
 
-
-interface ICriarNotifcacaoUser {
+/**
+ * @param destinoId id do destino
+ * @param origemId id do origem
+ * @param conteudo conteudo da notificacao
+ * @param tipo tipo da notificacao
+ */
+export interface ICriarNotifcacaoUser {
   destinoId: string
   origemId: string,
   conteudo: string,
   tipo: number
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de notificações para os alunos
+ */
 export class CriarNotificacaoUserService {
   async execute({ destinoId, origemId, conteudo, tipo }: ICriarNotifcacaoUser) {
 

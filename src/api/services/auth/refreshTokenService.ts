@@ -1,3 +1,6 @@
+/**
+ * @module RefreshTokenService
+ */
 import { verify } from "jsonwebtoken";
 import { generateSessionToken } from "../../helpers/jwtHelpers"
 import { client } from "../../prisma/client"

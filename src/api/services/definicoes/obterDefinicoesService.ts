@@ -1,6 +1,11 @@
-import { checkUserIdExists } from "../../helpers/dbHelpers";
+/**
+ * @module ObterDefinicoesService
+ */
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter as definições de um utilizador
+ */
 export class ObterDefinicoesService {
   async execute(uid: string) {
 

@@ -1,14 +1,27 @@
+/**
+ * @module CriarNotificacaoGinasioService
+ */
+
 import { changeTimeZone } from "../../helpers/dateHelpers";
-import { checkDonoGinasio, checkGinasioExists, checkUserIdExists, formatDate, formatDateHour } from "../../helpers/dbHelpers";
+import { checkDonoGinasio, checkGinasioExists, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from '../../prisma/client';
 
-interface INotificacaoGinasio {
+/**
+ * @param userId id do utilizador
+ * @param ginasioId id do ginasio
+ * @param conteudo conteudo da notificacao
+ * @param tipo tipo da notificacao
+ */
+export interface INotificacaoGinasio {
   userId: string,
   ginasioId: string,
   conteudo: string,
   tipo: number
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de notificações para os ginásios
+ */
 export class CriarNotificacaoGinasioService {
   async execute({ userId, ginasioId, conteudo, tipo }: INotificacaoGinasio) {
     //#region Verifica se o admin existe

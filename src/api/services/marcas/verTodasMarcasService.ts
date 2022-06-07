@@ -1,11 +1,21 @@
-
+/**
+ * @module VerTodasMarcasService
+ */
 import { client } from "../../prisma/client";
 
-interface IGinasios {
+/**
+ * @param donoId
+ * @param filtroId
+ */
+export interface IGinasios {
     donoId: string,
     filtroId: string
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todas as marcas
+ * Podendo ser aplicado um filtro à pesquisa
+ */
 export class VerTodasMarcasService {
     async execute({ donoId, filtroId }: IGinasios) {
         let filtro = filtroId

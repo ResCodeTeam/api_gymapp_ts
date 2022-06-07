@@ -1,6 +1,13 @@
+/**
+ * @module EditarPlanoTreinoRealizadoService
+ */
+
 import { client } from "../../prisma/client";
 import { checkPlanoTreinoExists, checkAutorPlanoTreino, checkPlanoTreinoIsRealizado } from "../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de edição do estado dos planos de treino
+ */
 class EditarPlanoTreinoRealizadoService {
   async execute(alunoId: string, planoId: string) {
     const exists_plano = await checkPlanoTreinoExists(planoId);

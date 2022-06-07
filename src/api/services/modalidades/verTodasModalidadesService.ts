@@ -1,12 +1,21 @@
-
+/**
+ * @module VerTodasModalidadesService
+ */
 import { checkDonoGinasio, checkGinasioExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IGinasios {
+/**
+ * @param ginasioId ginasio id
+ * @param userId user id
+ */
+export interface IGinasios {
     ginasioId: string;
     userId: string;
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todas as modalidades
+ */
 export class VerTodasModalidadesService {
     async execute({ ginasioId, userId }: IGinasios) {
 

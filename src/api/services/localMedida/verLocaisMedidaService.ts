@@ -1,11 +1,20 @@
+/**
+ * @module VerLocaisMedidaService
+ */
 
 import { getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface ILocaisMedida {
+/**
+ * @param uId id do utilizador
+ */
+export interface ILocaisMedida {
     uId: string
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter os locais de medida
+ */
 export class VerLocaisMedidaService {
     async execute({ uId }: ILocaisMedida) {
         const treinadorMarca = await getTreinadorMarca(uId);

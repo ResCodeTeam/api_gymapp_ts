@@ -1,6 +1,13 @@
+/**
+ * @module RemoverGinasioService
+ */
+
 import { client } from "../../prisma/client";
 import { checkGinasioExists, getMarcaGym } from "../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção de ginásios
+ */
 class RemoverGinasioService {
   async execute(uId: string, ginasioId: string) {
     const exists_ginasio = await checkGinasioExists(ginasioId);

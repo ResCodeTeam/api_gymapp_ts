@@ -1,7 +1,13 @@
 
+/**
+ * @module VerDesafiosSubmissoesService
+ */
 import { checkDesafioIdExists, checkMobilidadeMarcaUser, getDesafioGinasio, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter as submissões de desafios
+ */
 export class VerDesafiosSubmissoesService {
     async execute(uId: string, desafioId: string) {
 

@@ -1,6 +1,13 @@
-import { checkMobilidadeMarcaUser, checkUserIdExists, getAlunoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+/**
+ * @module ObterPlanoTreinoSemanalAlunosService
+ */
+
+import { getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter os planos de treinos semanais dos alunos
+ */
 export class ObterPlanoTreinoSemanalAlunosService {
   async execute(uid: string, startDate: string, endDate: string) {
 

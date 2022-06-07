@@ -1,12 +1,21 @@
-
+/**
+ * @module VerTodosGinasiosService
+ */
 import { checkDonoMarca, checkMarcaExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IGinasios {
+/**
+ * @param marcaId marca id
+ * @param userId id do utilizador
+ */
+export interface IGinasios {
     marcaId: string,
     userId: string
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todos os ginásios
+ */
 export class VerTodosGinasiosService {
     async execute({ marcaId, userId }: IGinasios) {
         const exists_ginasios = await checkMarcaExists(marcaId)

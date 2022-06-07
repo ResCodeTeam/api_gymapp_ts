@@ -1,12 +1,22 @@
 
-import { checkGinasioExists, getAlunoMarca, getDonoMarca, getFuncaoId, getGinasioDesafio, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+/**
+ * @module VerTodosDesafiosService
+ */
+import { checkGinasioExists, getAlunoMarca, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IGinasios {
+/**
+ * @param uId id do utilizador
+ * @param ginasioId id do ginásio que se pretende ver todos os desafios
+ */
+export interface IGinasios {
     uId: string,
     ginasioId: string
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todos os desafios
+ */
 export class VerTodosDesafiosService {
     async execute({ uId, ginasioId }: IGinasios) {
         const exists_dst = await checkGinasioExists(ginasioId);

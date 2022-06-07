@@ -1,6 +1,12 @@
+/**
+ * @module RemoverExercicioImagemService
+ */
 import { checkAutorExercicio, checkExercicioExists, checkImagemExercicioExists, getImagemExercicio } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de remoção de imagens dos exercícios
+ */
 export class RemoverExercicioImagemService {
   async execute(imagemId: string, treinadorId: string, exercicioId: string) {
     const exists_exercicio = await checkExercicioExists(exercicioId)

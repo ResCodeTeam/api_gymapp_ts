@@ -1,7 +1,14 @@
+/**
+ * @module RemoverComentarioService
+ */
+
 import { gostos_comentario, identificacoes_comentarios } from "@prisma/client";
 import { checkAutorComentario, checkComentarioExists, checkIsComentarioPublicacaoExists, checkPostExists, getGostosComentario, getIdentificacoesComentario } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de remoção de comentários
+ */
 export class RemoverComentarioService {
   async execute(criadorId: string, comentarioId: string, publicacaoId: string) {
     const existsPublicacao = await checkPostExists(publicacaoId);
