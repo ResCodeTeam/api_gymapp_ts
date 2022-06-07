@@ -8,6 +8,12 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço de edição do estado das identificações
  */
 export class ImpedirIdentificacaoService {
+  /**
+ * Método que permite edotar o estado das identificações na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param uid id do utilizador
+ * @param identificacoes estado das identificações
+ */
   async execute(uid: string, identificacoes: boolean) {
 
     const existsUser = await checkUserIdExists(uid);

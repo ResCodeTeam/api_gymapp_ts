@@ -19,6 +19,11 @@ export interface IEditarAtividades {
  * Classe responsavel pelo serviço de edição de uma atividade
  */
 export class EditarAtividadesService {
+    /**
+ * Método que permite edita uma atividade na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IEditarAtividades interface de dados do serviço
+ */
     async execute(data: IEditarAtividades) {
         const exists_dst = await checkAtividadeExists(data.atividadeId);
         if (!exists_dst) {

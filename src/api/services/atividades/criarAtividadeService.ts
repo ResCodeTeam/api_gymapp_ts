@@ -16,6 +16,11 @@ export interface IAtividadeService {
  * Classe responsavel pelo serviço de criação de uma atividade
  */
 class CriarAtividadeService {
+  /**
+ * Método que permite inserir uma atividade na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IAtividadeService interface de dados do serviço
+ */
   async execute({
     descricao,
     icon

@@ -8,6 +8,12 @@ import { checkExercicioExists, checkAutorExercicio } from "../../helpers/dbHelpe
  * Classe responsavel pelo serviço de remoção de exercícios
  */
 export class RemoverExercicioService {
+    /**
+ * Método que permite remover um exercício na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param exercicioId id do exercício a remover
+ * @param autorId id do autor
+ */
     async execute(exercicioId: string, autorId: string) {
         const exists_dst = await checkExercicioExists(exercicioId);
         if (!exists_dst) {

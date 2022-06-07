@@ -8,6 +8,13 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço de remoção de submissões dos resultados dos desafios
  */
 export class RemoverSubmissaoDesafioService {
+  /**
+ * Método que permite remover uma submissão de um desafio na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param uid id do utilizador
+ * @param submissaoId id da submissão
+ * @param desafioId id do desafio cujo resultado vai ser submetido
+ */
   async execute(uid: string, submissaoId: string, desafioId: string) {
 
     const existsDesafio = await checkDesafioIdExists(desafioId);

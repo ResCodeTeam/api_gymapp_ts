@@ -19,6 +19,11 @@ export interface IEditarImagensExercicio {
  * Classe responsavel pelo serviço de criação de imagens em exercícios
  */
 export class AdicionarExerciciosImagensService {
+  /**
+ * Método que permite inserir imagens em um exercício na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IEditarImagensExercicio interface de dados do serviço
+ */
   async execute({ exercicioId, treinadorId, url }: IEditarImagensExercicio) {
     const existsExercicio = await checkExercicioExists(exercicioId);
     if (!existsExercicio) {

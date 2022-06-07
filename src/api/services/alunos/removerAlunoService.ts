@@ -8,6 +8,12 @@ import { checkDonoMarca, checkUserIdExists, getAlunoMarca } from "../../helpers/
  * Classe responsavel pelo serviço de remoção de um aluno
  */
 export class RemoverAlunoService {
+  /**
+ * Método que permite remover um aluno na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param uId id do utilizador
+ * @param adminId id do admin
+ */
   async execute(uId: string, adminId: string) {
     const exists_user = await checkUserIdExists(uId);
     if (!exists_user) {

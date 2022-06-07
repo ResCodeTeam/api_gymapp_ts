@@ -26,6 +26,13 @@ export interface Idata {
  * Classe responsavel pelo serviço de edição de desafios
  */
 export class EditarDesafioService {
+    /**
+ * Método que permite editar um desafio na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param Idata interface de dados do serviço
+ * @param uId id do utilizador
+ * @param desafio_id id do desafio a editar
+ */
     async execute(uId: string, data: Idata, desafio_id: string) {
 
         if (data.data_inicio > data.data_fim) {

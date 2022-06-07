@@ -8,6 +8,12 @@ import { checkAgendamentoDesafiosExists, checkAutorAgendamentoDesafios } from ".
  * Classe responsavel pelo serviço de remoção de um pedido de agendamento de um desafio
  */
 class RemoverAgendarDesafiosService {
+   /**
+ * Método que permite remover um pedido de agendamento de desafio na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param agendamentoId id do agendamento
+ * @param uId id do utilizador
+ */
   async execute(agendamentoId: string, uId: string) {
     const exists_agendamento = await checkAgendamentoDesafiosExists(agendamentoId);
     if (!exists_agendamento) {

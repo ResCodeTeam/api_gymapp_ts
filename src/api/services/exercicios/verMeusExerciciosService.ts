@@ -14,6 +14,11 @@ export interface IMeusExercicios {
  * Classe responsavel pelo serviço que serve para obter os exercícios do utilizador
  */
 export class VerMeusExerciciosService {
+    /**
+ * Método que permite obter os exercícios de um utilizador da base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param autorId id do autor
+ */
     async execute({ autorId }: IMeusExercicios) {
 
         const exercicio = await client.exercicios.findMany({

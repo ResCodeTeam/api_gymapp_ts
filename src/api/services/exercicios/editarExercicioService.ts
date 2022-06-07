@@ -23,6 +23,11 @@ export interface IEditarExercicio {
  * Classe responsavel pelo serviço de edição de exercícios
  */
 export class EditarExercicioService {
+    /**
+ * Método que editar um exercício na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IEditarExercicio interface de dados do serviço
+ */
     async execute(data: IEditarExercicio) {
         const exists_dst = await checkExercicioExists(data.exercicioId);
         if (!exists_dst) {

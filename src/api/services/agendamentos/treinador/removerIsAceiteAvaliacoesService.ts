@@ -8,6 +8,12 @@ import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExist
  * Classe responsavel pelo serviço de remoção do estado de um pedido de agendamento de uma avaliação
  */
 class RemoverIsAceiteAvaliacoesService {
+  /**
+ * Método que permite remover o estado de um pedido de agendamento de avaliação na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param treinadorId id do treinador
+ * @param agendamentoId id do agendamento
+ */
   async execute(treinadorId: string, agendamentoId: string) {
 
     const exists_agendamento = await checkAgendamentoAvaliacaoExists(agendamentoId);

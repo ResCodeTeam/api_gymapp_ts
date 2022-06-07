@@ -18,6 +18,12 @@ export interface IGinasios {
  * Classe responsavel pelo serviço que serve para obter todos os desafios
  */
 export class VerTodosDesafiosService {
+    /**
+ * Método que permite obter todos os desafios disponíveis da base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param uId id do utilizador
+ * @param ginasioId id do ginásio
+ */
     async execute({ uId, ginasioId }: IGinasios) {
         const exists_dst = await checkGinasioExists(ginasioId);
         if (!exists_dst) {

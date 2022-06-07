@@ -22,6 +22,11 @@ export interface IAgendarDesafiosService {
  * Classe responsavel pelo serviço de criação de um pedido de agendamento de um desafio
  */
 export class AgendarDesafiosService {
+  /**
+ * Método que permite inserir um pedido de agendamento de um desafio na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IAgendarDesafiosService interface de dados do serviço
+ */
   async execute({
     uid,
     dataAgendamento,

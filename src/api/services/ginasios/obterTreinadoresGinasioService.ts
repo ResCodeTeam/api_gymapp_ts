@@ -9,6 +9,12 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter os treinadores dos ginásios
  */
 export class VerTreinadorGinasioService {
+    /**
+ * Método que permite obter os treinadores de um ginásio da base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param uId interface de dados do serviço
+ * @param marcaId id da marca
+ */
     async execute(uId: string, marcaId: string) {
 
         const existsMarca = await checkMarcaExists(marcaId)
