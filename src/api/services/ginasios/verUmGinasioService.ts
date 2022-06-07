@@ -12,7 +12,7 @@ export class VerUmGinasioService {
      * Método que permite obter os dados de um ginásio tendo em conta todas as verficiações necessárias
      * @param donoId dono id
      * @param ginasioId id do ginasio
-     * @returns 
+    
      */
     async execute(donoId: string, ginasioId: string) {
         const exists_ginasio = await checkGinasioExists(ginasioId)

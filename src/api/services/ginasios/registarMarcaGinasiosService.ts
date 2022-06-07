@@ -36,7 +36,7 @@ export class RegistarMarcaGinasiosService {
   /**
    * Método que permite registar um ginásio em uma marca tendo em conta todas as verificações necessárias
    * @param IRegistarMarcaGinasiosService dados do ginasio e da marca 
-   * @returns 
+  
    */
   async execute({
     nome,

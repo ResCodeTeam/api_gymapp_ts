@@ -26,7 +26,7 @@ export class CriarNotificacaoUserService {
   /**
    * Método que permite criar uma notificação para um aluno
    * @param ICriarNotifcacaoUser dados da notificacao 
-   * @returns 
+  
    */
   async execute({ destinoId, origemId, conteudo, tipo }: ICriarNotifcacaoUser) {
 

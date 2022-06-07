@@ -13,7 +13,7 @@ class RemoverModalidadesService {
    * @param modalidadeId id da modalidade
    * @param ginasioId id do ginasioId
    * @param uid id do utilizador
-   * @returns 
+  
    */
   async execute(modalidadeId: string, ginasioId: string, uid: string) {
 

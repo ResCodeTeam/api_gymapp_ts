@@ -12,7 +12,7 @@ export class LogoutService {
      * Método que permite realizar o logout de um utilizador impedindo o token deste de ser reutilizado
      * @param userId id do utilizador
      * @param token token de sessão do utilizador
-     * @returns 
+    
      */
     async execute(userId: string, token: string) {
         const user = await getUserByID(userId)

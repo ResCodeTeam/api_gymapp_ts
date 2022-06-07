@@ -31,7 +31,7 @@ export class EditarMarcaService {
   /**
    * Método que permite editar uma marca tendo em conta todas as verificações necessárias
    * @param IEditarMarca dados da marca 
-   * @returns 
+  
    */
   async execute({ marcaId, adminId, nome, cor, logotipo, mobilidade }: IEditarMarca) {
 

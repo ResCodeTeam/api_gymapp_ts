@@ -26,7 +26,7 @@ export class CriarNotificacaoGinasioService {
   /**
    * Método que permite criar uma notificação para um ginasio tendo em conta todas as verificações necessárias
    * @param INotificacaoGinasio dados da notificacao
-   * @returns 
+  
    */
   async execute({ userId, ginasioId, conteudo, tipo }: INotificacaoGinasio) {
     //#region Verifica se o admin existe

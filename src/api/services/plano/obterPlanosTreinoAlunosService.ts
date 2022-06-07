@@ -12,7 +12,7 @@ export class ObterPlanosTreinoAlunosService {
   /**
    * Método que permite obter todos os planos de treino de um aluno
    * @param uid id do aluno
-   * @returns 
+  
    */
   async execute(uid: string) {
 

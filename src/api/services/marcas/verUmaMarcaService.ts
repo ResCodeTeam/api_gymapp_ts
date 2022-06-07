@@ -20,7 +20,7 @@ export class VerUmaMarcaService {
     /**
      * Método que permite ver os dados de uma marca
      * @param IMarca dados da marca 
-     * @returns 
+    
      */
     async execute({ donoId, marcaId }: IMarca) {
 

@@ -13,7 +13,7 @@ class RemoverMarcaService {
    * Método que permite remover uma marca tendo em conta todas as verificações necessárias
    * @param uId id do dono da marca
    * @param marcaId id da marca
-   * @returns 
+  
    */
   async execute(uId: string, marcaId: string) {
     const exists_dst = await checkMarcaExists(marcaId);

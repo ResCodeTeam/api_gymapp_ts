@@ -15,7 +15,7 @@ export class ObterPlanoTreinoSemanalService {
    * @param startDate data inicial do intervalo de tempo
    * @param endDate data final do intervalo de tempo
    * @param askerID id do utilizador que está a pedir o plano
-   * @returns 
+  
    */
   async execute(uid: string, startDate: Date, endDate: Date, askerID: string) {
 

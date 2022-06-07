@@ -20,7 +20,7 @@ export class VerTodasMarcasService {
     /**
      * Método que permite obter todas as marcas existentes
      * @param IGinasios dados do dono e do filtro 
-     * @returns 
+    
      */
     async execute({ donoId, filtroId }: IGinasios) {
         let filtro = filtroId

@@ -27,7 +27,7 @@ class RegistarUserMarcasService {
   /**
    * Método que permite criar uma marca
    * @param IRegistarUserMarcasSerice dados da marca 
-   * @returns 
+  
    */
   async execute({ userId, nome, mobilidade, cor, logotipo,
   }: IRegistarUserMarcasSerice) {

@@ -14,7 +14,7 @@ export class VerPerfilService {
      * Método que permite obter o perfil de um utilizador dado o seu id tendo em conta todas as verificações necessárias
      * @param uId id do utilizador
      * @param auId id do utilizador autenticado
-     * @returns 
+    
      */
     async execute(uId: string, auId: string) {
 

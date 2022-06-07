@@ -13,7 +13,7 @@ export class AuthService {
      * Método que permite realizar a autenticação de um utilizador
      * @param email email do utilizador
      * @param password password do utilizador
-     * @returns 
+    
      */
     async execute(email: string, password: string) {
         const user = await client.users.findFirst({

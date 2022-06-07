@@ -11,7 +11,11 @@ let getIniciaisTag = (nome: string) => {
   return tag;
 };
 
+/**
+ * Permite transformar um noem em uma tag
+ * @param nome nome do utilizador
 
+ */
 export async function getTag(nome: string) {
   let hashtag = getIniciaisTag(nome);
 
@@ -30,6 +34,11 @@ export async function getTag(nome: string) {
 
   return hashtag;
 }
+/**
+ * Permite tranformar um nome de um ginasio em uma tag
+ * @param nome nome do ginasio
+
+ */
 export async function getGymTag(nome: string) {
   let hashtag = getIniciaisTag(nome);
 

@@ -13,7 +13,7 @@ export class CriarGostoCommentService {
    * @param comentarioId id do comentário
    * @param publicacaoId id da publicação
    * @param criadorId id do criador
-   * @returns 
+  
    */
   async execute(comentarioId: string, publicacaoId: string, criadorId: string) {
     const existsComment = await checkComentarioExists(comentarioId)

@@ -20,7 +20,7 @@ export class AlterarVistoService {
   /**
    * Método que permite alterar o estado de uma notificação tendo em conta todas as verificações necessárias
    * @param IVisto dados da notificacao 
-   * @returns 
+  
    */
   async execute({ notiId, destUid }: IVisto) {
 

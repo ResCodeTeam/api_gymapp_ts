@@ -15,7 +15,7 @@ export class CriarComentarioService {
      * @param comentario id do comentario
      * @param criador_id id do criador
      * @param identificacao indenficações de pessoas
-     * @returns 
+    
      */
     async execute(publicacao_id: string, comentario: string, criador_id: string, identificacao: Array<string>) {
 
