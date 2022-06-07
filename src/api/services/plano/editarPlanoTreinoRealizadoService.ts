@@ -1,3 +1,7 @@
+/**
+ * @module EditarPlanoTreinoRealizadoService
+ */
+
 import { client } from "../../prisma/client";
 import { checkPlanoTreinoExists, checkAutorPlanoTreino, checkPlanoTreinoIsRealizado } from "../../helpers/dbHelpers";
 

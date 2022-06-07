@@ -1,3 +1,7 @@
+/**
+ * @module RemoverGostoPublicacaoService
+ */
+
 import { checkAutorPublicacoes, checkGostoPublicacaoExists, checkPublicacaoExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 

@@ -2,7 +2,7 @@ import { client } from "../../../prisma/client";
 import { checkUserIdExists, checkGinasioExists, checkDesafioIdExists, checkTreinador, checkDesafioDisponivel, getDesafioGinasio, getMarcaGym, checkMobilidadeMarcaUser, getMarcaAluno, getGinasioAluno } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
-interface IAgendarDesafiosService {
+export interface IAgendarDesafiosService {
   uid: string;
   dataAgendamento: Date;
   desafioId: string;

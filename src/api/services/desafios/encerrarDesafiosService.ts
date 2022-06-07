@@ -1,7 +1,7 @@
 import { checkDesafioDisponivel, checkDesafioIdExists, getDonoMarca, getFuncaoId, getGinasioDesafio, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IDesafio {
+export interface IDesafio {
     uId: string,
     isEncerrado: boolean,
     desafioId: string,

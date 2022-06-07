@@ -1,4 +1,8 @@
-import { checkMobilidadeMarcaUser, checkUserIdExists, getAlunoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+/**
+ * @module ObterPlanoTreinoSemanalAlunosService
+ */
+
+import { getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class ObterPlanoTreinoSemanalAlunosService {

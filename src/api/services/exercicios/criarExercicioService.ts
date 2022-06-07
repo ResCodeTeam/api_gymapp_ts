@@ -1,7 +1,7 @@
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface ICriarExercicio {
+export interface ICriarExercicio {
   nome: string,
   descricao: string,
   autor: string,

@@ -1,3 +1,6 @@
+/**
+ * @module CriarGostoCommentService
+ */
 import { checkComentarioExists, checkIsComentarioPublicacaoExists, checkPostExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 

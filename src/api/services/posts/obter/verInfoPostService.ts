@@ -1,4 +1,8 @@
-import { checkPostExists, getDonoMarca, getFuncaoId, getMarcaGym, getPublicacaoGinasio, getUserFuncao } from "../../../helpers/dbHelpers";
+/**
+ * @module VerInfoPostService
+ */
+
+import { checkPostExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
 export class VerInfoPostService {

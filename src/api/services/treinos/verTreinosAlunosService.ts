@@ -1,3 +1,6 @@
+/**
+ * @module VerTreinosAlunosService
+ */
 import { client } from "../../prisma/client";
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 

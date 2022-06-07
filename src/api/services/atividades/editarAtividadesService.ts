@@ -1,7 +1,7 @@
 import { client } from "../../prisma/client";
 import { checkAtividadeExists } from "../../helpers/dbHelpers";
 
-interface IEditarAtividades {
+export interface IEditarAtividades {
     atividadeId: string,
     descricao: string,
     icon: string,

@@ -1,3 +1,7 @@
+/**
+ * @module RemoverPlanoTreinoService
+ */
+
 import { client } from "../../prisma/client";
 import { checkPlanoTreinoExists, checkTreinadorPlanoTreino, getTreinadorMarca, getTreinadorPlano } from "../../helpers/dbHelpers";
 

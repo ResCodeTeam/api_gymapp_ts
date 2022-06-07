@@ -1,7 +1,15 @@
+/**
+ * @module EliminarTreinadorService
+ */
+
 import { checkUserIdExists, checkTreinador, checkDonoMarca, getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface Itreinador {
+/**
+ * @param treinador_id id do treinador
+ * @param userId id do utilizador
+ */
+export interface Itreinador {
     treinador_id: string
     userId: string
 }

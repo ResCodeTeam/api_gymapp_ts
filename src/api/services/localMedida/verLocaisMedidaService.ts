@@ -1,8 +1,14 @@
+/**
+ * @module VerLocaisMedidaService
+ */
 
 import { getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface ILocaisMedida {
+/**
+ * @param uId id do utilizador
+ */
+export interface ILocaisMedida {
     uId: string
 }
 

@@ -2,7 +2,7 @@
 import { checkExercicioExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IMeusExercicios {
+export interface IMeusExercicios {
     autorId: string
 
 }
@@ -40,6 +40,6 @@ export class VerMeusExerciciosService {
             }
 
         })
-        return {data: exercicio, status: 200};
+        return { data: exercicio, status: 200 };
     }
 }

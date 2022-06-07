@@ -1,3 +1,7 @@
+/**
+ * @module RemoverComentarioService
+ */
+
 import { gostos_comentario, identificacoes_comentarios } from "@prisma/client";
 import { checkAutorComentario, checkComentarioExists, checkIsComentarioPublicacaoExists, checkPostExists, getGostosComentario, getIdentificacoesComentario } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";

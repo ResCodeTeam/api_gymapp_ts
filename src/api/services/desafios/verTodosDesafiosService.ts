@@ -2,7 +2,7 @@
 import { checkGinasioExists, getAlunoMarca, getDonoMarca, getFuncaoId, getGinasioDesafio, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IGinasios {
+export interface IGinasios {
     uId: string,
     ginasioId: string
 }
