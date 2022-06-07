@@ -5,7 +5,7 @@ import { client } from "../../prisma/client";
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 
 /**
- * Classe responsavel pelo serviço que serve para obter os terinos de um aluno
+ * Classe responsavel pelo serviço que serve para obter os treinos de um aluno
  */
 export class VerTreinosAlunosService {
     async execute(uId: string) {
