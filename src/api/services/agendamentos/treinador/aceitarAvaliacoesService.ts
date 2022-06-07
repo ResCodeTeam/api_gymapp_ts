@@ -1,3 +1,6 @@
+/**
+ * @module AceitarAvaliacoesService
+ */
 import { client } from "../../../prisma/client";
 import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExists, getAgendamentoAvaliacoesGinasio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";

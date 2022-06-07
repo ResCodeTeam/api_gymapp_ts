@@ -1,3 +1,6 @@
+/**
+ * @module ImpedirIdentificacaoService
+ */
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 

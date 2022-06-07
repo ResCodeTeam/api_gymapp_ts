@@ -1,7 +1,16 @@
+/**
+ * @module AgendarDesafiosService
+ */
 import { client } from "../../../prisma/client";
-import { checkUserIdExists, checkGinasioExists, checkDesafioIdExists, checkTreinador, checkDesafioDisponivel, getDesafioGinasio, getMarcaGym, checkMobilidadeMarcaUser, getMarcaAluno, getGinasioAluno } from "../../../helpers/dbHelpers";
+import { checkUserIdExists, checkGinasioExists, checkDesafioIdExists, checkDesafioDisponivel, getDesafioGinasio, getMarcaGym, checkMobilidadeMarcaUser, getMarcaAluno, getGinasioAluno } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
+/** 
+ * @param uid id do utilizador que está a criar o pedido de agendamento de um desafio
+ * @param dataAgendamento data de criação do pedido de agendamento de um desafio
+ * @param desafioId id do desafio que o utilizador pretende realizar
+ * @param ginasioId id do ginásio onde o utilizador pretende realizar o desafio
+ */
 export interface IAgendarDesafiosService {
   uid: string;
   dataAgendamento: Date;

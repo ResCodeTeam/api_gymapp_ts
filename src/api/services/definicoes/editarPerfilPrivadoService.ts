@@ -1,3 +1,6 @@
+/**
+ * @module EditarPerfilPrivadoService
+ */
 import { client } from "../../prisma/client";
 import { checkUserIdExists, findUserDefinicoes } from "../../helpers/dbHelpers";
 

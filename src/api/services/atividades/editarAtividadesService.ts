@@ -1,6 +1,14 @@
+/**
+ * @module EditarAtividadesService
+ */
 import { client } from "../../prisma/client";
 import { checkAtividadeExists } from "../../helpers/dbHelpers";
 
+/**
+ * @param atividadeId id da atividade que se pretende editar
+ * @param descricao descricao da atividade
+ * @param icon icon que a atividade irá ter
+ */
 export interface IEditarAtividades {
     atividadeId: string,
     descricao: string,

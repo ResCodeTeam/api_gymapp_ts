@@ -1,6 +1,23 @@
-import { checkAutorAvaliacao, checkAvaliacoesExists, getAlunoMarca, getMobilidadeMarca, getTreinadorMarca } from "../../helpers/dbHelpers";
+/**
+ * @module EditarAvaliacaoService
+ */
+import { checkAutorAvaliacao, checkAvaliacoesExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * @param peso medida do peso
+ * @param unidade_peso unidade da medida do peso
+ * @param musculo medida do músculo
+ * @param gordura_corporal medida da gordura corporal
+ * @param gordura_visceral medida da gordura Visceral
+ * @param agua medida da água
+ * @param proteina medida da proteína
+ * @param massa_ossea medida da massa óssea
+ * @param imc medida do imc
+ * @param metabolismo_basal medida do metabolismo basal
+ * @param medidas conjunto de medidas da avaliação
+ * @param imagens conjunto de imagens da avaliação
+ */
 export interface IAvaliacao {
     peso: number,
     unidade_peso: string,

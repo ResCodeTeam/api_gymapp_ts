@@ -1,3 +1,6 @@
+/**
+ * @module RemoverAtividadesService
+ */
 import { client } from "../../prisma/client";
 import { checkAtividadeExists } from "../../helpers/dbHelpers";
 

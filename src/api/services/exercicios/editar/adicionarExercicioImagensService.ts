@@ -1,6 +1,14 @@
+/**
+ * @module AdicionarExerciciosImagensService
+ */
 import { checkAutorExercicio, checkExercicioExists, checkUserIdExists } from "../../../helpers/dbHelpers"
 import { client } from "../../../prisma/client";
 
+/**
+ * @param exercicioId id do exercício
+ * @param treinadorId id do treinador
+ * @param url url da imagem a adicionar ao exercício
+ */
 export interface IEditarImagensExercicio {
   exercicioId: string,
   treinadorId: string,

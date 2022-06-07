@@ -1,3 +1,6 @@
+/**
+ * @module VerTodosOsExerciciosTreinadoresService
+ */
 import { client } from "../../prisma/client";
 
 export class VerTodosOsExerciciosTreinadoresService {

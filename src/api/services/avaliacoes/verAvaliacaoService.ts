@@ -1,4 +1,7 @@
-import { checkUserIdExists, getFuncaoId, getGinasioAluno, getMarcaAluno, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+/**
+ * @module VerAvaliacoesService
+ */
+import { checkUserIdExists, getFuncaoId, getMarcaAluno, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class VerAvaliacoesService {

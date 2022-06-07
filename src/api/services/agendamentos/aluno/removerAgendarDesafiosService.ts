@@ -1,3 +1,6 @@
+/**
+ * @module RemoverAgendarDesafiosService
+ */
 import { client } from "../../../prisma/client";
 import { checkAgendamentoDesafiosExists, checkAutorAgendamentoDesafios } from "../../../helpers/dbHelpers";
 

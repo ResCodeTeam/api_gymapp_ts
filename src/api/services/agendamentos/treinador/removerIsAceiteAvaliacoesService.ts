@@ -1,3 +1,6 @@
+/**
+ * @module RemoverIsAceiteAvaliacoesService
+ */
 import { client } from "../../../prisma/client";
 import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExists, getAgendamentoAvaliacoesGinasio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 

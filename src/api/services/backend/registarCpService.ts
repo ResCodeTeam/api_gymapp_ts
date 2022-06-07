@@ -1,5 +1,14 @@
+/**
+ * @module RegistarCpService
+ */
 import { client } from "../../prisma/client";
 
+/**
+ * @param cp código postal
+ * @param cpExt extensão do código postal
+ * @param rua rua associada
+ * @param localidade localidade associada
+ */
 export interface IRegistarCpRequest {
     cp: number;
     cpExt: number;

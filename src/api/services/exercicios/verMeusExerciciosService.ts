@@ -1,10 +1,13 @@
-
-import { checkExercicioExists } from "../../helpers/dbHelpers";
+/**
+ * @module VerMeusExerciciosService
+ */
 import { client } from "../../prisma/client";
 
+/**
+ * @param autorId id do autor dos exercícios
+ */
 export interface IMeusExercicios {
     autorId: string
-
 }
 
 

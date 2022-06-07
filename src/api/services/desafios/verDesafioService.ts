@@ -1,4 +1,7 @@
-import { checkAlunoGinasio, checkDesafioIdExists, checkMobilidadeMarcaUser, getAlunoMarca, getDesafioGinasio, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+/**
+ * @module VerDesafioService
+ */
+import { checkDesafioIdExists, checkMobilidadeMarcaUser, getDesafioGinasio, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
 export class VerDesafioService {

@@ -1,3 +1,6 @@
+/**
+ * @module AuthService
+ */
 import { compare } from "bcrypt"
 import { generateRefreshToken, generateSessionToken } from "../../helpers/jwtHelpers"
 import { client } from "../../prisma/client"

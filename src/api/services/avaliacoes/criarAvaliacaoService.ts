@@ -1,7 +1,27 @@
+/**
+ * @module CriarAvaliacaoService
+ */
 import { checkUserIdExists, getAlunoMarca, getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 import { Medida } from "../../Providers/medidaProvider";
 
+/**
+ * @param alunoId id do aluno
+ * @param data data da avaliação
+ * @param peso medida do peso
+ * @param unidadePeso unidade da medida do peso
+ * @param treinadorId id do treinador
+ * @param musculo medida do músculo
+ * @param gorduraCorporal medida da gordura corporal
+ * @param gorduraVisceral medida da gordura Visceral
+ * @param agua medida da água
+ * @param proteina medida da proteína
+ * @param massaOssea medida da massa óssea
+ * @param imc medida do imc
+ * @param metabolismoBasal medida do metabolismo basal
+ * @param imagens conjunto de imagens da avaliação
+ * @param medidas conjunto de medidas da avaliação
+ */
 export interface ICriarAvaliacaoService {
   alunoId: string,
   data: Date,

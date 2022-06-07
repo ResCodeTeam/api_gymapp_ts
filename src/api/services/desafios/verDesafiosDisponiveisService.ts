@@ -1,7 +1,13 @@
-
-import { checkAlunoGinasio, checkGinasioExists, checkMobilidadeMarcaUser, getAlunoMarca, getDonoMarca, getFuncaoId, getGinasioAluno, getMarcaGym, getMobilidadeMarca, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
+/**
+ * @module VerDesafiosDisponiveisService
+ */
+import { checkGinasioExists, checkMobilidadeMarcaUser, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * @param uId id do utilizador
+ * @param ginasioId id do ginásio que se pretende ver os desafios disponíveis
+ */
 export interface IGinasios {
     uId: string,
     ginasioId: string
