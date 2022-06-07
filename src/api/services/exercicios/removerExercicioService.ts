@@ -1,3 +1,6 @@
+/**
+ * @module RemoverExercicioService
+ */
 import { client } from "../../prisma/client";
 import { checkExercicioExists, checkAutorExercicio } from "../../helpers/dbHelpers";
 

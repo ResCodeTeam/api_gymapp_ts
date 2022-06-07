@@ -1,6 +1,17 @@
+/**
+ * @module CriarExercicioService
+ */
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * @param nome nome do exercício a criar
+ * @param descricao descricao do exercício
+ * @param autor autor do exercício
+ * @param isTempo variável que indica se o exercício é por tempo ou não
+ * @param imagens conjunto de imagens do exercício
+ * @param musculos conjunto de músculos do exercício
+ */
 export interface ICriarExercicio {
   nome: string,
   descricao: string,

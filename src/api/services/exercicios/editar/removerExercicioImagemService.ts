@@ -1,3 +1,6 @@
+/**
+ * @module RemoverExercicioImagemService
+ */
 import { checkAutorExercicio, checkExercicioExists, checkImagemExercicioExists, getImagemExercicio } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
