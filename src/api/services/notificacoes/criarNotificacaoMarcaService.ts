@@ -1,8 +1,18 @@
+/**
+ * @module CriarNotificacaoMarcaService
+ */
+
 import { changeTimeZone } from "../../helpers/dateHelpers";
-import { checkDonoMarca, checkMarcaExists, checkModalidadeExists, checkUserIdExists, formatDateHour, getMobilidadeMarca } from "../../helpers/dbHelpers";
+import { checkDonoMarca, checkMarcaExists, checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from '../../prisma/client';
 
-interface INotificacaoMarca {
+/**
+ * @param userId id do utilizador
+ * @param marcaId id da marca
+ * @param conteudo conteudo da notificacao
+ * @param tipo tipo da notificacao
+ */
+export interface INotificacaoMarca {
   userId: string,
   marcaId: string,
   conteudo: string,

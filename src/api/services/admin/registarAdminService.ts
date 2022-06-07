@@ -4,7 +4,7 @@ import { checkEmail, checkGinasioExists, getFuncaoId } from "../../helpers/dbHel
 import { getTag } from "../../helpers/tagHelpers";
 import { client } from "../../prisma/client";
 
-interface IRegistarAdminService {
+export interface IRegistarAdminService {
     email: string,
     nome: string,
     password: string,

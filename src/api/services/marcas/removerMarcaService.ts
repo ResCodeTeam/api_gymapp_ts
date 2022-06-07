@@ -1,3 +1,7 @@
+/**
+ * @module RemoverMarcaService
+ */
+
 import { client } from "../../prisma/client";
 import { checkMarcaExists, checkAutorMarca } from "../../helpers/dbHelpers";
 

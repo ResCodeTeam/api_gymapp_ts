@@ -12,7 +12,7 @@ import {
   checkDonoMarca,
 } from "../../helpers/dbHelpers";
 
-interface IRegistarAlunoService {
+export interface IRegistarAlunoService {
   email: string;
   nome: string;
   password: string;

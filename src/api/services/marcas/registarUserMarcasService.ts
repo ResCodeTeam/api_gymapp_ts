@@ -1,7 +1,18 @@
+/**
+ * @module RegistarUserMarcasService
+ */
+
 import { client } from "../../prisma/client";
 import { checkUserIdExists, checkNomeMarca, getDonoMarca } from "../../helpers/dbHelpers";
 
-interface IRegistarUserMarcasSerice {
+/**
+ * @param userId id do utilizador
+ * @param nome nome da marca
+ * @param mobilidade mobilidade da marca
+ * @param cor cor da marca
+ * @param logotipo url do logotipo da marca
+ */
+export interface IRegistarUserMarcasSerice {
   userId: string;
   nome: string;
   mobilidade: boolean;

@@ -1,3 +1,6 @@
+/**
+ * @module RemoverModalidadesService
+ */
 import { client } from "../../prisma/client";
 import { checkDonoGinasio, checkGinasioExists, checkModalidadeExists, getModalidadeGinasio } from "../../helpers/dbHelpers";
 

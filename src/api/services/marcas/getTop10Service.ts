@@ -1,6 +1,9 @@
+/**
+ * @module GetTop10Service
+ */
+
 import { getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
-import { VerTodosPostsUserService } from "../posts/obter/verTodosPostsUserService";
 
 export class GetTop10Service {
   async execute(uid: string) {

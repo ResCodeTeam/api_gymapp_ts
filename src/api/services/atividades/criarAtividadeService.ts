@@ -1,6 +1,6 @@
 import { client } from "../../prisma/client";
 
-interface IAtividadeService {
+export interface IAtividadeService {
   descricao: string,
   icon: string,
 }
@@ -17,7 +17,7 @@ class CriarAtividadeService {
         icon,
       },
     });
-    return {data: atividade, status: 200};
+    return { data: atividade, status: 200 };
   }
 }
 export { CriarAtividadeService };

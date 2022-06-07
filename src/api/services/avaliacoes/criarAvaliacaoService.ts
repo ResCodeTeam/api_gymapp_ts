@@ -2,7 +2,7 @@ import { checkUserIdExists, getAlunoMarca, getTreinadorMarca } from "../../helpe
 import { client } from "../../prisma/client";
 import { Medida } from "../../Providers/medidaProvider";
 
-interface ICriarAvaliacaoService {
+export interface ICriarAvaliacaoService {
   alunoId: string,
   data: Date,
   peso: number,

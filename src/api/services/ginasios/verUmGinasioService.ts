@@ -1,4 +1,6 @@
-
+/**
+ * @module VerUmGinasioService
+ */
 import { checkDonoGinasio, checkGinasioExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 

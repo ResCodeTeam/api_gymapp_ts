@@ -1,3 +1,7 @@
+/**
+ * @module EditarMusculoService
+ */
+
 import { checkMusculoExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 

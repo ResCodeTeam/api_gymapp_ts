@@ -1,9 +1,14 @@
-
+/**
+ * @module AlterarVistoService
+ */
 import { checkDestinoNotificacao, checknotificacaoExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-
-interface IVisto {
+/**
+ * @param notiId id da notificacao
+ * @param destUid id do destino
+ */
+export interface IVisto {
   notiId: string
   destUid: string
 }

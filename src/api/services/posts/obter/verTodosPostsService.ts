@@ -1,3 +1,7 @@
+/**
+ * @module VerTodosPostsService
+ */
+
 import { checkMobilidadeMarcaUser, checkUserIdExists, getFuncaoId, getGinasioAluno, getMarcaGym, getUserFuncao } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 class VerTodosPostsService {
@@ -43,7 +47,7 @@ class VerTodosPostsService {
                     posts.push(...(await getPublicacoesGymTreinador(marca.marca_id)).data)
                 }
             }
-            return {data: posts, status: 200};
+            return { data: posts, status: 200 };
 
         }
     }
@@ -117,7 +121,7 @@ async function getPublicacoesMarca(marcaId: string) {
 
     })
 
-    return {data: publicacoes, status: 200};
+    return { data: publicacoes, status: 200 };
 }
 
 
@@ -191,7 +195,7 @@ async function getPublicacoesGym(ginasioId: string, marcaId: string) {
 
     })
 
-    return {data: publicacoes, status: 200};
+    return { data: publicacoes, status: 200 };
 
 }
 
@@ -271,7 +275,7 @@ async function getPublicacoesGymTreinador(marcaId: string) {
 
 
 
-    return {data: publicacoes, status: 200};
+    return { data: publicacoes, status: 200 };
 
 }
 

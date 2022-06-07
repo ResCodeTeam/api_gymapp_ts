@@ -1,3 +1,7 @@
+/**
+ * @module ObterPlanoTreinoSemanalService
+ */
+
 import { checkMobilidadeMarcaUser, checkUserIdExists, getAlunoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 

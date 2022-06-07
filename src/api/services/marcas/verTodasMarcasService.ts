@@ -1,7 +1,12 @@
-
+/**
+ * @module VerTodasMarcasService
+ */
 import { client } from "../../prisma/client";
 
-interface IGinasios {
+/**
+ * @param donoId
+ */
+export interface IGinasios {
     donoId: string
 }
 
@@ -13,14 +18,14 @@ export class VerTodasMarcasService {
                 dono_id: donoId,
                 isDeleted: false
 
-            }, select:{
+            }, select: {
                 marca_id: true,
-                nome:true,
-                cor:true,
-                logotipo:true,
+                nome: true,
+                cor: true,
+                logotipo: true,
                 mobilidade: true
-            }        
-         })
-        return {data: marcas, status: 200};
+            }
+        })
+        return { data: marcas, status: 200 };
     }
 }

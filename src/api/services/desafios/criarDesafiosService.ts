@@ -3,7 +3,7 @@ import { checkUserIdExists, checkGinasioExists, checkModalidadeExists, checkExer
 import { Exercicio } from "../../Providers/exercicioProvider";
 
 
-interface ICriarDesafiosService {
+export interface ICriarDesafiosService {
     criadorId: string;
     nome: string;
     modalidadeId: string;

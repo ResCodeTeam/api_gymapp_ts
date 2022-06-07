@@ -1,4 +1,6 @@
-import { checkUserIdExists } from "../../helpers/dbHelpers";
+/**
+ * @module VerMeuPerfilService
+ */
 import { client } from "../../prisma/client";
 import { VerTodosPostsUserService } from "../posts/obter/verTodosPostsUserService";
 import { VerTreinosAlunosService } from "../treinos/verTreinosAlunosService";

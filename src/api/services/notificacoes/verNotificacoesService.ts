@@ -1,3 +1,7 @@
+/**
+ * @module VerNotificacoesService
+ */
+
 import { client } from "../../prisma/client";
 
 export class VerNotificacoesService {

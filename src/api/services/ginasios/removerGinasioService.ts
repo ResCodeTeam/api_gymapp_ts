@@ -1,3 +1,7 @@
+/**
+ * @module RemoverGinasioService
+ */
+
 import { client } from "../../prisma/client";
 import { checkGinasioExists, getMarcaGym } from "../../helpers/dbHelpers";
 

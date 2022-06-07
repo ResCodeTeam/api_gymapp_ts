@@ -1,3 +1,7 @@
+/**
+ * @module CriarComentarioService
+ */
+
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 import { client } from "../../../prisma/client";
 

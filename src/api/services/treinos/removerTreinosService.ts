@@ -1,3 +1,6 @@
+/**
+ * @module RemoverTreinosService
+ */
 import { client } from "../../prisma/client";
 import { checkTreinoExists, checkAutorTreino } from "../../helpers/dbHelpers";
 

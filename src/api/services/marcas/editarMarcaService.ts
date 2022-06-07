@@ -1,7 +1,20 @@
+/**
+ * @module EditarMarcaService
+ */
+
 import { checkAutorMarca, checkMarcaExists, checkNomeMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
-interface IEditarMarca {
+/**
+ * @param marcaId id da marca
+ * @param nome nome da marca
+ * @param mobilidade mobilidade da marca
+ * @param cor cor da marca
+ * @param logotipo url do logotipo da marca
+ * @param adminId id do admin
+ * @param mobilidade mobilidade da marca
+ */
+export interface IEditarMarca {
   marcaId: string,
   nome: string,
   cor: string,

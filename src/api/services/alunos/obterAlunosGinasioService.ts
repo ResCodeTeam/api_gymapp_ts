@@ -3,7 +3,7 @@ import { checkDonoOuTreinadorGinasio, checkGinasioExists, checkMobilidadeMarcaUs
 
 import { client } from '../../prisma/client';
 
-interface IGinasioDono {
+export interface IGinasioDono {
     ginasioId: string,
     userId: string
 }

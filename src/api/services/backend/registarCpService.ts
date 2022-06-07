@@ -1,6 +1,6 @@
 import { client } from "../../prisma/client";
 
-interface IRegistarCpRequest {
+export interface IRegistarCpRequest {
     cp: number;
     cpExt: number;
     rua: string;
