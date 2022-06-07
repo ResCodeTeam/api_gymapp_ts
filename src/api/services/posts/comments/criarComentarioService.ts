@@ -9,6 +9,14 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço de criação de comentários
  */
 export class CriarComentarioService {
+    /**
+     * Método que permite criar um comentário realizando todas as as verificações necessárias
+     * @param publicacao_id id da publicação
+     * @param comentario id do comentario
+     * @param criador_id id do criador
+     * @param identificacao indenficações de pessoas
+     * @returns 
+     */
     async execute(publicacao_id: string, comentario: string, criador_id: string, identificacao: Array<string>) {
 
         if (publicacao_id == null) {

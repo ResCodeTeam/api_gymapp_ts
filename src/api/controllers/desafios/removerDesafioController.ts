@@ -20,16 +20,16 @@ export class RemoverDesafioController {
     const desafioId = request.params.id;
     const uId = request.params.userId;
 
-    try{
+    try {
       if (uId === undefined || desafioId === undefined) {
         throw new Error("Pedido inválido");
       }
-  
+
       //Serviço
       const removerDesafioService = new RemoverDesafioService();
-      //Invocar Função
+      //Invocar Método
       const resp = await removerDesafioService.execute(desafioId, uId);
-  
+
       //Responder
       response.status(resp.status).json(resp.data);
     } catch (e) {

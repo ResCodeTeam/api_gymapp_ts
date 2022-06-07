@@ -9,6 +9,14 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço de criação de locais de medida
  */
 export class CriarLocalMedidaService {
+  /**
+   * Método que permite criar um local de medida para uma marca tendo em conta todas as verificações necessárias
+   * @param uid id do utilizador
+   * @param marcaId id da marca
+   * @param descricao descrição do local de medida
+   * @param unilado unilateral ou não
+   * @returns 
+   */
   async execute(uid: string, marcaId: string, descricao: string, unilado: boolean) {
 
     const existMarca = await checkMarcaExists(marcaId);

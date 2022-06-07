@@ -17,6 +17,11 @@ export interface IGinasios {
  * Classe responsavel pelo serviço que serve para obter todas as modalidades
  */
 export class VerTodasModalidadesService {
+    /**
+     * Método que permite obter todas as modalidades de um ginásio tendo em conta todas as verificações necessárias
+     * @param IGinasios dados id do ginasio e id do user 
+     * @returns 
+     */
     async execute({ ginasioId, userId }: IGinasios) {
 
         const exists_ginasio = await checkGinasioExists(ginasioId)

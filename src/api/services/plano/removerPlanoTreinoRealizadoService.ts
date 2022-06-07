@@ -8,6 +8,12 @@ import { checkPlanoTreinoExists, checkAutorPlanoTreino, checkPlanoTreinoIsRealiz
  * Classe responsavel pelo serviço de remoção do estado dos planos de treino
  */
 class RemoverPlanoTreinoRealizadoService {
+  /**
+   * Método que permite alterar o estado de um plano de treino realizado
+   * @param alunoId id do aluno
+   * @param planoId id do plano de treino
+   * @returns 
+   */
   async execute(alunoId: string, planoId: string) {
     const exists_plano = await checkPlanoTreinoExists(planoId);
     if (!exists_plano) {

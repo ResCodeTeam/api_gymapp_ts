@@ -9,6 +9,12 @@ import { checkGinasioExists, getMarcaGym } from "../../helpers/dbHelpers";
  * Classe responsavel pelo serviço de remoção de ginásios
  */
 class RemoverGinasioService {
+  /**
+   * Remover um ginásio tendo em conta todas as verificações necessárias
+   * @param uId id do utilizador
+   * @param ginasioId id do ginásio
+   * @returns 
+   */
   async execute(uId: string, ginasioId: string) {
     const exists_ginasio = await checkGinasioExists(ginasioId);
     if (!exists_ginasio) {

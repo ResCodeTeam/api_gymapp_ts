@@ -21,6 +21,10 @@ export interface IPublicacao {
  * Classe responsavel pelo serviço de edição de posts
  */
 export class EditarPublicacaoService {
+    /**
+     * Método que permite editar uma publicação realizando todas as as verificações necessárias
+     * @param IPublicacao dados da publicacao
+     */
     async execute({ uId, publicacaoId, newData, descricao }: IPublicacao) {
 
         if (publicacaoId == null) {

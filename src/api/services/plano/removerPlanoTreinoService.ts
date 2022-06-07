@@ -9,6 +9,11 @@ import { checkPlanoTreinoExists, checkTreinadorPlanoTreino, getTreinadorMarca, g
  * Classe responsavel pelo serviço de remoção de planos de treino
  */
 class RemoverPlanoTreinoService {
+  /**
+   * Método para remover um plano de treino realizando todas as as verificações necessárias
+   * @param treinadorId id do treinador
+   * @param planoId id publicações
+   */
   async execute(treinadorId: string, planoId: string) {
 
     const exists_plano = await checkPlanoTreinoExists(planoId);

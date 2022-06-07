@@ -9,6 +9,11 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço de criação de músculos
  */
 export class AddMusculoService {
+  /**
+   * Método que permite criar um músculo
+   * @param nome nome do músculo
+   * @param image imagem do músculo
+   */
   async execute(nome: string, image: string) {
     const existsMusculeName = await checkMusculoNomeExists(nome);
     if (existsMusculeName) {

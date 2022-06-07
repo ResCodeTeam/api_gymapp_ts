@@ -10,6 +10,13 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço de remoção de comentários
  */
 export class RemoverComentarioService {
+  /**
+   * Método que permite remover um comentário realizando todas as as verificações necessárias
+   * @param criadorId id do criador
+   * @param comentarioId id comentário
+   * @param publicacaoId id publicação
+   * @returns 
+   */
   async execute(criadorId: string, comentarioId: string, publicacaoId: string) {
     const existsPublicacao = await checkPostExists(publicacaoId);
     if (!existsPublicacao) {

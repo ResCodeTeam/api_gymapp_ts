@@ -9,6 +9,11 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço de criação de gostos em publicações
  */
 export class CriarGostoService {
+  /**
+   * Método que permite criar um gosto realizando todas as as verificações necessárias
+   * @param postId id publicação
+   * @param criadorId id do criador
+   */
   async execute(postId: string, criadorId: string) {
     const existsPost = await checkPostExists(postId);
     if (!existsPost) {

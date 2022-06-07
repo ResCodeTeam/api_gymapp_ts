@@ -28,6 +28,10 @@ export interface ICriarTreinosService {
  * Classe responsavel pelo serviço de criação de treinos
  */
 class CriarTreinosService {
+  /**
+   * Esta função permite criar um treino tendo em conta todas as verificações necessárias
+   * @param ICriarTreinosService interface de dados do serviço
+   */
   async execute({
     uid,
     atividadeId,

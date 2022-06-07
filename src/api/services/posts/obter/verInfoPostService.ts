@@ -9,6 +9,10 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter dados dos posts
  */
 export class VerInfoPostService {
+    /**
+     * Método que permite obter todos os dados de uma publicação
+     * @param postId id da publicação
+     */
     async execute(postId: string) {
         const existsPost = await checkPostExists(postId);
         if (!existsPost) {

@@ -8,6 +8,10 @@ import { checkUserIdExists } from "../../helpers/dbHelpers";
  * Classe responsavel pelo serviço que serve para obter os treinos de um aluno
  */
 export class VerTreinosAlunosService {
+    /**
+     * Método que permite obter os treinos dos alunos
+     * @param uId id do utilizador
+     */
     async execute(uId: string) {
 
         const exists_user = await checkUserIdExists(uId);

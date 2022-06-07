@@ -9,6 +9,11 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter os planos de treino dos alunos
  */
 export class ObterPlanosTreinoAlunosService {
+  /**
+   * Método que permite obter todos os planos de treino de um aluno
+   * @param uid id do aluno
+   * @returns 
+   */
   async execute(uid: string) {
 
     const marcaId = await getTreinadorMarca(uid);

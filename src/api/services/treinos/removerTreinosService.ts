@@ -8,6 +8,11 @@ import { checkTreinoExists, checkAutorTreino } from "../../helpers/dbHelpers";
  * Classe responsavel pelo serviço de remoção de treinos
  */
 class RemoverTreinosService {
+  /**
+   * Método que permite remover um treino realizando todaas as verificações necessárias
+   * @param uId id do utilizador
+   * @param treinoId id do treino
+   */
   async execute(uId: string, treinoId: string) {
     const exists_treino = await checkTreinoExists(treinoId);
     if (!exists_treino) {

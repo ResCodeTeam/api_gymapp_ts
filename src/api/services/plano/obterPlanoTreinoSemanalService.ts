@@ -9,6 +9,14 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter os planos de treino semanais
  */
 export class ObterPlanoTreinoSemanalService {
+  /**
+   * Método que permite obter o plano de treino semanal de um aluno recebendo um intervalo de tempo
+   * @param uid id do utilizador
+   * @param startDate data inicial do intervalo de tempo
+   * @param endDate data final do intervalo de tempo
+   * @param askerID id do utilizador que está a pedir o plano
+   * @returns 
+   */
   async execute(uid: string, startDate: Date, endDate: Date, askerID: string) {
 
     const funcao = await getUserFuncao(askerID);

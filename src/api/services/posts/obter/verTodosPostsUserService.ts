@@ -9,6 +9,10 @@ import { client } from "../../../prisma/client"
  * Classe responsavel pelo serviço que serve para obter todos os posts de um utilizador
  */
 export class VerTodosPostsUserService {
+    /**
+     * Método que pemrite obter todos os posts de um utilizador
+     * @param userId id do utilizador
+     */
     async execute(userId: string) {
         if (!userId) {
             return { data: "Utilizador não existe", status: 500 }
