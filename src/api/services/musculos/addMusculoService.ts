@@ -5,6 +5,9 @@
 import { checkMusculoNomeExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de criação de músculos
+ */
 export class AddMusculoService {
   async execute(nome: string, image: string) {
     const existsMusculeName = await checkMusculoNomeExists(nome);

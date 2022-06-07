@@ -5,6 +5,9 @@
 import { client } from "../../prisma/client";
 import { checkPlanoTreinoExists, checkTreinadorPlanoTreino, getTreinadorMarca, getTreinadorPlano } from "../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção de planos de treino
+ */
 class RemoverPlanoTreinoService {
   async execute(treinadorId: string, planoId: string) {
 

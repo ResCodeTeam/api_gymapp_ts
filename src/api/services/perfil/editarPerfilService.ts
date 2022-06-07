@@ -25,7 +25,9 @@ export interface IEditarPerfil {
   imagemUrl: string
 }
 
-
+/**
+ * Classe responsavel pelo serviço de edição dos perfis
+ */
 export class EditarPerfilService {
   async execute({
     uId,

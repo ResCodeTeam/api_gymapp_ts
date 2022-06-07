@@ -15,6 +15,9 @@ export interface IEditarAtividades {
     icon: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de uma atividade
+ */
 export class EditarAtividadesService {
     async execute(data: IEditarAtividades) {
         const exists_dst = await checkAtividadeExists(data.atividadeId);

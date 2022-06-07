@@ -25,6 +25,9 @@ export interface ITreino {
   data: Date
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de treinos
+ */
 export class EditarTreinosService {
   async execute({ uId, treinoId, atividadeId, modalidadeId, duracao, calorias, distancia, data }: ITreino) {
 

@@ -10,6 +10,9 @@ export interface IGinasios {
     donoId: string
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todas as marcas
+ */
 export class VerTodasMarcasService {
     async execute({ donoId }: IGinasios) {
 

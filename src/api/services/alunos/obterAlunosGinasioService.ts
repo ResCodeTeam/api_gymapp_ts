@@ -14,6 +14,9 @@ export interface IGinasioDono {
     userId: string
 }
 
+/**
+ * Classe responsavel pelo serviço quer serve para obter os alunos de um ginásio
+ */
 export class ObterAlunosGinasioService {
     async execute({ ginasioId, userId }: IGinasioDono) {
 

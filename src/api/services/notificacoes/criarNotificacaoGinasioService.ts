@@ -19,6 +19,9 @@ export interface INotificacaoGinasio {
   tipo: number
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de notificações para os ginásios
+ */
 export class CriarNotificacaoGinasioService {
   async execute({ userId, ginasioId, conteudo, tipo }: INotificacaoGinasio) {
     //#region Verifica se o admin existe

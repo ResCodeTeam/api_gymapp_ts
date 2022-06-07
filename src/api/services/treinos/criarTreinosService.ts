@@ -24,6 +24,9 @@ export interface ICriarTreinosService {
   data: Date;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de treinos
+ */
 class CriarTreinosService {
   async execute({
     uid,

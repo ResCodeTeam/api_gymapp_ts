@@ -4,6 +4,9 @@
 import { checkSubmissaoExists, checkDesafioIdExists, checkIsSubmissaoDesafio, getDesafio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de remoção de submissões dos resultados dos desafios
+ */
 export class RemoverSubmissaoDesafioService {
   async execute(uid: string, submissaoId: string, desafioId: string) {
 

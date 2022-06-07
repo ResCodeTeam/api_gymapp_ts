@@ -26,6 +26,9 @@ export interface IEditarGinasio {
     adminId: string
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de ginásios
+ */
 export class EditarGinasioService {
     async execute({ ginasioId, adminId, nome, rua, descricao, imagemUrl, lat, long }: IEditarGinasio) {
         const existsGinasio = await checkGinasioExists(ginasioId)

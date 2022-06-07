@@ -5,6 +5,9 @@
 import { getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter os 10 melhores alunos
+ */
 export class GetTop10Service {
   async execute(uid: string) {
     const marcaId = await getTreinadorMarca(uid);

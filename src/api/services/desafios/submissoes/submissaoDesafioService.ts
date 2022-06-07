@@ -19,6 +19,9 @@ export interface ISubmissaoDesafio {
   ginasioId: string;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de submissões do resultado dos desafios
+ */
 export class SubmissaoDesafioService {
   async execute({ desafioId, uid, valor, treinadorId, ginasioId }: ISubmissaoDesafio) {
     const existsDesafio = await checkDesafioIdExists(desafioId);

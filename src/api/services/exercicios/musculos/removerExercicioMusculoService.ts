@@ -4,6 +4,9 @@
 import { checkAutorExercicio, checkExercicioExists, checkExercicioMusculoExists, checkMusculoExists, checkUserIdExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de remoção de músculos dos exercícios
+ */
 export class RemoverExercicioMusculoService {
   async execute(treinadorId: string, exercicioId: string, musculoId: string) {
 

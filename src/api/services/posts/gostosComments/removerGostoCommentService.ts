@@ -4,6 +4,9 @@
 import { checkComentarioExists, checkGostoComentarioExists, checkIsComentarioPublicacaoExists, checkPostExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de remoção de gostos dos comentários
+ */
 export class RemoverGostoCommentService {
   async execute(publicacaoId: string, criadorId: string, comentarioId: string) {
     const existsPublicacao = await checkPostExists(publicacaoId);

@@ -4,6 +4,9 @@
 import { checkDesafioIdExists, checkMobilidadeMarcaUser, getDesafioGinasio, getDonoMarca, getFuncaoId, getMarcaGym, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todos os dados de um desafio
+ */
 export class VerDesafioService {
     async execute(uId: string, desafioId: string) {
 

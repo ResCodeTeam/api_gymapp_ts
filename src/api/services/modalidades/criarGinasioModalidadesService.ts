@@ -18,6 +18,9 @@ export interface ICriarGinasioModalidadesService {
   adminId: string;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de modalidades
+ */
 class CriarGinasioModalidadesService {
   async execute({
     ginasioId,

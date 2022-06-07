@@ -12,6 +12,9 @@ export interface IAtividadeService {
   icon: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de uma atividade
+ */
 class CriarAtividadeService {
   async execute({
     descricao,

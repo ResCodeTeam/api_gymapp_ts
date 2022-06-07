@@ -5,6 +5,9 @@ import { client } from "../../../prisma/client";
 import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExists, getAgendamentoAvaliacoesGinasio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 
+/**
+ * Classe responsavel pelo serviço que serve para editar o estado de um pedido de agendamento de uma avaliação
+ */
 class AceitarAvaliacoesService {
   async execute(agendamentoId: string, treinadorId: string) {
 

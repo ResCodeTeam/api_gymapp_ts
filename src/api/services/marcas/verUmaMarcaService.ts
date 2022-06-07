@@ -13,7 +13,9 @@ export interface IMarca {
     marcaId: string
 }
 
-
+/**
+ * Classe responsavel pelo serviço que serve para obter os dados de uma marca
+ */
 export class VerUmaMarcaService {
     async execute({ donoId, marcaId }: IMarca) {
 

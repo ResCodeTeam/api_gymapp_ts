@@ -5,6 +5,9 @@
 import { checkAutorPublicacoes, checkGostoPublicacaoExists, checkPublicacaoExists } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de remoção de gostos em publicações
+ */
 export class RemoverGostoPublicacaoService {
   async execute(publicacaoId: string, userId: string) {
 

@@ -4,6 +4,9 @@
 import { client } from "../../../prisma/client";
 import { checkAgendamentoAvaliacaoExists, checkAgendamentoAvaliacaoIsAceiteExists, getAgendamentoAvaliacoesGinasio, getMarcaGym, getTreinadorMarca } from "../../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção do estado de um pedido de agendamento de uma avaliação
+ */
 class RemoverIsAceiteAvaliacoesService {
   async execute(treinadorId: string, agendamentoId: string) {
 

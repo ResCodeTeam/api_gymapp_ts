@@ -20,6 +20,9 @@ export interface IEditarModalidades {
   uid: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de modalidades
+ */
 export class EditarModalidadesService {
   async execute({ imagemUrl, nome, modalidadeId, ginasioId, uid }: IEditarModalidades) {
     const exists_dst = await checkModalidadeExists(modalidadeId);

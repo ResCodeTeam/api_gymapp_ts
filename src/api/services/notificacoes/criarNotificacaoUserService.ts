@@ -19,6 +19,9 @@ export interface ICriarNotifcacaoUser {
   tipo: number
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de notificações para os alunos
+ */
 export class CriarNotificacaoUserService {
   async execute({ destinoId, origemId, conteudo, tipo }: ICriarNotifcacaoUser) {
 

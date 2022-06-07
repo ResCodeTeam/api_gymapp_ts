@@ -28,6 +28,9 @@ export interface IRegistarTreinadorService {
   userId: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de treinadores
+ */
 export class RegistarTreinadorService {
   async execute({ marcaId, email, nome, password, dataNasc, dataEntrada, genero, userId }: IRegistarTreinadorService) {
     let existsMarca = await checkMarcaExists(marcaId);

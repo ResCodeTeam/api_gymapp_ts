@@ -23,6 +23,9 @@ export interface IRegistarAdminService {
     genero: number,
 }
 
+/**
+ * Classe responsavel pelo serviço de registo de um admin
+ */
 export class RegistarAdminService {
     async execute({ email, nome, password, dataNasc, dataEntrada, genero }: IRegistarAdminService) {
 

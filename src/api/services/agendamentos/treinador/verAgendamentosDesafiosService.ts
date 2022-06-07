@@ -4,6 +4,9 @@
 import { checkTreinador, getTreinadorMarca } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter agendamentos de desafios
+ */
 export class VerAgendamentosDesafiosService {
     async execute(uid: string) {
 

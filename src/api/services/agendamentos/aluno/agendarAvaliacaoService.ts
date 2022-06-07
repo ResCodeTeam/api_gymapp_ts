@@ -16,6 +16,9 @@ export interface IAgendarAvaliacaoService {
   ginasioId: string;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de um pedido de agendamento de uma avaliação
+ */
 export class AgendarAvaliacaoService {
   async execute({
     uid,
