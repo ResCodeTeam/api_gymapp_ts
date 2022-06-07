@@ -8,7 +8,12 @@ export interface IDayWeek {
     abbreviation: string
 }
 
-
+/**
+ * Permite alterar o email de um utilizador
+ * 
+ * @param email email do utilizador
+ * @param uid id do utilizador
+ */
 let checkChangeEmail = async (email: string, uid: string) => {
     const search = await client.users.findMany({
         where: {
@@ -21,6 +26,10 @@ let checkChangeEmail = async (email: string, uid: string) => {
     return search.length != 0;
 }
 
+/**
+ * Permite verificar se um email existe
+ * @param email email a verificar
+ */
 let checkEmail = async (email: string) => {
     const search = await client.users.findMany({
         where: {
@@ -29,6 +38,11 @@ let checkEmail = async (email: string) => {
     })
     return search.length != 0;
 }
+/**
+ * Permite obter as definições de um utilizador
+ * 
+ * @param uId 
+ */
 let findUserDefinicoes = async (uId: string) => {
     const search = await client.definicoes_user.findFirst({
         where: {
@@ -42,6 +56,11 @@ let findUserDefinicoes = async (uId: string) => {
     })
     return search.def_id;
 }
+
+/**
+ * Permite obter o id da função do treinador
+ * @returns 
+ */
 let getTreinadorFuncaoId = async () => {
     const search = await client.funcoes.findFirst({
         where: {
@@ -50,6 +69,12 @@ let getTreinadorFuncaoId = async () => {
     })
     return search.funcao_id;
 }
+
+/**
+ * Método que permite verificar se um treinador existe
+ * 
+ * @param uId id do utilizador
+ */
 let checkTreinador = async (uId: string) => {
     const search = await client.users.findMany({
         where: {
@@ -60,6 +85,12 @@ let checkTreinador = async (uId: string) => {
     })
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se um desafio existe
+ * 
+ * @param desafioId id do desafio
+ */
 let checkDesafioIdExists = async (desafioId: string) => {
     const search = await client.desafios.findMany({
         where: {
@@ -69,6 +100,12 @@ let checkDesafioIdExists = async (desafioId: string) => {
     })
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se um desafio se encontra disponível
+ * 
+ * @param desafioId id do desafio
+ */
 let checkDesafioDisponivel = async (desafioId: string) => {
     const search = await client.desafios.findMany({
         where: {
@@ -79,6 +116,13 @@ let checkDesafioDisponivel = async (desafioId: string) => {
     })
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se uma avaliação existe
+ * 
+ * @param avaliacaoId id da avaliação
+ * @returns 
+ */
 let checkAvaliacoesExists = async (avaliacaoId: string) => {
     const search = await client.avaliacoes.findMany({
         where: {
@@ -88,6 +132,13 @@ let checkAvaliacoesExists = async (avaliacaoId: string) => {
     })
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se o utilizador é o autor da publicação
+ * 
+ * @param uId id do utilizador
+ * @param publicacaoId id da publicação
+ */
 let checkAutorPublicacoes = async (uId, publicacaoId) => {
     const publicacao = await client.publicacoes.findMany({
         where: {
@@ -98,6 +149,12 @@ let checkAutorPublicacoes = async (uId, publicacaoId) => {
     return publicacao.length != 0;
 }
 
+/**
+ * Método que permite verificar se o utilizador é o autor do gosto
+ * 
+ * @param uId id do utilizador
+ * @param gostoId id do gosto
+ */
 let checkAutorGosto = async (uId: string, gostoId: string) => {
     const gosto = await client.gostos_publicacao.findMany({
         where: {
@@ -108,6 +165,12 @@ let checkAutorGosto = async (uId: string, gostoId: string) => {
     return gosto.length != 0;
 }
 
+/**
+ * Método que permite verificar se o utilizador é o dono da marca
+ * 
+ * @param uId id do utilizador
+ * @param marcaId id da marca
+ */
 let checkAutorMarca = async (uId, marcaId) => {
     const marca = await client.marcas.findMany({
         where: {
@@ -119,6 +182,12 @@ let checkAutorMarca = async (uId, marcaId) => {
     return marca.length != 0
 }
 
+/**
+ * Método que permite verificar se o utilizador é o dono da submissão do desafio
+ * 
+ * @param uId id do utilizador
+ * @param submissao_id id da submissão do desafio
+ */
 let checkAutorSubmissaoDesafio = async (uId, submissao_id) => {
     const subDesafio = await client.submissoes_desafios.findMany({
         where: {
@@ -130,6 +199,11 @@ let checkAutorSubmissaoDesafio = async (uId, submissao_id) => {
     return subDesafio.length != 0
 }
 
+/**
+ * Método que permite verificar se a submissão do desafio existe
+ * 
+ * @param submissao_id id da submissão do desafio
+ */
 let checkSubmissaoExists = async (submissao_id) => {
     const submissao = await client.submissoes_desafios.findMany({
         where: {
@@ -140,6 +214,11 @@ let checkSubmissaoExists = async (submissao_id) => {
     return submissao.length != 0
 }
 
+/**
+ * Método que permite verificar se a publicação existe
+ * 
+ * @param publicacaoId id da publicação
+ */
 let checkPublicacaoExists = async (publicacaoId) => {
     const publicacao = await client.publicacoes.findMany({
         where: {
@@ -150,6 +229,11 @@ let checkPublicacaoExists = async (publicacaoId) => {
     return publicacao.length != 0
 }
 
+/**
+ * Método que permite verificar se o plano de treino existe
+ * 
+ * @param planoId id do plano de treino
+ */
 let checkPlanoTreinoExists = async (planoId: string) => {
     const search = await client.planos_treino.findMany({
         where: {
@@ -159,6 +243,12 @@ let checkPlanoTreinoExists = async (planoId: string) => {
     })
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se o plano de treino se encontra realizado
+ * 
+ * @param planoId id do plano de treino
+ */
 let checkPlanoTreinoIsRealizado = async (planoId: string) => {
     const search = await client.planos_treino.findMany({
         where: {
@@ -169,6 +259,12 @@ let checkPlanoTreinoIsRealizado = async (planoId: string) => {
     })
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se o utilizador existe
+ * 
+ * @param userId id do utilizador
+ */
 let checkUserIdExists = async (userId: string) => {
     const search = await client.users.findMany({
         where: {
@@ -179,6 +275,11 @@ let checkUserIdExists = async (userId: string) => {
     return search.length != 0;
 }
 
+/**
+ * Método que permite verificar se o utilizador existe na base de dados
+ * 
+ * @param userId id do utilizador
+ */
 let checkUserIdIsDeleted = async (userId: string) => {
     const search = await client.users.findMany({
         where: {
@@ -189,6 +290,11 @@ let checkUserIdIsDeleted = async (userId: string) => {
     return search.length == 0;
 }
 
+/**
+ * Método que permite obter um utilizador pelo Id
+ * 
+ * @param userId id da publicação
+ */
 let getUserByID = async (userId: string) => {
 
     const user = await client.users.findFirst({
@@ -199,6 +305,12 @@ let getUserByID = async (userId: string) => {
     })
     return user;
 }
+
+/**
+ * Método que permite obter o id de uma função através do seu nome
+ * 
+ * @param nome nome da função
+ */
 let getFuncaoId = async (nome: string) => {
     const search = await client.funcoes.findFirst({
         where: {
@@ -213,6 +325,12 @@ let getFuncaoId = async (nome: string) => {
     }
     return search?.funcao_id;
 }
+
+/**
+ * Método que permite obter a função de um utilizador
+ * 
+ * @param uid id do utilizador
+ */
 async function getUserFuncao(uid: string) {
 
     const search = await client.users.findFirst({
@@ -228,6 +346,11 @@ async function getUserFuncao(uid: string) {
     return search.funcao_id;
 }
 
+/**
+ * Método que permite obter o ginásio de um desafio
+ * 
+ * @param desafioId id do desafio
+ */
 let getGinasioDesafio = async (desafioId: string) => {
     const search = await client.desafios.findUnique({
         where: {
@@ -241,6 +364,11 @@ let getGinasioDesafio = async (desafioId: string) => {
     return search.ginasio_id;
 }
 
+/**
+ * Método que permite obter o dono da marca
+ * 
+ * @param marcaId id da marca
+ */
 let getDonoMarca = async (marcaId: string) => {
 
     const search = await client.marcas.findUnique({
@@ -255,6 +383,11 @@ let getDonoMarca = async (marcaId: string) => {
     return search.dono_id;
 }
 
+/**
+ * Método que permite verificar se um post existe
+ * 
+ * @param postId id da publicação
+ */
 let checkPostExists = async (postId: string) => {
     const search = await client.publicacoes.findMany({
         where: {
@@ -263,6 +396,12 @@ let checkPostExists = async (postId: string) => {
     });
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se um ginásio existe
+ * 
+ * @param ginasioId id do ginásio
+ */
 let checkGinasioExists = async (ginasioId: string) => {
     const search = await client.ginasio.findMany({
         where: {
@@ -273,6 +412,12 @@ let checkGinasioExists = async (ginasioId: string) => {
 
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se uma notificação existe
+ * 
+ * @param notiId id da notificação
+ */
 let checknotificacaoExists = async (notiId: string) => {
     const search = await client.destinos_notificacao.findMany({
         where: {
@@ -284,6 +429,11 @@ let checknotificacaoExists = async (notiId: string) => {
 
     return search.length != 0;
 }
+/**
+ * Método que permite verificar se um treino existe
+ * 
+ * @param treinoId id do treino
+ */
 let checkTreinoExists = async (treinoId: string) => {
     const search = await client.treinos.findMany({
         where: {
@@ -294,6 +444,12 @@ let checkTreinoExists = async (treinoId: string) => {
 
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se uma marca existe
+ * 
+ * @param marcaId id da marca
+ */
 let checkMarcaExists = async (marcaId: string) => {
     const search = await client.marcas.findMany({
         where: {
@@ -303,6 +459,12 @@ let checkMarcaExists = async (marcaId: string) => {
     })
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se uma modalidade existe
+ * 
+ * @param modalidadeId id da modalidade
+ */
 let checkModalidadeExists = async (modalidadeId: string) => {
     const search = await client.modalidades_ginasio.findMany({
         where: {
@@ -312,6 +474,12 @@ let checkModalidadeExists = async (modalidadeId: string) => {
     })
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se uma atividade existe
+ * 
+ * @param atividadeId id da atividade
+ */
 let checkAtividadeExists = async (atividadeId: string) => {
     const search = await client.atividades.findMany({
         where: {
@@ -321,6 +489,12 @@ let checkAtividadeExists = async (atividadeId: string) => {
     })
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar se um pedido de agendamento de uma avalição existe
+ * 
+ * @param agendamentoId id do agendamento
+ */
 let checkAgendamentoAvaliacaoExists = async (agendamentoId: string) => {
     const search = await client.agendamentos_avaliacoes.findMany({
         where: {
@@ -331,6 +505,11 @@ let checkAgendamentoAvaliacaoExists = async (agendamentoId: string) => {
     return search.length != 0;
 }
 
+/**
+ * Método que permite verificar se um pedido de agendamento de uma avaliação já foi aceite
+ * 
+ * @param agendamentoId id do agendamento
+ */
 let checkAgendamentoAvaliacaoIsAceiteExists = async (agendamentoId: string) => {
     const search = await client.agendamentos_avaliacoes.findMany({
         where: {
@@ -342,6 +521,11 @@ let checkAgendamentoAvaliacaoIsAceiteExists = async (agendamentoId: string) => {
     return search.length != 0;
 }
 
+/**
+ * Método que permite verificar se um pedido de agendamento de um desafio existe
+ * 
+ * @param agendamentoId id do agendamento
+ */
 let checkAgendamentoDesafiosExists = async (agendamentoId: string) => {
     const search = await client.agendamentos_desafios.findMany({
         where: {
@@ -352,6 +536,11 @@ let checkAgendamentoDesafiosExists = async (agendamentoId: string) => {
     return search.length != 0;
 }
 
+/**
+ * Método que permite verificar se um pedido de agendamento de um desafio já foi aceite
+ * 
+ * @param agendamentoId id do agendamento
+ */
 let checkAgendamentoDesafioIsAceiteExists = async (agendamentoId: string) => {
     const search = await client.agendamentos_desafios.findMany({
         where: {
@@ -363,6 +552,11 @@ let checkAgendamentoDesafioIsAceiteExists = async (agendamentoId: string) => {
     return search.length != 0;
 }
 
+/**
+ * Método que permite verificar se uma exercício existe
+ * 
+ * @param exercicioId id do exercício
+ */
 let checkExercicioExists = async (exercicioId: string) => {
     const search = await client.exercicios.findMany({
         where: {
@@ -373,6 +567,11 @@ let checkExercicioExists = async (exercicioId: string) => {
     return search.length != 0;
 }
 
+/**
+ * Método que permite verificar se uma imagem de um exercício existe
+ * 
+ * @param imagemId id da imagem
+ */
 let checkImagemExercicioExists = async (imagemId: string) => {
     const search = await client.exercicios_imagens.findMany({
         where: {
@@ -382,6 +581,11 @@ let checkImagemExercicioExists = async (imagemId: string) => {
     return search.length != 0;
 }
 
+/**
+ * Método que permite verificar se um exercício existe dentro de um bloco
+ * 
+ * @param exercicioBlocoId id do bloco
+ */
 let checkExercicioBlocoExists = async (exercicioBlocoId: string) => {
     const search = await client.exercicios_bloco.findMany({
         where: {
@@ -391,6 +595,12 @@ let checkExercicioBlocoExists = async (exercicioBlocoId: string) => {
     })
     return search.length != 0;
 }
+
+/**
+ * Método que permite verificar qual a marca de um ginásio
+ * 
+ * @param ginasioId id do ginasio
+ */
 let getMarcaGym = async (ginasioId: string) => {
     const search = await client.ginasio.findFirst({
         where: {
@@ -409,6 +619,12 @@ let getMarcaGym = async (ginasioId: string) => {
 
     return marca;
 }
+
+/**
+ * Método que permite verificar o dono de um ginásio
+ * 
+ * @param ginasioId id da atividade
+ */
 let checkDonoGinasio = async (ginasioId: string, donoId: string) => {
     const searchAdmin = await client.ginasio.findFirst({
         where: {
@@ -430,6 +646,13 @@ let checkDonoGinasio = async (ginasioId: string, donoId: string) => {
 
     return true;
 }
+
+/**
+ * Método que permite verificar se o utilizador é um treinador ou um dono do ginásio
+ * 
+ * @param ginasioId id do ginásio
+ * @param userId id do utilizador
+ */
 let checkDonoOuTreinadorGinasio = async (ginasioId: string, userId: string) => {
     const search = await client.ginasio.findFirst({
         where: {
@@ -468,6 +691,13 @@ let checkDonoOuTreinadorGinasio = async (ginasioId: string, userId: string) => {
 
     return false;
 }
+
+/**
+ * Método que permite verificar se o utilizador é o dono da marca
+ * 
+ * @param marcaId id da marca
+ * @param userId id do utilizador
+ */
 let checkDonoMarca = async (marcaId: string, userId: string) => {
     const search = await client.marcas.findFirst({
         where: {
