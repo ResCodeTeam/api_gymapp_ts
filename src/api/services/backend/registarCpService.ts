@@ -16,7 +16,9 @@ export interface IRegistarCpRequest {
     localidade: string;
 }
 
-
+/**
+ * Classe responsavel pelo serviço de criação de códigos postais
+ */
 export class RegistarCpService {
     async execute({ cp, cpExt, rua, localidade }: IRegistarCpRequest) {
         await client.localidades.create({

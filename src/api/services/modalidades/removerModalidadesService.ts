@@ -4,6 +4,9 @@
 import { client } from "../../prisma/client";
 import { checkDonoGinasio, checkGinasioExists, checkModalidadeExists, getModalidadeGinasio } from "../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção de modalidades
+ */
 class RemoverModalidadesService {
   async execute(modalidadeId: string, ginasioId: string, uid: string) {
 

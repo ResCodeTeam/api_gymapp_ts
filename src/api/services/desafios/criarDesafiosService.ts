@@ -32,6 +32,9 @@ export interface ICriarDesafiosService {
     }>;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de desafios
+ */
 class CriarDesafiosService {
     async execute({ criadorId, nome, modalidadeId, dataInicio, dataFim, recompensa, ginasioId, descricao, exercicios, regras }: ICriarDesafiosService) {
         const exists_criador = await checkUserIdExists(criadorId);

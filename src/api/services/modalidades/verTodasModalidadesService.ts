@@ -13,6 +13,9 @@ export interface IGinasios {
     userId: string;
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todas as modalidades
+ */
 export class VerTodasModalidadesService {
     async execute({ ginasioId, userId }: IGinasios) {
 

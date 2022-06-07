@@ -34,7 +34,9 @@ export interface IRegistarAlunoService {
   donoId: string;
 }
 
-
+/**
+ * Classe responsavel pelo serviço de criação de um aluno
+ */
 export class RegistarAlunoService {
   async execute({
     email,

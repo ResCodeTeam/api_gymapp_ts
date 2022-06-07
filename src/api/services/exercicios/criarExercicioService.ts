@@ -21,7 +21,9 @@ export interface ICriarExercicio {
   musculos: Array<string>
 }
 
-
+/**
+ * Classe responsavel pelo serviço de criação de exercícios
+ */
 export class CriarExercicioService {
   async execute({ nome, descricao, autor, isTempo, imagens, musculos }: ICriarExercicio) {
     const existsTreinador = await checkUserIdExists(autor);

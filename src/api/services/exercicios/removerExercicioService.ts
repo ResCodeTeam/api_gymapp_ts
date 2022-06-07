@@ -4,6 +4,9 @@
 import { client } from "../../prisma/client";
 import { checkExercicioExists, checkAutorExercicio } from "../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção de exercícios
+ */
 export class RemoverExercicioService {
     async execute(exercicioId: string, autorId: string) {
         const exists_dst = await checkExercicioExists(exercicioId);

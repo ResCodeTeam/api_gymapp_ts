@@ -22,6 +22,9 @@ export interface Idata {
     descricao: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de desafios
+ */
 export class EditarDesafioService {
     async execute(uId: string, data: Idata, desafio_id: string) {
 

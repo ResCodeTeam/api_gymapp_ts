@@ -13,6 +13,9 @@ export interface IGinasios {
     userId: string
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todos os ginásios
+ */
 export class VerTodosGinasiosService {
     async execute({ marcaId, userId }: IGinasios) {
         const exists_ginasios = await checkMarcaExists(marcaId)

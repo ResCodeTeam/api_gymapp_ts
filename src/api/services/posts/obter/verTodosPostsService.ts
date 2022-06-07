@@ -2,8 +2,12 @@
  * @module VerTodosPostsService
  */
 
-import { checkMobilidadeMarcaUser, checkUserIdExists, getFuncaoId, getGinasioAluno, getMarcaGym, getUserFuncao } from "../../../helpers/dbHelpers";
+import { checkMobilidadeMarcaUser, getFuncaoId, getMarcaGym, getUserFuncao } from "../../../helpers/dbHelpers";
 import { client } from "../../../prisma/client";
+
+/**
+ * Classe responsavel pelo serviço que serve para obter todos os posts
+ */
 class VerTodosPostsService {
     async execute(userId: string) {
 

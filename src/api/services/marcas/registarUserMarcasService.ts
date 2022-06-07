@@ -20,6 +20,9 @@ export interface IRegistarUserMarcasSerice {
   logotipo: string;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de marcas
+ */
 class RegistarUserMarcasService {
   async execute({ userId, nome, mobilidade, cor, logotipo,
   }: IRegistarUserMarcasSerice) {

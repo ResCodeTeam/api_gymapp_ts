@@ -4,6 +4,9 @@
 import { checkUserIdExists, getFuncaoId, getMarcaAluno, getTreinadorMarca, getUserFuncao } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter avaliações
+ */
 export class VerAvaliacoesService {
     async execute(userId: string, alunoId: string) {
 

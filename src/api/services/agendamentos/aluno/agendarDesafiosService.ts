@@ -18,6 +18,9 @@ export interface IAgendarDesafiosService {
   ginasioId: string;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de um pedido de agendamento de um desafio
+ */
 export class AgendarDesafiosService {
   async execute({
     uid,

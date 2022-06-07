@@ -15,6 +15,9 @@ export interface IDesafio {
     desafioId: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de edição do estado de um desafio
+ */
 export class EncerrarDesafiosService {
     async execute({ uId, isEncerrado, desafioId }: IDesafio) {
 

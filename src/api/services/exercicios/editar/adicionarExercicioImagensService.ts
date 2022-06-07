@@ -15,6 +15,9 @@ export interface IEditarImagensExercicio {
   url: string,
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de imagens em exercícios
+ */
 export class AdicionarExerciciosImagensService {
   async execute({ exercicioId, treinadorId, url }: IEditarImagensExercicio) {
     const existsExercicio = await checkExercicioExists(exercicioId);

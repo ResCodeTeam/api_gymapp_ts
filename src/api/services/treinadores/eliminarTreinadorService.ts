@@ -14,6 +14,9 @@ export interface Itreinador {
     userId: string
 }
 
+/**
+ * Classe responsavel pelo serviço de remoção de treinadores de posts
+ */
 export class EliminarTreinadorService {
     async execute({ treinador_id, userId }: Itreinador) {
         const exists_id = await checkUserIdExists(treinador_id);

@@ -4,6 +4,9 @@
 import { getTreinadorMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de obter os desafios de uma marca
+ */
 export class VerDesafiosMarcaService {
   async execute(uid: string) {
     const marcaId = await getTreinadorMarca(uid);

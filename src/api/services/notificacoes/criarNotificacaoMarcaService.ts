@@ -19,6 +19,9 @@ export interface INotificacaoMarca {
   tipo: number
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de notificações para as marcas
+ */
 export class CriarNotificacaoMarcaService {
   async execute({ userId, marcaId, conteudo, tipo }: INotificacaoMarca) {
     //#region Verifica se o admin existe

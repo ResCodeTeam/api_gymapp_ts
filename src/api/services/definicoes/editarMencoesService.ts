@@ -4,6 +4,9 @@
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de edição do estado das menções
+ */
 export class EditarMencoesService {
   async execute(uid: string, mencoes: boolean) {
 

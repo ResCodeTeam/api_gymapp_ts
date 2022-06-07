@@ -6,6 +6,9 @@ import { client } from "../../prisma/client";
 import { VerTodosPostsUserService } from "../posts/obter/verTodosPostsUserService";
 import { VerTreinosAlunosService } from "../treinos/verTreinosAlunosService";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter o perfil de outros utilizadores
+ */
 export class VerPerfilService {
     async execute(uId: string, auId: string) {
 

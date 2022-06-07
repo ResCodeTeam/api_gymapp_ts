@@ -40,6 +40,9 @@ export interface ICriarAvaliacaoService {
   medidas: Array<Medida>
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de uma avaliação
+ */
 export class CriarAvaliacaoService {
   async execute({
     alunoId,

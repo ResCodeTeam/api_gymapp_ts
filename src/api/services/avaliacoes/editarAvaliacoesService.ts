@@ -39,6 +39,9 @@ export interface IAvaliacao {
     }>
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de uma avaliação
+ */
 export class EditarAvaliacaoService {
     async execute(dados: IAvaliacao, avaliacao_id: string, treinadorId: string) {
 

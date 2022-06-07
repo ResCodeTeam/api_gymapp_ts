@@ -10,7 +10,9 @@ export interface IMeusExercicios {
     autorId: string
 }
 
-
+/**
+ * Classe responsavel pelo serviço que serve para obter os exercícios do utilizador
+ */
 export class VerMeusExerciciosService {
     async execute({ autorId }: IMeusExercicios) {
 

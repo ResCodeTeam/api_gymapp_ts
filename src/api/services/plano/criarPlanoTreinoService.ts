@@ -22,6 +22,9 @@ export interface IPlano {
   blocos: Array<Bloco>;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de planos de treino
+ */
 export class CriarPlanoTreinoService {
   async execute({ alunoId, treinadorId, data, modalidadeId, blocos }: IPlano) {
     const exists_aluno = await checkUserIdExists(alunoId);

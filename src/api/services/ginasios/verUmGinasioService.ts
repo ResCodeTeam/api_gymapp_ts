@@ -4,6 +4,9 @@
 import { checkDonoGinasio, checkGinasioExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter os dados de um ginásio
+ */
 export class VerUmGinasioService {
     async execute(donoId: string, ginasioId: string) {
         const exists_ginasio = await checkGinasioExists(ginasioId)

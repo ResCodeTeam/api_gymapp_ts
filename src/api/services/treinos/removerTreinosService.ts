@@ -4,6 +4,9 @@
 import { client } from "../../prisma/client";
 import { checkTreinoExists, checkAutorTreino } from "../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção de treinos
+ */
 class RemoverTreinosService {
   async execute(uId: string, treinoId: string) {
     const exists_treino = await checkTreinoExists(treinoId);

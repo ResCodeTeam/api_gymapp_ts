@@ -29,6 +29,9 @@ export interface IRegistarMarcaGinasiosService {
   uId: string;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de marcas
+ */
 export class RegistarMarcaGinasiosService {
   async execute({
     nome,

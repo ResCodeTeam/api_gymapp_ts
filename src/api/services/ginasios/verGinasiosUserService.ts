@@ -11,6 +11,9 @@ export interface IGinasios {
     userId: string
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter os alunos dos ginásios
+ */
 export class VerGinasiosUserService {
     async execute({ userId }: IGinasios) {
         console.log("123")

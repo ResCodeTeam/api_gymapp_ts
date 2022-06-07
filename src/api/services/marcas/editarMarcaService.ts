@@ -24,6 +24,9 @@ export interface IEditarMarca {
 
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de marcas
+ */
 export class EditarMarcaService {
   async execute({ marcaId, adminId, nome, cor, logotipo, mobilidade }: IEditarMarca) {
 

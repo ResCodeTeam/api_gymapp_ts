@@ -4,6 +4,9 @@
 import { client } from "../../prisma/client";
 import { checkUserIdExists, findUserDefinicoes } from "../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de edição da privacidade do perfil
+ */
 export class EditarPerfilPrivadoService {
   async execute(uId: string, is_privado: boolean) {
     const existsUser = await checkUserIdExists(uId);

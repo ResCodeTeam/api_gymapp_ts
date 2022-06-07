@@ -5,6 +5,9 @@
 import { changeTimeZone } from "../../../helpers/dateHelpers";
 import { client } from "../../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de criação de comentários
+ */
 export class CriarComentarioService {
     async execute(publicacao_id: string, comentario: string, criador_id: string, identificacao: Array<string>) {
 

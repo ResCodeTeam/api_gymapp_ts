@@ -13,6 +13,9 @@ export interface IGinasios {
     ginasioId: string
 }
 
+/**
+ * Classe responsavel pelo serviço que serve para obter todos os desafios disponíveis
+ */
 export class VerDesafiosDisponiveisService {
     async execute({ uId, ginasioId }: IGinasios) {
         const exists_dst = await checkGinasioExists(ginasioId);

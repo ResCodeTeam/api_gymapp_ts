@@ -24,6 +24,9 @@ export interface IEditarPlano {
   blocos: Array<Bloco>;
 }
 
+/**
+ * Classe responsavel pelo serviço de edição dos planos de treino
+ */
 export class EditarPlanoTreinoService {
   async execute({ planoId, alunoId, treinadorId, data, modalidadeId, blocos }: IEditarPlano) {
     const existsPlano = await checkPlanoTreinoExists(planoId);

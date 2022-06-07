@@ -4,6 +4,9 @@
 import { client } from "../../../prisma/client";
 import { checkUserIdExists } from "../../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço que serve para obter os pedidos de agendamento de avalições de um aluno
+ */
 export class VerAgendamentosAvaliacoesAlunoService {
     async execute(uId: string) {
 

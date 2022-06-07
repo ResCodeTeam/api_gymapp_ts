@@ -17,6 +17,9 @@ export interface IPublicacao {
     descricao: string
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de posts
+ */
 export class EditarPublicacaoService {
     async execute({ uId, publicacaoId, newData, descricao }: IPublicacao) {
 

@@ -4,6 +4,9 @@
 import { checkUserIdExists } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de edição do estado das identificações
+ */
 export class ImpedirIdentificacaoService {
   async execute(uid: string, identificacoes: boolean) {
 

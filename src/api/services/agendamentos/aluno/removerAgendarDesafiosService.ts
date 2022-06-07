@@ -4,6 +4,9 @@
 import { client } from "../../../prisma/client";
 import { checkAgendamentoDesafiosExists, checkAutorAgendamentoDesafios } from "../../../helpers/dbHelpers";
 
+/**
+ * Classe responsavel pelo serviço de remoção de um pedido de agendamento de um desafio
+ */
 class RemoverAgendarDesafiosService {
   async execute(agendamentoId: string, uId: string) {
     const exists_agendamento = await checkAgendamentoDesafiosExists(agendamentoId);

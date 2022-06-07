@@ -4,6 +4,9 @@
 import { checkAutorMarca, checkMarcaExists, getLocalMedidaMarca } from "../../helpers/dbHelpers";
 import { client } from "../../prisma/client";
 
+/**
+ * Classe responsavel pelo serviço de remoção de locais de medida
+ */
 export class RemoverLocalMedidaService {
   async execute(uid: string, marcaId: string, localId: string) {
 

@@ -19,6 +19,9 @@ export interface IEditarExercicio {
     isTempo: boolean
 }
 
+/**
+ * Classe responsavel pelo serviço de edição de exercícios
+ */
 export class EditarExercicioService {
     async execute(data: IEditarExercicio) {
         const exists_dst = await checkExercicioExists(data.exercicioId);
