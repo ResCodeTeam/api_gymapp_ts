@@ -9,6 +9,12 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter as submissões de desafios
  */
 export class VerDesafiosSubmissoesService {
+    /**
+ * Método que permite obter as submissões de um desafio da base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param uId id do utilizador
+ * @param desafioId id do desafio
+ */
     async execute(uId: string, desafioId: string) {
 
         const exists_desafio = await checkDesafioIdExists(desafioId)

@@ -8,6 +8,13 @@ import { client } from "../../../prisma/client";
  * Classe responsavel pelo serviço de remoção de imagens dos exercícios
  */
 export class RemoverExercicioImagemService {
+  /**
+ * Método que permite remover uma imagem de um exercício na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param imagemId id da imagem a remover
+ * @param treinadorId id do treinador
+ * @param exercicioId id do exercício
+ */
   async execute(imagemId: string, treinadorId: string, exercicioId: string) {
     const exists_exercicio = await checkExercicioExists(exercicioId)
     if (!exists_exercicio) {

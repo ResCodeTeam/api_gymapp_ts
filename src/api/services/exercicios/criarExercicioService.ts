@@ -25,6 +25,12 @@ export interface ICriarExercicio {
  * Classe responsavel pelo serviço de criação de exercícios
  */
 export class CriarExercicioService {
+
+  /**
+ * Método que permite inserir um exercício na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param ICriarExercicio interface de dados do serviço
+ */
   async execute({ nome, descricao, autor, isTempo, imagens, musculos }: ICriarExercicio) {
     const existsTreinador = await checkUserIdExists(autor);
     if (!existsTreinador) {

@@ -8,6 +8,12 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter todos os dados de um desafio
  */
 export class VerDesafioService {
+    /**
+ * Método que permite obter todos os dados de um desadio da base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param uId id do utilizador
+ * @param desafioId id do desafio 
+ */
     async execute(uId: string, desafioId: string) {
 
         const exists_desafio = await checkDesafioIdExists(desafioId)

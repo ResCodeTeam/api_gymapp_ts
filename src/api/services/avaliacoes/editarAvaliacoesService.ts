@@ -43,6 +43,13 @@ export interface IAvaliacao {
  * Classe responsavel pelo serviço de edição de uma avaliação
  */
 export class EditarAvaliacaoService {
+    /**
+ * Método que permite editar uma avaliação na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IAvaliacao interface de dados do serviço
+ * @param avaliacao_id id da avaliação a editar
+ * @param treinadorId id do treinador
+ */
     async execute(dados: IAvaliacao, avaliacao_id: string, treinadorId: string) {
 
         const existstreinadorIdAvaliacao = await checkAutorAvaliacao(treinadorId);

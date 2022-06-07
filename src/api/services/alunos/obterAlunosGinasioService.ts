@@ -18,6 +18,11 @@ export interface IGinasioDono {
  * Classe responsavel pelo serviço quer serve para obter os alunos de um ginásio
  */
 export class ObterAlunosGinasioService {
+    /**
+ * Método que permite obter os alunos de um ginásio da base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IGinasioDono interface de dados do serviço
+ */
     async execute({ ginasioId, userId }: IGinasioDono) {
 
         const existsGinasio = await checkGinasioExists(ginasioId);

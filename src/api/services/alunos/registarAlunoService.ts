@@ -38,6 +38,11 @@ export interface IRegistarAlunoService {
  * Classe responsavel pelo serviço de criação de um aluno
  */
 export class RegistarAlunoService {
+  /**
+ * Método que permite inserir um aluno na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IRegistarAlunoService interface de dados do serviço
+ */
   async execute({
     email,
     nome,

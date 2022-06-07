@@ -24,9 +24,14 @@ export interface IRegistarAdminService {
 }
 
 /**
- * Classe responsavel pelo serviço de registo de um admin
+ * Classe responsavel pelo serviço de criação de um admin
  */
 export class RegistarAdminService {
+        /**
+     * Método que permite inserir um admin na base de dados tendo em conta todas as verificações necessárias
+     * 
+     * @param IRegistarAdminService interface de dados do serviço
+     */
     async execute({ email, nome, password, dataNasc, dataEntrada, genero }: IRegistarAdminService) {
 
         // verificar se o aluno já está registado

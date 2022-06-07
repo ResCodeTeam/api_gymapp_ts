@@ -8,6 +8,11 @@ import { checkAtividadeExists } from "../../helpers/dbHelpers";
  * Classe responsavel pelo serviço de remoção de uma atividade
  */
 class RemoverAtividadesService {
+  /**
+ * Método que permite remover uma atividade na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param atividadeId id da atividade a remover 
+ */
   async execute(atividadeId: string) {
     const exists_atividade = await checkAtividadeExists(atividadeId);
     if (!exists_atividade) {

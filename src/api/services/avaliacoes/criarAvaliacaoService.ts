@@ -44,6 +44,11 @@ export interface ICriarAvaliacaoService {
  * Classe responsavel pelo serviço de criação de uma avaliação
  */
 export class CriarAvaliacaoService {
+  /**
+ * Método que permite inserir uma avaliação na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param ICriarAvaliacaoService interface de dados do serviço
+ */
   async execute({
     alunoId,
     data,

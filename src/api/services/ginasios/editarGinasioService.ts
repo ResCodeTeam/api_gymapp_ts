@@ -30,6 +30,11 @@ export interface IEditarGinasio {
  * Classe responsavel pelo serviço de edição de ginásios
  */
 export class EditarGinasioService {
+    /**
+ * Método que permite editar um ginásio na base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param IEditarGinasio interface de dados do serviço
+ */
     async execute({ ginasioId, adminId, nome, rua, descricao, imagemUrl, lat, long }: IEditarGinasio) {
         const existsGinasio = await checkGinasioExists(ginasioId)
         if (!existsGinasio) {

@@ -8,6 +8,12 @@ import { client } from "../../prisma/client";
  * Classe responsavel pelo serviço que serve para obter os dados de uma avaliação
  */
 export class VerUmaAvaliacaoService {
+    /**
+ * Método que permite obter os dados de uma avaliação da base de dados tendo em conta todas as verificações necessárias
+ * 
+ * @param userId id do utilizador
+ * @param avaliacaoId id da avaliacao
+ */
     async execute(userId: string, avaliacaoId: string) {
 
         console.log(userId)
