@@ -1,4 +1,7 @@
 /**
+ * @module dateHelpers
+ */
+/**
  * Permite alterar o fuso horario de uma data
  * @param date data
  */

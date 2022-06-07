@@ -1,3 +1,6 @@
+/**
+ * @module jwtHelpers
+ */
 import { sign } from 'jsonwebtoken'
 import { client } from '../prisma/client'
 import { getFuncaoId, getUserFuncao } from './dbHelpers'
