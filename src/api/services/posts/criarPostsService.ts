@@ -23,9 +23,12 @@ export interface ICriarPostsService {
   identificacao: Array<string>;
 }
 
+/**
+ * Classe responsavel pelo serviço de criação de posts
+ */
 class CriarPostsService {
   /**
- * Classe responsável por receber e chamar os métodos do serviço de criação de posts
+ * Método que permite inserir uma publicação na base de dados tendo em conta todas as verificações necessárias
  * 
  * @param ICriarPostsService interface de dados do serviço
  */
