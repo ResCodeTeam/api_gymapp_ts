@@ -14,7 +14,7 @@ import { VerInfoPostService } from "./obter/verInfoPostService";
  * @param ginasioId id do ginasio
  * @param identificacao identificações do post
  */
-interface ICriarPostsService {
+export interface ICriarPostsService {
   criadorId: string;
   data: Date;
   descricao: string;

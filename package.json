@@ -7,7 +7,7 @@
     "start": "node dist/app.js",
     "build": "tsc",
     "postinstall": "npm run build",
-    "docs": "npx typedoc --cleanOutputDir --out docs src/api/**/**/*.ts src/**.ts",
+    "docs": "npx typedoc --cleanOutputDir --out docs src/api/**/**/*.ts src/api/**/**/**/*.ts src/**.ts",
     "dev": "nodemon --ignore ./src/tests ./src/app.ts",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/**/*.ts'",
     "test_agendamentos": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/agendamentos/aluno/*.ts'",
